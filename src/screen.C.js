@@ -49,8 +49,7 @@
 #include "rxvt.h"               /* NECESSARY */
 #include "rxvtperl.h"           /* NECESSARY */
 
-//CMNT: c_keyword ^|       #include <inttypes.h> 
-#include <types.h>
+#include <inttypes.h> 
 
 #include "salloc.C" // HACK, should be a seperate compile!
 
@@ -382,8 +381,7 @@ rxvt_term.scr_reset =function(){
 
                       prow = MOD (p + prow, prev_total_rows);
 
-//CMNT: c_keyword ^|                             // we only adjust the cursor _row_ and put it into 
-                      // we only adjust the cursor _row_ and put it o
+                      // we only adjust the cursor _row_ and put it into 
                       // the topmost line of "long line" it was in, as
                       // this seems to upset applications/shells/readline
                       // least.
@@ -702,8 +700,7 @@ rxvt_term.scr_scroll_text =function( row1,  row2,  count){
           line_t &l = ROW(nrow - 1 - i);
 
           // optimize if already cleared, can be significant on slow machines
-//CMNT: c_keyword ^|                 // could be rolled into scr_blank_screen_mem 
-          // could be rolled o scr_blank_screen_mem
+          // could be rolled into scr_blank_screen_mem 
           if (l.r && l.l < ncol - 1 && !((l.r[l.l + 1] ^ rstyle) & (RS_fgMask | RS_bgMask))){
               scr_blank_line (l, 0, l.l, rstyle);
               l.l = 0;
@@ -918,8 +915,7 @@ rxvt_term.scr_add_lines =function(   s tr,  len,  minlines){
           // 5f-7e standard vt100
 //CMNT: c_keyword ^|                 // 40-5e rxvt extension for extra curses acs chars 
           // 40-5e rxvt extension for extra curses acs s
-//CMNT: c_keyword ^|                 static uint16_t vt100_0[62] = { // 41 .. 7e 
-           u16_t vt100_0[62] = { // 41 .. 7e
+          static uint16_t vt100_0[62] = { // 41 .. 7e 
                     0x2191, 0x2193, 0x2192, 0x2190, 0x2588, 0x259a, 0x2603, // 41-47 hi mr. snowman!
                  0,      0,      0,      0,      0,      0,      0,      0, // 48-4f
                  0,      0,      0,      0,      0,      0,      0,      0, // 50-57
@@ -966,8 +962,7 @@ rxvt_term.scr_add_lines =function(   s tr,  len,  minlines){
 //CMNT: js_style_variables ^|                 rend_t rend = SET_FONT (rstyle, FONTSET (rstyle)->find_font (c)); 
  var rend= SET_FONT (rstyle, FONTSET (rstyle)->find_font (c)); 
 
-//CMNT: c_keyword ^|                 // if the character doesn't fit into the remaining columns... 
-          // if the acter doesn't fit o the remaining columns...
+ // if the character doesn't fit into the remaining columns... 
           if (expect_false (screen.cur.col > ncol - width && ncol >= width)){
               // ... artificially enlargen the previous one
               c = NOCHAR;
@@ -1759,8 +1754,7 @@ rxvt_term.scr_rvideo_mode =function(bool on){
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_report_position (){ 
 rxvt_term.scr_report_position =function(){ 
-//CMNT: c_keyword ^|         tt_printf ("\033[%d;%dR", screen.cur.row + 1, screen.cur.col + 1); 
-  tt_prf ("\033[%d;%dR", screen.cur.row + 1, screen.cur.col + 1);
+  tt_printf ("\033[%d;%dR", screen.cur.row + 1, screen.cur.col + 1); 
 }
 
 /* ------------------------------------------------------------------------- *
@@ -1781,17 +1775,13 @@ rxvt_term.set_font_style =function(){
         break;
       case 'B':                   /* United States (USASCII) */
         break;
-//CMNT: c_keyword ^|             case '<':                   /* Multinational character set */ 
-      case '<':                   /* Multinational acter set */
+  case '<':                   /* Multinational character set */ 
         break;
-//CMNT: c_keyword ^|             case '5':                   /* Finnish character set */ 
-      case '5':                   /* Finnish acter set */
+  case '5':                   /* Finnish character set */ 
         break;
-//CMNT: c_keyword ^|             case 'C':                   /* Finnish character set */ 
-      case 'C':                   /* Finnish acter set */
+  case 'C':                   /* Finnish character set */ 
         break;
-//CMNT: c_keyword ^|             case 'K':                   /* German character set */ 
-      case 'K':                   /* German acter set */
+  case 'K':                   /* German character set */ 
         break;
     }
 #endif
@@ -1997,12 +1987,12 @@ rxvt_term.scr_bell =function(){
 /* ------------------------------------------------------------------------- */
 /* ARGSUSED */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_printscreen (int fullhist){ 
-rxvt_term.scr_prscreen =function( fullhist){ 
+rxvt_term.scr_printscreen =function( fullhist){ 
 #ifdef PRINTPIPE
 //CMNT: c_keyword ^|         int nrows, row_start; 
    nrows, row_start;
 //CMNT: c_keyword possible_pointer ^|         FILE *fd = popen_printer (); 
-  FILE  f d = popen_prer ();
+  FILE  fd = popen_prer ();
 
   if (!fd)
     return;
@@ -2048,8 +2038,7 @@ rxvt_term.scr_prscreen =function( fullhist){
       fputc ('\n', fd);
     }
 
-//CMNT: c_keyword ^|         pclose_printer (fd); 
-  pclose_prer (fd);
+   pclose_printer (fd); 
 #endif
 }
 
@@ -2070,7 +2059,8 @@ rxvt_term.scr_refresh =function(){
 //CMNT: c_keyword ^|         rend_t cc1;         /* store colours at cursor position (s)      */ 
    cc1;         /* store colours at cursor position (s)      */
 #endif
-//CMNT: c_keyword possible_pointer ^|         rend_t *crp;        // cursor rendition pointer 
+//CMNT: c_keyword possible_pointer ^|
+         rend_t *crp;        // cursor rendition pointer 
     c rp;        // cursor rendition poer
 //CMNT: c_keyword ^|         rend_t ccol1,  /* Cursor colour       */ 
    ccol1,  /* Cursor colour       */
@@ -2757,22 +2747,19 @@ rxvt_term.selection_check =function( check_more){
  */
 //CMNT: js_style_functions c_keyword possible_pointer ^|       void rxvt_term::paste (char *data, unsigned int len){ 
 rxvt_term.paste =function(  d ata,   len){ 
-//CMNT: c_keyword ^|         /* convert normal newline chars into common keyboard Return key sequence */ 
-  /* convert normal newline s o common keyboard Return key sequence */
+  /* convert normal newline chars into common keyboard Return key sequence */ 
 //CMNT: c_keyword ^|         for (unsigned int i = 0; i < len; i++) 
   for (  i = 0; i < len; i++)
     if (data[i] == C0_LF)
       data[i] = C0_CR;
 
   if (priv_modes & PrivMode_BracketPaste)
-//CMNT: c_keyword ^|           tt_printf ("\e[200~"); 
-    tt_prf ("\e[200~");
+    tt_printf ("\e[200~"); 
 
   tt_write (data, len);
 
   if (priv_modes & PrivMode_BracketPaste)
-//CMNT: c_keyword ^|           tt_printf ("\e[201~"); 
-    tt_prf ("\e[201~");
+    tt_printf ("\e[201~"); 
 }
 
 /* ------------------------------------------------------------------------- */
@@ -3208,8 +3195,7 @@ boolrxvt_term.selection_grab =function(Time tm){
  * Mark or select text based upon number of clicks: 1, 2, or 3 
  * EXT: button 1 press 
  */
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::selection_click (int clicks, int x, int y){ 
-rxvt_term.selection_click =function( clicks,  x,  y){ 
+void rxvt_term::selection_click (int clicks, int x, int y){ 
   clicks = ((clicks - 1) % 3) + 1;
   selection.clicks = clicks;       /* save clicks so extend will work */
 
