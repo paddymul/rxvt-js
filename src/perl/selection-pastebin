@@ -1,0 +1,84 @@
+#! perl
+
+sub upload_paste {
+   my ($self) = @_;
+
+   require Digest::MD5;
+
+   my $txt = $self->selection;
+
+   my $filename = $txt;
+   utf8::encode $filename;
+   $filename = Digest::MD5::md5_hex ($filename) . ".txt";
+
+   my $tmpfile = "/tmp/$filename";
+
+   my $msg = "uploaded as $filename";
+
+   if (open my $o, ">:utf8", $tmpfile) {
+      chmod 0644, $tmpfile;
+      print $o $txt;
+      close $o;
+   } else {
+      $msg = "couldn't write $tmpfile: $!";
+   }
+
+   my $cmd = $self->{pastebin_cmd};
+   $cmd =~ s/%/$tmpfile/;
+
+   my $pid = $self->exec_async ("/bin/sh", "-c", $cmd);
+
+   $self->{pw} = urxvt::pw->new->start ($pid)->cb (sub {
+      my (undef, $status) = @_;
+
+      delete $self->{pw};
+
+      if ($status) {
+         $status >>= 8;
+         $msg = "ERROR: command returned status $status";
+      } else {
+         my $url = $self->{pastebin_url};
+         $url =~ s/%/$filename/;
+
+         $self->selection ($url);
+      }
+
+      unlink $tmpfile;
+
+      my $ov = $self->overlay (-1, 0, $self->strwidth ($msg), 1, urxvt::OVERLAY_RSTYLE, 0);
+      $ov->set (0, 0, $msg);
+
+      $self->{timer} =
+         urxvt::timer
+                 ->new
+                 ->after (5)
+                 ->cb (sub { delete $self->{timer}; undef $ov; });
+   });
+}
+
+sub on_start {
+   my ($self) = @_;
+
+   $self->{pastebin_cmd} = $self->x_resource ("selection-pastebin.cmd")
+                           || "rcp -p % ruth:/var/www/www.ta-sa.org/files/txt/";
+
+   $self->{pastebin_url} = $self->x_resource ("selection-pastebin.url")
+                           || "http://www.ta-sa.org/files/txt/%";
+
+   push @{ $self->{term}{selection_popup_hook} }, sub {
+      ("pastebin upload" => sub { $self->upload_paste })
+   };
+
+   ()
+}
+
+sub on_user_command {
+   my ($self, $cmd) = @_;
+
+   if ($cmd eq "selection-pastebin:remote-pastebin") {
+      $self->upload_paste;
+   }
+
+   ()
+}
+

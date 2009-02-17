@@ -1,0 +1,61 @@
+#! perl
+
+use POSIX ();
+
+my $termios = new POSIX::Termios;
+
+sub on_init {
+   my ($self) = @_;
+
+   $self->{enabled} = 1;
+
+   push @{ $self->{term}{option_popup_hook} }, sub {
+      ("readline" => $self->{enabled}, sub { $self->{enabled} = shift })
+   };
+
+   ()
+}
+
+sub on_button_press {
+   my ($self, $event) = @_;
+
+   $self->current_screen || $self->hidden_cursor || !$self->{enabled}
+      and return;
+
+   my $mask = $self->ModLevel3Mask | $self->ModMetaMask
+            | urxvt::ShiftMask | urxvt::ControlMask;
+   
+   ($event->{state} & $mask) == urxvt::ShiftMask
+      or return;
+
+   $termios->getattr ($self->pty_fd)
+      or return;
+
+   $termios->getlflag & &POSIX::ICANON
+      and return;
+
+   my ($row, $col) = $self->screen_cur;
+   my $line = $self->line ($row);
+   my $cur = $line->offset_of ($row, $col);
+   my $ofs = $line->offset_of ($event->{row}, $event->{col});
+
+   $ofs >= 0 && $ofs < $line->l
+      or return;
+
+   my $diff = $ofs - $cur;
+   my $move;
+
+   if ($diff < 0) {
+      ($ofs, $cur) = ($cur, $ofs);
+      $move = "\x1b[D";
+   } else {
+      $move = "\x1b[C";
+   }
+
+   my $skipped = substr $line->t, $cur, $ofs - $cur;
+   $skipped =~ s/\x{ffff}//g;
+
+   $self->tt_write ($move x length $skipped);
+
+   1
+}

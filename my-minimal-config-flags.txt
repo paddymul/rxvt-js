@@ -1,0 +1,70 @@
+
+
+on      --enable-smart-resize (default: off)
+
+
+
+        --enable-xft (default: enabled)
+        --enable-font-styles (default: on)
+off     --enable-xim (default: on) 
+off     --enable-combining (default: on)
+off     --enable-fallback(=CLASS) (default: Rxvt)
+off     --enable-utmp (default: on)
+off     --enable-wtmp (default: on)
+off     --enable-lastlog (default: on)
+off     --enable-afterimage (default: on)
+off     --enable-transparency (default: on)
+off     --enable-fading (default: on)
+off     --enable-rxvt-scroll (default: on)
+off     --enable-next-scroll (default: on)
+        --disable-backspace-key
+        --disable-swapscreen
+        --disable-resources
+        --disable-delete-key
+off     --enable-frills (default: on)
+off     --enable-keepscrolling (default: on)
+off     --enable-selectionscrolling (default: on)
+off     --enable-mousewheel (default: on)
+off     --enable-slipwheeling (default: on)
+off     --enable-pointer-blank (default: on)
+off     --enable-perl (default: on)                    
+
+
+
+
+
+
+
+
+
+--disable-backspace-key                        
+--disable-swapscreen                           
+--disable-resources                            
+--disable-delete-key                           
+
+--disable-xft 
+--disable-font-styles 
+--disable-xim 
+--disable-combining 
+--disable-fallback
+--disable-utmp 
+--disable-wtmp 
+--disable-lastlog 
+--disable-afterimage 
+--disable-transparency 
+--disable-fading 
+--disable-rxvt-scroll 
+--disable-next-scroll 
+--disable-frills 
+--disable-keepscrolling 
+--disable-selectionscrolling 
+--disable-mousewheel 
+--disable-slipwheeling 
+--disable-pointer-blank 
+--disable-perl 
+
+
+
+
+
+--disable-backspace-key                        --disable-swapscreen                           --disable-resources                            --disable-delete-key                           --disable-xft --disable-font-styles --disable-xim --disable-combining --disable-fallback--disable-utmp --disable-wtmp --disable-lastlog --disable-afterimage --disable-transparency --disable-fading --disable-rxvt-scroll --disable-next-scroll --disable-frills --disable-keepscrolling --disable-selectionscrolling --disable-mousewheel --disable-slipwheeling --disable-pointer-blank --disable-perl 

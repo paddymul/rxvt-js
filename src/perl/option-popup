@@ -1,0 +1,56 @@
+#! perl
+
+sub on_start {
+   my ($self) = @_;
+
+   $self->grab_button (2, urxvt::ControlMask);
+
+   ()
+}
+
+sub on_button_press {
+   my ($self, $event) = @_;
+
+   if ($event->{button} == 2 && $event->{state} & urxvt::ControlMask) {
+      my $popup = $self->popup ($event)
+         or return 1;
+
+      $popup->add_title ("Options");
+      $popup->add_separator;
+
+      my %unsafe = map +($_ => 1),
+         qw(borderLess console iconic loginShell reverseVideo
+            scrollBar scrollBar_floating scrollBar_right
+            secondaryScreen transparent utmpInhibit meta8
+            override_redirect);
+
+      for my $name (sort keys %urxvt::OPTION) {
+         next if $unsafe{$name};
+
+         my $optval = $urxvt::OPTION{$name};
+
+         $popup->add_toggle ($name => $self->option ($optval),
+                             sub { $self->option ($optval, $_[0]) });
+      }
+
+      for my $hook (@{ $self->{term}{option_popup_hook} || [] }) {
+         if (my ($name, $value, $cb) = $hook->($popup)) {
+            $popup->add_toggle ($name => $value, sub { $cb->($_[0]) });
+         }
+      }
+
+      {
+         $popup->add_separator;
+         my $locale = $self->locale;
+         $locale =~ y/\x20-\x7e//cd;
+         $popup->add_title ("Locale: $locale");
+      }
+
+      $popup->show;
+
+      return 1;
+   }
+
+   ()
+}
+

@@ -1,0 +1,152 @@
+#! perl
+
+sub on_user_command {
+   my ($self, $cmd) = @_;
+
+   $cmd eq "selection:rot13"
+      and $self->selection (map { y/A-Za-z/N-ZA-Mn-za-m/; $_ } $self->selection);
+
+   ()
+}
+
+sub on_init {
+   my ($self) = @_;
+
+   if (defined (my $res = $self->resource ("cutchars"))) {
+      $res = $self->locale_decode ($res);
+      push @{ $self->{patterns} }, qr{\G [\Q$res\E[:space:]]* ([^\Q$res\E[:space:]]+) }x;
+   }
+
+   for (my $idx = 0; defined (my $res = $self->x_resource ("selection.pattern-$idx")); $idx++) {
+      $res = $self->locale_decode ($res);
+      utf8::encode $res;
+      push @{ $self->{patterns} }, qr/$res/;
+   }
+
+   $self->{enabled} = 1;
+
+   push @{ $self->{term}{option_popup_hook} }, sub {
+      ("new selection" => $self->{enabled}, sub { $self->{enabled} = shift })
+   };
+
+   ()
+}
+
+# "find interesting things"-patterns
+my @mark_patterns = (
+#   qr{ ([[:word:]]+) }x,
+   qr{ ([^[:space:]]+) }x,
+
+   # common types of "parentheses"
+   qr{ (?<![^[:space:]])  [`'] ([^`']+)  [`'] (?![^[:space:]]) }x,
+   qr{ (?<![^[:space:]])  ‘ ([^‘’]+)  ’ (?![^[:space:]]) }x,
+   qr{ (?<![^[:space:]])  “ ([^“”]+)  ” (?![^[:space:]]) }x,
+
+   qr{ (?<![^[:space:]]) (' [^[:space:]] [^']* ')                  }x,
+   qr{                   (' [^']* [^[:space:]] ') (?![^[:space:]]) }x,
+   qr{ (?<![^[:space:]]) (" [^[:space:]] [^"]* ")                  }x,
+   qr{                   (" [^"]* [^[:space:]] ") (?![^[:space:]]) }x,
+
+   qr{ \{ ([^\{\}]+) \} }x,
+   qr{ \( ([^\(\)]+) \) }x,
+   qr{ \[ ([^\[\]]+) \] }x,
+   qr{ \< ([^\<\>]+) \> }x,
+
+   # urls, just a heuristic
+   qr{(
+      (?:https?://|ftp://|news://|mailto:|file://|\bwww\.)[ab-zA-Z0-9\-\@;\/?:&=%\$_.+!*\x27(),~#]+
+      [ab-zA-Z0-9\-\@;\/?:&=%\$_+*()~]   # exclude some trailing characters (heuristic)
+   )}x,
+
+   # shell-like argument quoting, basically always matches
+   qr{\G [\ \t|&;<>()]* (
+      (?:
+         [^\\"'\ \t|&;<>()]+
+         | \\.
+         | " (?: [^\\"]+ | \\. )* "
+         | ' [^']* '
+      )+
+   )}x,
+);
+
+# "correct obvious? crap"-patterns
+my @simplify_patterns = (
+   qr{^"([^\\"'\ \t|&;<>()*?]+)"$}, # "simple" => simple
+   qr{^(.*)[,\-]$},                 # strip off trailing , and -
+);
+
+sub on_sel_extend {
+   my ($self, $time) = @_;
+
+   $self->{enabled}
+      or return;
+
+   my ($row, $col) = $self->selection_mark;
+   my $line = $self->line ($row);
+   my $text = $line->t;
+   my $markofs = $line->offset_of ($row, $col);
+   my $curlen  = $line->offset_of ($self->selection_end)
+               - $line->offset_of ($self->selection_beg);
+
+   my @matches;
+
+   if ($markofs < $line->l) {
+      # convert markofs from character to UTF-8 offset space
+      {
+         my $prefix = substr $text, 0, $markofs;
+         utf8::encode $prefix;
+         $markofs = length $prefix;
+      }
+
+      # not doing matches in unicode mode helps speed
+      # enourmously here. working in utf-8 should be
+      # equivalent due to the magic of utf-8 encoding.
+      utf8::encode $text;
+      study $text; # _really_ helps, too :)
+
+      for my $regex (@mark_patterns, @{ $self->{patterns} }) {
+         while ($text =~ /$regex/g) {
+            if ($-[1] <= $markofs and $markofs <= $+[1]) {
+               my $ofs = $-[1];
+               my $match = $1;
+
+               for my $regex (@simplify_patterns) {
+                  if ($match =~ $regex) {
+                     $match = $1;
+                     $ofs += $-[1];
+                  }
+               }
+
+               push @matches, [$ofs, length $match];
+            }
+         }
+      }
+   }
+
+   # whole line
+   push @matches, [0, ($line->end - $line->beg + 1) * $self->ncol];
+
+   for (sort { $a->[1] <=> $b->[1] or $b->[0] <=> $a->[0] } @matches) {
+      my ($ofs, $len) = @$_;
+
+      next if $len <= $curlen;
+
+      # convert back from UTF-8 offset space to character space
+      {
+         my $length = substr "$text ", $ofs, $len;
+         utf8::decode $length;
+         $len = length $length;
+      }
+      {
+         my $prefix = substr $text, 0, $ofs;
+         utf8::decode $prefix;
+         $ofs = length $prefix;
+      }
+
+      $self->selection_beg ($line->coord_of ($ofs));
+      $self->selection_end ($line->coord_of ($ofs + $len));
+      return 1;
+   }
+
+   ()
+}
