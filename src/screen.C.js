@@ -1956,58 +1956,7 @@ rxvt_term.scr_bell =function(){
 /* ARGSUSED */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_printscreen (int fullhist){ 
 rxvt_term.scr_printscreen =function( fullhist){ 
-#ifdef PRINTPIPE
-//CMNT: c_keyword ^|         int nrows, row_start; 
-   nrows, row_start;
-//CMNT: c_keyword possible_pointer ^|         FILE *fd = popen_printer (); 
-  FILE  fd = popen_prer ();
 
-  if (!fd)
-    return;
-
-  if (fullhist){
-      nrows = nrow - top_row;
-      row_start = top_row;
-    }
-  else{
-      nrows = nrow;
-      row_start = view_start;
-    }
-
-  wctomb (0, 0);
-
-//CMNT: c_keyword ^|         for (int r1 = 0; r1 < nrows; r1++){ 
-  for ( r1 = 0; r1 < nrows; r1++){
-//CMNT: possible_pointer ^|             text_t *tp = ROW(r1).t; 
-      text_t  t p = ROW(r1).t;
-//CMNT: js_style_variables ^|             int len    = ROW(r1).l; 
- var len= ROW(r1).l; 
-
-//CMNT: c_keyword ^|             for (int i = len >= 0 ? len : ncol - 1; i--; ) //TODO//FIXME//LEN 
-      for ( i = len >= 0 ? len : ncol - 1; i--; ) //TODO//FIXME//LEN
-        {
-//CMNT: c_keyword ^|                 char mb[MB_LEN_MAX]; 
-           mb[MB_LEN_MAX];
-//CMNT: possible_pointer ^|                 text_t t = *tp++; 
-          text_t t =  t p++;
-          if (t == NOCHAR)
-            continue;
-
-          len = wctomb (mb, t);
-
-          if (len <= 0){
-              mb[0] = ' ';
-              len = 1;
-            }
-
-          fwrite (mb, 1, len, fd);
-        }
-
-      fputc ('\n', fd);
-    }
-
-   pclose_printer (fd); 
-#endif
 }
 
 /* ------------------------------------------------------------------------- */
