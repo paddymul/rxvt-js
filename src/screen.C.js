@@ -1,44 +1,48 @@
 /*---------------------------------------------------------------------------*
-//CMNT: possible_pointer ^|        * File:        screen.C 
-    File:        screen.C
-//CMNT: possible_pointer ^|        *---------------------------------------------------------------------------* 
-  - --------------------------------------------------------------------------*
+ * File:        screen.C 
+ *---------------------------------------------------------------------------* 
  *
-//CMNT: possible_pointer ^|        * Copyright (c) 1997-2001 Geoff Wing <gcw@pobox.com> 
-    Copyright (c) 1997-2001 Geoff Wing <gcw@pobox.com>
-//CMNT: possible_pointer ^|        * Copyright (c) 2003-2007 Marc Lehmann <pcg@goof.com> 
-    Copyright (c) 2003-2007 Marc Lehmann <pcg@goof.com>
+ * Copyright (c) 1997-2001 Geoff Wing <gcw@pobox.com> 
+ * Copyright (c) 2003-2007 Marc Lehmann <pcg@goof.com> 
  *
-//CMNT: possible_pointer ^|        * This program is free software; you can redistribute it and/or modify 
-    This program is free software; you can redistribute it and/or modify
-//CMNT: possible_pointer ^|        * it under the terms of the GNU General Public License as published by 
-    it under the terms of the GNU General Public License as published by
-//CMNT: possible_pointer ^|        * the Free Software Foundation; either version 2 of the License, or 
-    the Free Software Foundation; either version 2 of the License, or
-//CMNT: possible_pointer ^|        * (at your option) any later version. 
-    (at your option) any later version.
+ * This program is free software; you can redistribute it and/or modify 
+ * it under the terms of the GNU General Public License as published by 
+ * the Free Software Foundation; either version 2 of the License, or 
+ * (at your option) any later version. 
  *
-//CMNT: possible_pointer ^|        * This program is distributed in the hope that it will be useful, 
-    This program is distributed in the hope that it will be useful,
-//CMNT: possible_pointer ^|        * but WITHOUT ANY WARRANTY; without even the implied warranty of 
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//CMNT: possible_pointer ^|        * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//CMNT: possible_pointer ^|        * GNU General Public License for more details. 
-    GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful, 
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of 
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
+ * GNU General Public License for more details. 
  *
-//CMNT: possible_pointer ^|        * You should have received a copy of the GNU General Public License 
-    You should have received a copy of the GNU General Public License
-//CMNT: possible_pointer ^|        * along with this program; if not, write to the Free Software 
-    along with this program; if not, write to the Free Software
-//CMNT: possible_pointer ^|        * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA. 
-    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-//CMNT: possible_pointer ^|        *--------------------------------------------------------------------------*/ 
-  - -------------------------------------------------------------------------*/
+ * You should have received a copy of the GNU General Public License 
+ * along with this program; if not, write to the Free Software 
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA. 
+ *--------------------------------------------------------------------------*
+(fset 'paddy-inline-CMNT
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([134217830 134217826 1 19 94 124 13 134217830 134217826 11 14 32 47 47 25 32 32 32 32 32 32 32 16 1 134217830 6 67108896 19 94 124 13 2 2 2 24 11 14 5 35 35 35 32 25 16 1 11 11 14] 0 "%d")) arg)))
+(fset 'paddy-next-pointer
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("piointer" 0 "%d")) arg)))
+(fset 'un_cmnt
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([1 5 1 19 94 124 13 11 return 25 16 1 11 11 14 11 11 16 tab 14] 0 "%d")) arg)))
 
+;; my regex finds any instance of "int" and removes it, even in cases such as print which become pr -- this is bad, so here is a macro to find such occasions
+(fset 'paddy-next-unwarranted-c-keyword-int
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("\223c_keyword.*int" 0 "%d")) arg)))
+(fset 'paddy-next-c_keyword
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("c_keyword" 0 "%d")) arg)))
+(fset 'paddy-next-unwarranted-c-keyword-char
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("\223c_keyword.*char" 0 "%d")) arg)))
+(fset 'paddy-insert-var
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([134217848 112 97 100 100 32 105 110 32 32 return 16 tab 118 97 114 32 5 32 105 110 115 101 114 116 101 100 95 118 97 114 14] 0 "%d")) arg)))
+(fset 'paddy-next-empty-cast
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("()" 0 "%d")) arg)))
+(fset 'paddy-next-possible_pointer
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("possible_pointer" 0 "%d")) arg)))
+
+*/
 /*
-//CMNT: possible_pointer ^|        * This file handles _all_ screen updates and selections 
-    This file handles _all_ screen updates and selections
+ * This file handles _all_ screen updates and selections 
  */
 
 #include "../config.h"          /* NECESSARY */
@@ -64,10 +68,8 @@
 #define TABSIZE                 8       /* default tab size */
 
 /* ------------------------------------------------------------------------- *
-//CMNT: possible_pointer ^|        *             GENERAL SCREEN AND SELECTION UPDATE ROUTINES                  * 
-                GENERAL SCREEN AND SELECTION UPDATE ROUTINES                  *
-//CMNT: possible_pointer ^|        * ------------------------------------------------------------------------- */ 
-    ------------------------------------------------------------------------- */
+ *             GENERAL SCREEN AND SELECTION UPDATE ROUTINES                  * 
+ * ------------------------------------------------------------------------- */ 
 #define ZERO_SCROLLBACK()                                              \
     if (option (Opt_scrollTtyOutput))                                  \
         view_start = 0
@@ -107,8 +109,7 @@
     ROW_AND_COL_IN_ROW_AT_OR_BEFORE ((X).row, (X).col, (Y).row, (Y).col)
 
 /*
-//CMNT: c_keyword possible_pointer ^|        * CLEAR_CHARS: clear <num> chars starting from pixel position <x,y> 
-    CLEAR_CHARS: clear <num> s starting from pixel position <x,y>
+ * CLEAR_CHARS: clear <num> chars starting from pixel position <x,y> 
  */
 #define CLEAR_CHARS(x, y, num)                                         \
     if (mapped)                                                        \
@@ -119,10 +120,8 @@
                     ( )Height2Pixel (1), False)
 
 /* ------------------------------------------------------------------------- *
-//CMNT: possible_pointer ^|        *                        SCREEN `COMMON' ROUTINES                           * 
-                           SCREEN `COMMON' ROUTINES                           *
-//CMNT: possible_pointer ^|        * ------------------------------------------------------------------------- */ 
-    ------------------------------------------------------------------------- */
+ *                        SCREEN `COMMON' ROUTINES                           * 
+ * ------------------------------------------------------------------------- */ 
 
 /* Fill part/all of a line with blanks. */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_blank_line (line_t &l, unsigned int col, unsigned int width, rend_t efs){ 
@@ -182,10 +181,8 @@ rxvt_term.scr_kill_ =function(line_t &l,  col){
 }
 
 /* ------------------------------------------------------------------------- *
-//CMNT: possible_pointer ^|        *                          SCREEN INITIALISATION                            * 
-                             SCREEN INITIALISATION                            *
-//CMNT: possible_pointer ^|        * ------------------------------------------------------------------------- */ 
-    ------------------------------------------------------------------------- */
+ *                          SCREEN INITIALISATION                            * 
+ * ------------------------------------------------------------------------- */ 
 
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_reset (){ 
 rxvt_term.scr_reset =function(){ 
@@ -220,8 +217,7 @@ rxvt_term.scr_reset =function(){
 
   if (!row_buf){
       /*
-//CMNT: possible_pointer ^|              * first time called so just malloc everything: don't rely on realloc 
-          first time called so just malloc everything: don't rely on realloc
+       * first time called so just malloc everything: don't rely on realloc 
        */
       top_row    = 0;
       term_start = 0;
@@ -471,8 +467,7 @@ rxvt_term.scr_reset =function(){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Free everything.  That way malloc debugging can find leakage. 
-    Free everything.  That way malloc debugging can find leakage.
+ * Free everything.  That way malloc debugging can find leakage. 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_release (){ 
 rxvt_term.scr_release =function(){ 
@@ -492,8 +487,7 @@ rxvt_term.scr_release =function(){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Hard/Soft reset 
-    Hard/Soft reset
+ * Hard/Soft reset 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_poweron (){ 
 rxvt_term.scr_poweron =function(){ 
@@ -523,17 +517,12 @@ rxvt_term.scr_soft_reset =function(){
 }
 
 /* ------------------------------------------------------------------------- *
-//CMNT: possible_pointer ^|        *                         PROCESS SCREEN COMMANDS                           * 
-                            PROCESS SCREEN COMMANDS                           *
-//CMNT: possible_pointer ^|        * ------------------------------------------------------------------------- */ 
-    ------------------------------------------------------------------------- */
+ *                         PROCESS SCREEN COMMANDS                           * 
+ * ------------------------------------------------------------------------- */ 
 /*
-//CMNT: possible_pointer ^|        * Save and Restore cursor 
-    Save and Restore cursor
-//CMNT: possible_pointer ^|        * XTERM_SEQ: Save cursor   : ESC 7 
-    XTERM_SEQ: Save cursor   : ESC 7
-//CMNT: possible_pointer ^|        * XTERM_SEQ: Restore cursor: ESC 8 
-    XTERM_SEQ: Restore cursor: ESC 8
+ * Save and Restore cursor 
+ * XTERM_SEQ: Save cursor   : ESC 7 
+ * XTERM_SEQ: Restore cursor: ESC 8 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_cursor (cursor_mode mode){ 
 rxvt_term.scr_cursor =function(cursor_mode mode){ 
@@ -598,12 +587,9 @@ rxvt_term.scr_swap_screen =function(){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Swap between primary and secondary screens 
-    Swap between primary and secondary screens
-//CMNT: possible_pointer ^|        * XTERM_SEQ: Primary screen  : ESC [ ? 4 7 h 
-    XTERM_SEQ: Primary screen  : ESC [ ? 4 7 h
-//CMNT: possible_pointer ^|        * XTERM_SEQ: Secondary screen: ESC [ ? 4 7 l 
-    XTERM_SEQ: Secondary screen: ESC [ ? 4 7 l
+ * Swap between primary and secondary screens 
+ * XTERM_SEQ: Primary screen  : ESC [ ? 4 7 h 
+ * XTERM_SEQ: Secondary screen: ESC [ ? 4 7 l 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_change_screen (int scrn){ 
 rxvt_term.scr_change_screen =function( scrn){ 
@@ -654,8 +640,7 @@ rxvt_term.scr_do_wrap =function(){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Change the colour for following text 
-    Change the colour for following text
+ * Change the colour for following text 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_color (unsigned int color, int fgbg){ 
 rxvt_term.scr_color =function(  color,  fgbg){ 
@@ -670,8 +655,7 @@ rxvt_term.scr_color =function(  color,  fgbg){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Change the rendition style for following text 
-    Change the rendition style for following text
+ * Change the rendition style for following text 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_rendition (int set, int style){ 
 rxvt_term.scr_rendition =function( set,  style){ 
@@ -685,12 +669,9 @@ rxvt_term.scr_rendition =function( set,  style){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Scroll text between <row1> and <row2> inclusive, by <count> lines 
-    Scroll text between <row1> and <row2> inclusive, by <count> lines
-//CMNT: possible_pointer ^|        * count positive ==> scroll up 
-    count positive ==> scroll up
-//CMNT: possible_pointer ^|        * count negative ==> scroll down 
-    count negative ==> scroll down
+ * Scroll text between <row1> and <row2> inclusive, by <count> lines 
+ * count positive ==> scroll up 
+ * count negative ==> scroll down 
  */
 //CMNT: js_style_functions c_keyword ^|       int rxvt_term::scr_scroll_text (int row1, int row2, int count){ 
 rxvt_term.scr_scroll_text =function( row1,  row2,  count){ 
@@ -817,8 +798,7 @@ rxvt_term.scr_scroll_text =function( row1,  row2,  count){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Add text given in <str> of length <len> to screen struct 
-    Add text given in <str> of length <len> to screen struct
+ * Add text given in <str> of length <len> to screen struct 
  */
 //CMNT: js_style_functions c_keyword possible_pointer ^|       void rxvt_term::scr_add_lines (const wchar_t *str, int len, int minlines){ 
 rxvt_term.scr_add_lines =function(   s tr,  len,  minlines){ 
@@ -900,12 +880,9 @@ rxvt_term.scr_add_lines =function(   s tr,  len,  minlines){
          )){
           checksel = 0;
           /*
-//CMNT: possible_pointer ^|                  * If we wrote anywhere in the selected area, kill the selection 
-              If we wrote anywhere in the selected area, kill the selection
-//CMNT: possible_pointer ^|                  * XXX: should we kill the mark too?  Possibly, but maybe that 
-              XXX: should we kill the mark too?  Possibly, but maybe that
-//CMNT: possible_pointer ^|                  *      should be a similar check. 
-                   should be a similar check.
+           * If we wrote anywhere in the selected area, kill the selection 
+           * XXX: should we kill the mark too?  Possibly, but maybe that 
+           *      should be a similar check. 
            */
           CLEAR_SELECTION ();
         }
@@ -1096,10 +1073,8 @@ rxvt_term.scr_add_lines =function(   s tr,  len,  minlines){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Process Backspace.  Move back the cursor back a position, wrap if have to 
-    Process Backspace.  Move back the cursor back a position, wrap if have to
-//CMNT: possible_pointer ^|        * XTERM_SEQ: CTRL-H 
-    XTERM_SEQ: CTRL-H
+ * Process Backspace.  Move back the cursor back a position, wrap if have to 
+ * XTERM_SEQ: CTRL-H 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_backspace (){ 
 rxvt_term.scr_backspace =function(){ 
@@ -1119,12 +1094,9 @@ rxvt_term.scr_backspace =function(){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Process Horizontal Tab 
-    Process Horizontal Tab
-//CMNT: possible_pointer ^|        * count: +ve = forward; -ve = backwards 
-    count: +ve = forward; -ve = backwards
-//CMNT: possible_pointer ^|        * XTERM_SEQ: CTRL-I 
-    XTERM_SEQ: CTRL-I
+ * Process Horizontal Tab 
+ * count: +ve = forward; -ve = backwards 
+ * XTERM_SEQ: CTRL-I 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_tab (int count, bool ht){ 
 rxvt_term.scr_tab =function( count, bool ht){ 
@@ -1194,14 +1166,10 @@ rxvt_term.scr_tab =function( count, bool ht){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Process DEC Back Index 
-    Process DEC Back Index
-//CMNT: possible_pointer ^|        * XTERM_SEQ: ESC 6 
-    XTERM_SEQ: ESC 6
-//CMNT: possible_pointer ^|        * Move cursor left in row.  If we're at the left boundary, shift everything 
-    Move cursor left in row.  If we're at the left boundary, shift everything
-//CMNT: possible_pointer ^|        * in that row right.  Clear left column. 
-    in that row right.  Clear left column.
+ * Process DEC Back Index 
+ * XTERM_SEQ: ESC 6 
+ * Move cursor left in row.  If we're at the left boundary, shift everything 
+ * in that row right.  Clear left column. 
  */
 #if !ENABLE_MINIMAL
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_backindex (){ 
@@ -1215,14 +1183,10 @@ rxvt_term.scr_backindex =function(){
 #endif
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Process DEC Forward Index 
-    Process DEC Forward Index
-//CMNT: possible_pointer ^|        * XTERM_SEQ: ESC 9 
-    XTERM_SEQ: ESC 9
-//CMNT: possible_pointer ^|        * Move cursor right in row.  If we're at the right boundary, shift everything 
-    Move cursor right in row.  If we're at the right boundary, shift everything
-//CMNT: possible_pointer ^|        * in that row left.  Clear right column. 
-    in that row left.  Clear right column.
+ * Process DEC Forward Index 
+ * XTERM_SEQ: ESC 9 
+ * Move cursor right in row.  If we're at the right boundary, shift everything 
+ * in that row left.  Clear right column. 
  */
 #if !ENABLE_MINIMAL
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_forwardindex (){ 
@@ -1245,8 +1209,7 @@ rxvt_term.scr_forwardindex =function(){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Goto Row/Column 
-    Goto Row/Column
+ * Goto Row/Column 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_gotorc (int row, int col, int relative){ 
 rxvt_term.scr_gotorc =function( row,  col,  relative){ 
@@ -1289,8 +1252,7 @@ rxvt_term.scr_gotorc =function( row,  col,  relative){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * direction should be UP or DN 
-    direction should be UP or DN
+ * direction should be UP or DN 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_index (enum page_dirn direction){ 
 rxvt_term.scr_index =function(enum page_dirn direction){ 
@@ -1316,16 +1278,11 @@ rxvt_term.scr_index =function(enum page_dirn direction){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Erase part or whole of a line 
-    Erase part or whole of a line
-//CMNT: possible_pointer ^|        * XTERM_SEQ: Clear line to right: ESC [ 0 K 
-    XTERM_SEQ: Clear line to right: ESC [ 0 K
-//CMNT: possible_pointer ^|        * XTERM_SEQ: Clear line to left : ESC [ 1 K 
-    XTERM_SEQ: Clear line to left : ESC [ 1 K
-//CMNT: possible_pointer ^|        * XTERM_SEQ: Clear whole line   : ESC [ 2 K 
-    XTERM_SEQ: Clear whole line   : ESC [ 2 K
-//CMNT: possible_pointer ^|        * extension: clear to right unless wrapped: ESC [ 3 K 
-    extension: clear to right unless wrapped: ESC [ 3 K
+ * Erase part or whole of a line 
+ * XTERM_SEQ: Clear line to right: ESC [ 0 K 
+ * XTERM_SEQ: Clear line to left : ESC [ 1 K 
+ * XTERM_SEQ: Clear whole line   : ESC [ 2 K 
+ * extension: clear to right unless wrapped: ESC [ 3 K 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_erase_line (int mode){ 
 rxvt_term.scr_erase_line =function( mode){ 
@@ -1385,14 +1342,10 @@ rxvt_term.scr_erase_line =function( mode){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Erase part of whole of the screen 
-    Erase part of whole of the screen
-//CMNT: possible_pointer ^|        * XTERM_SEQ: Clear screen after cursor : ESC [ 0 J 
-    XTERM_SEQ: Clear screen after cursor : ESC [ 0 J
-//CMNT: possible_pointer ^|        * XTERM_SEQ: Clear screen before cursor: ESC [ 1 J 
-    XTERM_SEQ: Clear screen before cursor: ESC [ 1 J
-//CMNT: possible_pointer ^|        * XTERM_SEQ: Clear whole screen        : ESC [ 2 J 
-    XTERM_SEQ: Clear whole screen        : ESC [ 2 J
+ * Erase part of whole of the screen 
+ * XTERM_SEQ: Clear screen after cursor : ESC [ 0 J 
+ * XTERM_SEQ: Clear screen before cursor: ESC [ 1 J 
+ * XTERM_SEQ: Clear whole screen        : ESC [ 2 J 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_erase_screen (int mode){ 
 rxvt_term.scr_erase_screen =function( mode){ 
@@ -1493,10 +1446,8 @@ rxvt_term.scr_erase_savelines =function(){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Fill the screen with `E's 
-    Fill the screen with `E's
-//CMNT: possible_pointer ^|        * XTERM_SEQ: Screen Alignment Test: ESC # 8 
-    XTERM_SEQ: Screen Alignment Test: ESC # 8
+ * Fill the screen with `E's 
+ * XTERM_SEQ: Screen Alignment Test: ESC # 8 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_E (){ 
 rxvt_term.scr_E =function(){ 
@@ -1530,8 +1481,7 @@ rxvt_term.scr_E =function(){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Insert/Delete <count> lines 
-    Insert/Delete <count> lines
+ * Insert/Delete <count> lines 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_insdel_lines (int count, int insdel){ 
 rxvt_term.scr_insdel_lines =function( count,  insdel){ 
@@ -1561,8 +1511,7 @@ rxvt_term.scr_insdel_lines =function( count,  insdel){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: c_keyword possible_pointer ^|        * Insert/Delete <count> characters from the current position 
-    Insert/Delete <count> acters from the current position
+ * Insert/Delete <count> characters from the current position 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_insdel_chars (int count, int insdel){ 
 rxvt_term.scr_insdel_s =function( count,  insdel){ 
@@ -1675,10 +1624,8 @@ rxvt_term.scr_insdel_s =function( count,  insdel){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Set the scrolling region 
-    Set the scrolling region
-//CMNT: possible_pointer ^|        * XTERM_SEQ: Set region <top> - <bot> inclusive: ESC [ <top> ; <bot> r 
-    XTERM_SEQ: Set region <top> - <bot> inclusive: ESC [ <top> ; <bot> r
+ * Set the scrolling region 
+ * XTERM_SEQ: Set region <top> - <bot> inclusive: ESC [ <top> ; <bot> r 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_scroll_region (int top, int bot){ 
 rxvt_term.scr_scroll_region =function( top,  bot){ 
@@ -1695,12 +1642,9 @@ rxvt_term.scr_scroll_region =function( top,  bot){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Make the cursor visible/invisible 
-    Make the cursor visible/invisible
-//CMNT: possible_pointer ^|        * XTERM_SEQ: Make cursor visible  : ESC [ ? 25 h 
-    XTERM_SEQ: Make cursor visible  : ESC [ ? 25 h
-//CMNT: possible_pointer ^|        * XTERM_SEQ: Make cursor invisible: ESC [ ? 25 l 
-    XTERM_SEQ: Make cursor invisible: ESC [ ? 25 l
+ * Make the cursor visible/invisible 
+ * XTERM_SEQ: Make cursor visible  : ESC [ ? 25 h 
+ * XTERM_SEQ: Make cursor invisible: ESC [ ? 25 l 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_cursor_visible (int mode){ 
 rxvt_term.scr_cursor_visible =function( mode){ 
@@ -1714,12 +1658,9 @@ rxvt_term.scr_cursor_visible =function( mode){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Set/unset automatic wrapping 
-    Set/unset automatic wrapping
-//CMNT: possible_pointer ^|        * XTERM_SEQ: Set Wraparound  : ESC [ ? 7 h 
-    XTERM_SEQ: Set Wraparound  : ESC [ ? 7 h
-//CMNT: possible_pointer ^|        * XTERM_SEQ: Unset Wraparound: ESC [ ? 7 l 
-    XTERM_SEQ: Unset Wraparound: ESC [ ? 7 l
+ * Set/unset automatic wrapping 
+ * XTERM_SEQ: Set Wraparound  : ESC [ ? 7 h 
+ * XTERM_SEQ: Unset Wraparound: ESC [ ? 7 l 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_autowrap (int mode){ 
 rxvt_term.scr_autowrap =function( mode){ 
@@ -1731,20 +1672,13 @@ rxvt_term.scr_autowrap =function( mode){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Set/unset margin origin mode 
-    Set/unset margin origin mode
-//CMNT: possible_pointer ^|        * Absolute mode: line numbers are counted relative to top margin of screen 
-    Absolute mode: line numbers are counted relative to top margin of screen
-//CMNT: possible_pointer ^|        *      and the cursor can be moved outside the scrolling region. 
-         and the cursor can be moved outside the scrolling region.
-//CMNT: possible_pointer ^|        * Relative mode: line numbers are relative to top margin of scrolling region 
-    Relative mode: line numbers are relative to top margin of scrolling region
-//CMNT: possible_pointer ^|        *      and the cursor cannot be moved outside. 
-         and the cursor cannot be moved outside.
-//CMNT: possible_pointer ^|        * XTERM_SEQ: Set Absolute: ESC [ ? 6 h 
-    XTERM_SEQ: Set Absolute: ESC [ ? 6 h
-//CMNT: possible_pointer ^|        * XTERM_SEQ: Set Relative: ESC [ ? 6 l 
-    XTERM_SEQ: Set Relative: ESC [ ? 6 l
+ * Set/unset margin origin mode 
+ * Absolute mode: line numbers are counted relative to top margin of screen 
+ *      and the cursor can be moved outside the scrolling region. 
+ * Relative mode: line numbers are relative to top margin of scrolling region 
+ *      and the cursor cannot be moved outside. 
+ * XTERM_SEQ: Set Absolute: ESC [ ? 6 h 
+ * XTERM_SEQ: Set Relative: ESC [ ? 6 l 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_relative_origin (int mode){ 
 rxvt_term.scr_relative_origin =function( mode){ 
@@ -1758,12 +1692,9 @@ rxvt_term.scr_relative_origin =function( mode){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Set insert/replace mode 
-    Set insert/replace mode
-//CMNT: possible_pointer ^|        * XTERM_SEQ: Set Insert mode : ESC [ ? 4 h 
-    XTERM_SEQ: Set Insert mode : ESC [ ? 4 h
-//CMNT: possible_pointer ^|        * XTERM_SEQ: Set Replace mode: ESC [ ? 4 l 
-    XTERM_SEQ: Set Replace mode: ESC [ ? 4 l
+ * Set insert/replace mode 
+ * XTERM_SEQ: Set Insert mode : ESC [ ? 4 h 
+ * XTERM_SEQ: Set Replace mode: ESC [ ? 4 l 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_insert_mode (int mode){ 
 rxvt_term.scr_insert_mode =function( mode){ 
@@ -1775,14 +1706,10 @@ rxvt_term.scr_insert_mode =function( mode){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Set/Unset tabs 
-    Set/Unset tabs
-//CMNT: possible_pointer ^|        * XTERM_SEQ: Set tab at current column  : ESC H 
-    XTERM_SEQ: Set tab at current column  : ESC H
-//CMNT: possible_pointer ^|        * XTERM_SEQ: Clear tab at current column: ESC [ 0 g 
-    XTERM_SEQ: Clear tab at current column: ESC [ 0 g
-//CMNT: possible_pointer ^|        * XTERM_SEQ: Clear all tabs             : ESC [ 3 g 
-    XTERM_SEQ: Clear all tabs             : ESC [ 3 g
+ * Set/Unset tabs 
+ * XTERM_SEQ: Set tab at current column  : ESC H 
+ * XTERM_SEQ: Clear tab at current column: ESC [ 0 g 
+ * XTERM_SEQ: Clear all tabs             : ESC [ 3 g 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_set_tab (int mode){ 
 rxvt_term.scr_set_tab =function( mode){ 
@@ -1794,12 +1721,9 @@ rxvt_term.scr_set_tab =function( mode){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Set reverse/normal video 
-    Set reverse/normal video
-//CMNT: possible_pointer ^|        * XTERM_SEQ: Reverse video: ESC [ ? 5 h 
-    XTERM_SEQ: Reverse video: ESC [ ? 5 h
-//CMNT: possible_pointer ^|        * XTERM_SEQ: Normal video : ESC [ ? 5 l 
-    XTERM_SEQ: Normal video : ESC [ ? 5 l
+ * Set reverse/normal video 
+ * XTERM_SEQ: Reverse video: ESC [ ? 5 h 
+ * XTERM_SEQ: Normal video : ESC [ ? 5 l 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_rvideo_mode (bool on){ 
 rxvt_term.scr_rvideo_mode =function(bool on){ 
@@ -1830,10 +1754,8 @@ rxvt_term.scr_rvideo_mode =function(bool on){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Report current cursor position 
-    Report current cursor position
-//CMNT: possible_pointer ^|        * XTERM_SEQ: Report position: ESC [ 6 n 
-    XTERM_SEQ: Report position: ESC [ 6 n
+ * Report current cursor position 
+ * XTERM_SEQ: Report position: ESC [ 6 n 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_report_position (){ 
 rxvt_term.scr_report_position =function(){ 
@@ -1842,14 +1764,11 @@ rxvt_term.scr_report_position =function(){
 }
 
 /* ------------------------------------------------------------------------- *
-//CMNT: possible_pointer ^|        *                                  FONTS                                    * 
-                                     FONTS                                    *
-//CMNT: possible_pointer ^|        * ------------------------------------------------------------------------- */ 
-    ------------------------------------------------------------------------- */
+ *                                  FONTS                                    * 
+ * ------------------------------------------------------------------------- */ 
 
 /*
-//CMNT: possible_pointer ^|        * Set font style 
-    Set font style
+ * Set font style 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::set_font_style (){ 
 rxvt_term.set_font_style =function(){ 
@@ -1880,16 +1799,11 @@ rxvt_term.set_font_style =function(){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Choose a font 
-    Choose a font
-//CMNT: c_keyword possible_pointer ^|        * XTERM_SEQ: Invoke G0 character set: CTRL-O 
-    XTERM_SEQ: Invoke G0 acter set: CTRL-O
-//CMNT: c_keyword possible_pointer ^|        * XTERM_SEQ: Invoke G1 character set: CTRL-N 
-    XTERM_SEQ: Invoke G1 acter set: CTRL-N
-//CMNT: c_keyword possible_pointer ^|        * XTERM_SEQ: Invoke G2 character set: ESC N 
-    XTERM_SEQ: Invoke G2 acter set: ESC N
-//CMNT: c_keyword possible_pointer ^|        * XTERM_SEQ: Invoke G3 character set: ESC O 
-    XTERM_SEQ: Invoke G3 acter set: ESC O
+ * Choose a font 
+ * XTERM_SEQ: Invoke G0 character set: CTRL-O 
+ * XTERM_SEQ: Invoke G1 character set: CTRL-N 
+ * XTERM_SEQ: Invoke G2 character set: ESC N 
+ * XTERM_SEQ: Invoke G3 character set: ESC O 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_charset_choose (int set){ 
 rxvt_term.scr_set_choose =function( set){ 
@@ -1900,18 +1814,12 @@ rxvt_term.scr_set_choose =function( set){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Set a font 
-    Set a font
-//CMNT: c_keyword possible_pointer ^|        * XTERM_SEQ: Set G0 character set: ESC ( <C> 
-    XTERM_SEQ: Set G0 acter set: ESC ( <C>
-//CMNT: c_keyword possible_pointer ^|        * XTERM_SEQ: Set G1 character set: ESC ) <C> 
-    XTERM_SEQ: Set G1 acter set: ESC ) <C>
-//CMNT: c_keyword possible_pointer ^|        * XTERM_SEQ: Set G2 character set: ESC * <C> 
-    XTERM_SEQ: Set G2 acter set: ESC    <C>
-//CMNT: c_keyword possible_pointer ^|        * XTERM_SEQ: Set G3 character set: ESC + <C> 
-    XTERM_SEQ: Set G3 acter set: ESC + <C>
-//CMNT: possible_pointer ^|        * See set_font_style for possible values for <C> 
-    See set_font_style for possible values for <C>
+ * Set a font 
+ * XTERM_SEQ: Set G0 character set: ESC ( <C> 
+ * XTERM_SEQ: Set G1 character set: ESC ) <C> 
+ * XTERM_SEQ: Set G2 character set: ESC * <C> 
+ * XTERM_SEQ: Set G3 character set: ESC + <C> 
+ * See set_font_style for possible values for <C> 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_charset_set (int set, unsigned int ch){ 
 rxvt_term.scr_set_set =function( set,   ch){ 
@@ -1922,14 +1830,11 @@ rxvt_term.scr_set_set =function( set,   ch){
 
 
 /* ------------------------------------------------------------------------- *
-//CMNT: possible_pointer ^|        *                        MAJOR SCREEN MANIPULATION                          * 
-                           MAJOR SCREEN MANIPULATION                          *
-//CMNT: possible_pointer ^|        * ------------------------------------------------------------------------- */ 
-    ------------------------------------------------------------------------- */
+ *                        MAJOR SCREEN MANIPULATION                          * 
+ * ------------------------------------------------------------------------- */ 
 
 /*
-//CMNT: possible_pointer ^|        * refresh matching text. 
-    refresh matching text.
+ * refresh matching text. 
  */
 //CMNT: js_style_functions c_keyword ^|       bool rxvt_term::scr_refresh_rend (rend_t mask, rend_t value){ 
 boolrxvt_term.scr_refresh_rend =function( mask,  value){ 
@@ -1954,8 +1859,7 @@ boolrxvt_term.scr_refresh_rend =function( mask,  value){
 }
 
 /*
-//CMNT: possible_pointer ^|        * Refresh an area 
-    Refresh an area
+ * Refresh an area 
  */
 enum {
   PART_BEG = 0,
@@ -2003,8 +1907,7 @@ rxvt_term.scr_expose =function( x,  y,  ewidth,  eheight, bool refresh){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Refresh the entire screen 
-    Refresh the entire screen
+ * Refresh the entire screen 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_touch (bool refresh){ 
 rxvt_term.scr_touch =function(bool refresh){ 
@@ -2013,10 +1916,8 @@ rxvt_term.scr_touch =function(bool refresh){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Move the display so that the line represented by scrollbar value Y is at 
-    Move the display so that the line represented by scrollbar value Y is at
-//CMNT: possible_pointer ^|        * the top of the screen 
-    the top of the screen
+ * Move the display so that the line represented by scrollbar value Y is at 
+ * the top of the screen 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_move_to (int y, int len){ 
 rxvt_term.scr_move_to =function( y,  len){ 
@@ -2026,10 +1927,8 @@ rxvt_term.scr_move_to =function( y,  len){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Page the screen up/down nlines 
-    Page the screen up/down nlines
-//CMNT: possible_pointer ^|        * direction should be UP or DN 
-    direction should be UP or DN
+ * Page the screen up/down nlines 
+ * direction should be UP or DN 
  */
 //CMNT: js_style_functions c_keyword ^|       bool rxvt_term::scr_page (enum page_dirn direction, int nlines){ 
 boolrxvt_term.scr_page =function(enum page_dirn direction,  nlines){ 
@@ -2156,12 +2055,9 @@ rxvt_term.scr_prscreen =function( fullhist){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Refresh the screen 
-    Refresh the screen
-//CMNT: possible_pointer ^|        * drawn_text/drawn_rend contain the screen information before the update. 
-    drawn_text/drawn_rend contain the screen information before the update.
-//CMNT: possible_pointer ^|        * screen.text/screen.rend contain what the screen will change to. 
-    screen.text/screen.rend contain what the screen will change to.
+ * Refresh the screen 
+ * drawn_text/drawn_rend contain the screen information before the update. 
+ * screen.text/screen.rend contain what the screen will change to. 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_refresh (){ 
 rxvt_term.scr_refresh =function(){ 
@@ -2186,8 +2082,7 @@ rxvt_term.scr_refresh =function(){
     return;
 
   /*
-//CMNT: possible_pointer ^|          * A: set up vars 
-      A: set up vars
+   * A: set up vars 
    */
   refresh_count = 0;
 
@@ -2201,8 +2096,7 @@ rxvt_term.scr_refresh =function(){
   ocrow = oldcursor.row; /* is there an old outline cursor on screen? */
 
   /*
-//CMNT: c_keyword possible_pointer ^|          * B: reverse any characters which are selected 
-      B: reverse any acters which are selected
+   * B: reverse any characters which are selected 
    */
   scr_reverse_selection ();
 
@@ -2215,8 +2109,7 @@ rxvt_term.scr_refresh =function(){
  var showcursor= screen.flags & Screen_VisibleCursor; 
 
   /*
-//CMNT: c_keyword possible_pointer ^|          * C: set the cursor character (s) 
-      C: set the cursor acter (s)
+   * C: set the cursor character (s) 
    */
   {
 //CMNT: c_keyword ^|           unsigned char setoldcursor; 
@@ -2305,10 +2198,8 @@ rxvt_term.scr_refresh =function(){
 
 #ifndef NO_SLOW_LINK_SUPPORT
   /*
-//CMNT: possible_pointer ^|          * D: CopyArea pass - very useful for slower links 
-      D: CopyArea pass - very useful for slower links
-//CMNT: possible_pointer ^|          *    This has been deliberately kept simple. 
-         This has been deliberately kept simple.
+   * D: CopyArea pass - very useful for slower links 
+   *    This has been deliberately kept simple. 
    */
   if (!display->is_local
       && refresh_type == FAST_REFRESH && num_scr_allow && num_scr
@@ -2381,8 +2272,7 @@ rxvt_term.scr_refresh =function(){
 #endif
 
   /*
-//CMNT: c_keyword possible_pointer ^|          * E: main pass across every character 
-      E: main pass across every acter
+   * E: main pass across every character 
    */
   for (row = 0; row < nrow; row++){
 //CMNT: possible_pointer ^|             text_t *stp = ROW(view_start + row).t; 
@@ -2395,8 +2285,7 @@ rxvt_term.scr_refresh =function(){
         d rp = drawn_buf[row].r;
 
       /*
-//CMNT: possible_pointer ^|              * E2: OK, now the real pass 
-          E2: OK, now the real pass
+       * E2: OK, now the real pass 
        */
 //CMNT: js_style_variables remove_casts ^|             int ypixel = (int)Row2Pixel (row); 
  var ypixel= Row2Pixel (row); 
@@ -2468,8 +2357,7 @@ rxvt_term.scr_refresh =function(){
             count++, i--;
 
           /*
-//CMNT: possible_pointer ^|                  * Determine the attributes for the string 
-              Determine the attributes for the string
+           * Determine the attributes for the string 
            */
 //CMNT: js_style_variables ^|                 int fore = fgcolor_of (rend); // desired foreground 
  var fore= fgcolor_of (rend); // desired foreground 
@@ -2509,8 +2397,7 @@ rxvt_term.scr_refresh =function(){
                       || !ISSET_PIXCOLOR (Color_HC))
 #endif
                     /* invert the column if no highlightColor is set or it is the
-//CMNT: possible_pointer ^|                            * current cursor column */ 
-                        current cursor column */
+                     * current cursor column */ 
                     ::swap (fore, back);
 #ifdef OPTION_HC
                   else if (ISSET_PIXCOLOR (Color_HC))
@@ -2566,8 +2453,7 @@ rxvt_term.scr_refresh =function(){
             }
 
           /*
-//CMNT: possible_pointer ^|                  * Actually do the drawing of the string here 
-              Actually do the drawing of the string here
+           * Actually do the drawing of the string here 
            */
 //CMNT: possible_pointer ^|                 rxvt_font *font = (*fontset[GET_STYLE (rend)])[GET_FONT (rend)]; 
           rxvt_font  f ont = ( f ontset[GET_STYLE (rend)])[GET_FONT (rend)];
@@ -2654,8 +2540,7 @@ rxvt_term.scr_refresh =function(){
     }
 
   /*
-//CMNT: possible_pointer ^|          * H: cleanup selection 
-      H: cleanup selection
+   * H: cleanup selection 
    */
 #if ENABLE_OVERLAY
   scr_swap_overlay ();
@@ -2807,10 +2692,8 @@ rxvt_term.scr_reverse_selection =function(){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Dump the whole scrollback and screen to the passed filedescriptor.  The 
-    Dump the whole scrollback and screen to the passed filedescriptor.  The
-//CMNT: possible_pointer ^|        * invoking routine must close the fd. 
-    invoking routine must close the fd.
+ * Dump the whole scrollback and screen to the passed filedescriptor.  The 
+ * invoking routine must close the fd. 
  */
 #if 0
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_dump (int fd){ 
@@ -2840,10 +2723,8 @@ rxvt_term.scr_dump =function( fd){
 #endif
 
 /* ------------------------------------------------------------------------- *
-//CMNT: possible_pointer ^|        *                           CHARACTER SELECTION                             * 
-                              CHARACTER SELECTION                             *
-//CMNT: possible_pointer ^|        * ------------------------------------------------------------------------- */ 
-    ------------------------------------------------------------------------- */
+ *                           CHARACTER SELECTION                             * 
+ * ------------------------------------------------------------------------- */ 
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::selection_check (int check_more){ 
 rxvt_term.selection_check =function( check_more){ 
   row_col_t pos;
@@ -2872,8 +2753,7 @@ rxvt_term.selection_check =function( check_more){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Paste a selection direct to the command fd 
-    Paste a selection direct to the command fd
+ * Paste a selection direct to the command fd 
  */
 //CMNT: js_style_functions c_keyword possible_pointer ^|       void rxvt_term::paste (char *data, unsigned int len){ 
 rxvt_term.paste =function(  d ata,   len){ 
@@ -2897,10 +2777,8 @@ rxvt_term.paste =function(  d ata,   len){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Respond to a notification that a primary selection has been sent 
-    Respond to a notification that a primary selection has been sent
-//CMNT: possible_pointer ^|        * EXT: SelectionNotify 
-    EXT: SelectionNotify
+ * Respond to a notification that a primary selection has been sent 
+ * EXT: SelectionNotify 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::selection_paste (Window win, Atom prop, bool delete_prop){ 
 rxvt_term.selection_paste =function(Window win, Atom prop, bool delete_prop){ 
@@ -3001,10 +2879,8 @@ rxvt_term.selection_paste =function(Window win, Atom prop, bool delete_prop){
               && (win != display->root || prop != XA_CUT_BUFFER0)) // a recursion
             {
               /*
-//CMNT: possible_pointer ^|                      * pass through again trying CUT_BUFFER0 if we've come from 
-                  pass through again trying CUT_BUFFER0 if we've come from
-//CMNT: possible_pointer ^|                      * XConvertSelection () but nothing was presented 
-                  XConvertSelection () but nothing was presented
+               * pass through again trying CUT_BUFFER0 if we've come from 
+               * XConvertSelection () but nothing was presented 
                */
               selection_paste (display->root, XA_CUT_BUFFER0, False);
             }
@@ -3016,8 +2892,7 @@ rxvt_term.selection_paste =function(Window win, Atom prop, bool delete_prop){
       incr_ev.start (10);
 
       while (incr_buf_fill + ct.nitems > incr_buf_size){
-//CMNT: possible_pointer ^|                 incr_buf_size = incr_buf_size ? incr_buf_size * 2 : 128*1024; 
-          incr_buf_size = incr_buf_size ? incr_buf_size    2 : 128 1 024;
+        incr_buf_size = incr_buf_size ? incr_buf_size * 2 : 128*1024; 
 //CMNT: c_keyword possible_pointer ^|                 incr_buf = (char *)realloc (incr_buf, incr_buf_size); 
           incr_buf = (  ) realloc (incr_buf, incr_buf_size);
         }
@@ -3087,26 +2962,18 @@ rxvt_term.selection_property =function(Window win, Atom prop){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Request the current selection: 
-    Request the current selection:
-//CMNT: c_keyword possible_pointer ^|        * Order: > internal selection if available 
-    Order: > ernal selection if available
-//CMNT: possible_pointer ^|        *        > PRIMARY, SECONDARY, CLIPBOARD if ownership is claimed (+) 
-           > PRIMARY, SECONDARY, CLIPBOARD if ownership is claimed (+)
-//CMNT: possible_pointer ^|        *        > CUT_BUFFER0 
-           > CUT_BUFFER0
-//CMNT: possible_pointer ^|        * (+) if ownership is claimed but property is empty, rxvt_selection_paste () 
-    (+) if ownership is claimed but property is empty, rxvt_selection_paste ()
-//CMNT: possible_pointer ^|        *     will auto fallback to CUT_BUFFER0 
-        will auto fallback to CUT_BUFFER0
-//CMNT: possible_pointer ^|        * EXT: button 2 release 
-    EXT: button 2 release
+ * Request the current selection: 
+ * Order: > internal selection if available 
+ *        > PRIMARY, SECONDARY, CLIPBOARD if ownership is claimed (+) 
+ *        > CUT_BUFFER0 
+ * (+) if ownership is claimed but property is empty, rxvt_selection_paste () 
+ *     will auto fallback to CUT_BUFFER0 
+ * EXT: button 2 release 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::selection_request (Time tm, int selnum){ 
 rxvt_term.selection_request =function(Time tm,  selnum){ 
   if (selection.text && selnum == Sel_Primary){
-//CMNT: c_keyword ^|             /* internal selection */ 
-      /* ernal selection */
+    /* internal selection */ 
 //CMNT: c_keyword possible_pointer ^|             char *str = rxvt_wcstombs (selection.text, selection.len); 
         s tr = rxvt_wcstombs (selection.text, selection.len);
       paste (str, strlen (str));
@@ -3156,10 +3023,8 @@ rxvt_term.selection_request_other =function(Atom target,  selnum){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Clear all selected text 
-    Clear all selected text
-//CMNT: possible_pointer ^|        * EXT: SelectionClear 
-    EXT: SelectionClear
+ * Clear all selected text 
+ * EXT: SelectionClear 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::selection_clear (){ 
 rxvt_term.selection_clear =function(){ 
@@ -3175,10 +3040,8 @@ rxvt_term.selection_clear =function(){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: c_keyword possible_pointer ^|        * Copy a selection into the cut buffer 
-    Copy a selection o the cut buffer
-//CMNT: possible_pointer ^|        * EXT: button 1 or 3 release 
-    EXT: button 1 or 3 release
+ * Copy a selection into the cut buffer 
+ * EXT: button 1 or 3 release 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::selection_make (Time tm){ 
 rxvt_term.selection_make =function(Time tm){ 
@@ -3342,10 +3205,8 @@ boolrxvt_term.selection_grab =function(Time tm){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Mark or select text based upon number of clicks: 1, 2, or 3 
-    Mark or select text based upon number of clicks: 1, 2, or 3
-//CMNT: possible_pointer ^|        * EXT: button 1 press 
-    EXT: button 1 press
+ * Mark or select text based upon number of clicks: 1, 2, or 3 
+ * EXT: button 1 press 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::selection_click (int clicks, int x, int y){ 
 rxvt_term.selection_click =function( clicks,  x,  y){ 
@@ -3372,8 +3233,7 @@ rxvt_term.selection_click =function( clicks,  x,  y){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Mark a selection at the specified col/row 
-    Mark a selection at the specified col/row
+ * Mark a selection at the specified col/row 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::selection_start_colrow (int col, int row){ 
 rxvt_term.selection_start_colrow =function( col,  row){ 
@@ -3401,14 +3261,11 @@ rxvt_term.selection_start_colrow =function( col,  row){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Word select: select text for 2 clicks 
-    Word select: select text for 2 clicks
-//CMNT: possible_pointer ^|        * We now only find out the boundary in one direction 
-    We now only find out the boundary in one direction
+ * Word select: select text for 2 clicks 
+ * We now only find out the boundary in one direction 
  */
 
-//CMNT: c_keyword ^|       /* what do we want: spaces/tabs are delimiters or cutchars or non-cutchars */ 
-/* what do we want: spaces/tabs are delimiters or cuts or non-cuts */
+/* what do we want: spaces/tabs are delimiters or cutchars or non-cutchars */ 
 #define DELIMIT_TEXT(x) 		\
 //CMNT: js_style_functions c_keyword ^|           (unicode::is_space (x) ? 2 : (x) <= 0xff && !!strchr (rs[Rs_cutchars], (x))) 
     (unicode.is_space =function(x) ? 2 : (x) <= 0xff && !!strchr (rs[Rs_cuts], (x))) 
@@ -3494,16 +3351,11 @@ rxvt_term.selection_delimit_word =function(enum page_dirn dirn,  row_col_t  m ar
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Extend the selection to the specified x/y pixel location 
-    Extend the selection to the specified x/y pixel location
-//CMNT: possible_pointer ^|        * EXT: button 3 press; button 1 or 3 drag 
-    EXT: button 3 press; button 1 or 3 drag
-//CMNT: possible_pointer ^|        * flag == 0 ==> button 1 
-    flag == 0 ==> button 1
-//CMNT: possible_pointer ^|        * flag == 1 ==> button 3 press 
-    flag == 1 ==> button 3 press
-//CMNT: possible_pointer ^|        * flag == 2 ==> button 3 motion 
-    flag == 2 ==> button 3 motion
+ * Extend the selection to the specified x/y pixel location 
+ * EXT: button 3 press; button 1 or 3 drag 
+ * flag == 0 ==> button 1 
+ * flag == 1 ==> button 3 press 
+ * flag == 2 ==> button 3 motion 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::selection_extend (int x, int y, int flag){ 
 rxvt_term.selection_extend =function( x,  y,  flag){ 
@@ -3513,14 +3365,10 @@ rxvt_term.selection_extend =function( x,  y,  flag){
  var row= clamp (Pixel2Row (y), 0, nrow - 1); 
 
   /*
-//CMNT: c_keyword possible_pointer ^|         * If we're selecting characters (single click) then we must check first 
-     If we're selecting acters (single click) then we must check first
-//CMNT: possible_pointer ^|         * if we are at the same place as the original mark.  If we are then 
-     if we are at the same place as the original mark.  If we are then
-//CMNT: possible_pointer ^|         * select nothing.  Otherwise, if we're to the right of the mark, you have to 
-     select nothing.  Otherwise, if we're to the right of the mark, you have to
-//CMNT: c_keyword possible_pointer ^|         * be _past_ a character for it to be selected. 
-     be _past_ a acter for it to be selected.
+   * If we're selecting characters (single click) then we must check first 
+   * if we are at the same place as the original mark.  If we are then 
+   * select nothing.  Otherwise, if we're to the right of the mark, you have to 
+   * be _past_ a character for it to be selected. 
   */
   if (((selection.clicks % 3) == 1) && !flag
       && (col == selection.mark.col
@@ -3543,8 +3391,7 @@ rxvt_term.selection_extend =function( x,  y,  flag){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Extend the selection to the specified col/row 
-    Extend the selection to the specified col/row
+ * Extend the selection to the specified col/row 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::selection_extend_colrow (int32_t col, int32_t row, int button3, int buttonpress, int clickchange){ 
 rxvt_term.selection_extend_colrow =function(32_t col, 32_t row,  button3,  buttonpress,  clickchange){ 
@@ -3589,43 +3436,29 @@ rxvt_term.selection_extend_colrow =function(32_t col, 32_t row,  button3,  butto
   pos.row = view_start + row;
 
   /*
-//CMNT: possible_pointer ^|          * This is mainly xterm style selection with a couple of differences, mainly 
-      This is mainly xterm style selection with a couple of differences, mainly
-//CMNT: possible_pointer ^|          * in the way button3 drag extension works. 
-      in the way button3 drag extension works.
-//CMNT: possible_pointer ^|          * We're either doing: button1 drag; button3 press; or button3 drag 
-      We're either doing: button1 drag; button3 press; or button3 drag
-//CMNT: c_keyword possible_pointer ^|          *  a) button1 drag : select around a midpoint/word/line - that point/word/line 
-       a) button1 drag : select around a midpo/word/line - that po/word/line
-//CMNT: possible_pointer ^|          *     is always at the left/right edge of the selection. 
-          is always at the left/right edge of the selection.
-//CMNT: c_keyword possible_pointer ^|          *  b) button3 press: extend/contract character/word/line at whichever edge of 
-       b) button3 press: extend/contract acter/word/line at whichever edge of
-//CMNT: possible_pointer ^|          *     the selection we are closest to. 
-          the selection we are closest to.
-//CMNT: c_keyword possible_pointer ^|          *  c) button3 drag : extend/contract character/word/line - we select around 
-       c) button3 drag : extend/contract acter/word/line - we select around
-//CMNT: c_keyword possible_pointer ^|          *     a point/word/line which is either the start or end of the selection 
-          a po/word/line which is either the start or end of the selection
-//CMNT: c_keyword possible_pointer ^|          *     and it was decided by whichever point/word/line was `fixed' at the 
-          and it was decided by whichever po/word/line was `fixed' at the
-//CMNT: possible_pointer ^|          *     time of the most recent button3 press 
-          time of the most recent button3 press
+   * This is mainly xterm style selection with a couple of differences, mainly 
+   * in the way button3 drag extension works. 
+   * We're either doing: button1 drag; button3 press; or button3 drag 
+   *  a) button1 drag : select around a midpoint/word/line - that point/word/line 
+   *     is always at the left/right edge of the selection. 
+   *  b) button3 press: extend/contract character/word/line at whichever edge of 
+   *     the selection we are closest to. 
+   *  c) button3 drag : extend/contract character/word/line - we select around 
+   *     a point/word/line which is either the start or end of the selection 
+   *     and it was decided by whichever point/word/line was `fixed' at the 
+   *     time of the most recent button3 press 
    */
   if (button3 && buttonpress){
       /* button3 press */
       /*
-//CMNT: possible_pointer ^|              * first determine which edge of the selection we are closest to 
-          first determine which edge of the selection we are closest to
+       * first determine which edge of the selection we are closest to 
        */
       if (ROWCOL_IS_BEFORE (pos, selection.beg)
           || (!ROWCOL_IS_AFTER (pos, selection.end)
               && (((pos.col - selection.beg.col)
-//CMNT: possible_pointer ^|                          + ((pos.row - selection.beg.row) * ncol)) 
-                   + ((pos.row - selection.beg.row)    ncol))
+                   + ((pos.row - selection.beg.row) * ncol)) 
                   < ((selection.end.col - pos.col)
-//CMNT: possible_pointer ^|                            + ((selection.end.row - pos.row) * ncol))))) 
-                     + ((selection.end.row - pos.row)    ncol)))))
+                     + ((selection.end.row - pos.row) * ncol))))) 
         closeto = LEFT;
 
       if (closeto == LEFT){
@@ -3787,10 +3620,8 @@ rxvt_term.selection_remove_trailing_spaces =function(){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Double click on button 3 when already selected 
-    Double click on button 3 when already selected
-//CMNT: possible_pointer ^|        * EXT: button 3 double click 
-    EXT: button 3 double click
+ * Double click on button 3 when already selected 
+ * EXT: button 3 double click 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::selection_rotate (int x, int y){ 
 rxvt_term.selection_rotate =function( x,  y){ 
@@ -3800,10 +3631,8 @@ rxvt_term.selection_rotate =function( x,  y){
 
 /* ------------------------------------------------------------------------- */
 /*
-//CMNT: possible_pointer ^|        * Respond to a request for our current selection 
-    Respond to a request for our current selection
-//CMNT: possible_pointer ^|        * EXT: SelectionRequest 
-    EXT: SelectionRequest
+ * Respond to a request for our current selection 
+ * EXT: SelectionRequest 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::selection_send (const XSelectionRequestEvent &rq){ 
 rxvt_term.selection_send =function( XSelectionRequestEvent &rq){ 
