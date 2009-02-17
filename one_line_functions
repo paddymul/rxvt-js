@@ -1,0 +1,10 @@
+#!/bin/bash
+### takes lines lines like  '# 38 "command.c"' and outputs lines like '//# "command.c"/
+
+base_dir=`dirname "$0"`/
+source "$base_dir"regex_vars
+
+gsed -r '/^[a-zA-Z_]+[:space:]**$/ {
+N
+s/([a-zA-Z_]+)[:space:]*\n[:space:]*(rxvt_term::[a-zA-Z_]+ ?\(.*\)).*/\1 \2/
+}'

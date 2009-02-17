@@ -1,0 +1,5 @@
+#!/bin/bash
+base_dir=`dirname "$0"`/
+source "$base_dir"regex_vars
+echo  "$c_kws_regex"  "$c_kws_regex2"
+./comment_orginal_strip "$c_kws_regex"  

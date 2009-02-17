@@ -1,0 +1,6 @@
+#!/bin/bash
+
+(echo a;echo x;echo y) | sed '/x$/ {
+N
+s:x\n:x:
+}'

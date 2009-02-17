@@ -1,0 +1,34 @@
+#!/bin/bash
+#$1 regex to srip
+#$2 = comment to insert defaults to " "
+
+comment_start="\/\/CMNT:"
+negated_comment_start="[^\/]?[^\/]?[^C]?[^M]?[^N]?[^T]?"
+#negated_comment_start="[^\/][^\/][^C][^M][^N][^T]"
+#negated_comment_start=""
+note=$comment_start$2"   "
+#note="COMMENT:"$2"   "
+
+echo $note
+echo $1 $2
+
+sed_command='/^'"$negated_comment_start"'.*/{s/.*'"$1"'.*/{h;x;s/^/'"$note"'/;p;x;s/'"$1"'//g;}/}'
+echo "$sed_command"
+gsed -re "$sed_command"
+
+
+
+
+
+#gsed -re '/^'"$negated_comment_start"'.*'"$1"'.*/{h;x;s/^/'"$note"'/;p;x;s/'"$negated_comment_start$1"'//g;}'
+
+#gsed  -re '/^'"$negated_comment_start"'.*'"$1"'.*/{h;x;s/^/'"$note"'/;p;x;s/'"$1"'//g;}'
+#gsed  -re '/.*'"$1"'.*/{h;x;s/^/\/\/'"$note"'/;p;x;s/'"$1"'//g;}'
+#sed  -E '/.*'"$1"'.*/{h;x;s/^/\/\/'"$note"'/;p;x;s/'"$1"'//g;}'
+
+#test group negations
+
+#echo "0000~~~0000 ~~~ " ; echo "0000~~~0000 ~~~ " | gsed -r 's/(.*0(~~~)).*/_/g'
+#note that this creates two referenced groups \1  which is (.*0(~~~))  and \2 which is (~~~)
+
+#( echo "A kjkj" ; echo "   kjkj ") | gsed -re '/^[^A].*/{s/.*kjkj/foo/}'

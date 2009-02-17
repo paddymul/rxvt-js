@@ -1,0 +1,46 @@
+#!/bin/bash
+### takes lines lines like  '# 38 "command.c"' and outputs lines like '//# "command.c"/
+
+base_dir=`dirname "$0"`/
+source "$base_dir"regex_vars
+
+#gsed -r '/'"$block_start"' *$/ {
+#N
+#s:'"$block_start"'[ \t]*\n[ \t]*[{]:\1{:
+#}'
+
+
+#!/bin/bash
+
+#adding in some more spice
+(echo a;echo x;echo y) | gsed '/x[ ]*$/ {
+N
+s:x\ny:x:
+}'
+
+block_start="(else|\))"
+echo " adding shell variables "
+(echo "  if ()   ";echo  "	{ "; echo "  else  ";echo  " { ";echo y) | gsed -r '/'"$block_start"' *$/ {
+N
+s:'"$block_start"'[ \t]*\n[ \t]*[{]:\1{:
+}'
+
+(echo "  if ()   ";echo  "	{ "; echo "  else  ";echo  " { ";echo y) | gsed -r '/'"$block_start"' *$/ {
+N
+s:'"$block_start"'[ \t]*\n[ \t]*[{]:\1{:
+}'
+
+#matching words that contains _ in the ugly way
+( echo "rxvt_term::next_char ()")  | gsed -r 's/(rxvt_term::[a-zA-Z_]+ ?\(.*\))/asdf/'
+
+#matching words that contains _ in a pretty way
+( echo "rxvt_term::next_char ()")  | gsed -r 's/(rxvt_term::[_:alpha:]+ ?\(.*\))/asdf/'
+#apparently not possible
+
+
+
+
+( echo "wchar_t" ; echo "rxvt_term::next_char ()") | gsed -r '/^[a-zA-Z_]+[:space:]**$/ {
+N
+s/([a-zA-Z_]+)[:space:]*\n[:space:]*(rxvt_term::[a-zA-Z_]+ ?\(.*\)).*/\1 \2/
+}'

@@ -1,0 +1,32 @@
+void
+   rxvt::
+
+
+void
+rxvt_term::button_release (XButtonEvent &ev)
+{
+# 2185 "command.C"
+void
+rxvt_term::cmd_parse ()
+{
+
+      if (len == (size_t)-2)
+        {
+          // the mbstate stores incomplete sequences. didn't know this :/
+          cmdbuf_ptr = cmdbuf_endp;
+          break;
+        }
+
+
+      else
+        {
+          len = 0;
+# 2185 "command.C"
+          buf[len++] = ch;
+
+
+wchar_t
+rxvt_term::next_char ()
+{
+
+

@@ -1,3 +1,8 @@
+# 1 "background.C"
+# 1 "/Users/patrickmullen/temp/downloads/rxvt/urxvt-my-conf/src//"
+# 1 "<built-in>"
+# 1 "<command line>"
+# 1 "background.C"
 # 1 "background.C_exp.C"
 # 1 "/Users/patrickmullen/temp/downloads/rxvt/urxvt-my-conf/src//"
 # 1 "<built-in>"
@@ -10,10 +15,13 @@
 # 1 "background.C"
 # 24 "background.C"
 
+
 # 1 "../config.h" 1
 # 25 "background.C" 2
 
+
 # 1 "rxvt.h" 1
+
 
 
 
@@ -23,8 +31,10 @@
 # 48 "/usr/include/c++/4.0.0/cstdio" 3
 
 
+
 # 1 "/usr/include/c++/4.0.0/i686-apple-darwin9/bits/c++config.h" 1 3
 # 35 "/usr/include/c++/4.0.0/i686-apple-darwin9/bits/c++config.h" 3
+
 
 # 1 "/usr/include/c++/4.0.0/i686-apple-darwin9/bits/os_defines.h" 1 3
 # 36 "/usr/include/c++/4.0.0/i686-apple-darwin9/bits/c++config.h" 2 3
@@ -37,9 +47,11 @@ namespace __gnu_debug
 }
 # 50 "/usr/include/c++/4.0.0/cstdio" 2 3
 
+
 # 1 "/usr/include/c++/4.0.0/cstddef" 1 3
 # 46 "/usr/include/c++/4.0.0/cstddef" 3
 # 47 "/usr/include/c++/4.0.0/cstddef" 3
+
 
 
 # 1 "/usr/lib/gcc/i686-apple-darwin9/4.0.1/include/stddef.h" 1 3 4
@@ -57,20 +69,26 @@ namespace std
 # 51 "/usr/include/c++/4.0.0/cstdio" 2 3
 
 
+
 # 1 "/usr/include/stdio.h" 1 3 4
 # 64 "/usr/include/stdio.h" 3 4
+
 
 # 1 "/usr/include/_types.h" 1 3 4
 # 27 "/usr/include/_types.h" 3 4
 
+
 # 1 "/usr/include/sys/_types.h" 1 3 4
 # 32 "/usr/include/sys/_types.h" 3 4
+
 
 # 1 "/usr/include/sys/cdefs.h" 1 3 4
 # 33 "/usr/include/sys/_types.h" 2 3 4
 
+
 # 1 "/usr/include/machine/_types.h" 1 3 4
 # 34 "/usr/include/machine/_types.h" 3 4
+
 
 # 1 "/usr/include/i386/_types.h" 1 3 4
 # 37 "/usr/include/i386/_types.h" 3 4
@@ -478,14 +496,17 @@ namespace std
 }
 # 5 "rxvt.h" 2
 
+
 # 1 "/usr/include/c++/4.0.0/cctype" 1 3
 # 46 "/usr/include/c++/4.0.0/cctype" 3
 # 47 "/usr/include/c++/4.0.0/cctype" 3
 
 
 
+
 # 1 "/usr/include/ctype.h" 1 3 4
 # 69 "/usr/include/ctype.h" 3 4
+
 
 # 1 "/usr/include/runetype.h" 1 3 4
 # 53 "/usr/include/runetype.h" 3 4
@@ -771,13 +792,16 @@ namespace std
 }
 # 6 "rxvt.h" 2
 
+
 # 1 "/usr/include/c++/4.0.0/cerrno" 1 3
 # 46 "/usr/include/c++/4.0.0/cerrno" 3
 # 47 "/usr/include/c++/4.0.0/cerrno" 3
 
 
+
 # 1 "/usr/include/errno.h" 1 3 4
 # 23 "/usr/include/errno.h" 3 4
+
 
 # 1 "/usr/include/sys/errno.h" 1 3 4
 # 73 "/usr/include/sys/errno.h" 3 4
@@ -789,9 +813,11 @@ extern int * __error(void);
 # 49 "/usr/include/c++/4.0.0/cerrno" 2 3
 # 7 "rxvt.h" 2
 
+
 # 1 "/usr/include/c++/4.0.0/cstdarg" 1 3
 # 46 "/usr/include/c++/4.0.0/cstdarg" 3
 # 47 "/usr/include/c++/4.0.0/cstdarg" 3
+
 
 
 # 1 "/usr/lib/gcc/i686-apple-darwin9/4.0.1/include/stdarg.h" 1 3 4
@@ -810,16 +836,20 @@ namespace std
 }
 # 8 "rxvt.h" 2
 
+
 # 1 "/usr/include/c++/4.0.0/cstdlib" 1 3
 # 47 "/usr/include/c++/4.0.0/cstdlib" 3
 # 48 "/usr/include/c++/4.0.0/cstdlib" 3
 # 57 "/usr/include/c++/4.0.0/cstdlib" 3
 
+
 # 1 "/usr/include/stdlib.h" 1 3 4
 # 61 "/usr/include/stdlib.h" 3 4
 
+
 # 1 "/usr/include/available.h" 1 3 4
 # 62 "/usr/include/stdlib.h" 2 3 4
+
 
 
 
@@ -845,19 +875,24 @@ typedef __darwin_pid_t pid_t;
 typedef __darwin_id_t id_t;
 # 116 "/usr/include/sys/wait.h" 3 4
 
+
 # 1 "/usr/include/sys/signal.h" 1 3 4
 # 73 "/usr/include/sys/signal.h" 3 4
+
 
 # 1 "/usr/include/sys/appleapiopts.h" 1 3 4
 # 74 "/usr/include/sys/signal.h" 2 3 4
 # 82 "/usr/include/sys/signal.h" 3 4
+
 # 1 "/usr/include/machine/signal.h" 1 3 4
 # 34 "/usr/include/machine/signal.h" 3 4
+
 
 # 1 "/usr/include/i386/signal.h" 1 3 4
 # 39 "/usr/include/i386/signal.h" 3 4
 typedef int sig_atomic_t;
 # 55 "/usr/include/i386/signal.h" 3 4
+
 
 # 1 "/usr/include/i386/_structs.h" 1 3 4
 # 56 "/usr/include/i386/signal.h" 2 3 4
@@ -865,14 +900,18 @@ typedef int sig_atomic_t;
 # 82 "/usr/include/sys/signal.h" 2 3 4
 # 154 "/usr/include/sys/signal.h" 3 4
 
+
 # 1 "/usr/include/sys/_structs.h" 1 3 4
 # 57 "/usr/include/sys/_structs.h" 3 4
+
 
 # 1 "/usr/include/machine/_structs.h" 1 3 4
 # 31 "/usr/include/machine/_structs.h" 3 4
 
+
 # 1 "/usr/include/i386/_structs.h" 1 3 4
 # 38 "/usr/include/i386/_structs.h" 3 4
+
 
 # 1 "/usr/include/mach/i386/_structs.h" 1 3 4
 # 43 "/usr/include/mach/i386/_structs.h" 3 4
@@ -1229,8 +1268,10 @@ void (*signal(int, void (*)(int)))(int);
 }
 # 117 "/usr/include/sys/wait.h" 2 3 4
 
+
 # 1 "/usr/include/sys/resource.h" 1 3 4
 # 76 "/usr/include/sys/resource.h" 3 4
+
 
 # 1 "/usr/include/sys/_structs.h" 1 3 4
 # 100 "/usr/include/sys/_structs.h" 3 4
@@ -1287,17 +1328,22 @@ int setrlimit(int, const struct rlimit *) __asm("_" "setrlimit" "$UNIX2003");
 # 118 "/usr/include/sys/wait.h" 2 3 4
 # 193 "/usr/include/sys/wait.h" 3 4
 
+
 # 1 "/usr/include/machine/endian.h" 1 3 4
 # 37 "/usr/include/machine/endian.h" 3 4
+
 
 # 1 "/usr/include/i386/endian.h" 1 3 4
 # 99 "/usr/include/i386/endian.h" 3 4
 
+
 # 1 "/usr/include/sys/_endian.h" 1 3 4
 # 124 "/usr/include/sys/_endian.h" 3 4
 
+
 # 1 "/usr/include/libkern/_OSByteOrder.h" 1 3 4
 # 66 "/usr/include/libkern/_OSByteOrder.h" 3 4
+
 
 # 1 "/usr/include/libkern/i386/_OSByteOrder.h" 1 3 4
 # 44 "/usr/include/libkern/i386/_OSByteOrder.h" 3 4
@@ -1395,6 +1441,7 @@ pid_t wait4(pid_t, int *, int, struct rusage *);
 
 }
 # 66 "/usr/include/stdlib.h" 2 3 4
+
 
 
 # 1 "/usr/include/alloca.h" 1 3 4
@@ -1526,15 +1573,10 @@ void srandom(unsigned);
 int unlockpt(int);
 
 int unsetenv(const char *) __asm("_" "unsetenv" "$UNIX2003");
-
-
-
-
-
-
-
+# 256 "/usr/include/stdlib.h" 3 4
 # 1 "/usr/include/machine/types.h" 1 3 4
 # 37 "/usr/include/machine/types.h" 3 4
+
 
 # 1 "/usr/include/i386/types.h" 1 3 4
 # 78 "/usr/include/i386/types.h" 3 4
@@ -1758,6 +1800,7 @@ namespace std
 # 9 "rxvt.h" 2
 
 
+
 # 1 "/usr/lib/gcc/i686-apple-darwin9/4.0.1/include/stdint.h" 1 3 4
 # 40 "/usr/lib/gcc/i686-apple-darwin9/4.0.1/include/stdint.h" 3 4
 typedef unsigned char uint8_t;
@@ -1803,6 +1846,7 @@ typedef long long int intmax_t;
 # 106 "/usr/lib/gcc/i686-apple-darwin9/4.0.1/include/stdint.h" 3 4
 typedef long long unsigned int uintmax_t;
 # 11 "rxvt.h" 2
+
 
 
 # 1 "/usr/include/sys/types.h" 1 3 4
@@ -1913,6 +1957,7 @@ typedef __darwin_useconds_t useconds_t;
 typedef __darwin_suseconds_t suseconds_t;
 # 260 "/usr/include/sys/types.h" 3 4
 
+
 # 1 "/usr/include/sys/_structs.h" 1 3 4
 # 183 "/usr/include/sys/_structs.h" 3 4
 extern "C" {
@@ -1983,8 +2028,10 @@ typedef __darwin_fsblkcnt_t fsblkcnt_t;
 typedef __darwin_fsfilcnt_t fsfilcnt_t;
 # 13 "rxvt.h" 2
 
+
 # 1 "/usr/include/unistd.h" 1 3 4
 # 72 "/usr/include/unistd.h" 3 4
+
 
 # 1 "/usr/include/sys/unistd.h" 1 3 4
 # 138 "/usr/include/sys/unistd.h" 3 4
@@ -2099,8 +2146,10 @@ extern int optind, opterr, optopt;
 
 
 
+
 # 1 "/usr/include/sys/select.h" 1 3 4
 # 78 "/usr/include/sys/select.h" 3 4
+
 
 # 1 "/usr/include/sys/_structs.h" 1 3 4
 # 88 "/usr/include/sys/_structs.h" 3 4
@@ -2127,6 +2176,7 @@ int pselect(int, fd_set * , fd_set * ,
 
 
   ;
+
 
 
 
@@ -2234,9 +2284,11 @@ extern int optreset;
 }
 # 14 "rxvt.h" 2
 
+
 # 1 "/usr/include/c++/4.0.0/cstring" 1 3
 # 47 "/usr/include/c++/4.0.0/cstring" 3
 # 48 "/usr/include/c++/4.0.0/cstring" 3
+
 
 
 
@@ -2358,6 +2410,7 @@ namespace std
 }
 # 15 "rxvt.h" 2
 
+
 # 1 "/usr/include/assert.h" 1 3 4
 # 75 "/usr/include/assert.h" 3 4
 extern "C" {
@@ -2367,11 +2420,14 @@ void __eprintf(const char *, const char *, unsigned, const char *) __attribute__
 # 16 "rxvt.h" 2
 
 
+
 # 1 "/usr/include/sys/ioctl.h" 1 3 4
 # 72 "/usr/include/sys/ioctl.h" 3 4
 
+
 # 1 "/usr/include/sys/ttycom.h" 1 3 4
 # 72 "/usr/include/sys/ttycom.h" 3 4
+
 
 # 1 "/usr/include/sys/ioccom.h" 1 3 4
 # 73 "/usr/include/sys/ttycom.h" 2 3 4
@@ -2401,8 +2457,10 @@ struct ttysize {
 
 
 
+
 # 1 "/usr/include/sys/filio.h" 1 3 4
 # 91 "/usr/include/sys/ioctl.h" 2 3 4
+
 
 # 1 "/usr/include/sys/sockio.h" 1 3 4
 # 92 "/usr/include/sys/ioctl.h" 2 3 4
@@ -2414,16 +2472,11 @@ extern "C" {
 int ioctl(int, unsigned long, ...);
 }
 # 18 "rxvt.h" 2
-
-
-
-
-
-
-
+# 26 "rxvt.h"
 # 1 "/usr/include/c++/4.0.0/cwchar" 1 3
 # 47 "/usr/include/c++/4.0.0/cwchar" 3
 # 48 "/usr/include/c++/4.0.0/cwchar" 3
+
 
 
 
@@ -2435,11 +2488,14 @@ int ioctl(int, unsigned long, ...);
 
 
 
+
 # 1 "/usr/include/time.h" 1 3 4
 # 69 "/usr/include/time.h" 3 4
 
+
 # 1 "/usr/include/_structs.h" 1 3 4
 # 24 "/usr/include/_structs.h" 3 4
+
 
 # 1 "/usr/include/sys/_structs.h" 1 3 4
 # 25 "/usr/include/_structs.h" 2 3 4
@@ -2528,10 +2584,12 @@ namespace std
 
 
 
+
 # 1 "/usr/include/wchar.h" 1 3 4
 # 83 "/usr/include/wchar.h" 3 4
 typedef __darwin_mbstate_t mbstate_t;
 # 114 "/usr/include/wchar.h" 3 4
+
 
 # 1 "/usr/include/_wctype.h" 1 3 4
 # 52 "/usr/include/_wctype.h" 3 4
@@ -2862,8 +2920,10 @@ using namespace std;
 
 extern "C" {
 
+
 # 1 "/usr/X11/include/X11/Xlib.h" 1
 # 60 "/usr/X11/include/X11/Xlib.h"
+
 
 # 1 "/usr/X11/include/X11/X.h" 1
 # 71 "/usr/X11/include/X11/X.h"
@@ -2897,12 +2957,15 @@ typedef unsigned char KeyCode;
 
 
 
+
 # 1 "/usr/X11/include/X11/Xfuncproto.h" 1
 # 64 "/usr/X11/include/X11/Xlib.h" 2
+
 
 # 1 "/usr/X11/include/X11/Xosdefs.h" 1
 # 65 "/usr/X11/include/X11/Xlib.h" 2
 # 75 "/usr/X11/include/X11/Xlib.h"
+
 
 # 1 "/usr/lib/gcc/i686-apple-darwin9/4.0.1/include/stddef.h" 1 3 4
 # 76 "/usr/X11/include/X11/Xlib.h" 2
@@ -6655,11 +6718,14 @@ extern int _Xwctomb(
 }
 # 35 "rxvt.h" 2
 
+
 # 1 "/usr/X11/include/X11/Xutil.h" 1
 # 56 "/usr/X11/include/X11/Xutil.h"
 
+
 # 1 "/usr/X11/include/X11/keysym.h" 1
 # 75 "/usr/X11/include/X11/keysym.h"
+
 
 # 1 "/usr/X11/include/X11/keysymdef.h" 1
 # 76 "/usr/X11/include/X11/keysym.h" 2
@@ -7239,6 +7305,7 @@ extern int XXorRegion(
 }
 # 36 "rxvt.h" 2
 
+
 # 1 "/usr/X11/include/X11/Xresource.h" 1
 # 68 "/usr/X11/include/X11/Xresource.h"
 extern "C" {
@@ -7502,35 +7569,36 @@ typedef int32_t tlen_t;
 typedef int32_t tlen_t_;
 
 
+
 # 1 "feature.h" 1
 # 49 "rxvt.h" 2
 # 70 "rxvt.h"
 
+
 # 1 "/usr/lib/gcc/i686-apple-darwin9/4.0.1/include/limits.h" 1 3 4
-
-
-
-
-
-
-
+# 9 "/usr/lib/gcc/i686-apple-darwin9/4.0.1/include/limits.h" 3 4
 # 1 "/usr/lib/gcc/i686-apple-darwin9/4.0.1/include/syslimits.h" 1 3 4
 # 8 "/usr/lib/gcc/i686-apple-darwin9/4.0.1/include/limits.h" 2 3 4
+
 
 
 
 # 1 "/usr/include/limits.h" 1 3 4
 # 64 "/usr/include/limits.h" 3 4
 
+
 # 1 "/usr/include/machine/limits.h" 1 3 4
 # 9 "/usr/include/machine/limits.h" 3 4
+
 # 1 "/usr/include/i386/limits.h" 1 3 4
 # 40 "/usr/include/i386/limits.h" 3 4
+
 
 # 1 "/usr/include/i386/_limits.h" 1 3 4
 # 41 "/usr/include/i386/limits.h" 2 3 4
 # 9 "/usr/include/machine/limits.h" 2 3 4
 # 65 "/usr/include/limits.h" 2 3 4
+
 
 # 1 "/usr/include/sys/syslimits.h" 1 3 4
 # 66 "/usr/include/limits.h" 2 3 4
@@ -7538,24 +7606,31 @@ typedef int32_t tlen_t_;
 # 71 "rxvt.h" 2
 
 
+
 # 1 "/usr/X11/include/X11/cursorfont.h" 1
 # 73 "rxvt.h" 2
 
+
 # 1 "/usr/X11/include/X11/keysym.h" 1
 # 75 "/usr/X11/include/X11/keysym.h"
+
 
 # 1 "/usr/X11/include/X11/keysymdef.h" 1
 # 76 "/usr/X11/include/X11/keysym.h" 2
 # 74 "rxvt.h" 2
 
+
 # 1 "/usr/X11/include/X11/keysymdef.h" 1
 # 75 "rxvt.h" 2
+
 
 # 1 "/usr/X11/include/X11/Xatom.h" 1
 # 76 "rxvt.h" 2
 
 
+
 # 1 "encoding.h" 1
+
 
 
 
@@ -7675,6 +7750,7 @@ struct unicode
   static bool is_space (unicode_t c);
 };
 # 78 "rxvt.h" 2
+
 
 # 1 "rxvtutil.h" 1
 
@@ -8079,8 +8155,10 @@ struct auto_ptr
 typedef auto_ptr<char> auto_str;
 # 79 "rxvt.h" 2
 
+
 # 1 "rxvtfont.h" 1
 # 9 "rxvtfont.h"
+
 
 # 1 "/usr/include/inttypes.h" 1 3 4
 # 10 "rxvtfont.h" 2
@@ -8089,14 +8167,18 @@ typedef auto_ptr<char> auto_str;
 
 
 
+
 # 1 "rxvttoolkit.h" 1
 # 32 "rxvttoolkit.h"
+
 
 # 1 "ev_cpp.h" 1
 # 16 "ev_cpp.h"
 
+
 # 1 "./../libev/ev++.h" 1
 # 46 "./../libev/ev++.h"
+
 
 # 1 "./../libev/ev.h" 1
 # 44 "./../libev/ev.h"
@@ -8105,6 +8187,7 @@ extern "C" {
 
 typedef double ev_tstamp;
 # 86 "./../libev/ev.h"
+
 
 # 1 "/usr/include/signal.h" 1 3 4
 # 71 "/usr/include/signal.h" 3 4
@@ -8876,6 +8959,7 @@ namespace ev {
 
 
 
+
 # 1 "callback.h" 1
 # 31 "callback.h"
 template<typename signature>
@@ -9577,6 +9661,7 @@ private:
 # 80 "rxvt.h" 2
 
 
+
 # 1 "scrollbar.h" 1
 
 
@@ -9671,8 +9756,10 @@ private:
 };
 # 82 "rxvt.h" 2
 
+
 # 1 "ev_cpp.h" 1
 # 83 "rxvt.h" 2
+
 
 # 1 "salloc.h" 1
 
@@ -9701,6 +9788,7 @@ struct rxvt_salloc
   void free (void *data);
 };
 # 84 "rxvt.h" 2
+
 
 # 1 "libptytty.h" 1
 # 11 "libptytty.h"
@@ -9739,12 +9827,15 @@ protected:
 # 85 "rxvt.h" 2
 
 
+
 # 1 "rxvtperl.h" 1
 # 87 "rxvt.h" 2
 # 107 "rxvt.h"
 
+
 # 1 "/usr/include/termios.h" 1 3 4
 # 27 "/usr/include/termios.h" 3 4
+
 
 # 1 "/usr/include/sys/termios.h" 1 3 4
 # 265 "/usr/include/sys/termios.h" 3 4
@@ -9781,6 +9872,7 @@ int cfsetspeed(struct termios *, speed_t);
 }
 # 367 "/usr/include/sys/termios.h" 3 4
 
+
 # 1 "/usr/include/sys/ttydefaults.h" 1 3 4
 # 368 "/usr/include/sys/termios.h" 2 3 4
 # 28 "/usr/include/termios.h" 2 3 4
@@ -9795,6 +9887,7 @@ extern "C" {
 pid_t tcgetsid(int);
 }
 # 108 "rxvt.h" 2
+
 
 
 # 1 "background.h" 1
@@ -10036,6 +10129,7 @@ enum {
 
 
 
+
 # 1 "rsinc.h" 1
 
 
@@ -10246,6 +10340,7 @@ struct selection_t
 };
 # 929 "rxvt.h"
 enum {
+
 
 
 

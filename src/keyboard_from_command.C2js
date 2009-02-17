@@ -1,0 +1,777 @@
+
+
+
+
+
+
+
+
+
+
+
+
+namespace std
+{
+  using ::sig_atomic_t;
+  using ::signal;
+  using ::raise;
+}
+      //     # 60 "command.C" 2
+
+
+
+
+
+/*----------------------------------------------------------------------*/
+      //     # 78 "command.C"
+//CMNT: c_keyword ^|       static unsigned short iso14755_symtab[] = {
+   iso14755_symtab[] = {
+  // keysym,		unicode
+  0xff51 /* Move left, left arrow */, 0x2190,
+  0xff96, 0x2190,
+  0xff52 /* Move up, up arrow */, 0x2191,
+  0xff97, 0x2191,
+  0xff53 /* Move right, right arrow */, 0x2192,
+  0xff98, 0x2192,
+  0xff54 /* Move down, down arrow */, 0x2193,
+  0xff99, 0x2193,
+  0xff0a /* Linefeed, LF */, 0x21b4,
+  0xff0d /* Return, enter */, 0x21b5,
+  0xff8d /* Enter */, 0x21b5,
+
+  0xff55 /* Prior, previous */, 0x21de,
+  0xff56 /* Next */, 0x21df,
+  0xff09, 0x21e5,
+  0xfe20, 0x21e6,
+  0xffe1 /* Left shift */, 0x21e7,
+  0xffe2 /* Right shift */, 0x21e7,
+
+  0xffe6 /* Shift lock */, 0x21eb,
+  0xfe01, 0x21eb,
+  0xffe5 /* Caps lock */, 0x21ec,
+  0xff7f, 0x21ed,
+  0xfe03, 0x21ee,
+  0xfe05, 0x21ef,
+  0xfe07, 0x21f0,
+  0xff50, 0x21f1,
+  0xff57 /* EOL */, 0x21f2,
+
+  0xff62 /* Execute, run, do */, 0x2318,
+  0xff58 /* BOL */, 0x2320,
+  0xffff /* Delete, rubout */, 0x2326,
+  0xff0b, 0x2327,
+//CMNT: c_keyword ^|         0xff08 /* Back space, back char */, 0x232b,
+  0xff08 /* Back space, back  */, 0x232b,
+  0xff63 /* Insert, insert here */, 0x2380,
+  0xffe3 /* Left control */, 0x2388,
+  0xffe4 /* Right control */, 0x2388,
+  0xff13 /* Pause, hold */, 0x2389,
+  0xff6b, 0x238a,
+  0xff1b, 0x238b,
+  0xff65, 0x238c,
+  0xff61, 0x2399,
+
+  0x0020 /* U+0020 SPACE */, 0x2423,
+
+
+  0xff9a, 0x21de,
+  0xff9b, 0x21df,
+  0xff9d, 0x2320,
+  0xff9e, 0x2380,
+  0xff9f, 0x2326,
+  0xff80 /* Space */, 0x2422,
+
+  0,
+};
+
+//CMNT: c_keyword ^|       void
+
+//CMNT: c_keyword ^|       rxvt_term::iso14755_54 (int x, int y){
+rxvt_term::iso14755_54 ( x,  y){
+//CMNT: c_keyword ^|         x = ((int32_t)((int32_t)(x)) / (int32_t)fwidth);
+  x = ((32_t)((32_t)(x)) / (32_t)fwidth);
+//CMNT: c_keyword ^|         y = ((int32_t)((int32_t)(y)) / (int32_t)fheight);
+  y = ((32_t)((32_t)(y)) / (32_t)fheight);
+
+//CMNT: c_keyword ^|         if (!((unsigned int)(x) - (unsigned int)(0) < (unsigned int)(ncol) - (unsigned int)(0))
+  if (!(( )(x) - ( )(0) < ( )(ncol) - ( )(0))
+//CMNT: c_keyword ^|             || !((unsigned int)(y) - (unsigned int)(0) < (unsigned int)(nrow) - (unsigned int)(0)))
+      || !(( )(y) - ( )(0) < ( )(nrow) - ( )(0)))
+    return;
+
+  for (;;){
+//CMNT: c_keyword ^|             const line_t &l = (this)->row_buf [(((((this))->term_start + int(y + view_start)) + (((this))->total_rows)) % (((this))->total_rows))];
+       line_t &l = (this)->row_buf [(((((this))->term_start + (y + view_start)) + (((this))->total_rows)) % (((this))->total_rows))];
+
+      text_t t = l.t[x];
+
+      if (t != NOCHAR || !x){
+          iso14755_51 (l.t[x], l.r[x], x, y);
+          iso14755buf = 0x10000000UL /* code feedback (section 5.4)*/;
+          break;
+        }
+
+      x--;
+    }
+}
+
+//CMNT: c_keyword ^|       void
+
+//CMNT: c_keyword ^|       rxvt_term::iso14755_51 (unicode_t ch, rend_t r, int x, int y){
+rxvt_term::iso14755_51 (ch,  r,  x,  y){
+//CMNT: possible_pointer ^|         rxvt_fontset *fs = (this)->fontset[0];
+  rxvt_fontset  f s = (this)->fontset[0];
+//CMNT: possible_pointer ^|         rxvt_font *f = (*fs)[fs->find_font (ch)];
+  rxvt_font  f  = ( f s)[fs->find_font (ch)];
+//CMNT: c_keyword possible_pointer ^|         wchar_t *chr, *alloc, ch2, *fname;
+    c hr,  a lloc, ch2,  f name;
+//CMNT: c_keyword ^|         int len;
+   len;
+
+  fname = rxvt_utf8towcs (f->name);
+      //     # 182 "command.C"
+    {
+      ch2 = ch;
+
+      alloc = 0;
+      chr = &ch2;
+      len = 1;
+    }
+
+//CMNT: c_keyword ^|         char attr[80]; // plenty
+   attr[80]; // plenty
+
+//CMNT: c_keyword ^|         sprintf (attr, "%08x = fg %d bg %d%s%s%s%s%s%s",
+  sprf (attr, "%08x = fg %d bg %d%s%s%s%s%s%s",
+//CMNT: remove_casts ^|                  (int)r,
+           r,
+           fgcolor_of (r), bgcolor_of (r),
+           r & 0x00004000UL /* value 1*/ ? " bold" : "",
+           r & 0x00008000UL /* value 2*/ ? " italic" : "",
+           r & 0x00010000UL /* blink*/ ? " blink" : "",
+           r & 0x00020000UL /* reverse video*/ ? " rvid" : "",
+           r & 0x00040000UL /* underline*/ ? " uline" : "",
+           r & 0x80000000UL /* be careful when drawing these */ ? " careful" : "");
+
+//CMNT: js_style_variables ^|         int width = wcswidth (fname, wcslen (fname));
+ var width= wcswidth (fname, wcslen (fname));
+
+//CMNT: c_keyword ^|         max_it (width, 8+5); // for char + hex
+  max_it (width, 8+5); // for  + hex
+  max_it (width, (strlen)(attr));
+
+  if (y >= 0){
+      y = (y >= nrow - len - 4 && x < width + 2) ? 0 : -1;
+      x = 0;
+    }
+
+  scr_overlay_new (x, y, width, len + 2);
+
+  r = ((((0 | Color_Black | (Color_Yellow << 7 /* 0 .. maxTermCOLOR*/))) & ~(0x00004000UL /* value 1*/ | 0x00008000UL /* value 2*/)) | (((((r) & (0x00004000UL /* value 1*/ | 0x00008000UL /* value 2*/)) >> 14)) << 14));
+
+//CMNT: c_keyword ^|         for (int y = 0; y < len; y++){
+  for ( y = 0; y < len; y++){
+//CMNT: c_keyword ^|             char buf[9];
+       buf[9];
+
+//CMNT: possible_pointer ^|             ch = *chr++;
+      ch =  c hr++;
+
+//CMNT: c_keyword ^|             sprintf (buf, "%8x", ch);
+      sprf (buf, "%8x", ch);
+      scr_overlay_set (0, y, buf);
+      scr_overlay_set (9, y, '=');
+
+      if (ch >= 0x10000)
+        ch = 0xfffd;
+
+      scr_overlay_set (11, y, ch, r);
+
+//CMNT: c_keyword ^|             if ((((unsigned int)(ch) - (unsigned int)(0x20) <= (unsigned int)(0x7e) - (unsigned int)(0x20)) ? 1 : wcwidth (ch)) >= 2)
+      if (((( )(ch) - ( )(0x20) <= ( )(0x7e) - ( )(0x20)) ? 1 : wcwidth (ch)) >= 2)
+        scr_overlay_set (12, y, NOCHAR, r);
+    }
+
+//  {
+//CMNT: c_keyword ^|       //    char buf[4+4+3+1];
+//     buf[4+4+3+1];
+//CMNT: c_keyword ^|       //    snprintf (buf, sizeof (buf), "(%.4d|%.4d)", x, y);
+//    snprf (buf, sizeof (buf), "(%.4d|%.4d)", x, y);
+//    scr_overlay_set (0, 0, buf);
+//  }
+  scr_overlay_set (0, len , attr);
+  scr_overlay_set (0, len + 1, fname);
+
+  free (fname);
+
+
+
+
+
+}
+
+
+//CMNT: c_keyword ^|       void
+
+rxvt_term::commit_iso14755 (){
+//CMNT: c_keyword ^|         wchar_t ch[2];
+   ch[2];
+
+  ch[0] = iso14755buf & 0x0fffffffUL;
+  ch[1] = 0;
+
+  if (iso14755buf & 0x40000000UL /* basic (section 5.1)*/){
+//CMNT: c_keyword ^|             char mb[16];
+       mb[16];
+//CMNT: c_keyword ^|             int len;
+       len;
+
+      // allow verbatim 0-bytes and control-bytes to be entered
+      if (ch[0] >= 0x20)
+        len = wcstombs (mb, ch, 16);
+      else{
+          mb[0] = ch[0];
+          len = 1;
+        }
+
+      if (len > 0)
+        tt_write (mb, len);
+      else
+        scr_bell ();
+    }
+
+  iso14755buf = 0;
+}
+
+//CMNT: c_keyword ^|       static int
+
+hex_keyval (XKeyEvent &ev){
+  // check wether this event corresponds to a hex digit
+  // if the modifiers had not been pressed.
+//CMNT: c_keyword ^|         for (int index = 0; index < 8; index++){
+  for (var  index = 0; index < 8; index++){
+      KeySym k = XLookupKeysym (&ev, index);
+
+      if (k >= 0xffb0 && k <= 0xffb9) return k - 0xffb0;
+      else if (k >= 0x0030 /* U+0030 DIGIT ZERO */ && k <= 0x0039 /* U+0039 DIGIT NINE */) return k - 0x0030 /* U+0030 DIGIT ZERO */;
+      else if (k >= 0x0061 /* U+0061 LATIN SMALL LETTER A */ && k <= 0x0066 /* U+0066 LATIN SMALL LETTER F */) return k - 0x0061 /* U+0061 LATIN SMALL LETTER A */ + 10;
+      else if (k >= 0x0041 /* U+0041 LATIN CAPITAL LETTER A */ && k <= 0x0046 /* U+0046 LATIN CAPITAL LETTER F */) return k - 0x0041 /* U+0041 LATIN CAPITAL LETTER A */ + 10;
+    }
+
+  return -1;
+}
+
+
+//CMNT: c_keyword ^|       static inline KeySym
+inline KeySym
+translate_keypad (KeySym keysym, bool kp){
+
+//CMNT: c_keyword ^|         static const KeySym keypadtrans[] = {
+    KeySym keypadtrans[] = {
+    0xffb7, // XK_KP_Home
+    0xffb4, // XK_KP_Left
+    0xffb8, // XK_KP_Up
+    0xffb6, // XK_KP_Right
+    0xffb2, // XK_KP_Down
+
+    0xffb9, // XK_KP_Prior
+    0xffb3, // XK_KP_Next
+
+
+
+
+    0xffb1, // XK_KP_End
+    0xffb5, // XK_KP_Begin
+  };
+
+//CMNT: c_keyword ^|         if (((unsigned int)(keysym) - (unsigned int)(0xff95) <= (unsigned int)(0xff9d) - (unsigned int)(0xff95))){
+  if ((( )(keysym) - ( )(0xff95) <= ( )(0xff9d) - ( )(0xff95))){
+//CMNT: c_keyword ^|             unsigned int index = keysym - 0xff95;
+        index = keysym - 0xff95;
+      keysym = kp ? keypadtrans[index] : 0xff50 + index;
+    }
+  else if (keysym == 0xff9e)
+    keysym = kp ? 0xffb0 : 0xff63 /* Insert, insert here */;
+
+
+
+
+
+  return keysym;
+}
+
+//CMNT: c_keyword ^|       static inline int
+ inline
+map_function_key (KeySym keysym){
+//CMNT: js_style_variables ^|         int param = 0;
+ var param= 0;
+
+//CMNT: c_keyword ^|         if (((unsigned int)(keysym) - (unsigned int)(0xffbe) <= (unsigned int)(0xffe0) - (unsigned int)(0xffbe))){
+  if ((( )(keysym) - ( )(0xffbe) <= ( )(0xffe0) - ( )(0xffbe))){
+      param = 11 + keysym - 0xffbe;
+      if (keysym >= 0xffce)
+        param += 4;
+      else if (keysym >= 0xffcc)
+        param += 3;
+      else if (keysym >= 0xffc8)
+        param += 2;
+      else if (keysym >= 0xffc3)
+        param += 1;
+    }
+  else
+    switch (keysym){
+        case 0xff68 /* Find, search */:
+          param = 1;
+          break;
+        case 0xff63 /* Insert, insert here */:
+          param = 2;
+          break;
+
+
+
+        case 0xff62 /* Execute, run, do */:
+          param = 3;
+          break;
+        case 0xff60 /* Select, mark */:
+          param = 4;
+          break;
+
+        case 0xff55 /* Prior, previous */:
+          param = 5;
+          break;
+        case 0xff56 /* Next */:
+          param = 6;
+          break;
+        case 0xff50:
+          param = 7;
+          break;
+        case 0xff57 /* EOL */:
+          param = 8;
+          break;
+
+        case 0xff6a /* Help */:
+          param = 28;
+          break;
+        case 0xff67:
+          param = 29;
+          break;
+      }
+  return param;
+}
+
+//CMNT: js_style_functions c_keyword ^|       void rxvt_term::key_press (XKeyEvent &ev){
+rxvt_term.key_press =function(XKeyEvent &ev){
+//CMNT: c_keyword ^|         int ctrl, meta, shft, len;
+   ctrl, meta, shft, len;
+  KeySym keysym;
+//CMNT: c_keyword ^|         int valid_keysym;
+   valid_keysym;
+//CMNT: c_keyword ^|         char kbuf[512 /* size of keyboard mapping buffer*/];
+   kbuf[512 /* size of keyboard mapping buffer*/];
+
+
+  if (iso14755buf & 0x20000000UL /* keycap (section 5.2)*/)
+    return;
+
+
+  /*
+//CMNT: possible_pointer ^|          * use Num_Lock to toggle Keypad on/off.  If Num_Lock is off, allow an
+      use Num_Lock to toggle Keypad on/off.  If Num_Lock is off, allow an
+//CMNT: possible_pointer ^|          * escape sequence to toggle the Keypad.
+      escape sequence to toggle the Keypad.
+   *
+//CMNT: possible_pointer ^|          * Always permit `shift' to override the current setting
+      Always permit `shift' to override the current setting
+   */
+  shft = ev.state & (1<<0);
+  ctrl = ev.state & (1<<2);
+  meta = ev.state & ModMetaMask;
+
+  if (numlock_state || (ev.state & ModNumLockMask)){
+      numlock_state = (ev.state & ModNumLockMask);
+      set_privmode ((1UL<<7), !numlock_state);
+    }
+
+  kbuf[0] = 0;
+      //     # 483 "command.C"
+    {
+      len = XLookupString (&ev, kbuf, 512 /* size of keyboard mapping buffer*/, &keysym, &compose);
+      valid_keysym = keysym != 0L /* special KeySym */;
+    }
+
+  if (valid_keysym){
+
+
+
+
+
+      if (saveLines){
+
+
+
+          if ((((shft) || 0 || 0) && (!0 && !(ctrl) && !(meta))))
+
+            {
+//CMNT: c_keyword ^|                     int lnsppg;
+               lnsppg;
+
+
+              lnsppg = nrow - 1;
+
+
+
+              if (keysym == 0xff55 /* Prior, previous */){
+                  scr_page (UP, lnsppg);
+                  return;
+                }
+              else if (keysym == 0xff56 /* Next */){
+                  scr_page (DN, lnsppg);
+                  return;
+                }
+            }
+      //     # 551 "command.C"
+        }
+
+      if (shft){
+          /* Shift + F1 - F10 generates F11 - F20 */
+          if (keysym >= 0xffbe && keysym <= 0xffc7){
+              keysym += (0xffc8 - 0xffbe);
+              shft = 0; /* turn off Shift */
+            }
+          else if (!ctrl && !meta && (priv_modes & (1UL<<10))){
+              switch (keysym){
+                    /* normal XTerm key bindings */
+                  case 0xff63 /* Insert, insert here */: /* Shift+Insert = paste mouse selection */
+                    selection_request (ev.time);
+                    return;
+      //     # 578 "command.C"
+                }
+            }
+        }
+
+
+      // ISO 14755 support
+      if (shft && ctrl){
+//CMNT: c_keyword ^|                 int hv;
+           hv;
+
+          if (iso14755buf & 0x40000000UL /* basic (section 5.1)*/
+              && (keysym == 0x0020 /* U+0020 SPACE */ || keysym == 0xff80 /* Space */
+                  || keysym == 0xff0d /* Return, enter */ || keysym == 0xff8d /* Enter */)){
+              commit_iso14755 ();
+              iso14755buf = 0x40000000UL /* basic (section 5.1)*/;
+
+              iso14755_51 (0);
+
+              return;
+            }
+//CMNT: c_keyword ^|                 else if (keysym == 0xff08 /* Back space, back char */){
+          else if (keysym == 0xff08 /* Back space, back  */){
+              iso14755buf = ((iso14755buf & 0x0fffffffUL) >> 4) | 0x40000000UL /* basic (section 5.1)*/;
+
+              iso14755_51 (iso14755buf & 0x0fffffffUL);
+
+              return;
+            }
+          else if ((hv = hex_keyval (ev)) >= 0){
+              iso14755buf = ((iso14755buf << 4) & 0x0fffffffUL)
+                          | hv | 0x40000000UL /* basic (section 5.1)*/;
+
+              iso14755_51 (iso14755buf & 0x0fffffffUL);
+
+              return;
+            }
+          else{
+
+              scr_overlay_off ();
+
+              iso14755buf = 0;
+            }
+        }
+      else if ((ctrl && (keysym == 0xffe1 /* Left shift */ || keysym == 0xffe2 /* Right shift */))
+               || (shft && (keysym == 0xffe3 /* Left control */ || keysym == 0xffe4 /* Right control */)))
+        if (!(iso14755buf & 0x80000000UL)){
+            iso14755buf |= 0x80000000UL;
+
+            scr_overlay_new (0, -1, sizeof ("ISO 14755 mode") - 1, 1);
+            scr_overlay_set (0, 0, "ISO 14755 mode");
+
+          }
+
+
+
+      if (keysym == 0xff61){
+//CMNT: c_keyword ^|                 scr_printscreen (ctrl | shft);
+          scr_prscreen (ctrl | shft);
+          return;
+        }
+
+
+      if (keysym >= 0xFF00 && keysym <= 0xFFFF){
+          bool kp = priv_modes & (1UL<<7) ? !shft : shft;
+//CMNT: c_keyword ^|                 unsigned int newlen = 1;
+            newlen = 1;
+
+          switch (translate_keypad (keysym, kp)){
+      //     # 668 "command.C"
+              case 0xff09:
+                if (shft)
+                  (strcpy)(kbuf,"\033[Z");
+                else{
+      //     # 681 "command.C"
+                    newlen = 0;
+                  }
+                break;
+
+              case 0xff52 /* Move up, up arrow */: /* "\033[A" */
+              case 0xff54 /* Move down, down arrow */: /* "\033[B" */
+              case 0xff53 /* Move right, right arrow */: /* "\033[C" */
+              case 0xff51 /* Move left, left arrow */: /* "\033[D" */
+                (strcpy)(kbuf,"\033[Z");
+                kbuf[2] = "DACB"[keysym - 0xff51 /* Move left, left arrow */];
+                /* do Shift first */
+                if (shft)
+                  kbuf[2] = "dacb"[keysym - 0xff51 /* Move left, left arrow */];
+                else if (ctrl){
+                    kbuf[1] = 'O';
+                    kbuf[2] = "dacb"[keysym - 0xff51 /* Move left, left arrow */];
+                  }
+                else if (priv_modes & (1UL<<6))
+                  kbuf[1] = 'O';
+                break;
+
+              case 0xff8d /* Enter */:
+                /* allow shift to override */
+                if (kp){
+                    (strcpy)(kbuf,"\033OM");
+                    break;
+                  }
+
+                /* FALLTHROUGH */
+
+              case 0xff0d /* Return, enter */:
+                if (priv_modes & (1UL<<19)){
+                    kbuf[0] = '\015';
+                    kbuf[1] = '\012';
+                    kbuf[2] = '\0';
+                  }
+                else{
+                    kbuf[0] = '\015';
+                    kbuf[1] = '\0';
+                  }
+                break;
+
+              case 0xff91 /* PF1, KP_A, ... */: /* "\033OP" */
+              case 0xff92: /* "\033OQ" */
+              case 0xff93: /* "\033OR" */
+              case 0xff94: /* "\033OS" */
+                (strcpy)(kbuf,"\033OP");
+                kbuf[2] += (keysym - 0xff91 /* PF1, KP_A, ... */);
+                break;
+
+//CMNT: possible_pointer ^|                     case 0xffaa: /* "\033Oj" : "*" */
+              case 0xffaa: /* "\033Oj" : " "  */
+              case 0xffab: /* "\033Ok" : "+" */
+              case 0xffac /* Separator, often comma */: /* "\033Ol" : "," */
+              case 0xffad: /* "\033Om" : "-" */
+              case 0xffae: /* "\033On" : "." */
+              case 0xffaf: /* "\033Oo" : "/" */
+              case 0xffb0: /* "\033Op" : "0" */
+              case 0xffb1: /* "\033Oq" : "1" */
+              case 0xffb2: /* "\033Or" : "2" */
+              case 0xffb3: /* "\033Os" : "3" */
+              case 0xffb4: /* "\033Ot" : "4" */
+              case 0xffb5: /* "\033Ou" : "5" */
+              case 0xffb6: /* "\033Ov" : "6" */
+              case 0xffb7: /* "\033Ow" : "7" */
+              case 0xffb8: /* "\033Ox" : "8" */
+              case 0xffb9: /* "\033Oy" : "9" */
+                /* allow shift to override */
+                if (kp){
+                    (strcpy)(kbuf,"\033Oj");
+                    kbuf[2] += (keysym - 0xffaa);
+                  }
+                else{
+//CMNT: possible_pointer ^|                           kbuf[0] = ('*' + (keysym - 0xffaa));
+                    kbuf[0] = (' '  + (keysym - 0xffaa));
+                    kbuf[1] = '\0';
+                  }
+                break;
+
+              default:
+                {
+//CMNT: js_style_variables ^|                         int param = map_function_key (keysym);
+ var param= map_function_key (keysym);
+                  if (param > 0)
+//CMNT: c_keyword ^|                           sprintf (kbuf,"\033[%d~", param);
+                    sprf (kbuf,"\033[%d~", param);
+                  else
+                    newlen = 0;
+                }
+                break;
+            }
+
+          if (newlen)
+            len = (strlen)(kbuf);
+
+          /*
+//CMNT: possible_pointer ^|                  * Pass meta for all function keys, if 'meta' option set
+              Pass meta for all function keys, if 'meta' option set
+           */
+
+//CMNT: c_keyword ^|                 if (meta && (meta_char == 0x80) && len > 0)
+          if (meta && (meta_ == 0x80) && len > 0)
+            kbuf[len - 1] |= 0x80;
+
+
+        }
+      else if (ctrl && keysym == 0x002d /* U+002D HYPHEN-MINUS */){
+          len = 1;
+          kbuf[0] = '\037'; /* Ctrl-Minus generates ^_ (31) */
+        }
+      else if (keysym == 0xfe20){
+          (strcpy)(kbuf,"\033[Z");
+          len = 3;
+        }
+      else{
+
+          /* set 8-bit on */
+//CMNT: c_keyword ^|                 if (meta && (meta_char == 0x80)){
+          if (meta && (meta_ == 0x80)){
+//CMNT: c_keyword possible_pointer ^|                     char *ch;
+                c h;
+
+              for (ch = kbuf; ch < kbuf + len; ch++)
+//CMNT: possible_pointer ^|                       *ch |= 0x80;
+                 c h |= 0x80;
+
+              meta = 0;
+            }
+
+          /* nil */ ;
+        }
+    }
+
+  if (false)
+    return;
+
+  if (len <= 0)
+    return; /* not mapped */
+
+  if (option (Opt_scrollTtyKeypress))
+    if (view_start){
+        view_start = 0;
+        want_refresh = 1;
+      }
+
+  /*
+//CMNT: c_keyword possible_pointer ^|          * these modifications only affect the static keybuffer
+      these modifications only affect the  keybuffer
+//CMNT: possible_pointer ^|          * pass Shift/Control indicators for function keys ending with `~'
+      pass Shift/Control indicators for function keys ending with `~'
+   *
+//CMNT: possible_pointer ^|          * eg,
+      eg,
+//CMNT: possible_pointer ^|          *   Prior = "ESC[5~"
+        Prior = "ESC[5~"
+//CMNT: possible_pointer ^|          *   Shift+Prior = "ESC[5$"
+        Shift+Prior = "ESC[5$"
+//CMNT: possible_pointer ^|          *   Ctrl+Prior = "ESC[5^"
+        Ctrl+Prior = "ESC[5^"
+//CMNT: possible_pointer ^|          *   Ctrl+Shift+Prior = "ESC[5@"
+        Ctrl+Shift+Prior = "ESC[5@"
+//CMNT: possible_pointer ^|          * Meta adds an Escape prefix (with META8_OPTION, if meta == <escape>).
+      Meta adds an Escape prefix (with META8_OPTION, if meta == <escape>).
+   */
+  if (kbuf[0] == C0_ESC && kbuf[1] == '[' && kbuf[len - 1] == '~')
+    kbuf[len - 1] = (shft ? (ctrl ? '@' : '$') : (ctrl ? '^' : '~'));
+
+  /* escape prefix */
+  if (meta
+
+//CMNT: c_keyword ^|             && meta_char == C0_ESC
+      && meta_ == C0_ESC
+
+     ){
+//CMNT: c_keyword ^|             const char ch = C0_ESC;
+        ch = C0_ESC;
+      tt_write (&ch, 1);
+    }
+
+//CMNT: c_keyword ^|         tt_write (kbuf, (unsigned int)len);
+  tt_write (kbuf, ( )len);
+}
+
+//CMNT: js_style_functions c_keyword ^|       void rxvt_term::key_release (XKeyEvent &ev){
+rxvt_term.key_release =function(XKeyEvent &ev){
+
+  KeySym keysym;
+
+  keysym = XLookupKeysym (&ev, ev.state & (1<<0) ? 1 : 0); // sorry, only shift supported :/
+
+
+
+  // ISO 14755 support
+  if (iso14755buf)
+    if (iso14755buf & 0x20000000UL /* keycap (section 5.2)*/){
+
+        scr_overlay_off ();
+
+
+        // iso14755 part 5.2 handling: release time
+        // first: controls
+        if ((ev.state & (1<<2))
+             && ((keysym >= 0x40 && keysym <= 0x5f)
+                 || (keysym >= 0x61 && keysym <= 0x7f))){
+            iso14755buf = 0x40000000UL /* basic (section 5.1)*/ | 0x2400 | (keysym & 0x1f);
+            commit_iso14755 ();
+
+            return;
+          }
+
+//CMNT: c_keyword possible_pointer ^|               for (unsigned short *i = iso14755_symtab; i[0]; i+= 2)
+        for (var   i  = iso14755_symtab; i[0]; i+= 2)
+          if (i[0] == keysym){
+              iso14755buf = 0x40000000UL /* basic (section 5.1)*/ | i[1];
+              commit_iso14755 ();
+
+              return;
+            }
+
+        scr_bell ();
+
+        iso14755buf = 0;
+
+        return;
+      }
+    else if ((ev.state & ((1<<0) | (1<<2))) != ((1<<0) | (1<<2))){
+
+        scr_overlay_off ();
+
+        if (iso14755buf & 0x40000000UL /* basic (section 5.1)*/)
+          commit_iso14755 ();
+
+        else if (option (Opt_iso14755_52) && iso14755buf & 0x80000000UL){
+            iso14755buf = 0x20000000UL /* keycap (section 5.2)*/; // iso14755 part 5.2: remember empty begin/end pair
+
+            scr_overlay_new (0, -1, sizeof ("KEYCAP PICTURE INSERT MODE") - 1, 1);
+            scr_overlay_set (0, 0, "KEYCAP PICTURE INSERT MODE");
+          }
+
+        else
+          iso14755buf = 0;
+      }
+
+
+  if (false)
+    return;
+
+
+
+
+
+
+
+}
+
+      //     # 966 "command.C"
