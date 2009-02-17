@@ -639,79 +639,6 @@ rxvt_term.cmd_get8 = function ()
   return c;
 }
 
-/*{{{ print pipe */ 
-/*----------------------------------------------------------------------*/
-#ifdef PRINTPIPE
-FILE *
-//CMNT: js_style_functions c_keyword ^|       rxvt_term::popen_printer (){ 
-rxvt_term.popen_printer =function(){ 
-//CMNT: c_keyword possible_pointer ^|         FILE *stream = popen (rs[Rs_print_pipe] ? rs[Rs_print_pipe] : PRINTPIPE, "w"); 
-  FILE  stream = popen (rs[Rs_print_pipe] ? rs[Rs_print_pipe] : PRINTPIPE, "w");
-
-  if (stream == NULL)
-    rxvt_warn ("can't open printer pipe, not printing.\n"); 
-
-  return stream;
-}
-
-//CMNT: js_style_functions c_keyword possible_pointer ^|       int rxvt_term::pclose_printer (FILE *stream){ 
-rxvt_term.pclose_printer =function(FILE  stream){ 
-  fflush (stream);
-  return pclose (stream);
-}
-
-/*
- * simulate attached vt100 printer 
- */
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::process_print_pipe (){ 
-rxvt_term.process_print_pipe =function(){ 
-//CMNT: c_keyword possible_pointer ^|         FILE *fd = popen_printer (); 
-  FILE  fd = popen_printer ();
-
-  if (!fd)
-    return;
-
-  /*
-   * Send all input to the printer until either ESC[4i or ESC[?4i 
-   * is received. 
-   */
-   for (var done = 0; !done; ){ //          for (int done = 0; !done; ){  ###  c_keyword inserted_var
-     var buf[8]; //unsigned char buf[8];        ###  c_keyword inserted_var
-     var    ch; //unicode_t ch;        ###  c_keyword inserted_var
-    var i, len; //unsigned int i, len;        ###  c_keyword inserted_var
-
-      if ((ch = cmd_getc ()) != C0_ESC){
-          if (putc (ch, fd) == EOF)
-            break;		/* done = 1 */
-        }
-      else{
-          len = 0;
-          buf[len++] = ch;
-
-          if ((buf[len++] = cmd_getc ()) == '['){
-              if ((ch = cmd_getc ()) == '?'){
-                  buf[len++] = '?';
-                  ch = cmd_getc ();
-                }
-              if ((buf[len++] = ch) == '4'){
-                  if ((buf[len++] = cmd_getc ()) == 'i')
-                    break;	/* done = 1 */
-                }
-            }
-
-          for (i = 0; i < len; i++)
-            if (putc (buf[i], fd) == EOF){
-                done = 1;
-                break;
-              }
-        }
-    }
-
-  pclose_printer (fd); 
-}
-#endif /* PRINTPIPE */
-/*}}} */
-
 /* *INDENT-OFF* */ 
 enum {
   C1_40 = 0x40,
@@ -1090,18 +1017,6 @@ rxvt_term.process_csi_seq =function(){
         /*
          * ISO/IEC 6429:1992 (E) CSI sequences (defaults in parentheses) 
          */
-#ifdef PRINTPIPE
-      case CSI_MC:		/* 8.3.83: (0) MEDIA COPY */
-        switch (arg[0]){
-            case 0:			/* initiate transfer to primary aux device */
-            scr_printscreen (0); 
-              break;
-            case 5:			/* start relay to primary aux device */
-            process_print_pipe (); 
-              break;
-          }
-        break;
-#endif
 
       case CSI_CUU:		/* 8.3.22: (1) CURSOR UP */
       case CSI_VPR:		/* 8.3.161: (1) LINE POSITION FORWARD */
