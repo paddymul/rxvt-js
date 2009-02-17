@@ -242,12 +242,10 @@ rxvt_term::iso14755_51 (ch,  r,  x,  y){
 
   r = SET_STYLE (OVERLAY_RSTYLE, GET_STYLE (r));
 
-//CMNT: c_keyword ^|         for (int y = 0; y < len; y++){ 
-  for (y = 0; y < len; y++){
+  for (y = 0; y < len; y++){  //for (int y = 0; y < len; y++){  ### c_keyword 
     var    buf[9]; //char buf[9];        ###  c_keyword inserted_var
 
-//CMNT: possible_pointer ^|             ch = *chr++; 
-      ch =  c hr++;
+    ch =  chr++;  //ch = *chr++;  ### possible_pointer 
 
       sprintf (buf, "%8x", ch); 
       scr_overlay_set (0, y, buf);
