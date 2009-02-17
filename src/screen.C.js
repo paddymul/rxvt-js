@@ -61,8 +61,7 @@
 }
 
 /* ------------------------------------------------------------------------- */
-//CMNT: possible_pointer ^|       #define PROP_SIZE               256*1024 
-#define PROP_SIZE               256 1 024
+#define PROP_SIZE               256*1024 
 #define PASTE_SIZE		32768
 #define TABSIZE                 8       /* default tab size */
 
@@ -159,8 +158,7 @@ rxvt_term.scr_blank_screen_mem =function(line_t &l,  efs){
   l.f = 0;
 }
 
-//CMNT: c_keyword ^|       // nuke a single wide character at the given column 
-// nuke a single wide acter at the given column
+// nuke a single wide character at the given column 
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_kill_char (line_t &l, int col){ 
 rxvt_term.scr_kill_ =function(line_t &l,  col){ 
   // find begin
@@ -240,21 +238,18 @@ rxvt_term.scr_reset =function(){
           scr_blank_screen_mem (drawn_buf[row], DEFAULT_RSTYLE);
         }
 
-//CMNT: c_keyword ^|             memset (charsets, 'B', sizeof (charsets)); 
-      memset (sets, 'B', sizeof (sets));
+      memset (charsets, 'B', sizeof (charsets)); 
       rstyle = DEFAULT_RSTYLE;
       screen.flags = Screen_DefaultFlags;
       screen.cur.row = screen.cur.col = 0;
-//CMNT: c_keyword ^|             screen.charset = 0; 
-      screen.set = 0;
+      screen.charset = 0; 
       current_screen = PRIMARY;
       scr_cursor (SAVE);
 
 #if NSCREENS
       swap.flags = Screen_DefaultFlags;
       swap.cur.row = swap.cur.col = 0;
-//CMNT: c_keyword ^|             swap.charset = 0; 
-      swap.set = 0;
+      swap.charset = 0; 
       current_screen = SECONDARY;
       scr_cursor (SAVE);
       current_screen = PRIMARY;
@@ -539,10 +534,8 @@ rxvt_term.scr_cursor =function(cursor_mode mode){
         s->s_cur.row = screen.cur.row;
         s->s_cur.col = screen.cur.col;
         s->s_rstyle = rstyle;
-//CMNT: c_keyword ^|               s->s_charset = screen.charset; 
-        s->s_set = screen.set;
-//CMNT: c_keyword ^|               s->s_charset_char = charsets[screen.charset]; 
-        s->s_set_ = sets[screen.set];
+        s->s_charset = screen.charset; 
+        s->s_charset_char = charsets[screen.charset]; 
         break;
 
       case RESTORE:
@@ -551,10 +544,8 @@ rxvt_term.scr_cursor =function(cursor_mode mode){
         screen.cur.col = s->s_cur.col;
         screen.flags &= ~Screen_WrapNext;
         rstyle = s->s_rstyle;
-//CMNT: c_keyword ^|               screen.charset = s->s_charset; 
-        screen.set = s->s_set;
-//CMNT: c_keyword ^|               charsets[screen.charset] = s->s_charset_char; 
-        sets[screen.set] = s->s_set_;
+        screen.charset = s->s_charset; 
+        charsets[screen.charset] = s->s_charset_char; 
         set_font_style ();
         break;
     }
@@ -608,8 +599,7 @@ rxvt_term.scr_change_screen =function( scrn){
 
       scr_swap_screen ();
 
-//CMNT: c_keyword ^|             ::swap (screen.charset, swap.charset); 
-      ::swap (screen.set, swap.set);
+      ::swap (screen.charset, swap.charset); 
       ::swap (screen.flags,   swap.flags);
       screen.flags |= Screen_VisibleCursor;
       swap.flags   |= Screen_VisibleCursor;
@@ -894,27 +884,22 @@ rxvt_term.scr_add_lines =function(   s tr,  len,  minlines){
           line = &ROW(row);   /* _must_ refresh */
         }
 
-//CMNT: c_keyword ^|             // some utf-8 decoders "decode" surrogate characters: let's fix this. 
-      // some utf-8 decoders "decode" surrogate acters: let's fix this.
+      // some utf-8 decoders "decode" surrogate characters: let's fix this. 
       if (expect_false (IN_RANGE_INC (c, 0xd800, 0xdfff)))
         c = 0xfffd;
 
-//CMNT: c_keyword ^|             // rely on wcwidth to tell us the character width, do wcwidth before 
-      // rely on wcwidth to tell us the acter width, do wcwidth before
+      // rely on wcwidth to tell us the character width, do wcwidth before 
       // further replacements, as wcwidth might return -1 for the line
-//CMNT: c_keyword ^|             // drawing characters below as they might be invalid in the current 
-      // drawing acters below as they might be invalid in the current
+      // drawing characters below as they might be invalid in the current 
       // locale.
 //CMNT: js_style_variables ^|             int width = WCWIDTH (c); 
  var width= WCWIDTH (c); 
 
-//CMNT: c_keyword ^|             if (expect_false (charsets [screen.charset] == '0')) // DEC SPECIAL 
-      if (expect_false (sets [screen.set] == '0')) // DEC SPECIAL
+ if (expect_false (charsets [screen.charset] == '0')) // DEC SPECIAL 
         {
           // vt100 special graphics and line drawing
           // 5f-7e standard vt100
-//CMNT: c_keyword ^|                 // 40-5e rxvt extension for extra curses acs chars 
-          // 40-5e rxvt extension for extra curses acs s
+          // 40-5e rxvt extension for extra curses acs chars 
           static uint16_t vt100_0[62] = { // 41 .. 7e 
                     0x2191, 0x2193, 0x2192, 0x2190, 0x2588, 0x259a, 0x2603, // 41-47 hi mr. snowman!
                  0,      0,      0,      0,      0,      0,      0,      0, // 48-4f
@@ -928,19 +913,16 @@ rxvt_term.scr_add_lines =function(   s tr,  len,  minlines){
 
           if (c >= 0x41 && c <= 0x7e && vt100_0[c - 0x41]){
               c = vt100_0[c - 0x41];
-//CMNT: c_keyword ^|                     width = 1; // vt100 line drawing characters are always single-width 
-              width = 1; // vt100 line drawing acters are always single-width
+              width = 1; // vt100 line drawing characters are always single-width 
             }
         }
 
       if (expect_false (screen.flags & Screen_Insert))
-//CMNT: c_keyword ^|               scr_insdel_chars (width, INSERT); 
-        scr_insdel_s (width, INSERT);
+        scr_insdel_chars (width, INSERT); 
 
       if (width != 0){
 #if !UNICODE_3
-//CMNT: c_keyword ^|                 // trim characters we can't store directly :( 
-          // trim acters we can't store directly :(
+        // trim characters we can't store directly :( 
           if (c >= 0x10000)
 # if ENABLE_COMBINING
             c = rxvt_composite.compose (c); // map to lower 16 bits
@@ -949,15 +931,14 @@ rxvt_term.scr_add_lines =function(   s tr,  len,  minlines){
 # endif
 #endif
 
-//CMNT: c_keyword ^|                 // nuke the character at this position, if required 
-          // nuke the acter at this position, if required
+            // nuke the character at this position, if required 
           if (expect_false (
                 line->t[screen.cur.col] == NOCHAR
                 || (screen.cur.col < ncol - 1
                     && line->t[screen.cur.col + 1] == NOCHAR)
              ))
 //CMNT: c_keyword possible_pointer ^|                   scr_kill_char (*line, screen.cur.col); 
-            scr_kill_ ( l ine, screen.cur.col);
+            scr_kill_char ( l ine, screen.cur.col);
 
 //CMNT: js_style_variables ^|                 rend_t rend = SET_FONT (rstyle, FONTSET (rstyle)->find_font (c)); 
  var rend= SET_FONT (rstyle, FONTSET (rstyle)->find_font (c)); 
@@ -966,8 +947,7 @@ rxvt_term.scr_add_lines =function(   s tr,  len,  minlines){
           if (expect_false (screen.cur.col > ncol - width && ncol >= width)){
               // ... artificially enlargen the previous one
               c = NOCHAR;
-//CMNT: c_keyword ^|                     // and try the same character next loop iteration 
-              // and try the same acter next loop iteration
+              // and try the same character next loop iteration 
               --str;
             }
 
@@ -991,8 +971,7 @@ rxvt_term.scr_add_lines =function(   s tr,  len,  minlines){
             }
           while (expect_false (--width > 0));
 
-//CMNT: c_keyword ^|                 // pad with spaces when overwriting wide character with smaller one 
-          // pad with spaces when overwriting wide acter with smaller one
+          // pad with spaces when overwriting wide character with smaller one 
           if (expect_false (!width)){
               line->touch ();
 
@@ -1008,17 +987,14 @@ rxvt_term.scr_add_lines =function(   s tr,  len,  minlines){
         {
           if (c != 0xfeff) // ignore BOM
             {
-//CMNT: c_keyword ^|                     // handle combining characters 
-              // handle combining acters
-//CMNT: c_keyword ^|                     // we just tag the accent on the previous on-screen character. 
-              // we just tag the accent on the previous on-screen acter.
+              // handle combining characters 
+              // we just tag the accent on the previous on-screen character. 
               // this is arguably not correct, but also arguably not wrong.
-//CMNT: c_keyword ^|                     // we don't handle double-width characters nicely yet. 
-              // we don't handle double-width acters nicely yet.
+              // we don't handle double-width characters nicely yet. 
 //CMNT: possible_pointer ^|                     line_t *linep; 
-              line_t  l inep;
+              line_t  linep;
 //CMNT: possible_pointer ^|                     text_t *tp; 
-              text_t  t p;
+              text_t  tp;
 //CMNT: c_keyword possible_pointer ^|                     rend_t *rp; 
                 r p;
 
@@ -1042,8 +1018,7 @@ rxvt_term.scr_add_lines =function(   s tr,  len,  minlines){
               while ( t p == NOCHAR && tp > linep->t)
                 tp--, rp--;
 
-//CMNT: c_keyword ^|                     // first try to find a precomposed character 
-              // first try to find a precomposed acter
+              // first try to find a precomposed character 
 //CMNT: js_style_variables possible_pointer ^|                     unicode_t n = rxvt_compose (*tp, c); 
  var n= rxvt_compose ( t p, c); 
               if (n == NOCHAR)
@@ -1123,8 +1098,7 @@ rxvt_term.scr_tab =function( count, bool ht){
       if (count)
         x = ncol - 1;
 
-//CMNT: c_keyword ^|             // store horizontal tab commands as characters inside the text 
-      // store horizontal tab commands as acters inside the text
+      // store horizontal tab commands as characters inside the text 
       // buffer so they can be selected and pasted.
       if (ht && option (Opt_pastableTabs)){
           base_rend = SET_FONT (base_rend, 0);
@@ -1172,8 +1146,7 @@ rxvt_term.scr_backindex =function(){
   if (screen.cur.col > 0)
     scr_gotorc (0, -1, R_RELATIVE | C_RELATIVE);
   else
-//CMNT: c_keyword ^|           scr_insdel_chars (1, INSERT); 
-    scr_insdel_s (1, INSERT);
+    scr_insdel_chars (1, INSERT); 
 }
 #endif
 /* ------------------------------------------------------------------------- */
@@ -1195,8 +1168,7 @@ rxvt_term.scr_forwardindex =function(){
       l.is_longer (0);
 
       scr_gotorc (0, 0, R_RELATIVE);
-//CMNT: c_keyword ^|             scr_insdel_chars (1, DELETE); 
-      scr_insdel_s (1, DELETE);
+      scr_insdel_chars (1, DELETE); 
       scr_gotorc (0, ncol - 1, R_RELATIVE);
     }
 }
@@ -1533,7 +1505,7 @@ rxvt_term.scr_insdel_s =function( count,  insdel){
   // nuke wide spanning the start
   if (line->t[screen.cur.col] == NOCHAR)
 //CMNT: c_keyword possible_pointer ^|           scr_kill_char (*line, screen.cur.col); 
-    scr_kill_ ( l ine, screen.cur.col);
+    scr_kill_char ( l ine, screen.cur.col);
 
   switch (insdel){
       case INSERT:
@@ -1541,7 +1513,7 @@ rxvt_term.scr_insdel_s =function( count,  insdel){
 
         if (line->t[screen.cur.col] == NOCHAR)
 //CMNT: c_keyword possible_pointer ^|                 scr_kill_char (*line, screen.cur.col); 
-          scr_kill_ ( l ine, screen.cur.col);
+          scr_kill_char ( l ine, screen.cur.col);
 
 //CMNT: c_keyword ^|               for (int col = ncol - 1; (col - count) >= screen.cur.col; col--){ 
         for ( col = ncol - 1; (col - count) >= screen.cur.col; col--){
@@ -1571,8 +1543,7 @@ rxvt_term.scr_insdel_s =function( count,  insdel){
         selection_check (1);
         screen.cur.col -= count;
 
-//CMNT: c_keyword ^|               // nuke wide char after the end 
-        // nuke wide  after the end
+        // nuke wide char after the end 
         if (screen.cur.col + count < ncol && line->t[screen.cur.col + count] == NOCHAR)
 //CMNT: c_keyword possible_pointer ^|                 scr_kill_char (*line, screen.cur.col + count); 
           scr_kill_ ( l ine, screen.cur.col + count);
@@ -1584,11 +1555,10 @@ rxvt_term.scr_insdel_s =function( count,  insdel){
       case DELETE:
         line->l = max (line->l - count, 0);
 
-//CMNT: c_keyword ^|               // nuke wide char spanning the end 
-        // nuke wide  spanning the end
+        // nuke wide char spanning the end 
         if (screen.cur.col + count < ncol && line->t[screen.cur.col + count] == NOCHAR)
 //CMNT: c_keyword possible_pointer ^|                 scr_kill_char (*line, screen.cur.col + count); 
-          scr_kill_ ( l ine, screen.cur.col + count);
+          scr_kill_char ( line, screen.cur.col + count);
 
 //CMNT: c_keyword ^|               for (int col = screen.cur.col; (col + count) < ncol; col++){ 
         for ( col = screen.cur.col; (col + count) < ncol; col++){
@@ -1767,8 +1737,7 @@ rxvt_term.scr_report_position =function(){
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::set_font_style (){ 
 rxvt_term.set_font_style =function(){ 
 #if 0
-//CMNT: c_keyword ^|         switch (charsets [screen.charset]){ 
-  switch (sets [screen.set]){
+  switch (charsets [screen.charset]){ 
       case '0':                   /* DEC Special Character & Line Drawing Set */
         break;
       case 'A':                   /* United Kingdom (UK) */
@@ -1796,9 +1765,8 @@ rxvt_term.set_font_style =function(){
  * XTERM_SEQ: Invoke G3 character set: ESC O 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_charset_choose (int set){ 
-rxvt_term.scr_set_choose =function( set){ 
-//CMNT: c_keyword ^|         screen.charset = set; 
-  screen.set = set;
+rxvt_term.scr_charset_choose =function( set){ 
+  screen.charset = set; 
   set_font_style ();
 }
 
@@ -2282,18 +2250,14 @@ rxvt_term.scr_refresh =function(){
 
       for (col = 0; col < ncol; col++){
           /* compare new text with old - if exactly the same then continue */
-//CMNT: c_keyword ^|                 if (stp[col] == dtp[col]    /* Must match characters to skip. */ 
-          if (stp[col] == dtp[col]    /* Must match acters to skip. */
+        if (stp[col] == dtp[col]    /* Must match characters to skip. */ 
               && (RS_SAME (srp[col], drp[col])    /* Either rendition the same or   */
                   || (stp[col] == ' ' /* space w/ no background change  */
                       && GET_BGATTR (srp[col]) == GET_BGATTR (drp[col]))))
             continue;
 
-//CMNT: c_keyword ^|                 // redraw one or more characters 
-          // redraw one or more acters
-
-//CMNT: c_keyword ^|                 // seek to the beginning of wide characters 
-          // seek to the beginning of wide acters
+        // redraw one or more characters 
+        // seek to the beginning of wide characters 
           while (expect_false (stp[col] == NOCHAR && col > 0))
             --col;
 
@@ -2339,8 +2303,7 @@ rxvt_term.scr_refresh =function(){
             }
 
           col--;      /* went one too far.  move back */
-//CMNT: c_keyword ^|                 count -= i; /* dump any matching trailing chars */ 
-          count -= i; /* dump any matching trailing s */
+          count -= i; /* dump any matching trailing chars */ 
 
           // sometimes we optimize away the trailing NOCHAR's, add them back
           while (expect_false (i && text[count] == NOCHAR))
@@ -2418,24 +2381,19 @@ rxvt_term.scr_refresh =function(){
 #endif
 
 #if ENABLE_STYLES
-//CMNT: c_keyword ^|                     // "careful" (too wide) character handling 
-              // "careful" (too wide) acter handling
-
-//CMNT: c_keyword ^|                     // include previous careful character(s) if possible, looks nicer (best effort...) 
-              // include previous careful acter(s) if possible, looks nicer (best effort...)
+              // "careful" (too wide) character handling 
+              // include previous careful character(s) if possible, looks nicer (best effort...) 
               while (text > stp
                   && srp[text - stp - 1] & RS_Careful
                   && RS_SAME (rend, srp[text - stp - 1]))
                 text--, count++, xpixel -= fwidth;
 
-//CMNT: c_keyword ^|                     // force redraw after "careful" characters to avoid pixel droppings 
-              // force redraw after "careful" acters to a pixel droppings
+              // force redraw after "careful" characters to avoid pixel droppings 
 //CMNT: c_keyword ^|                     for (int i = 0; srp[col + i] & RS_Careful && col + i < ncol - 1; i++) 
               for ( i = 0; srp[col + i] & RS_Careful && col + i < ncol - 1; i++)
                 drp[col + i + 1] = srp[col + i + 1] ^ RS_redraw;
 
-//CMNT: c_keyword ^|                     // force redraw before "careful" characters to avoid pixel droppings 
-              // force redraw before "careful" acters to a pixel droppings
+              // force redraw before "careful" characters to avoid pixel droppings 
 //CMNT: c_keyword ^|                     for (int i = 0; srp[text - stp - i] & RS_Careful && text - i > stp; i++) 
               for ( i = 0; srp[text - stp - i] & RS_Careful && text - i > stp; i++)
                 drp[text - stp - i - 1] = srp[text - stp - i - 1] ^ RS_redraw;
@@ -2557,18 +2515,18 @@ rxvt_term.scr_remap_s =function(line_t &l){
 }
 
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_remap_chars (){ 
-rxvt_term.scr_remap_s =function(){ 
+rxvt_term.scr_remap_chars =function(){ 
 //CMNT: c_keyword ^|         for (int i = total_rows; i--; ) 
   for ( i = total_rows; i--; )
 //CMNT: c_keyword ^|           scr_remap_chars (row_buf [i]); 
-    scr_remap_s (row_buf [i]);
+    scr_remap_chars (row_buf [i]);
 
 //CMNT: c_keyword ^|         for (int i = nrow; i--; ){ 
   for ( i = nrow; i--; ){
 //CMNT: c_keyword ^|             scr_remap_chars (drawn_buf [i]); 
-      scr_remap_s (drawn_buf [i]);
+      scr_remap_chars (drawn_buf [i]);
 //CMNT: c_keyword ^|             scr_remap_chars (swap_buf [i]); 
-      scr_remap_s (swap_buf [i]);
+      scr_remap_chars (swap_buf [i]);
     }
 }
 
