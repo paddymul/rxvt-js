@@ -1,6 +1,15 @@
 /*----------------------------------------------------------------------*
  * File:	command.C 
  *----------------------------------------------------------------------* 
+
+MY NOTES , ME BEING PADDY
+cmdbuf_ptr is a global variable defined in rxvt.h
+make globable variable named cmdbuf_ptr_i  which will represent cmdbuf_ptr's index
+lookup function strchr line 1559
+
+
+
+
  *
  * All portions of code are copyright by their respective author/s. 
  * Copyright (c) 1992      John Bovey, University of Kent at Canterbury <jdb@ukc.ac.uk> 
@@ -64,6 +73,11 @@ I bound them to "C-H u" "C-H o" and "C-H p"
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([134217848 112 97 100 100 32 105 110 32 32 return 16 tab 118 97 114 32 5 32 105 110 115 101 114 116 101 100 95 118 97 114 14] 0 "%d")) arg)))
 (fset 'paddy-next-empty-cast
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("()" 0 "%d")) arg)))
+(fset 'paddy-next-possible_pointer
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("possible_pointer" 0 "%d")) arg)))
+
+
+
 
 
  *----------------------------------------------------------------------*/ 
@@ -233,27 +247,19 @@ rxvt_term.flush =function(){
     }
 #endif
 
-  if (want_refresh){
+  if (want_refresh){ //FIXME note will probable have to wait for the macro expansion to be able to figure out whats going on
       if (SHOULD_INVOKE (HOOK_LINE_UPDATE)){
-//CMNT: js_style_variables ^|                 int row = view_start; 
- var row= view_start; 
-//CMNT: js_style_variables ^|                 int end_row = row + nrow; 
- var end_row= row + nrow; 
-
+          var row= view_start;   //int row = view_start;  ### js_style_variables 
+          var end_row= row + nrow;   //int end_row = row + nrow;  ### js_style_variables 
           while (row > top_row && ROW (row - 1).is_longer ())
             --row;
-
           do
             {
-//CMNT: js_style_variables ^|                     int start_row = row; 
- var start_row= row; 
-//CMNT: possible_pointer ^|                     line_t *l; 
-              line_t  l ;
-
+                var start_row= row;   //int start_row = row;  ### js_style_variables 
+                var  l ;  //line_t *l;  ### possible_pointer 
               do
                 {
                   l = &ROW (row++);
-
                   if (!(l->f & LINE_FILTERED)){
                       // line not filtered, mark it as filtered
                       l->f |= LINE_FILTERED;
@@ -261,10 +267,8 @@ rxvt_term.flush =function(){
                           l = &ROW (row++);
                           l->f |= LINE_FILTERED;
                         }
-
                       // and filter it
                       HOOK_INVOKE ((this, HOOK_LINE_UPDATE, DT_INT, start_row, DT_END));
-
                       break;
                     }
                 }
@@ -451,11 +455,11 @@ rxvt_term.update_fade_color =function(idx){
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::cmd_parse (){ 
 rxvt_term.cmd_parse =function(){ 
   var ch= NOCHAR;  //wchar_t ch = NOCHAR;        ###  js_style_variables
- char *seq_begin; // remember start of esc-sequence here 
+  var seq_begin;   // char *seq_begin; // remember start of esc-sequence here ### possible_pointer
 
   for (;;){
       if (expect_false (ch == NOCHAR)){
-          seq_begin = cmdbuf_ptr;
+          seq_begin = cmdbuf_ptr; 
           ch = next_char (); 
 
           if (ch == NOCHAR)
@@ -477,21 +481,19 @@ rxvt_term.cmd_parse =function(){
             }
 
           /* Read a text string from the input buffer */
-//CMNT: c_keyword ^|                 wchar_t buf[UBUFSIZ]; 
-           buf[UBUFSIZ];
+          var buf = new Array(UBUFSIZ);  //wchar_t buf[UBUFSIZ];  ### c_keyword  js_style_array
           var refreshnow = false;
           var nlines= 0;  //int nlines = 0;        ###  js_style_variables
-          var str = buf; //                  wchar_t *str = buf;  ###  c_keyword possible_pointer inserted_var
-          var eol = str + min (ncol, UBUFSIZ); //                  wchar_t *eol = str + min (ncol, UBUFSIZ);  ###  c_keyword possible_pointer inserted_var
+          var str = buf, str_i = 0; //                  wchar_t *str = buf;  ###  c_keyword possible_pointer inserted_var should_work
+          var eol = str.length + min (ncol, UBUFSIZ); //                  wchar_t *eol = str + min (ncol, UBUFSIZ);  ###  c_keyword possible_pointer inserted_var
 
           for (;;){
               if (expect_false (ch == NOCHAR || (IS_CONTROL (ch) && ch != C0_LF && ch != C0_CR && ch != C0_HT)))
                 break;
 
-//CMNT: possible_pointer ^|                     *str++ = ch; 
-               str++ = ch;
+              str_i++; str[str_i]=ch  //str++ = ch;  ### possible_pointer  FIXME pre/post increment
 
-              if (expect_false (ch == C0_LF || str >= eol)){
+              if (expect_false (ch == C0_LF || str.length >= eol)){
                   if (ch == C0_LF)
                     nlines++;
 
@@ -512,20 +514,20 @@ rxvt_term.cmd_parse =function(){
                   if (nlines >= nrow - 1){
                       if (!(SHOULD_INVOKE (HOOK_ADD_LINES)
                             && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str - buf, DT_END))))
-                        scr_add_lines (buf, str - buf, nlines);
-
+//CMNT   scr_add_lines (buf, str - buf, nlines);  //FIXME pointermath
+                          scr_add_lines (buf, str.length - buf.length, nlines);  //FIXME pointermath
                       nlines = 0;
                       str = buf;
-                      eol = str + min (ncol, UBUFSIZ);
+                      eol = str.length + min (ncol, UBUFSIZ);  // FIXME should_work
                     }
 
-                  if (str >= eol){
-                      if (eol >= buf + UBUFSIZ){
+                  if (str.length >= eol){   // FIXME should_work
+                      if (eol >= buf.length + UBUFSIZ){  // FIXME should_work
                           ch = NOCHAR;
                           break;
                         }
                       else
-                        eol = min (eol + ncol, buf + UBUFSIZ);
+                        eol = min (eol + ncol, buf.length + UBUFSIZ);  // FIXME should_work
                     }
 
                 }
@@ -536,8 +538,8 @@ rxvt_term.cmd_parse =function(){
 
           if (!(SHOULD_INVOKE (HOOK_ADD_LINES)
                 && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str - buf, DT_END))))
-            scr_add_lines (buf, str - buf, nlines);
-
+//CMNT   scr_add_lines (buf, str - buf, nlines);  //FIXME pointermath
+                          scr_add_lines (buf, str.length - buf.length, nlines);  //FIXME pointermath
           /*
            * If there have been a lot of new lines, then update the screen 
            * What the heck we'll cheat and only refresh less than every page-full. 
@@ -554,7 +556,7 @@ rxvt_term.cmd_parse =function(){
               process_nonprinting (ch); 
             }
 //CMNT: c_keyword ^|                 catch (const class out_of_input &o){ 
-          catch (class out_of_input &o){
+          catch ( out_of_input){  //FIXME exception
               // we ran out of input, retry later
               cmdbuf_ptr = seq_begin;
               break;
@@ -571,12 +573,11 @@ rxvt_term.next_char =function(){
   while (cmdbuf_ptr < cmdbuf_endp){
       // assume 7-bit to be ascii ALWAYS
 //CMNT: c_cast  c_keyword possible_pointer ^|             if (expect_true ((unsigned char)*cmdbuf_ptr <= 0x7f && *cmdbuf_ptr != 0x1b))  
-      if (expect_true ( cmdbuf_ptr <= 0x7f &&  cmdbuf_ptr != 0x1b))
-//CMNT: possible_pointer ^|               return *cmdbuf_ptr++; 
-        return  c mdbuf_ptr++;
+      if (expect_true ( cmdbuf_ptr <= 0x7f &&  cmdbuf_ptr != 0x1b)) //FIXME what the fuck why do we care about the memory address of a pointer?
+          return cmdbuf_ptr_i++;  //return *cmdbuf_ptr++;  ### possible_pointer  FIXME pointer_math
 
       var wc; //wchar_t wc;        ###  c_keyword
-      size_t len = mbrtowc (&wc, cmdbuf_ptr, cmdbuf_endp - cmdbuf_ptr, mbstate);
+      size_t len = mbrtowc (&wc, cmdbuf_ptr, cmdbuf_endp - cmdbuf_ptr, mbstate);  //FIXME wtf
 
       if (len == (size_t)-2){
           // the mbstate stores incomplete sequences. didn't know this :/
@@ -587,11 +588,11 @@ rxvt_term.next_char =function(){
       if (len == (size_t)-1){
           mbrtowc (0, 0, 0, mbstate); // reset now undefined conversion state
 //CMNT: c_cast c_keyword possible_pointer ^|                 return (unsigned char)*cmdbuf_ptr++; // the _occasional_ latin1 character is allowed to slip through 
-          return  cmdbuf_ptr++; // the _occasional_ latin1 character is allowed to slip through
+          return  cmdbuf_ptr_i++; // the _occasional_ latin1 character is allowed to slip through POINTER_MATH
         }
 
       // assume wchar == unicode 
-      cmdbuf_ptr += len;
+      cmdbuf_ptr_i += len; //POINTER_MATH
       return wc & UNICODE_MASK;
     }
 
@@ -602,6 +603,7 @@ rxvt_term.next_char =function(){
 //CMNT: js_style_functions ^| uint32_t rxvt_term::next_octet () NOTHROW 
 rxvt_term.next_octet =function() NOTHROW 
 {
+    //FIXME ternary
   return cmdbuf_ptr < cmdbuf_endp
 //CMNT: c_cast c_keyword possible_pointer ^|                ? (unsigned char)*cmdbuf_ptr++ 
          ?  cmdbuf_ptr++
@@ -1302,7 +1304,7 @@ rxvt_term.process_csi_seq =function(){
 #if !ENABLE_MINIMAL
 /* ARGSUSED */
 //CMNT: js_style_functions c_keyword possible_pointer ^|       void rxvt_term::process_window_ops (const int *args, unsigned int nargs){ 
-rxvt_term.process_window_ops =function( a rgs,   nargs){ 
+rxvt_term.process_window_ops =function( args,   nargs){ 
   var x, y; //          int x, y;  ###  c_keyword inserted_var
   XWindowAttributes wattr;
   Window wdummy;
@@ -1404,7 +1406,7 @@ rxvt_term.get_to_st =function(&ends_how){
   var ch; //          unicode_t ch;  ###  c_keyword inserted_var
   var seen_esc = false; //   bool seen_esc = false; c_keyword inserted_var
   var n = 0; //          unsigned int n = 0;  ###  c_keyword inserted_var
-  var string[STRING_MAX]; //          wchar_t string[STRING_MAX];  ###  c_keyword inserted_var
+  var string = new Array(STRING_MAX); //          wchar_t string[STRING_MAX];  ###  c_keyword inserted_var js_style_array
 
   while ((ch = cmd_getc ()) != NOCHAR){
       if (seen_esc){
@@ -1453,8 +1455,9 @@ rxvt_term.process_dcs_seq =function(){
    * Not handled yet 
    */
   s = get_to_st (eh);
-  if (s)
-    free (s);
+//POINTER_MATH non_applicable
+//  if (s)
+//    free (s);
 
   return;
 }
@@ -1506,7 +1509,7 @@ rxvt_term.process_color_seq =function(report,  color,    str,  resp){
 //CMNT: js_style_functions c_keyword possible_pointer ^|       void rxvt_term::process_xterm_seq (int op, const char *str, char resp){ 
 rxvt_term.process_xterm_seq =function(op,    s tr,  resp){ 
   var color; //          int color;  ###  c_keyword inserted_var
-  var buf,  name; //          char *buf, *name;  ###  c_keyword possible_pointer inserted_var
+  var buf,  name, buf_i =0, name_i=0; //          char *buf, *name;  ###  c_keyword possible_pointer inserted_var
   var query = str[0] == '?' && !str[1]; //   bool query = str[0] == '?' && !str[1]; ### c_keyword inserted_var
   var saveop= op;  //          int saveop = op;   js_style_variables 
 
@@ -1554,11 +1557,10 @@ rxvt_term.process_xterm_seq =function(op,    s tr,  resp){
           }
         else{
 //CMNT: c_keyword possible_pointer ^|                   char *eq = strchr (str, '='); // constness lost, but verified to be ok 
-              eq = strchr (str, '='); // ness lost, but verified to be ok
+              eq = strchr (str, '='); // constness lost, but verified to be ok
 
             if (eq){
-//CMNT: possible_pointer ^|                       *eq = 0; 
-                 e q = 0;
+                eq = 0;  //eq = 0;  ### possible_pointer 
                 set_utf8_property (display->atom (str), eq + 1);
               }
             else
@@ -1569,20 +1571,18 @@ rxvt_term.process_xterm_seq =function(op,    s tr,  resp){
 
       case XTerm_Color:
 //CMNT: c_keyword possible_pointer ^|               for (buf = (char *)str; buf && *buf;){ 
-        for (buf = () str; buf &&  b uf;){
+          for (buf = () str; buf &&  buf;){  //POINTER_MATH ????
             if ((name = strchr (buf, ';')) == NULL)
               break;
 
-//CMNT: possible_pointer ^|                   *name++ = '\0'; 
-             n ame++ = '\0';
+            name_i++; name[name_i] = '\0';  //name++ = '\0';  ### possible_pointer POINTER_MATH
             color = atoi (buf) + minCOLOR;
 
             if (!IN_RANGE_INC (color, minCOLOR, maxTermCOLOR))
               break;
 
             if ((buf = strchr (name, ';')) != NULL)
-//CMNT: possible_pointer ^|                     *buf++ = '\0'; 
-               b uf++ = '\0';
+                buf_i++; buf[buf_i] = '\0';  //buf++ = '\0';  ### possible_pointer POINTER_MATH
 
             process_color_seq (op, color, name, resp);
           }
@@ -1658,7 +1658,7 @@ rxvt_term.process_xterm_seq =function(op,    s tr,  resp){
  var changed= 0; 
 
 //CMNT: possible_pointer ^|                   if (*str != ';'){ 
-            if (s tr != ';'){
+            if (str != ';'){
                 /* reset to default scaling :*/
                 bgPixmap.unset_geometry ();
                 if (bgPixmap.set_file (str))	/* change pixmap */
@@ -1711,7 +1711,7 @@ rxvt_term.process_xterm_seq =function(op,    s tr,  resp){
                      resp);
         else{
 //CMNT: c_keyword possible_pointer ^|                   const char *&res = rs[Rs_font + (op - URxvt_font)]; 
-               & res = rs[Rs_font + (op - URxvt_font)];
+            & res = rs[Rs_font + (op - URxvt_font)];  //FIXME wtf
 
             res = strdup (str);
 //CMNT: c_keyword possible_pointer ^|                   allocated.push_back ((void *)res); 
@@ -1794,9 +1794,9 @@ rxvt_term.privcases =function(mode,  long bit){
 
 /* we're not using priv _yet_ */
 //CMNT: js_style_functions c_keyword possible_pointer ^|       void rxvt_term::process_terminal_mode (int mode, int priv UNUSED, unsigned int nargs, const int *arg){ 
-rxvt_term.process_terminal_mode =function(mode,  priv UNUSED,   nargs,    a rg){ 
-  unsigned int i, j; 
-  int state; 
+rxvt_term.process_terminal_mode =function(mode,   UNUSED,   nargs,    arg){ 
+    var i, j; //  unsigned int i, j; 
+    var state; //  int state; 
   //FIXME I already made this
   
 //CMNT: c_keyword ^|         static const struct 
@@ -1873,10 +1873,8 @@ rxvt_term.process_terminal_mode =function(mode,  priv UNUSED,   nargs,    a rg){
       switch (arg[i]){
 #if ENABLE_STYLES
           case 1021:
-//CMNT: c_keyword ^|                   set_option (Opt_intensityStyles, mode); 
-            set_option (Opt_ensityStyles, mode);
-
-            scr_touch (true);
+              set_option (Opt_intensityStyles, mode); 
+              scr_touch (true);
             break;
 #endif
           case 1048:		/* alternative cursor save */
@@ -2157,13 +2155,13 @@ rxvt_term.process_graphics =function(){
  * Only use for small amounts of data. 
  */
 //CMNT: js_style_functions c_keyword possible_pointer ^|       void rxvt_term::tt_printf (const char *fmt,...){ 
-rxvt_term.tt_prf =function( fmt,...){ 
+rxvt_term.tt_printf =function( fmt,...){ 
   va_list arg_ptr;
-  buf[256]; //char buf[256];        ###  c_keyword
+  var buf = new Array(256); //char buf[256];        ###  c_keyword js_style_array
 
   va_start (arg_ptr, fmt);
 //CMNT: c_keyword possible_pointer ^|         vsnprintf ((char *)buf, 256, fmt, arg_ptr); 
-  vsnprintf ( buf, 256, fmt, arg_ptr);  //c_cast
+  vsnprintf ( buf, 256, fmt, arg_ptr);  //c_cast POINTER_MATH
   va_end (arg_ptr);
   tt_write (buf, strlen (buf));
 }
