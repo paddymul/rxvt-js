@@ -2,6 +2,7 @@
 
 import re
 import pdb
+
 test_text="""
 void
 rxvt_term::asd()
@@ -178,5 +179,5 @@ if __name__ == "__main__":
     import doctest
     doctest.testmod()
     process_text(test_text)
-    process_file("src/command.C_exp.C")
-    process_file("src/screen.C_exp.C")
+    process_file("src/command.C")
+    process_file("src/screen.C")
