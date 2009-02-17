@@ -1780,7 +1780,7 @@ rxvt_term.scr_charset_choose =function( set){
  * See set_font_style for possible values for <C> 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_charset_set (int set, unsigned int ch){ 
-rxvt_term.scr_set_set =function( set,   ch){ 
+rxvt_term.scr_charset_set =function( set,   ch){ 
 //CMNT: c_keyword ^|         charsets[set] = (unsigned char)ch; 
   sets[set] = ( )ch;
   set_font_style ();
