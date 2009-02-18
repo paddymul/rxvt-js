@@ -76,8 +76,13 @@ I bound them to "C-H u" "C-H o" and "C-H p"
 (fset 'paddy-next-possible_pointer
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("possible_pointer" 0 "%d")) arg)))
 
+(fset 'paddy-change-to-fixed
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("CMNTFIXED" 0 "%d")) arg)))
+(fset 'paddy-next-CMNT
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("CMNT" 0 "%d")) arg)))
 
-
+  (modify-syntax-entry ?\_ "w"  c-mode-syntax-table)
+  (set-syntax-table c-mode-syntax-table)
 
 
  *----------------------------------------------------------------------*/ 
@@ -112,7 +117,7 @@ I bound them to "C-H u" "C-H o" and "C-H p"
 #define ISO_14755_MASK		0x0fffffffUL
 
 #if ISO_14755
-//CMNT: c_keyword ^|       static unsigned short iso14755_symtab[] = { 
+//FIXED: c_keyword ^|       static unsigned short iso14755_symtab[] = { 
    iso14755_symtab[] = {
   // keysym,		unicode
   XK_Left,		0x2190,
@@ -173,7 +178,7 @@ I bound them to "C-H u" "C-H o" and "C-H p"
 
 
 
-//CMNT: c_keyword ^|  void     rxvt_term::iso14755_54 (int x, int y){ 
+//FIXED: c_keyword ^|  void     rxvt_term::iso14755_54 (int x, int y){ 
 rxvt_term::iso14755_54(x,  y){
   x = Pixel2Col(x);
   y = Pixel2Row(y);
@@ -200,7 +205,7 @@ rxvt_term::iso14755_54(x,  y){
 
 
 
-//CMNT: c_keyword ^|       void rxvt_term::iso14755_51 (unicode_t ch, rend_t r, int x, int y){ 
+//REMOVED: c_keyword ^|       void rxvt_term::iso14755_51 (unicode_t ch, rend_t r, int x, int y){ 
 
 
 rxvt_term.commit_iso14755 = function(){ //void  rxvt_term::commit_iso14755 (){        function (){
@@ -232,11 +237,11 @@ rxvt_term.commit_iso14755 = function(){ //void  rxvt_term::commit_iso14755 (){  
   iso14755buf = 0;
 }
 
-//CMNT: c_keyword ^|       static int  hex_keyval (XKeyEvent &ev){
-//CMNT: c_keyword ^|       static inline KeySym  translate_keypad (KeySym keysym, bool kp){
-//CMNT: c_keyword ^|       static inline int  //FIXME  map_function_key (KeySym keysym){
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::key_press (XKeyEvent &ev){ 
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::flush (){ 
+//REMOVED: c_keyword ^|       static int  hex_keyval (XKeyEvent &ev){
+//REMOVED: c_keyword ^|       static inline KeySym  translate_keypad (KeySym keysym, bool kp){
+//REMOVED: c_keyword ^|       static inline int  //FIXME  map_function_key (KeySym keysym){
+//REMOVED: js_style_functions c_keyword ^|       void rxvt_term::key_press (XKeyEvent &ev){ 
+//FIXED: js_style_functions c_keyword ^|       void rxvt_term::flush (){ 
 rxvt_term.flush =function(){ 
   flush_ev.stop ();
 
@@ -288,7 +293,7 @@ rxvt_term.flush =function(){
 }
 
 /* checks wether a refresh is requested and starts the refresh timer */
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::refresh_check (){ 
+//FIXED: js_style_functions c_keyword ^|       void rxvt_term::refresh_check (){ 
 rxvt_term.refresh_check =function(){ 
   if (want_refresh && !flush_ev.is_active ())
     flush_ev.start (1. / 60.); // refresh at max. 60 Hz normally
@@ -326,11 +331,11 @@ rxvt_term.text_blink_cb =function(ev::timer &w,  revents){
 }
 #endif
 
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::cont_scroll_cb (ev::timer &w, int revents){ 
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::sel_scroll_cb (ev::timer &w, int revents){ 
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::slip_wheel_cb (ev::timer &w, int revents){ 
+//REMOVED: js_style_functions c_keyword ^|       void rxvt_term::cont_scroll_cb (ev::timer &w, int revents){ 
+//REMOVED: js_style_functions c_keyword ^|       void rxvt_term::sel_scroll_cb (ev::timer &w, int revents){ 
+//REMOVED: js_style_functions c_keyword ^|       void rxvt_term::slip_wheel_cb (ev::timer &w, int revents){ 
 //THE following removal was related to the LINUX_YIELD_HACK
-//CMNT: c_keyword ^|       static struct event_handler 
+//REMOVED: c_keyword ^|       static struct event_handler 
 
 //CMNT: js_style_functions ^|       bool rxvt_term::pty_fill (){ 
 rxvt_term.pty_fill =function(){ 
@@ -396,9 +401,9 @@ rxvt_term.pty_cb =function(ev::io &w,  revents){
 }
 
 #ifdef POINTER_BLANK
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::pointer_blank (){ 
+//FIXED: js_style_functions c_keyword ^|       void rxvt_term::pointer_blank (){ 
 rxvt_term.pointer_blank =function(){ 
-  if (!option (Opt_pointerBlank)) 
+    if (!option (Opt_pointerBlank))   //FIXME
     return;
 
   XDefineCursor (dpy, vt, display->blank_cursor);
@@ -415,11 +420,11 @@ rxvt_term.pointer_cb =function(ev::timer &w,  revents){
 }
 #endif
 
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::mouse_report (XButtonEvent &ev){ 
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::x_cb (XEvent &ev){ 
+//REMOVED: js_style_functions c_keyword ^|       void rxvt_term::mouse_report (XButtonEvent &ev){ 
+//REMOVED: js_style_functions c_keyword ^|       void rxvt_term::x_cb (XEvent &ev){ 
 
 #if ENABLE_FRILLS
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::set_urgency (bool enable){ 
+//FIXED: js_style_functions c_keyword ^|       void rxvt_term::set_urgency (bool enable){ 
 rxvt_term.set_urgency =function(enable){ 
          if (enable == urgency_hint) 
     return;
@@ -433,8 +438,8 @@ rxvt_term.set_urgency =function(enable){
 }
 #endif
 
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::focus_in (){ 
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::focus_out (){ 
+//REMOVED: js_style_functions c_keyword ^|       void rxvt_term::focus_in (){ 
+//REMOVED: js_style_functions c_keyword ^|       void rxvt_term::focus_out (){ 
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::update_fade_color (unsigned int idx){ 
 rxvt_term.update_fade_color =function(idx){ 
 #if OFF_FOCUS_FADING
@@ -446,13 +451,13 @@ rxvt_term.update_fade_color =function(idx){
 #endif
 }
 
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::rootwin_cb (XEvent &ev){ 
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::button_press (XButtonEvent &ev){ 
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::button_release (XButtonEvent &ev){ 
+//REMOVED: js_style_functions c_keyword ^|       void rxvt_term::rootwin_cb (XEvent &ev){ 
+//REMOVED: js_style_functions c_keyword ^|       void rxvt_term::button_press (XButtonEvent &ev){ 
+//REMOVED: js_style_functions c_keyword ^|       void rxvt_term::button_release (XButtonEvent &ev){ 
 
 /*}}} */
 
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::cmd_parse (){ 
+//FIXED: js_style_functions c_keyword ^|       void rxvt_term::cmd_parse (){ 
 rxvt_term.cmd_parse =function(){ 
   var ch= NOCHAR;  //wchar_t ch = NOCHAR;        ###  js_style_variables
   var seq_begin;   // char *seq_begin; // remember start of esc-sequence here ### possible_pointer
@@ -491,7 +496,7 @@ rxvt_term.cmd_parse =function(){
               if (expect_false (ch == NOCHAR || (IS_CONTROL (ch) && ch != C0_LF && ch != C0_CR && ch != C0_HT)))
                 break;
 
-              str_i++; str[str_i]=ch  //str++ = ch;  ### possible_pointer  FIXME pre/post increment
+              str[str_i++]=ch  //str++ = ch;  ### possible_pointer  FIXME pre/post increment
 
               if (expect_false (ch == C0_LF || str.length >= eol)){
                   if (ch == C0_LF)
@@ -537,8 +542,10 @@ rxvt_term.cmd_parse =function(){
             }
 
           if (!(SHOULD_INVOKE (HOOK_ADD_LINES)
-                && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str - buf, DT_END))))
-//CMNT   scr_add_lines (buf, str - buf, nlines);  //FIXME pointermath
+//FIXED          && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str - buf, DT_END))))
+                && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str.length - buf.length, DT_END))))
+
+//FIXED   scr_add_lines (buf, str - buf, nlines);  //FIXME pointermath
                           scr_add_lines (buf, str.length - buf.length, nlines);  //FIXME pointermath
           /*
            * If there have been a lot of new lines, then update the screen 
@@ -568,7 +575,7 @@ rxvt_term.cmd_parse =function(){
 }
 
 // read the next character 
-//CMNT: js_style_functions c_keyword ^|       wchar_t rxvt_term::next_char (){ 
+//FIXED: js_style_functions c_keyword ^|       wchar_t rxvt_term::next_char (){ 
 rxvt_term.next_char =function(){ 
   while (cmdbuf_ptr < cmdbuf_endp){
       // assume 7-bit to be ascii ALWAYS
@@ -600,9 +607,8 @@ rxvt_term.next_char =function(){
 }
 
 // read the next octet
-//CMNT: js_style_functions ^| uint32_t rxvt_term::next_octet () NOTHROW 
-rxvt_term.next_octet =function() NOTHROW 
-{
+//FIXED: js_style_functions ^| uint32_t rxvt_term::next_octet () NOTHROW 
+rxvt_term.next_octet =function() NOTHROW {
     //FIXME ternary
   return cmdbuf_ptr < cmdbuf_endp
 //CMNT: c_cast c_keyword possible_pointer ^|                ? (unsigned char)*cmdbuf_ptr++ 
@@ -618,10 +624,9 @@ rxvt_term.next_octet =function() NOTHROW
  * Return the next input character after first passing any keyboard input 
  * to the command. 
  */
-//CMNT: js_style_functions c_keyword ^|       wchar_t rxvt_term::cmd_getc () THROW ((class out_of_input)){ 
+//FIXED: js_style_functions c_keyword ^|       wchar_t rxvt_term::cmd_getc () THROW ((class out_of_input)){ 
 rxvt_term.cmd_getc =function() THROW ((class out_of_input)){ 
-//CMNT: c_keyword js_style_variables ^|         wchar_t c = next_char (); 
- var c= next_char (); 
+    var c= next_char ();   //wchar_t c = next_char ();  ### c_keyword js_style_variables 
 
   if (c == NOCHAR)
     throw out_of_input;
@@ -650,7 +655,7 @@ enum {
 /* *INDENT-ON* */ 
 
 /*{{{ process non-printing single characters */ 
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::process_nonprinting (unicode_t ch){ 
+//FIXED: js_style_functions c_keyword ^|       void rxvt_term::process_nonprinting (unicode_t ch){ 
 rxvt_term.process_nonprinting =function(ch){ 
   switch (ch){
       case C0_ESC:
@@ -705,7 +710,7 @@ rxvt_term.process_nonprinting =function(ch){
 
 /*{{{ process VT52 escape sequences */
 
-//CMNT: c_keyword ^| void       rxvt_term::process_escape_vt52 (unicode_t ch){ 
+//FIXED: c_keyword ^| void       rxvt_term::process_escape_vt52 (unicode_t ch){ 
 rxvt_term::process_escape_vt52 (ch){
   var row, col; //          int row, col;  ###  c_keyword inserted_var
 
@@ -763,7 +768,7 @@ rxvt_term::process_escape_vt52 (ch){
 
 
 /*{{{ process escape sequences */
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::process_escape_seq (){ 
+//FIXED: js_style_functions c_keyword ^|       void rxvt_term::process_escape_seq (){ 
 rxvt_term.process_escape_seq =function(){ 
   var ch= cmd_getc ();  //unicode_t ch = cmd_getc ();        ###  js_style_variables
 
@@ -821,8 +826,7 @@ rxvt_term.process_escape_seq =function(){
         /* 8.3.87: NEXT LINE */
       case C1_NEL:		/* ESC E */
         {
-//CMNT: js_style_variables js_style_arrays ^|                 wchar_t nlcr[] = { C0_LF, C0_CR }; 
- var nlcr= [ C0_LF, C0_CR ] ; 
+            var nlcr= [ C0_LF, C0_CR ] ;   //wchar_t nlcr[] = { C0_LF, C0_CR };  ### js_style_variables js_style_arrays 
           scr_add_lines (nlcr, sizeof (nlcr) / sizeof (nlcr [0]), 1);
         }
         break;
@@ -999,10 +1003,8 @@ rxvt_term.process_csi_seq =function(){
                 /* DECSTR: soft terminal reset, used by our terminfo since 9.06 */
                 scr_soft_reset ();
 
-//CMNT: js_style_variables js_style_arrays ^|                       static const int pm_h[] = { 7, 25 }; 
- var pm_h= [ 7, 25 ] ; 
-//CMNT: js_style_variables js_style_arrays ^|                       static const int pm_l[] = { 1, 3, 4, 5, 6, 9, 66, 1000, 1001, 1049 }; 
- var pm_l= [ 1, 3, 4, 5, 6, 9, 66, 1000, 1001, 1049 ] ; 
+                var pm_h= [ 7, 25 ] ;   //static const int pm_h[] = { 7, 25 };  ### js_style_variables js_style_arrays 
+                var pm_l= [ 1, 3, 4, 5, 6, 9, 66, 1000, 1001, 1049 ] ;   //static const int pm_l[] = { 1, 3, 4, 5, 6, 9, 66, 1000, 1001, 1049 };  ### js_style_variables js_style_arrays 
 
                 process_terminal_mode ('h', 0, sizeof (pm_h) / sizeof (pm_h[0]), pm_h);
                 process_terminal_mode ('l', 0, sizeof (pm_l) / sizeof (pm_l[0]), pm_l);
@@ -1218,7 +1220,7 @@ rxvt_term.process_csi_seq =function(){
 
 #if !ENABLE_MINIMAL
 /* ARGSUSED */
-//CMNT: js_style_functions c_keyword possible_pointer ^|       void rxvt_term::process_window_ops (const int *args, unsigned int nargs){ 
+//FIXED: js_style_functions c_keyword possible_pointer ^|       void rxvt_term::process_window_ops (const int *args, unsigned int nargs){ 
 rxvt_term.process_window_ops =function( args,   nargs){ 
   var x, y; //          int x, y;  ###  c_keyword inserted_var
   XWindowAttributes wattr;
@@ -1381,7 +1383,7 @@ rxvt_term.process_dcs_seq =function(){
 /*
  * process OPERATING SYSTEM COMMAND sequence `ESC ] Ps ; Pt (ST|BEL)' 
  */
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::process_osc_seq (){ 
+//FIXED: js_style_functions c_keyword ^|       void rxvt_term::process_osc_seq (){ 
 rxvt_term.process_osc_seq =function(){ 
   var ch, eh; //          unicode_t ch, eh;  ###  c_keyword inserted_var
   var arg; //          int arg;  ###  c_keyword inserted_var
@@ -1490,14 +1492,14 @@ rxvt_term.process_xterm_seq =function(op,    s tr,  resp){
             if ((name = strchr (buf, ';')) == NULL)
               break;
 
-            name_i++; name[name_i] = '\0';  //name++ = '\0';  ### possible_pointer POINTER_MATH
+            name[name_i++] = '\0';  //name++ = '\0';  ### possible_pointer POINTER_MATH
             color = atoi (buf) + minCOLOR;
 
             if (!IN_RANGE_INC (color, minCOLOR, maxTermCOLOR))
               break;
 
             if ((buf = strchr (name, ';')) != NULL)
-                buf_i++; buf[buf_i] = '\0';  //buf++ = '\0';  ### possible_pointer POINTER_MATH
+                buf[buf_i++] = '\0';  //buf++ = '\0';  ### possible_pointer POINTER_MATH
 
             process_color_seq (op, color, name, resp);
           }
@@ -1688,8 +1690,8 @@ rxvt_term.process_xterm_seq =function(op,    s tr,  resp){
  *      't' = toggle 
  * so no need for fancy checking 
  */
-//CMNT: js_style_functions c_keyword ^|       int rxvt_term::privcases (int mode, unsigned long bit){ 
-rxvt_term.privcases =function(mode,  long bit){ 
+//FIXED: js_style_functions c_keyword ^|       int rxvt_term::privcases (int mode, unsigned long bit){ 
+rxvt_term.privcases =function(mode,   bit){ 
   var state; //          int state;  ###  c_keyword inserted_var
 
   if (mode == 's'){
@@ -2047,7 +2049,7 @@ rxvt_term.process_sgr_mode =function(nargs,    a rg){
 /*}}} */
 
 /*{{{ (do not) process Rob Nation's own graphics mode sequences */
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::process_graphics (){ 
+//FIXED: js_style_functions c_keyword ^|       void rxvt_term::process_graphics (){ 
 rxvt_term.process_graphics =function(){ 
                                        var ch, cmd = cmd_getc (); //          unicode_t ch, cmd = cmd_getc ();  ###  c_keyword inserted_var
 
@@ -2115,7 +2117,7 @@ rxvt_term.tt_write =function( data,   len){
   pty_ev.set (ev::READ | ev::WRITE);
 }
 
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::pty_write (){ 
+//FIXED: js_style_functions c_keyword ^|       void rxvt_term::pty_write (){ 
 rxvt_term.pty_write =function(){ 
 //CMNT: js_style_variables ^|         int written = write (pty->pty, v_buffer, min (v_buflen, MAX_PTY_WRITE)); 
  var written= write (pty->pty, v_buffer, min (v_buflen, MAX_PTY_WRITE)); 
