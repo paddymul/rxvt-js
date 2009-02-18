@@ -1709,6 +1709,40 @@ rxvt_term.privcases =function(mode,   bit){
   return state;
 }
 
+
+  /* 
+
+var rxvt_t_proto = {
+//    struct rxvt_hidden : *h,
+    TermWin_t    :   TermWin,
+    scrollBar_t  :  scrollBar,
+    menuBar_t    :   menuBar,
+    Display      :  *Xdisplay,
+    unsigned long:   Options,
+    XSizeHints   :   szHint,
+    Colormap     :   Xcmap,
+    Pixel        :  *PixColors,
+    short        :   numPixColors,
+    Cursor       :   TermWin_cursor,	//cursor for vt window 
+        int          :   Xdepth,
+    int          :   sb_shadow,	        //scrollbar shadow width                    
+        int          :   Xfd,	        //file descriptor of X server connection   
+        int          :   cmd_fd,	// pty file descriptor, connected to command 
+        int          :   tty_fd,	// tty file descriptor, connected to child   
+        int          :   num_fds,	// number of file descriptors being used     
+        int          :   numlock_state,
+    text_t       : **drawn_text,	// text drawn on screen (characters)         
+        rend_t       : **drawn_rend,	// text drawn on screen (rendition)          
+        text_t       : **buf_text,
+    rend_t       : **buf_rend,
+    char         :  *tabs,	        //per location: 1 == tab-stop               
+        screen_t     :   screen,
+    screen_t     :   swap,
+    selection_t  :   selection,
+    sstyle_t     :   selection_style,
+    ENC_METHOD   :   encoding_method,
+}
+*/
 /* we're not using priv _yet_ */
 //CMNT: js_style_functions c_keyword possible_pointer ^|       void rxvt_term::process_terminal_mode (int mode, int priv UNUSED, unsigned int nargs, const int *arg){ 
 rxvt_term.process_terminal_mode =function(mode,   UNUSED,   nargs,    arg){ 
