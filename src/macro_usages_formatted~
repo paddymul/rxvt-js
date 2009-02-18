@@ -1,0 +1,356 @@
+0                      ARROW_HEIGHT                                            scrollbar-next.C:#define ARROW_HEIGHT 13
+0 ARROW_WIDTH                                            scrollbar-next.C:#define ARROW_WIDTH 13
+0                      AppKeypadMask                                            keyboard.h:#define AppKeypadMask 0x0400
+0                      BACKGROUND_H_                                           
+0                      BOOL                                            xdefaults.C:#define BOOL(rsp, kw, opt, option, flag, desc) \
+0                      CALLBACK_H_VERSION                                            callback.h:#define CALLBACK_H_VERSION 3
+0                      CALLBACK_H__                                           
+0                      CERASE                                            init.h:#define CERASE '\010' /Applications /Desktop DB /Desktop DF /Developer /Library /Network /System /User Guides And Information /Users /Volumes /bin /config /cores /dev /etc /home /javaout.txt /mach.sym /mach_kernel /mach_kernel.ctfsys /net /nullnull /opt /private /qqq /sbin /sw /tmp /usr /var ^H CVS/ graphics/ perl/ table/ test/
+0                      COLORTERMENV                                            rxvt.h:#define COLORTERMENV "rxvt"
+0                      COLOR_BACKGROUND                                            feature.h:#define COLOR_BACKGROUND "rgb:ff/ff/ff"
+0                      COLOR_CURSOR_BACKGROUND                                            feature.h:#define COLOR_CURSOR_BACKGROUND NULL /Applications /Desktop DB /Desktop DF /Developer /Library /Network /System /User Guides And Information /Users /Volumes /bin /config /cores /dev /etc /home /javaout.txt /mach.sym /mach_kernel /mach_kernel.ctfsys /net /nullnull /opt /private /qqq /sbin /sw /tmp /usr /var if NULL, use foreground colour CVS/ graphics/ perl/ table/ test/
+0                      COLOR_CURSOR_FOREGROUND                                            feature.h:#define COLOR_CURSOR_FOREGROUND NULL /Applications /Desktop DB /Desktop DF /Developer /Library /Network /System /User Guides And Information /Users /Volumes /bin /config /cores /dev /etc /home /javaout.txt /mach.sym /mach_kernel /mach_kernel.ctfsys /net /nullnull /opt /private /qqq /sbin /sw /tmp /usr /var if NULL, use background colour CVS/ graphics/ perl/ table/ test/
+0                      COLOR_FOREGROUND                                            feature.h:#define COLOR_FOREGROUND "rgb:00/00/00"
+0                      COLOR_SCROLLBAR                                            feature.h:#define COLOR_SCROLLBAR "rgb:b2/b2/b2" /Applications /Desktop DB /Desktop DF /Developer /Library /Network /System /User Guides And Information /Users /Volumes /bin /config /cores /dev /etc /home /javaout.txt /mach.sym /mach_kernel /mach_kernel.ctfsys /net /nullnull /opt /private /qqq /sbin /sw /tmp /usr /var scrollColor match Netscape CVS/ graphics/ perl/ table/ test/
+0                      COLOR_SCROLLTROUGH                                            feature.h:#define COLOR_SCROLLTROUGH "rgb:96/96/96"
+0                      COMMAND_H_                                           
+0                      CONSOLE                                            init.h:#define CONSOLE "/dev/console" /Applications /Desktop DB /Desktop DF /Developer /Library /Network /System /User Guides And Information /Users /Volumes /bin /config /cores /dev /etc /home /javaout.txt /mach.sym /mach_kernel /mach_kernel.ctfsys /net /nullnull /opt /private /qqq /sbin /sw /tmp /usr /var console device CVS/ graphics/ perl/ table/ test/
+0                      CONST                                            rxvtutil.h:#define CONST rxvt_attribute ((const))
+0                      CURSOR_BLINK_INTERVAL                                            feature.h:#define CURSOR_BLINK_INTERVAL 0.5
+0                      CUTCHARS                                            feature.h:#define CUTCHARS "\"&'()*,;<=>?@[\\]^`{|}"
+0                      Color_Bits                                            rxvt.h:#define Color_Bits 7 // 0 .. maxTermCOLOR
+0                      DEFAULTFONT_H_                                           
+0                      DEFAULT_BACKSPACE                                            feature.h:#define DEFAULT_BACKSPACE "DEC" /Applications /Desktop DB /Desktop DF /Developer /Library /Network /System /User Guides And Information /Users /Volumes /bin /config /cores /dev /etc /home /javaout.txt /mach.sym /mach_kernel /mach_kernel.ctfsys /net /nullnull /opt /private /qqq /sbin /sw /tmp /usr /var SPECIAL CVS/ graphics/ perl/ table/ test/
+0                      DEFAULT_DELETE                                            feature.h:#define DEFAULT_DELETE "\033[3~"
+0                      ENCODING_DEFAULT                                           
+0                      ENCODING_H                                           
+0                      EV_ASYNC_ENABLE                                            ev_cpp.h:#define EV_ASYNC_ENABLE 0
+0                      EV_CONFIG_H                                            ev_cpp.h:#define EV_CONFIG_H <config.h>
+0                      EV_EMBED_ENABLE                                            ev_cpp.h:#define EV_EMBED_ENABLE 0
+0                      EV_FORK_ENABLE                                            ev_cpp.h:#define EV_FORK_ENABLE 0
+0                      EV_MAXPRI                                            ev_cpp.h:#define EV_MAXPRI 0
+0                      EV_MINIMAL                                            ev_cpp.h:#define EV_MINIMAL 1
+0                      EV_MINPRI                                            ev_cpp.h:#define EV_MINPRI 0
+0                      EV_MULTIPLICITY                                            ev_cpp.h:#define EV_MULTIPLICITY 0
+0                      EV_PERIODIC_ENABLE                                            ev_cpp.h:#define EV_PERIODIC_ENABLE 0
+0                      EV_STAT_ENABLE                                            ev_cpp.h:#define EV_STAT_ENABLE 0
+0                      EV_USE_EVENTFD                                            ev_cpp.h:#define EV_USE_EVENTFD 0
+0                      EV_USE_INOTIFY                                            ev_cpp.h:#define EV_USE_INOTIFY 0
+0                      EV_USE_POLL                                            ev_cpp.h:#define EV_USE_POLL 0
+0                      EV_USE_STDEXCEPT                                            ev_cpp.h:#define EV_USE_STDEXCEPT 0
+0                      EXTERNALBORDERWIDTH                                            feature.h:#define EXTERNALBORDERWIDTH 0
+0                      FEATURE_H                                           
+0                      FONT_CMD                                            rxvt.h:#define FONT_CMD '#'
+0                      FONT_UNREF                                            rxvtfont.h:#define FONT_UNREF(f) do { (f)->clear (); delete (f); } while (0)
+0                      FROM_UNICODE                                            encoding.h:#define FROM_UNICODE(cs,code) rxvt_codeset[cs].from_unicode (code)
+0                      GET_ATTR                                            rxvt.h:#define GET_ATTR(x) (((x) & RS_attrMask))
+0                      GET_BASEFG                                            rxvt.h:#define GET_BASEFG(x) (((x) & RS_fgMask))
+0                      GET_R                                            rxvt.h:#define GET_R rxvt_current_term
+0                      GRAB_CURSOR                                            rxvtperl.xs:#define GRAB_CURSOR THIS->scrollBar.leftptr_cursor
+0                      HAVE_GCC_BUILTINS                                            rxvtutil.h:#define HAVE_GCC_BUILTINS (__GNUC__ >= 4 || (__GNUC__ == 3 && __GNUC_MINOR__ == 4))
+0                      IMBUFSIZ                                            rxvt.h:#define IMBUFSIZ 128 // input modifier buffer sizes
+0                      INFO                                            xdefaults.C:#define INFO(opt, arg, desc) \
+0                      INIT_H_                                           
+0                      INTERNALBORDERWIDTH                                            feature.h:#define INTERNALBORDERWIDTH 2
+0                      IOM_CLASS                                            rxvtperl.xs:#define IOM_CLASS "urxvt"
+0                      IOM_WARN                                            rxvtperl.xs:#define IOM_WARN rxvt_warn
+0                      KEYBOARD_H_                                           
+0                      KEYSYM_HASH_BITS                                            keyboard.h:#define KEYSYM_HASH_BITS 4 /Applications /Desktop DB /Desktop DF /Developer /Library /Network /System /User Guides And Information /Users /Volumes /bin /config /cores /dev /etc /home /javaout.txt /mach.sym /mach_kernel /mach_kernel.ctfsys /net /nullnull /opt /private /qqq /sbin /sw /tmp /usr /var lowest #bits of keysym is used as hash key CVS/ graphics/ perl/ table/ test/
+0                      KEYSYM_HASH_BUDGETS                                            keyboard.h:#define KEYSYM_HASH_BUDGETS (1<<KEYSYM_HASH_BITS)
+0                      KEYSYM_HASH_MASK                                            keyboard.h:#define KEYSYM_HASH_MASK (KEYSYM_HASH_BUDGETS-1)
+0                      LIBPTYTTY_H_                                           
+0                      LINENO                                            rxvt.h:#define LINENO(n) LINENO_of (this, n) rxvtperl.xs:#define LINENO(n) MOD (THIS->term_start + int(n), THIS->total_rows)
+0                      LINENO_of                                            rxvt.h:#define LINENO_of(t,n) MOD ((t)->term_start + int(n), (t)->total_rows)
+0                      LINESPACE                                            feature.h:#define LINESPACE 0
+0                      LINE_BIDI                                            rxvt.h:#define LINE_BIDI 0x0010 // line needs bidi (NYI)
+0                      LINE_COMPRESSED                                            rxvt.h:#define LINE_COMPRESSED 0x0004 // line has been compressed (NYI)
+0                      LINE_FILTER                                            rxvt.h:#define LINE_FILTER 0x0008 // line needs to be filtered before display (NYI)
+0                      LINE_LONGER                                            rxvt.h:#define LINE_LONGER 0x0001 // line is continued on the next row
+0                      LOG_ONLY_ON_LOGIN                                           
+0                      MAPALERT_OPTION                                           
+0                      MAX_COLS                                            feature.h:#define MAX_COLS 10000
+0                      MAX_OVERLAP_ITALIC                                            rxvtfont.C:#define MAX_OVERLAP_ITALIC (8 + 3) // max. overlap for italic fonts
+0                      MAX_OVERLAP_ROMAN                                            rxvtfont.C:#define MAX_OVERLAP_ROMAN (8 + 2) // max. character width in 8ths of the base width
+0                      MAX_SAVELINES                                            feature.h:#define MAX_SAVELINES 10000000
+0                      MWM_DECOR_ALL                                            rxvt.h:#define MWM_DECOR_ALL (1L << 0)
+0                      MWM_DECOR_BORDER                                            rxvt.h:#define MWM_DECOR_BORDER (1L << 1)
+0                      MWM_DECOR_MAXIMIZE                                            rxvt.h:#define MWM_DECOR_MAXIMIZE (1L << 6)
+0                      MWM_DECOR_MENU                                            rxvt.h:#define MWM_DECOR_MENU (1L << 4)
+0                      MWM_DECOR_MINIMIZE                                            rxvt.h:#define MWM_DECOR_MINIMIZE (1L << 5)
+0                      MWM_DECOR_RESIZEH                                            rxvt.h:#define MWM_DECOR_RESIZEH (1L << 2)
+0                      MWM_DECOR_TITLE                                            rxvt.h:#define MWM_DECOR_TITLE (1L << 3)
+0                      MWM_FUNC_ALL                                            rxvt.h:#define MWM_FUNC_ALL (1L << 0)
+0                      MWM_FUNC_CLOSE                                            rxvt.h:#define MWM_FUNC_CLOSE (1L << 5)
+0                      MWM_FUNC_MAXIMIZE                                            rxvt.h:#define MWM_FUNC_MAXIMIZE (1L << 4)
+0                      MWM_FUNC_MINIMIZE                                            rxvt.h:#define MWM_FUNC_MINIMIZE (1L << 3)
+0                      MWM_FUNC_MOVE                                            rxvt.h:#define MWM_FUNC_MOVE (1L << 2)
+0                      MWM_FUNC_RESIZE                                            rxvt.h:#define MWM_FUNC_RESIZE (1L << 1)
+0                      MWM_HINTS_DECORATIONS                                            rxvt.h:#define MWM_HINTS_DECORATIONS (1L << 1)
+0                      MWM_HINTS_FUNCTIONS                                            rxvt.h:#define MWM_HINTS_FUNCTIONS (1L << 0)
+0                      MWM_HINTS_INPUT_MODE                                            rxvt.h:#define MWM_HINTS_INPUT_MODE (1L << 2)
+0                      MWM_HINTS_STATUS                                            rxvt.h:#define MWM_HINTS_STATUS (1L << 3)
+0                      MWM_INPUT_FULL_APPLICATION_MODAL                                            rxvt.h:#define MWM_INPUT_FULL_APPLICATION_MODAL 3
+0                      MWM_INPUT_MODELESS                                            rxvt.h:#define MWM_INPUT_MODELESS 0
+0                      MWM_INPUT_PRIMARY_APPLICATION_MODAL                                            rxvt.h:#define MWM_INPUT_PRIMARY_APPLICATION_MODAL 1
+0                      MWM_INPUT_SYSTEM_MODAL                                            rxvt.h:#define MWM_INPUT_SYSTEM_MODAL 2
+0                      NORETURN                                            rxvtutil.h:#define NORETURN rxvt_attribute ((noreturn))
+0                      NO_SLOW_LINK_SUPPORT                                           
+0                      NUM_EXTENT_TEST_CHARS                                            rxvtfont.C:#define NUM_EXTENT_TEST_CHARS (sizeof (extent_test_chars) / sizeof (extent_test_chars[0]))
+0                      OVERLAP_OK                                            rxvtfont.C:#define OVERLAP_OK(w,wcw,prop) ((w) <= ( \
+0                      Optflag_Boolean                                            xdefaults.C:#define Optflag_Boolean 2
+0                      Optflag_Reverse                                            xdefaults.C:#define Optflag_Reverse 1
+0                      Optflag_Switch                                            xdefaults.C:#define Optflag_Switch 4
+0                      OtherModMask                                            keyboard.h:#define OtherModMask (ShiftMask | LockMask | ControlMask \
+0                      PIXCOLOR_NAME                                            rxvt.h:#define PIXCOLOR_NAME(idx) rs[Rs_color + (idx)]
+0                      PP_CONCAT                                            rxvtutil.h:#define PP_CONCAT(a, b) PP_CONCAT_(a, b)
+0                      PP_CONCAT_                                            rxvtutil.h:#define PP_CONCAT_(a, b) a ## b
+0                      PP_STRINGIFY                                            rxvtutil.h:#define PP_STRINGIFY(a) PP_STRINGIFY_(a)
+0                      PP_STRINGIFY_                                            rxvtutil.h:#define PP_STRINGIFY_(a) #a
+0                      PROP_MWM_HINTS_ELEMENTS                                            rxvt.h:#define PROP_MWM_HINTS_ELEMENTS 5
+0                      PTYTTY_H                                           
+0                      PTYTTY_HELPER                                            feature.h:#define PTYTTY_HELPER 1
+0                      PTYTTY_NO_PID_CHECK                                            ptytty_conf.h:#define PTYTTY_NO_PID_CHECK 1
+0                      PTYTTY_REENTRANT                                            ptytty_conf.h:#define PTYTTY_REENTRANT 1
+0                      RESTORE_TTY_MODE                                            feature.h:#define RESTORE_TTY_MODE 0666
+0                      ROW_of                                            rxvt.h:#define ROW_of(t,n) (t)->row_buf [LINENO_of ((t), n)]
+0                      RSTRG                                            xdefaults.C:#define RSTRG(rsp, kw, arg) \
+0                      RS_attrMask                                            rxvt.h:#define RS_attrMask (RS_baseattrMask | RS_fontMask)
+0                      RS_customCount                                            rxvt.h:#define RS_customCount 32
+0                      RS_customMask                                            rxvt.h:#define RS_customMask 0x00f80000UL
+0                      RS_customShift                                            rxvt.h:#define RS_customShift 19
+0                      RS_fontCount                                            rxvt.h:#define RS_fontCount 127 // not 127 or 256, see rxvtfont.h
+0                      RS_fontMask                                            rxvt.h:#define RS_fontMask 0xff000000UL // plenty(?) of fonts, includes RS_Careful
+0                      RS_fontShift                                            rxvt.h:#define RS_fontShift 24
+0                      RS_styleCount                                            rxvt.h:#define RS_styleCount 4
+0                      RS_styleMask                                            rxvt.h:#define RS_styleMask (RS_Bold | RS_Italic)
+0                      RS_styleShift                                            rxvt.h:#define RS_styleShift 14
+0                      RXVTPERL_H_                                           
+0                      RXVT_DAEMON_H                                           
+0                      RXVT_H_                                           
+0                      RXVT_SALLOC_H_                                           
+0                      RXVT_SCROLL_FULL                                            feature.h:#define RXVT_SCROLL_FULL 1
+0                      RXVT_TOOLKIT_H                                           
+0                      RXVT_UTIL_H                                           
+0                      R_SB_NEXT                                            scrollbar.h:#define R_SB_NEXT 1
+0                      R_SB_PLAIN                                            scrollbar.h:#define R_SB_PLAIN 4
+0                      R_SB_RXVT                                            scrollbar.h:#define R_SB_RXVT 8
+0                      SALLOC_BLOCK                                            salloc.C:#define SALLOC_BLOCK 65536 // size of basic block to allocate
+0                      SAVELINES                                            feature.h:#define SAVELINES 1000
+0                      SB_BEVEL_WIDTH_LOWER_RIGHT                                            scrollbar.h:#define SB_BEVEL_WIDTH_LOWER_RIGHT 2
+0                      SB_BEVEL_WIDTH_UPPER_LEFT                                            scrollbar.h:#define SB_BEVEL_WIDTH_UPPER_LEFT 1
+0                      SB_BORDER_WIDTH                                            scrollbar.h:#define SB_BORDER_WIDTH 1
+0                      SB_BUTTON_BEVEL_X                                            scrollbar.h:#define SB_BUTTON_BEVEL_X (SB_LEFT_PADDING)
+0                      SB_BUTTON_BOTH_HEIGHT                                            scrollbar.h:#define SB_BUTTON_BOTH_HEIGHT (SB_BUTTON_SINGLE_HEIGHT CVS Makefile Makefile.in Makefile~ background.C background.h background.o callback.h cleaned_defs command.C command.C.js command.C.js~ command.h command.o count_macrodefs count_macrodefs~ encoding.C encoding.h encoding.o ev_cpp.C ev_cpp.h ev_cpp.o fdpass.C fdpass.o feature.h gencompose genlinedraw gentables graphics hookinc.h init.C init.h init.o iom_perl.h iom_perl.xs keyboard.C keyboard.h keyboard.o keyboard_from_command.C2js keyboard_from_command.C2js~ libptytty.h logging.C logging.o macro_usages macrodefs macrodefs.bash macrodefs.bash~ main.C main.o misc.C misc.o optinc.h perl proxy.C proxy.o ptytty.C ptytty.h ptytty.o ptytty_conf.h raw_defs rsinc.h rxvt rxvt.C rxvt.h rxvt.o rxvtc rxvtc.C rxvtc.o rxvtd rxvtd.C rxvtd.o rxvtdaemon.C rxvtdaemon.h rxvtdaemon.o rxvtfont.C rxvtfont.h rxvtfont.o rxvtperl.h rxvtperl.xs rxvttoolkit.C rxvttoolkit.h rxvttoolkit.o rxvtutil.C rxvtutil.h rxvtutil.o salloc.C salloc.h screen.C screen.C.js screen.o scrollbar-next.C scrollbar-next.o scrollbar-plain.C scrollbar-plain.o scrollbar-rxvt.C scrollbar-rxvt.o scrollbar-xterm.C scrollbar-xterm.o scrollbar.C scrollbar.h scrollbar.o table test typemap typemap.iom urxvt.pm version.h xdefaults.C xdefaults.o 2)
+0                      SB_BUTTON_FACE_X                                            scrollbar.h:#define SB_BUTTON_FACE_X (SB_BUTTON_BEVEL_X + SB_BEVEL_WIDTH_UPPER_LEFT)
+0                      SB_BUTTON_HEIGHT                                            scrollbar.h:#define SB_BUTTON_HEIGHT (SB_BUTTON_WIDTH)
+0                      SB_BUTTON_SINGLE_HEIGHT                                            scrollbar.h:#define SB_BUTTON_SINGLE_HEIGHT (SB_BUTTON_HEIGHT + SB_PADDING)
+0                      SB_BUTTON_TOTAL_HEIGHT                                            scrollbar.h:#define SB_BUTTON_TOTAL_HEIGHT (SB_BUTTON_BOTH_HEIGHT + SB_PADDING)
+0                      SB_BUTTON_WIDTH                                            scrollbar.h:#define SB_BUTTON_WIDTH (SB_WIDTH_NEXT - SB_MARGIN_SPACE - SB_BORDER_WIDTH)
+0                      SB_LEFT_PADDING                                            scrollbar.h:#define SB_LEFT_PADDING (SB_PADDING + SB_BORDER_WIDTH)
+0                      SB_MARGIN_SPACE                                            scrollbar.h:#define SB_MARGIN_SPACE (SB_PADDING CVS Makefile Makefile.in Makefile~ background.C background.h background.o callback.h cleaned_defs command.C command.C.js command.C.js~ command.h command.o count_macrodefs count_macrodefs~ encoding.C encoding.h encoding.o ev_cpp.C ev_cpp.h ev_cpp.o fdpass.C fdpass.o feature.h gencompose genlinedraw gentables graphics hookinc.h init.C init.h init.o iom_perl.h iom_perl.xs keyboard.C keyboard.h keyboard.o keyboard_from_command.C2js keyboard_from_command.C2js~ libptytty.h logging.C logging.o macro_usages macrodefs macrodefs.bash macrodefs.bash~ main.C main.o misc.C misc.o optinc.h perl proxy.C proxy.o ptytty.C ptytty.h ptytty.o ptytty_conf.h raw_defs rsinc.h rxvt rxvt.C rxvt.h rxvt.o rxvtc rxvtc.C rxvtc.o rxvtd rxvtd.C rxvtd.o rxvtdaemon.C rxvtdaemon.h rxvtdaemon.o rxvtfont.C rxvtfont.h rxvtfont.o rxvtperl.h rxvtperl.xs rxvttoolkit.C rxvttoolkit.h rxvttoolkit.o rxvtutil.C rxvtutil.h rxvtutil.o salloc.C salloc.h screen.C screen.C.js screen.o scrollbar-next.C scrollbar-next.o scrollbar-plain.C scrollbar-plain.o scrollbar-rxvt.C scrollbar-rxvt.o scrollbar-xterm.C scrollbar-xterm.o scrollbar.C scrollbar.h scrollbar.o table test typemap typemap.iom urxvt.pm version.h xdefaults.C xdefaults.o 2)
+0                      SB_PADDING                                            scrollbar.h:#define SB_PADDING 1
+0                      SB_THUMB_MIN_HEIGHT                                            scrollbar.h:#define SB_THUMB_MIN_HEIGHT (SB_BUTTON_WIDTH - (SB_PADDING CVS Makefile Makefile.in Makefile~ background.C background.h background.o callback.h cleaned_defs command.C command.C.js command.C.js~ command.h command.o count_macrodefs count_macrodefs~ encoding.C encoding.h encoding.o ev_cpp.C ev_cpp.h ev_cpp.o fdpass.C fdpass.o feature.h gencompose genlinedraw gentables graphics hookinc.h init.C init.h init.o iom_perl.h iom_perl.xs keyboard.C keyboard.h keyboard.o keyboard_from_command.C2js keyboard_from_command.C2js~ libptytty.h logging.C logging.o macro_usages macrodefs macrodefs.bash macrodefs.bash~ main.C main.o misc.C misc.o optinc.h perl proxy.C proxy.o ptytty.C ptytty.h ptytty.o ptytty_conf.h raw_defs rsinc.h rxvt rxvt.C rxvt.h rxvt.o rxvtc rxvtc.C rxvtc.o rxvtd rxvtd.C rxvtd.o rxvtdaemon.C rxvtdaemon.h rxvtdaemon.o rxvtfont.C rxvtfont.h rxvtfont.o rxvtperl.h rxvtperl.xs rxvttoolkit.C rxvttoolkit.h rxvttoolkit.o rxvtutil.C rxvtutil.h rxvtutil.o salloc.C salloc.h screen.C screen.C.js screen.o scrollbar-next.C scrollbar-next.o scrollbar-plain.C scrollbar-plain.o scrollbar-rxvt.C scrollbar-rxvt.o scrollbar-xterm.C scrollbar-xterm.o scrollbar.C scrollbar.h scrollbar.o table test typemap typemap.iom urxvt.pm version.h xdefaults.C xdefaults.o 2))
+0                      SB_WIDTH_MAXIMUM                                            feature.h:#define SB_WIDTH_MAXIMUM 100
+0                      SB_WIDTH_MINIMUM                                            feature.h:#define SB_WIDTH_MINIMUM 5
+0                      SB_WIDTH_NEXT                                            scrollbar.h:#define SB_WIDTH_NEXT 19
+0                      SB_WIDTH_PLAIN                                            scrollbar.h:#define SB_WIDTH_PLAIN 7
+0                      SB_WIDTH_XTERM                                            scrollbar.h:#define SB_WIDTH_XTERM 15
+0                      SCROLLBAR_H                                           
+0                      SCROLLER_DIMPLE_HEIGHT                                            scrollbar-next.C:#define SCROLLER_DIMPLE_HEIGHT 6
+0                      SCROLLER_DIMPLE_WIDTH                                            scrollbar-next.C:#define SCROLLER_DIMPLE_WIDTH 6
+0                      SCROLL_ON_SHIFT                                           
+0                      SELECTION_SCROLL_LINE_SPEEDUP                                            feature.h:#define SELECTION_SCROLL_LINE_SPEEDUP 3
+0                      SET_ATTR                                            rxvt.h:#define SET_ATTR(x,a) (((x) & ~RS_attrMask) | (a))
+0                      SET_R                                            rxvt.h:#define SET_R(r) rxvt_current_term = const_cast<rxvt_term *>(r)
+0                      SHADOW_WIDTH                                            feature.h:#define SHADOW_WIDTH 1
+0                      STATUS_CONNECTION_FAILED                                            rxvtc.C:#define STATUS_CONNECTION_FAILED 2
+0                      STATUS_FAILURE                                            rxvtc.C:#define STATUS_FAILURE 1
+0                      STATUS_SUCCESS                                            rxvtc.C:#define STATUS_SUCCESS 0
+0                      STRG                                            xdefaults.C:#define STRG(rsp, kw, opt, arg, desc) \
+0                      SWCH                                            xdefaults.C:#define SWCH(opt, option, flag, desc) \
+0                      SvIOW                                            iom_perl.h:#define SvIOW(sv) (iow *)(perl_watcher *)SvPTR ((sv), IOM_CLASS "::iow")
+0                      SvIW                                            iom_perl.h:#define SvIW(sv) (iw *)(perl_watcher *)SvPTR ((sv), IOM_CLASS "::iw")
+0                      SvOVERLAY                                            rxvtperl.xs:#define SvOVERLAY(sv) (overlay *)SvPTR (sv, "urxvt::overlay")
+0                      SvPW                                            iom_perl.h:#define SvPW(sv) (pw *)(perl_watcher *)SvPTR ((sv), IOM_CLASS "::pw")
+0                      SvTERM                                            rxvtperl.xs:#define SvTERM(sv) (rxvt_term *)SvPTR ((sv), "urxvt::term")
+0                      SvTIMER                                            iom_perl.h:#define SvTIMER(sv) (timer *)(perl_watcher *)SvPTR ((sv), IOM_CLASS "::timer")
+0                      SvWATCHER                                            iom_perl.h:#define SvWATCHER(sv) (perl_watcher *)SvPTR (sv, IOM_CLASS "::watcher")
+0                      TERMCAP_HAS_BW                                            feature.h:#define TERMCAP_HAS_BW 1
+0                      TERM_OFFSET                                            rxvtperl.xs:#define TERM_OFFSET(sym) offsetof (TermWin_t, sym)
+0                      TERM_OFFSET_ext_bwidth                                            rxvtperl.xs:#define TERM_OFFSET_ext_bwidth TERM_OFFSET(ext_bwidth)
+0                      TERM_OFFSET_fbase                                            rxvtperl.xs:#define TERM_OFFSET_fbase TERM_OFFSET(fbase)
+0                      TERM_OFFSET_fheight                                            rxvtperl.xs:#define TERM_OFFSET_fheight TERM_OFFSET(fheight)
+0                      TERM_OFFSET_focus                                            rxvtperl.xs:#define TERM_OFFSET_focus TERM_OFFSET(focus)
+0                      TERM_OFFSET_fwidth                                            rxvtperl.xs:#define TERM_OFFSET_fwidth TERM_OFFSET(fwidth)
+0                      TERM_OFFSET_height                                            rxvtperl.xs:#define TERM_OFFSET_height TERM_OFFSET(height)
+0                      TERM_OFFSET_int_bwidth                                            rxvtperl.xs:#define TERM_OFFSET_int_bwidth TERM_OFFSET(int_bwidth)
+0                      TERM_OFFSET_lineSpace                                            rxvtperl.xs:#define TERM_OFFSET_lineSpace TERM_OFFSET(lineSpace)
+0                      TERM_OFFSET_mapped                                            rxvtperl.xs:#define TERM_OFFSET_mapped TERM_OFFSET(mapped)
+0                      TERM_OFFSET_ncol                                            rxvtperl.xs:#define TERM_OFFSET_ncol TERM_OFFSET(ncol)
+0                      TERM_OFFSET_nrow                                            rxvtperl.xs:#define TERM_OFFSET_nrow TERM_OFFSET(nrow)
+0                      TERM_OFFSET_saveLines                                            rxvtperl.xs:#define TERM_OFFSET_saveLines TERM_OFFSET(saveLines)
+0                      TERM_OFFSET_top_row                                            rxvtperl.xs:#define TERM_OFFSET_top_row TERM_OFFSET(top_row)
+0                      TERM_OFFSET_total_rows                                            rxvtperl.xs:#define TERM_OFFSET_total_rows TERM_OFFSET(total_rows)
+0                      TERM_OFFSET_width                                            rxvtperl.xs:#define TERM_OFFSET_width TERM_OFFSET(width)
+0                      TEXT_BLINK_INTERVAL                                            feature.h:#define TEXT_BLINK_INTERVAL CURSOR_BLINK_INTERVAL
+0                      TO_UNICODE                                            encoding.h:#define TO_UNICODE(cs,code) rxvt_codeset[cs].to_unicode (code)
+0                      XTERM_COLORS                                           
+0                      XTERM_COLOR_CHANGE                                           
+0                      cs_us_ascii_to_unicode                                            encoding.C:#define cs_us_ascii_to_unicode cs_unicode_to_unicode
+0                      cs_us_ascii_to_unicode_                                            encoding.C:#define cs_us_ascii_to_unicode_16 cs_unicode_to_unicode
+0                      dTermDisplay                                            rxvtfont.C:#define dTermDisplay Display *disp = term->dpy
+0                      dTermGC                                            rxvtfont.C:#define dTermGC GC gc = term->gc
+0                      fatal                                            ptytty.h:#define fatal(msg) do { write (2, msg, sizeof (msg) - 1); _exit (255); } while (0)
+0                      n_stp_height                                            scrollbar-next.C:#define n_stp_height 2
+0                      n_stp_width                                            scrollbar-next.C:#define n_stp_width 8
+0                      newSViow                                            iom_perl.h:#define newSViow(iow) iom_new_ref ((iow)->self, IOM_CLASS "::iow")
+0                      newSViw                                            iom_perl.h:#define newSViw(iw) iom_new_ref ((iw)->self, IOM_CLASS "::iw")
+0                      newSVpw                                            iom_perl.h:#define newSVpw(pw) iom_new_ref ((pw)->self, IOM_CLASS "::pw")
+0                      newSVterm                                            rxvtperl.xs:#define newSVterm(term) SvREFCNT_inc ((SV *)(term)->perl.self)
+0                      newSVtimer                                            iom_perl.h:#define newSVtimer(timer) iom_new_ref ((timer)->self, IOM_CLASS "::timer")
+0                      optList_isBool                                            xdefaults.C:#define optList_isBool(i) \
+0                      optList_isReverse                                            xdefaults.C:#define optList_isReverse(i) \
+0                      optList_isString                                            xdefaults.C:#define optList_isString(i) \
+0                      optList_size                                            xdefaults.C:#define optList_size \
+0                      ptytty_fatal                                            ptytty_conf.h:#define ptytty_fatal rxvt_fatal
+0                      ptytty_warn                                            ptytty_conf.h:#define ptytty_warn rxvt_warn
+0                      x_stp_height                                            scrollbar-xterm.C:#define x_stp_height 2
+0                      x_stp_width                                            scrollbar-xterm.C:#define x_stp_width 8
+1                      CBUFCNT                                            rxvt.h:#define CBUFCNT 8 // never call pty_fill/cmd_parse more than this often in a row
+1                      FONT_DN                                            rxvt.h:#define FONT_DN "#-"
+1                      FONT_UP                                            rxvt.h:#define FONT_UP "#+"
+1                      GET_BASEBG                                            rxvt.h:#define GET_BASEBG(x) (((x) & RS_bgMask)>>Color_Bits)
+1                      GET_BGATTR                                            rxvt.h:#define GET_BGATTR(x) \
+1                      GET_FONT                                            rxvt.h:#define GET_FONT(x) (((x) & RS_fontMask) >> RS_fontShift)
+1                      MOUSE_THRESHOLD                                            feature.h:#define MOUSE_THRESHOLD 50
+1                      PAGING_CONTEXT_LINES                                            feature.h:#define PAGING_CONTEXT_LINES 1
+1                      PASTE_SIZE                                            screen.C:#define PASTE_SIZE 32768
+1                      PrivMode_Autowrap                                            rxvt.h:#define PrivMode_Autowrap (1UL<<5)
+1                      PrivMode_HaveBackSpace                                            rxvt.h:#define PrivMode_HaveBackSpace (1UL<<8)
+1                      PrivMode_Keypress                                            rxvt.h:#define PrivMode_Keypress (1UL<<16)
+1                      PrivMode_TtyOutputInh                                            rxvt.h:#define PrivMode_TtyOutputInh (1UL<<15)
+1                      PrivMode_VisibleCursor                                            rxvt.h:#define PrivMode_VisibleCursor (1UL<<11)
+1                      PrivMode_rVideo                                            rxvt.h:#define PrivMode_rVideo (1UL<<2)
+1                      PrivMode_relOrigin                                            rxvt.h:#define PrivMode_relOrigin (1UL<<3)
+1                      PrivMode_scrollBar                                            rxvt.h:#define PrivMode_scrollBar (1UL<<14)
+1                      PrivMode_smoothScroll                                            rxvt.h:#define PrivMode_smoothScroll (1UL<<17)
+1                      ROWCOL_IN_ROW_AFTER                                            screen.C:#define ROWCOL_IN_ROW_AFTER(X, Y) \
+1                      ROWCOL_IN_ROW_BEFORE                                            screen.C:#define ROWCOL_IN_ROW_BEFORE(X, Y) \
+1                      R_SB_ALIGN_BOTTOM                                            scrollbar.h:#define R_SB_ALIGN_BOTTOM 2
+1                      R_SB_ALIGN_TOP                                            scrollbar.h:#define R_SB_ALIGN_TOP 1
+1                      R_SB_XTERM                                            scrollbar.h:#define R_SB_XTERM 2
+1                      SELECTION_SCROLL_MAX_LINES                                            feature.h:#define SELECTION_SCROLL_MAX_LINES 8
+1                      SET_STYLE                                            rxvt.h:#define SET_STYLE(x,style) (((x) & ~RS_styleMask) | ((style) << RS_styleShift))
+1                      Sel_Clipboard                                            rxvt.h:#define Sel_Clipboard 0x03
+1                      Sel_Secondary                                            rxvt.h:#define Sel_Secondary 0x02
+1                      UNICODE_MASK                                            rxvt.h:#define UNICODE_MASK 0x1fffffUL
+1                      UNUSED                                            rxvtutil.h:#define UNUSED rxvt_attribute ((unused))
+1                      VISUAL_BELL_DURATION                                            feature.h:#define VISUAL_BELL_DURATION .020
+2                      GET_STYLE                                            rxvt.h:#define GET_STYLE(x) (((x) & RS_styleMask) >> RS_styleShift)
+2                      Level                                            keyboard.h:#define Level3Mask 0x0800 // currently not supported
+2                      NumLockMask                                            keyboard.h:#define NumLockMask 0x0200
+2                      OVERLAY_RSTYLE                                            rxvt.h:#define OVERLAY_RSTYLE (RS_None | Color_Black | (Color_Yellow << Color_Bits))
+2                      PRINTPIPE                                            feature.h:#define PRINTPIPE "lpr"
+2                      PROP_SIZE                                            screen.C:#define PROP_SIZE 256*1024
+2                      PrivMode_BackSpace                                            rxvt.h:#define PrivMode_BackSpace (1UL<<9)
+2                      PrivMode_ShiftKeys                                            rxvt.h:#define PrivMode_ShiftKeys (1UL<<10)
+2                      PrivMode_aplCUR                                            rxvt.h:#define PrivMode_aplCUR (1UL<<6)
+2                      ROW_AND_COL_IN_ROW_AFTER                                            screen.C:#define ROW_AND_COL_IN_ROW_AFTER(A, B, C, D) \
+2                      ROW_AND_COL_IN_ROW_AT_OR_AFTER                                            screen.C:#define ROW_AND_COL_IN_ROW_AT_OR_AFTER(A, B, C, D) \
+2                      ROW_AND_COL_IN_ROW_AT_OR_BEFORE                                            screen.C:#define ROW_AND_COL_IN_ROW_AT_OR_BEFORE(A, B, C, D) \
+2                      ROW_AND_COL_IN_ROW_BEFORE                                            screen.C:#define ROW_AND_COL_IN_ROW_BEFORE(A, B, C, D) \
+2                      ROW_AND_COL_IS_AFTER                                            screen.C:#define ROW_AND_COL_IS_AFTER(A, B, C, D) \
+2                      ROW_AND_COL_IS_BEFORE                                            screen.C:#define ROW_AND_COL_IS_BEFORE(A, B, C, D) \
+2                      RS_baseattrMask                                            rxvt.h:#define RS_baseattrMask (RS_Italic | RS_Bold | RS_Blink | RS_RVid | RS_Uline)
+2                      RS_redraw                                            rxvt.h:#define RS_redraw 0x01000000UL
+2                      R_SB_ALIGN_CENTRE                                            scrollbar.h:#define R_SB_ALIGN_CENTRE 0
+2                      SET_BGCOLOR                                            rxvt.h:#define SET_BGCOLOR(x,bg) (((x) & ~RS_bgMask) | ((bg)<<Color_Bits))
+2                      SET_FGCOLOR                                            rxvt.h:#define SET_FGCOLOR(x,fg) (((x) & ~RS_fgMask) | (fg))
+2                      SET_LOCALE                                            rxvt.h:#define SET_LOCALE(locale) rxvt_set_locale (locale)
+2                      STRING_MAX                                            command.h:#define STRING_MAX 2048 /Applications /Desktop DB /Desktop DF /Developer /Library /Network /System /User Guides And Information /Users /Volumes /bin /config /cores /dev /etc /home /javaout.txt /mach.sym /mach_kernel /mach_kernel.ctfsys /net /nullnull /opt /private /qqq /sbin /sw /tmp /usr /var max string size for process_rxvt_xterm_seq() CVS/ graphics/ perl/ table/ test/
+2                      Screen_DefaultFlags                                            rxvt.h:#define Screen_DefaultFlags (Screen_VisibleCursor | Screen_Autowrap)
+2                      Sel_UTF                                            rxvt.h:#define Sel_UTF8String 0x20 /Applications /Desktop DB /Desktop DF /Developer /Library /Network /System /User Guides And Information /Users /Volumes /bin /config /cores /dev /etc /home /javaout.txt /mach.sym /mach_kernel /mach_kernel.ctfsys /net /nullnull /opt /private /qqq /sbin /sw /tmp /usr /var last request was UTF8_STRING CVS/ graphics/ perl/ table/ test/
+2                      Sel_direct                                            rxvt.h:#define Sel_direct 0x00
+2                      Sel_whereMask                                            rxvt.h:#define Sel_whereMask 0x0f
+2                      TABSIZE                                            screen.C:#define TABSIZE 8 /Applications /Desktop DB /Desktop DF /Developer /Library /Network /System /User Guides And Information /Users /Volumes /bin /config /cores /dev /etc /home /javaout.txt /mach.sym /mach_kernel /mach_kernel.ctfsys /net /nullnull /opt /private /qqq /sbin /sw /tmp /usr /var default tab size CVS/ graphics/ perl/ table/ test/
+2                      VERSION                                            version.h:#define VERSION "9.06"
+2                      get_byte_array_bit                                            command.C:#define get_byte_array_bit(array, bit) \
+2                      scrollBar_esc                                            rxvt.h:#define scrollBar_esc 30
+2                      scrollbar_above_slider                                            scrollbar.h:#define scrollbar_above_slider(y) ((y) < scrollBar.top)
+2                      scrollbar_below_slider                                            scrollbar.h:#define scrollbar_below_slider(y) ((y) > scrollBar.bot)
+3                      CBUFSIZ                                            rxvt.h:#define CBUFSIZ 2048 // size of command buffer
+3                      CHAR_ST                                            rxvt.h:#define CHAR_ST 0x9c /Applications /Desktop DB /Desktop DF /Developer /Library /Network /System /User Guides And Information /Users /Volumes /bin /config /cores /dev /etc /home /javaout.txt /mach.sym /mach_kernel /mach_kernel.ctfsys /net /nullnull /opt /private /qqq /sbin /sw /tmp /usr /var 0234 CVS/ graphics/ perl/ table/ test/
+3                      CLEAR_CHARS                                            screen.C:#define CLEAR_CHARS(x, y, num) \
+3                      DATE                                            version.h:#define DATE "2008-06-15"
+3                      ESC_ARGS                                            command.h:#define ESC_ARGS 32 /Applications /Desktop DB /Desktop DF /Developer /Library /Network /System /User Guides And Information /Users /Volumes /bin /config /cores /dev /etc /home /javaout.txt /mach.sym /mach_kernel /mach_kernel.ctfsys /net /nullnull /opt /private /qqq /sbin /sw /tmp /usr /var max # of args for esc sequences CVS/ graphics/ perl/ table/ test/
+3                      IS_SCROLL_MOD                                            command.h:#define IS_SCROLL_MOD ((SCROLL_SHIFTKEY || SCROLL_CTRLKEY || SCROLL_METAKEY) \
+3                      LINE_FILTERED                                            rxvt.h:#define LINE_FILTERED 0x0002 // line has been filtered
+3                      MAX_ROWS                                            feature.h:#define MAX_ROWS 10000
+3                      PrivMode_                                            rxvt.h:#define PrivMode_132 (1UL<<0) rxvt.h:#define PrivMode_132OK (1UL<<1)
+3                      PrivMode_BracketPaste                                            rxvt.h:#define PrivMode_BracketPaste (1UL<<22)
+3                      PrivMode_LFNL                                            rxvt.h:#define PrivMode_LFNL (1UL<<19)
+3                      PrivMode_Screen                                            rxvt.h:#define PrivMode_Screen (1UL<<4)
+3                      ROWCOL_IN_ROW_AT_OR_BEFORE                                            screen.C:#define ROWCOL_IN_ROW_AT_OR_BEFORE(X, Y) \
+3                      Screen_Autowrap                                            rxvt.h:#define Screen_Autowrap (1<<2) /Applications /Desktop DB /Desktop DF /Developer /Library /Network /System /User Guides And Information /Users /Volumes /bin /config /cores /dev /etc /home /javaout.txt /mach.sym /mach_kernel /mach_kernel.ctfsys /net /nullnull /opt /private /qqq /sbin /sw /tmp /usr /var auto-wrap flag CVS/ graphics/ perl/ table/ test/
+3                      Screen_Insert                                            rxvt.h:#define Screen_Insert (1<<3) /Applications /Desktop DB /Desktop DF /Developer /Library /Network /System /User Guides And Information /Users /Volumes /bin /config /cores /dev /etc /home /javaout.txt /mach.sym /mach_kernel /mach_kernel.ctfsys /net /nullnull /opt /private /qqq /sbin /sw /tmp /usr /var insert mode (vs. overstrike) CVS/ graphics/ perl/ table/ test/
+3                      Screen_Relative                                            rxvt.h:#define Screen_Relative (1<<0) /Applications /Desktop DB /Desktop DF /Developer /Library /Network /System /User Guides And Information /Users /Volumes /bin /config /cores /dev /etc /home /javaout.txt /mach.sym /mach_kernel /mach_kernel.ctfsys /net /nullnull /opt /private /qqq /sbin /sw /tmp /usr /var relative origin mode flag CVS/ graphics/ perl/ table/ test/
+3                      Sel_CompoundText                                            rxvt.h:#define Sel_CompoundText 0x10 /Applications /Desktop DB /Desktop DF /Developer /Library /Network /System /User Guides And Information /Users /Volumes /bin /config /cores /dev /etc /home /javaout.txt /mach.sym /mach_kernel /mach_kernel.ctfsys /net /nullnull /opt /private /qqq /sbin /sw /tmp /usr /var last request was COMPOUND_TEXT CVS/ graphics/ perl/ table/ test/
+3                      Sel_Primary                                            rxvt.h:#define Sel_Primary 0x01
+3                      Sel_none                                            rxvt.h:#define Sel_none 0 /Applications /Desktop DB /Desktop DF /Developer /Library /Network /System /User Guides And Information /Users /Volumes /bin /config /cores /dev /etc /home /javaout.txt /mach.sym /mach_kernel /mach_kernel.ctfsys /net /nullnull /opt /private /qqq /sbin /sw /tmp /usr /var Not waiting CVS/ graphics/ perl/ table/ test/
+3                      WCWIDTH                                            rxvt.h:#define WCWIDTH(c) (IN_RANGE_INC (c, 0x20, 0x7e) ? 1 : wcwidth (c))
+3                      scrollbar_position                                            scrollbar.h:#define scrollbar_position(y) ((y) - scrollBar.beg)
+4                      CLEAR_ALL_SELECTION                                            screen.C:#define CLEAR_ALL_SELECTION() \
+4                      DELIMIT_REND                                            screen.C:#define DELIMIT_REND(x) 1
+4                      DELIMIT_TEXT                                            screen.C:#define DELIMIT_TEXT(x) \
+4                      INDENT                                            xdefaults.C:#define INDENT 18
+4                      IS_CONTROL                                            command.C:#define IS_CONTROL(ch) !((ch) & 0xffffff60UL)
+4                      META                                            feature.h:#define META8_OPTION
+4                      PrivMode_aplKP                                            rxvt.h:#define PrivMode_aplKP (1UL<<7)
+4                      PrivMode_mouse_report                                            rxvt.h:#define PrivMode_mouse_report (PrivMode_MouseX10|PrivMode_MouseX11|PrivMode_MouseBtnEvent|PrivMode_MouseAnyEvent)
+4                      PrivMode_vt                                            rxvt.h:#define PrivMode_vt52 (1UL<<18)
+4                      RS_Careful                                            rxvt.h:#define RS_Careful 0x80000000UL /Applications /Desktop DB /Desktop DF /Developer /Library /Network /System /User Guides And Information /Users /Volumes /bin /config /cores /dev /etc /home /javaout.txt /mach.sym /mach_kernel /mach_kernel.ctfsys /net /nullnull /opt /private /qqq /sbin /sw /tmp /usr /var be careful when drawing these CVS/ graphics/ perl/ table/ test/
+4                      RS_bgMask                                            rxvt.h:#define RS_bgMask 0x00003f80UL // 128 colors
+4                      RS_fgMask                                            rxvt.h:#define RS_fgMask 0x0000007fUL // 128 colors
+4                      Sel_incr                                            rxvt.h:#define Sel_incr 0x02 /Applications /Desktop DB /Desktop DF /Developer /Library /Network /System /User Guides And Information /Users /Volumes /bin /config /cores /dev /etc /home /javaout.txt /mach.sym /mach_kernel /mach_kernel.ctfsys /net /nullnull /opt /private /qqq /sbin /sw /tmp /usr /var incremental selection CVS/ graphics/ perl/ table/ test/
+4                      Sel_normal                                            rxvt.h:#define Sel_normal 0x01 /Applications /Desktop DB /Desktop DF /Developer /Library /Network /System /User Guides And Information /Users /Volumes /bin /config /cores /dev /etc /home /javaout.txt /mach.sym /mach_kernel /mach_kernel.ctfsys /net /nullnull /opt /private /qqq /sbin /sw /tmp /usr /var normal selection CVS/ graphics/ perl/ table/ test/
+4                      Width                                            rxvt.h:#define Width2Pixel(n) ((int32_t)(n) CVS Makefile Makefile.in Makefile~ background.C background.h background.o callback.h cleaned_defs command.C command.C.js command.C.js~ command.h command.o count_macrodefs count_macrodefs~ encoding.C encoding.h encoding.o ev_cpp.C ev_cpp.h ev_cpp.o fdpass.C fdpass.o feature.h gencompose genlinedraw gentables graphics hookinc.h init.C init.h init.o iom_perl.h iom_perl.xs keyboard.C keyboard.h keyboard.o keyboard_from_command.C2js keyboard_from_command.C2js~ libptytty.h logging.C logging.o macro_usages macrodefs macrodefs.bash macrodefs.bash~ main.C main.o misc.C misc.o optinc.h perl proxy.C proxy.o ptytty.C ptytty.h ptytty.o ptytty_conf.h raw_defs rsinc.h rxvt rxvt.C rxvt.h rxvt.o rxvtc rxvtc.C rxvtc.o rxvtd rxvtd.C rxvtd.o rxvtdaemon.C rxvtdaemon.h rxvtdaemon.o rxvtfont.C rxvtfont.h rxvtfont.o rxvtperl.h rxvtperl.xs rxvttoolkit.C rxvttoolkit.h rxvttoolkit.o rxvtutil.C rxvtutil.h rxvtutil.o salloc.C salloc.h screen.C screen.C.js screen.o scrollbar-next.C scrollbar-next.o scrollbar-plain.C scrollbar-plain.o scrollbar-rxvt.C scrollbar-rxvt.o scrollbar-xterm.C scrollbar-xterm.o scrollbar.C scrollbar.h scrollbar.o table test typemap typemap.iom urxvt.pm version.h xdefaults.C xdefaults.o (int32_t)fwidth)
+4                      dLocal                                            rxvt.h:#define dLocal(type,name) type const name = this->name
+4                      expect_true                                            rxvtutil.h:#define expect_true(expr) expect ((expr) != 0, 1)
+5                      IN_RANGE_INC                                            rxvtutil.h:#define IN_RANGE_INC(val,beg,end) \
+5                      MetaMask                                            keyboard.h:#define MetaMask 0x0100
+5                      PrivMode_MouseAnyEvent                                            rxvt.h:#define PrivMode_MouseAnyEvent (1UL<<21)
+5                      PrivMode_MouseBtnEvent                                            rxvt.h:#define PrivMode_MouseBtnEvent (1UL<<20)
+5                      ROWCOL_IN_ROW_AT_OR_AFTER                                            screen.C:#define ROWCOL_IN_ROW_AT_OR_AFTER(X, Y) \
+5                      RS_Italic                                            rxvt.h:#define RS_Italic 0x00008000UL // value 2
+5                      RS_None                                            rxvt.h:#define RS_None 0
+5                      RS_SAME                                            rxvt.h:#define RS_SAME(a,b) (!(((a) ^ (b)) & ~RS_Careful))
+5                      UBUFSIZ                                            rxvt.h:#define UBUFSIZ 2048 // character buffer
+6                      KBUFSZ                                            rxvt.h:#define KBUFSZ 512 // size of keyboard mapping buffer
+6                      PrivMode_MouseX                                            rxvt.h:#define PrivMode_MouseX10 (1UL<<12) rxvt.h:#define PrivMode_MouseX11 (1UL<<13)
+6                      RS_Bold                                            rxvt.h:#define RS_Bold 0x00004000UL // value 1
+6                      Screen_VisibleCursor                                            rxvt.h:#define Screen_VisibleCursor (1<<1) /Applications /Desktop DB /Desktop DF /Developer /Library /Network /System /User Guides And Information /Users /Volumes /bin /config /cores /dev /etc /home /javaout.txt /mach.sym /mach_kernel /mach_kernel.ctfsys /net /nullnull /opt /private /qqq /sbin /sw /tmp /usr /var cursor visible? CVS/ graphics/ perl/ table/ test/
+7                      Height                                            rxvt.h:#define Height2Pixel(n) ((int32_t)(n) CVS Makefile Makefile.in Makefile~ background.C background.h background.o callback.h cleaned_defs command.C command.C.js command.C.js~ command.h command.o count_macrodefs count_macrodefs~ encoding.C encoding.h encoding.o ev_cpp.C ev_cpp.h ev_cpp.o fdpass.C fdpass.o feature.h gencompose genlinedraw gentables graphics hookinc.h init.C init.h init.o iom_perl.h iom_perl.xs keyboard.C keyboard.h keyboard.o keyboard_from_command.C2js keyboard_from_command.C2js~ libptytty.h logging.C logging.o macro_usages macrodefs macrodefs.bash macrodefs.bash~ main.C main.o misc.C misc.o optinc.h perl proxy.C proxy.o ptytty.C ptytty.h ptytty.o ptytty_conf.h raw_defs rsinc.h rxvt rxvt.C rxvt.h rxvt.o rxvtc rxvtc.C rxvtc.o rxvtd rxvtd.C rxvtd.o rxvtdaemon.C rxvtdaemon.h rxvtdaemon.o rxvtfont.C rxvtfont.h rxvtfont.o rxvtperl.h rxvtperl.xs rxvttoolkit.C rxvttoolkit.h rxvttoolkit.o rxvtutil.C rxvtutil.h rxvtutil.o salloc.C salloc.h screen.C screen.C.js screen.o scrollbar-next.C scrollbar-next.o scrollbar-plain.C scrollbar-plain.o scrollbar-rxvt.C scrollbar-rxvt.o scrollbar-xterm.C scrollbar-xterm.o scrollbar.C scrollbar.h scrollbar.o table test typemap typemap.iom urxvt.pm version.h xdefaults.C xdefaults.o (int32_t)fheight)
+7                      ROWCOL_IS_AFTER                                            screen.C:#define ROWCOL_IS_AFTER(X, Y) \
+7                      ROWCOL_IS_BEFORE                                            screen.C:#define ROWCOL_IS_BEFORE(X, Y) \
+7                      RS_Blink                                            rxvt.h:#define RS_Blink 0x00010000UL // blink
+8                      FONTSET                                            rxvt.h:#define FONTSET(style) FONTSET_of (this, style)
+8                      SET_FONT                                            rxvt.h:#define SET_FONT(x,fid) (((x) & ~RS_fontMask) | ((fid) << RS_fontShift))
+9                      Col                                            rxvt.h:#define Col2Pixel(col) ((int32_t)Width2Pixel(col))
+9                      IN_RANGE_EXC                                            rxvtutil.h:#define IN_RANGE_EXC(val,beg,end) \
+9                      make_byte                                            command.C:#define make_byte(b7,b6,b5,b4,b3,b2,b1,b0) \
+10                     ZERO_SCROLLBACK                                            screen.C:#define ZERO_SCROLLBACK() \
+11                     DEFAULT_RSTYLE                                            rxvt.h:#define DEFAULT_RSTYLE (RS_None | Color_fg | (Color_bg << Color_Bits))
+11                     ISSET_PIXCOLOR                                            rxvt.h:#define ISSET_PIXCOLOR(idx) (!!rs[Rs_color + (idx)])
+11                     RS_RVid                                            rxvt.h:#define RS_RVid 0x00020000UL // reverse video
+11                     RS_Uline                                            rxvt.h:#define RS_Uline 0x00040000UL // underline
+11                     Screen_WrapNext                                            rxvt.h:#define Screen_WrapNext (1<<4) /Applications /Desktop DB /Desktop DF /Developer /Library /Network /System /User Guides And Information /Users /Volumes /bin /config /cores /dev /etc /home /javaout.txt /mach.sym /mach_kernel /mach_kernel.ctfsys /net /nullnull /opt /private /qqq /sbin /sw /tmp /usr /var need to wrap for next char? CVS/ graphics/ perl/ table/ test/
+11                     VT                                            command.h:#define VT100_ANS "\033[?1;2c" /Applications /Desktop DB /Desktop DF /Developer /Library /Network /System /User Guides And Information /Users /Volumes /bin /config /cores /dev /etc /home /javaout.txt /mach.sym /mach_kernel /mach_kernel.ctfsys /net /nullnull /opt /private /qqq /sbin /sw /tmp /usr /var vt100 answerback CVS/ graphics/ perl/ table/ test/
+12                     CLEAR_SELECTION                                            screen.C:#define CLEAR_SELECTION() \
+15                     MOD                                            feature.h:/* #define MOD4_TAB_MAKES_META CVS/ graphics/ perl/ table/ test/ rxvtutil.h:#define MOD(m,n) (((m) + (n)) % (n))
+15                     Row                                            rxvt.h:#define Row2Pixel(row) ((int32_t)Height2Pixel(row))
+18                     expect_false                                            rxvtutil.h:#define expect_false(expr) expect ((expr) != 0, 0)
+32                     Pixel                                            rxvt.h:#define Pixel2Col(x) Pixel2Width((int32_t)(x)) rxvt.h:#define Pixel2Row(y) Pixel2Height((int32_t)(y)) rxvt.h:#define Pixel2Width(x) ((int32_t)(x) / (int32_t)fwidth) rxvt.h:#define Pixel2Height(y) ((int32_t)(y) / (int32_t)fheight)
+32                     line_t                                            rxvtperl.xs:#define line_t perl_line_t
+47                     ISO_                                            command.C:#define ISO_14755_STARTED 0x80000000UL command.C:#define ISO_14755_51 0x40000000UL // basic (section 5.1) command.C:#define ISO_14755_52 0x20000000UL // keycap (section 5.2) command.C:#define ISO_14755_54 0x10000000UL // code feedback (section 5.4) command.C:#define ISO_14755_MASK 0x0fffffffUL
+60                     ROW                                            rxvt.h:#define ROW(n) ROW_of (this, n) rxvtperl.xs:#define ROW(n) THIS->row_buf [LINENO (n)]
+                                                               
