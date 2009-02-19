@@ -1,3 +1,14 @@
+/*
+
+(fset 'paddy-next-digitUL
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("\223[0-9a-f]UL" 0 "%d")) arg)))
+(local-set-key (kbd "H-C-n")  'paddy-next-digitUL)
+(fset 'paddy-remove-UL
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([1 11 25 32 32 47 47 32 25 32 35 35 35 32 114 101 109 111 118 101 95 85 76 1 134217747 91 48 45 57 97 45 102 93 85 76 13 backspace backspace 1 14] 0 "%d")) arg)))
+(local-set-key (kbd "H-C-j") 'paddy-remove-UL)
+
+ */
+
 #ifndef RXVT_H_                /* include once only */
 #define RXVT_H_
 
@@ -312,12 +323,12 @@ enum {
 
 #define RS_None                 0
 
-#define RS_fgMask               0x0000007fUL    // 128 colors
+#define RS_fgMask               0x0000007f    // 128 colors  // #define RS_fgMask               0x0000007fUL    // 128 colors ### remove_UL
 #define RS_bgMask               0x00003f80    // 128 colors  //FIXED c_style_UL #define RS_bgMask               0x00003f80UL    // 128 colors
 
 // font styles
 #define RS_Bold                 0x00004000    // value 1  //FIXED c_style_UL #define RS_Bold                 0x00004000UL    // value 1
-#define RS_Italic		0x00008000UL    // value 2
+#define RS_Italic		0x00008000    // value 2  // #define RS_Italic		0x00008000UL    // value 2 ### remove_UL
 
 // fake styles
 #define RS_Blink                0x00010000    // blink  //FIXED c_style_UL #define RS_Blink                0x00010000UL    // blink
@@ -519,7 +530,7 @@ enum {
 
 /* DEC private modes */
 /*
-#define PrivMode_132            (1UL<<0)
+#define PrivMode_132            (1UL<<0)  
 #define PrivMode_132OK          (1UL<<1)
 #define PrivMode_rVideo         (1UL<<2)
 #define PrivMode_relOrigin      (1UL<<3)
@@ -738,7 +749,8 @@ struct line_t
 };
 
 */
-var line_t =
+    line_t = function();
+line_t.prototype =
 {
     t: "" , //FIXED   text_t *t; // terminal the text
     r: "" , //FIXED   rend_t *r; // rendition, uses RS_ flags
@@ -746,11 +758,11 @@ var line_t =
     f: "" , //FIXED  uint32_t f; // flags
     
     is_longer : function(set){  //FIXME overloaded function, check js translation
-        if(set){
+        if(set){  //why two if(set)'s??? FIXME
             if (set)
-                f |= LINE_LONGER;
+                this.f |= LINE_LONGER;
             else
-                f &= ~LINE_LONGER;
+                this.f &= ~LINE_LONGER;
 
         }
         else {
@@ -759,24 +771,22 @@ var line_t =
     },
 
     clear : function ()   { //FIXME should this whole thing be an object, probably
-     t = 0;
-     r = 0;
-     l = 0;
-     f = 0;
-   }
+     this.t = 0;
+     this.r = 0;
+     this.l = 0;
+     this.f = 0;
+    },
 
-    //FIXME
-   void touch () // call whenever a line is changed/touched/updated
+    //FIXME operator overloading
+    touch : function (col) // call whenever a line is changed/touched/updated  //   void touch () // call whenever a line is changed/touched/updated
    {
 #if ENABLE_PERL
      f &= ~LINE_FILTERED;
 #endif
-   }
-
-   void touch (int col)
-   {
+if(typeof col != undefined){
      max_it (l, col);
      touch ();
+}
    }
 };
 
@@ -909,29 +919,29 @@ typedef struct
 
 struct TermWin_t
 {
-  int            width;         /* window width                    [pixels] */
-  int            height;        /* window height                   [pixels] */
-  int            fwidth;        /* font width                      [pixels] */
-  int            fheight;       /* font height                     [pixels] */
-  int            fbase;         /* font ascent (baseline)          [pixels] */
-  int            ncol;          /* window columns              [characters] */
-  int            nrow;          /* window rows                 [characters] */
-  int            focus;         /* window has focus                         */
-  int            mapped;        /* window state mapped?                     */
-  int            int_bwidth;    /* internal border width                    */
-  int            ext_bwidth;    /* external border width                    */
-  int            lineSpace;     /* number of extra pixels between rows      */
-  int            saveLines;     /* number of lines that fit in scrollback   */
-  int            total_rows;    /* total number of rows in this terminal    */
-  int            term_start;    /* term lines start here                    */
-  int            view_start;    /* scrollback view starts here              */
-  int            top_row;       /* topmost row index of scrollback          */
-  Window         parent[6];     /* parent identifiers - we're parent[0]     */
-  Window         vt;            /* vt100 window                             */
-  GC             gc;            /* GC for drawing                           */
-  Pixmap         pixmap;
-  rxvt_drawable *drawable;
-  rxvt_fontset  *fontset[4];
+    width: "",                    //  int                     window width                    [pixels]
+        height: "",                    //  int                    window height                   [pixels]
+        fwidth: "",                    //  int                    font width                      [pixels]
+        fheight: "",                    //  int                   font height                     [pixels]
+        fbase: "",                    //  int                     font ascent (baseline)          [pixels]
+        ncol: "",                    //  int                      window columns              [characters]
+        nrow: "",                    //  int                      window rows                 [characters]
+        focus: "",                    //  int                     window has focus                        
+        mapped: "",                    //  int                    window state mapped?                    
+        bwidth: "",                    //  int            int_    internal border width                   
+        bwidth: "",                    //  int            ext_    external border width                   
+        lineSpace: "",                    //  int                 number of extra pixels between rows     
+        saveLines: "",                    //  int                 number of lines that fit in scrollback  
+        rows: "",                    //  int            total_    total number of rows in this terminal   
+        start: "",                    //  int            term_    term lines start here                   
+        start: "",                    //  int            view_    scrollback view starts here             
+        row: "",                    //  int            top_       topmost row index of scrollback         
+        6]: "",                    //  Window         parent[     parent identifiers - we're parent[0]    
+                vt: "",                    //  Window                     vt100 window                            
+                gc: "",                    //  GC                         GC for drawing                          
+                pixmap: "",                    //  Pixmap         
+                drawable: [], drawable_i:0,                    //  rxvt_drawable *
+                fontset : new Array(4), fontset_i:0                    //  rxvt_fontset  *fontset[4]
 };
 
 /*
@@ -952,40 +962,46 @@ struct TermWin_t
  * * Note: col == -1 ==> we're left of screen
  *
  */
+/*
 struct screen_t
 {
-  row_col_t       cur;          /* cursor position on the screen             */
-  int             tscroll;      /* top of settable scroll region             */
-  int             bscroll;      /* bottom of settable scroll region          */
-  unsigned int    charset;      /* character set number [0..3]               */
-  unsigned int    flags;        /* see below                                 */
-  row_col_t       s_cur;        /* saved cursor position                     */
-  unsigned int    s_charset;    /* saved character set number [0..3]         */
+  row_col_t       cur;          cursor position on the screen           
+  int             tscroll;      top of settable scroll region           
+  int             bscroll;      bottom of settable scroll region        
+  unsigned int    charset;      character set number [0..3]             
+  unsigned int    flags;        see below                               
+  row_col_t       s_cur;        saved cursor position                   
+  unsigned int    s_charset;    saved character set number [0..3]       
   char            s_charset_char;
-  rend_t          s_rstyle;     /* saved rendition style                     */
+  rend_t          s_rstyle;     saved rendition style                
 };
+*/
 
-enum selection_op_t
-{
-  SELECTION_CLEAR = 0,  /* nothing selected                          */
-  SELECTION_INIT,       /* marked a point                            */
-  SELECTION_BEGIN,      /* started a selection                       */
-  SELECTION_CONT,       /* continued selection                       */
-  SELECTION_DONE        /* selection put in CUT_BUFFER0              */
-};
+screen_t = function();
+screen_t.prototype ={
+    cur: "",                    //     row_col_t  cursor position on the screen            
+    tscroll: "",                    //  int                            top of settable scroll region            
+    bscroll: "",                    //  int                            bottom of settable scroll region         
+    charset: "",                    //  unsigned int                   character set number [0..3]              
+    flags: "",                    //  unsigned int                     see below                                
+    cur: "",                    //  row_col_t       s_                 saved cursor position                    
+    charset: "",                    //  unsigned int    s_             saved character set number [0..3]        
+    s_charset_char : "", //  char
+    rstyle: ""                    //  rend_t          s_                           saved rendition style                  
+};                                      
 
-struct selection_t
-{
-  wchar_t          *text;       /* selected text                             */
-  unsigned int      len;        /* length of selected text                   */
-  unsigned int      screen;     /* screen being used                         */
-  unsigned int      clicks;     /* number of clicks                          */
-  selection_op_t    op;         /* current operation                         */
-  bool              rect;       /* rectangular selection?                    */
-  row_col_t         beg;        /* beginning of selection   <= mark          */
-  row_col_t         mark;       /* point of initial click   <= end           */
-  row_col_t         end;        /* one character past end point              */
-};
+
+
+
+
+
+
+
+
+
+//enum selection_op_t
+
+//struct selection_t
 
 /* ------------------------------------------------------------------------- */
 
@@ -1008,25 +1024,47 @@ Opt_count
 };
 
 /* ------------------------------------------------------------------------- */
-
+/*
 struct rxvt_vars : TermWin_t
 {
   scrollBar_t     scrollBar;
   uint8_t         options[(Opt_count + 7) >> 3];
   XSizeHints      szHint;
   rxvt_color     *pix_colors;
-  Cursor          TermWin_cursor;       /* cursor for vt window */
+  Cursor          TermWin_cursor;       // cursor for vt window 
   int             numlock_state;
   line_t         *row_buf;      // all lines, scrollback + terminal, circular, followed by temp_buf
   line_t         *drawn_buf;    // text on screen
   line_t         *swap_buf;     // lines for swap buffer
-  char           *tabs;         /* per location: 1 == tab-stop               */
+  char           *tabs;         // per location: 1 == tab-stop               
   screen_t        screen;
   screen_t        swap;
   selection_t     selection;
   rxvt_color      pix_colors_focused[TOTAL_COLORS];
 #ifdef OFF_FOCUS_FADING
   rxvt_color      pix_colors_unfocused[TOTAL_COLORS];
+#endif
+};
+*/
+rxvt_vars = function();
+rxvt_vars.prototype={
+    scrollBar : "", //   scrollBar_t 
+    options : [(Opt_count + 7) >> 3], //     uint8_t
+    szHint : "" ,    //XSizeHints      
+    pix_colors : [], pix_colors_i:0,   //rxvt_color     * 
+    TermWin_cursor : "",  //Cursor          ;       /* cursor for vt window */
+    numlock_state: 0, //int
+    row_buf : [], row_buf_i:0,   //line_t*      // all lines, scrollback + terminal, circular, followed by temp_buf
+    drawn_buf : [], drawn_buf_i:0, //  line_t         *     // text on screen
+    swap_buf : [] , swap_buf_i:0 , //  line_t         * ;     // lines for swap buffer
+    tabs: [], tabs_i:0,        //    char           *   /* per location: 1 == tab-stop               */
+    screen: "", //    screen_t        
+    swap: "", //     screen_t        
+     selection : "", //     selection_t
+    pix_colors_focused: new Array(TOTAL_COLORS) //    rxvt_color
+#ifdef OFF_FOCUS_FADING
+    ,
+    pix_colors_unfocused: new Array(TOTAL_COLORS)  //    rxvt_color
 #endif
 };
 
