@@ -238,8 +238,7 @@ rxvt_term.scr_reset =function(){
 //CMNT: possible_pointer ^|             swap_buf  = (line_t *)rxvt_calloc (nrow             , sizeof (line_t)); 
       swap_buf  = (line_t  ) rxvt_calloc (nrow             , sizeof (line_t));
 
-//CMNT: c_keyword ^|             for (int row = nrow; row--; ){ 
-      for ( row = nrow; row--; ){
+       for (var row = nrow; row--; ){  //             for (int row = nrow; row--; ){   ### js_style_variables  c_keyword 
           scr_blank_screen_mem (ROW (row), DEFAULT_RSTYLE);
           scr_blank_screen_mem (swap_buf [row], DEFAULT_RSTYLE);
           scr_blank_screen_mem (drawn_buf[row], DEFAULT_RSTYLE);
@@ -646,7 +645,7 @@ rxvt_term.scr_change_screen =function( scrn){
 }
 
 // clear WrapNext indicator, solidifying position on next line
-//fixed: js_style_functions c_keyword ^|       void rxvt_term::scr_do_wrap (){ 
+//FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_do_wrap (){ 
 rxvt_term.scr_do_wrap =function(){ 
   if (!(screen.flags & Screen_WrapNext))
     return;
@@ -794,24 +793,21 @@ rxvt_term.scr_scroll_text =function( row1,  row2,  count){
       // use a simple and robust scrolling algorithm, this
       // part of scr_scroll_text is not time-critical.
 
-//CMNT: js_style_variables ^|             int rows = row2 - row1 + 1; 
- var rows= row2 - row1 + 1; 
+       var rows= row2 - row1 + 1;   //             int rows = row2 - row1 + 1;   ### js_style_variables  js_style_variables 
 
       min_it (count, rows);
 
 //CMNT: possible_pointer ^|             line_t *temp_buf = row_buf + total_rows; 
       line_t  t emp_buf = row_buf + total_rows;
 
-//CMNT: c_keyword ^|             for (int row = 0; row < rows; row++){ 
-      for ( row = 0; row < rows; row++){
+       for (var row = 0; row < rows; row++){  //             for (int row = 0; row < rows; row++){   ### js_style_variables  c_keyword 
           temp_buf [row] = ROW(row1 + (row + count + rows) % rows);
 
           if (!IN_RANGE_EXC (row + count, 0, rows))
             scr_blank_screen_mem (temp_buf [row], rstyle);
         }
 
-//CMNT: c_keyword ^|             for (int row = 0; row < rows; row++) 
-      for ( row = 0; row < rows; row++)
+       for (var row = 0; row < rows; row++)  //             for (int row = 0; row < rows; row++)   ### js_style_variables  c_keyword 
         ROW(row1 + row) = temp_buf [row];
     }
 
@@ -2453,8 +2449,9 @@ rxvt_term.scr_refresh =function(){
   num_scr_allow = 1;
 }
 
+//FIXME overloaded_function
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_remap_chars (line_t &l){ 
-rxvt_term.scr_remap_s =function(line_t &l){ 
+rxvt_term.scr_remap_chars =function(line_t &l){ 
   if (!l.t)
     return;
 
@@ -2467,21 +2464,16 @@ rxvt_term.scr_remap_s =function(line_t &l){
 
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_remap_chars (){ 
 rxvt_term.scr_remap_chars =function(){ 
-//CMNT: c_keyword ^|         for (int i = total_rows; i--; ) 
-  for ( i = total_rows; i--; )
-//CMNT: c_keyword ^|           scr_remap_chars (row_buf [i]); 
-    scr_remap_chars (row_buf [i]);
+   for ( var  i = total_rows; i--; )  //         for (int i = total_rows; i--; )   ### js_style_variables  c_keyword 
+    scr_remap_chars (row_buf [i]); 
 
-//CMNT: c_keyword ^|         for (int i = nrow; i--; ){ 
-  for ( i = nrow; i--; ){
-//CMNT: c_keyword ^|             scr_remap_chars (drawn_buf [i]); 
-      scr_remap_chars (drawn_buf [i]);
-//CMNT: c_keyword ^|             scr_remap_chars (swap_buf [i]); 
-      scr_remap_chars (swap_buf [i]);
+   for (var i = nrow; i--; ){  //         for (int i = nrow; i--; ){   ### js_style_variables  c_keyword 
+    scr_remap_chars (drawn_buf [i]); 
+      scr_remap_chars (swap_buf [i]); 
     }
 }
 
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_recolour (){ 
+//REWRITE: js_style_functions c_keyword ^|       void rxvt_term::scr_recolour (){ 
 rxvt_term.scr_recolour =function(){ 
 #ifdef HAVE_BG_PIXMAP
   bgPixmap.apply ();
