@@ -40,6 +40,15 @@
 (fset 'paddy-next-possible_pointer
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("possible_pointer" 0 "%d")) arg)))
 
+(fset 'paddy-inline-CMNT2
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([1 19 94 124 13 11 14 5 32 32 47 47 25 32 32 35 35 35 16 5 1 134217830 6 67108896 19 94 2 2 24 11 25 14 5 32 25 32 1 16 11 11] 0 "%d")) arg)))
+(fset 'paddy-next-CMNT
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("CMNT" 0 "%d")) arg)))
+(local-set-key (kbd "H-C-n") 'paddy-next-CMNT)
+  (modify-syntax-entry ?\_ "w"  c-mode-syntax-table)
+  (set-syntax-table c-mode-syntax-table)
+
+
 
 tilde is bitwise ( COMPLEMENT) or (NOT) operator
 &= is directly equivalent in js
@@ -139,15 +148,19 @@ rxvt_term.scr_blank_line =function(l,   col,   width,  efs){
   if (!l.t){
       lalloc (l);
       col = 0;
-      width = ncol;
+      width = ncol;  //FIXME where does NCOL come from?
     }
 
   l.touch ();
 
   efs &= ~RS_baseattrMask; // remove italic etc. fontstyles
-  efs = SET_FONT (efs, FONTSET (efs)->find_font (' '));
 
-  var et_i = col  //         text_t *et = l.t + col;   ###  possible_pointer FIXME where is l.t an array, what should  I use for an indice of et??
+  efs = SET_FONT (efs, FONTSET (efs).find_font (' '));  //  efs = SET_FONT (efs, FONTSET (efs)->find_font (' '));
+  //  efs = (((efs) & ~0xff000000UL /* plenty(?) of fonts, includes RS_Careful*/) | (((this)->fontset[0]->find_font (' ')) << 24));
+  // the above line is the macro expansion of SET_FONT FONTSET 
+
+
+  var et_i = col;  //         text_t *et = l.t + col;   ###  possible_pointer FIXME where is l.t an array, what should  I use for an indice of et??
   var er_i = col;  //         rend_t *er = l.r + col;   ###  c_keyword possible_pointer 
 
   while (width--){
@@ -174,7 +187,8 @@ rxvt_term.scr_kill_char =function(line_t &l,  col){
     col--;
 
   var rend= l.r[col] & ~RS_baseattrMask;   //         rend_t rend = l.r[col] & ~RS_baseattrMask;   ###  js_style_variables 
-  rend = SET_FONT (rend, FONTSET (rend)->find_font (' '));  //FIXME is this a cast, how does the -> interact with the FONTSET macro???
+  //FIXME is this a cast, how does the -> interact with the FONTSET macro???
+  rend = SET_FONT (rend, FONTSET (rend).find_font (' ')); //  FIXME check macroexpansion rend = SET_FONT (rend, FONTSET (rend)->find_font (' '));  
 
   // found start, nuke
   do {
@@ -188,9 +202,17 @@ rxvt_term.scr_kill_char =function(line_t &l,  col){
  *                          SCREEN INITIALISATION                            * 
  * ------------------------------------------------------------------------- */ 
 
+my_alloc = function(num, obj){
+
+  var ptr = [], ptr_i = 0;
+  for(;ptr_i < num; ptr_i++){
+    ptr[ptr_i]=new obj();
+  }
+  return ptr;
+}
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_reset (){ 
 rxvt_term.scr_reset =function(){ 
-  view_start = 0;
+  view_start = 0;  // I think these are global variables ???
   num_scr = 0;
 
   if (ncol == 0)
@@ -227,16 +249,15 @@ rxvt_term.scr_reset =function(){
 
 
       //this code basically sets up the rendering area, alloc has no special signficance to worry about
+      // I don't understand the calls to rxvt_salloc, talloc and ralloc are never used
+      // ahh rxvt_salloc is used from lalloc
 
+        //   talloc = new rxvt_salloc (ncol * sizeof (text_t));   ###  possible_pointer   FIXME what to do with allocs?
+        //    ralloc = new rxvt_salloc (ncol * sizeof (rend_t));   ###  possible_pointer remove_casts 
 
-      talloc = new rxvt_salloc (ncol    sizeof (text_t));  //             talloc = new rxvt_salloc (ncol * sizeof (text_t));   ###  possible_pointer   FIXME what to do with allocs?
-      ralloc = new rxvt_salloc (ncol    sizeof );  //             ralloc = new rxvt_salloc (ncol * sizeof (rend_t));   ###  possible_pointer remove_casts 
-
-      row_buf   = (line_t  ) rxvt_calloc (total_rows + nrow, sizeof (line_t));  //             row_buf   = (line_t *)rxvt_calloc (total_rows + nrow, sizeof (line_t));   ###  possible_pointer 
-//CMNT: possible_pointer ^|             drawn_buf = (line_t *)rxvt_calloc (nrow             , sizeof (line_t)); 
-      drawn_buf = (line_t  ) rxvt_calloc (nrow             , sizeof (line_t));
-//CMNT: possible_pointer ^|             swap_buf  = (line_t *)rxvt_calloc (nrow             , sizeof (line_t)); 
-      swap_buf  = (line_t  ) rxvt_calloc (nrow             , sizeof (line_t));
+      row_buf   = my_alloc (total_rows + nrow, line_t), row_buf_i=0;  //     row_buf   = (line_t *)rxvt_calloc (total_rows + nrow, sizeof (line_t));   ###  possible_pointer 
+      drawn_buf = my_alloc(nrow, line_t), drawn_buf_i=0;  //   drawn_buf = (line_t *)rxvt_calloc (nrow             , sizeof (line_t));   ###  possible_pointer 
+      swap_buf  = my_alloc (nrow, line_t), swap_buf_i=0;  //             swap_buf  = (line_t *)rxvt_calloc (nrow             , sizeof (line_t));   ###  possible_pointer 
 
        for (var row = nrow; row--; ){  //             for (int row = nrow; row--; ){   ### js_style_variables  c_keyword 
           scr_blank_screen_mem (ROW (row), DEFAULT_RSTYLE);
@@ -244,7 +265,8 @@ rxvt_term.scr_reset =function(){
           scr_blank_screen_mem (drawn_buf[row], DEFAULT_RSTYLE);
         }
 
-      memset (charsets, 'B', sizeof (charsets)); 
+
+      charsets= memset (charsets, 'B', charsets.length);   //memset (charsets, 'B', sizeof (charsets)); 
       rstyle = DEFAULT_RSTYLE;
       screen.flags = Screen_DefaultFlags;
       screen.cur.row = screen.cur.col = 0;
@@ -271,57 +293,49 @@ rxvt_term.scr_reset =function(){
       /*
        * add or delete rows as appropriate 
        */
-
-//CMNT: possible_pointer ^|             rxvt_salloc *old_ta = talloc; talloc = new rxvt_salloc (ncol * sizeof (text_t)); 
-      rxvt_salloc  o ld_ta = talloc; talloc = new rxvt_salloc (ncol    sizeof (text_t));
-//CMNT: possible_pointer remove_casts ^|             rxvt_salloc *old_ra = ralloc; ralloc = new rxvt_salloc (ncol * sizeof (rend_t)); 
-      rxvt_salloc  o ld_ra = ralloc; ralloc = new rxvt_salloc (ncol    sizeof );
-
+    /*
+      rxvt_salloc *old_ta = talloc; talloc = new rxvt_salloc (ncol * sizeof (text_t)); 
+      rxvt_salloc *old_ra = ralloc; ralloc = new rxvt_salloc (ncol * sizeof (rend_t)); 
+    */
 #if 0
       if (nrow < prev_nrow){
-//CMNT: c_keyword ^|                 for (int row = nrow; row < prev_nrow; row++){ 
-          for ( row = nrow; row < prev_nrow; row++){
-              lfree (swap_buf [row]);
-              lfree (drawn_buf[row]);
+        for ( var row = nrow; row < prev_nrow; row++){  //                 for (int row = nrow; row < prev_nrow; row++){   ###  c_keyword 
+          delete (swap_buf [row]);  //              lfree (swap_buf [row]);
+          delete (drawn_buf[row]);  //              lfree (drawn_buf[row]);
             }
         }
 #endif
 
-//CMNT: possible_pointer ^|             drawn_buf = (line_t *)rxvt_realloc (drawn_buf, nrow * sizeof (line_t)); 
-      drawn_buf = (line_t  ) rxvt_realloc (drawn_buf, nrow    sizeof (line_t));
-//CMNT: possible_pointer ^|             swap_buf  = (line_t *)rxvt_realloc (swap_buf , nrow * sizeof (line_t)); 
-      swap_buf  = (line_t  ) rxvt_realloc (swap_buf , nrow    sizeof (line_t));
+//FIXED: possible_pointer ^|             drawn_buf = (line_t *)rxvt_realloc (drawn_buf, nrow * sizeof (line_t)); 
+//FIXED: possible_pointer ^|             swap_buf  = (line_t *)rxvt_realloc (swap_buf , nrow * sizeof (line_t)); 
+      drawn_buf = my_alloc(nrow, line_t);
+      swap_buf  = my_alloc(nrow, line_t);
 
-//CMNT: c_keyword ^|             for (int row = min (nrow, prev_nrow); row--; ){ 
-      for ( row = min (nrow, prev_nrow); row--; ){
-          lresize (drawn_buf[row]);
-          lresize (swap_buf [row]);
+
+
+      for (var row = min (nrow, prev_nrow); row--; ){  //             for (int row = min (nrow, prev_nrow); row--; ){   ###  c_keyword 
+        lresize (drawn_buf[row]);  //          lresize (drawn_buf[row]);
+        lresize (swap_buf [row]);  //          lresize (swap_buf [row]);
         }
 
-//CMNT: c_keyword ^|             for (int row = prev_nrow; row < nrow; row++){ 
-      for ( row = prev_nrow; row < nrow; row++){
+      for ( row = prev_nrow; row < nrow; row++){  //             for (int row = prev_nrow; row < nrow; row++){   ###  c_keyword 
           swap_buf [row].clear (); scr_blank_screen_mem (swap_buf [row], DEFAULT_RSTYLE);
           drawn_buf[row].clear (); scr_blank_screen_mem (drawn_buf[row], DEFAULT_RSTYLE);
         }
 
-//CMNT: possible_pointer ^|             line_t *old_buf = row_buf; 
-      line_t  o ld_buf = row_buf;
-//CMNT: possible_pointer ^|             row_buf = (line_t *)rxvt_calloc (total_rows + nrow, sizeof (line_t)); 
-      row_buf = (line_t  ) rxvt_calloc (total_rows + nrow, sizeof (line_t));
+      var  old_buf = row_buf, old_buf_i=row_buf_i;  //             line_t *old_buf = row_buf;     ###  possible_pointer 
+      row_buf   = my_alloc (total_rows + nrow, line_t), row_buf_i=0;     //  row_buf = (line_t *)rxvt_calloc (total_rows + nrow, sizeof (line_t));   ###  possible_pointer 
 
-//CMNT: js_style_variables ^|             int p    = MOD (term_start + prev_nrow, prev_total_rows);  // previous row 
- var p= MOD (term_start + prev_nrow, prev_total_rows);  // previous row 
-//CMNT: js_style_variables ^|             int pend = MOD (term_start + top_row  , prev_total_rows); 
- var pend= MOD (term_start + top_row  , prev_total_rows); 
-//CMNT: js_style_variables ^|             int q    = total_rows; // rewrapped row 
- var q= total_rows; // rewrapped row 
+      var p= MOD (term_start + prev_nrow, prev_total_rows);  // previous row   //             int p    = MOD (term_start + prev_nrow, prev_total_rows);  // previous row   ###  js_style_variables 
+      var pend= MOD (term_start + top_row  , prev_total_rows);   //             int pend = MOD (term_start + top_row  , prev_total_rows);   ###  js_style_variables 
+ var q= total_rows; // rewrapped row   //             int q    = total_rows; // rewrapped row   ###  js_style_variables 
 
       if (top_row){
           // Re-wrap lines. This is rather ugly, possibly because I am too dumb
           // to come up with a lean and mean algorithm.
           // TODO: maybe optimise when width didn't change
 
-          row_col_t ocur = screen.cur;
+         var  ocur = screen.cur;  //          row_col_t ocur = screen.cur;
           ocur.row = MOD (term_start + ocur.row, prev_total_rows);
 
           do
@@ -330,10 +344,8 @@ rxvt_term.scr_reset =function(){
 #ifdef DEBUG_STRICT
               assert (old_buf [MOD (p, prev_total_rows)].t);
 #endif
-//CMNT: js_style_variables ^|                     int plines = 1; 
- var plines= 1; 
-//CMNT: js_style_variables ^|                     int llen = old_buf [MOD (p, prev_total_rows)].l; 
- var llen= old_buf [MOD (p, prev_total_rows)].l; 
+              var plines= 1;   //                     int plines = 1;   ###  js_style_variables 
+              var llen= old_buf [MOD (p, prev_total_rows)].l;   //                     int llen = old_buf [MOD (p, prev_total_rows)].l;   ###  js_style_variables 
 
               while (p != pend && old_buf [MOD (p - 1, prev_total_rows)].is_longer ()){
                   p = MOD (p - 1, prev_total_rows);
@@ -342,8 +354,7 @@ rxvt_term.scr_reset =function(){
                   llen += prev_ncol;
                 }
 
-//CMNT: js_style_variables ^|                     int qlines = max (0, (llen - 1) / ncol) + 1; 
- var qlines= max (0, (llen - 1) / ncol) + 1; 
+              var qlines= max (0, (llen - 1) / ncol) + 1;   //FIXME floor division   int qlines = max (0, (llen - 1) / ncol) + 1;   ###  js_style_variables 
 
               // drop partial lines completely
               if (q < qlines)
@@ -351,22 +362,17 @@ rxvt_term.scr_reset =function(){
 
               q -= qlines;
 
-//CMNT: js_style_variables ^|                     int lofs = 0; 
- var lofs= 0; 
-//CMNT: possible_pointer ^|                     line_t *qline; 
-              line_t  q line;
+              var lofs= 0;   //                     int lofs = 0;   ###  js_style_variables 
+              var  qline = [], qline_i=0;  //                     line_t *qline;   ###  possible_pointer 
 
               // re-assemble the full line by destination lines
-//CMNT: c_keyword ^|                     for (int qrow = q; qlines--; qrow++){ 
-              for ( qrow = q; qlines--; qrow++){
-                  qline = row_buf + qrow;
-//CMNT: possible_pointer ^|                         lalloc (*qline); 
-                  lalloc ( q line);
-                  qline->l = ncol;
-                  qline->is_longer (1);
+              for ( var qrow = q; qlines--; qrow++){  //                     for (int qrow = q; qlines--; qrow++){   ###  c_keyword 
+                  qline_i = row_buf_i + qrow;
+                  qline[qline_i]=new line_t();  //                         lalloc (*qline);   ###  possible_pointer 
+                  qline.l = ncol;
+                  qline.is_longer (1);
 
-//CMNT: js_style_variables ^|                         int qcol = 0; 
- var qcol= 0; 
+                  var qcol= 0;   //                         int qcol = 0;   ###  js_style_variables 
 
                   // see below for cursor adjustment rationale
                   if (p == ocur.row)
@@ -374,10 +380,8 @@ rxvt_term.scr_reset =function(){
 
                   // fill a single destination line
                   while (lofs < llen && qcol < ncol){
-//CMNT: js_style_variables ^|                             int prow = lofs / prev_ncol; 
- var prow= lofs / prev_ncol; 
-//CMNT: js_style_variables ^|                             int pcol = lofs % prev_ncol; 
- var pcol= lofs % prev_ncol; 
+                    var prow= lofs / prev_ncol;   // FIXME floor division      int prow = lofs / prev_ncol;   ###  js_style_variables 
+                    var pcol= lofs % prev_ncol;   //   int pcol = lofs % prev_ncol;   ###  js_style_variables 
 
                       prow = MOD (p + prow, prev_total_rows);
 
@@ -388,15 +392,12 @@ rxvt_term.scr_reset =function(){
                       if (prow == ocur.row)
                         screen.cur.row = q - (total_rows - nrow);
 
-                      line_t &pline = old_buf [prow];
+                      line_t &pline = old_buf [prow]; //FIXME
 
-//CMNT: js_style_variables ^|                             int len = min (min (prev_ncol - pcol, ncol - qcol), llen - lofs); 
- var len= min (min (prev_ncol - pcol, ncol - qcol), llen - lofs); 
+                      var len= min (min (prev_ncol - pcol, ncol - qcol), llen - lofs);   //   int len = min (min (prev_ncol - pcol, ncol - qcol), llen - lofs);   ###  js_style_variables 
 
-//CMNT: possible_pointer ^|                             memcpy (qline->t + qcol, pline.t + pcol, len * sizeof (text_t)); 
-                      memcpy (qline->t + qcol, pline.t + pcol, len    sizeof (text_t));
-//CMNT: possible_pointer remove_casts ^|                             memcpy (qline->r + qcol, pline.r + pcol, len * sizeof (rend_t)); 
-                      memcpy (qline->r + qcol, pline.r + pcol, len    sizeof );
+                      qline.t = memcpy(qline.t, qline.t_i +qcol, pline.t, pline.t_i +pcol, len);  //                             memcpy (qline->t + qcol, pline.t + pcol, len * sizeof (text_t));   ###  possible_pointer 
+                      qline.t = memcpy(qline.r, qline.r_i +qcol, pline.r, pline.r_i +pcol, len);  //                             memcpy (qline->r + qcol, pline.r + pcol, len * sizeof (rend_t));   ###  possible_pointer remove_casts 
 
                       lofs += len;
                       qcol += len;
@@ -406,7 +407,7 @@ rxvt_term.scr_reset =function(){
               qline->l = llen ? MOD (llen - 1, ncol) + 1 : 0;
               qline->is_longer (0);
 //CMNT: possible_pointer ^|                     scr_blank_line (*qline, qline->l, ncol - qline->l, DEFAULT_RSTYLE); 
-              scr_blank_line ( q line, qline->l, ncol - qline->l, DEFAULT_RSTYLE);
+              scr_blank_line ( qline, qline.l, ncol - qline.l, DEFAULT_RSTYLE);
             }
           while (p != pend && q > 0);
 
@@ -420,8 +421,7 @@ rxvt_term.scr_reset =function(){
       else{
           // if no scrollback exists (yet), wing, instead of wrap
 
-//CMNT: c_keyword ^|                 for (int row = min (nrow, prev_nrow); row--; ){ 
-          for ( row = min (nrow, prev_nrow); row--; ){
+         for (var row = min (nrow, prev_nrow); row--; ){  //                 for (int row = min (nrow, prev_nrow); row--; ){   ### js_style_variables  c_keyword 
               line_t &pline = old_buf [MOD (term_start + row, prev_total_rows)];
               line_t &qline = row_buf [row];
 
@@ -429,8 +429,7 @@ rxvt_term.scr_reset =function(){
               lresize (qline);
             }
 
-//CMNT: c_keyword ^|                 for (int row = prev_nrow; row < nrow; row++){ 
-          for ( row = prev_nrow; row < nrow; row++){
+           for (var  row = prev_nrow; row < nrow; row++){  //                 for (int row = prev_nrow; row < nrow; row++){   ### js_style_variables  c_keyword 
               row_buf [row].clear (); scr_blank_screen_mem (row_buf [row], DEFAULT_RSTYLE);
             }
 
@@ -446,11 +445,9 @@ rxvt_term.scr_reset =function(){
     }
 
   free (tabs);
-//CMNT: c_keyword possible_pointer ^|         tabs = (char *)rxvt_malloc (ncol); 
-  tabs = (  ) rxvt_malloc (ncol);
+  tabs = [], tabs_i=0;  //         tabs = (char *)rxvt_malloc (ncol);   ###  c_keyword possible_pointer 
 
-//CMNT: c_keyword ^|         for (int col = ncol; --col; ) 
-  for ( col = ncol; --col; )
+   for ( var col = ncol; --col; +)  //         for (int col = ncol; --col; )   ### js_style_variables  c_keyword 
     tabs [col] = col % TABSIZE == 0;
 
   CLEAR_ALL_SELECTION ();
@@ -467,12 +464,12 @@ rxvt_term.scr_reset =function(){
 /*
  * Free everything.  That way malloc debugging can find leakage. 
  */
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_release (){ 
+//FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_release (){ 
 rxvt_term.scr_release =function(){ 
   if (row_buf){
+      /*
       delete talloc; talloc = 0;  //FIXME what to do with allocs?
       delete ralloc; ralloc = 0;
-
       free (row_buf);
       free (swap_buf);
       free (drawn_buf);
@@ -480,6 +477,9 @@ rxvt_term.scr_release =function(){
 
       free (tabs);
       tabs = 0;
+
+       */
+      row_buff="",  swap_buf="",drawn_buf="", row_buff=0, tabs=0
     }
 }
 

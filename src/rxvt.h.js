@@ -6,6 +6,9 @@
 (fset 'paddy-remove-UL
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([1 11 25 32 32 47 47 32 25 32 35 35 35 32 114 101 109 111 118 101 95 85 76 1 134217747 91 48 45 57 97 45 102 93 85 76 13 backspace backspace 1 14] 0 "%d")) arg)))
 (local-set-key (kbd "H-C-j") 'paddy-remove-UL)
+(fset 'paddy-cmnt-original
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("  //" 0 "%d")) arg)))
+(local-set-key (kbd "H-C-;") 'paddy-cmnt-original)
 
  */
 
@@ -101,9 +104,22 @@ typedef  int32_t tlen_t_; // specifically for use in the line_t structure
 # define strcmp(a,b)   (strcmp)(a,b)
 # define strlen(a)     (strlen)(a)
 # define strcpy(a,b)   (strcpy)(a,b)
-# define memset(a,c,l) (memset)(a,c,l)
-# define memcpy(a,b,l) (memcpy)(a,b,l)
+//# define memset(a,c,l) (memset)(a,c,l)
+//# define memcpy(a,b,l) (memcpy)(a,b,l)
 #endif
+memset = function(destination, destination_i, source,  _length){
+  for(var i =0; i < _length; i++){
+    destination[destination_i + i]=source;
+  }
+  return destination;
+}
+memcpy = function(destination, destination_i, source, source_i, _length){
+  for(var i =0; i < _length; i++){
+    destination[destination_i + i]=source[source_i+i];
+  }
+  return destination;
+
+}
 
 /*
  *****************************************************************************
@@ -656,8 +672,8 @@ typedef struct _mwmhints
 #define Width2Pixel(n)          ((int32_t)(n) * (int32_t)fwidth)
 #define Height2Pixel(n)         ((int32_t)(n) * (int32_t)fheight)
 
-#define LINENO_of(t,n) MOD ((t)->term_start + int(n), (t)->total_rows)
-#define ROW_of(t,n) (t)->row_buf [LINENO_of ((t), n)]
+#define LINENO_of(t,n) MOD (t.term_start + n, t.total_rows)  //#define LINENO_of(t,n) MOD ((t)->term_start + int(n), (t)->total_rows)
+#define ROW_of(t,n) (t.row_buf [LINENO_of ((t), n)]  //#define ROW_of(t,n) (t->row_buf [LINENO_of ((t), n)]
 
 #define LINENO(n) LINENO_of (this, n)
 #define ROW(n) ROW_of (this, n)
@@ -687,12 +703,11 @@ typedef struct _mwmhints
 #define ISSET_PIXCOLOR(idx)     (!!rs[Rs_color + (idx)])
 
 #if ENABLE_STYLES
-# define FONTSET_of(t,style) (t)->fontset[GET_STYLE (style)]
+# define FONTSET_of(t,style) t.fontset[GET_STYLE (style)]  //# define FONTSET_of(t,style) (t)->fontset[GET_STYLE (style)]
 #else
-# define FONTSET_of(t,style) (t)->fontset[0]
+# define FONTSET_of(t,style) t.fontset[0]  //# define FONTSET_of(t,style) (t)->fontset[0]
 #endif
-
-#define FONTSET(style) FONTSET_of (this, style)
+#define FONTSET(style) FONTSET_of (this, style)  //#define FONTSET(style) FONTSET_of (this, style)
 
 typedef callback<void (const char *)> log_callback;
 typedef callback<int (int)> getfd_callback;
