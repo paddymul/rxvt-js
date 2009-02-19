@@ -1749,14 +1749,11 @@ rxvt_term.process_terminal_mode =function(mode,   UNUSED,   nargs,    arg){
     var i, j; //  unsigned int i, j; 
     var state; //  int state; 
   //FIXME I already made this
-  
-//CMNT: c_keyword ^|         static const struct 
-    struct
+  /*
+    static const struct 
   {
-//CMNT: c_keyword ^|           const int       argval; 
-            argval;
-//CMNT: c_keyword ^|           const unsigned long bit; 
-      long bit;
+      const int       argval; 
+      const unsigned long bit; 
   } argtopriv[] = {
                   { 1, PrivMode_aplCUR },       // DECCKM
                   { 2, PrivMode_vt52 },
@@ -1767,10 +1764,8 @@ rxvt_term.process_terminal_mode =function(mode,   UNUSED,   nargs,    arg){
                   { 7, PrivMode_Autowrap },     // DECAWM
                  // 8, auto-repeat keys         // DECARM
                   { 9, PrivMode_MouseX10 },
-//CMNT: c_keyword ^|                        // 18 end FF to printer after print screen 
-                 // 18 end FF to prer after pr screen
-//CMNT: c_keyword ^|                        // 19 Print screen prints full screen/scorll region 
-                 // 19 Pr screen prs full screen/scorll region
+                  // 18 end FF to printer after print screen 
+                  // 19 Print screen prints full screen/scorll region 
                   { 25, PrivMode_VisibleCursor }, // cnorm/cvvis/civis
 #ifdef scrollBar_esc
                   { scrollBar_esc, PrivMode_scrollBar },
@@ -1799,6 +1794,48 @@ rxvt_term.process_terminal_mode =function(mode,   UNUSED,   nargs,    arg){
                   { 1049, PrivMode_Screen }, /* xterm extension, clear screen on ti rather than te */
                  // 1051, 1052, 1060, 1061 keyboard emulation NYI
                   { 2004, PrivMode_BracketPaste },
+                };
+    */
+    var argtopriv  = [
+{ 1: PrivMode_aplCUR },       // DECCKM
+                  { 2: PrivMode_vt52 },
+                  { 3: PrivMode_132 },          // DECCOLM
+                  { 4: PrivMode_smoothScroll }, // DECSCLM
+                  { 5: PrivMode_rVideo },       // DECSCNM
+                  { 6: PrivMode_relOrigin },    // DECOM
+                  { 7: PrivMode_Autowrap },     // DECAWM
+                 // 8: auto-repeat keys         // DECARM
+                  { 9: PrivMode_MouseX10 },
+                  // 18 end FF to printer after print screen 
+                  // 19 Print screen prints full screen/scorll region 
+                  { 25: PrivMode_VisibleCursor }, // cnorm/cvvis/civis
+#ifdef scrollBar_esc
+                  { scrollBar_esc: PrivMode_scrollBar },
+#endif
+                  { 35: PrivMode_ShiftKeys },   // rxvt extension
+                 // 38: tektronix mode          // DECTEK
+{ 40: PrivMode_132OK },
+                 // 41 xterm more fixes NYI
+                 // 45 margin bell NYI
+                 // 46 start logging
+                  { 47: PrivMode_Screen },
+                  { 66: PrivMode_aplKP },       // DECPAM/DECPNM
+#ifndef NO_BACKSPACE_KEY
+                  { 67: PrivMode_BackSpace },   // DECBKM
+#endif
+                  { 1000: PrivMode_MouseX11 },
+                  { 1002: PrivMode_MouseBtnEvent },
+                  { 1003: PrivMode_MouseAnyEvent },
+                  { 1010: PrivMode_TtyOutputInh }, // rxvt extension
+                  { 1011: PrivMode_Keypress }, // rxvt extension
+                 // 1035 enable modifiers for alt, numlock NYI
+                 // 1036 send ESC for meta keys NYI
+                 // 1037 send DEL for keypad delete NYI
+                  { 1047: PrivMode_Screen },
+                 // 1048 save and restore cursor
+                  { 1049: PrivMode_Screen }, /* xterm extension, clear screen on ti rather than te */
+                 // 1051, 1052, 1060, 1061 keyboard emulation NYI
+                  { 2004: PrivMode_BracketPaste },
                 };
 
   if (nargs == 0)
@@ -1938,7 +1975,7 @@ rxvt_term.process_terminal_mode =function(mode,   UNUSED,   nargs,    arg){
 
 /*{{{ process sgr sequences */
 //CMNT: js_style_functions c_keyword possible_pointer ^|       void rxvt_term::process_sgr_mode (unsigned int nargs, const int *arg){ 
-rxvt_term.process_sgr_mode =function(nargs,    a rg){ 
+rxvt_term.process_sgr_mode =function(nargs,    arg){ 
   var i; //          unsigned int i;  ###  c_keyword inserted_var
   var rendset; //          short rendset;  ###  c_keyword inserted_var
   var rendstyle; //          int rendstyle;  ###  c_keyword inserted_var
