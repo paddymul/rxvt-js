@@ -2593,9 +2593,11 @@ rxvt_term.scr_reverse_selection =function(){
 /*
  * Dump the whole scrollback and screen to the passed filedescriptor.  The 
  * invoking routine must close the fd. 
+ * Paddy: I don't think I need this function right now, at some point it might be useful for debugging
  */
 #if 0
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_dump (int fd){ 
+/*
 rxvt_term.scr_dump =function( fd){ 
 //CMNT: c_keyword ^|         int             row, wrote; 
                row, wrote;
@@ -2612,249 +2614,30 @@ rxvt_term.scr_dump =function( fd){
           wrote = write (fd, & (row_buf[row].t[width - towrite]),
                         towrite);
           if (wrote < 0)
-            return;         /* XXX: death, no report */
+              return;         // XXX: death, no report 
         }
       if (row_buf[row].l >= 0)
         if (write (fd, r1, 1) <= 0)
-          return; /* XXX: death, no report */
+            return; //XXX: death, no report 
     }
 }
+*/
 #endif
 
 /* ------------------------------------------------------------------------- *
  *                           CHARACTER SELECTION                             * 
  * ------------------------------------------------------------------------- */ 
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::selection_check (int check_more){ 
-rxvt_term.selection_check =function( check_more){ 
-  row_col_t pos;
-
-  if (!selection.op)
-    return;
-
-  pos.row = pos.col = 0;
-  if (!IN_RANGE_EXC (selection.beg.row, top_row, nrow)
-      || !IN_RANGE_EXC (selection.mark.row, top_row, nrow)
-      || !IN_RANGE_EXC (selection.end.row, top_row, nrow)
-      || (check_more == 1
-          && current_screen == selection.screen
-          && !ROWCOL_IS_BEFORE (screen.cur, selection.beg)
-          && ROWCOL_IS_BEFORE (screen.cur, selection.end))
-      || (check_more == 2
-          && ROWCOL_IS_BEFORE (selection.beg, pos)
-          && ROWCOL_IS_AFTER (selection.end, pos))
-      || (check_more == 3
-          && ROWCOL_IS_AFTER (selection.end, pos))
-      || (check_more == 4     /* screen width change */
-          && (selection.beg.row != selection.end.row
-              || selection.end.col > ncol)))
-    CLEAR_SELECTION ();
-}
-
-/* ------------------------------------------------------------------------- */
-/*
- * Paste a selection direct to the command fd 
- */
+/* Paste a selection direct to the command fd  */
 //CMNT: js_style_functions c_keyword possible_pointer ^|       void rxvt_term::paste (char *data, unsigned int len){ 
-rxvt_term.paste =function(  d ata,   len){ 
-  /* convert normal newline chars into common keyboard Return key sequence */ 
-//CMNT: c_keyword ^|         for (unsigned int i = 0; i < len; i++) 
-  for (  i = 0; i < len; i++)
-    if (data[i] == C0_LF)
-      data[i] = C0_CR;
-
-  if (priv_modes & PrivMode_BracketPaste)
-    tt_printf ("\e[200~"); 
-
-  tt_write (data, len);
-
-  if (priv_modes & PrivMode_BracketPaste)
-    tt_printf ("\e[201~"); 
-}
-
-/* ------------------------------------------------------------------------- */
-/*
- * Respond to a notification that a primary selection has been sent 
+/* Respond to a notification that a primary selection has been sent 
  * EXT: SelectionNotify 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::selection_paste (Window win, Atom prop, bool delete_prop){ 
-rxvt_term.selection_paste =function(Window win, Atom prop, bool delete_prop){ 
-  if (prop == None)         /* check for failed XConvertSelection */
-    {
-      if ((selection_type & Sel_CompoundText)){
-//CMNT: js_style_variables ^|                 int selnum = selection_type & Sel_whereMask; 
- var selnum= selection_type & Sel_whereMask; 
-
-          selection_type = 0;
-          if (selnum != Sel_direct)
-            selection_request_other (XA_STRING, selnum);
-        }
-
-      if ((selection_type & Sel_UTF8String)){
-//CMNT: js_style_variables ^|                 int selnum = selection_type & Sel_whereMask; 
- var selnum= selection_type & Sel_whereMask; 
-
-          selection_type = Sel_CompoundText;
-          if (selnum != Sel_direct)
-            selection_request_other (xa[XA_COMPOUND_TEXT], selnum);
-          else
-            selection_type = 0;
-        }
-
-      return;
-    }
-
-//CMNT: c_keyword ^|         unsigned long bytes_after; 
-   long bytes_after;
-  XTextProperty ct;
-
-  if (XGetWindowProperty (dpy, win, prop,
-                          0, PROP_SIZE / 4,
-                          delete_prop, AnyPropertyType,
-                          &ct.encoding, &ct.format,
-                          &ct.nitems, &bytes_after,
-                          &ct.value) != Success){
-      ct.value = 0;
-      goto bailout;
-    }
-
-  if (ct.encoding == None)
-    goto bailout;
-
-  if (bytes_after){
-      // fetch and append remaining data
-      XTextProperty ct2;
-
-      if (XGetWindowProperty (dpy, win, prop,
-                              ct.nitems / 4, (bytes_after + 3) / 4,
-                              delete_prop, AnyPropertyType,
-                              &ct2.encoding, &ct2.format,
-                              &ct2.nitems, &bytes_after,
-                              &ct2.value) != Success)
-        goto bailout;
-
-      // realloc should be compatible to XFree, here, and elsewhere, too
-//CMNT: c_keyword possible_pointer ^|             ct.value = (unsigned char *)realloc (ct.value, ct.nitems + ct2.nitems + 1); 
-      ct.value = (   ) realloc (ct.value, ct.nitems + ct2.nitems + 1);
-      memcpy (ct.value + ct.nitems, ct2.value, ct2.nitems + 1);
-      ct.nitems += ct2.nitems;
-
-      XFree (ct2.value);
-    }
-
-  if (ct.value == 0)
-    goto bailout;
-
-  if (ct.encoding == xa[XA_INCR]){
-      // INCR selection, start handshake
-      if (!delete_prop)
-        XDeleteProperty (dpy, win, prop);
-
-      selection_wait = Sel_incr;
-      incr_buf_fill = 0;
-      incr_ev.start (10);
-
-      goto bailout;
-    }
-
-  if (ct.nitems == 0){
-      if (selection_wait == Sel_incr){
-          XFree (ct.value);
-
-          // finally complete, now paste the whole thing
-          selection_wait = Sel_normal;
-//CMNT: c_keyword possible_pointer ^|                 ct.value = (unsigned char *)incr_buf; 
-          ct.value = (   ) incr_buf;
-          ct.nitems = incr_buf_fill;
-          incr_buf = 0;
-          incr_buf_size = 0;
-          incr_ev.stop ();
-        }
-      else{
-          if (selection_wait == Sel_normal
-//CMNT: c_keyword ^|                     && (win != display->root || prop != XA_CUT_BUFFER0)) // avoid recursion 
-              && (win != display->root || prop != XA_CUT_BUFFER0)) // a recursion
-            {
-              /*
-               * pass through again trying CUT_BUFFER0 if we've come from 
-               * XConvertSelection () but nothing was presented 
-               */
-              selection_paste (display->root, XA_CUT_BUFFER0, False);
-            }
-
-          goto bailout;
-        }
-    }
-  else if (selection_wait == Sel_incr){
-      incr_ev.start (10);
-
-      while (incr_buf_fill + ct.nitems > incr_buf_size){
-        incr_buf_size = incr_buf_size ? incr_buf_size * 2 : 128*1024; 
-//CMNT: c_keyword possible_pointer ^|                 incr_buf = (char *)realloc (incr_buf, incr_buf_size); 
-          incr_buf = (  ) realloc (incr_buf, incr_buf_size);
-        }
-
-      memcpy (incr_buf + incr_buf_fill, ct.value, ct.nitems);
-      incr_buf_fill += ct.nitems;
-
-      goto bailout;
-    }
-
-//CMNT: c_keyword possible_pointer ^|         char **cl; 
-    * cl;
-//CMNT: c_keyword ^|         int cr; 
-   cr;
-
-#if !ENABLE_MINIMAL
-  // xlib is horribly broken with respect to UTF8_STRING, and nobody cares to fix it
-  // so recode it manually
-  if (ct.encoding == xa[XA_UTF8_STRING]){
-//CMNT: c_keyword js_style_variables possible_pointer ^|             wchar_t *w = rxvt_utf8towcs ((const char *)ct.value, ct.nitems); 
- var w= rxvt_utf8towcs ((   ) ct.value, ct.nitems); 
-//CMNT: js_style_variables possible_pointer ^|             char *s = rxvt_wcstombs (w); 
- var s= rxvt_wcstombs (w); 
-      free (w);
-      // TODO: strlen == only the first element will be converted. well...
-      paste (s, strlen (s));
-      free (s);
-    }
-  else
-#endif
-  if (XmbTextPropertyToTextList (dpy, &ct, &cl, &cr) >= 0
-      && cl){
-//CMNT: c_keyword ^|             for (int i = 0; i < cr; i++) 
-      for ( i = 0; i < cr; i++)
-        paste (cl[i], strlen (cl[i]));
-
-      XFreeStringList (cl);
-    }
-  else
-//CMNT: c_keyword possible_pointer ^|           paste ((char *)ct.value, ct.nitems); // paste raw 
-    paste ((  ) ct.value, ct.nitems); // paste raw
-
-bailout:
-  XFree (ct.value);
-
-  if (selection_wait == Sel_normal)
-    selection_wait = Sel_none;
-}
 
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::incr_cb (ev::timer &w, int revents){ 
-rxvt_term.incr_cb =function(ev::timer &w,  revents){ 
-  selection_wait = Sel_none;
-
-  incr_buf_size = 0;
-  free (incr_buf);
-
-  rxvt_warn ("data loss: timeout on INCR selection paste, ignoring.\n");
-}
 
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::selection_property (Window win, Atom prop){ 
-rxvt_term.selection_property =function(Window win, Atom prop){ 
-  if (prop == None || selection_wait != Sel_incr)
-    return;
-
-  selection_paste (win, prop, true);
-}
 
 /* ------------------------------------------------------------------------- */
 /*
@@ -2867,55 +2650,8 @@ rxvt_term.selection_property =function(Window win, Atom prop){
  * EXT: button 2 release 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::selection_request (Time tm, int selnum){ 
-rxvt_term.selection_request =function(Time tm,  selnum){ 
-  if (selection.text && selnum == Sel_Primary){
-    /* internal selection */ 
-//CMNT: c_keyword possible_pointer ^|             char *str = rxvt_wcstombs (selection.text, selection.len); 
-        s tr = rxvt_wcstombs (selection.text, selection.len);
-      paste (str, strlen (str));
-      free (str);
-      return;
-    }
-  else{
-      selection_request_time = tm;
-      selection_wait = Sel_normal;
-
-#if X_HAVE_UTF8_STRING
-      selection_type = Sel_UTF8String;
-      if (selection_request_other (xa[XA_UTF8_STRING], selnum))
-	return;
-#else
-      selection_type = Sel_CompoundText;
-      if (selection_request_other (xa[XA_COMPOUND_TEXT], selnum))
-	return;
-#endif
-    }
-
-  selection_wait = Sel_none;       /* don't loop in selection_paste () */
-  selection_paste (display->root, XA_CUT_BUFFER0, false);
-}
 
 //CMNT: js_style_functions c_keyword ^|       int rxvt_term::selection_request_other (Atom target, int selnum){ 
-rxvt_term.selection_request_other =function(Atom target,  selnum){ 
-  Atom sel;
-
-  selection_type |= selnum;
-
-  if (selnum == Sel_Primary)
-    sel = XA_PRIMARY;
-  else if (selnum == Sel_Secondary)
-    sel = XA_SECONDARY;
-  else
-    sel = xa[XA_CLIPBOARD];
-
-  if (XGetSelectionOwner (dpy, sel) != None){
-      XConvertSelection (dpy, sel, target, xa[XA_VT_SELECTION],
-                         vt, selection_request_time);
-      return 1;
-    }
-
-  return 0;
-}
 
 /* ------------------------------------------------------------------------- */
 /*
@@ -2923,16 +2659,6 @@ rxvt_term.selection_request_other =function(Atom target,  selnum){
  * EXT: SelectionClear 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::selection_clear (){ 
-rxvt_term.selection_clear =function(){ 
-  want_refresh = 1;
-  free (selection.text);
-  selection.text = NULL;
-  selection.len = 0;
-  CLEAR_SELECTION ();
-
-  if (display->selection_owner == this)
-    display->selection_owner = 0;
-}
 
 /* ------------------------------------------------------------------------- */
 /*
@@ -2940,219 +2666,21 @@ rxvt_term.selection_clear =function(){
  * EXT: button 1 or 3 release 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::selection_make (Time tm){ 
-rxvt_term.selection_make =function(Time tm){ 
-//CMNT: c_keyword ^|         int i; 
-   i;
-//CMNT: c_keyword possible_pointer ^|         wchar_t *new_selection_text; 
-    n ew_selection_text;
-//CMNT: possible_pointer ^|         text_t *t; 
-  text_t  t ;
-
-  switch (selection.op){
-      case SELECTION_CONT:
-        break;
-      case SELECTION_INIT:
-        CLEAR_SELECTION ();
-        /* FALLTHROUGH */
-      case SELECTION_BEGIN:
-        selection.op = SELECTION_DONE;
-        /* FALLTHROUGH */
-      default:
-        return;
-    }
-
-  selection.op = SELECTION_DONE;
-
-  if (selection.clicks == 4)
-    return;                 /* nothing selected, go away */
-
-  if (HOOK_INVOKE ((this, HOOK_SEL_MAKE, DT_LONG, (long)tm, DT_END)))
-    return;
-
-//CMNT: possible_pointer ^|         i = (selection.end.row - selection.beg.row + 1) * (ncol + 1); 
-  i = (selection.end.row - selection.beg.row + 1)    (ncol + 1);
-//CMNT: c_keyword possible_pointer remove_casts ^|         new_selection_text = (wchar_t *)rxvt_malloc ((i + 4) * sizeof (wchar_t)); 
-  new_selection_text = (  ) rxvt_malloc ((i + 4)    sizeof );
-
-//CMNT: js_style_variables ^|         int ofs = 0; 
- var ofs= 0; 
-//CMNT: js_style_variables ^|         int extra = 0; 
- var extra= 0; 
-
-//CMNT: js_style_variables ^|         int col = selection.beg.col; 
- var col= selection.beg.col; 
-//CMNT: js_style_variables ^|         int row = selection.beg.row; 
- var row= selection.beg.row; 
-
-//CMNT: c_keyword ^|         int end_col; 
-   end_col;
-
-  for (; row <= selection.end.row; row++, col = 0){
-#if !ENABLE_MINIMAL
-      if (selection.rect){
-          col = selection.beg.col;
-          end_col = ncol + 1;
-        }
-      else
-#endif
-        end_col = ROW(row).l;
-
-      col = max (col, 0);
-
-      if (row == selection.end.row
-#if !ENABLE_MINIMAL
-          || selection.rect
-#endif
-          )
-        min_it (end_col, selection.end.col);
-
-      t = ROW(row).t + col;
-
-      for (; col < end_col; col++){
-//CMNT: possible_pointer ^|                 if (*t == NOCHAR) 
-          if ( t  == NOCHAR)
-            t++;
-#if ENABLE_COMBINING
-//CMNT: possible_pointer ^|                 else if (IS_COMPOSE (*t)){ 
-          else if (IS_COMPOSE ( t )){
-//CMNT: js_style_variables possible_pointer ^|                     int len = rxvt_composite.expand (*t, 0); 
- var len= rxvt_composite.expand ( t , 0); 
-
-              extra -= (len - 1);
-
-              if (extra < 0){
-                  extra += i;
-                  i += i;
-//CMNT: c_keyword possible_pointer remove_casts ^|                         new_selection_text = (wchar_t *)rxvt_realloc (new_selection_text, (i + 4) * sizeof (wchar_t)); 
-                  new_selection_text = (  ) rxvt_realloc (new_selection_text, (i + 4)    sizeof );
-                }
-
-//CMNT: possible_pointer ^|                     ofs += rxvt_composite.expand (*t++, new_selection_text + ofs); 
-              ofs += rxvt_composite.expand ( t ++, new_selection_text + ofs);
-            }
-#endif
-          else
-//CMNT: possible_pointer ^|                   new_selection_text[ofs++] = *t++; 
-            new_selection_text[ofs++] =  t ++;
-        }
-
-#if !ENABLE_MINIMAL
-      if (selection.rect){
-          while (ofs
-                 && new_selection_text[ofs - 1] != C0_LF
-//CMNT: js_style_functions ^|                        && unicode::is_space (new_selection_text[ofs - 1])) 
-                 &&unicode.is_space =function(new_selection_text[ofs - 1])) 
-            --ofs;
-
-          new_selection_text[ofs++] = C0_LF;
-        }
-      else
-#endif
-        if (!ROW(row).is_longer () && row != selection.end.row)
-          new_selection_text[ofs++] = C0_LF;
-    }
-
-  if (end_col != selection.end.col)
-    new_selection_text[ofs++] = C0_LF;
-
-  new_selection_text[ofs] = 0;
-
-  if (ofs == 0){
-      free (new_selection_text);
-      return;
-    }
-
-  free (selection.text);
-
-  // we usually allocate much more than necessary, so realloc it smaller again
-  selection.len = ofs;
-//CMNT: c_keyword possible_pointer remove_casts ^|         selection.text = (wchar_t *)rxvt_realloc (new_selection_text, (ofs + 1) * sizeof (wchar_t)); 
-  selection.text = (  ) rxvt_realloc (new_selection_text, (ofs + 1)    sizeof );
-
-  if (HOOK_INVOKE ((this, HOOK_SEL_GRAB, DT_LONG, (long)tm, DT_END)))
-    return;
-
-  selection_grab (tm);
-}
 
 //CMNT: js_style_functions ^|       bool rxvt_term::selection_grab (Time tm){ 
-boolrxvt_term.selection_grab =function(Time tm){ 
-  selection_time = tm;
-
-  XSetSelectionOwner (dpy, XA_PRIMARY, vt, tm);
-  if (XGetSelectionOwner (dpy, XA_PRIMARY) == vt){
-      display->set_selection_owner (this);
-      return true;
-    }
-  else{
-      selection_clear ();
-      return false;
-    }
-
-#if 0
-  XTextProperty ct;
-
-  if (XwcTextListToTextProperty (dpy, &selection.text, 1, XStringStyle, &ct) >= 0){
-      set_string_property (XA_CUT_BUFFER0, ct.value, ct.nitems);
-      XFree (ct.value);
-    }
-#endif
-}
 
 /* ------------------------------------------------------------------------- */
 /*
  * Mark or select text based upon number of clicks: 1, 2, or 3 
  * EXT: button 1 press 
  */
-void rxvt_term::selection_click (int clicks, int x, int y){ 
-  clicks = ((clicks - 1) % 3) + 1;
-  selection.clicks = clicks;       /* save clicks so extend will work */
-
-  if (clicks == 2 && !selection.rect
-      && HOOK_INVOKE ((this, HOOK_SEL_EXTEND, DT_END))){
-      MEvent.clicks = 1; // what a mess
-      selection.screen = current_screen;
-      selection.op = SELECTION_CONT;
-      return;
-    }
-
-  selection_start_colrow (Pixel2Col (x), Pixel2Row (y));
-
-  if (clicks == 2 || clicks == 3)
-    selection_extend_colrow (selection.mark.col,
-                             selection.mark.row - view_start,
-                             0, /* button 3     */
-                             1, /* button press */
-                             0);        /* click change */
-}
+//CMNT js_style_functions void rxvt_term::selection_click (int clicks, int x, int y){ 
 
 /* ------------------------------------------------------------------------- */
 /*
  * Mark a selection at the specified col/row 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::selection_start_colrow (int col, int row){ 
-rxvt_term.selection_start_colrow =function( col,  row){ 
-  want_refresh = 1;
-
-  selection.mark.row = row + view_start;
-  selection.mark.col = col;
-
-  selection.mark.row = clamp (selection.mark.row, top_row, nrow - 1);
-  selection.mark.col = clamp (selection.mark.col,       0, ncol - 1);
-
-  while (selection.mark.col > 0
-         && ROW(selection.mark.row).t[selection.mark.col] == NOCHAR)
-    --selection.mark.col;
-
-  if (selection.op){
-      /* clear the old selection */
-      selection.beg.row = selection.end.row = selection.mark.row;
-      selection.beg.col = selection.end.col = selection.mark.col;
-    }
-
-  selection.op = SELECTION_INIT;
-  selection.screen = current_screen;
-}
 
 /* ------------------------------------------------------------------------- */
 /*
@@ -3161,88 +2689,12 @@ rxvt_term.selection_start_colrow =function( col,  row){
  */
 
 /* what do we want: spaces/tabs are delimiters or cutchars or non-cutchars */ 
-#define DELIMIT_TEXT(x) 		\
+//#define DELIMIT_TEXT(x)                                               \
 //CMNT: js_style_functions c_keyword ^|           (unicode::is_space (x) ? 2 : (x) <= 0xff && !!strchr (rs[Rs_cutchars], (x))) 
-    (unicode.is_space =function(x) ? 2 : (x) <= 0xff && !!strchr (rs[Rs_cuts], (x))) 
-#define DELIMIT_REND(x)        1
+//    (unicode.is_space =function(x) ? 2 : (x) <= 0xff && !!strchr (rs[Rs_cuts], (x))) 
+//#define DELIMIT_REND(x)        1
 
 //CMNT: js_style_functions c_keyword possible_pointer ^|       void rxvt_term::selection_delimit_word (enum page_dirn dirn, const row_col_t *mark, row_col_t *ret){ 
-rxvt_term.selection_delimit_word =function(enum page_dirn dirn,  row_col_t  m ark, row_col_t  r et){ 
-//CMNT: c_keyword ^|         int col, row, dirnadd, tcol, trow, w1, w2; 
-   col, row, dirnadd, tcol, trow, w1, w2;
-  row_col_t bound;
-//CMNT: possible_pointer ^|         text_t *stp; 
-  text_t  s tp;
-//CMNT: c_keyword possible_pointer ^|         rend_t *srp; 
-    s rp;
-
-  if (dirn == UP){
-      bound.row = top_row - 1;
-      bound.col = 0;
-      dirnadd = -1;
-    }
-  else{
-      bound.row = nrow;
-      bound.col = ncol - 1;
-      dirnadd = 1;
-    }
-
-  row = mark->row;
-  col = max (mark->col, 0);
-
-  /* find the edge of a word */
-//CMNT: possible_pointer ^|         stp = ROW(row).t + col; w1 = DELIMIT_TEXT (*stp); 
-  stp = ROW(row).t + col; w1 = DELIMIT_TEXT ( s tp);
-//CMNT: possible_pointer ^|         srp = ROW(row).r + col; w2 = DELIMIT_REND (*srp); 
-  srp = ROW(row).r + col; w2 = DELIMIT_REND ( s rp);
-
-  for (;;){
-      for (; col != bound.col; col += dirnadd){
-          stp += dirnadd;
-          srp += dirnadd;
-
-//CMNT: possible_pointer ^|                 if (*stp == NOCHAR) 
-          if ( s tp == NOCHAR)
-            continue;
-
-//CMNT: possible_pointer ^|                 if (DELIMIT_TEXT (*stp) != w1) 
-          if (DELIMIT_TEXT ( s tp) != w1)
-            break;
-//CMNT: possible_pointer ^|                 if (DELIMIT_REND (*srp) != w2) 
-          if (DELIMIT_REND ( s rp) != w2)
-            break;
-        }
-
-      if ((col == bound.col) && (row != bound.row)){
-          if (ROW(row - (dirn == UP ? 1 : 0)).is_longer ()){
-              trow = row + dirnadd;
-              tcol = dirn == UP ? ncol - 1 : 0;
-
-              if (!ROW(trow).t)
-                break;
-
-              stp = ROW(trow).t + tcol;
-              srp = ROW(trow).r + tcol;
-
-//CMNT: possible_pointer ^|                     if (DELIMIT_TEXT (*stp) != w1 || DELIMIT_REND (*srp) != w2) 
-              if (DELIMIT_TEXT ( s tp) != w1 || DELIMIT_REND ( s rp) != w2)
-                break;
-
-              row = trow;
-              col = tcol;
-              continue;
-            }
-        }
-      break;
-    }
-
-  if (dirn == DN)
-    col++;                  /* put us on one past the end */
-
-  /* Poke the values back in */
-  ret->row = row;
-  ret->col = col;
-}
 
 /* ------------------------------------------------------------------------- */
 /*
@@ -3253,265 +2705,13 @@ rxvt_term.selection_delimit_word =function(enum page_dirn dirn,  row_col_t  m ar
  * flag == 2 ==> button 3 motion 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::selection_extend (int x, int y, int flag){ 
-rxvt_term.selection_extend =function( x,  y,  flag){ 
-//CMNT: js_style_variables ^|         int col = clamp (Pixel2Col (x), 0, ncol); 
- var col= clamp (Pixel2Col (x), 0, ncol); 
-//CMNT: js_style_variables ^|         int row = clamp (Pixel2Row (y), 0, nrow - 1); 
- var row= clamp (Pixel2Row (y), 0, nrow - 1); 
-
-  /*
-   * If we're selecting characters (single click) then we must check first 
-   * if we are at the same place as the original mark.  If we are then 
-   * select nothing.  Otherwise, if we're to the right of the mark, you have to 
-   * be _past_ a character for it to be selected. 
-  */
-  if (((selection.clicks % 3) == 1) && !flag
-      && (col == selection.mark.col
-          && (row == selection.mark.row - view_start))){
-      /* select nothing */
-      selection.beg.row = selection.end.row = 0;
-      selection.beg.col = selection.end.col = 0;
-      selection.clicks = 4;
-      want_refresh = 1;
-      return;
-    }
-
-  if (selection.clicks == 4)
-    selection.clicks = 1;
-
-  selection_extend_colrow (col, row, !!flag,  /* ? button 3      */
-                           flag == 1 ? 1 : 0,     /* ? button press  */
-                           0);    /* no click change */
-}
 
 /* ------------------------------------------------------------------------- */
 /*
  * Extend the selection to the specified col/row 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::selection_extend_colrow (int32_t col, int32_t row, int button3, int buttonpress, int clickchange){ 
-rxvt_term.selection_extend_colrow =function(32_t col, 32_t row,  button3,  buttonpress,  clickchange){ 
-  row_col_t pos;
-  enum {
-    LEFT, RIGHT
-  } closeto = RIGHT;
-
-  want_refresh = 1;
-
-  switch (selection.op){
-      case SELECTION_INIT:
-        CLEAR_SELECTION ();
-        selection.op = SELECTION_BEGIN;
-        /* FALLTHROUGH */
-      case SELECTION_BEGIN:
-        if (row != selection.mark.row || col != selection.mark.col
-            || (!button3 && buttonpress))
-          selection.op = SELECTION_CONT;
-        break;
-      case SELECTION_DONE:
-        selection.op = SELECTION_CONT;
-        /* FALLTHROUGH */
-      case SELECTION_CONT:
-        break;
-      case SELECTION_CLEAR:
-        selection_start_colrow (col, row);
-        /* FALLTHROUGH */
-      default:
-        return;
-    }
-
-  if (selection.beg.col == selection.end.col
-      && selection.beg.col != selection.mark.col
-      && selection.beg.row == selection.end.row
-      && selection.beg.row != selection.mark.row){
-      selection.beg.col = selection.end.col = selection.mark.col;
-      selection.beg.row = selection.end.row = selection.mark.row;
-    }
-
-  pos.col = col;
-  pos.row = view_start + row;
-
-  /*
-   * This is mainly xterm style selection with a couple of differences, mainly 
-   * in the way button3 drag extension works. 
-   * We're either doing: button1 drag; button3 press; or button3 drag 
-   *  a) button1 drag : select around a midpoint/word/line - that point/word/line 
-   *     is always at the left/right edge of the selection. 
-   *  b) button3 press: extend/contract character/word/line at whichever edge of 
-   *     the selection we are closest to. 
-   *  c) button3 drag : extend/contract character/word/line - we select around 
-   *     a point/word/line which is either the start or end of the selection 
-   *     and it was decided by whichever point/word/line was `fixed' at the 
-   *     time of the most recent button3 press 
-   */
-  if (button3 && buttonpress){
-      /* button3 press */
-      /*
-       * first determine which edge of the selection we are closest to 
-       */
-      if (ROWCOL_IS_BEFORE (pos, selection.beg)
-          || (!ROWCOL_IS_AFTER (pos, selection.end)
-              && (((pos.col - selection.beg.col)
-                   + ((pos.row - selection.beg.row) * ncol)) 
-                  < ((selection.end.col - pos.col)
-                     + ((selection.end.row - pos.row) * ncol))))) 
-        closeto = LEFT;
-
-      if (closeto == LEFT){
-          selection.beg.row = pos.row;
-          selection.beg.col = pos.col;
-          selection.mark.row = selection.end.row;
-          selection.mark.col = selection.end.col - (selection.clicks == 2);
-        }
-      else{
-          selection.end.row = pos.row;
-          selection.end.col = pos.col;
-          selection.mark.row = selection.beg.row;
-          selection.mark.col = selection.beg.col;
-        }
-    }
-  else{
-      /* button1 drag or button3 drag */
-      if (ROWCOL_IS_AFTER (selection.mark, pos)){
-          if (selection.mark.row == selection.end.row
-              && selection.mark.col == selection.end.col
-              && clickchange
-              && selection.clicks == 2)
-            selection.mark.col--;
-
-          selection.beg.row = pos.row;
-          selection.beg.col = pos.col;
-          selection.end.row = selection.mark.row;
-          selection.end.col = selection.mark.col + (selection.clicks == 2);
-        }
-      else{
-          selection.beg.row = selection.mark.row;
-          selection.beg.col = selection.mark.col;
-          selection.end.row = pos.row;
-          selection.end.col = pos.col;
-        }
-    }
-
-  if (selection.clicks == 1){
-      if (selection.beg.col > ROW(selection.beg.row).l //TODO//FIXME//LEN
-          && !ROW(selection.beg.row).is_longer ()
-#if !ENABLE_MINIMAL
-          && !selection.rect
-#endif
-         )
-        selection.beg.col = ncol;
-
-      if (
-          selection.end.col > ROW(selection.end.row).l //TODO//FIXME//LEN
-          && !ROW(selection.end.row).is_longer ()
-#if !ENABLE_MINIMAL
-          && !selection.rect
-#endif
-         )
-        selection.end.col = ncol;
-    }
-  else if (selection.clicks == 2){
-      if (ROWCOL_IS_AFTER (selection.end, selection.beg))
-        selection.end.col--;
-
-      selection_delimit_word (UP, &selection.beg, &selection.beg);
-      selection_delimit_word (DN, &selection.end, &selection.end);
-    }
-  else if (selection.clicks == 3){
-#if ENABLE_FRILLS
-      if (option (Opt_tripleclickwords)){
-          selection_delimit_word (UP, &selection.beg, &selection.beg);
-
-//CMNT: c_keyword ^|                 for (int end_row = selection.mark.row; end_row < nrow; end_row++){ 
-          for ( end_row = selection.mark.row; end_row < nrow; end_row++){
-              if (!ROW(end_row).is_longer ()){
-                  selection.end.row = end_row;
-                  selection.end.col = ROW(end_row).l;
-# if !ENABLE_MINIMAL
-                  selection_remove_trailing_spaces ();
-# endif
-                  break;
-                }
-            }
-        }
-      else
-#endif
-        {
-          if (ROWCOL_IS_AFTER (selection.mark, selection.beg))
-            selection.mark.col++;
-
-          selection.beg.col = 0;
-          selection.end.col = ncol;
-
-          // select a complete logical line
-          while (selection.beg.row > -saveLines
-                 && ROW(selection.beg.row - 1).is_longer ())
-            selection.beg.row--;
-
-          while (selection.end.row < nrow
-                 && ROW(selection.end.row).is_longer ())
-            selection.end.row++;
-        }
-    }
-
-  if (button3 && buttonpress){
-      /* mark may need to be changed */
-      if (closeto == LEFT){
-          selection.mark.row = selection.end.row;
-          selection.mark.col = selection.end.col - (selection.clicks == 2);
-        }
-      else{
-          selection.mark.row = selection.beg.row;
-          selection.mark.col = selection.beg.col;
-        }
-    }
-
-#if !ENABLE_MINIMAL
-  if (selection.rect && selection.beg.col > selection.end.col)
-    ::swap (selection.beg.col, selection.end.col);
-#endif
-}
-
-#if !ENABLE_MINIMAL
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::selection_remove_trailing_spaces (){ 
-rxvt_term.selection_remove_trailing_spaces =function(){ 
-//CMNT: c_keyword ^|         int32_t end_col, end_row; 
-  32_t end_col, end_row;
-//CMNT: possible_pointer ^|         text_t *stp; 
-  text_t  s tp;
-
-  end_col = selection.end.col;
-  end_row = selection.end.row;
-
-  for (; end_row >= selection.beg.row; ){
-      stp = ROW(end_row).t;
-
-      while (--end_col >= 0){
-          if (stp[end_col] != NOCHAR
-//CMNT: js_style_functions ^|                     && !unicode::is_space (stp[end_col])) 
-              && !unicode.is_space =function(stp[end_col])) 
-            break;
-        }
-
-      if (end_col >= 0
-          || !ROW(end_row - 1).is_longer ()){
-          selection.end.col = end_col + 1;
-          selection.end.row = end_row;
-          break;
-        }
-
-      end_row--;
-      end_col = ncol;
-    }
-
-  if (selection.mark.row > selection.end.row){
-      selection.mark.row = selection.end.row;
-      selection.mark.col = selection.end.col;
-    }
-  else if (selection.mark.row == selection.end.row
-           && selection.mark.col > selection.end.col)
-    selection.mark.col = selection.end.col;
-}
-#endif
 
 /* ------------------------------------------------------------------------- */
 /*
@@ -3519,10 +2719,6 @@ rxvt_term.selection_remove_trailing_spaces =function(){
  * EXT: button 3 double click 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::selection_rotate (int x, int y){ 
-rxvt_term.selection_rotate =function( x,  y){ 
-  selection.clicks = selection.clicks % 3 + 1;
-  selection_extend_colrow (Pixel2Col (x), Pixel2Row (y), 1, 0, 1);
-}
 
 /* ------------------------------------------------------------------------- */
 /*
@@ -3530,153 +2726,10 @@ rxvt_term.selection_rotate =function( x,  y){
  * EXT: SelectionRequest 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::selection_send (const XSelectionRequestEvent &rq){ 
-rxvt_term.selection_send =function( XSelectionRequestEvent &rq){ 
-  XSelectionEvent ev;
-
-  ev.type = SelectionNotify;
-  ev.property = None;
-  ev.display = rq.display;
-  ev.requestor = rq.requestor;
-  ev.selection = rq.selection;
-  ev.target = rq.target;
-  ev.time = rq.time;
-
-  if (rq.target == xa[XA_TARGETS]){
-      Atom target_list[6];
-//CMNT: possible_pointer ^|             Atom *target = target_list; 
-      Atom  t arget = target_list;
-
-//CMNT: possible_pointer ^|             *target++ = xa[XA_TARGETS]; 
-       t arget++ = xa[XA_TARGETS];
-//CMNT: possible_pointer ^|             *target++ = xa[XA_TIMESTAMP]; 
-       t arget++ = xa[XA_TIMESTAMP];
-//CMNT: possible_pointer ^|             *target++ = XA_STRING; 
-       t arget++ = XA_STRING;
-//CMNT: possible_pointer ^|             *target++ = xa[XA_TEXT]; 
-       t arget++ = xa[XA_TEXT];
-//CMNT: possible_pointer ^|             *target++ = xa[XA_COMPOUND_TEXT]; 
-       t arget++ = xa[XA_COMPOUND_TEXT];
-#if X_HAVE_UTF8_STRING
-//CMNT: possible_pointer ^|             *target++ = xa[XA_UTF8_STRING]; 
-       t arget++ = xa[XA_UTF8_STRING];
-#endif
-
-      XChangeProperty (dpy, rq.requestor, rq.property, XA_ATOM,
-                       32, PropModeReplace,
-//CMNT: c_keyword possible_pointer ^|                              (unsigned char *)target_list, target - target_list); 
-                       (   ) target_list, target - target_list);
-      ev.property = rq.property;
-    }
-#if TODO // TODO
-  else if (rq.target == xa[XA_MULTIPLE]){
-      /* TODO: Handle MULTIPLE */
-    }
-#endif
-  else if (rq.target == xa[XA_TIMESTAMP] && selection.text){
-      XChangeProperty (dpy, rq.requestor, rq.property, rq.target,
-//CMNT: c_keyword possible_pointer ^|                              32, PropModeReplace, (unsigned char *)&selection_time, 1); 
-                       32, PropModeReplace, (   ) &selection_time, 1);
-      ev.property = rq.property;
-    }
-  else if (rq.target == XA_STRING
-           || rq.target == xa[XA_TEXT]
-           || rq.target == xa[XA_COMPOUND_TEXT]
-           || rq.target == xa[XA_UTF8_STRING]
-          ){
-      XTextProperty ct;
-      Atom target = rq.target;
-//CMNT: js_style_variables ^|             short freect = 0; 
- var freect= 0; 
-//CMNT: c_keyword ^|             int selectlen; 
-       selectlen;
-//CMNT: c_keyword possible_pointer ^|             wchar_t *cl; 
-        c l;
-      enum {
-        enc_string        = XStringStyle,
-        enc_text          = XStdICCTextStyle,
-        enc_compound_text = XCompoundTextStyle,
-#ifdef X_HAVE_UTF8_STRING
-        enc_utf8          = XUTF8StringStyle,
-#else
-        enc_utf8          = -1,
-#endif
-      } style;
-
-      if (target == XA_STRING)
-        // we actually don't do XA_STRING, but who cares, as i18n clients
-        // will ask for another format anyways.
-        style = enc_string;
-      else if (target == xa[XA_TEXT])
-        style = enc_text;
-      else if (target == xa[XA_COMPOUND_TEXT])
-        style = enc_compound_text;
-#if !ENABLE_MINIMAL
-      else if (target == xa[XA_UTF8_STRING])
-        style = enc_utf8;
-#endif
-      else{
-          target = xa[XA_COMPOUND_TEXT];
-          style = enc_compound_text;
-        }
-
-      if (selection.text){
-          cl = selection.text;
-          selectlen = selection.len;
-        }
-      else{
-          cl = L"";
-          selectlen = 0;
-        }
-
-#if !ENABLE_MINIMAL
-      // xlib is horribly broken with respect to UTF8_STRING, and nobody cares to fix it
-      // so recode it manually
-      if (style == enc_utf8){
-          freect = 1;
-          ct.encoding = target;
-          ct.format = 8;
-//CMNT: c_keyword possible_pointer ^|                 ct.value = (unsigned char *)rxvt_wcstoutf8 (cl, selectlen); 
-          ct.value = (   ) rxvt_wcstoutf8 (cl, selectlen);
-//CMNT: c_keyword possible_pointer ^|                 ct.nitems = strlen ((char *)ct.value); 
-          ct.nitems = strlen ((  ) ct.value);
-        }
-      else
-#endif
-      if (XwcTextListToTextProperty (dpy, &cl, 1, (XICCEncodingStyle) style, &ct) >= 0)
-        freect = 1;
-      else{
-          /* if we failed to convert then send it raw */
-//CMNT: c_keyword possible_pointer ^|                 ct.value = (unsigned char *)cl; 
-          ct.value = (   ) cl;
-          ct.nitems = selectlen;
-          ct.encoding = target;
-        }
-
-      XChangeProperty (dpy, rq.requestor, rq.property,
-                       ct.encoding, 8, PropModeReplace,
-//CMNT: remove_casts ^|                              ct.value, (int)ct.nitems); 
-                       ct.value, ct.nitems);
-      ev.property = rq.property;
-
-      if (freect)
-        XFree (ct.value);
-    }
-
-//CMNT: possible_pointer ^|         XSendEvent (dpy, rq.requestor, False, 0L, (XEvent *)&ev); 
-  XSendEvent (dpy, rq.requestor, False, 0L, (XEvent  ) &ev);
-}
 
 /* ------------------------------------------------------------------------- */
 #ifdef USE_XIM
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::im_set_position (XPoint &pos){ 
-rxvt_term.im_set_position =function(XPo &pos){ 
-  XWindowAttributes xwa;
-
-  XGetWindowAttributes (dpy, vt, &xwa);
-
-  pos.x = xwa.x + Col2Pixel    (screen.cur.col);
-  pos.y = xwa.y + Height2Pixel (screen.cur.row) + fbase;
-}
 #endif
 
 #if ENABLE_OVERLAY
