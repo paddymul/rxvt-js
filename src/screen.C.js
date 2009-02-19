@@ -2694,152 +2694,19 @@ rxvt_term.scr_dump =function( fd){
 //REMOVED: js_style_functions c_keyword ^|       void rxvt_term::im_set_position (XPoint &pos){ 
 #endif
 
+    //This is removed because ENABLE_OVERLAY is tied to iso-4755 which is a complicated standard that I won't be supporting
+    // it can be read about here http://en.wikipedia.org/wiki/Unicode_input
 #if ENABLE_OVERLAY
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_overlay_new (int x, int y, int w, int h){ 
-rxvt_term.scr_overlay_new =function( x,  y,  w,  h){ 
-  if (nrow < 1 || ncol < 1)
-    return;
+//REMOVED: js_style_functions c_keyword ^|       void rxvt_term::scr_overlay_new (int x, int y, int w, int h){ 
+//REMOVED: js_style_functions c_keyword ^|       void rxvt_term::scr_overlay_off (){ 
 
-  want_refresh = 1;
+//REMOVED: js_style_functions c_keyword ^|       void rxvt_term::scr_overlay_set (int x, int y, text_t text, rend_t rend){ 
 
-  scr_overlay_off ();
+//REMOVED: js_style_functions c_keyword possible_pointer ^|       void rxvt_term::scr_overlay_set (int x, int y, const char *s){ 
 
-  if (x < 0) x = ncol - w;
-  if (y < 0) y = nrow - h;
+//REMOVED: js_style_functions c_keyword possible_pointer ^|       void rxvt_term::scr_overlay_set (int x, int y, const wchar_t *s){ 
 
-  // make space for border
-  w += 2; min_it (w, ncol);
-  h += 2; min_it (h, nrow);
-
-  x -= 1; clamp_it (x, 0, ncol - w);
-  y -= 1; clamp_it (y, 0, nrow - h);
-
-  ov.x = x; ov.y = y;
-  ov.w = w; ov.h = h;
-
-//CMNT: possible_pointer ^|         ov.text = new text_t *[h]; 
-  ov.text = new text_t  [ h];
-//CMNT: c_keyword possible_pointer ^|         ov.rend = new rend_t *[h]; 
-  ov.rend = new   [ h];
-
-  for (y = 0; y < h; y++){
-//CMNT: possible_pointer ^|             text_t *tp = ov.text[y] = new text_t[w]; 
-      text_t  t p = ov.text[y] = new text_t[w];
-//CMNT: c_keyword possible_pointer ^|             rend_t *rp = ov.rend[y] = new rend_t[w]; 
-        r p = ov.rend[y] = new [w];
-
-      text_t t0, t1, t2;
-//CMNT: js_style_variables ^|             rend_t r = OVERLAY_RSTYLE; 
- var r= OVERLAY_RSTYLE; 
-
-      if (y == 0)
-        t0 = 0x2554, t1 = 0x2550, t2 = 0x2557;
-      else if (y < h - 1)
-        t0 = 0x2551, t1 = 0x0020, t2 = 0x2551;
-      else
-        t0 = 0x255a, t1 = 0x2550, t2 = 0x255d;
-
-//CMNT: possible_pointer ^|             *tp++ = t0; 
-       t p++ = t0;
-//CMNT: possible_pointer ^|             *rp++ = r; 
-       r p++ = r;
-
-      for (x = w - 2; x > 0; --x){
-//CMNT: possible_pointer ^|                 *tp++ = t1; 
-           t p++ = t1;
-//CMNT: possible_pointer ^|                 *rp++ = r; 
-           r p++ = r;
-        }
-
-//CMNT: possible_pointer ^|             *tp = t2; 
-       t p = t2;
-//CMNT: possible_pointer ^|             *rp = r; 
-       r p = r;
-    }
-}
-
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_overlay_off (){ 
-rxvt_term.scr_overlay_off =function(){ 
-  if (!ov.text)
-    return;
-
-  want_refresh = 1;
-
-   for (var y = 0; y < ov.h; y++){  //         for (int y = 0; y < ov.h; y++){   ### js_style_variables  c_keyword 
-      delete [] ov.text[y];
-      delete [] ov.rend[y];
-    }
-
-  delete [] ov.text; ov.text = 0;
-  delete [] ov.rend; ov.rend = 0;
-}
-
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_overlay_set (int x, int y, text_t text, rend_t rend){ 
-rxvt_term.scr_overlay_set =function( x,  y,  text,  rend){ 
-  if (!ov.text || x >= ov.w - 2 || y >= ov.h - 2)
-    return;
-
-  x++, y++;
-
-  ov.text[y][x] = text;
-  ov.rend[y][x] = rend;
-}
-
-//CMNT: js_style_functions c_keyword possible_pointer ^|       void rxvt_term::scr_overlay_set (int x, int y, const char *s){ 
-rxvt_term.scr_overlay_set =function( x,  y,    s ){ 
-//CMNT: possible_pointer ^|         while (*s) 
-  while ( s )
-//CMNT: possible_pointer ^|           scr_overlay_set (x++, y, *s++); 
-    scr_overlay_set (x++, y,  s ++);
-}
-
-//CMNT: js_style_functions c_keyword possible_pointer ^|       void rxvt_term::scr_overlay_set (int x, int y, const wchar_t *s){ 
-rxvt_term.scr_overlay_set =function( x,  y,    s ){ 
-//CMNT: possible_pointer ^|         while (*s){ 
-  while ( s ){
-//CMNT: possible_pointer ^|             text_t t = *s++; 
-      text_t t =  s ++;
-      var width= WCWIDTH (t);   //             int width = WCWIDTH (t);   ###  js_style_variables 
-
-      while (width--){
-          scr_overlay_set (x++, y, t);
-          t = NOCHAR;
-        }
-    }
-}
-
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_swap_overlay (){ 
-rxvt_term.scr_swap_overlay =function(){ 
-  if (!ov.text)
-    return;
-
-  // hide cursor if it is within the overlay area
-  if (IN_RANGE_EXC (screen.cur.col - ov.x, 0, ov.w)
-      && IN_RANGE_EXC (screen.cur.row - ov.y, 0, ov.h))
-    screen.flags &= ~Screen_VisibleCursor;
-
-  // swap screen mem with overlay
-//CMNT: c_keyword ^|         for (int y = ov.h; y--; ){ 
-  for ( y = ov.h; y--; ){
-//CMNT: possible_pointer ^|             text_t *t1 = ov.text[y]; 
-      text_t  t 1 = ov.text[y];
-//CMNT: c_keyword possible_pointer ^|             rend_t *r1 = ov.rend[y]; 
-        r 1 = ov.rend[y];
-
-//CMNT: possible_pointer ^|             text_t *t2 = ROW(y + ov.y + view_start).t + ov.x; 
-      text_t  t 2 = ROW(y + ov.y + view_start).t + ov.x;
-//CMNT: c_keyword possible_pointer ^|             rend_t *r2 = ROW(y + ov.y + view_start).r + ov.x; 
-        r 2 = ROW(y + ov.y + view_start).r + ov.x;
-
-//CMNT: c_keyword ^|             for (int x = ov.w; x--; ){ 
-      for ( x = ov.w; x--; ){
-//CMNT: possible_pointer ^|                 text_t t = *t1; *t1++ = *t2; *t2++ = t; 
-          text_t t =  t 1;  t 1++ =  t 2;  t 2++ = t;
-//CMNT: js_style_variables possible_pointer ^|                 rend_t r = *r1; *r1++ = *r2; *r2++ = SET_FONT (r, FONTSET (r)->find_font (t)); 
- var r=  r 1;  r 1++  =  r 2;  r 2++ = SET_FONT (r, FONTSET (r)->find_font (t));
-        }
-    }
-}
+//REMOVED: js_style_functions c_keyword ^|       void rxvt_term::scr_swap_overlay (){ 
 
 #endif
 /* ------------------------------------------------------------------------- */
