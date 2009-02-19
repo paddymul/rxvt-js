@@ -956,7 +956,7 @@ rxvt_term.scr_add_lines =function(   str,  len,  minlines){
         // trim characters we can't store directly :( 
           if (c >= 0x10000)
 # if ENABLE_COMBINING
-            c = rxvt_composite.compose (c); // map to lower 16 bits
+            // c = rxvt_composite.compose (c); // map to lower 16 bits
 # else
             c = 0xfffd;
 # endif
@@ -1012,54 +1012,7 @@ rxvt_term.scr_add_lines =function(   str,  len,  minlines){
             }
         }
 #if ENABLE_COMBINING
-      else // width == 0
-        {
-          if (c != 0xfeff) // ignore BOM
-            {
-              // handle combining characters 
-              // we just tag the accent on the previous on-screen character. 
-              // this is arguably not correct, but also arguably not wrong.
-              // we don't handle double-width characters nicely yet. 
-//CMNT: possible_pointer ^|                     line_t *linep; 
-              line_t  linep;
-//CMNT: possible_pointer ^|                     text_t *tp; 
-              text_t  tp;
-//CMNT: c_keyword possible_pointer ^|                     rend_t *rp; 
-                r p;
-
-              if (screen.cur.col > 0){
-                  linep = line;
-                  tp = line->t + screen.cur.col - 1;
-                  rp = line->r + screen.cur.col - 1;
-                }
-              else if (screen.cur.row > 0
-                       && ROW(screen.cur.row - 1).is_longer ()){
-                  linep = &ROW(screen.cur.row - 1);
-                  tp = line->t + ncol - 1;
-                  rp = line->r + ncol - 1;
-                }
-              else
-                continue;
-
-              linep->touch ();
-
-//CMNT: possible_pointer ^|                     while (*tp == NOCHAR && tp > linep->t) 
-              while ( t p == NOCHAR && tp > linep->t)
-                tp--, rp--;
-
-              // first try to find a precomposed character 
-//CMNT: js_style_variables possible_pointer ^|                     unicode_t n = rxvt_compose (*tp, c); 
- var n= rxvt_compose ( t p, c); 
-              if (n == NOCHAR)
-//CMNT: possible_pointer ^|                       n = rxvt_composite.compose (*tp, c); 
-                n = rxvt_composite.compose ( t p, c);
-
-//CMNT: possible_pointer ^|                     *tp = n; 
-               t p = n;
-//CMNT: possible_pointer ^|                     *rp = SET_FONT (*rp, FONTSET (*rp)->find_font (*tp)); 
-               r p = SET_FONT ( r p, FONTSET ( r p)->find_font ( t p));
-            }
-        }
+          //removed, I won't be implementing this functionality
 #endif
     }
 
@@ -2002,7 +1955,7 @@ rxvt_term.scr_refresh =function(){
 
   HOOK_INVOKE ((this, HOOK_REFRESH_BEGIN, DT_END));
 #if ENABLE_OVERLAY
-  scr_swap_overlay ();
+  //  scr_swap_overlay ();
 #endif
 
   var showcursor= screen.flags & Screen_VisibleCursor;   //         char showcursor = screen.flags & Screen_VisibleCursor;   ###  js_style_variables 
@@ -2367,8 +2320,7 @@ rxvt_term.scr_refresh =function(){
     }                         /* for (row....) */
 
   /*
-//CMNT: possible_pointer ^|          * G: cleanup cursor and display outline cursor if necessary 
-      G: cleanup cursor and display outline cursor if necessary
+   * G: cleanup cursor and display outline cursor if necessary 
    */
   if (showcursor){
       if (focus){
@@ -2414,7 +2366,7 @@ rxvt_term.scr_refresh =function(){
    * H: cleanup selection 
    */
 #if ENABLE_OVERLAY
-  scr_swap_overlay ();
+  //  scr_swap_overlay ();
 #endif
   HOOK_INVOKE ((this, HOOK_REFRESH_END, DT_END));
 
@@ -2694,7 +2646,7 @@ rxvt_term.scr_dump =function( fd){
 //REMOVED: js_style_functions c_keyword ^|       void rxvt_term::im_set_position (XPoint &pos){ 
 #endif
 
-    //This is removed because ENABLE_OVERLAY is tied to iso-4755 which is a complicated standard that I won't be supporting
+    //This is removed because ENABLE_OVERLAY is tied to iso-14755 which is a complicated standard that I won't be supporting
     // it can be read about here http://en.wikipedia.org/wiki/Unicode_input
 #if ENABLE_OVERLAY
 //REMOVED: js_style_functions c_keyword ^|       void rxvt_term::scr_overlay_new (int x, int y, int w, int h){ 
