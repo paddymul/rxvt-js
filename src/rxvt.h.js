@@ -312,23 +312,30 @@ var
 #define RS_None                 0
 
 // #d efine RS _fgMask               0x0000007fUL    // 128 colors ### remove_UL
-#define RS_fgMask               0x0000007f    // 128 colors  
+// 128 colors  
+#define RS_fgMask               0x0000007f    
 //FIXED c_style_UL #de fine RS _bg Mask               0x00003f80UL    // 128 colors
-#define RS_bgMask               0x00003f80    // 128 colors  
+// 128 colors  
+#define RS_bgMask               0x00003f80    
 
 // font styles
 //FIXED c_style_UL #define RS_Bo ld                 0x00004000UL    // value 1
-#define RS_Bold                 0x00004000    // value 1  
+    // value 1  
+#define RS_Bold                 0x00004000
 // #def ine RS_ I talic		0x00008000UL    // value 2 ### remove_UL
-#define RS_Italic		0x00008000    // value 2  
+    // value 2  
+#define RS_Italic		0x00008000
 
 // fake styles
 //FIXED c_style_UL #d efine RS _Blink                0x00010000UL    // blink
-#define RS_Blink                0x00010000    // blink  
-//FIXED c_style_UL #defi ne RS_ RVid                 0x00020000UL    // reverse video
-#define RS_RVid                 0x00020000    // reverse vid
+    // blink  
+#define RS_Blink                0x00010000
+//FIXED c_style_UL #defi ne RS_ RVid      
+    // reverse vid           0x00020000UL    // reverse video
+#define RS_RVid                 0x00020000
 //FIXED c_style_UL #def ine RS _Uline                0x00040000UL    // underline  eo  
-#define RS_Uline                0x00040000    // underline  
+// underline  
+#define RS_Uline                0x00040000
 
 // toggle this to force redraw, must be != RS_Carefu
 //FIXED c_style_UL #de fine RS_red raw               0x01000000ULl
@@ -341,7 +348,7 @@ var
 #define RS_customShift          19
 
 // other flags
-//FIXED c_style_UL #define RS_Careful		0x80000000UL	/* be careful when drawing these */            
+//FIXED c_style_UL #de fine RS _Careful		0x80000000UL	/* be careful when drawing these */            
 #define RS_Careful		0x80000000	/* be careful when drawing these */            
 
 #define RS_styleCount		4
@@ -351,8 +358,10 @@ var
 #define RS_baseattrMask         (RS_Italic | RS_Bold | RS_Blink | RS_RVid | RS_Uline)
 #define RS_attrMask             (RS_baseattrMask | RS_fontMask)
 
-#define RS_fontCount		127		// not 127 or 256, see rxvtfont.h
-#define RS_fontMask             0xff000000UL    // plenty(?) of fonts, includes RS_Careful
+// not 127 or 256, see rxvtfont.h
+#define RS_fontCount		127		
+// plenty(?) of fonts, includes RS_Careful
+#define RS_fontMask             0xff000000   
 #define RS_fontShift            24
 
 #define DEFAULT_RSTYLE  (RS_None | Color_fg | (Color_bg << Color_Bits))
@@ -514,8 +523,8 @@ var
   TOTAL_COLORS = NRS_COLORS
 #endif
     ;
-
-#define Color_Bits      7 // 0 .. maxTermCOLOR
+// 0 .. maxTermCOLOR
+#define Color_Bits      7 
 
 /*
  * Resource list
@@ -670,7 +679,7 @@ typedef struct _mwmhints
 #define ISSET_PIXCOLOR(idx)     (!!rs[Rs_color + (idx)])
 
 #if ENABLE_STYLES
-//# define FONTSET_of(t,style) (t)->fontset[GET_STYLE (style)]
+//# def ine FONTSET_of(t,style) (t)->fontset[GET_STYLE (style)]
 # define FONTSET_of(t,style) t.fontset[GET_STYLE (style)]  
 #else
 //# define FONTSET_of(t,style) (t)->fontset[0]
