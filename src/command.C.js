@@ -85,10 +85,14 @@ I bound them to "C-H u" "C-H o" and "C-H p"
   (modify-syntax-entry ?\_ "w"  c-mode-syntax-table)
   (set-syntax-table c-mode-syntax-table)
 
-
+(defun revert-and-js2  
+   (revert-buffer) 
+   (js2-mode))
  *----------------------------------------------------------------------*/ 
 
 /*{{{ includes: */
+
+/*
 #include "../config.h"
 #include "rxvt.h"
 #include "rxvtperl.h"
@@ -104,10 +108,11 @@ I bound them to "C-H u" "C-H o" and "C-H p"
 #if LINUX_YIELD_HACK
 # include <ctime>
 #endif
-
+*/
 /*----------------------------------------------------------------------*/
 
-#define IS_CONTROL(ch) !((ch) & 0xffffff60)  //#define IS_CONTROL(ch) !((ch) & 0xffffff60UL)
+#include "rxvt.h.js"
+#define IS_CONTROL(ch) !((ch) & 0xffffff60)  //#de fine IS_CONTRO L(ch) !((ch) & 0xffffff60UL)
 
 
 //REMOVED: more code related to ISO_14755
@@ -141,6 +146,7 @@ rxvt_term.flush =function(){
                 var start_row= row;   //int start_row = row;  ### js_style_variables 
                 var  l ;  //line_t *l;  ### possible_pointer 
               do
+
                 {
                   l = ROW (row++);  //                  l = &ROW (row++);
                   if (!(l->f & LINE_FILTERED)){
@@ -478,7 +484,7 @@ rxvt_term.next_char =function(){
 
       // assume wchar == unicode 
       cmdbuf_ptr_i += len; //POINTER_MATH
-      return wc & UNICODE_MASK;
+      //      return wc & UN ICODE_MASK;
     }
 
   return NOCHAR;
@@ -523,13 +529,14 @@ rxvt_term.cmd_get8 = function ()
 }
 
 /* *INDENT-OFF* */ 
-enum {
+/* enum {
   C1_40 = 0x40,
           C1_41 , C1_BPH, C1_NBH, C1_44 , C1_NEL, C1_SSA, C1_ESA,
   C1_HTS, C1_HTJ, C1_VTS, C1_PLD, C1_PLU, C1_RI , C1_SS2, C1_SS3,
   C1_DCS, C1_PU1, C1_PU2, C1_STS, C1_CCH, C1_MW , C1_SPA, C1_EPA,
   C1_SOS, C1_59 , C1_SCI, C1_CSI, CS_ST , C1_OSC, C1_PM , C1_APC,
 };
+*/
 /* *INDENT-ON* */ 
 
 /*{{{ process non-printing single characters */ 
@@ -772,6 +779,7 @@ rxvt_term.process_escape_seq =function(){
 
 /*{{{ process CONTROL SEQUENCE INTRODUCER (CSI) sequences `ESC[' */
 /* *INDENT-OFF* */ 
+/*
 enum {
   CSI_ICH = 0x40,
            CSI_CUU, CSI_CUD, CSI_CUF, CSI_CUB, CSI_CNL, CSI_CPL, CSI_CHA,
@@ -783,7 +791,7 @@ enum {
   CSI_70 , CSI_71 , CSI_72 , CSI_73 , CSI_74 , CSI_75 , CSI_76 , CSI_77 ,
   CSI_78 , CSI_79 , CSI_7A , CSI_7B , CSI_7C , CSI_7D , CSI_7E , CSI_7F
 };
-
+*/
 #define make_byte(b7,b6,b5,b4,b3,b2,b1,b0)			\
     (((b7) << 7) | ((b6) << 6) | ((b5) << 5) | ((b4) << 4)	\
      | ((b3) << 3) | ((b2) << 2) | ((b1) << 1) | (b0))
@@ -791,8 +799,8 @@ enum {
     (!! ((array)[ (bit) / 8] & (128 >> ((bit) & 7))))
 
 //CMNT: c_keyword ^|       const unsigned char csi_defaults[] = 
-   csi_defaults[] =
-  {
+   csi_defaults = [
+  
     make_byte (1,1,1,1,1,1,1,1),	/* @, A, B, C, D, E, F, G, */
     make_byte (1,1,0,0,1,1,0,0),	/* H, I, J, K, L, M, N, O, */
     make_byte (1,0,1,1,1,1,1,0),	/* P, Q, R, S, T, U, V, W, */
@@ -800,8 +808,8 @@ enum {
     make_byte (1,1,1,0,1,1,1,0),	/* `, a, b, c, d, e, f, g, */
     make_byte (0,0,1,1,0,0,0,0),	/* h, i, j, k, l, m, n, o, */
     make_byte (0,0,0,0,0,0,0,0),	/* p, q, r, s, t, u, v, w, */
-    make_byte (0,0,0,0,0,0,0,0),	/* x, y, z, {, |, }, ~,    */
-  };
+    make_byte (0,0,0,0,0,0,0,0)	/* x, y, z, {, |, }, ~,    */
+                   ];
 /* *INDENT-ON* */ 
 
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::process_csi_seq (){ 
