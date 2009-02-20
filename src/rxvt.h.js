@@ -102,6 +102,64 @@ typedef  int32_t tlen_t_; // specifically for use in the line_t structure
 
 #include "rxvtperl.h"
 */
+/* from rxvtutil.h */
+
+// in range including end
+
+#define PP_CONCAT_(a, b) a ## b
+#define PP_CONCAT(a, b) PP_CONCAT_(a, b)
+#define PP_STRINGIFY_(a) #a
+#define PP_STRINGIFY(a) PP_STRINGIFY_(a)
+
+#define HAVE_GCC_BUILTINS (__GNUC__ >= 4 || (__GNUC__ == 3 && __GNUC_MINOR__ == 4))
+
+#if __GNUC__ >= 4
+# define rxvt_attribute(x) __attribute__(x)
+# define expect(expr,value)         __builtin_expect ((expr),(value))
+#else
+# define rxvt_attribute(x)
+# define expect(expr,value)         (expr)
+#endif
+
+// put into ifs if you are very sure that the expression
+// is mostly true or mosty false. note that these return
+// booleans, not the expression.
+#define expect_false(expr) expect ((expr) != 0, 0)
+#define expect_true(expr)  expect ((expr) != 0, 1)
+
+#define NORETURN rxvt_attribute ((noreturn))
+#define UNUSED   rxvt_attribute ((unused))
+#define CONST    rxvt_attribute ((const))
+
+// increases code size unless -fno-enforce-eh-specs
+#if __GNUC__
+#define NOTHROW
+#define THROW(x)
+#else
+#define NOTHROW  throw()
+#define THROW(x) throw x
+#endif
+     /*
+#def ine IN_R ANGE_INC(val,beg,end) \
+  ((unsigned int)(val) - (unsigned int)(beg) <= (unsigned int)(end) - (unsigned int)(beg))
+
+// in range excluding end
+#de fine IN_RA NGE_EXC(val,beg,end)                                       \
+  ((unsigned int)(val) - (unsigned int)(beg) <  (unsigned int)(end) - (unsigned int)(beg))
+     */
+
+#define IN_RANGE_INC(val,beg,end) \
+  ((val) - (beg) <= (end) - (beg))
+
+// in range excluding end
+#define IN_RANGE_EXC(val,beg,end) \
+  ((val) - (beg) <  (end) - (beg))
+
+
+// for m >= -n, ensure remainder lies between 0..n-1
+#define MOD(m,n) (((m) + (n)) % (n))
+
+
 // try to avoid some macros to decrease code size, on some systems
 #if ENABLE_MINIMAL
 # define strcmp(a,b)   (strcmp)(a,b)
@@ -378,7 +436,7 @@ var  XTerm_name             =  0,
 
     URxvt_perl             = 777;     // for use by perl extensions, starts with "extension-name;"
 
-*/
+
 /* Words starting with `Color_' are colours.  Others are counts */
 /*
  * The PixColor and rendition colour usage should probably be decoupled
@@ -506,12 +564,16 @@ var
 # define PrivMode_Default (PrivMode_Autowrap|PrivMode_ShiftKeys|PrivMode_VisibleCursor)
 #endif
 
-// do not change these constants lightly, there are many interdependencies
-#define IMBUFSIZ               128     // input modifier buffer sizes
-#define KBUFSZ                 512     // size of keyboard mapping buffer
-#define CBUFSIZ                2048    // size of command buffer
-#define CBUFCNT                8       // never call pty_fill/cmd_parse more than this often in a row
-#define UBUFSIZ                2048    // character buffer
+// do not change these constants li
+    // input modifier buffer sizesghtly, there are many interdependencies
+#define IMBUFSIZ               128 
+#define KBUFSZ                 512     
+// size of command buffer// size of keyboard mapping buffer
+#define CBUFSIZ                204
+     // never call pty_fill/cmd_parse more than this often in a row8    
+#define CBUFCNT                8  
+  // character buffer
+#define UBUFSIZ                2048  
 
 #if ENABLE_FRILLS
 //# include <X11/Xmd.h>
@@ -575,8 +637,10 @@ typedef struct _mwmhints
 #define Width2Pixel(n)          ((int32_t)(n) * (int32_t)fwidth)
 #define Height2Pixel(n)         ((int32_t)(n) * (int32_t)fheight)
 
-#define LINENO_of(t,n) MOD (t.term_start + n, t.total_rows)  //#defi ne LIN ENO_of(t,n) MOD ((t)->term_start + int(n), (t)->total_rows)
-#define ROW_of(t,n) (t.row_buf [LINENO_of ((t), n)]  //#def ine RO W_of(t,n) (t->row_buf [LINENO_of ((t), n)]
+ //#defi ne LIN ENO_of(t,n) MOD ((t)->term_start + int(n), (t)->total_rows)
+#define LINENO_of(t,n) MOD (t.term_start + n, t.total_rows) 
+//#def ine RO W_of(t,n) (t->row_buf [LINENO_of ((t), n)]
+#define ROW_of(t,n) (t.row_buf [LINENO_of ((t), n)])
 
 #define LINENO(n) LINENO_of (this, n)
 #define ROW(n) ROW_of (this, n)
@@ -606,22 +670,29 @@ typedef struct _mwmhints
 #define ISSET_PIXCOLOR(idx)     (!!rs[Rs_color + (idx)])
 
 #if ENABLE_STYLES
-# define FONTSET_of(t,style) t.fontset[GET_STYLE (style)]  //# define FONTSET_of(t,style) (t)->fontset[GET_STYLE (style)]
+//# define FONTSET_of(t,style) (t)->fontset[GET_STYLE (style)]
+# define FONTSET_of(t,style) t.fontset[GET_STYLE (style)]  
 #else
-# define FONTSET_of(t,style) t.fontset[0]  //# define FONTSET_of(t,style) (t)->fontset[0]
+//# define FONTSET_of(t,style) (t)->fontset[0]
+# define FONTSET_of(t,style) t.fontset[0]  
 #endif
-#define FONTSET(style) FONTSET_of (this, style)  //#define FONTSET(style) FONTSET_of (this, style)
+//#de fine FON TSET(style) FONTSET_of (this, style)
+#define FONTSET(style) FONTSET_of (this, style)  
 
                      //typedef callback<void (const char *)> log_callback;
                      //typedef callback<int (int)> getfd_callback;
 
 /****************************************************************************/
 
-#define LINE_LONGER     0x0001 // line is continued on the next row
-#define LINE_FILTERED   0x0002 // line has been filtered
-#define LINE_COMPRESSED 0x0004 // line has been compressed (NYI)
-#define LINE_FILTER     0x0008 // line needs to be filtered before display (NYI)
-#define LINE_BIDI       0x0010 // line needs bidi (NYI)
+#define LINE_LONGER     0x0001
+ // line has been filtered // line is continued on the next row
+#define LINE_FILTERED   0x0002
+// line has been compressed (NYI)
+#define LINE_COMPRESSED 0x0004 
+// line needs to be filtered before display (NYI)
+#define LINE_FILTER     0x0008 
+// line needs bidi (NYI)
+#define LINE_BIDI       0x0010 
 
 /*
 struct line_t
@@ -667,13 +738,14 @@ struct line_t
 };
 
 */
-    line_t = function();
+                     line_t = function() {}
 line_t.prototype = {
     t: "" , //FIXED   text_t *t; // terminal the text
     r: "" , //FIXED   rend_t *r; // rendition, uses RS_ flags
     l: "" , //FIXED   tlen_t_ l; // length of each text line
     f: "" , //FIXED  uint32_t f; // flags
     
+    is_longer : function(set){  //FIXME overloaded function, check js translation
     if(set){
       this.f |= 0x0001; // line is continued on the next row;
     }
@@ -684,7 +756,7 @@ line_t.prototype = {
         else {
             return f & 0x0001 // line is continued on the next row;
         }},
-                     /*
+    /*
     is_longer : function(set){  //FIXME overloaded function, check js translation
         if(set){  //why two if(set)'s??? FIXME
             if (set)
@@ -914,7 +986,7 @@ struct screen_t
 };
 */
 
-screen_t = function();
+                     screen_t = function() {}
 screen_t.prototype ={
     cur: "",                    //     row_col_t  cursor position on the screen            
     tscroll: "",                    //  int                            top of settable scroll region            
@@ -983,7 +1055,7 @@ struct rxvt_vars : TermWin_t
 #endif
 };
 */
-rxvt_vars = function();
+                     rxvt_vars = function() {}
 rxvt_vars.prototype={
     scrollBar : "", //   scrollBar_t 
     options : [(Opt_count + 7) >> 3], //     uint8_t
