@@ -1,9 +1,0 @@
-#!/bin/bash
-### takes lines lines like  '# 38 "command.c"' and outputs lines like '//# "command.c"/
-
-base_dir=`dirname "$0"`/
-source "$base_dir"regex_vars
-sed -e 's:"$block_start"'[ ]*$/ {
-N
-s:'"$block_start"'\n[ ]*[{]:\1 {:
-}'\

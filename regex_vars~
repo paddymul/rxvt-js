@@ -1,3 +1,0 @@
-#!/bin/bash
-c_kws_regex="(void|wchar_t|char|unsigned|int |short|static|rend_t|unicode_t)" 
-block_start="(else|[)])"
