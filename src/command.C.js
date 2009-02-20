@@ -382,12 +382,14 @@ rxvt_term.cmd_parse =function(){
           var str = buf, str_i = 0; //                  wchar_t *str = buf;  ###  c_keyword possible_pointer inserted_var should_work
           var eol = str.length + min (ncol, UBUFSIZ); //                  wchar_t *eol = str + min (ncol, UBUFSIZ);  ###  c_keyword possible_pointer inserted_var
           for (;;){
-              if (expect_false (ch == NOCHAR || (IS_CONTROL (ch) && ch != C0_LF && ch != C0_CR && ch != C0_HT)))
+              if (expect_false (ch == NOCHAR || (IS_CONTROL (ch) && ch != C0_LF && ch != C0_CR && ch != C0_HT))) {
                 break;
+              }
               str[str_i++]=ch  //str++ = ch;  ### possible_pointer  FIXME pre/post increment
               if (expect_false (ch == C0_LF || str.length >= eol)){
-                  if (ch == C0_LF)
+                  if (ch == C0_LF){
                     nlines++;
+                  }
                   refresh_count++;
                   if (!option (Opt_jumpScroll) || refresh_count >= nrow - 1){
                       refresh_count = 0;
@@ -400,9 +402,10 @@ rxvt_term.cmd_parse =function(){
                   // scr_add_lines only works for nlines <= nrow - 1.
                   if (nlines >= nrow - 1){
                       if (!(SHOULD_INVOKE (HOOK_ADD_LINES)
-                            && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str - buf, DT_END))))
+                            && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str - buf, DT_END)))) {
 //CMNT   scr_add_lines (buf, str - buf, nlines);  //FIXME pointermath
                           scr_add_lines (buf, str.length - buf.length, nlines);  //FIXME pointermath
+                      }
                       nlines = 0;
                       str = buf;
                       eol = str.length + min (ncol, UBUFSIZ);  // FIXME should_work
@@ -422,9 +425,7 @@ rxvt_term.cmd_parse =function(){
               ch = next_char (); 
           }
 
-          if (!(SHOULD_INVOKE (HOOK_ADD_LINES)
-//FIXED          && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str - buf, DT_END))))
-                && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str.length - buf.length, DT_END)))){
+          if (!(SHOULD_INVOKE (HOOK_ADD_LINES)    && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str.length - buf.length, DT_END)))){
 
 //FIXED   scr_add_lines (buf, str - buf, nlines);  //FIXME pointermath
           
@@ -444,7 +445,7 @@ rxvt_term.cmd_parse =function(){
           try    {
               process_nonprinting (ch); 
             }
-//CMNT: c_keyword ^|                 catch (const class out_of_input &o){ 
+
           catch ( out_of_input){  //FIXME exception
               // we ran out of input, retry later
               cmdbuf_ptr = seq_begin;
@@ -461,7 +462,7 @@ rxvt_term.cmd_parse =function(){
 rxvt_term.next_char =function(){ 
   while (cmdbuf_ptr < cmdbuf_endp){
       // assume 7-bit to be ascii ALWAYS
-//CMNT: c_cast  c_keyword possible_pointer ^|             if (expect_true ((unsigned char)*cmdbuf_ptr <= 0x7f && *cmdbuf_ptr != 0x1b))  
+
       if (expect_true ( cmdbuf_ptr <= 0x7f &&  cmdbuf_ptr != 0x1b)) //FIXME what the fuck why do we care about the memory address of a pointer?
           return cmdbuf_ptr_i++;  //return *cmdbuf_ptr++;  ### possible_pointer  FIXME pointer_math
 
@@ -469,7 +470,6 @@ rxvt_term.next_char =function(){
       //      size_t len = mbrtowc (&wc, cmdbuf_ptr, cmdbuf_endp - cmdbuf_ptr, mbstate);  //FIXME wtf
 
       if (len == (size_t)-2){
-          // the mbstate stores incomplete sequences. didn't know this :/
           cmdbuf_ptr = cmdbuf_endp;
           break;
         }
@@ -797,9 +797,7 @@ enum {
     (!! ((array)[ (bit) / 8] & (128 >> ((bit) & 7))))
 
 //CMNT: c_keyword ^|       const unsigned char csi_defaults[] = 
-   csi_defaults = [
-  
-    make_byte (1,1,1,1,1,1,1,1),	/* @, A, B, C, D, E, F, G, */
+   csi_defaults = [    make_byte (1,1,1,1,1,1,1,1),	/* @, A, B, C, D, E, F, G, */
     make_byte (1,1,0,0,1,1,0,0),	/* H, I, J, K, L, M, N, O, */
     make_byte (1,0,1,1,1,1,1,0),	/* P, Q, R, S, T, U, V, W, */
     make_byte (1,1,1,0,0,0,1,0),	/* X, Y, Z, [, \, ], ^, _, */
