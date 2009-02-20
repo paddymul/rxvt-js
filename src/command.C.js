@@ -81,6 +81,7 @@ I bound them to "C-H u" "C-H o" and "C-H p"
 (fset 'paddy-next-CMNT
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("CMNT" 0 "%d")) arg)))
 
+(local-set-key (kbd "H-C-n") 'paddy-next-possible_pointer)
   (modify-syntax-entry ?\_ "w"  c-mode-syntax-table)
   (set-syntax-table c-mode-syntax-table)
 
@@ -106,137 +107,14 @@ I bound them to "C-H u" "C-H o" and "C-H p"
 
 /*----------------------------------------------------------------------*/
 
-#define IS_CONTROL(ch) !((ch) & 0xffffff60UL)
-
-#if ENABLE_FRILLS || ISO_14755
-
-#define ISO_14755_STARTED	0x80000000UL
-#define ISO_14755_51		0x40000000UL // basic (section 5.1)
-#define ISO_14755_52		0x20000000UL // keycap (section 5.2)
-#define ISO_14755_54		0x10000000UL // code feedback (section 5.4)
-#define ISO_14755_MASK		0x0fffffffUL
-
-#if ISO_14755
-//FIXED: c_keyword ^|       static unsigned short iso14755_symtab[] = { 
-   iso14755_symtab[] = {
-  // keysym,		unicode
-  XK_Left,		0x2190,
-  XK_KP_Left,		0x2190,
-  XK_Up,		0x2191,
-  XK_KP_Up,		0x2191,
-  XK_Right,		0x2192,
-  XK_KP_Right,		0x2192,
-  XK_Down,		0x2193,
-  XK_KP_Down,		0x2193,
-  XK_Linefeed,		0x21b4,
-  XK_Return,		0x21b5,
-  XK_KP_Enter,		0x21b5,
-
-  XK_Prior,		0x21de,
-  XK_Next,		0x21df,
-  XK_Tab,		0x21e5,
-  XK_ISO_Left_Tab,	0x21e6,
-  XK_Shift_L,		0x21e7,
-  XK_Shift_R,		0x21e7,
-
-  XK_Shift_Lock,	0x21eb,
-  XK_ISO_Lock,		0x21eb,
-  XK_Caps_Lock,		0x21ec,
-  XK_Num_Lock,		0x21ed,
-  XK_ISO_Level3_Shift,	0x21ee,
-  XK_ISO_Level3_Lock,	0x21ef,
-  XK_ISO_Group_Lock,	0x21f0,
-  XK_Home,		0x21f1,
-  XK_End,		0x21f2,
-
-  XK_Execute,		0x2318,
-  XK_Begin,		0x2320,
-  XK_Delete,		0x2326,
-  XK_Clear,		0x2327,
-  XK_BackSpace,		0x232b,
-  XK_Insert,		0x2380,
-  XK_Control_L,		0x2388,
-  XK_Control_R,		0x2388,
-  XK_Pause,		0x2389,
-  XK_Break,		0x238a,
-  XK_Escape,		0x238b,
-  XK_Undo,		0x238c,
-  XK_Print,		0x2399, 
-
-  XK_space,		0x2423,
-
-#ifdef XK_KP_Begin
-  XK_KP_Prior,		0x21de,
-  XK_KP_Next,		0x21df,
-  XK_KP_Begin,		0x2320,
-  XK_KP_Insert,		0x2380,
-  XK_KP_Delete,		0x2326,
-  XK_KP_Space,		0x2422,
-#endif
-  0,
-};
+#define IS_CONTROL(ch) !((ch) & 0xffffff60)  //#define IS_CONTROL(ch) !((ch) & 0xffffff60UL)
 
 
-
-//FIXED: c_keyword ^|  void     rxvt_term::iso14755_54 (int x, int y){ 
-rxvt_term::iso14755_54(x,  y){
-  x = Pixel2Col(x);
-  y = Pixel2Row(y);
-
-  if(!IN_RANGE_EXC (x, 0, ncol)
-      || !IN_RANGE_EXC (y, 0, nrow))
-    return;
-
-  for (;;){
-//CMNT: c_keyword ^|             const line_t &l = ROW(y + view_start); 
-       line_t &l = ROW(y + view_start);
-
-      text_t t = l.t[x];
-
-      if (t != NOCHAR || !x){
-          iso14755_51 (l.t[x], l.r[x], x, y);
-          iso14755buf = ISO_14755_54;
-          break;
-        }
-
-      x--;
-    }
-}
-
-
-
+//REMOVED: more code related to ISO_14755
+//REMOVED: ^|#if ISO_14755
+//REMOVED: c_keyword ^|  void     rxvt_term::iso14755_54 (int x, int y){ 
 //REMOVED: c_keyword ^|       void rxvt_term::iso14755_51 (unicode_t ch, rend_t r, int x, int y){ 
-
-
-rxvt_term.commit_iso14755 = function(){ //void  rxvt_term::commit_iso14755 (){        function (){
-//CMNT: c_keyword ^|         wchar_t ch[2]; 
-   ch[2];
-
-  ch[0] = iso14755buf & ISO_14755_MASK;
-  ch[1] = 0;
-
-  if (iso14755buf & ISO_14755_51){
-    var    mb[16]; //char mb[16];        ###  c_keyword inserted_var
-
-    var    len; //             int len;  ###  c_keyword inserted_var
-
-      // allow verbatim 0-bytes and control-bytes to be entered
-      if (ch[0] >= 0x20)
-        len = wcstombs (mb, ch, 16);
-      else{
-          mb[0] = ch[0];
-          len = 1;
-        }
-
-      if (len > 0)
-        tt_write (mb, len);
-      else
-        scr_bell ();
-    }
-
-  iso14755buf = 0;
-}
-
+//REMOVED: ^| rxvt_term::commit_iso14755 (){        function (){
 //REMOVED: c_keyword ^|       static int  hex_keyval (XKeyEvent &ev){
 //REMOVED: c_keyword ^|       static inline KeySym  translate_keypad (KeySym keysym, bool kp){
 //REMOVED: c_keyword ^|       static inline int  //FIXME  map_function_key (KeySym keysym){
@@ -264,20 +142,20 @@ rxvt_term.flush =function(){
                 var  l ;  //line_t *l;  ### possible_pointer 
               do
                 {
-                  l = &ROW (row++);
+                  l = ROW (row++);  //                  l = &ROW (row++);
                   if (!(l->f & LINE_FILTERED)){
                       // line not filtered, mark it as filtered
-                      l->f |= LINE_FILTERED;
-                      while (l->is_longer ()){
-                          l = &ROW (row++);
-                          l->f |= LINE_FILTERED;
+                      l.f |= LINE_FILTERED;
+                      while (l.is_longer ()){
+                        l = ROW (row++);  //                          l = &ROW (row++);
+                          l.f |= LINE_FILTERED;
                         }
                       // and filter it
                       HOOK_INVOKE ((this, HOOK_LINE_UPDATE, DT_INT, start_row, DT_END));
                       break;
                     }
                 }
-              while (l->is_longer () && row < end_row);
+              while (l.is_longer () && row < end_row);
             }
           while (row < end_row);
         }
@@ -285,15 +163,15 @@ rxvt_term.flush =function(){
       scr_refresh ();
       scrollBar.show (1);
 #ifdef USE_XIM
-      IMSendSpot ();
+      //      IMSendSpot ();
 #endif
     }
 
-  display->flush ();
+  display.flush (); //FIXME what is display again
 }
 
 /* checks wether a refresh is requested and starts the refresh timer */
-//FIXED: js_style_functions c_keyword ^|       void rxvt_term::refresh_check (){ 
+//REWRITE: js_style_functions c_keyword ^|       void rxvt_term::refresh_check (){ 
 rxvt_term.refresh_check =function(){ 
   if (want_refresh && !flush_ev.is_active ())
     flush_ev.start (1. / 60.); // refresh at max. 60 Hz normally
@@ -337,7 +215,9 @@ rxvt_term.text_blink_cb =function(ev::timer &w,  revents){
 //THE following removal was related to the LINUX_YIELD_HACK
 //REMOVED: c_keyword ^|       static struct event_handler 
 
-//CMNT: js_style_functions ^|       bool rxvt_term::pty_fill (){ 
+
+// this is probably where I should enter text into the system
+//REWRITE: js_style_functions ^|       bool rxvt_term::pty_fill (){ 
 rxvt_term.pty_fill =function(){ 
   ssize_t n = cmdbuf_endp - cmdbuf_ptr;
 
@@ -347,8 +227,8 @@ rxvt_term.pty_fill =function(){
     }
 
   memmove (cmdbuf_base, cmdbuf_ptr, n);
-  cmdbuf_ptr = cmdbuf_base;
-  cmdbuf_endp = cmdbuf_ptr + n;
+  cmdbuf_ptr = cmdbuf_base, cmdbuf_ptr_i =0;
+  cmdbuf_endp = cmdbuf_ptr_i + n;
 
   ssize_t r = read (pty->pty, cmdbuf_endp, CBUFSIZ - n);
 
@@ -507,8 +387,7 @@ rxvt_term.cmd_parse =function(){
                   if (!option (Opt_jumpScroll) || refresh_count >= nrow - 1){
                       refresh_count = 0;
 
-//CMNT: js_style_functions ^|                             if (!option (Opt_skipScroll) || ev_time () > ev::now () + 1. / 60.){ 
-                      if (!option (Opt_skipScroll) || ev_time () >ev.now =function() + 1. / 60.){ 
+                      if (!option (Opt_skipScroll) || ev_time () > ev::now () + 1. / 60.){  //FIXME
                           refreshnow = true;
                           ch = NOCHAR;
                           break;
@@ -558,8 +437,7 @@ rxvt_term.cmd_parse =function(){
             }
         }
       else{
-          try
-            {
+          try    {
               process_nonprinting (ch); 
             }
 //CMNT: c_keyword ^|                 catch (const class out_of_input &o){ 
@@ -610,13 +488,13 @@ rxvt_term.next_char =function(){
 //FIXED: js_style_functions ^| uint32_t rxvt_term::next_octet () NOTHROW 
 rxvt_term.next_octet =function() NOTHROW {
     //FIXME ternary
-  return cmdbuf_ptr < cmdbuf_endp
-//CMNT: c_cast c_keyword possible_pointer ^|                ? (unsigned char)*cmdbuf_ptr++ 
-         ?  cmdbuf_ptr++
+  return cmdbuf_ptr_i < cmdbuf_endp
+  ?  cmdbuf_ptr[cmdbuf_ptr_i++]  //                ? (unsigned char)*cmdbuf_ptr++   ###  c_cast c_keyword possible_pointer 
          : NOCHAR;
 }
 
 //CMNT: c_keyword ^|       static class out_of_input out_of_input; 
+//they just created their own exception class with a null defintion
  class out_of_input out_of_input;
 
 /* rxvt_cmd_getc () - Return next input character */ 
@@ -1258,15 +1136,15 @@ rxvt_term.process_window_ops =function( args,   nargs){
         scr_touch (true);
         break;
   case 8:			/* set size (chars) */ 
-                         set_widthheight ( (args[2] *   fwidth), //set_widthheight ((unsigned int) (args[2] * fwidth),        ###  c_keyword possible_pointer c_cast
-                            (args[1]    fheight)); //unsigned int) (args[1] * fheight));        ###  c_keyword possible_pointer
+                         set_widthheight ( (args[2] *   fwidth), //set_widthheight ((unsigned int) (args[2] * fwidth),        ###  c_keyword  c_cast
+                            (args[1]    fheight)); //unsigned int) (args[1] * fheight));        ###  c_keyword 
         break;
 
       //case 9: NYI, TODO, restore maximized window or maximize window
       default:
         if (args[0] >= 24)	/* set height (chars) */ 
           set_widthheight (width, //set_widthheight ((unsigned int)width,        ###  c_keyword c_cast
-                            (args[1]    fheight)); //unsigned int) (args[1] * fheight));        ###  c_keyword possible_pointer c_cast
+                            (args[1]    fheight)); //unsigned int) (args[1] * fheight));        ###  c_keyword  c_cast
         break;
 
       /*
@@ -1293,22 +1171,24 @@ rxvt_term.process_window_ops =function( args,   nargs){
   case 19:			/* report window size (chars) */ 
     tt_printf ("\033[9;%d;%dt", nrow, ncol); 
         break;
-      case 20:			/* report icon label */
+                         /* these won't be needed, there will be nothign to report this back to
+        case 20:			// report icon label 
         {
           var s ; //                  char *s;  ###  c_keyword possible_pointer inserted_var
           XGetIconName (dpy, parent[0], &s);
-          tt_printf ("\033]L%-.250s\234", option (Opt_insecure) && s ? s : "");	/* 8bit ST */ 
+          tt_printf ("\033]L%-.250s\234", option (Opt_insecure) && s ? s : "");	// 8bit ST 
           XFree (s);
         }
         break;
-      case 21:			/* report window title */
+        case 21:			//report window title 
         {
           var s ; //                  char *s;  ###  c_keyword possible_pointer inserted_var
           XFetchName (dpy, parent[0], &s);
-          tt_printf ("\033]l%-.250s\234", option (Opt_insecure) && s ? s : "");	/* 8bit ST */ 
+          tt_printf ("\033]l%-.250s\234", option (Opt_insecure) && s ? s : "");	// 8bit ST 
           XFree (s);
         }
         break;
+                         */
     }
 }
 #endif
@@ -1323,7 +1203,7 @@ rxvt_term.get_to_st =function(&ends_how){
   var ch; //          unicode_t ch;  ###  c_keyword inserted_var
   var seen_esc = false; //   bool seen_esc = false; c_keyword inserted_var
   var n = 0; //          unsigned int n = 0;  ###  c_keyword inserted_var
-  var string = new Array(STRING_MAX); //          wchar_t string[STRING_MAX];  ###  c_keyword inserted_var js_style_array
+  var string_ = new Array(STRING_MAX); //          wchar_t string[STRING_MAX];  ###  c_keyword inserted_var js_style_array
 
   while ((ch = cmd_getc ()) != NOCHAR){
       if (seen_esc){
@@ -1349,14 +1229,14 @@ rxvt_term.get_to_st =function(&ends_how){
         // stop at some sane length
         return NULL;
 
-      string[n++] = ch;
+      string_[n++] = ch;
     }
 
-  string[n++] = '\0';
+  string_[n++] = '\0';
 
   ends_how = (ch == 0x5c ? C0_ESC : ch);
 
-  return rxvt_wcstombs (string);
+  return rxvt_wcstombs (string_); //FIXME rxvt_wcstombs what the hell does it do, seems to take wide_chars and return regualr chars
 }
 
 /*----------------------------------------------------------------------*/
@@ -1393,8 +1273,7 @@ rxvt_term.process_osc_seq =function(){
       arg = arg * 10 + (ch - '0'); 
 
   if (ch == ';'){
-//CMNT: js_style_variables possible_pointer ^|             char *s = get_to_st (eh); 
- var s= get_to_st (eh); 
+    var s= get_to_st (eh);   //             char *s = get_to_st (eh);   ###  js_style_variables possible_pointer 
 
       if (s){
           process_xterm_seq (arg, s, eh);
@@ -1406,13 +1285,14 @@ rxvt_term.process_osc_seq =function(){
 //CMNT: js_style_functions c_keyword possible_pointer ^|       void rxvt_term::process_color_seq (int report, int color, const char *str, char resp){ 
 rxvt_term.process_color_seq =function(report,  color,    str,  resp){ 
   if (str[0] == '?' && !str[1]){
-      rgba c;
+    var c;  //      rgba c;
       pix_colors_focused[color].get (c);
 
 #if XFT
-      if (c.a != rgba::MAX_CC)
+     if (c.a != rgba::MAX_CC)
         tt_printf ("\033]%d;rgba:%04x/%04x/%04x/%04x%c", report, c.a, c.r, c.g, c.b, resp); 
       else
+
 #endif
         tt_printf ("\033]%d;rgb:%04x/%04x/%04x%c", report, c.r, c.g, c.b, resp); 
     }
@@ -2101,7 +1981,7 @@ rxvt_term.process_sgr_mode =function(nargs,    arg){
           case 95:
           case 96:
           case 97:
-                         scr_color ( (minBrightCO //scr_color ((unsigned int) (minBrightCOLOR + (arg[i] - 90)), Color_fg);        LOR + (arg[i] - 90)), Color_fg);###  c_keyword c_cast
+                         scr_color ( (minBrightCOLOR //scr_color ((unsigned int) (minBrightCOLOR + (arg[i] - 90)), Color_fg);        LOR + (arg[i] - 90)), Color_fg);###  c_keyword c_cast
             break;
           case 100:
           case 101:		/* set bright bg color */
@@ -2111,7 +1991,7 @@ rxvt_term.process_sgr_mode =function(nargs,    arg){
           case 105:
           case 106:
           case 107:
-                                         scr_color ( (minBrightCO //scr_color ((unsigned int) (minBrightCOLOR + (arg[i] - 100)), Color_bg);        LOR + (arg[i] - 100)), Color_bg);###  c_keyword c_cast
+                                         scr_color ( (minBrightCOLOR //scr_color ((unsigned int) (minBrightCOLOR + (arg[i] - 100)), Color_bg);        LOR + (arg[i] - 100)), Color_bg);###  c_keyword c_cast
             break;
 #endif
         }
