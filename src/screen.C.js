@@ -2536,128 +2536,40 @@ rxvt_term.scr_dump =function( fd){
 }
 */
 #endif
-
-/* ------------------------------------------------------------------------- *
- *                           CHARACTER SELECTION                             * 
- * ------------------------------------------------------------------------- */ 
 //REMOVED: js_style_functions c_keyword ^|       void rxvt_term::selection_check (int check_more) 
-/* Paste a selection direct to the command fd  */
 //REMOVED: js_style_functions c_keyword possible_pointer ^|       void rxvt_term::paste (char *data, unsigned int len){ 
-/* Respond to a notification that a primary selection has been sent 
- * EXT: SelectionNotify 
- */
 //REMOVED: js_style_functions c_keyword ^|       void rxvt_term::selection_paste (Window win, Atom prop, bool delete_prop) 
-
 //REMOVED: js_style_functions c_keyword ^|       void rxvt_term::incr_cb (ev::timer &w, int revents){ 
-
 //REMOVED: js_style_functions c_keyword ^|       void rxvt_term::selection_property (Window win, Atom prop) 
-
-/* ------------------------------------------------------------------------- */
-/*
- * Request the current selection: 
- * Order: > internal selection if available 
- *        > PRIMARY, SECONDARY, CLIPBOARD if ownership is claimed (+) 
- *        > CUT_BUFFER0 
- * (+) if ownership is claimed but property is empty, rxvt_selection_paste () 
- *     will auto fallback to CUT_BUFFER0 
- * EXT: button 2 release 
- */
 //REMOVED: js_style_functions c_keyword ^|       void rxvt_term::selection_request (Time tm, int selnum){ 
-
 //REMOVED: js_style_functions c_keyword ^|       int rxvt_term::selection_request_other (Atom target, int selnum) 
-
-/* ------------------------------------------------------------------------- */
-/*
- * Clear all selected text 
- * EXT: SelectionClear 
- */
 //REMOVED: js_style_functions c_keyword ^|       void rxvt_term::selection_clear (){ 
-
-/* ------------------------------------------------------------------------- */
-/*
- * Copy a selection into the cut buffer 
- * EXT: button 1 or 3 release 
- */
 //REMOVED: js_style_functions c_keyword ^|       void rxvt_term::selection_make (Time tm) 
-
 //REMOVED: js_style_functions ^|       bool rxvt_term::selection_grab (Time tm){ 
-
-/* ------------------------------------------------------------------------- */
-/*
- * Mark or select text based upon number of clicks: 1, 2, or 3 
- * EXT: button 1 press 
- */
 //REMOVED js_style_functions void rxvt_term::selection_click (int clicks, int x, int y) 
-
-/* ------------------------------------------------------------------------- */
-/*
- * Mark a selection at the specified col/row 
- */
 //REMOVED: js_style_functions c_keyword ^|       void rxvt_term::selection_start_colrow (int col, int row){ 
-
-/* ------------------------------------------------------------------------- */
-/*
- * Word select: select text for 2 clicks 
- * We now only find out the boundary in one direction 
- */
-
-/* what do we want: spaces/tabs are delimiters or cutchars or non-cutchars */ 
 //#define DELIMIT_TEXT(x)                                               \
 //REMOVED: js_style_functions c_keyword ^|           (unicode::is_space (x) ? 2 : (x) <= 0xff && !!strchr (rs[Rs_cutchars], (x))) 
 //    (unicode.is_space =function(x) ? 2 : (x) <= 0xff && !!strchr (rs[Rs_cuts], (x))) 
 //#define DELIMIT_REND(x)        1
 
 //REMOVED: js_style_functions c_keyword possible_pointer ^|       void rxvt_term::selection_delimit_word (enum page_dirn dirn, const row_col_t *mark, row_col_t *ret) 
-
-/* ------------------------------------------------------------------------- */
-/*
- * Extend the selection to the specified x/y pixel location 
- * EXT: button 3 press; button 1 or 3 drag 
- * flag == 0 ==> button 1 
- * flag == 1 ==> button 3 press 
- * flag == 2 ==> button 3 motion 
- */
 //REMOVED: js_style_functions c_keyword ^|       void rxvt_term::selection_extend (int x, int y, int flag){ 
-
-/* ------------------------------------------------------------------------- */
-/*
- * Extend the selection to the specified col/row 
- */
 //REMOVED: js_style_functions c_keyword ^|       void rxvt_term::selection_extend_colrow (int32_t col, int32_t row, int button3, int buttonpress, int clickchange) 
 //REMOVED: js_style_functions c_keyword ^|       void rxvt_term::selection_remove_trailing_spaces (){ 
-
-/* ------------------------------------------------------------------------- */
-/*
- * Double click on button 3 when already selected 
- * EXT: button 3 double click 
- */
 //REMOVED: js_style_functions c_keyword ^|       void rxvt_term::selection_rotate (int x, int y) 
-
-/* ------------------------------------------------------------------------- */
-/*
- * Respond to a request for our current selection 
- * EXT: SelectionRequest 
- */
 //REMOVED: js_style_functions c_keyword ^|       void rxvt_term::selection_send (const XSelectionRequestEvent &rq){ 
-
-/* ------------------------------------------------------------------------- */
 #ifdef USE_XIM
 //REMOVED: js_style_functions c_keyword ^|       void rxvt_term::im_set_position (XPoint &pos) 
 #endif
-
     //This is removed because ENABLE_OVERLAY is tied to iso-14755 which is a complicated standard that I won't be supporting
     // it can be read about here http://en.wikipedia.org/wiki/Unicode_input
 #if ENABLE_OVERLAY
 //REMOVED: js_style_functions c_keyword ^|       void rxvt_term::scr_overlay_new (int x, int y, int w, int h){ 
 //REMOVED: js_style_functions c_keyword ^|       void rxvt_term::scr_overlay_off () 
-
 //REMOVED: js_style_functions c_keyword ^|       void rxvt_term::scr_overlay_set (int x, int y, text_t text, rend_t rend){ 
-
 //REMOVED: js_style_functions c_keyword possible_pointer ^|       void rxvt_term::scr_overlay_set (int x, int y, const char *s) 
-
 //REMOVED: js_style_functions c_keyword possible_pointer ^|       void rxvt_term::scr_overlay_set (int x, int y, const wchar_t *s){ 
-
 //REMOVED: js_style_functions c_keyword ^|       void rxvt_term::scr_swap_overlay () 
-
 #endif
-/* ------------------------------------------------------------------------- */
+
