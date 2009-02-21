@@ -15,6 +15,7 @@
 
 #ifndef RXVT_H_                /* include once only */
 #define RXVT_H_
+
  /*
 #include <cstdio>
 #include <cctype>
@@ -64,6 +65,8 @@ typedef  int32_t tlen_t_; // specifically for use in the line_t structure
 
 //#include "feature.h"
 */
+
+
 #if defined (ISO_14755) || defined (ENABLE_PERL)
 # define ENABLE_OVERLAY 1
 #endif
@@ -102,6 +105,86 @@ typedef  int32_t tlen_t_; // specifically for use in the line_t structure
 
 #include "rxvtperl.h"
 */
+/*from rxvtperl.h */
+#if ENABLE_PERL
+
+#else
+# define SHOULD_INVOKE(htype) false
+# define HOOK_INVOKE(args) false
+#endif
+
+/* from feature.h */
+#define MAX_COLS	10000
+#define MAX_ROWS	10000
+
+/*From background.c actually I think a lot of these are from optinc.h*/
+    Opt_secondaryScroll=22;
+Opt_secondaryScreen=21;
+
+ NOCHAR = 0xffff,
+
+ Opt_loginShell = 1,
+ Opt_iconic = 2,
+ Opt_visualBell = 3,
+ Opt_mapAlert = 4,
+ Opt_reverseVideo = 5,
+ Opt_utmpInhibit = 6,
+ Opt_scrollBar = 7,
+ Opt_scrollBar_right = 8,
+ Opt_scrollBar_floating = 9,
+ Opt_meta8 = 10,
+ Opt_scrollTtyOutput = 11,
+ Opt_scrollTtyKeypress = 12,
+ Opt_transparent = 13,
+ Opt_tripleclickwords = 14,
+ Opt_scrollWithBuffer = 15,
+ Opt_jumpScroll = 16,
+ Opt_skipScroll = 17,
+ Opt_mouseWheelScrollPage = 18,
+
+
+
+ Opt_pointerBlank = 0,
+
+ Opt_cursorBlink = 20,
+ Opt_secondaryScreen = 21,
+ Opt_secondaryScroll = 22,
+ Opt_pastableTabs = 23,
+ Opt_cursorUnderline = 24,
+
+
+
+
+
+
+
+ Opt_insecure = 0,
+ Opt_borderLess = 0,
+ Opt_hold = 0,
+ Opt_override_redirect = 0,
+ Opt_urgentOnBell = 0,
+
+
+
+
+ Opt_skipBuiltinGlyphs = 0,
+
+
+
+
+ Opt_intensityStyles = 0,
+
+
+ Opt_iso14755_52 = 32,
+
+
+
+ Opt_console = 33,
+
+
+
+ Opt_buffered = 0,
+
 /* from rxvtutil.h */
 
 // in range including end
