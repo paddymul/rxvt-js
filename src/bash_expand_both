@@ -1,0 +1,1 @@
+ cpp /Users/patrickmullen/temp/downloads/rxvt/urxvt-git/src/command.C.js | gsed -r 's/^#/\/\/#/' >  /Users/patrickmullen/temp/downloads/rxvt/urxvt-git/src/expand_both.c.js 

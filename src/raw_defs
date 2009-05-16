@@ -1,0 +1,366 @@
+#define BACKGROUND_H_
+#define CALLBACK_H__
+#define CALLBACK_H_VERSION 3
+#define IS_CONTROL(ch) !((ch) & 0xffffff60UL)
+#define ISO_14755_STARTED	0x80000000UL
+#define ISO_14755_51		0x40000000UL // basic (section 5.1)
+#define ISO_14755_52		0x20000000UL // keycap (section 5.2)
+#define ISO_14755_54		0x10000000UL // code feedback (section 5.4)
+#define ISO_14755_MASK		0x0fffffffUL
+#define make_byte(b7,b6,b5,b4,b3,b2,b1,b0)			\
+#define get_byte_array_bit(array, bit)				\
+#define COMMAND_H_
+#define STRING_MAX	2048	/* max string size for process_rxvt_xterm_seq() */
+#define ESC_ARGS	32	/* max # of args for esc sequences */
+#define IS_SCROLL_MOD  ((SCROLL_SHIFTKEY || SCROLL_CTRLKEY || SCROLL_METAKEY) \
+#define VT100_ANS	"\033[?1;2c"	/* vt100 answerback */
+#define cs_us_ascii_to_unicode cs_unicode_to_unicode
+#define cs_us_ascii_to_unicode_16 cs_unicode_to_unicode
+#define ENCODING_DEFAULT
+#define ENCODING_H
+#define FROM_UNICODE(cs,code) rxvt_codeset[cs].from_unicode (code)
+#define TO_UNICODE(cs,code)   rxvt_codeset[cs].to_unicode   (code)
+#define EV_MINIMAL 1
+#define EV_USE_POLL 0
+#define EV_USE_INOTIFY 0
+#define EV_USE_EVENTFD 0
+#define EV_MULTIPLICITY 0
+#define EV_PERIODIC_ENABLE 0
+#define EV_STAT_ENABLE 0
+#define EV_FORK_ENABLE 0
+#define EV_ASYNC_ENABLE 0
+#define EV_EMBED_ENABLE 0
+#define EV_CONFIG_H <config.h>
+#define EV_MINPRI 0
+#define EV_MAXPRI 0
+#define EV_USE_STDEXCEPT 0
+#define FEATURE_H
+#define RESTORE_TTY_MODE 0666
+#define PTYTTY_HELPER 1
+#define CURSOR_BLINK_INTERVAL 0.5
+#define TEXT_BLINK_INTERVAL CURSOR_BLINK_INTERVAL
+#define XTERM_COLORS
+#define MAX_COLS	10000
+#define MAX_ROWS	10000
+#define MAX_SAVELINES   10000000
+#define NO_SLOW_LINK_SUPPORT
+#define SCROLL_ON_SHIFT
+#define PAGING_CONTEXT_LINES 1
+#define MOUSE_THRESHOLD		50
+#define SELECTION_SCROLL_MAX_LINES 8
+#define SELECTION_SCROLL_LINE_SPEEDUP 3
+#define LOG_ONLY_ON_LOGIN
+#define MAPALERT_OPTION
+#define SB_WIDTH_MINIMUM 	5
+#define SB_WIDTH_MAXIMUM 	100
+#define SHADOW_WIDTH 1
+#define RXVT_SCROLL_FULL 1
+#define META8_OPTION
+#define XTERM_COLOR_CHANGE
+#define TERMCAP_HAS_BW 1
+#define VISUAL_BELL_DURATION .020
+#define COLOR_FOREGROUND	"rgb:00/00/00"
+#define COLOR_BACKGROUND	"rgb:ff/ff/ff"
+#define COLOR_SCROLLBAR		"rgb:b2/b2/b2"	/* scrollColor match Netscape */
+#define COLOR_SCROLLTROUGH	"rgb:96/96/96"
+#define COLOR_CURSOR_FOREGROUND	NULL	/* if NULL, use background colour */
+#define COLOR_CURSOR_BACKGROUND	NULL	/* if NULL, use foreground colour */
+#define PRINTPIPE	"lpr"
+#define DEFAULT_BACKSPACE	"DEC"		/* SPECIAL */
+#define DEFAULT_DELETE		"\033[3~"
+#define CUTCHARS	"\"&'()*,;<=>?@[\\]^`{|}"
+#define INTERNALBORDERWIDTH	2
+#define EXTERNALBORDERWIDTH	0
+#define LINESPACE	0
+#define SAVELINES	1000
+#define INIT_H_
+#define CERASE	'\010'	/* ^H */
+#define CONSOLE		"/dev/console"	/* console device */
+#define SvWATCHER(sv) (perl_watcher *)SvPTR (sv, IOM_CLASS "::watcher")
+#define newSVtimer(timer) iom_new_ref ((timer)->self, IOM_CLASS "::timer")
+#define SvTIMER(sv) (timer *)(perl_watcher *)SvPTR ((sv), IOM_CLASS "::timer")
+#define newSViow(iow) iom_new_ref ((iow)->self, IOM_CLASS "::iow")
+#define SvIOW(sv) (iow *)(perl_watcher *)SvPTR ((sv), IOM_CLASS "::iow")
+#define newSViw(iw) iom_new_ref ((iw)->self, IOM_CLASS "::iw")
+#define SvIW(sv) (iw *)(perl_watcher *)SvPTR ((sv), IOM_CLASS "::iw")
+#define newSVpw(pw) iom_new_ref ((pw)->self, IOM_CLASS "::pw")
+#define SvPW(sv) (pw *)(perl_watcher *)SvPTR ((sv), IOM_CLASS "::pw")
+#define KEYBOARD_H_
+#define KEYSYM_HASH_BITS        4       /* lowest #bits of keysym is used as hash key */
+#define KEYSYM_HASH_BUDGETS     (1<<KEYSYM_HASH_BITS)
+#define KEYSYM_HASH_MASK        (KEYSYM_HASH_BUDGETS-1)
+#define MetaMask                0x0100
+#define NumLockMask             0x0200
+#define AppKeypadMask           0x0400
+#define Level3Mask              0x0800 // currently not supported
+#define OtherModMask            (ShiftMask | LockMask | ControlMask \
+#define LIBPTYTTY_H_
+#define PTYTTY_H
+#define fatal(msg) do { write (2, msg, sizeof (msg) - 1); _exit (255); } while (0)
+#define ptytty_fatal rxvt_fatal
+#define ptytty_warn  rxvt_warn
+#define PTYTTY_REENTRANT 1
+#define PTYTTY_NO_PID_CHECK 1
+#define RXVT_H_
+#define SET_LOCALE(locale) rxvt_set_locale (locale)
+#define COLORTERMENV    "rxvt"
+#define scrollBar_esc           30
+#define FONT_CMD                '#'
+#define FONT_DN                 "#-"
+#define FONT_UP                 "#+"
+#define RS_None                 0
+#define RS_fgMask               0x0000007fUL    // 128 colors
+#define RS_bgMask               0x00003f80UL    // 128 colors
+#define RS_Bold                 0x00004000UL    // value 1
+#define RS_Italic		0x00008000UL    // value 2
+#define RS_Blink                0x00010000UL    // blink
+#define RS_RVid                 0x00020000UL    // reverse video
+#define RS_Uline                0x00040000UL    // underline
+#define RS_redraw               0x01000000UL
+#define RS_customCount          32
+#define RS_customMask           0x00f80000UL
+#define RS_customShift          19
+#define RS_Careful		0x80000000UL	/* be careful when drawing these */
+#define RS_styleCount		4
+#define RS_styleMask		(RS_Bold | RS_Italic)
+#define RS_styleShift		14
+#define RS_baseattrMask         (RS_Italic | RS_Bold | RS_Blink | RS_RVid | RS_Uline)
+#define RS_attrMask             (RS_baseattrMask | RS_fontMask)
+#define RS_fontCount		127		// not 127 or 256, see rxvtfont.h
+#define RS_fontMask             0xff000000UL    // plenty(?) of fonts, includes RS_Careful
+#define RS_fontShift            24
+#define DEFAULT_RSTYLE  (RS_None | Color_fg | (Color_bg << Color_Bits))
+#define OVERLAY_RSTYLE  (RS_None | Color_Black | (Color_Yellow << Color_Bits))
+#define Sel_none                0       /* Not waiting */
+#define Sel_normal              0x01    /* normal selection */
+#define Sel_incr                0x02    /* incremental selection */
+#define Sel_direct              0x00
+#define Sel_Primary             0x01
+#define Sel_Secondary           0x02
+#define Sel_Clipboard           0x03
+#define Sel_whereMask           0x0f
+#define Sel_CompoundText        0x10    /* last request was COMPOUND_TEXT */
+#define Sel_UTF8String          0x20    /* last request was UTF8_STRING */
+#define CHAR_ST                 0x9c    /* 0234 */
+#define Color_Bits      7 // 0 .. maxTermCOLOR
+#define PrivMode_132            (1UL<<0)
+#define PrivMode_132OK          (1UL<<1)
+#define PrivMode_rVideo         (1UL<<2)
+#define PrivMode_relOrigin      (1UL<<3)
+#define PrivMode_Screen         (1UL<<4)
+#define PrivMode_Autowrap       (1UL<<5)
+#define PrivMode_aplCUR         (1UL<<6)
+#define PrivMode_aplKP          (1UL<<7)
+#define PrivMode_HaveBackSpace  (1UL<<8)
+#define PrivMode_BackSpace      (1UL<<9)
+#define PrivMode_ShiftKeys      (1UL<<10)
+#define PrivMode_VisibleCursor  (1UL<<11)
+#define PrivMode_MouseX10       (1UL<<12)
+#define PrivMode_MouseX11       (1UL<<13)
+#define PrivMode_scrollBar      (1UL<<14)
+#define PrivMode_TtyOutputInh   (1UL<<15)
+#define PrivMode_Keypress       (1UL<<16)
+#define PrivMode_smoothScroll   (1UL<<17)
+#define PrivMode_vt52           (1UL<<18)
+#define PrivMode_LFNL		(1UL<<19)
+#define PrivMode_MouseBtnEvent  (1UL<<20)
+#define PrivMode_MouseAnyEvent  (1UL<<21)
+#define PrivMode_BracketPaste   (1UL<<22)
+#define PrivMode_mouse_report   (PrivMode_MouseX10|PrivMode_MouseX11|PrivMode_MouseBtnEvent|PrivMode_MouseAnyEvent)
+#define IMBUFSIZ               128     // input modifier buffer sizes
+#define KBUFSZ                 512     // size of keyboard mapping buffer
+#define CBUFSIZ                2048    // size of command buffer
+#define CBUFCNT                8       // never call pty_fill/cmd_parse more than this often in a row
+#define UBUFSIZ                2048    // character buffer
+#define MWM_HINTS_FUNCTIONS     (1L << 0)
+#define MWM_HINTS_DECORATIONS   (1L << 1)
+#define MWM_HINTS_INPUT_MODE    (1L << 2)
+#define MWM_HINTS_STATUS        (1L << 3)
+#define MWM_FUNC_ALL            (1L << 0)
+#define MWM_FUNC_RESIZE         (1L << 1)
+#define MWM_FUNC_MOVE           (1L << 2)
+#define MWM_FUNC_MINIMIZE       (1L << 3)
+#define MWM_FUNC_MAXIMIZE       (1L << 4)
+#define MWM_FUNC_CLOSE          (1L << 5)
+#define MWM_DECOR_ALL           (1L << 0)
+#define MWM_DECOR_BORDER        (1L << 1)
+#define MWM_DECOR_RESIZEH       (1L << 2)
+#define MWM_DECOR_TITLE         (1L << 3)
+#define MWM_DECOR_MENU          (1L << 4)
+#define MWM_DECOR_MINIMIZE      (1L << 5)
+#define MWM_DECOR_MAXIMIZE      (1L << 6)
+#define MWM_INPUT_MODELESS                  0
+#define MWM_INPUT_PRIMARY_APPLICATION_MODAL 1
+#define MWM_INPUT_SYSTEM_MODAL              2
+#define MWM_INPUT_FULL_APPLICATION_MODAL    3
+#define PROP_MWM_HINTS_ELEMENTS             5
+#define dLocal(type,name)       type const name = this->name
+#define WCWIDTH(c)		(IN_RANGE_INC (c, 0x20, 0x7e) ? 1 : wcwidth (c))
+#define Pixel2Col(x)            Pixel2Width((int32_t)(x))
+#define Pixel2Row(y)            Pixel2Height((int32_t)(y))
+#define Pixel2Width(x)          ((int32_t)(x) / (int32_t)fwidth)
+#define Pixel2Height(y)         ((int32_t)(y) / (int32_t)fheight)
+#define Col2Pixel(col)          ((int32_t)Width2Pixel(col))
+#define Row2Pixel(row)          ((int32_t)Height2Pixel(row))
+#define Width2Pixel(n)          ((int32_t)(n) * (int32_t)fwidth)
+#define Height2Pixel(n)         ((int32_t)(n) * (int32_t)fheight)
+#define LINENO_of(t,n) MOD ((t)->term_start + int(n), (t)->total_rows)
+#define ROW_of(t,n) (t)->row_buf [LINENO_of ((t), n)]
+#define LINENO(n) LINENO_of (this, n)
+#define ROW(n) ROW_of (this, n)
+#define GET_BASEFG(x)           (((x) & RS_fgMask))
+#define GET_BASEBG(x)           (((x) & RS_bgMask)>>Color_Bits)
+#define GET_FONT(x)             (((x) & RS_fontMask) >> RS_fontShift)
+#define SET_FONT(x,fid)         (((x) & ~RS_fontMask) | ((fid) << RS_fontShift))
+#define GET_STYLE(x)		(((x) & RS_styleMask) >> RS_styleShift)
+#define SET_STYLE(x,style)	(((x) & ~RS_styleMask) | ((style) << RS_styleShift))
+#define GET_ATTR(x)             (((x) & RS_attrMask))
+#define GET_BGATTR(x)                                                   \
+#define SET_FGCOLOR(x,fg)       (((x) & ~RS_fgMask)   | (fg))
+#define SET_BGCOLOR(x,bg)       (((x) & ~RS_bgMask)   | ((bg)<<Color_Bits))
+#define SET_ATTR(x,a)           (((x) & ~RS_attrMask) | (a))
+#define RS_SAME(a,b)		(!(((a) ^ (b)) & ~RS_Careful))
+#define PIXCOLOR_NAME(idx)      rs[Rs_color + (idx)]
+#define ISSET_PIXCOLOR(idx)     (!!rs[Rs_color + (idx)])
+#define FONTSET(style) FONTSET_of (this, style)
+#define LINE_LONGER     0x0001 // line is continued on the next row
+#define LINE_FILTERED   0x0002 // line has been filtered
+#define LINE_COMPRESSED 0x0004 // line has been compressed (NYI)
+#define LINE_FILTER     0x0008 // line needs to be filtered before display (NYI)
+#define LINE_BIDI       0x0010 // line needs bidi (NYI)
+#define UNICODE_MASK 0x1fffffUL
+#define SET_R(r) rxvt_current_term = const_cast<rxvt_term *>(r)
+#define GET_R rxvt_current_term
+#define Screen_Relative          (1<<0)  /* relative origin mode flag         */
+#define Screen_VisibleCursor     (1<<1)  /* cursor visible?                   */
+#define Screen_Autowrap          (1<<2)  /* auto-wrap flag                    */
+#define Screen_Insert            (1<<3)  /* insert mode (vs. overstrike)      */
+#define Screen_WrapNext          (1<<4)  /* need to wrap for next char?       */
+#define Screen_DefaultFlags      (Screen_VisibleCursor | Screen_Autowrap)
+#define STATUS_SUCCESS           0
+#define STATUS_FAILURE           1
+#define STATUS_CONNECTION_FAILED 2
+#define RXVT_DAEMON_H
+#define MAX_OVERLAP_ROMAN  (8 + 2)	// max. character width in 8ths of the base width
+#define MAX_OVERLAP_ITALIC (8 + 3)	// max. overlap for italic fonts
+#define OVERLAP_OK(w,wcw,prop) ((w) <= (			\
+#define NUM_EXTENT_TEST_CHARS (sizeof (extent_test_chars) / sizeof (extent_test_chars[0]))
+#define dTermDisplay Display *disp = term->dpy
+#define dTermGC      GC gc = term->gc
+#define DEFAULTFONT_H_
+#define FONT_UNREF(f) do { (f)->clear (); delete (f); } while (0)
+#define RXVTPERL_H_
+#define line_t perl_line_t
+#define GRAB_CURSOR THIS->scrollBar.leftptr_cursor
+#define LINENO(n) MOD (THIS->term_start + int(n), THIS->total_rows)
+#define ROW(n) THIS->row_buf [LINENO (n)]
+#define newSVterm(term) SvREFCNT_inc ((SV *)(term)->perl.self)
+#define SvTERM(sv) (rxvt_term *)SvPTR ((sv), "urxvt::term")
+#define SvOVERLAY(sv) (overlay *)SvPTR (sv, "urxvt::overlay")
+#define IOM_CLASS "urxvt"
+#define IOM_WARN rxvt_warn
+#define TERM_OFFSET(sym) offsetof (TermWin_t, sym)
+#define TERM_OFFSET_width      TERM_OFFSET(width)
+#define TERM_OFFSET_height     TERM_OFFSET(height)
+#define TERM_OFFSET_fwidth     TERM_OFFSET(fwidth)
+#define TERM_OFFSET_fheight    TERM_OFFSET(fheight)
+#define TERM_OFFSET_fbase      TERM_OFFSET(fbase)
+#define TERM_OFFSET_nrow       TERM_OFFSET(nrow)
+#define TERM_OFFSET_ncol       TERM_OFFSET(ncol)
+#define TERM_OFFSET_focus      TERM_OFFSET(focus)
+#define TERM_OFFSET_mapped     TERM_OFFSET(mapped)
+#define TERM_OFFSET_int_bwidth TERM_OFFSET(int_bwidth)
+#define TERM_OFFSET_ext_bwidth TERM_OFFSET(ext_bwidth)
+#define TERM_OFFSET_lineSpace  TERM_OFFSET(lineSpace)
+#define TERM_OFFSET_saveLines  TERM_OFFSET(saveLines)
+#define TERM_OFFSET_total_rows TERM_OFFSET(total_rows)
+#define TERM_OFFSET_top_row    TERM_OFFSET(top_row)
+#define RXVT_TOOLKIT_H
+#define RXVT_UTIL_H
+#define PP_CONCAT_(a, b) a ## b
+#define PP_CONCAT(a, b) PP_CONCAT_(a, b)
+#define PP_STRINGIFY_(a) #a
+#define PP_STRINGIFY(a) PP_STRINGIFY_(a)
+#define HAVE_GCC_BUILTINS (__GNUC__ >= 4 || (__GNUC__ == 3 && __GNUC_MINOR__ == 4))
+#define expect_false(expr) expect ((expr) != 0, 0)
+#define expect_true(expr)  expect ((expr) != 0, 1)
+#define NORETURN rxvt_attribute ((noreturn))
+#define UNUSED   rxvt_attribute ((unused))
+#define CONST    rxvt_attribute ((const))
+#define IN_RANGE_INC(val,beg,end) \
+#define IN_RANGE_EXC(val,beg,end) \
+#define MOD(m,n) (((m) + (n)) % (n))
+#define SALLOC_BLOCK 65536 // size of basic block to allocate
+#define RXVT_SALLOC_H_
+#define PROP_SIZE               256*1024
+#define PASTE_SIZE		32768
+#define TABSIZE                 8       /* default tab size */
+#define ZERO_SCROLLBACK()                                              \
+#define CLEAR_SELECTION()                                              \
+#define CLEAR_ALL_SELECTION()                                          \
+#define ROW_AND_COL_IS_AFTER(A, B, C, D)                               \
+#define ROW_AND_COL_IS_BEFORE(A, B, C, D)                              \
+#define ROW_AND_COL_IN_ROW_AFTER(A, B, C, D)                           \
+#define ROW_AND_COL_IN_ROW_AT_OR_AFTER(A, B, C, D)                     \
+#define ROW_AND_COL_IN_ROW_BEFORE(A, B, C, D)                          \
+#define ROW_AND_COL_IN_ROW_AT_OR_BEFORE(A, B, C, D)                    \
+#define ROWCOL_IS_AFTER(X, Y)                                          \
+#define ROWCOL_IS_BEFORE(X, Y)                                         \
+#define ROWCOL_IN_ROW_AFTER(X, Y)                                      \
+#define ROWCOL_IN_ROW_BEFORE(X, Y)                                     \
+#define ROWCOL_IN_ROW_AT_OR_AFTER(X, Y)                                \
+#define ROWCOL_IN_ROW_AT_OR_BEFORE(X, Y)                               \
+#define CLEAR_CHARS(x, y, num)                                         \
+#define DELIMIT_TEXT(x) 		\
+#define DELIMIT_REND(x)        1
+#define n_stp_width	8
+#define n_stp_height	2
+#define SCROLLER_DIMPLE_WIDTH   6
+#define SCROLLER_DIMPLE_HEIGHT  6
+#define ARROW_WIDTH   13
+#define ARROW_HEIGHT  13
+#define x_stp_width	8
+#define x_stp_height	2
+#define SCROLLBAR_H
+#define R_SB_NEXT               1
+#define R_SB_XTERM              2
+#define R_SB_PLAIN              4
+#define R_SB_RXVT               8
+#define R_SB_ALIGN_CENTRE       0
+#define R_SB_ALIGN_TOP          1
+#define R_SB_ALIGN_BOTTOM       2
+#define SB_WIDTH_NEXT           19
+#define SB_WIDTH_XTERM          15
+#define SB_WIDTH_PLAIN          7
+#define SB_PADDING              1
+#define SB_BORDER_WIDTH         1
+#define SB_BEVEL_WIDTH_UPPER_LEFT       1
+#define SB_BEVEL_WIDTH_LOWER_RIGHT      2
+#define SB_LEFT_PADDING         (SB_PADDING + SB_BORDER_WIDTH)
+#define SB_MARGIN_SPACE         (SB_PADDING * 2)
+#define SB_BUTTON_WIDTH         (SB_WIDTH_NEXT - SB_MARGIN_SPACE - SB_BORDER_WIDTH)
+#define SB_BUTTON_HEIGHT        (SB_BUTTON_WIDTH)
+#define SB_BUTTON_SINGLE_HEIGHT (SB_BUTTON_HEIGHT + SB_PADDING)
+#define SB_BUTTON_BOTH_HEIGHT   (SB_BUTTON_SINGLE_HEIGHT * 2)
+#define SB_BUTTON_TOTAL_HEIGHT  (SB_BUTTON_BOTH_HEIGHT + SB_PADDING)
+#define SB_BUTTON_BEVEL_X       (SB_LEFT_PADDING)
+#define SB_BUTTON_FACE_X        (SB_BUTTON_BEVEL_X + SB_BEVEL_WIDTH_UPPER_LEFT)
+#define SB_THUMB_MIN_HEIGHT     (SB_BUTTON_WIDTH - (SB_PADDING * 2))
+#define scrollbar_above_slider(y)       ((y) < scrollBar.top)
+#define scrollbar_below_slider(y)       ((y) > scrollBar.bot)
+#define scrollbar_position(y)           ((y) - scrollBar.beg)
+#define VERSION "9.06"
+#define DATE	"2008-06-15"
+#define Optflag_Reverse              1
+#define Optflag_Boolean              2
+#define Optflag_Switch               4
+#define INFO(opt, arg, desc)					\
+#define STRG(rsp, kw, opt, arg, desc)				\
+#define RSTRG(rsp, kw, arg)					\
+#define BOOL(rsp, kw, opt, option, flag, desc)			\
+#define SWCH(opt, option, flag, desc)				\
+#define optList_isString(i)						\
+#define optList_isBool(i)						\
+#define optList_isReverse(i)						\
+#define optList_size							\
+#define INDENT 18
