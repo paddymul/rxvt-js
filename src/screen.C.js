@@ -276,14 +276,14 @@ rxvt_term.prototype.scr_reset =function(){
       this.screen.cur.row = this.screen.cur.col = 0;
       this.screen.charset = 0; 
       current_screen = PRIMARY;
-      scr_cursor (SAVE);
+      this.scr_cursor (SAVE);
 
 #if NSCREENS
       swap.flags = Screen_DefaultFlags;
       swap.cur.row = swap.cur.col = 0;
       swap.charset = 0; 
       current_screen = SECONDARY;
-      scr_cursor (SAVE);
+      this.scr_cursor (SAVE);
       current_screen = PRIMARY;
 #endif
 
@@ -323,8 +323,8 @@ rxvt_term.prototype.scr_reset =function(){
         }
 
       for ( row = prev_nrow; row < nrow; row++){  //             for (int row = prev_nrow; row < nrow; row++){   ###  c_keyword 
-          swap_buf [row].clear (); scr_blank_screen_mem (swap_buf [row], DEFAULT_RSTYLE);
-          drawn_buf[row].clear (); scr_blank_screen_mem (drawn_buf[row], DEFAULT_RSTYLE);
+          swap_buf [row].clear (); this.scr_blank_screen_mem (swap_buf [row], DEFAULT_RSTYLE);
+          drawn_buf[row].clear (); this.scr_blank_screen_mem (drawn_buf[row], DEFAULT_RSTYLE);
         }
 
       var  old_buf = row_buf, old_buf_i=row_buf_i;  //             line_t *old_buf = row_buf;     ###  possible_pointer 
@@ -413,7 +413,7 @@ rxvt_term.prototype.scr_reset =function(){
               row_buf[row_buf_i + qrow].is_longer (0);
 //FIXED: possible_pointer ^|                     scr_blank_line (*qline, qline->l, ncol - qline->l, DEFAULT_RSTYLE); 
        
-row_buf[row_buf_i + qrow] =scr_blank_line ( qline, qline.l, ncol - qline.l, DEFAULT_RSTYLE);
+row_buf[row_buf_i + qrow] =this.scr_blank_line ( qline, qline.l, ncol - qline.l, DEFAULT_RSTYLE);
             }
           while (p != pend && q > 0);
 
@@ -422,7 +422,7 @@ row_buf[row_buf_i + qrow] =scr_blank_line ( qline, qline.l, ncol - qline.l, DEFA
 
           // make sure all terminal lines exist
           while (top_row > 0)
-            scr_blank_screen_mem (ROW (--top_row), DEFAULT_RSTYLE);
+            this.scr_blank_screen_mem (ROW (--top_row), DEFAULT_RSTYLE);
         }
       else{
           // if no scrollback exists (yet), wing, instead of wrap
@@ -436,7 +436,7 @@ row_buf[row_buf_i + qrow] =scr_blank_line ( qline, qline.l, ncol - qline.l, DEFA
             }
 
            for (  row = prev_nrow; row < nrow; row++){  //                 for (int row = prev_nrow; row < nrow; row++){   ### js_style_variables  c_keyword 
-              row_buf [row].clear (); scr_blank_screen_mem (row_buf [row], DEFAULT_RSTYLE);
+              row_buf [row].clear (); this.scr_blank_screen_mem (row_buf [row], DEFAULT_RSTYLE);
             }
 
           term_start = 0;
@@ -495,29 +495,29 @@ rxvt_term.prototype.scr_release =function(){
  */
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_poweron (){ 
 rxvt_term.prototype.scr_poweron =function(){ 
-  scr_release ();
+  this.scr_release ();
   prev_nrow = prev_ncol = 0;
   rvideo_mode = false;
-  scr_soft_reset ();
-  scr_reset ();
+  this.scr_soft_reset ();
+  this.scr_reset ();
 
-  scr_clear (true);
-  scr_refresh ();
+  this.scr_clear (true);
+  this.scr_refresh ();
 }
 
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_soft_reset () 
 rxvt_term.prototype.scr_soft_reset =function(){ 
   /* only affects modes, nothing drastic such as clearing the screen */
 #if ENABLE_OVERLAY
-  scr_overlay_off ();
+  this.scr_overlay_off ();
 #endif
 
   if (current_screen != PRIMARY)
-    scr_swap_screen ();
+    this.scr_swap_screen ();
 
-  scr_scroll_region (0, MAX_ROWS - 1);
-  scr_rendition (0, ~RS_None);
-  scr_insert_mode (0);
+  this.scr_scroll_region (0, MAX_ROWS - 1);
+  this.scr_rendition (0, ~RS_None);
+  this.scr_insert_mode (0);
 }
 
 /* ------------------------------------------------------------------------- *
@@ -637,7 +637,7 @@ rxvt_term.prototype.scr_change_screen =function( scrn){
   if (option (Opt_secondaryScreen)){
       num_scr = 0;
 
-      scr_swap_screen ();
+      this.scr_swap_screen ();
 
       swap(this.screen.charset, swap.charset);   //      ::swap (this.screen.charset, swap.charset); 
       swap(this.screen.flags,   swap.flags);  //      ::swap (screen.flags,   swap.flags);
@@ -647,7 +647,7 @@ rxvt_term.prototype.scr_change_screen =function( scrn){
   else
 #endif
     if (option (Opt_secondaryScroll))
-      scr_scroll_text (0, prev_nrow - 1, prev_nrow);
+      this.scr_scroll_text (0, prev_nrow - 1, prev_nrow);
 }
 
 // clear WrapNext indicator, solidifying position on next line
@@ -661,7 +661,7 @@ rxvt_term.prototype.scr_do_wrap =function(){
   this.screen.cur.col = 0;
 
   if (this.screen.cur.row == this.screen.bscroll)
-    scr_scroll_text (this.screen.tscroll, this.screen.bscroll, 1);
+    this.scr_scroll_text (this.screen.tscroll, this.screen.bscroll, 1);
   else if (this.screen.cur.row < nrow - 1)
     this.screen.cur.row++;
 }
@@ -731,12 +731,12 @@ rxvt_term.prototype.scr_scroll_text =function( row1,  row2,  count){
           // optimize if already cleared, can be significant on slow machines
           // could be rolled into scr_blank_screen_mem 
           if (l.r && l.l < ncol - 1 && !((l.r[l.l + 1] ^ rstyle) & (RS_fgMask | RS_bgMask))){
-            l = scr_blank_line (l, 0, l.l, rstyle);  //              scr_blank_line (l, 0, l.l, rstyle);
+            l = this.scr_blank_line (l, 0, l.l, rstyle);  //              scr_blank_line (l, 0, l.l, rstyle);
               l.l = 0;
               l.f = 0;
             }
           else
-            scr_blank_screen_mem (l, rstyle);
+            this.scr_blank_screen_mem (l, rstyle);
         }
 
       // now copy lines below the scroll region bottom to the
@@ -768,7 +768,7 @@ rxvt_term.prototype.scr_scroll_text =function( row1,  row2,  count){
       if (option (Opt_scrollWithBuffer)
           && view_start != 0
           && view_start != -saveLines)
-        scr_page (UP, count);
+        this.scr_page (UP, count);
 
       if (SHOULD_INVOKE (HOOK_SCROLL_BACK))
         HOOK_INVOKE ((this, HOOK_SCROLL_BACK, DT_INT, count, DT_INT, top_row, DT_END));
@@ -807,7 +807,7 @@ rxvt_term.prototype.scr_scroll_text =function( row1,  row2,  count){
           temp_buf [temp_buf_i+row] = ROW(row1 + (row + count + rows) % rows);
 
           if (!IN_RANGE_EXC (row + count, 0, rows))
-            scr_blank_screen_mem (temp_buf [temp_buf_i + row], rstyle);
+            this.scr_blank_screen_mem (temp_buf [temp_buf_i + row], rstyle);
         }
 
        for ( row = 0; row < rows; row++)  //             for (int row = 0; row < rows; row++)   ### js_style_variables  c_keyword 
@@ -870,7 +870,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
             this.screen.flags &= ~Screen_WrapNext;
 
             if (this.screen.cur.row == this.screen.bscroll)
-              scr_scroll_text (this.screen.tscroll, this.screen.bscroll, 1);
+              this.scr_scroll_text (this.screen.tscroll, this.screen.bscroll, 1);
             else if (this.screen.cur.row < (nrow - 1))
               row = ++this.screen.cur.row;
 
@@ -885,7 +885,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
             continue;
           }
         else if (c == C0_HT){
-            scr_tab (1, true);
+            this.scr_tab (1, true);
             continue;
           }
 
@@ -904,7 +904,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
         }
 
       if (expect_false (this.screen.flags & Screen_WrapNext)){
-          scr_do_wrap ();
+          this.scr_do_wrap ();
 
           line.l = ncol;
           line.is_longer(1);
@@ -947,7 +947,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
         }
 
       if (expect_false (this.screen.flags & Screen_Insert))
-        scr_insdel_chars (width, INSERT); 
+        this.scr_insdel_chars (width, INSERT); 
 
       if (width != 0){
 #if !UNICODE_3
@@ -966,7 +966,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
                 || (this.screen.cur.col < ncol - 1
                     && line.t[this.screen.cur.col + 1] == NOCHAR)
              ))
-            scr_kill_char ( line, this.screen.cur.col);  //                   scr_kill_char (*line, screen.cur.col);   ###  c_keyword possible_pointer 
+            this.scr_kill_char ( line, this.screen.cur.col);  //                   scr_kill_char (*line, screen.cur.col);   ###  c_keyword possible_pointer 
 
           var rend= SET_FONT (rstyle, FONTSET (rstyle).find_font (c));   //                 rend_t rend = SET_FONT (rstyle, FONTSET (rstyle)->find_font (c));   ###  js_style_variables 
 
@@ -1038,7 +1038,7 @@ rxvt_term.prototype.scr_backspace =function(){
         }
     }
   else
-    scr_gotorc (0, -1, RELATIVE);
+    this.scr_gotorc (0, -1, RELATIVE);
 }
 
 /* ------------------------------------------------------------------------- */
@@ -1107,7 +1107,7 @@ rxvt_term.prototype.scr_tab =function( count, ht){
     }
 
   if (x != this.screen.cur.col)
-    scr_gotorc (0, x, R_RELATIVE);
+    this.scr_gotorc (0, x, R_RELATIVE);
 }
 
 /* ------------------------------------------------------------------------- */
@@ -1121,9 +1121,9 @@ rxvt_term.prototype.scr_tab =function( count, ht){
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_backindex (){ 
 rxvt_term.prototype.scr_backindex =function(){ 
   if (this.screen.cur.col > 0)
-    scr_gotorc (0, -1, R_RELATIVE | C_RELATIVE);
+    this.scr_gotorc (0, -1, R_RELATIVE | C_RELATIVE);
   else
-    scr_insdel_chars (1, INSERT); 
+    this.scr_insdel_chars (1, INSERT); 
 }
 #endif
 /* ------------------------------------------------------------------------- */
@@ -1135,18 +1135,18 @@ rxvt_term.prototype.scr_backindex =function(){
  */
 #if !ENABLE_MINIMAL
 //FIXED: i_think_i_fixed_it js_style_functions c_keyword ^|       void rxvt_term::scr_forwardindex () 
-rxvt_term.scr_forwardindex =function(){ 
+rxvt_term.this.scr_forwardindex =function(){ 
   if (this.screen.cur.col < ncol - 1)
-    scr_gotorc (0, 1, R_RELATIVE | C_RELATIVE);
+    this.scr_gotorc (0, 1, R_RELATIVE | C_RELATIVE);
   else{
     var l = ROW(this.screen.cur.row);  //      line_t &l = ROW(screen.cur.row);
 
       l.touch ();
       l.is_longer (0);
 
-      scr_gotorc (0, 0, R_RELATIVE);
-      scr_insdel_chars (1, DELETE); 
-      scr_gotorc (0, ncol - 1, R_RELATIVE);
+      this.scr_gotorc (0, 0, R_RELATIVE);
+      this.scr_insdel_chars (1, DELETE); 
+      this.scr_gotorc (0, ncol - 1, R_RELATIVE);
     }
 }
 #endif
@@ -1211,7 +1211,7 @@ rxvt_term.prototype.scr_index =function(direction){
 
   if ((this.screen.cur.row == this.screen.bscroll && direction == UP)
       || (this.screen.cur.row == this.screen.tscroll && direction == DN))
-    scr_scroll_text (this.screen.tscroll, this.screen.bscroll, dirn);
+    this.scr_scroll_text (this.screen.tscroll, this.screen.bscroll, dirn);
   else
     this.screen.cur.row += dirn;
 
@@ -1279,7 +1279,7 @@ rxvt_term.prototype.scr_erase_line =function( mode){
         return;
     }
 
-  line =  scr_blank_line (line, col, num, rstyle);  //scr_blank_line (line, col, num, rstyle);
+  line =  this.scr_blank_line (line, col, num, rstyle);  //scr_blank_line (line, col, num, rstyle);
 }
 
 /* ------------------------------------------------------------------------- */
@@ -1302,13 +1302,13 @@ rxvt_term.prototype.scr_erase_screen =function( mode){
   switch (mode){
       case 0:                     /* erase to end of screen */
         selection_check (1);
-        scr_erase_line (0);
+        this.scr_erase_line (0);
         row = this.screen.cur.row + 1;    /* possible OOB */
         num = nrow - row;
         break;
       case 1:                     /* erase to beginning of screen */
         selection_check (3);
-        scr_erase_line (1);
+        this.scr_erase_line (1);
         row = 0;
         num = this.screen.cur.row;
         break;
@@ -1361,10 +1361,10 @@ rxvt_term.prototype.scr_erase_screen =function( mode){
     }
 
   for (; num--; row++){
-      scr_blank_screen_mem (ROW(row), rstyle);
+      this.scr_blank_screen_mem (ROW(row), rstyle);
 
       if (!view_start)
-        scr_blank_line (drawn_buf [row], 0, ncol, ren);
+        this.scr_blank_line (drawn_buf [row], 0, ncol, ren);
     }
 }
 
@@ -1431,9 +1431,9 @@ rxvt_term.prototype.scr_insdel_lines =function( count,  insdel){
         count = end;
     }
 
-  scr_do_wrap ();
+  this.scr_do_wrap ();
 
-    scr_scroll_text (this.screen.cur.row, this.screen.bscroll, insdel * count); 
+    this.scr_scroll_text (this.screen.cur.row, this.screen.bscroll, insdel * count); 
 }
 
 /* ------------------------------------------------------------------------- */
@@ -1448,7 +1448,7 @@ rxvt_term.prototype.scr_insdel_chars =function( count,  insdel){
   if (count <= 0)
     return;
 
-  scr_do_wrap ();
+  this.scr_do_wrap ();
 
   selection_check (1);
   count = mi_n(count, ncol - this.screen.cur.col);  //  min_it (count, ncol - screen.cur.col);
@@ -1462,14 +1462,14 @@ rxvt_term.prototype.scr_insdel_chars =function( count,  insdel){
 
   // nuke wide spanning the start
   if (line.t[this.screen.cur.col] == NOCHAR)
-    scr_kill_char ( line, this.screen.cur.col);  //           scr_kill_char (*line, screen.cur.col);   ###  c_keyword possible_pointer 
+    this.scr_kill_char ( line, this.screen.cur.col);  //           scr_kill_char (*line, screen.cur.col);   ###  c_keyword possible_pointer 
 
   switch (insdel){
       case INSERT:
         line.l = mi_n (line.l + count, ncol);
 
         if (line.t[this.screen.cur.col] == NOCHAR)
-          scr_kill_char ( line, this.screen.cur.col);  //                 scr_kill_char (*line, screen.cur.col);   ###  c_keyword possible_pointer 
+          this.scr_kill_char ( line, this.screen.cur.col);  //                 scr_kill_char (*line, screen.cur.col);   ###  c_keyword possible_pointer 
 
          for (var col = ncol - 1; (col - count) >= this.screen.cur.col; col--){  //               for (int col = ncol - 1; (col - count) >= screen.cur.col; col--){   ### js_style_variables  c_keyword 
             line.t[col] = line.t[col - count];
@@ -1489,7 +1489,7 @@ rxvt_term.prototype.scr_insdel_chars =function( count,  insdel){
               }
           }
 
-        scr_blank_line ( line, this.screen.cur.col, count, rstyle);  //               scr_blank_line (*line, screen.cur.col, count, rstyle);   ###  possible_pointer 
+        this.scr_blank_line ( line, this.screen.cur.col, count, rstyle);  //               scr_blank_line (*line, screen.cur.col, count, rstyle);   ###  possible_pointer 
         break;
 
       case ERASE:
@@ -1499,9 +1499,9 @@ rxvt_term.prototype.scr_insdel_chars =function( count,  insdel){
 
         // nuke wide char after the end 
         if (this.screen.cur.col + count < ncol && line.t[this.screen.cur.col + count] == NOCHAR)
-          scr_kill_char ( line, this.screen.cur.col + count);  //                 scr_kill_char (*line, screen.cur.col + count);   ###  c_keyword possible_pointer 
+          this.scr_kill_char ( line, this.screen.cur.col + count);  //                 scr_kill_char (*line, screen.cur.col + count);   ###  c_keyword possible_pointer 
 
-        scr_blank_line ( line, this.screen.cur.col, count, rstyle);  //               scr_blank_line (*line, screen.cur.col, count, rstyle);   ###  possible_pointer 
+        this.scr_blank_line ( line, this.screen.cur.col, count, rstyle);  //               scr_blank_line (*line, screen.cur.col, count, rstyle);   ###  possible_pointer 
         break;
 
       case DELETE:
@@ -1509,14 +1509,14 @@ rxvt_term.prototype.scr_insdel_chars =function( count,  insdel){
 
         // nuke wide char spanning the end 
         if (this.screen.cur.col + count < ncol && line.t[this.screen.cur.col + count] == NOCHAR)
-          scr_kill_char ( line, this.screen.cur.col + count);  //                 scr_kill_char (*line, screen.cur.col + count);   ###  c_keyword possible_pointer 
+          this.scr_kill_char ( line, this.screen.cur.col + count);  //                 scr_kill_char (*line, screen.cur.col + count);   ###  c_keyword possible_pointer 
 
          for ( col = this.screen.cur.col; (col + count) < ncol; col++){  //               for (int col = screen.cur.col; (col + count) < ncol; col++){   ### js_style_variables  c_keyword 
            line.t[col] = line.t[col + count];  //            line->t[col] = line->t[col + count];
            line.r[col] = line.r[col + count];  //            line->r[col] = line->r[col + count];
           }
 
-         scr_blank_line ( line, ncol - count, count, rstyle);  //               scr_blank_line (*line, ncol - count, count, rstyle);   ###  possible_pointer 
+         this.scr_blank_line ( line, ncol - count, count, rstyle);  //               scr_blank_line (*line, ncol - count, count, rstyle);   ###  possible_pointer 
 
         if (selection.op && current_screen == selection.screen
             && ROWCOL_IN_ROW_AT_OR_AFTER (selection.beg, this.screen.cur)){
@@ -1551,7 +1551,7 @@ rxvt_term.prototype.scr_scroll_region =function( top,  bot){
 
   this.screen.tscroll = top;
   this.screen.bscroll = bot;
-  scr_gotorc (0, 0, 0);
+  this.scr_gotorc (0, 0, 0);
 }
 
 /* ------------------------------------------------------------------------- */
@@ -1601,7 +1601,7 @@ rxvt_term.prototype.scr_relative_origin =function( mode){
   else
     this.screen.flags &= ~Screen_Relative;
 
-  scr_gotorc (0, 0, 0);
+  this.scr_gotorc (0, 0, 0);
 }
 
 /* ------------------------------------------------------------------------- */
@@ -1662,8 +1662,8 @@ rxvt_term.prototype.scr_rvideo_mode =function(on){
       gcvalue.background = pix_colors[Color_bg];
       XChangeGC (dpy, gc, GCBackground | GCForeground, &gcvalue);
 
-      scr_clear ();
-      scr_touch (true);
+      this.scr_clear ();
+      this.scr_touch (true);
     }
     */
 }
@@ -1808,7 +1808,7 @@ rxvt_term.prototype.scr_expose =function( x,  y,  ewidth,  eheight, refresh){
   num_scr_allow = 0;
 
   if (refresh)
-    scr_refresh ();
+    this.scr_refresh ();
 */
 }
 
@@ -1818,7 +1818,7 @@ rxvt_term.prototype.scr_expose =function( x,  y,  ewidth,  eheight, refresh){
  */
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_touch (bool refresh) 
 rxvt_term.prototype.scr_touch =function(refresh){ 
-  scr_expose (0, 0, width, height, refresh);
+  this.scr_expose (0, 0, width, height, refresh);
 }
 
 /* ------------------------------------------------------------------------- */
@@ -1828,7 +1828,7 @@ rxvt_term.prototype.scr_touch =function(refresh){
  */
 //fixed: js_style_functions c_keyword ^|       void rxvt_term::scr_move_to (int y, int len){ 
 rxvt_term.prototype.scr_move_to =function( y,  len){ 
-    scr_changeview ((top_row - nrow) * (len - y) / len + (nrow - 1)); 
+    this.scr_changeview ((top_row - nrow) * (len - y) / len + (nrow - 1)); 
 }
 
 /* ------------------------------------------------------------------------- */
@@ -1842,7 +1842,7 @@ rxvt_term.prototype.scr_page =function( direction,  nlines){
     direction == UP ? view_start - nlines  //FIXME enum
                     : view_start + nlines;
 
-  return scr_changeview (new_view_start);
+  return this.scr_changeview (new_view_start);
 }
 
 //FIXED: js_style_functions c_keyword ^|       bool rxvt_term::scr_changeview (int new_view_start){ 
@@ -1866,7 +1866,7 @@ rxvt_term.prototype.scr_changeview =function( new_view_start){
 rxvt_term.prototype.bell_cb =function(w,  revents){ 
   console.log("bell");
   /*  rvideo_bell = false;
-  scr_rvideo_mode (rvideo_mode);
+  this.scr_rvideo_mode (rvideo_mode);
   refresh_check ();
   */
 }
@@ -1891,7 +1891,7 @@ rxvt_term.prototype.scr_bell =function(){
 
   if (option (Opt_visualBell)){
       rvideo_bell = true;
-      scr_rvideo_mode (rvideo_mode);
+      this.scr_rvideo_mode (rvideo_mode);
       flush ();
 
       bell_ev.start (VISUAL_BELL_DURATION);
@@ -1937,11 +1937,11 @@ rxvt_term.prototype.scr_remap_chars =function(l){
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_remap_chars (){ 
 rxvt_term.prototype.scr_remap_chars =function(){ 
    for ( var  i = total_rows; i--; )  //         for (int i = total_rows; i--; )   ### js_style_variables  c_keyword 
-    scr_remap_chars (row_buf [i]); 
+    this.scr_remap_chars (row_buf [i]); 
 
    for ( i = nrow; i--; ){  //         for (int i = nrow; i--; ){   ### js_style_variables  c_keyword 
-    scr_remap_chars (drawn_buf [i]); 
-      scr_remap_chars (swap_buf [i]); 
+    this.scr_remap_chars (drawn_buf [i]); 
+      this.scr_remap_chars (swap_buf [i]); 
     }
 }
 
@@ -1964,8 +1964,8 @@ rxvt_term.prototype.scr_recolour =function(){
 #endif
 
   // bgPixmap.apply () does not do the following : 
-  scr_clear ();
-  scr_touch (true);
+  this.scr_clear ();
+  this.scr_touch (true);
   want_refresh = 1;
 }
 
@@ -2037,12 +2037,12 @@ rxvt_term.prototype.scr_reverse_selection =function(){
       && selection.end.row >= view_start){
 #if !ENABLE_MINIMAL
       if (selection.rect)
-        scr_xor_rect (selection.beg.row, selection.beg.col,
+        this.scr_xor_rect (selection.beg.row, selection.beg.col,
                       selection.end.row, selection.end.col,
                       RS_RVid, RS_RVid | RS_Uline);
       else
 #endif
-        scr_xor_span (selection.beg.row, selection.beg.col,
+        this.scr_xor_span (selection.beg.row, selection.beg.col,
                       selection.end.row, selection.end.col,
                       RS_RVid);
     }
