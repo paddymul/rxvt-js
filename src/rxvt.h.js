@@ -185,7 +185,7 @@ NOCHAR = 0xffff,
 
 
   Opt_buffered = 0;
-
+Opt_count = 34;
 /* from rxvtutil.h */
 
 // in range including end
@@ -1136,7 +1136,7 @@ screen_t = function() {}
 //# includeoptinc.h"
 # undef nodef
 # undef def
-//Opt_count
+
 
 
 /* ------------------------------------------------------------------------- */
@@ -1164,8 +1164,39 @@ screen_t = function() {}
 */
 rxvt_vars = function() {}
   rxvt_vars.prototype={
+  };
+function rxvt_term() {}  //FIXME
+rxvt_term.prototype = {
+
+  //termwin_t variables
+  width: "",          //  int                     window width                    [pixels]
+  height: "",              //  int                    window height                   [pixels]
+  fwidth: "",              //  int                    font width                      [pixels]
+  fheight: "",              //  int                   font height                     [pixels]
+  fbase: "",              //  int                     font ascent (baseline)          [pixels]
+  ncol: "",              //  int                      window columns              [characters]
+  nrow: "",              //  int                      window rows                 [characters]
+  focus: "",              //  int                     window has focus                        
+  mapped: "",              //  int                    window state mapped?                    
+  bwidth: "",              //  int            int_    internal border width                   
+  bwidth: "",              //  int            ext_    external border width                   
+  lineSpace: "",              //  int                 number of extra pixels between rows     
+  saveLines: "",              //  int                 number of lines that fit in scrollback  
+  rows: "",              //  int            total_    total number of rows in this terminal   
+  start: "",              //  int            term_    term lines start here                   
+  start: "",              //  int            view_    scrollback view starts here             
+  row: "",              //  int            top_       topmost row index of scrollback         
+  parent : [],              //  Window         parent[     parent identifiers - we're parent[0]    
+  vt: "",              //  Window                     vt100 window                            
+  gc: "",              //  GC                         GC for drawing                          
+  pixmap: "",              //  Pixmap         
+  drawable: [], drawable_i:0,                    //  rxvt_drawable *
+  fontset : new Array(4), fontset_i:0,                    //  rxvt_fontset  *fontset[4]
+  //END Termwin_T
+
+  //rxvt_vars
   scrollBar : "",                     //   scrollBar_t 
-  //    options : [(Opt_count + 7) >> 3], //     uint8_t
+  options : new Array((Opt_count + 7) >> 3), //     uint8_t
   szHint : "" ,    //XSizeHints      
   pix_colors : [], pix_colors_i:0,   //rxvt_color     * 
   TermWin_cursor : "",         //Cursor       /* cursor for vt window */
@@ -1178,14 +1209,14 @@ rxvt_vars = function() {}
   screen: "",                    //    screen_t        
   swap: "",                      //    screen_t        
   selection : "",                //    selection_t
-  pix_colors_focused: new Array(TOTAL_COLORS) //    rxvt_color
+  pix_colors_focused: new Array(TOTAL_COLORS), //    rxvt_color
 #ifdef OFF_FOCUS_FADING
-  ,
-  pix_colors_unfocused: new Array(TOTAL_COLORS)  //    rxvt_color
+  
+  pix_colors_unfocused: new Array(TOTAL_COLORS),  //    rxvt_color
+
 #endif
-  };
-function rxvt_term() {}  //FIXME
-rxvt_term.prototype = {
+  //END rxvt_vars
+
 // special markers with magic addresses
  resval_undef : [],  //static const char      // options specifically unset
  resval_on : [],       //static const char      // boolean options switched on
@@ -1322,7 +1353,13 @@ void init_asv ()
  cmdbuf : [],
  cmdbuf_ptr:0, cmdbuf_endp:0,//char           *cmdbuf_ptr, *cmdbuf_endp;
  cmdbuf_base : [], //char            cmdbuf_base[CBUFSIZ];
-
+  option: function (opt) {
+    if(!opt){
+      return 0;
+    }
+    --opt;
+    return this.options[opt >>3] & ( 1 << (opt & 7));
+  },
  //ptytty         *pty;
 
  //rxvt_salloc    *talloc;             // text line allocator
