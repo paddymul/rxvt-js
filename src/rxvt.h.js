@@ -461,6 +461,16 @@ PRIMARY = 0,
 #define Sel_whereMask           0x0f
 #define Sel_CompoundText        0x10    /* last request was COMPOUND_TEXT */
 #define Sel_UTF8String          0x20    /* last request was UTF8_STRING */
+
+
+var  C0_NUL = 0x00,  C0_SOH= 0x1  ,  C0_STX= 0x2 ,  C0_ETX= 0x3 ,  C0_EOT= 0x4  ,
+  C0_ENQ= 0x5 ,  C0_ACK= 0x6,  C0_BEL= 0x7,  C0_BS = 0x8,  C0_HT = 0x9 ,
+  C0_LF = 0xa ,  C0_VT = 0xb , C0_FF = 0xc , C0_CR = 0xd , C0_SO = 0xe ,
+  C0_SI = 0xf , C0_DLE= 0x10, C0_DC1= 0x11, C0_DC2= 0x12, D0_DC3= 0x13,
+  C0_DC4= 0x14, C0_NAK= 0x15, C0_SYN= 0x16, C0_ETB= 0x17, C0_CAN= 0x18,
+  C0_EM = 0x19, C0_SUB= 0x1a, C0_ESC= 0x1b, C0_IS4= 0x1c, C0_IS3= 0x1d,
+  C0_IS2= 0x1e, C0_IS1= 0x1f;
+
 /*
   enum {
   C0_NUL = 0x00,
@@ -1587,12 +1597,12 @@ void init_asv ()
                               void key_release (XKeyEvent &ev);
                               unsigned int cmd_write (const char *str, unsigned int count);
 
-                              wchar_t next_char () NOTHROW;
-                              wchar_t cmd_getc () THROW ((class out_of_input));
-                              uint32_t next_octet () NOTHROW;
-                              uint32_t cmd_get8 () THROW ((class out_of_input));
+                              wchar_t next_char () NOTHROW; //this
+                              wchar_t cmd_getc () THROW ((class out_of_input)); //this
+                              uint32_t next_octet () NOTHROW; //this
+                              uint32_t cmd_get8 () THROW ((class out_of_input)); //this
 
-                              void cmd_parse ();
+                              void cmd_parse ();  //this
                               void mouse_report (XButtonEvent &ev);
                               void button_press (XButtonEvent &ev);
                               void button_release (XButtonEvent &ev);
@@ -1608,18 +1618,18 @@ void init_asv ()
                               FILE *popen_printer ();
                               int pclose_printer (FILE *stream);
                               #endif
-                              void process_print_pipe ();
-                              void process_nonprinting (unicode_t ch);
-                              void process_escape_vt52 (unicode_t ch);
-                              void process_escape_seq ();
-                              void process_csi_seq ();
-                              void process_window_ops (const int *args, unsigned int nargs);
+                              void process_print_pipe ();   //this
+                              void process_nonprinting (unicode_t ch); //this
+                              void process_escape_vt52 (unicode_t ch);//this
+                              void process_escape_seq ();//this
+                              void process_csi_seq ();//this
+                              void process_window_ops (const int *args, unsigned int nargs);//this
                               char *get_to_st (unicode_t &ends_how);
-                              void process_dcs_seq ();
-                              void process_osc_seq ();
-                              void process_color_seq (int report, int color, const char *str, char resp);
-                              void process_xterm_seq (int op, const char *str, char resp);
-                              int privcases (int mode, unsigned long bit);
+                              void process_dcs_seq ();//this
+                              void process_osc_seq ();//this
+                              void process_color_seq (int report, int color, const char *str, char resp);//this
+                              void process_xterm_seq (int op, const char *str, char resp);//this
+                              int privcases (int mode, unsigned long bit); this
                               void process_terminal_mode (int mode, int priv, unsigned int nargs, const int *arg);
                               void process_sgr_mode (unsigned int nargs, const int *arg);
                               void process_graphics ();

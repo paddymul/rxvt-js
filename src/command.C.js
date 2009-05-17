@@ -301,7 +301,7 @@ rxvt_term.prototype.pty_cb =function(w,  revents){
     // loop, but don't allow a single term to monopolize us
 //CMNT: c_keyword ^|           for (int i = CBUFCNT; i-- && pty_fill (); ) 
     for (i = CBUFCNT; i-- && pty_fill (); )
-      cmd_parse ();
+      this.cmd_parse ();
 
   if (revents & ev::WRITE)
     pty_write ();
@@ -453,8 +453,8 @@ rxvt_term.prototype.cmd_parse =function(){
                     }
               }
 
-              seq_begin = cmdbuf_ptr;
-              ch = next_char (); 
+              seq_begin = this.cmdbuf_ptr;
+              ch = this.next_char(); 
           }
 
           if (!(SHOULD_INVOKE (HOOK_ADD_LINES)    && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str.length - buf.length, DT_END)))){
@@ -475,12 +475,12 @@ rxvt_term.prototype.cmd_parse =function(){
       }
       else{
           try    {
-              process_nonprinting (ch); 
+              this.process_nonprinting (ch); 
             }
 
           catch ( out_of_input){  //FIXME exception
               // we ran out of input, retry later
-              cmdbuf_ptr = seq_begin;
+              this.cmdbuf_ptr = seq_begin;
               break;
             }
 
@@ -492,28 +492,28 @@ rxvt_term.prototype.cmd_parse =function(){
 // read the next character 
 //FIXED: js_style_functions c_keyword ^|       wchar_t rxvt_term::next_char () 
 rxvt_term.prototype.next_char =function(){ 
-  while (cmdbuf_ptr < cmdbuf_endp){
+  while (this.cmdbuf_ptr < this.cmdbuf_endp){
       // assume 7-bit to be ascii ALWAYS
 
-      if (expect_true ( cmdbuf_ptr <= 0x7f &&  cmdbuf_ptr != 0x1b)) //FIXME what the fuck why do we care about the memory address of a pointer?
-          return cmdbuf_ptr_i++;  //return *cmdbuf_ptr++;  ### possible_pointer  FIXME pointer_math
+      if (expect_true ( this.cmdbuf_ptr <= 0x7f &&  this.cmdbuf_ptr != 0x1b)) //FIXME what the fuck why do we care about the memory address of a pointer?
+          return this.cmdbuf[this.cmdbuf_ptr++];  //return *cmdbuf_ptr++;  ### possible_pointer  FIXME pointer_math
 
       var wc; //wchar_t wc;        ###  c_keyword
       //      size_t len = mbrtowc (&wc, cmdbuf_ptr, cmdbuf_endp - cmdbuf_ptr, mbstate);  //FIXME wtf
 
       if (len == (size_t)-2){
-          cmdbuf_ptr = cmdbuf_endp;
+          this.cmdbuf_ptr = this.cmdbuf_endp;
           break;
         }
 
       if (len == (size_t)-1){
           mbrtowc (0, 0, 0, mbstate); // reset now undefined conversion state
 //CMNT: c_cast c_keyword possible_pointer ^|                 return (unsigned char)*cmdbuf_ptr++; // the _occasional_ latin1 character is allowed to slip through 
-          return  cmdbuf_ptr_i++; // the _occasional_ latin1 character is allowed to slip through POINTER_MATH
+          return  this.cmdbuf[this.cmdbuf_ptr++]; // the _occasional_ latin1 character is allowed to slip through POINTER_MATH
         }
 
       // assume wchar == unicode 
-      cmdbuf_ptr_i += len; //POINTER_MATH
+      this.cmdbuf_ptr += len; //POINTER_MATH
       //      return wc & UN ICODE_MASK;
     }
 
@@ -524,8 +524,8 @@ rxvt_term.prototype.next_char =function(){
 //FIXED: js_style_functions ^| uint32_t rxvt_term::next_octet () NOTHROW 
 rxvt_term.prototype.next_octet =function() NOTHROW {
     //FIXME ternary
-  return cmdbuf_ptr_i < cmdbuf_endp
-  ?  cmdbuf_ptr[cmdbuf_ptr_i++]  //                ? (unsigned char)*cmdbuf_ptr++   ###  c_cast c_keyword possible_pointer 
+  return this.cmdbuf_ptr < this.cmdbuf_endp
+  ?  this.cmdbuf[this.cmdbuf_ptr++]  //                ? (unsigned char)*cmdbuf_ptr++   ###  c_cast c_keyword possible_pointer 
          : NOCHAR;
 }
 
@@ -540,7 +540,7 @@ rxvt_term.prototype.next_octet =function() NOTHROW {
  */
 //FIXED: js_style_functions c_keyword ^|       wchar_t rxvt_term::cmd_getc () THROW ((class out_of_input))
 rxvt_term.prototype.cmd_getc =function() THROW ((class out_of_input)){ 
-    var c= next_char ();   //wchar_t c = next_char ();  ### c_keyword js_style_variables 
+    var c= this.next_char ();   //wchar_t c = next_char ();  ### c_keyword js_style_variables 
 
   if (c == NOCHAR)
     throw out_of_input;
@@ -550,7 +550,7 @@ rxvt_term.prototype.cmd_getc =function() THROW ((class out_of_input)){
 
 //  uint32_t rxvt_term::cmd_get8 () THROW ((class out_of_input)){
     rxvt_term.prototype.cmd_get8 = function () {
-  var c = next_octet (); //uint32_t c = next_octet ();        ###  c_keyword
+  var c = this.next_octet (); //uint32_t c = next_octet ();        ###  c_keyword
 
   if (c == NOCHAR)
     throw out_of_input;
@@ -574,7 +574,7 @@ rxvt_term.prototype.cmd_getc =function() THROW ((class out_of_input)){
 rxvt_term.prototype.process_nonprinting =function(ch){ 
   switch (ch){
       case C0_ESC:
-        process_escape_seq ();
+        this.process_escape_seq ();
         break;
       case C0_ENQ:	/* terminal Status */
         if (rs[Rs_answerbackstring])
@@ -609,13 +609,13 @@ rxvt_term.prototype.process_nonprinting =function(ch){
 #ifdef EIGHT_BIT_CONTROLS
       // 8-bit controls
       case 0x90: 	/* DCS */
-        process_dcs_seq ();
+        this.process_dcs_seq ();
         break;
       case 0x9b: 	/* CSI */
-        process_csi_seq ();
+        this.process_csi_seq ();
         break;
       case 0x9d: 	/* OSC */
-        process_osc_seq ();
+        this.process_osc_seq ();
         break;
 #endif
     }
@@ -659,8 +659,8 @@ rxvt_term.prototype.process_escape_vt52 = function (ch){
          * are encoded by adding 32 and sending the ascii 
          * character.  eg. SPACE = 0, '+' = 13, '0' = 18, 
          * etc. */ 
-        row = cmd_getc () - ' ';
-        col = cmd_getc () - ' ';
+        row = this.cmd_getc() - ' ';
+        col = this.cmd_getc() - ' ';
         scr_gotorc (row, col, 0);
         break;
       case 'Z':		/* identify the terminal type */
@@ -685,30 +685,30 @@ rxvt_term.prototype.process_escape_vt52 = function (ch){
 /*{{{ process escape sequences */
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::process_escape_seq () 
 rxvt_term.prototype.process_escape_seq =function(){ 
-  var ch= cmd_getc ();  //unicode_t ch = cmd_getc ();        ###  js_style_variables
+  var ch= this.cmd_getc();  //unicode_t ch = cmd_getc ();        ###  js_style_variables
 
   if (priv_modes & PrivMode_vt52){
-      process_escape_vt52 (ch);
+      this.process_escape_vt52 (ch);
       return;
     }
 
   switch (ch){
         /* case 1:        do_tek_mode (); break; */
       case '#':
-        if (cmd_getc () == '8')
+        if (this.cmd_getc () == '8')
           scr_E ();
         break;
       case '(':
-      scr_charset_set (0,cmd_getc ()); 
+      scr_charset_set (0,this.cmd_getc ()); 
         break;
       case ')':
-      scr_charset_set (1,cmd_getc ()); 
+      scr_charset_set (1,this.cmd_getc ()); 
         break;
   case '*': 
-      scr_charset_set (2,cmd_getc ()); 
+      scr_charset_set (2,this.cmd_getc ()); 
         break;
       case '+':
-      scr_charset_set (3,cmd_getc ()); 
+      scr_charset_set (3,this.cmd_getc ()); 
         break;
 #if !ENABLE_MINIMAL
       case '6':
@@ -732,7 +732,7 @@ rxvt_term.prototype.process_escape_seq =function(){
         break;
 
       case C1_40:
-        cmd_getc ();
+        this.cmd_getc();
         break;
       case C1_44:
         scr_index (UP);
@@ -748,7 +748,7 @@ rxvt_term.prototype.process_escape_seq =function(){
 
         /* kidnapped escape sequence: Should be 8.3.48 */
       case C1_ESA:		/* ESC G */
-        process_graphics ();
+        this.process_graphics ();
         break;
 
         /* 8.3.63: CHARACTER TABULATION SET */
@@ -769,7 +769,7 @@ rxvt_term.prototype.process_escape_seq =function(){
 
         /* 8.3.27: DEVICE CONTROL STRING */
       case C1_DCS:		/* ESC P */
-        process_dcs_seq ();
+        this.process_dcs_seq ();
         break;
 
         /* 8.3.110: SINGLE CHARACTER INTRODUCER */
@@ -779,12 +779,12 @@ rxvt_term.prototype.process_escape_seq =function(){
 
         /* 8.3.16: CONTROL SEQUENCE INTRODUCER (CSI) */
       case C1_CSI:		/* ESC [ */
-        process_csi_seq ();
+        this.process_csi_seq ();
         break;
 
         /* 8.3.90: OPERATING SYSTEM COMMAND (OSC) */
       case C1_OSC:		/* ESC ] */
-        process_osc_seq ();
+        this.process_osc_seq ();
         break;
 
         /* 8.3.106: RESET TO INITIAL STATE (RIS) */
@@ -850,11 +850,11 @@ rxvt_term.prototype.process_csi_seq =function(){
   nargs = 0;
 
   priv = 0;
-  ch = cmd_getc ();
+  ch = this.cmd_getc ();
   if ((ch >= '<' && ch <= '?') || ch == '!'){
       /* '<' '=' '>' '?' '!' */
       priv = ch;
-      ch = cmd_getc ();
+      ch = this.cmd_getc ();
     }
 
   /* read any numerical arguments */
@@ -871,9 +871,9 @@ rxvt_term.prototype.process_csi_seq =function(){
           n = -1;
         }
       else if (IS_CONTROL (ch))
-        process_nonprinting (ch); 
+        this.process_nonprinting (ch); 
 
-      ch = cmd_getc ();
+      ch = this.cmd_getc ();
     }
 
   if (ch > CSI_7F)
@@ -909,7 +909,7 @@ rxvt_term.prototype.process_csi_seq =function(){
 
           case '?':
             if (ch == 'h' || ch == 'l' || ch == 'r' || ch == 's' || ch == 't')
-              process_terminal_mode (ch, priv, nargs, arg);
+              this.process_terminal_mode (ch, priv, nargs, arg);
             break;
 
           case '!':
@@ -920,8 +920,8 @@ rxvt_term.prototype.process_csi_seq =function(){
                 var pm_h= [ 7, 25 ] ;   //static const int pm_h[] = { 7, 25 };  ### js_style_variables js_style_arrays 
                 var pm_l= [ 1, 3, 4, 5, 6, 9, 66, 1000, 1001, 1049 ] ;   //static const int pm_l[] = { 1, 3, 4, 5, 6, 9, 66, 1000, 1001, 1049 };  ### js_style_variables js_style_arrays 
 
-                process_terminal_mode ('h', 0, sizeof (pm_h) / sizeof (pm_h[0]), pm_h);
-                process_terminal_mode ('l', 0, sizeof (pm_l) / sizeof (pm_l[0]), pm_l);
+                this.process_terminal_mode ('h', 0, sizeof (pm_h) / sizeof (pm_h[0]), pm_h);
+                this.process_terminal_mode ('l', 0, sizeof (pm_l) / sizeof (pm_l[0]), pm_l);
               }
           break;
         }
@@ -1028,7 +1028,7 @@ rxvt_term.prototype.process_csi_seq =function(){
         break;
 
       case CSI_SGR:		/* 8.3.118: (0) SELECT GRAPHIC RENDITION */
-        process_sgr_mode (nargs, arg);
+        this.process_sgr_mode (nargs, arg);
         break;
 
       case CSI_DSR:		/* 8.3.36: (0) DEVICE STATUS REPORT */
@@ -1117,7 +1117,7 @@ rxvt_term.prototype.process_csi_seq =function(){
 
 #if !ENABLE_MINIMAL
       case CSI_74:
-        process_window_ops (arg, nargs);
+        this.process_window_ops (arg, nargs);
         break;
 #endif
 
@@ -1241,7 +1241,7 @@ rxvt_term.prototype.get_to_st =function(ends_how){
   var n = 0; //          unsigned int n = 0;  ###  c_keyword inserted_var
   var string_ = new Array(STRING_MAX); //          wchar_t string[STRING_MAX];  ###  c_keyword inserted_var js_style_array
 
-  while ((ch = cmd_getc ()) != NOCHAR){
+  while ((ch = this.cmd_getc ()) != NOCHAR){
       if (seen_esc){
           if (ch == 0x5c)	/* 7bit ST */
             break;
@@ -1255,7 +1255,7 @@ rxvt_term.prototype.get_to_st =function(ends_how){
       else if (ch == C0_BEL || ch == CHAR_ST)
         break;
       else if (ch == C0_SYN)
-        ch = cmd_get8 ();
+        ch = this.cmd_get8 ();
       else if (ch < 0x20)
         return NULL;	/* other control character - exit */ 
 
@@ -1287,7 +1287,7 @@ rxvt_term.prototype.process_dcs_seq =function(){
   /*
    * Not handled yet 
    */
-  s = get_to_st (eh);
+  s = this.get_to_st (eh);
 //POINTER_MATH non_applicable
 //  if (s)
 //    free (s);
@@ -1304,15 +1304,15 @@ rxvt_term.prototype.process_osc_seq =function(){
   var ch, eh; //          unicode_t ch, eh;  ###  c_keyword inserted_var
   var arg; //          int arg;  ###  c_keyword inserted_var
 
-  ch = cmd_getc ();
-  for (arg = 0; isdigit (ch); ch = cmd_getc ())
+  ch = this.cmd_getc ();
+  for (arg = 0; isdigit (ch); ch = this.cmd_getc ())
       arg = arg * 10 + (ch - '0'); 
 
   if (ch == ';'){
-    var s= get_to_st (eh);   //             char *s = get_to_st (eh);   ###  js_style_variables possible_pointer 
+    var s= this.get_to_st (eh);   //             char *s = get_to_st (eh);   ###  js_style_variables possible_pointer 
 
       if (s){
-          process_xterm_seq (arg, s, eh);
+          this.process_xterm_seq (arg, s, eh);
           free (s);
         }
     }
@@ -1419,50 +1419,50 @@ rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
             if ((buf = strchr (name, ';')) != NULL)
                 buf[buf_i++] = '\0';  //buf++ = '\0';  ### possible_pointer POINTER_MATH
 
-            process_color_seq (op, color, name, resp);
+            this.process_color_seq (op, color, name, resp);
           }
         break;
       case Rxvt_restoreFG:
       case XTerm_Color00:
-        process_color_seq (op, Color_fg, str, resp);
+        this.process_color_seq (op, Color_fg, str, resp);
         break;
       case Rxvt_restoreBG:
       case XTerm_Color01:
-        process_color_seq (op, Color_bg, str, resp);
+        this.process_color_seq (op, Color_bg, str, resp);
         break;
 #ifndef NO_CURSORCOLOR
       case XTerm_Color_cursor:
-        process_color_seq (op, Color_cursor, str, resp);
+        this.process_color_seq (op, Color_cursor, str, resp);
         break;
 #endif
   case XTerm_Color_pointer_fg: 
-        process_color_seq (op, Color_pointer_fg, str, resp); 
+        this.process_color_seq (op, Color_pointer_fg, str, resp); 
         break;
   case XTerm_Color_pointer_bg: 
-      process_color_seq (op, Color_pointer_bg, str, resp); 
+      this.process_color_seq (op, Color_pointer_bg, str, resp); 
         break;
 #ifndef NO_BOLD_UNDERLINE_REVERSE
       case XTerm_Color_RV:
-        process_color_seq (op, Color_RV, str, resp);
+        this.process_color_seq (op, Color_RV, str, resp);
         break;
       case Rxvt_Color_BD:
       case URxvt_Color_BD:
-        process_color_seq (op, Color_BD, str, resp);
+        this.process_color_seq (op, Color_BD, str, resp);
         break;
       case Rxvt_Color_UL:
       case URxvt_Color_UL:
-        process_color_seq (op, Color_UL, str, resp);
+        this.process_color_seq (op, Color_UL, str, resp);
         break;
       case URxvt_Color_IT:
-        process_color_seq (op, Color_IT, str, resp);
+        this.process_color_seq (op, Color_IT, str, resp);
         break;
 #endif
       case URxvt_Color_border:
-        process_color_seq (op, Color_border, str, resp);
+        this.process_color_seq (op, Color_border, str, resp);
         break;
 #if ENABLE_TRANSPARENCY
   case URxvt_Color_tint: 
-    process_color_seq (op, Color_tint, str, resp); 
+    this.process_color_seq (op, Color_tint, str, resp); 
         {
           bool changed = false;
 
@@ -1486,7 +1486,7 @@ rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
           sprintf (str, "[%dx%d+%d+%d]",	/* can't presume snprintf () ! */ 
                      min (bgPixmap.h_scale, 32767), min (bgPixmap.v_scale, 32767),
                      min (bgPixmap.h_align, 32767), min (bgPixmap.v_align, 32767));
-            process_xterm_seq (XTerm_title, str, CHAR_ST);
+            this.process_xterm_seq (XTerm_title, str, CHAR_ST);
           }
         else{
 //CMNT: js_style_variables ^|                   int changed = 0; 
@@ -2002,7 +2002,7 @@ rxvt_term.prototype.process_sgr_mode =function(nargs,    arg){
 /*{{{ (do not) process Rob Nation's own graphics mode sequences */
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::process_graphics () 
 rxvt_term.prototype.process_graphics =function(){ 
-                                       var ch, cmd = cmd_getc (); //          unicode_t ch, cmd = cmd_getc ();  ###  c_keyword inserted_var
+                                       var ch, cmd = this.cmd_getc (); //          unicode_t ch, cmd = cmd_getc ();  ###  c_keyword inserted_var
 
   if (cmd == 'Q'){
       /* query graphics */
@@ -2011,7 +2011,7 @@ rxvt_term.prototype.process_graphics =function(){
     }
   /* swallow other graphics sequences until terminating ':' */
   do
-    ch = cmd_getc ();
+    ch = this.cmd_getc ();
   while (ch != ':');
 }
 /*}}} */
@@ -2088,7 +2088,7 @@ rxvt_term.prototype.pty_write =function(){
       memmove (v_buffer, v_buffer + written, v_buflen);
     }
   else if (written != -1 || (errno != EAGAIN && errno != EINTR))
-      cmdbuf_ptr;
+      this.cmdbuf_ptr;
       //    pty_ev.set (ev::READ);
 }
 
