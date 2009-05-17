@@ -1169,23 +1169,23 @@ function rxvt_term() {}  //FIXME
 rxvt_term.prototype = {
 
   //termwin_t variables
-  width: "",          //  int                     window width                    [pixels]
-  height: "",              //  int                    window height                   [pixels]
-  fwidth: "",              //  int                    font width                      [pixels]
-  fheight: "",              //  int                   font height                     [pixels]
-  fbase: "",              //  int                     font ascent (baseline)          [pixels]
-  ncol: "",              //  int                      window columns              [characters]
-  nrow: "",              //  int                      window rows                 [characters]
-  focus: "",              //  int                     window has focus                        
-  mapped: "",              //  int                    window state mapped?                    
-  bwidth: "",              //  int            int_    internal border width                   
-  bwidth: "",              //  int            ext_    external border width                   
-  lineSpace: "",              //  int                 number of extra pixels between rows     
-  saveLines: "",              //  int                 number of lines that fit in scrollback  
-  rows: "",              //  int            total_    total number of rows in this terminal   
-  start: "",              //  int            term_    term lines start here                   
-  start: "",              //  int            view_    scrollback view starts here             
-  row: "",              //  int            top_       topmost row index of scrollback         
+  width: "",                 //window width                    [pixels]
+  height: "",                //window height                   [pixels]
+  fwidth: "",                //font width                      [pixels]
+  fheight: "",               //font height                     [pixels]
+  fbase: "",                 //font ascent (baseline)          [pixels]
+  ncol: 80,                  //window columns              [characters]
+  nrow: 24,                  //window rows                 [characters]
+  focus: "",                 //window has focus                        
+  mapped: "",                //window state mapped?                    
+  int_bwidth: "",            //internal border width                   
+  ext_bwidth: "",            //external border width                   
+  lineSpace: "",             //number of extra pixels between rows     
+  saveLines: 5,              //number of lines that fit in scrollback  
+  total_rows: 29,            //total number of rows in this terminal   
+  term_start: 5,             //term lines start here                   
+  view_start: 5,             //scrollback view starts here             
+  top_row: 5,                //   topmost row index of scrollback         
   parent : [],              //  Window         parent[     parent identifiers - we're parent[0]    
   vt: "",              //  Window                     vt100 window                            
   gc: "",              //  GC                         GC for drawing                          
@@ -1206,8 +1206,8 @@ rxvt_term.prototype = {
   drawn_buf : [], drawn_buf_i:0, //  line_t         *     // text on screen
   swap_buf : [] , swap_buf_i:0 , //  line_t         * ;     // lines for swap buffer
   tabs: [], tabs_i:0,            //    char           *   /* per location: 1 == tab-stop*/
-  screen: "",                    //    screen_t        
-  swap: "",                      //    screen_t        
+  screen: screen_t(),                    //    screen_t        
+  swap: screen_t(),                      //    screen_t        
   selection : "",                //    selection_t
   pix_colors_focused: new Array(TOTAL_COLORS), //    rxvt_color
 #ifdef OFF_FOCUS_FADING

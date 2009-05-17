@@ -5,6 +5,6 @@
 
 var a = new rxvt_term();
 console.log(a);
-a.cmd_write("foo",3);
+a.cmd_write("fo\no",4);
 //console.profileEnd();
 

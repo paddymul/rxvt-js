@@ -2088,4 +2088,3 @@ rxvt_term.prototype.pty_write =function(){
 }
 
 /*----------------------- end-of-file (C source) -----------------------*/
-        alert("hello");
