@@ -1,70 +1,70 @@
 /*
 
-(fset 'paddy-next-digitUL
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("\223[0-9a-f]UL" 0 "%d")) arg)))
-(local-set-key (kbd "H-C-n")  'paddy-next-digitUL)
-(fset 'paddy-remove-UL
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([1 11 25 32 32 47 47 32 25 32 35 35 35 32 114 101 109 111 118 101 95 85 76 1 134217747 91 48 45 57 97 45 102 93 85 76 13 backspace backspace 1 14] 0 "%d")) arg)))
-(local-set-key (kbd "H-C-j") 'paddy-remove-UL)
-(fset 'paddy-cmnt-original
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("  //" 0 "%d")) arg)))
-(local-set-key (kbd "H-C-;") 'paddy-cmnt-original)
+  (fset 'paddy-next-digitUL
+  (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("\223[0-9a-f]UL" 0 "%d")) arg)))
+  (local-set-key (kbd "H-C-n")  'paddy-next-digitUL)
+  (fset 'paddy-remove-UL
+  (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([1 11 25 32 32 47 47 32 25 32 35 35 35 32 114 101 109 111 118 101 95 85 76 1 134217747 91 48 45 57 97 45 102 93 85 76 13 backspace backspace 1 14] 0 "%d")) arg)))
+  (local-set-key (kbd "H-C-j") 'paddy-remove-UL)
+  (fset 'paddy-cmnt-original
+  (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("  //" 0 "%d")) arg)))
+  (local-set-key (kbd "H-C-;") 'paddy-cmnt-original)
 
 
- */
+*/
 
 #ifndef RXVT_H_                /* include once only */
 #define RXVT_H_
 
- /*
-#include <cstdio>
-#include <cctype>
-#include <cerrno>
-#include <cstdarg>
-#include <cstdlib>
-#ifdef HAVE_STDINT_H
-#include <stdint.h>
-#endif
-#include <sys/types.h>
-#include <unistd.h>
-#include <cstring>
-#include <assert.h>
-#ifdef HAVE_SYS_IOCTL_H
-#include <sys/ioctl.h>
-#endif
-#ifdef HAVE_SYS_STRREDIR_H
-#include <sys/strredir.h>
-#endif
-
-#if HAVE_CWCHAR
-# include <cwchar>
-#elif HAVE_WCHAR_H
-# include <wchar.h>
-#else
-// stdlib.h might provide it
-#endif
-
-*/
-
- //using namespace std;
 /*
-extern "C" {
-#include <X11/Xlib.h>
-#include <X11/Xutil.h>
-#include <X11/Xresource.h>
-}
+  #include <cstdio>
+  #include <cctype>
+  #include <cerrno>
+  #include <cstdarg>
+  #include <cstdlib>
+  #ifdef HAVE_STDINT_H
+  #include <stdint.h>
+  #endif
+  #include <sys/types.h>
+  #include <unistd.h>
+  #include <cstring>
+  #include <assert.h>
+  #ifdef HAVE_SYS_IOCTL_H
+  #include <sys/ioctl.h>
+  #endif
+  #ifdef HAVE_SYS_STRREDIR_H
+  #include <sys/strredir.h>
+  #endif
 
-#if UNICODE_3
-typedef uint32_t text_t;
-#else
-typedef uint16_t text_t; // saves lots of memory
-#endif
-typedef uint32_t rend_t;
-typedef  int32_t tlen_t;  // was int16_t, but this results in smaller code and memory use
-typedef  int32_t tlen_t_; // specifically for use in the line_t structure
+  #if HAVE_CWCHAR
+  # include <cwchar>
+  #elif HAVE_WCHAR_H
+  # include <wchar.h>
+  #else
+  // stdlib.h might provide it
+  #endif
 
-//#include "feature.h"
 */
+
+//using namespace std;
+/*
+  extern "C" {
+  #include <X11/Xlib.h>
+  #include <X11/Xutil.h>
+  #include <X11/Xresource.h>
+  }
+
+  #if UNICODE_3
+  typedef uint32_t text_t;
+  #else
+  typedef uint16_t text_t; // saves lots of memory
+  #endif
+  typedef uint32_t rend_t;
+  typedef  int32_t tlen_t;  // was int16_t, but this results in smaller code and memory use
+  typedef  int32_t tlen_t_; // specifically for use in the line_t structure
+
+  //#include "feature.h"
+  */
 
 
 #if defined (ISO_14755) || defined (ENABLE_PERL)
@@ -87,23 +87,23 @@ typedef  int32_t tlen_t_; // specifically for use in the line_t structure
 # define ENABLE_MINIMAL 1
 #endif
 /*
-#include <limits.h>
+  #include <limits.h>
 
-#include <X11/cursorfont.h>
-#include <X11/keysym.h>
-#include <X11/keysymdef.h>
-#include <X11/Xatom.h>
+  #include <X11/cursorfont.h>
+  #include <X11/keysym.h>
+  #include <X11/keysymdef.h>
+  #include <X11/Xatom.h>
 
-#include "encoding.h"
-#include "rxvtutil.h"
-#include "rxvtfont.h"
-#include "rxvttoolkit.h"
-#include "scrollbar.h"
-#include "ev_cpp.h"
-#include "salloc.h"
-#include "libptytty.h"
+  #include "encoding.h"
+  #include "rxvtutil.h"
+  #include "rxvtfont.h"
+  #include "rxvttoolkit.h"
+  #include "scrollbar.h"
+  #include "ev_cpp.h"
+  #include "salloc.h"
+  #include "libptytty.h"
 
-#include "rxvtperl.h"
+  #include "rxvtperl.h"
 */
 /*from rxvtperl.h */
 #if ENABLE_PERL
@@ -118,72 +118,72 @@ typedef  int32_t tlen_t_; // specifically for use in the line_t structure
 #define MAX_ROWS	10000
 
 /*From background.c actually I think a lot of these are from optinc.h*/
-    Opt_secondaryScroll=22;
+Opt_secondaryScroll=22;
 Opt_secondaryScreen=21;
 
- NOCHAR = 0xffff,
+NOCHAR = 0xffff,
 
- Opt_loginShell = 1,
- Opt_iconic = 2,
- Opt_visualBell = 3,
- Opt_mapAlert = 4,
- Opt_reverseVideo = 5,
- Opt_utmpInhibit = 6,
- Opt_scrollBar = 7,
- Opt_scrollBar_right = 8,
- Opt_scrollBar_floating = 9,
- Opt_meta8 = 10,
- Opt_scrollTtyOutput = 11,
- Opt_scrollTtyKeypress = 12,
- Opt_transparent = 13,
- Opt_tripleclickwords = 14,
- Opt_scrollWithBuffer = 15,
- Opt_jumpScroll = 16,
- Opt_skipScroll = 17,
- Opt_mouseWheelScrollPage = 18,
-
-
-
- Opt_pointerBlank = 0,
-
- Opt_cursorBlink = 20,
- Opt_secondaryScreen = 21,
- Opt_secondaryScroll = 22,
- Opt_pastableTabs = 23,
- Opt_cursorUnderline = 24,
+  Opt_loginShell = 1,
+  Opt_iconic = 2,
+  Opt_visualBell = 3,
+  Opt_mapAlert = 4,
+  Opt_reverseVideo = 5,
+  Opt_utmpInhibit = 6,
+  Opt_scrollBar = 7,
+  Opt_scrollBar_right = 8,
+  Opt_scrollBar_floating = 9,
+  Opt_meta8 = 10,
+  Opt_scrollTtyOutput = 11,
+  Opt_scrollTtyKeypress = 12,
+  Opt_transparent = 13,
+  Opt_tripleclickwords = 14,
+  Opt_scrollWithBuffer = 15,
+  Opt_jumpScroll = 16,
+  Opt_skipScroll = 17,
+  Opt_mouseWheelScrollPage = 18,
 
 
+
+  Opt_pointerBlank = 0,
+
+  Opt_cursorBlink = 20,
+  Opt_secondaryScreen = 21,
+  Opt_secondaryScroll = 22,
+  Opt_pastableTabs = 23,
+  Opt_cursorUnderline = 24,
 
 
 
 
 
- Opt_insecure = 0,
- Opt_borderLess = 0,
- Opt_hold = 0,
- Opt_override_redirect = 0,
- Opt_urgentOnBell = 0,
+
+
+  Opt_insecure = 0,
+  Opt_borderLess = 0,
+  Opt_hold = 0,
+  Opt_override_redirect = 0,
+  Opt_urgentOnBell = 0,
 
 
 
 
- Opt_skipBuiltinGlyphs = 0,
+  Opt_skipBuiltinGlyphs = 0,
 
 
 
 
- Opt_intensityStyles = 0,
+  Opt_intensityStyles = 0,
 
 
- Opt_iso14755_52 = 32,
-
-
-
- Opt_console = 33,
+  Opt_iso14755_52 = 32,
 
 
 
- Opt_buffered = 0,
+  Opt_console = 33,
+
+
+
+  Opt_buffered = 0;
 
 /* from rxvtutil.h */
 
@@ -222,20 +222,20 @@ Opt_secondaryScreen=21;
 #define NOTHROW  throw()
 #define THROW(x) throw x
 #endif
-     /*
-#def ine IN_R ANGE_INC(val,beg,end) \
+/*
+  #def ine IN_R ANGE_INC(val,beg,end) \
   ((unsigned int)(val) - (unsigned int)(beg) <= (unsigned int)(end) - (unsigned int)(beg))
 
-// in range excluding end
-#de fine IN_RA NGE_EXC(val,beg,end)                                       \
+  // in range excluding end
+  #de fine IN_RA NGE_EXC(val,beg,end)                                       \
   ((unsigned int)(val) - (unsigned int)(beg) <  (unsigned int)(end) - (unsigned int)(beg))
-     */
+*/
 
-#define IN_RANGE_INC(val,beg,end) \
+#define IN_RANGE_INC(val,beg,end)               \
   ((val) - (beg) <= (end) - (beg))
 
 // in range excluding end
-#define IN_RANGE_EXC(val,beg,end) \
+#define IN_RANGE_EXC(val,beg,end)               \
   ((val) - (beg) <  (end) - (beg))
 
 
@@ -257,27 +257,27 @@ memset = function(destination, destination_i, source,  _length){
   }
   return destination;
 }
-memcpy = function(destination, destination_i, source, source_i, _length){
-  for(var i =0; i < _length; i++){
-    destination[destination_i + i]=source[source_i+i];
+  memcpy = function(destination, destination_i, source, source_i, _length){
+    for(var i =0; i < _length; i++){
+      destination[destination_i + i]=source[source_i+i];
+    }
+    return destination;
+
   }
-  return destination;
 
-}
-
-/*
- *****************************************************************************
- * SYSTEM HACKS
- *****************************************************************************
- */
+  /*
+*****************************************************************************
+* SYSTEM HACKS
+*****************************************************************************
+*/
 
 #ifndef HAVE_XPOINTER
-//typedef char *XPointer;
+  //typedef char *XPointer;
 #endif
 
-//#include <termios.h>
+  //#include <termios.h>
 
-//#include "background.h"
+  //#include "background.h"
 
 #ifndef STDIN_FILENO
 # define STDIN_FILENO   0
@@ -298,39 +298,39 @@ memcpy = function(destination, destination_i, source, source_i, _length){
 #define PATH_MAX 16384
 #endif
 
-/****************************************************************************/
+  /****************************************************************************/
 
-// exception thrown on fatal (per-instance) errors
-             //class rxvt_failure_exception { };
+  // exception thrown on fatal (per-instance) errors
+  //class rxvt_failure_exception { };
 
-             // exception thrown when the command parser runs out of input data
-             //class out_of_input { };
+  // exception thrown when the command parser runs out of input data
+  //class out_of_input { };
 
-/*
- *****************************************************************************
- * PROTOTYPES
- *****************************************************************************
- */
-// main.C
-#define SET_LOCALE(locale) rxvt_set_locale (locale)
-/*
-// misc.C
-
-/*
- *****************************************************************************
- * STRUCTURES AND TYPEDEFS
- *****************************************************************************
+  /*
+*****************************************************************************
+* PROTOTYPES
+*****************************************************************************
 */
+  // main.C
+#define SET_LOCALE(locale) rxvt_set_locale (locale)
+  /*
+  // misc.C
+
+  /*
+  *****************************************************************************
+  * STRUCTURES AND TYPEDEFS
+  *****************************************************************************
+  */
 #if ENABLE_XEMBED
 #endif
 
-/*
- *****************************************************************************
- * NORMAL DEFINES
- *****************************************************************************
- */
+  /*
+*****************************************************************************
+* NORMAL DEFINES
+*****************************************************************************
+*/
 
-/* COLORTERM, TERM environment variables */
+  /* COLORTERM, TERM environment variables */
 #define COLORTERMENV    "rxvt"
 #ifdef BG_IMAGE_FROM_FILE
 # define COLORTERMENVFULL COLORTERMENV "-xpm"
@@ -351,11 +351,11 @@ memcpy = function(destination, destination_i, source, source_i, _length){
 # define NO_SCROLLBAR_BUTTON_CONTINUAL_SCROLLING 1
 #endif
 
-var
-  NO_REFRESH       = 0, // Window not visible at all!      
+    var
+    NO_REFRESH       = 0, // Window not visible at all!      
   FAST_REFRESH     = 1, // Fully exposed window            
   SLOW_REFRESH     = 2 // Partially exposed window        
-;
+  ;
 
 #ifdef NO_SECONDARY_SCREEN
 # define NSCREENS               0
@@ -370,26 +370,26 @@ var
 
 // flags for rxvt_scr_gotorc () 
 var
-    C_RELATIVE = 1,       // col movement is relative 
-        R_RELATIVE = 2,       //row movement is relative 
-    RELATIVE   = C_RELATIVE | R_RELATIVE;
+C_RELATIVE = 1,       // col movement is relative 
+  R_RELATIVE = 2,       //row movement is relative 
+  RELATIVE   = C_RELATIVE | R_RELATIVE;
 
 // modes for rxvt_scr_insdel_chars (), rxvt_scr_insdel_lines () 
 var
-    INSERT = -1, //				don't change these values 
+INSERT = -1, //				don't change these values 
   DELETE = +1,
   ERASE  = +2;
 
 // modes for rxvt_scr_page () - scroll page. used by scrollbar window 
 var
-  UP =0,
+UP =0,
   DN =1,
-    NO_DIR =2;
+  NO_DIR =2;
 
 // arguments for rxvt_scr_change_screen () 
 var
-  PRIMARY = 0,
-    SECONDARY = 1;
+PRIMARY = 0,
+  SECONDARY = 1;
 
 
 #define RS_None                 0
@@ -403,18 +403,18 @@ var
 
 // font styles
 //FIXED c_style_UL #define RS_Bo ld                 0x00004000UL    // value 1
-    // value 1  
+// value 1  
 #define RS_Bold                 0x00004000
 // #def ine RS_ I talic		0x00008000UL    // value 2 ### remove_UL
-    // value 2  
+// value 2  
 #define RS_Italic		0x00008000
 
 // fake styles
 //FIXED c_style_UL #d efine RS _Blink                0x00010000UL    // blink
-    // blink  
+// blink  
 #define RS_Blink                0x00010000
 //FIXED c_style_UL #defi ne RS_ RVid      
-    // reverse vid           0x00020000UL    // reverse video
+// reverse vid           0x00020000UL    // reverse video
 #define RS_RVid                 0x00020000
 //FIXED c_style_UL #def ine RS _Uline                0x00040000UL    // underline  eo  
 // underline  
@@ -461,13 +461,13 @@ var
 #define Sel_CompoundText        0x10    /* last request was COMPOUND_TEXT */
 #define Sel_UTF8String          0x20    /* last request was UTF8_STRING */
 /*
-enum {
+  enum {
   C0_NUL = 0x00,
-          C0_SOH, C0_STX, C0_ETX, C0_EOT, C0_ENQ, C0_ACK, C0_BEL,
+  C0_SOH, C0_STX, C0_ETX, C0_EOT, C0_ENQ, C0_ACK, C0_BEL,
   C0_BS , C0_HT , C0_LF , C0_VT , C0_FF , C0_CR , C0_SO , C0_SI ,
   C0_DLE, C0_DC1, C0_DC2, D0_DC3, C0_DC4, C0_NAK, C0_SYN, C0_ETB,
   C0_CAN, C0_EM , C0_SUB, C0_ESC, C0_IS4, C0_IS3, C0_IS2, C0_IS1,
-};
+  };
 */
 #define CHAR_ST                 0x9c    /* 0234 */
 
@@ -497,10 +497,10 @@ var  XTerm_name             =  0,
   XTerm_konsole31        = 31,      // reserved for konsole
   XTerm_emacs51          = 51,      // reserved for emacs shell
   
-   // rxvt extensions of XTerm OSCs: ESC ] Ps;Pt (ST|BEL)
+// rxvt extensions of XTerm OSCs: ESC ] Ps;Pt (ST|BEL)
   
 
-  // deprecated
+// deprecated
   Rxvt_Color_BD          = 18,
   Rxvt_Color_UL          = 19,
   Rxvt_restoreFG         = 39,
@@ -526,7 +526,7 @@ var  XTerm_name             =  0,
   URxvt_view_up          = 720,
   URxvt_view_down        = 721,
 
-    URxvt_perl             = 777;     // for use by perl extensions, starts with "extension-name;"
+  URxvt_perl             = 777;     // for use by perl extensions, starts with "extension-name;"
 
 
 /* Words starting with `Color_' are colours.  Others are counts */
@@ -538,7 +538,7 @@ var  XTerm_name             =  0,
 
 
 var
-  Color_none = -2,
+Color_none = -2,
   Color_transparent = -1,
   Color_fg = 0,
   Color_bg,
@@ -605,7 +605,7 @@ var
 #else
   TOTAL_COLORS = NRS_COLORS
 #endif
-    ;
+  ;
 // 0 .. maxTermCOLOR
 #define Color_Bits      7 
 
@@ -615,10 +615,10 @@ var
 
 # define def(name) Rs_ ## name,
 # define reserve(name,count) Rs_ ## name ## _ = Rs_ ## name + (count) - 1,
-  //# include "rsinc.h"
+//# include "rsinc.h"
 # undef def
 # undef reserve
-  NUM_RESOURCES
+//  NUM_RESOURCES
 
 
 //FIXME does bitshifting an unsigned long result in a different value than bitshifting any number in js would?
@@ -657,27 +657,27 @@ var
 #endif
 
 // do not change these constants li
-    // input modifier buffer sizesghtly, there are many interdependencies
+// input modifier buffer sizesghtly, there are many interdependencies
 #define IMBUFSIZ               128 
 #define KBUFSZ                 512     
 // size of command buffer// size of keyboard mapping buffer
 #define CBUFSIZ                204
-     // never call pty_fill/cmd_parse more than this often in a row8    
+// never call pty_fill/cmd_parse more than this often in a row8    
 #define CBUFCNT                8  
-  // character buffer
+// character buffer
 #define UBUFSIZ                2048  
 
 #if ENABLE_FRILLS
 //# include <X11/Xmd.h>
 /*
-typedef struct _mwmhints
-{
+  typedef struct _mwmhints
+  {
   CARD32 flags;
   CARD32 functions;
   CARD32 decorations;
   INT32  input_mode;
   CARD32 status;
-} MWMHints;
+  } MWMHints;
 */
 #endif
 
@@ -709,10 +709,10 @@ typedef struct _mwmhints
 #define PROP_MWM_HINTS_ELEMENTS             5
 
 /*
- *****************************************************************************
- * MACRO DEFINES
- *****************************************************************************
- */
+*****************************************************************************
+* MACRO DEFINES
+*****************************************************************************
+*/
 #define dLocal(type,name)       type const name = this->name
 
 // for speed reasons, we assume that all codepoints 32 to 126 are
@@ -729,7 +729,7 @@ typedef struct _mwmhints
 #define Width2Pixel(n)          ((int32_t)(n) * (int32_t)fwidth)
 #define Height2Pixel(n)         ((int32_t)(n) * (int32_t)fheight)
 
- //#defi ne LIN ENO_of(t,n) MOD ((t)->term_start + int(n), (t)->total_rows)
+//#defi ne LIN ENO_of(t,n) MOD ((t)->term_start + int(n), (t)->total_rows)
 #define LINENO_of(t,n) MOD (t.term_start + n, t.total_rows) 
 //#def ine RO W_of(t,n) (t->row_buf [LINENO_of ((t), n)]
 #define ROW_of(t,n) (t.row_buf [LINENO_of ((t), n)])
@@ -748,10 +748,10 @@ typedef struct _mwmhints
 #define SET_STYLE(x,style)	(((x) & ~RS_styleMask) | ((style) << RS_styleShift))
 
 #define GET_ATTR(x)             (((x) & RS_attrMask))
-#define GET_BGATTR(x)                                                   \
-    (((x) & RS_RVid) ? (((x) & (RS_attrMask & ~RS_RVid))                \
-                        | (((x) & RS_fgMask)<<Color_Bits))              \
-                     : ((x) & (RS_attrMask | RS_bgMask)))
+#define GET_BGATTR(x)                                           \
+  (((x) & RS_RVid) ? (((x) & (RS_attrMask & ~RS_RVid))          \
+                      | (((x) & RS_fgMask)<<Color_Bits))        \
+   : ((x) & (RS_attrMask | RS_bgMask)))
 #define SET_FGCOLOR(x,fg)       (((x) & ~RS_fgMask)   | (fg))
 #define SET_BGCOLOR(x,bg)       (((x) & ~RS_bgMask)   | ((bg)<<Color_Bits))
 #define SET_ATTR(x,a)           (((x) & ~RS_attrMask) | (a))
@@ -771,13 +771,13 @@ typedef struct _mwmhints
 //#de fine FON TSET(style) FONTSET_of (this, style)
 #define FONTSET(style) FONTSET_of (this, style)  
 
-                     //typedef callback<void (const char *)> log_callback;
-                     //typedef callback<int (int)> getfd_callback;
+//typedef callback<void (const char *)> log_callback;
+//typedef callback<int (int)> getfd_callback;
 
 /****************************************************************************/
 
 #define LINE_LONGER     0x0001
- // line has been filtered // line is continued on the next row
+// line has been filtered // line is continued on the next row
 #define LINE_FILTERED   0x0002
 // line has been compressed (NYI)
 #define LINE_COMPRESSED 0x0004 
@@ -787,112 +787,112 @@ typedef struct _mwmhints
 #define LINE_BIDI       0x0010 
 
 /*
-struct line_t
-{
-   text_t *t; // terminal the text
-   rend_t *r; // rendition, uses RS_ flags
-   tlen_t_ l; // length of each text line
-   uint32_t f; // flags
+  struct line_t
+  {
+  text_t *t; // terminal the text
+  rend_t *r; // rendition, uses RS_ flags
+  tlen_t_ l; // length of each text line
+  uint32_t f; // flags
 
-   bool is_longer ()
-   {
-     return f & LINE_LONGER;
-   }
+  bool is_longer ()
+  {
+  return f & LINE_LONGER;
+  }
 
-   void is_longer (int set)
-   {
-     if (set)
-       f |= LINE_LONGER;
-     else
-       f &= ~LINE_LONGER;
-   }
+  void is_longer (int set)
+  {
+  if (set)
+  f |= LINE_LONGER;
+  else
+  f &= ~LINE_LONGER;
+  }
 
-   void clear ()
-   {
-     t = 0;
-     r = 0;
-     l = 0;
-     f = 0;
-   }
+  void clear ()
+  {
+  t = 0;
+  r = 0;
+  l = 0;
+  f = 0;
+  }
 
-   void touch () // call whenever a line is changed/touched/updated
-   {
-#if ENABLE_PERL
-     f &= ~LINE_FILTERED;
-#endif
-   }
+  void touch () // call whenever a line is changed/touched/updated
+  {
+  #if ENABLE_PERL
+  f &= ~LINE_FILTERED;
+  #endif
+  }
 
-   void touch (int col)
-   {
-     max_it (l, col);
-     touch ();
-   }
-};
+  void touch (int col)
+  {
+  max_it (l, col);
+  touch ();
+  }
+  };
 
 */
-                     line_t = function() {}
+line_t = function() {};
 line_t.prototype = {
-    t: "" , //FIXED   text_t *t; // terminal the text
-    r: "" , //FIXED   rend_t *r; // rendition, uses RS_ flags
-    l: "" , //FIXED   tlen_t_ l; // length of each text line
-    f: "" , //FIXED  uint32_t f; // flags
+ t: "" , //FIXED   text_t *t; // terminal the text
+ r: "" , //FIXED   rend_t *r; // rendition, uses RS_ flags
+ l: "" , //FIXED   tlen_t_ l; // length of each text line
+ f: "" , //FIXED  uint32_t f; // flags
     
-    is_longer : function(set){  //FIXME overloaded function, check js translation
+ is_longer : function(set){  //FIXME overloaded function, check js translation
     if(set){
       this.f |= 0x0001; // line is continued on the next row;
     }
     else if (1){
-        this.f &= ~0x0001; // line is continued on the next row;
-      }
+      this.f &= ~0x0001; // line is continued on the next row;
+    }
   
-        else {
-            return f & 0x0001 // line is continued on the next row;
-        }},
-    /*
-    is_longer : function(set){  //FIXME overloaded function, check js translation
-        if(set){  //why two if(set)'s??? FIXME
-            if (set)
-                this.f |= LINE_LONGER;
-            else
-                this.f &= ~LINE_LONGER;
+    else {
+      return f & 0x0001 // line is continued on the next row;
+    }},
+ /*
+   is_longer : function(set){  //FIXME overloaded function, check js translation
+   if(set){  //why two if(set)'s??? FIXME
+   if (set)
+   this.f |= LINE_LONGER;
+   else
+   this.f &= ~LINE_LONGER;
 
-        }
-        else {
-            return f & LINE_LONGER;
-        }
-    },
-                     */
-    clear : function ()   { //FIXME should this whole thing be an object, probably
-     this.t = 0;
-     this.r = 0;
-     this.l = 0;
-     this.f = 0;
-    },
+   }
+   else {
+   return f & LINE_LONGER;
+   }
+   },
+ */
+ clear : function ()   { //FIXME should this whole thing be an object, probably
+    this.t = 0;
+    this.r = 0;
+    this.l = 0;
+    this.f = 0;
+  },
 
-    //FIXME operator overloading
-    touch : function (col) { // call whenever a line is changed/touched/updated  //   void touch () // call whenever a line is changed/touched/updated
+ //FIXME operator overloading
+ touch : function (col) { // call whenever a line is changed/touched/updated  //   void touch () // call whenever a line is changed/touched/updated
 
 #if ENABLE_PERL
-     f &= ~LINE_FILTERED;
+    f &= ~LINE_FILTERED;
 #endif
-     if(typeof col != undefined){
-       max_it (l, col);// FIXME max_it is a template defined in rxvtutil
-     }
-   }
+    if(typeof col != undefined){
+      max_it (l, col);// FIXME max_it is a template defined in rxvtutil
+    }
+  }
 };
 
 /****************************************************************************/
 
 // primitive wrapper around mbstate_t to ensure initialisation
 /*
-struct mbstate
-{
+  struct mbstate
+  {
   mbstate_t mbs;
 
   operator mbstate_t *() { return &mbs; }
   void reset () { memset (&mbs, 0, sizeof (mbs)); }
   mbstate () { reset (); }
-};
+  };
 */
 /****************************************************************************/
 
@@ -901,9 +901,9 @@ struct mbstate
 
 #if UNICODE_3
 //FIXED c_style_UL # define COMPOSE_LO 0x40000000UL
-    # define COMPOSE_LO 0x40000000 
+# define COMPOSE_LO 0x40000000 
 //FIXED c_style_UL # define COMPOSE_HI 0x400fffff 
-        # define COMPOSE_HI 0x400fffff 
+# define COMPOSE_HI 0x400fffff 
 # define IS_COMPOSE(n) ((int32_t)(n) >= COMPOSE_LO)
 #else
 # if ENABLE_PERL
@@ -925,125 +925,125 @@ struct mbstate
 // that are not representable in unicode, as well as characters
 // not fitting in the BMP.
 /*
-struct compose_char
-{
+  struct compose_char
+  {
   unicode_t c1, c2; // any chars != NOCHAR are valid
   compose_char (unicode_t c1, unicode_t c2)
   : c1(c1), c2(c2)
   { }
-};
+  };
 
-class rxvt_composite_vec
-{
+  class rxvt_composite_vec
+  {
   vector<compose_char> v;
-public:
+  public:
   text_t compose (unicode_t c1, unicode_t c2 = NOCHAR);
   int expand (unicode_t c, wchar_t *r);
   compose_char *operator [](text_t c)
   {
-    return c >= COMPOSE_LO && c < COMPOSE_LO + v.size ()
-           ? &v[c - COMPOSE_LO]
-           : 0;
+  return c >= COMPOSE_LO && c < COMPOSE_LO + v.size ()
+  ? &v[c - COMPOSE_LO]
+  : 0;
   }
-};
+  };
 */
-                     //extern class rxvt_composite_vec rxvt_composite;
+//extern class rxvt_composite_vec rxvt_composite;
 #endif
 
 /****************************************************************************/
 
 #ifdef KEYSYM_RESOURCE
-                     //class keyboard_manager;
+//class keyboard_manager;
 #endif
-                     /*
-typedef struct rxvt_term *rxvt_t;
+/*
+  typedef struct rxvt_term *rxvt_t;
 
-extern rxvt_t rxvt_current_term;
-                     */
+  extern rxvt_t rxvt_current_term;
+*/
 #define SET_R(r) rxvt_current_term = const_cast<rxvt_term *>(r)
 #define GET_R rxvt_current_term
 
 /* ------------------------------------------------------------------------- */
 /*
-struct overlay_base
-{
+  struct overlay_base
+  {
   int x, y, w, h; // overlay dimensions
   text_t **text;
   rend_t **rend;
 
   // while tempting to add swap() etc. here, it effetcively only increases code size
-};
+  };
 */
 /* ------------------------------------------------------------------------- */
 /*
-typedef struct
-{
+  typedef struct
+  {
   int row;
   int col;
-} row_col_t;
+  } row_col_t;
 
+  /*
+  * terminal limits:
+  *
+  *  width      : 1 <= width
+  *  height     : 1 <= height
+  *  ncol       : 1 <= ncol       <= MAX(tlen_t)
+  *  nrow       : 1 <= nrow       <= MAX(int)
+  *  saveLines  : 0 <= saveLines  <= MAX(int)
+  *  term_start : 0 <= term_start < saveLines
+  *  total_rows : nrow + saveLines
+  *
+  *  top_row    : -saveLines <= top_row    <= 0
+  *  view_start : top_row    <= view_start <= 0
+  *
+  *          | most coordinates are stored relative to term_start,
+  *  ROW_BUF | which is the first line of the terminal screen
+  *  |························= row_buf[0]
+  *  |························= row_buf[1]
+  *  |························= row_buf[2] etc.
+  *  |
+  *  +------------+···········= term_start + top_row
+  *  | scrollback |
+  *  | scrollback +---------+·= term_start + view_start
+  *  | scrollback | display |
+  *  | scrollback | display |
+  *  +------------+·display·+·= term_start
+  *  |  terminal  | display |
+  *  |  terminal  +---------+
+  *  |  terminal  |
+  *  |  terminal  |
+  *  +------------+···········= term_start + nrow - 1
+  *  |
+  *  |
+  *  END······················= total_rows
+  */
 /*
- * terminal limits:
- *
- *  width      : 1 <= width
- *  height     : 1 <= height
- *  ncol       : 1 <= ncol       <= MAX(tlen_t)
- *  nrow       : 1 <= nrow       <= MAX(int)
- *  saveLines  : 0 <= saveLines  <= MAX(int)
- *  term_start : 0 <= term_start < saveLines
- *  total_rows : nrow + saveLines
- *
- *  top_row    : -saveLines <= top_row    <= 0
- *  view_start : top_row    <= view_start <= 0
- *
- *          | most coordinates are stored relative to term_start,
- *  ROW_BUF | which is the first line of the terminal screen
- *  |························= row_buf[0]
- *  |························= row_buf[1]
- *  |························= row_buf[2] etc.
- *  |
- *  +------------+···········= term_start + top_row
- *  | scrollback |
- *  | scrollback +---------+·= term_start + view_start
- *  | scrollback | display |
- *  | scrollback | display |
- *  +------------+·display·+·= term_start
- *  |  terminal  | display |
- *  |  terminal  +---------+
- *  |  terminal  |
- *  |  terminal  |
- *  +------------+···········= term_start + nrow - 1
- *  |
- *  |
- *  END······················= total_rows
- */
-/*
-struct TermWin_t
-{
-    width: "",                    //  int                     window width                    [pixels]
-        height: "",                    //  int                    window height                   [pixels]
-        fwidth: "",                    //  int                    font width                      [pixels]
-        fheight: "",                    //  int                   font height                     [pixels]
-        fbase: "",                    //  int                     font ascent (baseline)          [pixels]
-        ncol: "",                    //  int                      window columns              [characters]
-        nrow: "",                    //  int                      window rows                 [characters]
-        focus: "",                    //  int                     window has focus                        
-        mapped: "",                    //  int                    window state mapped?                    
-        bwidth: "",                    //  int            int_    internal border width                   
-        bwidth: "",                    //  int            ext_    external border width                   
-        lineSpace: "",                    //  int                 number of extra pixels between rows     
-        saveLines: "",                    //  int                 number of lines that fit in scrollback  
-        rows: "",                    //  int            total_    total number of rows in this terminal   
-        start: "",                    //  int            term_    term lines start here                   
-        start: "",                    //  int            view_    scrollback view starts here             
-        row: "",                    //  int            top_       topmost row index of scrollback         
-        6]: "",                    //  Window         parent[     parent identifiers - we're parent[0]    
-                vt: "",                    //  Window                     vt100 window                            
-                gc: "",                    //  GC                         GC for drawing                          
-                pixmap: "",                    //  Pixmap         
-                drawable: [], drawable_i:0,                    //  rxvt_drawable *
-                fontset : new Array(4), fontset_i:0                    //  rxvt_fontset  *fontset[4]
-};
+  struct TermWin_t
+  {
+  width: "",                    //  int                     window width                    [pixels]
+  height: "",                    //  int                    window height                   [pixels]
+  fwidth: "",                    //  int                    font width                      [pixels]
+  fheight: "",                    //  int                   font height                     [pixels]
+  fbase: "",                    //  int                     font ascent (baseline)          [pixels]
+  ncol: "",                    //  int                      window columns              [characters]
+  nrow: "",                    //  int                      window rows                 [characters]
+  focus: "",                    //  int                     window has focus                        
+  mapped: "",                    //  int                    window state mapped?                    
+  bwidth: "",                    //  int            int_    internal border width                   
+  bwidth: "",                    //  int            ext_    external border width                   
+  lineSpace: "",                    //  int                 number of extra pixels between rows     
+  saveLines: "",                    //  int                 number of lines that fit in scrollback  
+  rows: "",                    //  int            total_    total number of rows in this terminal   
+  start: "",                    //  int            term_    term lines start here                   
+  start: "",                    //  int            view_    scrollback view starts here             
+  row: "",                    //  int            top_       topmost row index of scrollback         
+  6]: "",                    //  Window         parent[     parent identifiers - we're parent[0]    
+  vt: "",                    //  Window                     vt100 window                            
+  gc: "",                    //  GC                         GC for drawing                          
+  pixmap: "",                    //  Pixmap         
+  drawable: [], drawable_i:0,                    //  rxvt_drawable *
+  fontset : new Array(4), fontset_i:0                    //  rxvt_fontset  *fontset[4]
+  };
 */
 /*
  * screen accounting:
@@ -1064,8 +1064,8 @@ struct TermWin_t
  *
  */
 /*
-struct screen_t
-{
+  struct screen_t
+  {
   row_col_t       cur;          cursor position on the screen           
   int             tscroll;      top of settable scroll region           
   int             bscroll;      bottom of settable scroll region        
@@ -1075,21 +1075,21 @@ struct screen_t
   unsigned int    s_charset;    saved character set number [0..3]       
   char            s_charset_char;
   rend_t          s_rstyle;     saved rendition style                
-};
+  };
 */
 
-                     screen_t = function() {}
-screen_t.prototype ={
-    cur: "",                    //     row_col_t  cursor position on the screen            
-    tscroll: "",                    //  int                            top of settable scroll region            
-    bscroll: "",                    //  int                            bottom of settable scroll region         
-    charset: "",                    //  unsigned int                   character set number [0..3]              
-    flags: "",                    //  unsigned int                     see below                                
-    cur: "",                    //  row_col_t       s_                 saved cursor position                    
-    charset: "",                    //  unsigned int    s_             saved character set number [0..3]        
-    s_charset_char : "", //  char
-    rstyle: ""                    //  rend_t          s_                           saved rendition style                  
-};                                      
+screen_t = function() {}
+  screen_t.prototype ={
+  cur: "",                    //     row_col_t  cursor position on the screen            
+  tscroll: "",                    //  int                            top of settable scroll region            
+  bscroll: "",                    //  int                            bottom of settable scroll region         
+  charset: "",                    //  unsigned int                   character set number [0..3]              
+  flags: "",                    //  unsigned int                     see below                                
+  cur: "",                    //  row_col_t       s_                 saved cursor position                    
+  charset: "",                    //  unsigned int    s_             saved character set number [0..3]        
+  s_charset_char : "", //  char
+  rstyle: ""                    //  rend_t          s_                           saved rendition style                  
+  };                                      
 
 
 
@@ -1118,16 +1118,16 @@ screen_t.prototype ={
 
 # define def(name,idx) Opt_ ## name = idx,
 # define nodef(name)   Opt_ ## name = 0,
-  //# includeoptinc.h"
+//# includeoptinc.h"
 # undef nodef
 # undef def
-Opt_count
+//Opt_count
 
 
 /* ------------------------------------------------------------------------- */
 /*
-struct rxvt_vars : TermWin_t
-{
+  struct rxvt_vars : TermWin_t
+  {
   scrollBar_t     scrollBar;
   uint8_t         options[(Opt_count + 7) >> 3];
   XSizeHints      szHint;
@@ -1142,35 +1142,37 @@ struct rxvt_vars : TermWin_t
   screen_t        swap;
   selection_t     selection;
   rxvt_color      pix_colors_focused[TOTAL_COLORS];
-#ifdef OFF_FOCUS_FADING
+  #ifdef OFF_FOCUS_FADING
   rxvt_color      pix_colors_unfocused[TOTAL_COLORS];
-#endif
-};
+  #endif
+  };
 */
-                     rxvt_vars = function() {}
-rxvt_vars.prototype={
-    scrollBar : "", //   scrollBar_t 
-    options : [(Opt_count + 7) >> 3], //     uint8_t
-    szHint : "" ,    //XSizeHints      
-    pix_colors : [], pix_colors_i:0,   //rxvt_color     * 
-    TermWin_cursor : "",  //Cursor          ;       /* cursor for vt window */
-    numlock_state: 0, //int
-    row_buf : [], row_buf_i:0,   //line_t*      // all lines, scrollback + terminal, circular, followed by temp_buf
-    drawn_buf : [], drawn_buf_i:0, //  line_t         *     // text on screen
-    swap_buf : [] , swap_buf_i:0 , //  line_t         * ;     // lines for swap buffer
-    tabs: [], tabs_i:0,        //    char           *   /* per location: 1 == tab-stop               */
-    screen: "", //    screen_t        
-    swap: "", //     screen_t        
-     selection : "", //     selection_t
-    pix_colors_focused: new Array(TOTAL_COLORS) //    rxvt_color
+rxvt_vars = function() {}
+  rxvt_vars.prototype={
+  scrollBar : "", //   scrollBar_t 
+  //    options : [(Opt_count + 7) >> 3], //     uint8_t
+  szHint : "" ,    //XSizeHints      
+  pix_colors : [], pix_colors_i:0,   //rxvt_color     * 
+  TermWin_cursor : "",  //Cursor          ;       /* cursor for vt window */
+  numlock_state: 0, //int
+  row_buf : [], row_buf_i:0,   //line_t*      // all lines, scrollback + terminal, circular, followed by temp_buf
+  drawn_buf : [], drawn_buf_i:0, //  line_t         *     // text on screen
+  swap_buf : [] , swap_buf_i:0 , //  line_t         * ;     // lines for swap buffer
+  tabs: [], tabs_i:0,        //    char           *   /* per location: 1 == tab-stop               */
+  screen: "", //    screen_t        
+  swap: "", //     screen_t        
+  selection : "", //     selection_t
+  pix_colors_focused: new Array(TOTAL_COLORS) //    rxvt_color
 #ifdef OFF_FOCUS_FADING
-    ,
-    pix_colors_unfocused: new Array(TOTAL_COLORS)  //    rxvt_color
+  ,
+  pix_colors_unfocused: new Array(TOTAL_COLORS)  //    rxvt_color
 #endif
-};
-                     /*
-struct rxvt_term : zero_initialized, rxvt_vars, rxvt_screen
-{
+  };
+function rxvt_term() {}  //FIXME
+
+/*
+  struct rxvt_term : zero_initialized, rxvt_vars, rxvt_screen
+  {
 
   // special markers with magic addresses
   static const char resval_undef [];    // options specifically unset
@@ -1179,510 +1181,510 @@ struct rxvt_term : zero_initialized, rxvt_vars, rxvt_screen
 
   log_callback   *log_hook;             // log error messages through this hook, if != 0
   getfd_callback *getfd_hook;           // convert remote to local fd, if != 0
-#if ENABLE_PERL
+  #if ENABLE_PERL
   rxvt_perl_term  perl;
-#endif
+  #endif
   struct mbstate  mbstate;              // current input multibyte state
 
   unsigned char   want_refresh:1,
-                  current_screen:1,	// primary or secondary              
-                  num_scr_allow:1,
-                  bypass_keystate:1,
-#if ENABLE_FRILLS
-                  urgency_hint:1,
-#endif
-#if CURSOR_BLINK
-                  hidden_cursor:1,
-#endif
-#if TEXT_BLINK
-                  hidden_text:1,
-#endif
-#if POINTER_BLANK
-                  hidden_pointer:1,
-#endif
-                  enc_utf8:1,		// wether locale uses utf-8 
-                  seen_input:1,         // wether we have seen some program output yet 
-                  seen_resize:1,	// wether we had a resize event 
-                  parsed_geometry:1;
+  current_screen:1,	// primary or secondary              
+  num_scr_allow:1,
+  bypass_keystate:1,
+  #if ENABLE_FRILLS
+  urgency_hint:1,
+  #endif
+  #if CURSOR_BLINK
+  hidden_cursor:1,
+  #endif
+  #if TEXT_BLINK
+  hidden_text:1,
+  #endif
+  #if POINTER_BLANK
+  hidden_pointer:1,
+  #endif
+  enc_utf8:1,		// wether locale uses utf-8 
+  seen_input:1,         // wether we have seen some program output yet 
+  seen_resize:1,	// wether we had a resize event 
+  parsed_geometry:1;
 
   unsigned char   refresh_type,
-#ifdef META8_OPTION
-                  meta_char,            // Alt-key prefix 
-#endif
-                  selection_wait,
-                  selection_type;
-// ---------- 
+  #ifdef META8_OPTION
+  meta_char,            // Alt-key prefix 
+  #endif
+  selection_wait,
+  selection_type;
+  // ---------- 
   bool            rvideo_state, rvideo_mode;
-#ifndef NO_BELL
+  #ifndef NO_BELL
   bool            rvideo_bell;
-#endif
+  #endif
   int             num_scr;              // screen: number lines scrolled 
   int             prev_ncol,            // screen: previous number of columns 
-                  prev_nrow;            // screen: previous number of rows 
-// ---------- 
+  prev_nrow;            // screen: previous number of rows 
+  // ---------- 
   rend_t          rstyle;
-// ---------- 
-#ifdef SELECTION_SCROLLING
+  // ---------- 
+  #ifdef SELECTION_SCROLLING
   int             scroll_selection_lines;
   enum page_dirn  scroll_selection_dir;
   int             selection_save_x,
-                  selection_save_y,
-                  selection_save_state;
-#endif
-// ---------- 
+  selection_save_y,
+  selection_save_state;
+  #endif
+  // ---------- 
   int             csrO,       // Hops - csr offset in thumb/slider to      
                               //   give proper Scroll behaviour            
-#if defined(MOUSE_WHEEL) && defined(MOUSE_SLIP_WHEELING)
-                  mouse_slip_wheel_speed,
-#endif
-                  refresh_count,
-                  window_vt_x,
-                  window_vt_y,
-                  mouse_row,
-                  mouse_col,
-# ifdef POINTER_BLANK
-                  pointerBlankDelay,
-# endif
-                  allowedxerror;
-// ---------- 
-  unsigned int    ModLevel3Mask,
-                  ModMetaMask,
-                  ModNumLockMask;
-  int             old_width,  // last used width in screen resize          
-                  old_height; // last used height in screen resize         
-  unsigned long   priv_modes,
-                  SavedModes;
-// ---------- 
-  Atom            *xa;
-// ---------- 
-  Time            selection_time,
-                  selection_request_time;
-  pid_t           cmd_pid;    // process id of child 
-  char *          incr_buf;
-  size_t          incr_buf_size, incr_buf_fill;
-// ---------- 
-  struct mouse_event MEvent;
-  XComposeStatus  compose;
-  struct termios  tio;
-  row_col_t       oldcursor;
-#ifdef HAVE_BG_PIXMAP
-  bgPixmap_t      bgPixmap;
-#endif
-#ifdef HAVE_AFTERIMAGE
-  ASVisual       *asv;
-  ASImageManager *asimman;
+                              #if defined(MOUSE_WHEEL) && defined(MOUSE_SLIP_WHEELING)
+                              mouse_slip_wheel_speed,
+                              #endif
+                              refresh_count,
+                              window_vt_x,
+                              window_vt_y,
+                              mouse_row,
+                              mouse_col,
+                              # ifdef POINTER_BLANK
+                              pointerBlankDelay,
+                              # endif
+                              allowedxerror;
+                              // ---------- 
+                              unsigned int    ModLevel3Mask,
+                              ModMetaMask,
+                              ModNumLockMask;
+                              int             old_width,  // last used width in screen resize          
+                              old_height; // last used height in screen resize         
+                              unsigned long   priv_modes,
+                              SavedModes;
+                              // ---------- 
+                              Atom            *xa;
+                              // ---------- 
+                              Time            selection_time,
+                              selection_request_time;
+                              pid_t           cmd_pid;    // process id of child 
+                              char *          incr_buf;
+                              size_t          incr_buf_size, incr_buf_fill;
+                              // ---------- 
+                              struct mouse_event MEvent;
+                              XComposeStatus  compose;
+                              struct termios  tio;
+                              row_col_t       oldcursor;
+                              #ifdef HAVE_BG_PIXMAP
+                              bgPixmap_t      bgPixmap;
+                              #endif
+                              #ifdef HAVE_AFTERIMAGE
+                              ASVisual       *asv;
+                              ASImageManager *asimman;
 
-  void init_asv ()
-  {
-    if (!asv)
-      asv = create_asvisual_for_id (dpy, display->screen, depth, XVisualIDFromVisual (visual), cmap, NULL);
-  }
-#endif
+                              void init_asv ()
+                              {
+                              if (!asv)
+                              asv = create_asvisual_for_id (dpy, display->screen, depth, XVisualIDFromVisual (visual), cmap, NULL);
+                              }
+                              #endif
 
-#if ENABLE_OVERLAY
-  overlay_base ov;
+                              #if ENABLE_OVERLAY
+                              overlay_base ov;
 
-  void scr_swap_overlay () NOTHROW;
-  void scr_overlay_new (int x, int y, int w, int h) NOTHROW;
-  void scr_overlay_off () NOTHROW;
-  void scr_overlay_set (int x, int y,
-                        text_t text,
-                        rend_t rend = OVERLAY_RSTYLE) NOTHROW;
-  void scr_overlay_set (int x, int y, const char *s) NOTHROW;
-  void scr_overlay_set (int x, int y, const wchar_t *s) NOTHROW;
-#endif
+                              void scr_swap_overlay () NOTHROW;
+                              void scr_overlay_new (int x, int y, int w, int h) NOTHROW;
+                              void scr_overlay_off () NOTHROW;
+                              void scr_overlay_set (int x, int y,
+                              text_t text,
+                              rend_t rend = OVERLAY_RSTYLE) NOTHROW;
+                              void scr_overlay_set (int x, int y, const char *s) NOTHROW;
+                              void scr_overlay_set (int x, int y, const wchar_t *s) NOTHROW;
+                              #endif
 
-  vector<void *> allocated;           // free these memory blocks with free()
+                              vector<void *> allocated;           // free these memory blocks with free()
 
-  char            env_windowid[21];   // environmental variable WINDOWID 
-  char            env_colorfgbg[sizeof ("COLORFGBG=default;default;bg") + 1];
-  char           *env_display;        // environmental variable DISPLAY  
-  char           *env_term;           // environmental variable TERM     
+                              char            env_windowid[21];   // environmental variable WINDOWID 
+                              char            env_colorfgbg[sizeof ("COLORFGBG=default;default;bg") + 1];
+                              char           *env_display;        // environmental variable DISPLAY  
+                              char           *env_term;           // environmental variable TERM     
 
-  char           *locale;
-  char            charsets[4];
-  char           *v_buffer;           // pointer to physical buffer 
-  unsigned int    v_buflen;           // size of area to write 
-  stringvec      *argv, *envv;        // if != 0, will be freed at destroy time 
+                              char           *locale;
+                              char            charsets[4];
+                              char           *v_buffer;           // pointer to physical buffer 
+                              unsigned int    v_buflen;           // size of area to write 
+                              stringvec      *argv, *envv;        // if != 0, will be freed at destroy time 
 
-#ifdef KEYSYM_RESOURCE
-  keyboard_manager *keyboard;
-#endif
-#ifndef NO_RESOURCES
-  XrmDatabase option_db;
-#endif
+                              #ifdef KEYSYM_RESOURCE
+                              keyboard_manager *keyboard;
+                              #endif
+                              #ifndef NO_RESOURCES
+                              XrmDatabase option_db;
+                              #endif
 
-  const char     *rs[NUM_RESOURCES];
-  // command input buffering 
-  char           *cmdbuf_ptr, *cmdbuf_endp;
-  char            cmdbuf_base[CBUFSIZ];
+                              const char     *rs[NUM_RESOURCES];
+                              // command input buffering 
+                              char           *cmdbuf_ptr, *cmdbuf_endp;
+                              char            cmdbuf_base[CBUFSIZ];
 
-  ptytty         *pty;
+                              ptytty         *pty;
 
-  rxvt_salloc    *talloc;             // text line allocator
-  rxvt_salloc    *ralloc;             // rend line allocator
+                              rxvt_salloc    *talloc;             // text line allocator
+                              rxvt_salloc    *ralloc;             // rend line allocator
 
-  static vector<rxvt_term *> termlist; // a vector of all running rxvt_term's
+                              static vector<rxvt_term *> termlist; // a vector of all running rxvt_term's
 
-#if ENABLE_FRILLS || ISO_14755
-  // ISO 14755 entry support
-  unicode_t iso14755buf;
-  void commit_iso14755 ();
-# if ISO_14755
-  void iso14755_51 (unicode_t ch, rend_t r = DEFAULT_RSTYLE, int x = 0, int y = -1);
-  void iso14755_54 (int x, int y);
-# endif
-#endif
+                              #if ENABLE_FRILLS || ISO_14755
+                              // ISO 14755 entry support
+                              unicode_t iso14755buf;
+                              void commit_iso14755 ();
+                              # if ISO_14755
+                              void iso14755_51 (unicode_t ch, rend_t r = DEFAULT_RSTYLE, int x = 0, int y = -1);
+                              void iso14755_54 (int x, int y);
+                              # endif
+                              #endif
 
-  long vt_emask, vt_emask_perl, vt_emask_xim, vt_emask_mouse;
+                              long vt_emask, vt_emask_perl, vt_emask_xim, vt_emask_mouse;
 
-  void vt_select_input () const NOTHROW
-  {
-    XSelectInput (dpy, vt, vt_emask | vt_emask_perl | vt_emask_xim | vt_emask_mouse);
-  }
+                              void vt_select_input () const NOTHROW
+                              {
+                              XSelectInput (dpy, vt, vt_emask | vt_emask_perl | vt_emask_xim | vt_emask_mouse);
+                              }
 
-#if ENABLE_TRANSPARENCY || ENABLE_PERL
-  void rootwin_cb (XEvent &xev);
-  xevent_watcher rootwin_ev;
-#endif
-#ifdef HAVE_BG_PIXMAP
-  void update_background ();
-#if TRACE_PIXMAPS
-  void trace_update_background (const char *file, int line);
-# define update_background() trace_update_background (__FILE__, __LINE__)
-#endif
-  void update_background_cb (ev::timer &w, int revents);
-  ev::timer update_background_ev;
-#endif
+                              #if ENABLE_TRANSPARENCY || ENABLE_PERL
+                              void rootwin_cb (XEvent &xev);
+                              xevent_watcher rootwin_ev;
+                              #endif
+                              #ifdef HAVE_BG_PIXMAP
+                              void update_background ();
+                              #if TRACE_PIXMAPS
+                              void trace_update_background (const char *file, int line);
+                              # define update_background() trace_update_background (__FILE__, __LINE__)
+                              #endif
+                              void update_background_cb (ev::timer &w, int revents);
+                              ev::timer update_background_ev;
+                              #endif
 
-  void x_cb (XEvent &xev);
-  xevent_watcher termwin_ev;
-  xevent_watcher vt_ev;
-  xevent_watcher scrollbar_ev;
+                              void x_cb (XEvent &xev);
+                              xevent_watcher termwin_ev;
+                              xevent_watcher vt_ev;
+                              xevent_watcher scrollbar_ev;
 
-  void child_cb (ev::child &w, int revents); ev::child child_ev;
-  void destroy_cb (ev::idle &w, int revents); ev::idle destroy_ev;
-  void refresh_check ();
-  void flush ();
-  void flush_cb (ev::timer &w, int revents); ev::timer flush_ev;
-  bool pty_fill ();
-  void pty_cb (ev::io &w, int revents); ev::io pty_ev;
-  void incr_cb (ev::timer &w, int revents) NOTHROW; ev::timer incr_ev;
+                              void child_cb (ev::child &w, int revents); ev::child child_ev;
+                              void destroy_cb (ev::idle &w, int revents); ev::idle destroy_ev;
+                              void refresh_check ();
+                              void flush ();
+                              void flush_cb (ev::timer &w, int revents); ev::timer flush_ev;
+                              bool pty_fill ();
+                              void pty_cb (ev::io &w, int revents); ev::io pty_ev;
+                              void incr_cb (ev::timer &w, int revents) NOTHROW; ev::timer incr_ev;
 
-#ifdef CURSOR_BLINK
-  void cursor_blink_cb (ev::timer &w, int revents); ev::timer cursor_blink_ev;
-#endif
-#ifdef TEXT_BLINK
-  void text_blink_cb (ev::timer &w, int revents); ev::timer text_blink_ev;
-#endif
-#ifndef NO_BELL
-  void bell_cb (ev::timer &w, int revents); ev::timer bell_ev;
-#endif
+                              #ifdef CURSOR_BLINK
+                              void cursor_blink_cb (ev::timer &w, int revents); ev::timer cursor_blink_ev;
+                              #endif
+                              #ifdef TEXT_BLINK
+                              void text_blink_cb (ev::timer &w, int revents); ev::timer text_blink_ev;
+                              #endif
+                              #ifndef NO_BELL
+                              void bell_cb (ev::timer &w, int revents); ev::timer bell_ev;
+                              #endif
 
-#ifndef NO_SCROLLBAR_BUTTON_CONTINUAL_SCROLLING
-  void cont_scroll_cb (ev::timer &w, int revents); ev::timer cont_scroll_ev;
-#endif
-#ifdef SELECTION_SCROLLING
-  void sel_scroll_cb (ev::timer &w, int revents); ev::timer sel_scroll_ev;
-#endif
-#if defined(MOUSE_WHEEL) && defined(MOUSE_SLIP_WHEELING)
-  void slip_wheel_cb (ev::timer &w, int revents); ev::timer slip_wheel_ev;
-#endif
+                              #ifndef NO_SCROLLBAR_BUTTON_CONTINUAL_SCROLLING
+                              void cont_scroll_cb (ev::timer &w, int revents); ev::timer cont_scroll_ev;
+                              #endif
+                              #ifdef SELECTION_SCROLLING
+                              void sel_scroll_cb (ev::timer &w, int revents); ev::timer sel_scroll_ev;
+                              #endif
+                              #if defined(MOUSE_WHEEL) && defined(MOUSE_SLIP_WHEELING)
+                              void slip_wheel_cb (ev::timer &w, int revents); ev::timer slip_wheel_ev;
+                              #endif
 
-#ifdef POINTER_BLANK
-  void pointer_cb (ev::timer &w, int revents); ev::timer pointer_ev;
-  void pointer_blank ();
-#endif
-  void pointer_unblank ();
+                              #ifdef POINTER_BLANK
+                              void pointer_cb (ev::timer &w, int revents); ev::timer pointer_ev;
+                              void pointer_blank ();
+                              #endif
+                              void pointer_unblank ();
 
-  void tt_printf (const char *fmt,...);
-  void tt_write (const char *data, unsigned int len);
-  void pty_write ();
+                              void tt_printf (const char *fmt,...);
+                              void tt_write (const char *data, unsigned int len);
+                              void pty_write ();
 
-  void init (stringvec *argv, stringvec *envv)
-  {
-    this->argv = argv;
-    init (argv->size (), argv->begin (), envv);
-  }
+                              void init (stringvec *argv, stringvec *envv)
+                              {
+                              this->argv = argv;
+                              init (argv->size (), argv->begin (), envv);
+                              }
 
-  void make_current () const // make this the "currently active" urxvt instance
-  {
-    SET_R (this);
-    set_environ (envv);
-    rxvt_set_locale (locale);
-  }
+                              void make_current () const // make this the "currently active" urxvt instance
+                              {
+                              SET_R (this);
+                              set_environ (envv);
+                              rxvt_set_locale (locale);
+                              }
 
-#if USE_XIM
-  rxvt_xim *input_method;
-  XIC      Input_Context;
-  XIMStyle input_style;
-  XPoint   spot; // most recently sent spot position
+                              #if USE_XIM
+                              rxvt_xim *input_method;
+                              XIC      Input_Context;
+                              XIMStyle input_style;
+                              XPoint   spot; // most recently sent spot position
 
-  void im_destroy ();
-  void im_cb (); im_watcher im_ev;
-  void im_set_size (XRectangle &size);
-  void im_set_position (XPoint &pos) NOTHROW;
-  void im_set_color (unsigned long &fg, unsigned long &bg);
-  void im_set_preedit_area (XRectangle &preedit_rect, XRectangle &status_rect, const XRectangle &needed_rect);
+                              void im_destroy ();
+                              void im_cb (); im_watcher im_ev;
+                              void im_set_size (XRectangle &size);
+                              void im_set_position (XPoint &pos) NOTHROW;
+                              void im_set_color (unsigned long &fg, unsigned long &bg);
+                              void im_set_preedit_area (XRectangle &preedit_rect, XRectangle &status_rect, const XRectangle &needed_rect);
 
-  bool IMisRunning ();
-  void IMSendSpot ();
-  bool IM_get_IC (const char *modifiers);
-  void IMSetPosition ();
-#endif
+                              bool IMisRunning ();
+                              void IMSendSpot ();
+                              bool IM_get_IC (const char *modifiers);
+                              void IMSetPosition ();
+                              #endif
 
-  // command.C
-  void key_press (XKeyEvent &ev);
-  void key_release (XKeyEvent &ev);
-  unsigned int cmd_write (const char *str, unsigned int count);
+                              // command.C
+                              void key_press (XKeyEvent &ev);
+                              void key_release (XKeyEvent &ev);
+                              unsigned int cmd_write (const char *str, unsigned int count);
 
-  wchar_t next_char () NOTHROW;
-  wchar_t cmd_getc () THROW ((class out_of_input));
-  uint32_t next_octet () NOTHROW;
-  uint32_t cmd_get8 () THROW ((class out_of_input));
+                              wchar_t next_char () NOTHROW;
+                              wchar_t cmd_getc () THROW ((class out_of_input));
+                              uint32_t next_octet () NOTHROW;
+                              uint32_t cmd_get8 () THROW ((class out_of_input));
 
-  void cmd_parse ();
-  void mouse_report (XButtonEvent &ev);
-  void button_press (XButtonEvent &ev);
-  void button_release (XButtonEvent &ev);
-  void focus_in ();
-  void focus_out ();
-#if ENABLE_FRILLS
-  void set_urgency (bool enable);
-#else
-  void set_urgency (bool enable) { }
-#endif
-  void update_fade_color (unsigned int idx);
-#ifdef PRINTPIPE
-  FILE *popen_printer ();
-  int pclose_printer (FILE *stream);
-#endif
-  void process_print_pipe ();
-  void process_nonprinting (unicode_t ch);
-  void process_escape_vt52 (unicode_t ch);
-  void process_escape_seq ();
-  void process_csi_seq ();
-  void process_window_ops (const int *args, unsigned int nargs);
-  char *get_to_st (unicode_t &ends_how);
-  void process_dcs_seq ();
-  void process_osc_seq ();
-  void process_color_seq (int report, int color, const char *str, char resp);
-  void process_xterm_seq (int op, const char *str, char resp);
-  int privcases (int mode, unsigned long bit);
-  void process_terminal_mode (int mode, int priv, unsigned int nargs, const int *arg);
-  void process_sgr_mode (unsigned int nargs, const int *arg);
-  void process_graphics ();
-  // init.C
-  void init_vars ();
-  const char **init_resources (int argc, const char *const *argv);
-  void init (int argc, const char *const *argv, stringvec *envv);
-  void init_env ();
-  void set_locale (const char *locale);
-  void init_xlocale ();
-  void init_command (const char *const *argv);
-  void run_command (const char *const *argv);
-  int run_child (const char *const *argv);
-  void color_aliases (int idx);
-  void create_windows (int argc, const char *const *argv);
-  void get_colours ();
-  void get_ourmods ();
-  // main.C
-  void tt_winch ();
-  rxvt_term ();
-  ~rxvt_term ();
-  void destroy ();
-  void emergency_cleanup ();
-  void recolour_cursor ();
-  void resize_all_windows (unsigned int newwidth, unsigned int newheight, int ignoreparent);
-  void window_calc (unsigned int newwidth, unsigned int newheight);
-  bool set_fonts ();
-  void set_string_property (Atom prop, const char *str, int len = -1);
-  void set_utf8_property (Atom prop, const char *str, int len = -1);
-  void set_title (const char *str);
-  void set_icon_name (const char *str);
-  void set_window_color (int idx, const char *color);
-  void set_colorfgbg ();
-  bool set_color (rxvt_color &color, const char *name);
-  void alias_color (int dst, int src);
-  void set_widthheight (unsigned int newwidth, unsigned int newheight);
-  void get_window_origin (int &x, int &y);
-  Pixmap get_pixmap_property (int prop_id);
+                              void cmd_parse ();
+                              void mouse_report (XButtonEvent &ev);
+                              void button_press (XButtonEvent &ev);
+                              void button_release (XButtonEvent &ev);
+                              void focus_in ();
+                              void focus_out ();
+                              #if ENABLE_FRILLS
+                              void set_urgency (bool enable);
+                              #else
+                              void set_urgency (bool enable) { }
+                              #endif
+                              void update_fade_color (unsigned int idx);
+                              #ifdef PRINTPIPE
+                              FILE *popen_printer ();
+                              int pclose_printer (FILE *stream);
+                              #endif
+                              void process_print_pipe ();
+                              void process_nonprinting (unicode_t ch);
+                              void process_escape_vt52 (unicode_t ch);
+                              void process_escape_seq ();
+                              void process_csi_seq ();
+                              void process_window_ops (const int *args, unsigned int nargs);
+                              char *get_to_st (unicode_t &ends_how);
+                              void process_dcs_seq ();
+                              void process_osc_seq ();
+                              void process_color_seq (int report, int color, const char *str, char resp);
+                              void process_xterm_seq (int op, const char *str, char resp);
+                              int privcases (int mode, unsigned long bit);
+                              void process_terminal_mode (int mode, int priv, unsigned int nargs, const int *arg);
+                              void process_sgr_mode (unsigned int nargs, const int *arg);
+                              void process_graphics ();
+                              // init.C
+                              void init_vars ();
+                              const char **init_resources (int argc, const char *const *argv);
+                              void init (int argc, const char *const *argv, stringvec *envv);
+                              void init_env ();
+                              void set_locale (const char *locale);
+                              void init_xlocale ();
+                              void init_command (const char *const *argv);
+                              void run_command (const char *const *argv);
+                              int run_child (const char *const *argv);
+                              void color_aliases (int idx);
+                              void create_windows (int argc, const char *const *argv);
+                              void get_colours ();
+                              void get_ourmods ();
+                              // main.C
+                              void tt_winch ();
+                              rxvt_term ();
+                              ~rxvt_term ();
+                              void destroy ();
+                              void emergency_cleanup ();
+                              void recolour_cursor ();
+                              void resize_all_windows (unsigned int newwidth, unsigned int newheight, int ignoreparent);
+                              void window_calc (unsigned int newwidth, unsigned int newheight);
+                              bool set_fonts ();
+                              void set_string_property (Atom prop, const char *str, int len = -1);
+                              void set_utf8_property (Atom prop, const char *str, int len = -1);
+                              void set_title (const char *str);
+                              void set_icon_name (const char *str);
+                              void set_window_color (int idx, const char *color);
+                              void set_colorfgbg ();
+                              bool set_color (rxvt_color &color, const char *name);
+                              void alias_color (int dst, int src);
+                              void set_widthheight (unsigned int newwidth, unsigned int newheight);
+                              void get_window_origin (int &x, int &y);
+                              Pixmap get_pixmap_property (int prop_id);
 
-  // screen.C
+                              // screen.C
 
-  void lalloc (line_t &l) const
-  {
-    l.t = (text_t *)talloc->alloc ();
-    l.r = (rend_t *)ralloc->alloc ();
-  }
+                              void lalloc (line_t &l) const
+                              {
+                              l.t = (text_t *)talloc->alloc ();
+                              l.r = (rend_t *)ralloc->alloc ();
+                              }
 
-#if 0
-  void lfree (line_t &l)
-  {
-    talloc->free (l.t);
-    ralloc->free (l.r);
-  }
-#endif
+                              #if 0
+                              void lfree (line_t &l)
+                              {
+                              talloc->free (l.t);
+                              ralloc->free (l.r);
+                              }
+                              #endif
 
-  void lresize (line_t &l) const
-  {
-    if (!l.t)
-      return;
+                              void lresize (line_t &l) const
+                              {
+                              if (!l.t)
+                              return;
 
-    l.t = (text_t *)talloc->alloc (l.t, prev_ncol * sizeof (text_t));
-    l.r = (rend_t *)ralloc->alloc (l.r, prev_ncol * sizeof (rend_t));
+                              l.t = (text_t *)talloc->alloc (l.t, prev_ncol * sizeof (text_t));
+                              l.r = (rend_t *)ralloc->alloc (l.r, prev_ncol * sizeof (rend_t));
 
-    l.l = min (l.l, ncol);
+                              l.l = min (l.l, ncol);
 
-    if (ncol > prev_ncol)
-      scr_blank_line (l, prev_ncol, ncol - prev_ncol, DEFAULT_RSTYLE);
-  }
+                              if (ncol > prev_ncol)
+                              scr_blank_line (l, prev_ncol, ncol - prev_ncol, DEFAULT_RSTYLE);
+                              }
 
-  int fgcolor_of (rend_t r) const NOTHROW
-  {
-    int base = GET_BASEFG (r);
-    //
-#ifndef NO_BRIGHTCOLOR
-    if (r & RS_Bold
-# if ENABLE_STYLES
-        && option (Opt_intensityStyles)
-# endif
-        && IN_RANGE_INC (base, minCOLOR, minBrightCOLOR))
-      base += minBrightCOLOR - minCOLOR;
-#endif
+                              int fgcolor_of (rend_t r) const NOTHROW
+                              {
+                              int base = GET_BASEFG (r);
+                              //
+                              #ifndef NO_BRIGHTCOLOR
+                              if (r & RS_Bold
+                              # if ENABLE_STYLES
+                              && option (Opt_intensityStyles)
+                              # endif
+                              && IN_RANGE_INC (base, minCOLOR, minBrightCOLOR))
+                              base += minBrightCOLOR - minCOLOR;
+                              #endif
 
-    return base;
-  }
+                              return base;
+                              }
 
-  int bgcolor_of (rend_t r) const NOTHROW
-  {
-    int base = GET_BASEBG (r);
-#ifndef NO_BRIGHTCOLOR
-    if (r & RS_Blink
-# if ENABLE_STYLES
-        && option (Opt_intensityStyles)
-# endif
-        && IN_RANGE_INC (base, minCOLOR, minBrightCOLOR))
-      base += minBrightCOLOR - minCOLOR;
-#endif
-    return base;
-  }
+                              int bgcolor_of (rend_t r) const NOTHROW
+                              {
+                              int base = GET_BASEBG (r);
+                              #ifndef NO_BRIGHTCOLOR
+                              if (r & RS_Blink
+                              # if ENABLE_STYLES
+                              && option (Opt_intensityStyles)
+                              # endif
+                              && IN_RANGE_INC (base, minCOLOR, minBrightCOLOR))
+                              base += minBrightCOLOR - minCOLOR;
+                              #endif
+                              return base;
+                              }
 
-  bool option (uint8_t opt) const NOTHROW
-  {
-    if (!opt)
-      return 0;
+                              bool option (uint8_t opt) const NOTHROW
+                              {
+                              if (!opt)
+                              return 0;
 
-    --opt;
-    return options[opt >> 3] & (1 << (opt & 7));
-  }
+                              --opt;
+                              return options[opt >> 3] & (1 << (opt & 7));
+                              }
 
-  void set_option (uint8_t opt, bool set = true) NOTHROW
-  {
-    if (!opt)
-      return;
+                              void set_option (uint8_t opt, bool set = true) NOTHROW
+                              {
+                              if (!opt)
+                              return;
 
-    --opt;
-    if (set)
-      options[opt >> 3] |= (1 << (opt & 7));
-    else
-      options[opt >> 3] &= ~(1 << (opt & 7));
-  }
+                              --opt;
+                              if (set)
+                              options[opt >> 3] |= (1 << (opt & 7));
+                              else
+                              options[opt >> 3] &= ~(1 << (opt & 7));
+                              }
 
-  void set_privmode (unsigned bit, int set) NOTHROW
-  {
-    if (set)
-      priv_modes |= bit;
-    else
-      priv_modes &= ~bit;
-  }
+                              void set_privmode (unsigned bit, int set) NOTHROW
+                              {
+                              if (set)
+                              priv_modes |= bit;
+                              else
+                              priv_modes &= ~bit;
+                              }
 
-  // modifies first argument(!)
-  void paste (char *data, unsigned int len) NOTHROW;
-  void scr_blank_line (line_t &l, unsigned int col, unsigned int width, rend_t efs) const NOTHROW;
-  void scr_blank_screen_mem (line_t &l, rend_t efs) const NOTHROW;
-  void scr_kill_char (line_t &l, int col) const NOTHROW;
-  int scr_scroll_text (int row1, int row2, int count) NOTHROW;
-  void scr_reset ();
-  void scr_release () NOTHROW;
-  void scr_clear (bool really = false) NOTHROW;
-  void scr_refresh () NOTHROW;
-  bool scr_refresh_rend (rend_t mask, rend_t value) NOTHROW;
-  void scr_erase_screen (int mode) NOTHROW;
-#if ENABLE_FRILLS
-  void scr_erase_savelines () NOTHROW;
-  void scr_backindex () NOTHROW;
-  void scr_forwardindex () NOTHROW;
-#endif
-  void scr_touch (bool refresh) NOTHROW;
-  void scr_expose (int x, int y, int width, int height, bool refresh) NOTHROW;
-  void scr_recolour () NOTHROW;
-  void scr_remap_chars () NOTHROW;
-  void scr_remap_chars (line_t &l) NOTHROW;
+                              // modifies first argument(!)
+                              void paste (char *data, unsigned int len) NOTHROW;
+                              void scr_blank_line (line_t &l, unsigned int col, unsigned int width, rend_t efs) const NOTHROW;
+                              void scr_blank_screen_mem (line_t &l, rend_t efs) const NOTHROW;
+                              void scr_kill_char (line_t &l, int col) const NOTHROW;
+                              int scr_scroll_text (int row1, int row2, int count) NOTHROW;
+                              void scr_reset ();
+                              void scr_release () NOTHROW;
+                              void scr_clear (bool really = false) NOTHROW;
+                              void scr_refresh () NOTHROW;
+                              bool scr_refresh_rend (rend_t mask, rend_t value) NOTHROW;
+                              void scr_erase_screen (int mode) NOTHROW;
+                              #if ENABLE_FRILLS
+                              void scr_erase_savelines () NOTHROW;
+                              void scr_backindex () NOTHROW;
+                              void scr_forwardindex () NOTHROW;
+                              #endif
+                              void scr_touch (bool refresh) NOTHROW;
+                              void scr_expose (int x, int y, int width, int height, bool refresh) NOTHROW;
+                              void scr_recolour () NOTHROW;
+                              void scr_remap_chars () NOTHROW;
+                              void scr_remap_chars (line_t &l) NOTHROW;
 
-  enum cursor_mode { SAVE, RESTORE };
+                              enum cursor_mode { SAVE, RESTORE };
 
-  void scr_poweron ();
-  void scr_soft_reset () NOTHROW;
-  void scr_cursor (cursor_mode mode) NOTHROW;
-  void scr_do_wrap () NOTHROW;
-  void scr_swap_screen () NOTHROW;
-  void scr_change_screen (int scrn);
-  void scr_color (unsigned int color, int fgbg) NOTHROW;
-  void scr_rendition (int set, int style) NOTHROW;
-  void scr_add_lines (const wchar_t *str, int len, int minlines = 0) NOTHROW;
-  void scr_backspace () NOTHROW;
-  void scr_tab (int count, bool ht = false) NOTHROW;
-  void scr_gotorc (int row, int col, int relative) NOTHROW;
-  void scr_index (enum page_dirn direction) NOTHROW;
-  void scr_erase_line (int mode) NOTHROW;
-  void scr_E () NOTHROW;
-  void scr_insdel_lines (int count, int insdel) NOTHROW;
-  void scr_insdel_chars (int count, int insdel) NOTHROW;
-  void scr_scroll_region (int top, int bot) NOTHROW;
-  void scr_cursor_visible (int mode) NOTHROW;
-  void scr_autowrap (int mode) NOTHROW;
-  void scr_relative_origin (int mode) NOTHROW;
-  void scr_insert_mode (int mode) NOTHROW;
-  void scr_set_tab (int mode) NOTHROW;
-  void scr_rvideo_mode (bool on) NOTHROW;
-  void scr_report_position () NOTHROW;
-  void set_font_style () NOTHROW;
-  void scr_charset_choose (int set) NOTHROW;
-  void scr_charset_set (int set, unsigned int ch) NOTHROW;
-  void scr_move_to (int y, int len) NOTHROW;
-  bool scr_page (enum page_dirn direction, int nlines) NOTHROW;
-  bool scr_changeview (int new_view_start) NOTHROW;
-  void scr_bell () NOTHROW;
-  void scr_printscreen (int fullhist) NOTHROW;
-  void scr_xor_rect (int beg_row, int beg_col, int end_row, int end_col, rend_t rstyle1, rend_t rstyle2) NOTHROW;
-  void scr_xor_span (int beg_row, int beg_col, int end_row, int end_col, rend_t rstyle) NOTHROW;
-  void scr_reverse_selection () NOTHROW;
-  void scr_dump (int fd) NOTHROW;
+                              void scr_poweron ();
+                              void scr_soft_reset () NOTHROW;
+                              void scr_cursor (cursor_mode mode) NOTHROW;
+                              void scr_do_wrap () NOTHROW;
+                              void scr_swap_screen () NOTHROW;
+                              void scr_change_screen (int scrn);
+                              void scr_color (unsigned int color, int fgbg) NOTHROW;
+                              void scr_rendition (int set, int style) NOTHROW;
+                              void scr_add_lines (const wchar_t *str, int len, int minlines = 0) NOTHROW;
+                              void scr_backspace () NOTHROW;
+                              void scr_tab (int count, bool ht = false) NOTHROW;
+                              void scr_gotorc (int row, int col, int relative) NOTHROW;
+                              void scr_index (enum page_dirn direction) NOTHROW;
+                              void scr_erase_line (int mode) NOTHROW;
+                              void scr_E () NOTHROW;
+                              void scr_insdel_lines (int count, int insdel) NOTHROW;
+                              void scr_insdel_chars (int count, int insdel) NOTHROW;
+                              void scr_scroll_region (int top, int bot) NOTHROW;
+                              void scr_cursor_visible (int mode) NOTHROW;
+                              void scr_autowrap (int mode) NOTHROW;
+                              void scr_relative_origin (int mode) NOTHROW;
+                              void scr_insert_mode (int mode) NOTHROW;
+                              void scr_set_tab (int mode) NOTHROW;
+                              void scr_rvideo_mode (bool on) NOTHROW;
+                              void scr_report_position () NOTHROW;
+                              void set_font_style () NOTHROW;
+                              void scr_charset_choose (int set) NOTHROW;
+                              void scr_charset_set (int set, unsigned int ch) NOTHROW;
+                              void scr_move_to (int y, int len) NOTHROW;
+                              bool scr_page (enum page_dirn direction, int nlines) NOTHROW;
+                              bool scr_changeview (int new_view_start) NOTHROW;
+                              void scr_bell () NOTHROW;
+                              void scr_printscreen (int fullhist) NOTHROW;
+                              void scr_xor_rect (int beg_row, int beg_col, int end_row, int end_col, rend_t rstyle1, rend_t rstyle2) NOTHROW;
+                              void scr_xor_span (int beg_row, int beg_col, int end_row, int end_col, rend_t rstyle) NOTHROW;
+                              void scr_reverse_selection () NOTHROW;
+                              void scr_dump (int fd) NOTHROW;
 
-  void selection_check (int check_more) NOTHROW;
-  void selection_paste (Window win, Atom prop, bool delete_prop) NOTHROW;
-  void selection_property (Window win, Atom prop) NOTHROW;
-  void selection_request (Time tm, int selnum = Sel_Primary) NOTHROW;
-  int selection_request_other (Atom target, int selnum) NOTHROW;
-  void selection_clear () NOTHROW;
-  void selection_make (Time tm);
-  bool selection_grab (Time tm) NOTHROW;
-  void selection_start_colrow (int col, int row) NOTHROW;
-  void selection_delimit_word (enum page_dirn dirn, const row_col_t *mark, row_col_t *ret) NOTHROW;
-  void selection_extend_colrow (int32_t col, int32_t row, int button3, int buttonpress, int clickchange) NOTHROW;
-  void selection_remove_trailing_spaces () NOTHROW;
-  void selection_send (const XSelectionRequestEvent &rq) NOTHROW;
-  void selection_click (int clicks, int x, int y) NOTHROW;
-  void selection_extend (int x, int y, int flag) NOTHROW;
-  void selection_rotate (int x, int y) NOTHROW;
+                              void selection_check (int check_more) NOTHROW;
+                              void selection_paste (Window win, Atom prop, bool delete_prop) NOTHROW;
+                              void selection_property (Window win, Atom prop) NOTHROW;
+                              void selection_request (Time tm, int selnum = Sel_Primary) NOTHROW;
+                              int selection_request_other (Atom target, int selnum) NOTHROW;
+                              void selection_clear () NOTHROW;
+                              void selection_make (Time tm);
+                              bool selection_grab (Time tm) NOTHROW;
+                              void selection_start_colrow (int col, int row) NOTHROW;
+                              void selection_delimit_word (enum page_dirn dirn, const row_col_t *mark, row_col_t *ret) NOTHROW;
+                              void selection_extend_colrow (int32_t col, int32_t row, int button3, int buttonpress, int clickchange) NOTHROW;
+                              void selection_remove_trailing_spaces () NOTHROW;
+                              void selection_send (const XSelectionRequestEvent &rq) NOTHROW;
+                              void selection_click (int clicks, int x, int y) NOTHROW;
+                              void selection_extend (int x, int y, int flag) NOTHROW;
+                              void selection_rotate (int x, int y) NOTHROW;
 
-  // xdefaults.C
-  void get_options (int argc, const char *const *argv);
-  int parse_keysym (const char *str, const char *arg);
-  const char *x_resource (const char *name);
-  void extract_resources ();
-};
+                              // xdefaults.C
+                              void get_options (int argc, const char *const *argv);
+                              int parse_keysym (const char *str, const char *arg);
+                              const char *x_resource (const char *name);
+                              void extract_resources ();
+                              };
 */
 #endif // _RXVT_H_ 
 

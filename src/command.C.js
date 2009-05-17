@@ -123,7 +123,7 @@ I bound them to "C-H u" "C-H o" and "C-H p"
 //REMOVED: ^| rxvt_term::commit_iso14755 ()        function ()
 //REMOVED: c_keyword ^|       static int  hex_keyval (XKeyEvent &ev)
 //REMOVED: c_keyword ^|       static inline KeySym  translate_keypad (KeySym keysym, bool kp)
-//REMOVED: c_keyword ^|       static inline int  //FIXME  map_function_key (KeySym keysym)
+//REMOVED: c_keyword ^|       static inline int  //  map_function_key (KeySym keysym)
 //REMOVED: js_style_functions c_keyword ^|       void rxvt_term::key_press (XKeyEvent &ev) 
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::flush ()
 rxvt_term.flush =function(){ 
@@ -1922,11 +1922,13 @@ rxvt_term.process_sgr_mode =function(nargs,    arg){
           case 45:
           case 46:
           case 47:
-          //FIXME  scr_color ( (minCOLOR +  //scr_color ((unsigned int) (minCOLOR + (arg[i] - 40)), Color_bg);        (arg[i] - 40)), Color_bg);###  c_keyword c_cast
+           scr_color ( (minCOLOR +  (arg[i] - 40)), Color_bg); //scr_color ((unsigned int) (minCOLOR + (arg[i] - 40)), Color_bg);       ###  c_keyword c_cast
             break;
           case 48: // set bg color, ISO 8613-6
             if (nargs > i + 2 && arg[i + 1] == 5){
-                //FIXME scr_color ( (minCOLOR +  //scr_color ((unsigned int) (minCOLOR + arg[i + 2]), Color_bg);        arg[i + 2]), Color_bg);###  c_keyword c_cast
+ //scr_color ((unsigned int) (minCOLOR + arg[i + 2]), Color_bg);       ###  c_keyword c_cast
+                 scr_color ( (minCOLOR +  arg[i + 2]), Color_bg);
+
                 i += 2;
               }
             break;
@@ -1945,7 +1947,8 @@ rxvt_term.process_sgr_mode =function(nargs,    arg){
           case 95:
           case 96:
           case 97:
-                          //FIXME scr_color ( (minBrightCOLOR //scr_color ((unsigned int) (minBrightCOLOR + (arg[i] - 90)), Color_fg);        LOR + (arg[i] - 90)), Color_fg);###  c_keyword c_cast
+//scr_color ((unsigned int) (minBrightCOLOR + (arg[i] - 90)), Color_fg);       ###  c_keyword c_cast
+                          FIXME scr_color ( (minBrightCOLOR   + (arg[i] - 90)), Color_fg);
             break;
           case 100:
           case 101:		/* set bright bg color */
@@ -1955,7 +1958,8 @@ rxvt_term.process_sgr_mode =function(nargs,    arg){
           case 105:
           case 106:
           case 107:
-                          //FIXME        scr_color ( (minBrightCOLOR //scr_color ((unsigned int) (minBrightCOLOR + (arg[i] - 100)), Color_bg);        LOR + (arg[i] - 100)), Color_bg);###  c_keyword c_cast
+//scr_color ((unsigned int) (minBrightCOLOR + (arg[i] - 100)), Color_bg);        LOR ###  c_keyword c_cast
+          scr_color ( (minBrightCOLOR + (arg[i] - 100)), Color_bg);
             break;
 #endif
         }

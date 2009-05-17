@@ -1057,9 +1057,9 @@ rxvt_term.scr_tab =function( count, ht){
   if (count == 0)
     return;
   else if (count > 0){
-      line_t &l = ROW(screen.cur.row);
+      //FIXME line_t &l = ROW(screen.cur.row);
       var base_rend= l.r[i];  //rend_t base_rend = l.r[i];        ###  js_style_variables
-      ht &= l.t[i] == ' ';  //FIXME
+      //FIXME ht &= l.t[i] == ' ';  //FIXME
 
       for (; ++i < ncol; )
         if (tabs[i]){
@@ -1340,7 +1340,7 @@ rxvt_term.scr_erase_screen =function( mode){
   else if (GET_BASEBG (rstyle) == Color_bg){
       ren = DEFAULT_RSTYLE;
 
-      if (mapped && !view_start)
+      if (mapped && !view_start) {}
           /*        XClearArea (dpy, vt, 0,
                     Row2Pixel (row - view_start), width,  //                           Row2Pixel (row - view_start), (unsigned int)width,   ###  c_keyword c_cast
                     Height2Pixel (num), False);  //                           (unsigned int)Height2Pixel (num), False);   ###  c_keyword  c_cast*/
