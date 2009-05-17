@@ -208,6 +208,8 @@ NOCHAR = 0xffff,
 // put into ifs if you are very sure that the expression
 // is mostly true or mosty false. note that these return
 // booleans, not the expression.
+#define mi_n(a,b) Math.min((a),(b))
+#define ma_x(a,b) Math.max((a),(b))
 #define expect_false(expr) expect ((expr) != 0, 0)
 #define expect_true(expr)  expect ((expr) != 0, 1)
 
@@ -887,7 +889,7 @@ line_t.prototype = {
     f &= ~LINE_FILTERED;
 #endif
     if(typeof col != undefined){
-      max(l, col);
+      ma_x(l, col);
     }
   }
 };

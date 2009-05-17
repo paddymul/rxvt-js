@@ -317,7 +317,7 @@ rxvt_term.prototype.scr_reset =function(){
 
 
 
-      for ( row = min (nrow, prev_nrow); row--; ){  //             for (int row = min (nrow, prev_nrow); row--; ){   ###  c_keyword 
+      for ( row = mi_n (nrow, prev_nrow); row--; ){  //             for (int row = mi_n (nrow, prev_nrow); row--; ){   ###  c_keyword 
         lresize (drawn_buf[row]);  //          lresize (drawn_buf[row]);
         lresize (swap_buf [row]);  //          lresize (swap_buf [row]);
         }
@@ -358,7 +358,7 @@ rxvt_term.prototype.scr_reset =function(){
                   llen += prev_ncol;
                 }
 
-              var qlines= max (0, (llen - 1) / ncol) + 1;   //FIXME floor division   int qlines = max (0, (llen - 1) / ncol) + 1;   ###  js_style_variables 
+              var qlines= ma_x (0, (llen - 1) / ncol) + 1;   //FIXME floor division   int qlines = ma_x (0, (llen - 1) / ncol) + 1;   ###  js_style_variables 
 
               // drop partial lines completely
               if (q < qlines)
@@ -398,7 +398,7 @@ rxvt_term.prototype.scr_reset =function(){
 
                       //line_t &pline = ; //FIXED
 
-                      var len= min (min (prev_ncol - pcol, ncol - qcol), llen - lofs);   //   int len = min (min (prev_ncol - pcol, ncol - qcol), llen - lofs);   ###  js_style_variables 
+                      var len= mi_n (mi_n (prev_ncol - pcol, ncol - qcol), llen - lofs);   //   int len = min (min (prev_ncol - pcol, ncol - qcol), llen - lofs);   ###  js_style_variables 
 
                       row_buf[row_buf_i + qrow].t = memcpy(row_buf[row_buf_i + qrow].t, row_buf[row_buf_i + qrow].t_i +qcol, old_buf [prow].t,  old_buf [prow].t_i +pcol, len);  //                             memcpy (qline->t + qcol, pline.t + pcol, len * sizeof (text_t));   ###  possible_pointer 
                       row_buf[row_buf_i + qrow].r = memcpy(row_buf[row_buf_i + qrow].r, row_buf[row_buf_i + qrow].r_i +qcol, old_buf [prow].r, old_buf [prow].r_i +pcol, len);  //                             memcpy (qline->r + qcol, pline.r + pcol, len * sizeof (rend_t));   ###  possible_pointer remove_casts 
@@ -427,7 +427,7 @@ row_buf[row_buf_i + qrow] =scr_blank_line ( qline, qline.l, ncol - qline.l, DEFA
       else{
           // if no scrollback exists (yet), wing, instead of wrap
 
-         for (row = min (nrow, prev_nrow); row--; ){  //                 for (int row = min (nrow, prev_nrow); row--; ){   ### js_style_variables  c_keyword 
+         for (row = mi_n (nrow, prev_nrow); row--; ){  //                 for (int row = min (nrow, prev_nrow); row--; ){   ### js_style_variables  c_keyword 
            var pline = old_buf [MOD (term_start + row, prev_total_rows)];  //              line_t &pline = old_buf [MOD (term_start + row, prev_total_rows)];
             qline = row_buf [row];  //              line_t &qline = row_buf [row];
 
@@ -712,7 +712,7 @@ rxvt_term.prototype.scr_scroll_text =function( row1,  row2,  count){
   if (count > 0
       && row1 == 0
       && (current_screen == PRIMARY || option (Opt_secondaryScroll))){
-      top_row = max (top_row - count, -saveLines);
+      top_row = ma_x (top_row - count, -saveLines);
 
       // scroll everything up 'count' lines
       term_start = (term_start + count) % total_rows;
@@ -799,7 +799,7 @@ rxvt_term.prototype.scr_scroll_text =function( row1,  row2,  count){
 
        var rows= row2 - row1 + 1;   //             int rows = row2 - row1 + 1;   ### js_style_variables  js_style_variables 
 
-      count = min(count, rows);  //      min_it  (count, rows);
+      count = mi_n(count, rows);  //      min_it  (count, rows);
 
       var temp_buf = row_buf, temp_buf_i=[total_rows];  //             line_t *temp_buf = row_buf + total_rows;   ###  possible_pointer 
 
@@ -837,7 +837,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
 
   if (minlines > 0){
       minlines += screen.cur.row - screen.bscroll;
-      minlines = min (minlines, screen.cur.row - top_row);  //      min_it (minlines, screen.cur.row - top_row);
+      minlines = mi_n (minlines, screen.cur.row - top_row);  //      min_it (minlines, screen.cur.row - top_row);
 
       if (minlines > 0
           && screen.tscroll == 0
@@ -865,7 +865,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
 
       if (expect_false (c < 0x20))
         if (c == C0_LF){
-          line.l= max(line.l,screen.cur.col); //FIXED max_it (line->l, screen.cur.col);
+          line.l= ma_x(line.l,screen.cur.col); //FIXED max_it (line->l, screen.cur.col);
 
             screen.flags &= ~Screen_WrapNext;
 
@@ -878,7 +878,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
             continue;
           }
         else if (c == C0_CR){
-          line.l= max(line.l,screen.cur.col); //FIXED max_it (line->l, screen.cur.col);            max_it (line->l, screen.cur.col);  //            max_it (line->l, screen.cur.col);    ### 
+          line.l= ma_x(line.l,screen.cur.col); //FIXED max_it (line->l, screen.cur.col);            max_it (line->l, screen.cur.col);  //            max_it (line->l, screen.cur.col);    ### 
 
             screen.flags &= ~Screen_WrapNext;  //            screen.flags &= ~Screen_WrapNext;    ### 
             screen.cur.col = 0;
@@ -1013,7 +1013,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
 #endif
     }
 
-      line.l = max(line.l, screen.cur.col); // FIXME max_it (line->l, screen.cur.col);
+      line.l = ma_x(line.l, screen.cur.col); // FIXME max_it (line->l, screen.cur.col);
 
 #ifdef DEBUG_STRICT
   assert (screen.cur.row >= 0);
@@ -1251,7 +1251,7 @@ rxvt_term.prototype.scr_erase_line =function( mode){
       case 0:                     /* erase to end of line */
         col = screen.cur.col;
         num = ncol - col;
-        line.l = min(line.l, col);  //        min_it (line.l, col);
+        line.l = mi_n(line.l, col);  //        min_it (line.l, col);
 
         if (ROWCOL_IN_ROW_AT_OR_AFTER (selection.beg, screen.cur)
             || ROWCOL_IN_ROW_AT_OR_AFTER (selection.end, screen.cur))
@@ -1330,7 +1330,7 @@ rxvt_term.prototype.scr_erase_screen =function( mode){
   if (row >= nrow) /* Out Of Bounds */
     return;
 
- num = min(num, nrow - row);  // min_it (num, nrow - row);
+ num = mi_n(num, nrow - row);  // min_it (num, nrow - row);
 
   // TODO: the code below does not work when view_start != 0
   // the workaround is to disable the clear and use a normal refresh
@@ -1451,7 +1451,7 @@ rxvt_term.prototype.scr_insdel_chars =function( count,  insdel){
   scr_do_wrap ();
 
   selection_check (1);
-  count = min(count, ncol - screen.cur.col);  //  min_it (count, ncol - screen.cur.col);
+  count = mi_n(count, ncol - screen.cur.col);  //  min_it (count, ncol - screen.cur.col);
 
   var row= screen.cur.row;   //         int row = screen.cur.row;   ###  js_style_variables 
 
@@ -1466,7 +1466,7 @@ rxvt_term.prototype.scr_insdel_chars =function( count,  insdel){
 
   switch (insdel){
       case INSERT:
-        line.l = min (line.l + count, ncol);
+        line.l = mi_n (line.l + count, ncol);
 
         if (line.t[screen.cur.col] == NOCHAR)
           scr_kill_char ( line, screen.cur.col);  //                 scr_kill_char (*line, screen.cur.col);   ###  c_keyword possible_pointer 
@@ -1505,7 +1505,7 @@ rxvt_term.prototype.scr_insdel_chars =function( count,  insdel){
         break;
 
       case DELETE:
-        line.l = max (line.l - count, 0);
+        line.l = ma_x (line.l - count, 0);
 
         // nuke wide char spanning the end 
         if (screen.cur.col + count < ncol && line.t[screen.cur.col + count] == NOCHAR)
@@ -1543,8 +1543,8 @@ rxvt_term.prototype.scr_insdel_chars =function( count,  insdel){
  */
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_scroll_region (int top, int bot){ 
 rxvt_term.prototype.scr_scroll_region =function( top,  bot){ 
-  top = max(top,0); //FIXED max_it (top, 0);
-  bot = min (bot, nrow -1); //FIXED min_it (bot, nrow - 1);
+  top = ma_x(top,0); //FIXED max_it (top, 0);
+  bot = mi_n (bot, nrow -1); //FIXED min_it (bot, nrow - 1);
 
   if (top > bot)
     return;
@@ -1983,7 +1983,7 @@ rxvt_term.prototype.scr_xor_rect =function( beg_row,  beg_col,  end_row,  end_co
   var view_end= view_start + nrow;   //         int view_end = view_start + nrow;   ###  js_style_variables 
   var row, col;  //         int row, col;   ### js_style_variables  c_keyword 
 
-  for (row = max (beg_row, view_start); row <= min (end_row, view_end); row++){
+  for (row = ma_x (beg_row, view_start); row <= mi_n (end_row, view_end); row++){
 //CMNT: possible_pointer ^|             text_t *stp = ROW(row).t; 
         var  stp = ROW(row).t;
 //CMNT: c_keyword possible_pointer ^|             rend_t *srp = ROW(row).r; 
@@ -2014,7 +2014,7 @@ rxvt_term.prototype.scr_xor_span =function( beg_row,  beg_col,  end_row,  end_co
       row = view_start;
     }
 
-  for (; row < min (end_row, view_end); row++, col = 0)
+  for (; row < mi_n (end_row, view_end); row++, col = 0)
 //CMNT: c_keyword possible_pointer ^|           for (rend_t *srp = ROW(row).r; col < ncol; col++) 
     for (  srp = ROW(row).r; col < ncol; col++)
       srp[col] ^= rstyle;

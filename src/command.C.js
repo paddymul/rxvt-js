@@ -396,8 +396,8 @@ rxvt_term.prototype.cmd_parse =function(){
         }
 
       if (expect_true (!IS_CONTROL (ch) || ch == C0_LF || ch == C0_CR || ch == C0_HT)){
-          if (expect_false (!seen_input)){
-              seen_input = 1;
+          if (expect_false (!this.seen_input)){
+              this.seen_input = 1;
               // many badly-written programs (e.g. jed) contain a race condition:
               // they first read the screensize and then install a SIGWINCH handler.
               // some window managers resize the window early, and these programs
@@ -405,8 +405,8 @@ rxvt_term.prototype.cmd_parse =function(){
               // unfortunately other programs are even more buggy and dislike
               // being sent SIGWINCH, so only do it when we were in fact being
               // resized.
-              if (seen_resize && cmd_pid)
-                kill (-cmd_pid, SIGWINCH);
+              //if (this.seen_resize && cmd_pid)
+              //  kill (-cmd_pid, SIGWINCH);
             }
 
           /* Read a text string from the input buffer */
@@ -414,7 +414,7 @@ rxvt_term.prototype.cmd_parse =function(){
           var refreshnow = false;
           var nlines= 0;  //int nlines = 0;        ###  js_style_variables
           var str = buf, str_i = 0; //                  wchar_t *str = buf;  ###  c_keyword possible_pointer inserted_var should_work
-          var eol = str.length + min (ncol, UBUFSIZ); //                  wchar_t *eol = str + min (ncol, UBUFSIZ);  ###  c_keyword possible_pointer inserted_var
+          var eol = str.length + mi_n (ncol, UBUFSIZ); //                  wchar_t *eol = str + min (ncol, UBUFSIZ);  ###  c_keyword possible_pointer inserted_var
           for (;;){
               if (expect_false (ch == NOCHAR || (IS_CONTROL (ch) && ch != C0_LF && ch != C0_CR && ch != C0_HT))) {
                 break;
@@ -442,7 +442,7 @@ rxvt_term.prototype.cmd_parse =function(){
                       }
                       nlines = 0;
                       str = buf;
-                      eol = str.length + min (ncol, UBUFSIZ);  // FIXME should_work
+                      eol = str.length + mi_n (ncol, UBUFSIZ);  // FIXME should_work
                     }
 
                   if (str.length >= eol){   // FIXME should_work
@@ -451,7 +451,7 @@ rxvt_term.prototype.cmd_parse =function(){
                           break;
                         }
                       else
-                        eol = min (eol + ncol, buf.length + UBUFSIZ);  // FIXME should_work
+                        eol = mi_n (eol + ncol, buf.length + UBUFSIZ);  // FIXME should_work
                     }
               }
 
@@ -1486,8 +1486,8 @@ rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
           var str[256]; //                    char str[256];  ###  c_keyword inserted_var
 
           sprintf (str, "[%dx%d+%d+%d]",	/* can't presume snprintf () ! */ 
-                     min (bgPixmap.h_scale, 32767), min (bgPixmap.v_scale, 32767),
-                     min (bgPixmap.h_align, 32767), min (bgPixmap.v_align, 32767));
+                     mi_n (bgPixmap.h_scale, 32767), mi_n (bgPixmap.v_scale, 32767),
+                     mi_n (bgPixmap.h_align, 32767), mi_n (bgPixmap.v_align, 32767));
             this.process_xterm_seq (XTerm_title, str, CHAR_ST);
           }
         else{
@@ -2054,7 +2054,7 @@ rxvt_term.prototype.tt_write =function( data,   len){
 
   if (v_buflen == 0){
       //      ssize_t written = write (pty.pty, data, min (len, MAX_PTY_WRITE));
-      var written = write (pty.pty, data, min (len, MAX_PTY_WRITE)); 
+      var written = write (pty.pty, data, mi_n (len, MAX_PTY_WRITE)); 
 
       if (written == len) //if ((unsigned int)written == len)        ###  c_keyword c_cast
         return;
@@ -2075,7 +2075,7 @@ rxvt_term.prototype.tt_write =function( data,   len){
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::pty_write () 
 rxvt_term.prototype.pty_write =function(){ 
 //CMNT: js_style_variables ^|         int written = write (pty->pty, v_buffer, min (v_buflen, MAX_PTY_WRITE)); 
- var written= write (pty.pty, v_buffer, min (v_buflen, MAX_PTY_WRITE)); 
+ var written= write (pty.pty, v_buffer, mi_n (v_buflen, MAX_PTY_WRITE)); 
 
   if (written > 0){
       v_buflen -= written;
