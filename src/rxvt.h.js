@@ -496,9 +496,9 @@ var  XTerm_name             =  0,
   XTerm_konsole30        = 30,      // reserved for konsole
   XTerm_konsole31        = 31,      // reserved for konsole
   XTerm_emacs51          = 51,      // reserved for emacs shell
-  
+
 // rxvt extensions of XTerm OSCs: ESC ] Ps;Pt (ST|BEL)
-  
+
 
 // deprecated
   Rxvt_Color_BD          = 18,
@@ -541,27 +541,27 @@ var
 Color_none = -2,
   Color_transparent = -1,
   Color_fg = 0,
-  Color_bg,
-  minCOLOR,                   /* 2 */
+  Color_bg = 1,
+  minCOLOR = 2,                   /* 2 */
   Color_Black = minCOLOR,
-  Color_Red3,
-  Color_Green3,
-  Color_Yellow3,
-  Color_Blue3,
-  Color_Magenta3,
-  Color_Cyan3,
-  maxCOLOR,                   /* minCOLOR + 7 */
+  Color_Red3 =3,
+  Color_Green3 =4,
+  Color_Yellow3 =5,
+  Color_Blue3 = 6,
+  Color_Magenta3 = 7,
+  Color_Cyan3 =8,
+  maxCOLOR = 9,                   /* minCOLOR + 7 */
 #ifndef NO_BRIGHTCOLOR
   Color_AntiqueWhite = maxCOLOR,
-  minBrightCOLOR,             /* maxCOLOR + 1 */
+  minBrightCOLOR =10,             /* maxCOLOR + 1 */
   Color_Grey25 = minBrightCOLOR,
-  Color_Red,
-  Color_Green,
-  Color_Yellow,
-  Color_Blue,
-  Color_Magenta,
-  Color_Cyan,
-  maxBrightCOLOR,             /* minBrightCOLOR + 7 */
+  Color_Red =11,
+  Color_Green = 12 ,
+  Color_Yellow =13,
+  Color_Blue =14,
+  Color_Magenta =15,
+  Color_Cyan =16,
+  maxBrightCOLOR =17,             /* minBrightCOLOR + 7 */
   Color_White = maxBrightCOLOR,
 #else
   Color_White = maxCOLOR,
@@ -569,17 +569,17 @@ Color_none = -2,
   minTermCOLOR = Color_White + 1,
   maxTermCOLOR = Color_White + 72,
 #ifndef NO_CURSORCOLOR
-  Color_cursor,
-  Color_cursor2,
+  Color_cursor =18,
+  Color_cursor2 =19,
 #endif
-  Color_pointer_fg,
-  Color_pointer_bg,
-  Color_border,
+  Color_pointer_fg =20,
+  Color_pointer_bg =21,
+  Color_border = 22,
 #ifndef NO_BOLD_UNDERLINE_REVERSE
-  Color_BD,
-  Color_IT,
-  Color_UL,
-  Color_RV,
+  Color_BD = 23,
+  Color_IT = 24,
+  Color_UL = 25,
+  Color_RV = 26,
 #endif
 #if ENABLE_FRILLS
   Color_underline,
@@ -587,7 +587,7 @@ Color_none = -2,
 #ifdef OPTION_HC
   Color_HC,
 #endif
-  Color_scroll,
+  Color_scroll = 27,
 #ifdef RXVT_SCROLLBAR
   Color_trough,
 #endif
@@ -597,7 +597,7 @@ Color_none = -2,
 #if OFF_FOCUS_FADING
   Color_fade,
 #endif
-  NRS_COLORS,                 /* */
+  NRS_COLORS = 28,                 /* */
 #ifdef RXVT_SCROLLBAR
   Color_topShadow = NRS_COLORS,
   Color_bottomShadow,
@@ -844,7 +844,7 @@ line_t.prototype = {
     else if (1){
       this.f &= ~0x0001; // line is continued on the next row;
     }
-  
+        
     else {
       return f & 0x0001 // line is continued on the next row;
     }},
@@ -876,7 +876,7 @@ line_t.prototype = {
     f &= ~LINE_FILTERED;
 #endif
     if(typeof col != undefined){
-      max_it (l, col);// FIXME max_it is a template defined in rxvtutil
+      max(l, col);
     }
   }
 };
@@ -885,6 +885,7 @@ line_t.prototype = {
 
 // primitive wrapper around mbstate_t to ensure initialisation
 /*
+  this is used once here   in command.C.js rxvt_term.next_char
   struct mbstate
   {
   mbstate_t mbs;
@@ -925,6 +926,7 @@ line_t.prototype = {
 // that are not representable in unicode, as well as characters
 // not fitting in the BMP.
 /*
+  This is never used with the config variables I use
   struct compose_char
   {
   unicode_t c1, c2; // any chars != NOCHAR are valid
@@ -963,8 +965,11 @@ line_t.prototype = {
 #define SET_R(r) rxvt_current_term = const_cast<rxvt_term *>(r)
 #define GET_R rxvt_current_term
 
+function row_col_t(){};
+row_col_t.prototype = {row:0, col:0};
 /* ------------------------------------------------------------------------- */
 /*
+  This doesn't seem to be used
   struct overlay_base
   {
   int x, y, w, h; // overlay dimensions
@@ -1018,6 +1023,7 @@ line_t.prototype = {
   *  END······················= total_rows
   */
 /*
+  I dont seem to use TermWin_t   it seems to be an x11 construct
   struct TermWin_t
   {
   width: "",                    //  int                     window width                    [pixels]
@@ -1046,6 +1052,7 @@ line_t.prototype = {
   };
 */
 /*
+
  * screen accounting:
  * screen_t elements
  *   row:       Cursor row position                   : 0 <= row < nrow
@@ -1080,21 +1087,16 @@ line_t.prototype = {
 
 screen_t = function() {}
   screen_t.prototype ={
-  cur: "",                    //     row_col_t  cursor position on the screen            
-  tscroll: "",                    //  int                            top of settable scroll region            
-  bscroll: "",                    //  int                            bottom of settable scroll region         
-  charset: "",                    //  unsigned int                   character set number [0..3]              
-  flags: "",                    //  unsigned int                     see below                                
-  cur: "",                    //  row_col_t       s_                 saved cursor position                    
-  charset: "",                    //  unsigned int    s_             saved character set number [0..3]        
-  s_charset_char : "", //  char
-  rstyle: ""                    //  rend_t          s_                           saved rendition style                  
+  cur: row_col_t(),                   //     row_col_t  cursor position on the screen            
+  tscroll: "",               //  int                         top of settable scroll region
+  bscroll: "",               //  int                         bottom of settable scroll region
+  charset: "",               //  unsigned int                character set number [0..3]
+  flags: "",                 //  unsigned int                see below
+  s_cur: row_col_t(),                   //  row_col_t       s_          saved cursor position
+  charset: "",               //  unsigned int    s_          saved character set number [0..3]
+  s_charset_char : "",       //  char
+  rstyle: ""                 //  rend_t          s_          saved rendition style
   };                                      
-
-
-
-
-
 
 
 
@@ -1149,19 +1151,20 @@ screen_t = function() {}
 */
 rxvt_vars = function() {}
   rxvt_vars.prototype={
-  scrollBar : "", //   scrollBar_t 
+  scrollBar : "",                     //   scrollBar_t 
   //    options : [(Opt_count + 7) >> 3], //     uint8_t
   szHint : "" ,    //XSizeHints      
   pix_colors : [], pix_colors_i:0,   //rxvt_color     * 
-  TermWin_cursor : "",  //Cursor          ;       /* cursor for vt window */
-  numlock_state: 0, //int
-  row_buf : [], row_buf_i:0,   //line_t*      // all lines, scrollback + terminal, circular, followed by temp_buf
+  TermWin_cursor : "",         //Cursor       /* cursor for vt window */
+  numlock_state: 0,            //int
+  row_buf : [], row_buf_i:0,   //line_t* 
+  // row_buf is all lines, scrollback + terminal, circular, followed by temp_buf
   drawn_buf : [], drawn_buf_i:0, //  line_t         *     // text on screen
   swap_buf : [] , swap_buf_i:0 , //  line_t         * ;     // lines for swap buffer
-  tabs: [], tabs_i:0,        //    char           *   /* per location: 1 == tab-stop               */
-  screen: "", //    screen_t        
-  swap: "", //     screen_t        
-  selection : "", //     selection_t
+  tabs: [], tabs_i:0,            //    char           *   /* per location: 1 == tab-stop*/
+  screen: "",                    //    screen_t        
+  swap: "",                      //    screen_t        
+  selection : "",                //    selection_t
   pix_colors_focused: new Array(TOTAL_COLORS) //    rxvt_color
 #ifdef OFF_FOCUS_FADING
   ,
@@ -1169,7 +1172,151 @@ rxvt_vars = function() {}
 #endif
   };
 function rxvt_term() {}  //FIXME
+rxvt_term.prototype = {
+// special markers with magic addresses
+ resval_undef : [],  //static const char      // options specifically unset
+ resval_on : [],       //static const char      // boolean options switched on
+ resval_off :[],      //static const char      // or off
 
+ log_hook: [],        //log_callback   ptr_arr   // log error messages through this hook, if != 0
+ log_hook_ptr: 0,       //log_hook_ptr
+ getfd_hook: "",        //getfd_callback *  some wierd function callback   // convert remote to local fd, if != 0
+#if ENABLE_PERL
+ //rxvt_perl_term  perl;
+#endif
+ //struct mbstate  mbstate;              // current input multibyte state
+
+ want_refresh:1,     //unsigned char
+  current_screen:1,	// primary or secondary              
+  num_scr_allow:1,
+  bypass_keystate:1,
+#if ENABLE_FRILLS
+  urgency_hint:1,
+#endif
+#if CURSOR_BLINK
+  hidden_cursor:1,
+#endif
+#if TEXT_BLINK
+  hidden_text:1,
+#endif
+#if POINTER_BLANK
+  hidden_pointer:1,
+#endif
+  enc_utf8:1,		// wether locale uses utf-8 
+  seen_input:1,         // wether we have seen some program output yet 
+  seen_resize:1,	// wether we had a resize event 
+ parsed_geometry:1,
+
+ refresh_type: "",        //unsigned char   
+#ifdef META8_OPTION
+ //  meta_char,            // Alt-key prefix 
+#endif
+ selection_wait: 0, //
+ selection_type: 0, // ??? do variables in structs default to ints?, ;
+// ---------- 
+ rvideo_state: true, rvideo_mode: true,  //bool
+#ifndef NO_BELL
+ rvideo_bell :true, // bool            
+#endif
+ num_scr: 0,              // int   screen: number lines scrolled 
+ prev_ncol: 0 ,           // int // screen: previous number of columns 
+ prev_nrow: 0,            // int // screen: previous number of rows 
+// ---------- 
+ rstyle: "" ,             // rend_t          
+// ---------- 
+#ifdef SELECTION_SCROLLING
+ //int             scroll_selection_lines;
+ //enum page_dirn  scroll_selection_dir;
+ //int             selection_save_x,
+ //  selection_save_y,
+ //  selection_save_state;
+#endif
+// ---------- 
+//int             csrO,       // Hops - csr offset in thumb/slider to      
+//   give proper Scroll behaviour            
+#if defined(MOUSE_WHEEL) && defined(MOUSE_SLIP_WHEELING)
+ //mouse_slip_wheel_speed,
+#endif
+ refresh_count : 0, // I guess for all of the following c defualts to ints
+ window_vt_x  :0,
+ window_vt_y :0,
+ mouse_row: 0,
+ mouse_col: 0,
+# ifdef POINTER_BLANK
+ pointerBlankDelay :0,
+# endif
+ allowedxerror: 0,  //probably never used
+// ---------- 
+//unsigned int    ModLevel3Mask,
+//  ModMetaMask,
+//  ModNumLockMask;
+ old_width: 0,  //int last used width in screen resize          
+ old_height: 0, //int last used height in screen resize         
+ priv_modes:0 , //unsigned long   
+ SavedModes:"", //  SavedModes;
+// ---------- 
+ xa :[] ,  //Atom            *;
+ xa_ptr:0,
+// ---------- 
+//Time            selection_time,
+//  selection_request_time;
+ //pid_t           cmd_pid;    // process id of child 
+ incr_buf: [], // char * 
+ incr_buf_ptr : 0,
+ //size_t          incr_buf_size, incr_buf_fill;
+// ---------- 
+//struct mouse_event MEvent;
+//XComposeStatus  compose;
+//struct termios  tio;  //FIXME termios might be needed
+ oldcursor: row_col_t(), //row_col_t
+#ifdef HAVE_BG_PIXMAP
+ //bgPixmap_t      bgPixmap;
+#endif
+#ifdef HAVE_AFTERIMAGE
+ //ASVisual       *asv;
+ //ASImageManager *asimman;
+ /*
+void init_asv ()
+{
+  if (!asv)
+    asv = create_asvisual_for_id (dpy, display->screen, depth, XVisualIDFromVisual (visual), cmap, NULL);
+    }*/
+#endif
+
+ allocated: [], //???? // vector<void *> allocated;           // free these memory blocks with free()
+
+ //char            env_windowid[21];   // environmental variable WINDOWID 
+ //char            env_colorfgbg[sizeof ("COLORFGBG=default;default;bg") + 1];
+ //char           *env_display;        // environmental variable DISPLAY  
+ //char           *env_term;           // environmental variable TERM     
+ //char           *locale;
+ //char            charsets[4];
+ v_buffer: [], //char           *v_buffer;           // pointer to physical buffer 
+ v_buffer_ptr:0,
+ v_buflen : 0 , //unsigned int    v_buflen;           // size of area to write 
+ //stringvec      *argv, *envv;        // if != 0, will be freed at destroy time 
+
+#ifdef KEYSYM_RESOURCE
+ //keyboard_manager *keyboard;
+#endif
+#ifndef NO_RESOURCES
+ //XrmDatabase option_db;
+#endif
+
+ rs:[],//const char     *rs[NUM_RESOURCES];
+ rs_ptr:0,
+// command input buffering 
+ cmdbuf_ptr:0, cmdbuf_endp:0,//char           *cmdbuf_ptr, *cmdbuf_endp;
+ cmdbuf_base : [], //char            cmdbuf_base[CBUFSIZ];
+
+ //ptytty         *pty;
+
+ //rxvt_salloc    *talloc;             // text line allocator
+ //rxvt_salloc    *ralloc;             // rend line allocator
+
+ //static vector<rxvt_term *> termlist; // a vector of all running rxvt_term's
+
+}
 /*
   struct rxvt_term : zero_initialized, rxvt_vars, rxvt_screen
   {
