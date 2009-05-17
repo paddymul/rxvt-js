@@ -143,7 +143,7 @@ uneeded, only is used used in scr_refresh
 
 /* Fill part/all of a line with blanks. */
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_blank_line (line_t &l, unsigned int col, unsigned int width, rend_t efs){ 
-rxvt_term.scr_blank_line =function(l, col, width, efs){ 
+rxvt_term.prototype.scr_blank_line =function(l, col, width, efs){ 
   /*  if (!l.t){
       lalloc (l);
       col = 0;
@@ -175,7 +175,7 @@ rxvt_term.scr_blank_line =function(l, col, width, efs){
 /* ------------------------------------------------------------------------- */
 /* Fill a full line with blanks - make sure it is allocated first */
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_blank_screen_mem (line_t &l, rend_t efs) 
-rxvt_term.scr_blank_screen_mem =function(l,  efs){ 
+rxvt_term.prototype.scr_blank_screen_mem =function(l,  efs){ 
   l = scr_blank_line (l, 0, ncol, efs);
 
   l.l = 0;
@@ -185,7 +185,7 @@ rxvt_term.scr_blank_screen_mem =function(l,  efs){
 
 // nuke a single wide character at the given column 
 //FIXED: I think i fixed it js_style_functions c_keyword ^|       void rxvt_term::scr_kill_char (line_t &l, int col) 
-rxvt_term.scr_kill_char =function(l,  col){ 
+rxvt_term.prototype.scr_kill_char =function(l,  col){ 
   // find begin
   while (col > 0 && l.t[col] == NOCHAR)
     col--;
@@ -215,7 +215,7 @@ my_alloc = function(num, obj){
   return ptr;
 }
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_reset (){ 
-rxvt_term.scr_reset =function(){ 
+rxvt_term.prototype.scr_reset =function(){ 
   view_start = 0;  // I think these are global variables ???
   num_scr = 0;
 
@@ -471,7 +471,7 @@ row_buf[row_buf_i + qrow] =scr_blank_line ( qline, qline.l, ncol - qline.l, DEFA
  * Free everything.  That way malloc debugging can find leakage. 
  */
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_release () 
-rxvt_term.scr_release =function(){ 
+rxvt_term.prototype.scr_release =function(){ 
   if (row_buf){
       /*
       delete talloc; talloc = 0;  //FIXME what to do with allocs?
@@ -494,7 +494,7 @@ rxvt_term.scr_release =function(){
  * Hard/Soft reset 
  */
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_poweron (){ 
-rxvt_term.scr_poweron =function(){ 
+rxvt_term.prototype.scr_poweron =function(){ 
   scr_release ();
   prev_nrow = prev_ncol = 0;
   rvideo_mode = false;
@@ -506,7 +506,7 @@ rxvt_term.scr_poweron =function(){
 }
 
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_soft_reset () 
-rxvt_term.scr_soft_reset =function(){ 
+rxvt_term.prototype.scr_soft_reset =function(){ 
   /* only affects modes, nothing drastic such as clearing the screen */
 #if ENABLE_OVERLAY
   scr_overlay_off ();
@@ -529,7 +529,7 @@ rxvt_term.scr_soft_reset =function(){
  * XTERM_SEQ: Restore cursor: ESC 8 
  */
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_cursor (cursor_mode mode){ 
-rxvt_term.scr_cursor =function(mode){ 
+rxvt_term.prototype.scr_cursor =function(mode){ 
 
     /*
     var s ;  //         screen_t *s;   ### js_style_variables  possible_pointer 
@@ -602,7 +602,7 @@ rxvt_term.scr_cursor =function(mode){
 }
 
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_swap_screen () 
-rxvt_term.scr_swap_screen =function(){ 
+rxvt_term.prototype.scr_swap_screen =function(){ 
   if (!option (Opt_secondaryScreen))
     return;
 
@@ -622,7 +622,7 @@ rxvt_term.scr_swap_screen =function(){
  * XTERM_SEQ: Secondary screen: ESC [ ? 4 7 l 
  */
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_change_screen (int scrn){ 
-rxvt_term.scr_change_screen =function( scrn){ 
+rxvt_term.prototype.scr_change_screen =function( scrn){ 
   if (scrn == current_screen)
     return;
 
@@ -652,7 +652,7 @@ rxvt_term.scr_change_screen =function( scrn){
 
 // clear WrapNext indicator, solidifying position on next line
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_do_wrap () 
-rxvt_term.scr_do_wrap =function(){ 
+rxvt_term.prototype.scr_do_wrap =function(){ 
   if (!(screen.flags & Screen_WrapNext))
     return;
 
@@ -671,7 +671,7 @@ rxvt_term.scr_do_wrap =function(){
  * Change the colour for following text 
  */
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_color (unsigned int color, int fgbg){ 
-rxvt_term.scr_color =function(  color,  fgbg){ 
+rxvt_term.prototype.scr_color =function(  color,  fgbg){ 
   if (!IN_RANGE_INC (color, minCOLOR, maxTermCOLOR))
     color = fgbg;
 
@@ -686,7 +686,7 @@ rxvt_term.scr_color =function(  color,  fgbg){
  * Change the rendition style for following text 
  */
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_rendition (int set, int style) 
-rxvt_term.scr_rendition =function( set,  style){ 
+rxvt_term.prototype.scr_rendition =function( set,  style){ 
   if (set)
     rstyle |= style;
   else if (style == ~RS_None)
@@ -702,7 +702,7 @@ rxvt_term.scr_rendition =function( set,  style){
  * count negative ==> scroll down 
  */
 //FIXED: i_think_i_fixed_it js_style_functions c_keyword ^|       int rxvt_term::scr_scroll_text (int row1, int row2, int count){ 
-rxvt_term.scr_scroll_text =function( row1,  row2,  count){ 
+rxvt_term.prototype.scr_scroll_text =function( row1,  row2,  count){ 
   if (count == 0 || (row1 > row2))
     return 0;
 
@@ -822,7 +822,7 @@ rxvt_term.scr_scroll_text =function( row1,  row2,  count){
  * Add text given in <str> of length <len> to screen struct 
  */
 //FIXED: js_style_functions c_keyword possible_pointer ^|       void rxvt_term::scr_add_lines (const wchar_t *str, int len, int minlines) 
-rxvt_term.scr_add_lines =function(   str,  len,  minlines){ 
+rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){ 
     var str_i = 0;
   if (len <= 0)               /* sanity */
     return;
@@ -1026,7 +1026,7 @@ rxvt_term.scr_add_lines =function(   str,  len,  minlines){
  * XTERM_SEQ: CTRL-H 
  */
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_backspace (){ 
-rxvt_term.scr_backspace =function(){ 
+rxvt_term.prototype.scr_backspace =function(){ 
   if (screen.cur.col == 0){
       if (screen.cur.row > 0){
 #ifdef TERMCAP_HAS_BW
@@ -1048,7 +1048,7 @@ rxvt_term.scr_backspace =function(){
  * XTERM_SEQ: CTRL-I 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_tab (int count, bool ht) 
-rxvt_term.scr_tab =function( count, ht){ 
+rxvt_term.prototype.scr_tab =function( count, ht){ 
     var i, x; //int i, x;        ###  js_style_variables c_keyword
 
   want_refresh = 1;
@@ -1119,7 +1119,7 @@ rxvt_term.scr_tab =function( count, ht){
  */
 #if !ENABLE_MINIMAL
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_backindex (){ 
-rxvt_term.scr_backindex =function(){ 
+rxvt_term.prototype.scr_backindex =function(){ 
   if (screen.cur.col > 0)
     scr_gotorc (0, -1, R_RELATIVE | C_RELATIVE);
   else
@@ -1156,7 +1156,7 @@ rxvt_term.scr_forwardindex =function(){
  * Goto Row/Column 
  */
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_gotorc (int row, int col, int relative){   
-    rxvt_term.scr_gotorc =function( row,  col,  relative){  //I'm suspsicious
+    rxvt_term.prototype.scr_gotorc =function( row,  col,  relative){  //I'm suspsicious
   want_refresh = 1;
   ZERO_SCROLLBACK ();
 
@@ -1199,7 +1199,7 @@ rxvt_term.scr_forwardindex =function(){
  * direction should be UP or DN 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_index (enum page_dirn direction) 
-rxvt_term.scr_index =function(direction){ 
+rxvt_term.prototype.scr_index =function(direction){ 
     var dirn;                       //         int dirn;   ###  c_keyword 
 
   want_refresh = 1;
@@ -1228,7 +1228,7 @@ rxvt_term.scr_index =function(direction){
  * extension: clear to right unless wrapped: ESC [ 3 K 
  */
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_erase_line (int mode){ 
-rxvt_term.scr_erase_line =function( mode){ 
+rxvt_term.prototype.scr_erase_line =function( mode){ 
  var    col, num;  //         unsigned int col, num;   ###  c_keyword js_style_variables
 
   want_refresh = 1;
@@ -1290,7 +1290,7 @@ rxvt_term.scr_erase_line =function( mode){
  * XTERM_SEQ: Clear whole screen        : ESC [ 2 J 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_erase_screen (int mode) 
-rxvt_term.scr_erase_screen =function( mode){ 
+rxvt_term.prototype.scr_erase_screen =function( mode){ 
  var    num;  //         int num;   ###  c_keyword  js_style_variables
  var   row;  //         int32_t row;   ###  c_keyword js_style_variables
  var  ren;  //         rend_t ren;   ###  c_keyword js_style_variables
@@ -1370,7 +1370,7 @@ rxvt_term.scr_erase_screen =function( mode){
 
 #if !ENABLE_MINIMAL
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_erase_savelines (){ 
-rxvt_term.scr_erase_savelines =function(){ 
+rxvt_term.prototype.scr_erase_savelines =function(){ 
   want_refresh = 1;
   ZERO_SCROLLBACK ();
 
@@ -1384,7 +1384,7 @@ rxvt_term.scr_erase_savelines =function(){
  * XTERM_SEQ: Screen Alignment Test: ESC # 8 
  */
 //FIXED: i_think_i_fixed_it js_style_functions c_keyword ^|       void rxvt_term::scr_E () 
-rxvt_term.scr_E =function(){ 
+rxvt_term.prototype.scr_E =function(){ 
  var    fs;  //         rend_t fs;   ###  c_keyword js_style_variables
 
   want_refresh = 1;
@@ -1413,7 +1413,7 @@ rxvt_term.scr_E =function(){
  * Insert/Delete <count> lines 
  */
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_insdel_lines (int count, int insdel){ 
-rxvt_term.scr_insdel_lines =function( count,  insdel){ 
+rxvt_term.prototype.scr_insdel_lines =function( count,  insdel){ 
     var end;  //         int end;   ###  c_keyword js_style_variables
 
   ZERO_SCROLLBACK ();
@@ -1441,7 +1441,7 @@ rxvt_term.scr_insdel_lines =function( count,  insdel){
  * Insert/Delete <count> characters from the current position 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_insdel_chars (int count, int insdel) 
-rxvt_term.scr_insdel_chars =function( count,  insdel){ 
+rxvt_term.prototype.scr_insdel_chars =function( count,  insdel){ 
   want_refresh = 1;
   ZERO_SCROLLBACK ();
 
@@ -1542,7 +1542,7 @@ rxvt_term.scr_insdel_chars =function( count,  insdel){
  * XTERM_SEQ: Set region <top> - <bot> inclusive: ESC [ <top> ; <bot> r 
  */
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_scroll_region (int top, int bot){ 
-rxvt_term.scr_scroll_region =function( top,  bot){ 
+rxvt_term.prototype.scr_scroll_region =function( top,  bot){ 
   top = max(top,0); //FIXED max_it (top, 0);
   bot = min (bot, nrow -1); //FIXED min_it (bot, nrow - 1);
 
@@ -1561,7 +1561,7 @@ rxvt_term.scr_scroll_region =function( top,  bot){
  * XTERM_SEQ: Make cursor invisible: ESC [ ? 25 l 
  */
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_cursor_visible (int mode) 
-rxvt_term.scr_cursor_visible =function( mode){ 
+rxvt_term.prototype.scr_cursor_visible =function( mode){ 
   want_refresh = 1;
 
   if (mode)
@@ -1577,7 +1577,7 @@ rxvt_term.scr_cursor_visible =function( mode){
  * XTERM_SEQ: Unset Wraparound: ESC [ ? 7 l 
  */
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_autowrap (int mode){ 
-rxvt_term.scr_autowrap =function( mode){ 
+rxvt_term.prototype.scr_autowrap =function( mode){ 
   if (mode)
     screen.flags |= Screen_Autowrap;
   else
@@ -1595,7 +1595,7 @@ rxvt_term.scr_autowrap =function( mode){
  * XTERM_SEQ: Set Relative: ESC [ ? 6 l 
  */
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_relative_origin (int mode) 
-rxvt_term.scr_relative_origin =function( mode){ 
+rxvt_term.prototype.scr_relative_origin =function( mode){ 
   if (mode)
     screen.flags |= Screen_Relative;
   else
@@ -1611,7 +1611,7 @@ rxvt_term.scr_relative_origin =function( mode){
  * XTERM_SEQ: Set Replace mode: ESC [ ? 4 l 
  */
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_insert_mode (int mode){ 
-rxvt_term.scr_insert_mode =function( mode){ 
+rxvt_term.prototype.scr_insert_mode =function( mode){ 
   if (mode)
     screen.flags |= Screen_Insert;
   else
@@ -1626,7 +1626,7 @@ rxvt_term.scr_insert_mode =function( mode){
  * XTERM_SEQ: Clear all tabs             : ESC [ 3 g 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_set_tab (int mode) 
-rxvt_term.scr_set_tab =function( mode){ 
+rxvt_term.prototype.scr_set_tab =function( mode){ 
   if (mode < 0)
     memset (tabs, 0, ncol);
   else if (screen.cur.col < ncol)
@@ -1640,7 +1640,7 @@ rxvt_term.scr_set_tab =function( mode){
  * XTERM_SEQ: Normal video : ESC [ ? 5 l 
  */
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_rvideo_mode (bool on){ 
-rxvt_term.scr_rvideo_mode =function(on){ 
+rxvt_term.prototype.scr_rvideo_mode =function(on){ 
     /*
   rvideo_mode = on;
 
@@ -1674,7 +1674,7 @@ rxvt_term.scr_rvideo_mode =function(on){
  * XTERM_SEQ: Report position: ESC [ 6 n 
  */
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_report_position () 
-rxvt_term.scr_report_position =function(){ 
+rxvt_term.prototype.scr_report_position =function(){ 
   tt_printf ("\033[%d;%dR", screen.cur.row + 1, screen.cur.col + 1); 
 }
 
@@ -1686,7 +1686,7 @@ rxvt_term.scr_report_position =function(){
  * Set font style 
  */
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::set_font_style (){ 
-rxvt_term.set_font_style =function(){ 
+rxvt_term.prototype.set_font_style =function(){ 
 #if 0
   switch (charsets [screen.charset]){ 
       case '0':                   /* DEC Special Character & Line Drawing Set */
@@ -1716,7 +1716,7 @@ rxvt_term.set_font_style =function(){
  * XTERM_SEQ: Invoke G3 character set: ESC O 
  */
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_charset_choose (int set) 
-rxvt_term.scr_charset_choose =function( set){ 
+rxvt_term.prototype.scr_charset_choose =function( set){ 
   screen.charset = set; 
   set_font_style ();
 }
@@ -1731,7 +1731,7 @@ rxvt_term.scr_charset_choose =function( set){
  * See set_font_style for possible values for <C> 
  */
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_charset_set (int set, unsigned int ch){ 
-rxvt_term.scr_charset_set =function( set,   ch){ 
+rxvt_term.prototype.scr_charset_set =function( set,   ch){ 
    charsets[set] = ch;  //         charsets[set] = (unsigned char)ch;   ###  c_keyword  c_cast
   set_font_style ();
 }
@@ -1745,7 +1745,7 @@ rxvt_term.scr_charset_set =function( set,   ch){
  * refresh matching text. 
  */
 //FIXED: js_style_functions c_keyword ^|       bool rxvt_term::scr_refresh_rend (rend_t mask, rend_t value) 
-rxvt_term.scr_refresh_rend =function( mask,  value){ 
+rxvt_term.prototype.scr_refresh_rend =function( mask,  value){ 
   var found = false;
 
   for (var i = 0; i < nrow; i++){  //         for (int i = 0; i < nrow; i++){   ### js_style_variables  c_keyword 
@@ -1773,7 +1773,7 @@ enum {
 */
 
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_expose (int x, int y, int ewidth, int eheight, bool refresh){ 
-rxvt_term.scr_expose =function( x,  y,  ewidth,  eheight, refresh){ 
+rxvt_term.prototype.scr_expose =function( x,  y,  ewidth,  eheight, refresh){ 
     /*
   var PART_BEG = 0, PART_END=1, RC_COUNT=3;
     var i;  //         int i;   ### js_style_variables  c_keyword 
@@ -1817,7 +1817,7 @@ rxvt_term.scr_expose =function( x,  y,  ewidth,  eheight, refresh){
  * Refresh the entire screen 
  */
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_touch (bool refresh) 
-rxvt_term.scr_touch =function(refresh){ 
+rxvt_term.prototype.scr_touch =function(refresh){ 
   scr_expose (0, 0, width, height, refresh);
 }
 
@@ -1827,7 +1827,7 @@ rxvt_term.scr_touch =function(refresh){
  * the top of the screen 
  */
 //fixed: js_style_functions c_keyword ^|       void rxvt_term::scr_move_to (int y, int len){ 
-rxvt_term.scr_move_to =function( y,  len){ 
+rxvt_term.prototype.scr_move_to =function( y,  len){ 
     scr_changeview ((top_row - nrow) * (len - y) / len + (nrow - 1)); 
 }
 
@@ -1837,7 +1837,7 @@ rxvt_term.scr_move_to =function( y,  len){
  * direction should be UP or DN 
  */
 //CMNT: js_style_functions c_keyword ^|       bool rxvt_term::scr_page (enum page_dirn direction, int nlines) 
-rxvt_term.scr_page =function( direction,  nlines){ 
+rxvt_term.prototype.scr_page =function( direction,  nlines){ 
     var new_view_start=   //         int new_view_start =   ###  js_style_variables 
     direction == UP ? view_start - nlines  //FIXME enum
                     : view_start + nlines;
@@ -1846,7 +1846,7 @@ rxvt_term.scr_page =function( direction,  nlines){
 }
 
 //FIXED: js_style_functions c_keyword ^|       bool rxvt_term::scr_changeview (int new_view_start){ 
-rxvt_term.scr_changeview =function( new_view_start){ 
+rxvt_term.prototype.scr_changeview =function( new_view_start){ 
   clamp_it (new_view_start, top_row, 0);
 
   if (new_view_start == view_start)
@@ -1863,7 +1863,7 @@ rxvt_term.scr_changeview =function( new_view_start){
 
 #ifndef NO_BELL
 //REWRITE: js_style_functions c_keyword ^|       void rxvt_term::bell_cb (ev::timer &w, int revents) 
-rxvt_term.bell_cb =function(w,  revents){ 
+rxvt_term.prototype.bell_cb =function(w,  revents){ 
   console.log("bell");
   /*  rvideo_bell = false;
   scr_rvideo_mode (rvideo_mode);
@@ -1874,7 +1874,7 @@ rxvt_term.bell_cb =function(w,  revents){
 
 /* ------------------------------------------------------------------------- */
 //REWRITE: js_style_functions c_keyword ^|       void rxvt_term::scr_bell (){ 
-rxvt_term.scr_bell =function(){ 
+rxvt_term.prototype.scr_bell =function(){ 
 #ifndef NO_BELL
 
 # ifndef NO_MAPALERT
@@ -1904,7 +1904,7 @@ rxvt_term.scr_bell =function(){
 /* ------------------------------------------------------------------------- */
 /* ARGSUSED */ //FIXME what does argused mean?
 //REWRITE: js_style_functions c_keyword ^|       void rxvt_term::scr_printscreen (int fullhist) 
-rxvt_term.scr_printscreen =function( fullhist){ 
+rxvt_term.prototype.scr_printscreen =function( fullhist){ 
   console.log(fullhist);
 }
 
@@ -1915,12 +1915,12 @@ rxvt_term.scr_printscreen =function( fullhist){
  * screen.text/screen.rend contain what the screen will change to. 
  */
 //REWRITE: js_style_functions c_keyword ^|       void rxvt_term::scr_refresh (){ 
-rxvt_term.scr_refresh =function(){ 
+rxvt_term.prototype.scr_refresh =function(){ 
 }
 
 //FIXME overloaded_function
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_remap_chars (line_t &l) 
-rxvt_term.scr_remap_chars =function(l){ 
+rxvt_term.prototype.scr_remap_chars =function(l){ 
   if (!l.t)
     return;
 
@@ -1931,7 +1931,7 @@ rxvt_term.scr_remap_chars =function(l){
 }
 
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_remap_chars (){ 
-rxvt_term.scr_remap_chars =function(){ 
+rxvt_term.prototype.scr_remap_chars =function(){ 
    for ( var  i = total_rows; i--; )  //         for (int i = total_rows; i--; )   ### js_style_variables  c_keyword 
     scr_remap_chars (row_buf [i]); 
 
@@ -1942,7 +1942,7 @@ rxvt_term.scr_remap_chars =function(){
 }
 
 //REWRITE: js_style_functions c_keyword ^|       void rxvt_term::scr_recolour () 
-rxvt_term.scr_recolour =function(){ 
+rxvt_term.prototype.scr_recolour =function(){ 
 #ifdef HAVE_BG_PIXMAP
   bgPixmap.apply ();
 #else
@@ -1967,7 +1967,7 @@ rxvt_term.scr_recolour =function(){
 
 /* ------------------------------------------------------------------------- */
 //REWRITE: js_style_functions c_keyword ^|       void rxvt_term::scr_clear (bool really){ 
-rxvt_term.scr_clear =function( really){ 
+rxvt_term.prototype.scr_clear =function( really){ 
   if (!mapped)
     return;
 
@@ -1979,7 +1979,7 @@ rxvt_term.scr_clear =function( really){
 }
 
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_xor_rect (int beg_row, int beg_col, int end_row, int end_col, rend_t rstyle1, rend_t rstyle2) 
-rxvt_term.scr_xor_rect =function( beg_row,  beg_col,  end_row,  end_col,  rstyle1,  rstyle2){ 
+rxvt_term.prototype.scr_xor_rect =function( beg_row,  beg_col,  end_row,  end_col,  rstyle1,  rstyle2){ 
   var view_end= view_start + nrow;   //         int view_end = view_start + nrow;   ###  js_style_variables 
   var row, col;  //         int row, col;   ### js_style_variables  c_keyword 
 
@@ -2001,7 +2001,7 @@ rxvt_term.scr_xor_rect =function( beg_row,  beg_col,  end_row,  end_col,  rstyle
 }
 
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_xor_span (int beg_row, int beg_col, int end_row, int end_col, rend_t rstyle) 
-rxvt_term.scr_xor_span =function( beg_row,  beg_col,  end_row,  end_col,  rstyle){ 
+rxvt_term.prototype.scr_xor_span =function( beg_row,  beg_col,  end_row,  end_col,  rstyle){ 
   var view_end= view_start + nrow;   //         int view_end = view_start + nrow;   ###  js_style_variables 
   var row, col;  //         int row, col;   ### js_style_variables  c_keyword 
 
@@ -2027,7 +2027,7 @@ rxvt_term.scr_xor_span =function( beg_row,  beg_col,  end_row,  end_col,  rstyle
 
 /* ------------------------------------------------------------------------- */
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_reverse_selection () 
-rxvt_term.scr_reverse_selection =function(){ 
+rxvt_term.prototype.scr_reverse_selection =function(){ 
   if (selection.op
       && current_screen == selection.screen
       && selection.end.row >= view_start){
@@ -2053,7 +2053,7 @@ rxvt_term.scr_reverse_selection =function(){
 #if 0
 //POSTPONED: js_style_functions c_keyword ^|       void rxvt_term::scr_dump (int fd){ 
 /*
-rxvt_term.scr_dump =function( fd){ 
+rxvt_term.prototype.scr_dump =function( fd){ 
 //POSTPONED: c_keyword ^|         int             row, wrote; 
                row, wrote;
 //POSTPONED: c_keyword ^|         unsigned int    width, towrite; 

@@ -1,10 +1,10 @@
 #ifndef RXVT_UTIL_H
 #define RXVT_UTIL_H
 
-#include <cstdlib>
-#include <cstring>
+//#include <cstdlib>
+//#include <cstring>
 
-using namespace std;
+//using namespace std;
 
 #define PP_CONCAT_(a, b) a ## b
 #define PP_CONCAT(a, b) PP_CONCAT_(a, b)
@@ -39,9 +39,9 @@ using namespace std;
 # define NOTHROW  throw()
 # define THROW(x) throw x
 #endif
-
-extern class byteorder {
-  static unsigned int e; // at least 32 bits
+    /*
+    extern class byteorder {
+      static unsigned int e; // at least 32 bits
 public:
   byteorder ();
 
@@ -100,7 +100,7 @@ static inline int popcount (unsigned int x) { return __builtin_popcount (x); }
 int ctz      (unsigned int x) CONST;
 int popcount (unsigned int x) CONST;
 #endif
-
+*/
 // in range including end
 #define IN_RANGE_INC(val,beg,end) \
   ((unsigned int)(val) - (unsigned int)(beg) <= (unsigned int)(end) - (unsigned int)(beg))
@@ -111,19 +111,21 @@ int popcount (unsigned int x) CONST;
 
 // for m >= -n, ensure remainder lies between 0..n-1
 #define MOD(m,n) (((m) + (n)) % (n))
-
+/*
 // makes dynamically allocated objects zero-initialised
 struct zero_initialized
 {
   void *operator new (size_t s);
   void operator delete (void *p, size_t s);
 };
-
+*/
 /* simplevec taken (and heavily modified), from:
  *
  *  MICO --- a free CORBA implementation
  *  Copyright (C) 1997-98 Kay Roemer & Arno Puder
  */
+
+/*
 template<class T>
 struct simplevec
 {
@@ -466,6 +468,6 @@ struct auto_ptr
 };
 
 typedef auto_ptr<char> auto_str;
-
+*/
 #endif
 

@@ -95,17 +95,18 @@
   #include <X11/Xatom.h>
 
   #include "encoding.h"
-  #include "rxvtutil.h"
+
   #include "rxvtfont.h"
   #include "rxvttoolkit.h"
   #include "scrollbar.h"
   #include "ev_cpp.h"
   #include "salloc.h"
   #include "libptytty.h"
-
+#include "rxvtutil.h.js"
   #include "rxvtperl.h"
 */
 /*from rxvtperl.h */
+
 #if ENABLE_PERL
 
 #else
@@ -196,13 +197,13 @@ NOCHAR = 0xffff,
 
 #define HAVE_GCC_BUILTINS (__GNUC__ >= 4 || (__GNUC__ == 3 && __GNUC_MINOR__ == 4))
 
-#if __GNUC__ >= 4
-# define rxvt_attribute(x) __attribute__(x)
-# define expect(expr,value)         __builtin_expect ((expr),(value))
-#else
+//#if __GNUC__ >= 4
+//# define rxvt_attribute(x) __attribute__(x)
+//# define expect(expr,value)         __builtin_expect ((expr),(value))
+//#else
 # define rxvt_attribute(x)
 # define expect(expr,value)         (expr)
-#endif
+//#endif
 
 // put into ifs if you are very sure that the expression
 // is mostly true or mosty false. note that these return
@@ -1306,6 +1307,7 @@ void init_asv ()
  rs:[],//const char     *rs[NUM_RESOURCES];
  rs_ptr:0,
 // command input buffering 
+ cmdbuf : [],
  cmdbuf_ptr:0, cmdbuf_endp:0,//char           *cmdbuf_ptr, *cmdbuf_endp;
  cmdbuf_base : [], //char            cmdbuf_base[CBUFSIZ];
 
