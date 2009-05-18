@@ -474,9 +474,8 @@ rxvt_term.prototype.next_char =function(){
 // read the next octet
 //uint32_t rxvt_term::next_octet () NOTHROW 
 rxvt_term.prototype.next_octet =function() NOTHROW {
-    //FIXME ternary
   return this.cmdbuf_ptr < this.cmdbuf_endp
-  ?  this.cmdbuf[this.cmdbuf_ptr++]  //                ? (unsigned char)*cmdbuf_ptr++ 
+  ?  this.cmdbuf[this.cmdbuf_ptr++]  //? (unsigned char)*cmdbuf_ptr++ 
          : NOCHAR;
 }
 
@@ -499,7 +498,7 @@ rxvt_term.prototype.cmd_getc =function() THROW ((class out_of_input)){
   return c;
 }
 
-//  uint32_t rxvt_term::cmd_get8 () THROW ((class out_of_input)){
+//uint32_t rxvt_term::cmd_get8 () THROW ((class out_of_input)){
     rxvt_term.prototype.cmd_get8 = function () {
   var c = this.next_octet (); //uint32_t c = next_octet ();
   if (c == NOCHAR)
@@ -791,9 +790,9 @@ enum {
 
 //void rxvt_term::process_csi_seq ()
 rxvt_term.prototype.process_csi_seq =function(){ 
-  var ch, priv, i; //          unicode_t ch, priv, i;  
-  var nargs, p; //          unsigned int nargs, p; 
-  var n, ndef; //          int n, ndef;  
+  var ch, priv, i; //unicode_t ch, priv, i;  
+  var nargs, p; //unsigned int nargs, p; 
+  var n, ndef; //int n, ndef;  
   var arg = new Array(ESC_ARGS); //int arg[ESC_ARGS] = { }; 
 
   nargs = 0;
@@ -1259,7 +1258,7 @@ rxvt_term.prototype.process_osc_seq =function(){
       arg = arg * 10 + (ch - '0'); 
 
   if (ch == ';'){
-    var s= this.get_to_st (eh);   //char *s = get_to_st (eh);   ###  js_style_variables possible_pointer 
+    var s= this.get_to_st (eh);   //char *s = get_to_st (eh);
 
       if (s){
           this.process_xterm_seq (arg, s, eh);
@@ -1268,7 +1267,7 @@ rxvt_term.prototype.process_osc_seq =function(){
     }
 }
 
-//CMNT: js_style_functions c_keyword possible_pointer ^|       void rxvt_term::process_color_seq (int report, int color, const char *str, char resp) 
+//void rxvt_term::process_color_seq (int report, int color, const char *str, char resp) 
 rxvt_term.prototype.process_color_seq =function(report,  color,    str,  resp){ 
   if (str[0] == '?' && !str[1]){
     var c;  //      rgba c;
@@ -1289,15 +1288,15 @@ rxvt_term.prototype.process_color_seq =function(report,  color,    str,  resp){
 /*
  * XTerm escape sequences: ESC ] Ps;Pt (ST|BEL) 
  */
-//CMNT: js_style_functions c_keyword possible_pointer ^|       void rxvt_term::process_xterm_seq (int op, const char *str, char resp) 
+//void rxvt_term::process_xterm_seq (int op, const char *str, char resp) 
 rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){ 
-  var color; //          int color;  ###  c_keyword inserted_var
-  var buf,  name, buf_i =0, name_i=0; //          char *buf, *name;  ###  c_keyword possible_pointer inserted_var
-  var query = str[0] == '?' && !str[1]; //   bool query = str[0] == '?' && !str[1]; ### c_keyword inserted_var
-  var saveop= op;  //          int saveop = op;   js_style_variables 
+  var color; //int color; 
+  var buf,  name, buf_i =0, name_i=0; //char *buf, *name;
+  var query = str[0] == '?' && !str[1]; //bool query = str[0] == '?' && !str[1];
+  var saveop= op;  //int saveop = op;
 
-//CMNT: possible_pointer ^|         dLocal (Display *, dpy); 
-//  dLocal (Display  ,  dpy);
+  //dLocal (Display *, dpy); 
+
 
   assert (str != NULL);
 
@@ -1319,11 +1318,11 @@ rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
         if (str[0] == '?'){
             //Atom prop = display->atom (str + 1);
             //Atom actual_type;
-            var actual_format; //                    int actual_format;  ###  c_keyword inserted_var
-            var nitems; //                    unsigned long nitems;  ###  c_keyword inserted_var
-            var bytes_after; //                    unsigned long bytes_after;  ###  c_keyword inserted_var
-            var value = 0; //                    unsigned char *value = 0;  ###  c_keyword possible_pointer inserted_var
-            var str = ""; //                    const char *str = "";  ###  c_keyword possible_pointer inserted_var
+            var actual_format; //int actual_format;
+            var nitems;        //unsigned long nitems;
+            var bytes_after;   //unsigned long bytes_after;
+            var value = 0;     //unsigned char *value = 0; 
+            var str = "";      //const char *str = "";
 
             if (prop
                 && XGetWindowProperty (dpy, parent[0],
@@ -1332,7 +1331,7 @@ rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
                                        &nitems, &bytes_after, &value) == Success
                 && actual_type != None
                 && actual_format == 8)
-//CMNT: c_keyword possible_pointer ^|                     str = (const char *)(value); 
+                //str = (const char *)(value); 
               str = ( ) (value);
 
             this.tt_printf ("\033]%d;%s%c", op, str, resp); 
@@ -1341,7 +1340,7 @@ rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
 
           }
         else{
-//CMNT: c_keyword possible_pointer ^|                   char *eq = strchr (str, '='); // constness lost, but verified to be ok 
+        //char *eq = strchr (str, '='); // constness lost, but verified to be ok 
               eq = strchr (str, '='); // constness lost, but verified to be ok
 
             if (eq){
@@ -1355,19 +1354,19 @@ rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
         break;
 
       case XTerm_Color:
-//CMNT: c_keyword possible_pointer ^|               for (buf = (char *)str; buf && *buf;)
-          for (buf =  str; buf &&  buf;){  //POINTER_MATH ????
+        //for (buf = (char *)str; buf && *buf;)
+        for (buf =  str; buf &&  buf;){  //POINTER_MATH ????
             if ((name = strchr (buf, ';')) == NULL)
               break;
 
-            name[name_i++] = '\0';  //name++ = '\0';  ### possible_pointer POINTER_MATH
+            name[name_i++] = '\0';  //name++ = '\0';
             color = atoi (buf) + minCOLOR;
 
             if (!IN_RANGE_INC (color, minCOLOR, maxTermCOLOR))
               break;
 
             if ((buf = strchr (name, ';')) != NULL)
-                buf[buf_i++] = '\0';  //buf++ = '\0';  ### possible_pointer POINTER_MATH
+                buf[buf_i++] = '\0';  //buf++ = '\0';
 
             this.process_color_seq (op, color, name, resp);
           }
@@ -1431,7 +1430,7 @@ rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
 #if BG_IMAGE_FROM_FILE
       case Rxvt_Pixmap:
         if (!strcmp (str, "?")){
-          var str[256]; //                    char str[256];  ###  c_keyword inserted_var
+          var str[256]; //char str[256];
 
           sprintf (str, "[%dx%d+%d+%d]",	/* can't presume snprintf () ! */ 
                      mi_n (bgPixmap.h_scale, 32767), mi_n (bgPixmap.v_scale, 32767),
@@ -1439,11 +1438,10 @@ rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
             this.process_xterm_seq (XTerm_title, str, CHAR_ST);
           }
         else{
-//CMNT: js_style_variables ^|                   int changed = 0; 
- var changed= 0; 
+          
+          var changed= 0; //int changed = 0; 
 
-//CMNT: possible_pointer ^|                   if (*str != ';'){ 
-            if (str != ';'){
+            if (str != ';'){           //if (*str != ';') 
                 /* reset to default scaling :*/
                 bgPixmap.unset_geometry ();
                 if (bgPixmap.set_file (str))	/* change pixmap */
@@ -1473,7 +1471,7 @@ rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
 #if 0
       case Rxvt_dumpscreen:	/* no error notices */
         {
-          var fd; //                  int fd;  ###  c_keyword inserted_var
+          var fd; //int fd; 
           if ((fd = open (str, O_RDWR | O_CREAT | O_EXCL, 0600)) >= 0){
               this.scr_dump (fd);
               close (fd);
@@ -1497,11 +1495,11 @@ rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
                        ? fontset[op - URxvt_font]->fontdesc : "",
                      resp);
         else{
-//CMNT: c_keyword possible_pointer ^|                   const char *&res = rs[Rs_font + (op - URxvt_font)]; 
+        //const char *&res = rs[Rs_font + (op - URxvt_font)]; 
             & res = rs[Rs_font + (op - URxvt_font)];  //FIXME wtf
 
             res = strdup (str);
-//CMNT: c_keyword possible_pointer ^|                   allocated.push_back ((void *)res); 
+            //allocated.push_back ((void *)res); 
             allocated.push_back (() res);
             set_fonts ();
           }
@@ -1615,7 +1613,7 @@ var rxvt_t_proto = {
 }
 */
 /* we're not using priv _yet_ */
-/*//CMNT: macro_expansion_error js_style_functions c_keyword possible_pointer ^|       void rxvt_term::process_terminal_mode (int mode, int priv UN USED, unsigned int nargs, const int *arg) */
+//void rxvt_term::process_terminal_mode (int mode, int priv UN USED, unsigned int nargs, const int *arg) 
 rxvt_term.prototype.process_terminal_mode =function(mode,  __unused__,   nargs,    arg){ 
     var i, j; //  unsigned int i, j; 
     var state; //  int state; 
