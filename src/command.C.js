@@ -127,31 +127,37 @@ I bound them to "C-H u" "C-H o" and "C-H p"
 //REMOVED:void rxvt_term::key_press (XKeyEvent &ev) 
 
 //unsigned int rxvt_term::cmd_write (const char *str, unsigned int count)
-     rxvt_term.prototype.cmd_write = function( str,  count){
-         var str_ptr=0;
-         var n, s; //  unsigned int 
+ rxvt_term.prototype.cmd_write = function( str,  count){
+     /*         
+     var str_ptr=0;
+     var n, s; //  unsigned int 
+         
+     n = this.cmdbuf_ptr - this.cmdbuf_base;
+     s = this.cmdbuf_base + CBUFSIZ - 1 - this.cmdbuf_endp;
 
-  n = this.cmdbuf_ptr - this.cmdbuf_base;
-  s = this.cmdbuf_base + CBUFSIZ - 1 - this.cmdbuf_endp;
+     if (n > 0 && s < count){
+       memmove (this.cmdbuf_base, this.cmdbuf_ptr,
+                (this.cmdbuf_endp - this.cmdbuf_ptr));
+       this.cmdbuf_ptr = this.cmdbuf_base;
+       this.cmdbuf_endp -= n;
+       s += n;
+     }
 
-  if (n > 0 && s < count)
-    {
-      memmove (this.cmdbuf_base, this.cmdbuf_ptr,
-               (this.cmdbuf_endp - this.cmdbuf_ptr));
-      this.cmdbuf_ptr = this.cmdbuf_base;
-      this.cmdbuf_endp -= n;
-      s += n;
-    }
+     if (count > s)    {
+       //rxvt_warn ("data loss: cmd_write too large, continuing.\n");
+       count = s;
+       }
+     for (; count--;)
+       this.cmdbuf[this.cmdbuf_endp++] = str[str_ptr++];
+     this.cmd_parse ();
+     */
+        
+     this.cmdbuf=str;
+     this.cmdbuf_ptr=0;
+     this.cmdbuf_endp=this.cmdbuf.length;
+     this.cmd_parse ();
 
-  if (count > s)    {
-      rxvt_warn ("data loss: cmd_write too large, continuing.\n");
-      count = s;
-    }
 
-  for (; count--;)
-    this.cmdbuf[this.cmdbuf_endp++] = str[str_ptr++];
-
-  this.cmd_parse ();
 
   return 0;
 }
@@ -404,7 +410,7 @@ rxvt_term.prototype.cmd_parse =function(){
             var eol = str.length + mi_n (this.ncol, UBUFSIZ); //wchar_t *eol = str + min (ncol, UBUFSIZ);
             for (;;){//inner_for_loop
 
-              console.log(ch,ord(ch),chr(ch));
+              //console.log(ch,ord(ch),chr(ch));
               if (expect_false (ch == NOCHAR || (IS_CONTROL (ch) && ch != C0_LF && ch != C0_CR && ch != C0_HT))) { //IS_CONTROL
                     break;}
 
@@ -454,12 +460,14 @@ rxvt_term.prototype.cmd_parse =function(){
             }
         } //IS_CONTROL
         else {
-            try {
-                this.process_nonprinting (chr(ch));}
-            catch ( out_of_input){  //FIXME exception
+          //            try {
+
+          this.process_nonprinting (ch);
+       
+            /*catch ( out_of_input){  //FIXME exception
                 // we ran out of input, retry later
                 this.cmdbuf_ptr = seq_begin;
-                break;}
+                break;} */
             ch = NOCHAR;
         }//else
     }//for(;;) outer_for_loop
@@ -477,6 +485,7 @@ rxvt_term.prototype.next_char =function(){
 // read the next octet
 //uint32_t rxvt_term::next_octet () NOTHROW 
 rxvt_term.prototype.next_octet =function() NOTHROW {
+  //              debugger;
   return this.cmdbuf_ptr < this.cmdbuf_endp
   ?  this.cmdbuf[this.cmdbuf_ptr++]  //? (unsigned char)*cmdbuf_ptr++ 
          : NOCHAR;
@@ -492,37 +501,24 @@ rxvt_term.prototype.next_octet =function() NOTHROW {
  * to the command. 
  */
 //wchar_t rxvt_term::cmd_getc () THROW ((class out_of_input))
-rxvt_term.prototype.cmd_getc =function() THROW ((class out_of_input)){ 
+  rxvt_term.prototype.cmd_getc =function() {
     var c= this.next_char ();   //wchar_t c = next_char (); 
-
-  if (c == NOCHAR)
-    throw out_of_input;
-
+    //              debugger;
   return c;
 }
 
 //uint32_t rxvt_term::cmd_get8 () THROW ((class out_of_input)){
     rxvt_term.prototype.cmd_get8 = function () {
   var c = this.next_octet (); //uint32_t c = next_octet ();
-  if (c == NOCHAR)
-    throw out_of_input;
+  //              debugger;
   return c;
 }
-
-/* *INDENT-OFF* */ 
-/* enum {
-  C1_40 = 0x40,
-          C1_41 , C1_BPH, C1_NBH, C1_44 , C1_NEL, C1_SSA, C1_ESA,
-  C1_HTS, C1_HTJ, C1_VTS, C1_PLD, C1_PLU, C1_RI , C1_SS2, C1_SS3,
-  C1_DCS, C1_PU1, C1_PU2, C1_STS, C1_CCH, C1_MW , C1_SPA, C1_EPA,
-  C1_SOS, C1_59 , C1_SCI, C1_CSI, CS_ST , C1_OSC, C1_PM , C1_APC,
-};
-*/
-/* *INDENT-ON* */ 
 
 /*{{{ process non-printing single characters */ 
 //void rxvt_term::process_nonprinting (unicode_t ch)
 rxvt_term.prototype.process_nonprinting =function(ch){ 
+  //debugger
+
   switch (ch){
       case C0_ESC:
         this.process_escape_seq ();
@@ -557,7 +553,7 @@ rxvt_term.prototype.process_nonprinting =function(ch){
       this.scr_charset_choose (0); 
         break;
 
-#ifdef EIGHT_BIT_CONTROLS
+      //#ifdef EIGHT_BIT_CONTROLS
       // 8-bit controls
       case 0x90: 	/* DCS */
         this.process_dcs_seq ();
@@ -568,7 +564,7 @@ rxvt_term.prototype.process_nonprinting =function(ch){
       case 0x9d: 	/* OSC */
         this.process_osc_seq ();
         break;
-#endif
+      //#endif
     }
 }
 /*}}} */
@@ -578,6 +574,8 @@ rxvt_term.prototype.process_nonprinting =function(ch){
 
 //rxvt_term::process_escape_vt52 (unicode_t ch)
 rxvt_term.prototype.process_escape_vt52 = function (ch){
+  console.log("vt52");
+  //debugger;
   var row, col; //int row, col;
 
   switch (ch){
@@ -618,7 +616,7 @@ rxvt_term.prototype.process_escape_vt52 = function (ch){
         this.tt_printf ("\033/Z");	/* I am a VT100 emulating a VT52 */ 
         break;
       case '<':		/* turn off VT52 mode */
-        set_privmode (PrivMode_vt52, 0);
+         this.set_privmode (PrivMode_vt52, 0);
         break;
   case 'F':     	/* use special graphics character set */ 
   case 'G':           /* use regular character set */ 
@@ -637,49 +635,51 @@ rxvt_term.prototype.process_escape_vt52 = function (ch){
 //void rxvt_term::process_escape_seq () 
 rxvt_term.prototype.process_escape_seq =function(){ 
   var ch= this.cmd_getc();  //unicode_t ch = cmd_getc ();
+  //debugger;
 
-  if (priv_modes & PrivMode_vt52){
+  if ( this.priv_modes & PrivMode_vt52){
       this.process_escape_vt52 (ch);
       return;
     }
 
-  switch (ch){
+  var och=ord(ch);
+  switch (och){
         /* case 1:        do_tek_mode (); break; */
-      case '#':
+  case 35: //'#':
         if (this.cmd_getc () == '8')
           this.scr_E ();
         break;
-      case '(':
+  case 40:// '(':
       this.scr_charset_set (0,this.cmd_getc ()); 
         break;
-      case ')':
+  case 41:// ')':
       this.scr_charset_set (1,this.cmd_getc ()); 
         break;
-  case '*': 
+  case 42://'*': 
       this.scr_charset_set (2,this.cmd_getc ()); 
         break;
       case '+':
       this.scr_charset_set (3,this.cmd_getc ()); 
         break;
 #if !ENABLE_MINIMAL
-      case '6':
+  case 54: //'6':
         this.scr_backindex ();
         break;
 #endif
-      case '7':
+  case 55://'7':
         this.scr_cursor (SAVE);
         break;
-      case '8':
+  case 56://'8':
         this.scr_cursor (RESTORE);
         break;
 #if !ENABLE_MINIMAL
-      case '9':
+  case 57://'9':
         this.scr_forwardindex ();
         break;
 #endif
-      case '=':
-      case '>':
-        set_privmode (PrivMode_aplKP, ch == '=');
+  case 61://'=':
+  case 62://'>':
+         this.set_privmode (PrivMode_aplKP, ch == '=');
         break;
 
       case C1_40:
@@ -739,19 +739,19 @@ rxvt_term.prototype.process_escape_seq =function(){
         break;
 
         /* 8.3.106: RESET TO INITIAL STATE (RIS) */
-      case 'c':
+  case 99://'c':
         mbstate.reset ();
         this.scr_poweron ();
         scrollBar.show (1);
         break;
 
         /* 8.3.79: LOCKING-SHIFT TWO (see ISO2022) */
-      case 'n':
+  case 110://'n':
       this.scr_charset_choose (2); 
         break;
 
         /* 8.3.81: LOCKING-SHIFT THREE (see ISO2022) */
-      case 'o':
+  case 111://'o':
       this.scr_charset_choose (3); 
         break;
     }
@@ -793,6 +793,7 @@ enum {
 
 //void rxvt_term::process_csi_seq ()
 rxvt_term.prototype.process_csi_seq =function(){ 
+  console.log("csi_seq");
   var ch, priv, i; //unicode_t ch, priv, i;  
   var nargs, p; //unsigned int nargs, p; 
   var n, ndef; //int n, ndef;  
@@ -1038,14 +1039,14 @@ rxvt_term.prototype.process_csi_seq =function(){
         if (arg[0] == 4)
           this.scr_insert_mode (0);
         else if (arg[0] == 20)
-          priv_modes &= ~PrivMode_LFNL;
+           this.priv_modes &= ~PrivMode_LFNL;
         break;
 
       case CSI_SM:		/* 8.3.126: SET MODE */
         if (arg[0] == 4)
           this.scr_insert_mode (1);
         else if (arg[0] == 20)
-          priv_modes |= PrivMode_LFNL;
+           this.priv_modes |= PrivMode_LFNL;
         break;
 
         /*
@@ -1233,6 +1234,7 @@ rxvt_term.prototype.get_to_st =function(ends_how){
  */
 //void rxvt_term::process_dcs_seq () 
 rxvt_term.prototype.process_dcs_seq =function(){ 
+  console.log("dcs_seq");
   var s ; //char *s;  
   var eh; //unicode_t eh;  
 
@@ -1253,6 +1255,7 @@ rxvt_term.prototype.process_dcs_seq =function(){
  */
 //void rxvt_term::process_osc_seq () 
 rxvt_term.prototype.process_osc_seq =function(){ 
+  console.log("osc_seq");
   var ch, eh; //unicode_t ch, eh;
   var arg; //int arg;
 
@@ -1567,15 +1570,15 @@ rxvt_term.prototype.privcases =function(mode,   bit){
   var state; //int state;  
 
   if (mode == 's'){
-      SavedModes |= (priv_modes & bit);
+      SavedModes |= ( this.priv_modes & bit);
       return -1;
     }
   else{
       if (mode == 'r')
         state = (SavedModes & bit) ? 1 : 0;	/* no overlapping */
       else
-        state = (mode == 't') ? ! (priv_modes & bit) : mode;
-      set_privmode (bit, state);
+        state = (mode == 't') ? ! ( this.priv_modes & bit) : mode;
+       this.set_privmode (bit, state);
     }
 
   return state;
@@ -1618,6 +1621,7 @@ var rxvt_t_proto = {
 /* we're not using priv _yet_ */
 //void rxvt_term::process_terminal_mode (int mode, int priv UN USED, unsigned int nargs, const int *arg) 
 rxvt_term.prototype.process_terminal_mode =function(mode,  __unused__,   nargs,    arg){ 
+
     var i, j; //  unsigned int i, j; 
     var state; //  int state; 
   //FIXME I already made this
@@ -1709,10 +1713,10 @@ rxvt_term.prototype.process_terminal_mode =function(mode,  __unused__,   nargs, 
                * parameter.  Return from VT52 mode with an ESC < from 
                * within VT52 mode 
                */
-              set_privmode (PrivMode_vt52, 1);
+               this.set_privmode (PrivMode_vt52, 1);
               break;
             case 3:			/* 80/132 */
-              if (priv_modes & PrivMode_132OK)
+              if ( this.priv_modes & PrivMode_132OK)
                   set_widthheight ((state ? 132 : 80) * fwidth, 24 * fheight); 
               break;
             case 4:			/* smooth scrolling */
@@ -1730,7 +1734,7 @@ rxvt_term.prototype.process_terminal_mode =function(mode,  __unused__,   nargs, 
             /* case 8:	- auto repeat, can't do on a per window basis */
             case 9:			/* X10 mouse reporting */
               if (state)		/* orthogonal */
-                priv_modes &= ~(PrivMode_MouseX11|PrivMode_MouseBtnEvent|PrivMode_MouseAnyEvent);
+                 this.priv_modes &= ~(PrivMode_MouseX11|PrivMode_MouseBtnEvent|PrivMode_MouseAnyEvent);
               break;
 #ifdef scrollBar_esc
             case scrollBar_esc:
@@ -1752,13 +1756,13 @@ rxvt_term.prototype.process_terminal_mode =function(mode,  __unused__,   nargs, 
             /* case 67:	- backspace key */
             case 1000:		/* X11 mouse reporting */
               if (state)		/* orthogonal */
-                priv_modes &= ~(PrivMode_MouseX10|PrivMode_MouseBtnEvent|PrivMode_MouseAnyEvent);
+                 this.priv_modes &= ~(PrivMode_MouseX10|PrivMode_MouseBtnEvent|PrivMode_MouseAnyEvent);
               break;
             case 1002:
             case 1003:
               if (state){
-                  priv_modes &= ~(PrivMode_MouseX10|PrivMode_MouseX11);
-                  priv_modes &= arg[i] == 1003 ? ~PrivMode_MouseBtnEvent : ~PrivMode_MouseAnyEvent;
+                   this.priv_modes &= ~(PrivMode_MouseX10|PrivMode_MouseX11);
+                   this.priv_modes &= arg[i] == 1003 ? ~PrivMode_MouseBtnEvent : ~PrivMode_MouseAnyEvent;
                   vt_emask_mouse = PointerMotionMask; 
                 }
               else

@@ -1,14 +1,8 @@
 #include "command.C.js"
 #include "screen.C.js"
 
-
-
-var a = new rxvt_term();
-a.row_buf=false;
-a.scr_poweron();
-console.log(a);
-var wstring=
-  "abc def\ngh  \rijasdf";
-  a.cmd_write(wstring, wstring.length);
-a.scr_refresh()
-
+/*output_line("cursorhome            Move cursor to upper left corner       ^[[H");
+output_line("cursorhome            Move cursor to upper left corner       ^[[;H");
+output_line("cursorpos(v,h) CUP    Move cursor to screen location v,h     ^[[5;8H");
+output_line("hvh");
+*/

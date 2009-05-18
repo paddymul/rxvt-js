@@ -136,7 +136,7 @@ rxvt_term.prototype.scr_kill_char =function(l,  col){
 
   var rend= l.r[col] & ~RS_baseattrMask;   //rend_t rend = l.r[col] & ~RS_baseattrMask;
   //FIXME is this a cast, how does the -> interact with the FONTSET macro???
-  rend = SET_FONT (rend, FONTSET (rend).find_font (' ')); 
+  //rend = SET_FONT (rend, FONTSET (rend).find_font (' ')); 
   //FIXME check macroexpansion rend = SET_FONT (rend, FONTSET (rend)->find_font (' '));  
   //found start, nuke
   do {
@@ -551,7 +551,7 @@ rxvt_term.prototype.scr_cursor =function(mode){
         rstyle = s.s_rstyle;
         this.screen.charset = s.s_charset; 
         //FIXME this.charsets[this.screen.charset] = s.s_charset_char; 
-        set_font_style ();
+        //set_font_style ();
         break;
     }
 
@@ -591,15 +591,15 @@ rxvt_term.prototype.scr_change_screen =function( scrn){
     return;
 
   want_refresh = 1;
-  view_start = 0;
+   this.view_start = 0;
 
    this.selection_check (2);        /* check for boundary cross */
 
   var i=  this.current_screen;  this.current_screen  = scrn; scrn = i
 
 #if NSCREENS
-  if (option (Opt_secondaryScreen)){
-      num_scr = 0;
+  if ( this.option (Opt_secondaryScreen)){
+      this.num_scr = 0;
 
       this.scr_swap_screen ();
 
@@ -610,7 +610,7 @@ rxvt_term.prototype.scr_change_screen =function( scrn){
     }
   else
 #endif
-    if (option (Opt_secondaryScroll))
+    if ( this.option (Opt_secondaryScroll))
       this.scr_scroll_text (0,  this.prev_nrow - 1,  this.prev_nrow);
 }
 
@@ -671,12 +671,12 @@ rxvt_term.prototype.scr_scroll_text =function( row1,  row2,  count){
     return 0;
 
   want_refresh = 1;
-  num_scr += count;
+  this.num_scr += count;
 
   if (count > 0
       && row1 == 0
-      && ( this.current_screen == PRIMARY || option (Opt_secondaryScroll))){
-       this.top_row = ma_x ( this.top_row - count, -saveLines);
+      && ( this.current_screen == PRIMARY ||  this.option (Opt_secondaryScroll))){
+       this.top_row = ma_x ( this.top_row - count, - this.saveLines);
 
       //scroll everything up 'count' lines
        this.term_start = ( this.term_start + count) %  this.total_rows;
@@ -729,9 +729,9 @@ rxvt_term.prototype.scr_scroll_text =function( row1,  row2,  count){
         }
 
       //finally move the view window, if desired
-      if (option (Opt_scrollWithBuffer)
-          && view_start != 0
-          && view_start != -saveLines)
+      if ( this.option (Opt_scrollWithBuffer)
+          &&  this.view_start != 0
+          &&  this.view_start != - this.saveLines)
         this.scr_page (UP, count);
 
       if (SHOULD_INVOKE (HOOK_SCROLL_BACK))
@@ -1038,19 +1038,19 @@ rxvt_term.prototype.scr_tab =function( count, ht){
 
       //store horizontal tab commands as characters inside the text 
       //buffer so they can be selected and pasted.
-      if (ht && option (Opt_pastableTabs)){
-          base_rend = SET_FONT (base_rend, 0);
+      if (ht &&  this.option (Opt_pastableTabs)){
+          //   base_rend = SET_FONT (base_rend, 0);
 
           l.touch (x);
 
           i = this.screen.cur.col;
 
           l.t[i] = '\t';
-          l.r[i] = base_rend;
+          //l.r[i] = base_rend;
 
           while (++i < x){
               l.t[i] = NOCHAR;
-              l.r[i] = base_rend;
+              //  l.r[i] = base_rend;
             }
         }
     }
@@ -1293,27 +1293,27 @@ rxvt_term.prototype.scr_erase_screen =function( mode){
 
  num = mi_n(num, this.nrow - row);  //min_it (num, this.nrow - row);
 
-  //TODO: the code below does not work when view_start != 0
+  //TODO: the code below does not work when  this.view_start != 0
   //the workaround is to disable the clear and use a normal refresh
-  //when view_start != 0. mysterious.
+  //when  this.view_start != 0. mysterious.
   if (rstyle & (RS_RVid | RS_Uline))
     ren =  ~RS_None;  //ren = (rend_t) ~RS_None;
   else if (GET_BASEBG (rstyle) == Color_bg){
       ren = DEFAULT_RSTYLE;
 
-      if ( this.mapped && !view_start) {}
+      if ( this.mapped && ! this.view_start) {}
           /*        XClearArea (dpy, vt, 0,
-                    Row2Pixel (row - view_start), width,  //Row2Pixel (row - view_start), (unsigned int)width,
+                    Row2Pixel (row -  this.view_start), width,  //Row2Pixel (row -  this.view_start), (unsigned int)width,
                     Height2Pixel (num), False);  //(unsigned int)Height2Pixel (num), False);*/
     }
   else{
       ren = rstyle & (RS_fgMask | RS_bgMask);
       //REWRITE:
-      if ( this.mapped && !view_start){
+      if ( this.mapped && ! this.view_start){
           gcvalue.foreground = pix_colors[bgcolor_of (rstyle)];
           XChangeGC (dpy, gc, GCForeground, gcvalue);
           /*          XFillRectangle (dpy, vt, gc,
-                          0, Row2Pixel (row - view_start),
+                          0, Row2Pixel (row -  this.view_start),
                           width,  //(unsigned int)width,   ###  c_keyword c_cast
                           Height2Pixel (num));  //(unsigned int)Height2Pixel (num));
           gcvalue.foreground = pix_colors[Color_fg];
@@ -1324,7 +1324,7 @@ rxvt_term.prototype.scr_erase_screen =function( mode){
   for (; num--; row++){
       this.scr_blank_screen_mem (ROW(row), rstyle);
 
-      if (!view_start)
+      if (! this.view_start)
         this.scr_blank_line ( this.drawn_buf [row], 0,  this.ncol, ren);
     }
 }
@@ -1351,10 +1351,10 @@ rxvt_term.prototype.scr_E =function(){
   want_refresh = 1;
   ZERO_SCROLLBACK ();
 
-  num_scr_allow = 0;
+  this.num_scr_allow = 0;
    this.selection_check (3);
 
-  fs = SET_FONT (rstyle, FONTSET (rstyle).find_font ('E'));
+ //  fs = SET_FONT (rstyle, FONTSET (rstyle).find_font ('E'));
  for (var row = this.nrow; row--; ){  //for (int row = nrow; row--; ){   ###  c_keyword 
      var line = ROW(row); //line_t &line = ROW(row); ### c_memory_ref js_style_variables FIXME
 
@@ -1362,7 +1362,7 @@ rxvt_term.prototype.scr_E =function(){
       var r1 = line.r, r1_i =0;  //rend_t *r1 = line.r;   ###  c_keyword possible_pointer js_style_variables, pointer_fix
 
       for (var j =  this.ncol; j--; )  //for (int j =  this.ncol; j--; )   ###  c_keyword 
-          line.r[r1_i++] = fs;  // *r1++ = fs;   ###  possible_pointer pointer_fix
+          //   line.r[r1_i++] = fs;  // *r1++ = fs;   ###  possible_pointer pointer_fix
 
       line.is_longer (0);
       line.touch ( this.ncol);
@@ -1679,7 +1679,7 @@ rxvt_term.prototype.set_font_style =function(){
 //FIXED:void rxvt_term::scr_charset_choose (int set) 
 rxvt_term.prototype.scr_charset_choose =function( set){ 
   this.screen.charset = set; 
-  set_font_style ();
+  // set_font_style ();
 }
 
 /* ------------------------------------------------------------------------- */
@@ -1694,7 +1694,7 @@ rxvt_term.prototype.scr_charset_choose =function( set){
 //FIXED:void rxvt_term::scr_charset_set (int set, unsigned int ch){ 
 rxvt_term.prototype.scr_charset_set =function( set,   ch){ 
     this.charsets[set] = ch;  //charsets[set] = (unsigned char)ch;
-  set_font_style ();
+    //  set_font_style ();
 }
 
 
@@ -1800,8 +1800,8 @@ rxvt_term.prototype.scr_move_to =function( y,  len){
 //CMNT:bool rxvt_term::scr_page (enum page_dirn direction, int nlines) 
 rxvt_term.prototype.scr_page =function( direction,  nlines){ 
     var new_view_start=   //int new_view_start =   ###  js_style_variables 
-    direction == UP ? view_start - nlines  //FIXME enum
-                    : view_start + nlines;
+    direction == UP ?  this.view_start - nlines  //FIXME enum
+                    :  this.view_start + nlines;
 
   return this.scr_changeview (new_view_start);
 }
@@ -1810,14 +1810,14 @@ rxvt_term.prototype.scr_page =function( direction,  nlines){
 rxvt_term.prototype.scr_changeview =function( new_view_start){ 
   clamp_it (new_view_start,  this.top_row, 0);
 
-  if (new_view_start == view_start)
+  if (new_view_start == this.view_start)
     return false;
 
-  num_scr += new_view_start - view_start;
-  view_start = new_view_start;
-  want_refresh = 1;
+  this.num_scr += new_view_start - this.view_start;
+  this.view_start = this.new_view_start;
+  this.want_refresh = 1;
 
-  HOOK_INVOKE ((this, HOOK_VIEW_CHANGE, DT_INT, view_start, DT_END));
+  HOOK_INVOKE ((this, HOOK_VIEW_CHANGE, DT_INT,  this.view_start, DT_END));
 
   return true;
 }
@@ -1840,17 +1840,17 @@ rxvt_term.prototype.scr_bell =function(){
 
 # ifndef NO_MAPALERT
 #  ifdef MAPALERT_OPTION
-  if (option (Opt_mapAlert))
+  if ( this.option (Opt_mapAlert))
 #  endif
     XMapWindow (dpy, parent[0]);
 # endif
 
 # if ENABLE_FRILLS
-  if (option (Opt_urgentOnBell))
+  if ( this.option (Opt_urgentOnBell))
     set_urgency (1);
 # endif
 
-  if (option (Opt_visualBell)){
+  if ( this.option (Opt_visualBell)){
       rvideo_bell = true;
       this.scr_rvideo_mode (rvideo_mode);
       flush ();
@@ -1894,13 +1894,16 @@ rxvt_term.prototype.scr_refresh =function(){
 //FIXME overloaded_function
 // void rxvt_term::scr_remap_chars (line_t &l) 
 rxvt_term.prototype.scr_remap_chars =function(l){ 
-  if (!l.t)
+    //FIXME 
+return
+/*  if (!l.t)
     return;
 
   l.touch (); //maybe a bit of an overkill, but it's not performance-relevant
 
    for (var i =  this.ncol; i--; )  //for (int i =  this.ncol; i--; )   ### js_style_variables  c_keyword 
     l.r[i] = SET_FONT (l.r[i], FONTSET (l.r[i]).find_font (l.t[i]));
+*/
 }
 
 //FIXED:void rxvt_term::scr_remap_chars (){ 
@@ -1944,8 +1947,8 @@ rxvt_term.prototype.scr_clear =function( really){
   if (! this.mapped)
     return;
 
-  num_scr_allow = 0;
-  want_refresh = 1;
+  this.num_scr_allow = 0;
+  this.want_refresh = 1;
 
   if (really)
     XClearWindow (dpy, vt);
@@ -1953,10 +1956,10 @@ rxvt_term.prototype.scr_clear =function( really){
 
 //void rxvt_term::scr_xor_rect (int beg_row, int beg_col, int end_row, int end_col, rend_t rstyle1, rend_t rstyle2) 
 rxvt_term.prototype.scr_xor_rect =function( beg_row,  beg_col,  end_row,  end_col,  rstyle1,  rstyle2){ 
-  var view_end= view_start + this.nrow;   //int view_end = view_start + nrow;
+  var view_end=  this.view_start + this.nrow;   //int view_end = view_start + nrow;
   var row, col;  //int row, col;
 
-  for (row = ma_x (beg_row, view_start); row <= mi_n (end_row, view_end); row++){
+  for (row = ma_x (beg_row,  this.view_start); row <= mi_n (end_row, view_end); row++){
 //CMNT: possible_pointer ^|             text_t *stp = ROW(row).t; 
         var  stp = ROW(row).t;
 //CMNT: c_keyword possible_pointer ^|             rend_t *srp = ROW(row).r; 
@@ -1975,16 +1978,16 @@ rxvt_term.prototype.scr_xor_rect =function( beg_row,  beg_col,  end_row,  end_co
 
 //void rxvt_term::scr_xor_span (int beg_row, int beg_col, int end_row, int end_col, rend_t rstyle) 
 rxvt_term.prototype.scr_xor_span =function( beg_row,  beg_col,  end_row,  end_col,  rstyle){ 
-  var view_end= this.view_start + this.nrow;   //int view_end = view_start + nrow;
+  var view_end= this.view_start + this.nrow;   //int view_end =  this.view_start + nrow;
   var row, col;  //int row, col;
 
-  if (beg_row >= view_start){
+  if (beg_row >=  this.view_start){
       col = beg_col;
       row = beg_row;
     }
   else{
       col = 0;
-      row = view_start;
+      row =  this.view_start;
     }
 
   for (; row < mi_n (end_row, view_end); row++, col = 0)
@@ -2003,7 +2006,7 @@ rxvt_term.prototype.scr_xor_span =function( beg_row,  beg_col,  end_row,  end_co
 rxvt_term.prototype.scr_reverse_selection =function(){ 
   if ( this.selection.op
       &&  this.current_screen ==  this.selection.screen
-      &&  this.selection.end.row >= view_start){
+      &&  this.selection.end.row >=  this.view_start){
 #if !ENABLE_MINIMAL
       if ( this.selection.rect)
         this.scr_xor_rect ( this.selection.beg.row,  this.selection.beg.col,
@@ -2034,8 +2037,8 @@ rxvt_term.prototype.scr_dump =function( fd){
 //POSTPONED: c_keyword ^|         char            r1[] = "\n"; 
               r1[] = "\n";
 
-  for (row = saveLines +  this.top_row;
-       row < saveLines + this.nrow - 1; row++){
+  for (row =  this.saveLines +  this.top_row;
+       row <  this.saveLines + this.nrow - 1; row++){
       width =  this.row_buf[row].l >= 0 ?  this.row_buf[row].l
               :  this.ncol;
       for (towrite = width; towrite; towrite -= wrote){

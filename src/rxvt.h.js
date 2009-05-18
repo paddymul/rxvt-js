@@ -9,7 +9,126 @@
   (fset 'paddy-cmnt-original
   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("  //" 0 "%d")) arg)))
   (local-set-key (kbd "H-C-;") 'paddy-cmnt-original)
-
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+a
+b
+c
+d
+e
+f
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+1a
+1b
+1c
+1d
+1e
+1f
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+2a
+2b
+2c
+2d
+2e
+2f
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+3a
+3b
+3c
+3d
+3e
+3f
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+4a
+4b
+4c
+4d
+4e
+4f
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+5a
+5b
+5c
+5d
+5e
+5f
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+6a
+6b
+6c
+6d
+6e
+6f
+70
+71
+72
+73
+74
+75
+76
+77
 
 */
 
@@ -217,6 +336,8 @@ SELECTION_CLEAR = 0;
 
 #define expect_false(expr) (expr)
 #define expect_true(expr)  (expr)
+
+#define memmove(dest,src,length) console.log("tried to memmove",(src),(dest),(length));
 
 #define WCWIDTH(expr) 0
 
@@ -541,7 +662,7 @@ PRIMARY = 0,
 #define Sel_whereMask           0x0f
 #define Sel_CompoundText        0x10    /* last request was COMPOUND_TEXT */
 #define Sel_UTF8String          0x20    /* last request was UTF8_STRING */
-
+#define ESC_ARGS	32	/* max # of args for esc sequences */
 
 var  C0_NUL = 0x00,  C0_SOH= 0x1  ,  C0_STX= 0x2 ,  C0_ETX= 0x3 ,  C0_EOT= 0x4  ,
   C0_ENQ= 0x5 ,  C0_ACK= 0x6,  C0_BEL= 0x7,  C0_BS = 0x8,  C0_HT = 0x9 ,
@@ -560,6 +681,125 @@ var  C0_NUL = 0x00,  C0_SOH= 0x1  ,  C0_STX= 0x2 ,  C0_ETX= 0x3 ,  C0_EOT= 0x4  
   C0_CAN, C0_EM , C0_SUB, C0_ESC, C0_IS4, C0_IS3, C0_IS2, C0_IS1,
   };
 */
+
+var  C1_40 = 0x40,
+  C1_41 =0x41,
+  C1_BPH=0x42,
+  C1_NBH=0x43,
+  C1_44 =0x44,
+  C1_NEL=0x45,
+  C1_SSA=0x46,
+  C1_ESA=0x47,
+
+  C1_HTS=0x48,
+  C1_HTJ=0x49,
+  C1_VTS=0x4a,
+  C1_PLD=0x4b,
+  C1_PLU=0x4c,
+  C1_RI =0x4d,
+  C1_SS2=0x4e,
+  C1_SS3=0x4f,
+
+  C1_DCS=0x50,
+  C1_PU1=0x51,
+  C1_PU2=0x52,
+  C1_STS=0x53,
+  C1_CCH=0x54,
+  C1_MW =0x55,
+  C1_SPA=0x56,
+  C1_EPA=0x57,
+
+  C1_SOS=0x58,
+  C1_59 =0x59,
+  C1_SCI=0x5a,
+  C1_CSI=0x5b,
+  CS_ST =0x5c,
+  C1_OSC=0x5d,
+  C1_PM =0x5e,
+  C1_APC=0x5f;
+
+
+
+
+
+/* *INDENT-OFF* */ 
+/* enum {
+  C1_40 = 0x40,
+          C1_41 , C1_BPH, C1_NBH, C1_44 , C1_NEL, C1_SSA, C1_ESA,
+  C1_HTS, C1_HTJ, C1_VTS, C1_PLD, C1_PLU, C1_RI , C1_SS2, C1_SS3,
+  C1_DCS, C1_PU1, C1_PU2, C1_STS, C1_CCH, C1_MW , C1_SPA, C1_EPA,
+  C1_SOS, C1_59 , C1_SCI, C1_CSI, CS_ST , C1_OSC, C1_PM , C1_APC,
+};
+*/
+/* *INDENT-ON* */ 
+
+var CSI_ICH =   0x40,
+ CSI_CUU =   0x41, 
+ CSI_CUD =   0x42, 
+ CSI_CUF =   0x43, 
+ CSI_CUB =   0x44, 
+ CSI_CNL =   0x45, 
+ CSI_CPL =   0x46, 
+ CSI_CHA =   0x47, 
+  CSI_CUP =  0x48, 
+ CSI_CHT =   0x49, 
+ CSI_ED  =   0x4a, 
+ CSI_EL  =   0x4b, 
+ CSI_IL  =   0x4c, 
+ CSI_DL  =   0x4d, 
+ CSI_EF  =   0x4e, 
+ CSI_EA  =   0x4f, 
+  CSI_DCH =  0x50, 
+ CSI_SEE =   0x51, 
+ CSI_CPR =   0x52, 
+ CSI_SU  =   0x53, 
+ CSI_SD  =   0x54, 
+ CSI_NP  =   0x55, 
+ CSI_PP  =   0x56, 
+ CSI_CTC =   0x57, 
+  CSI_ECH =  0x58, 
+ CSI_CVT =   0x59, 
+ CSI_CBT =   0x5a, 
+ CSI_SRS =   0x5b, 
+ CSI_PTX =   0x5c, 
+ CSI_SDS =   0x5d, 
+ CSI_SIMD =  0x5e, 
+ CSI_5F =    0x5f, 
+  CSI_HPA =  0x60, 
+ CSI_HPR =   0x61, 
+ CSI_REP =   0x62, 
+ CSI_DA  =   0x63, 
+ CSI_VPA =   0x64, 
+ CSI_VPR =   0x65, 
+ CSI_HVP =   0x66, 
+ CSI_TBC =   0x67, 
+  CSI_SM  =  0x68, 
+ CSI_MC  =   0x69, 
+ CSI_HPB =   0x6a, 
+ CSI_VPB =   0x6b, 
+ CSI_RM  =   0x6c, 
+ CSI_SGR =   0x6d, 
+ CSI_DSR =   0x6e, 
+ CSI_DAQ =   0x6f, 
+  CSI_70  =  0x70, 
+ CSI_71  =   0x71, 
+ CSI_72  =   0x72, 
+ CSI_73  =   0x73, 
+ CSI_74  =   0x74, 
+ CSI_75  =   0x75, 
+ CSI_76  =   0x76, 
+ CSI_77  =   0x77, 
+  CSI_78  =  0x78, 
+ CSI_79  =   0x79, 
+ CSI_7A  =   0x7a, 
+ CSI_7B  =   0x7b, 
+ CSI_7C  =   0x7c, 
+ CSI_7D  =   0x7d, 
+ CSI_7E  =   0x7e, 
+  CSI_7F  =   0x7f;
+
+
+
 #define CHAR_ST                 0x9c    /* 0234 */
 
 /*
@@ -1465,6 +1705,14 @@ void init_asv ()
     }
     --opt;
     return this.options[opt >>3] & ( 1 << (opt & 7));
+  },
+ set_privmode: function(bit,set){
+    if (set)
+      this.priv_modes |= bit;
+    else
+      this.priv_modes &= ~bit;
+
+
   }
  //ptytty         *pty;
 
