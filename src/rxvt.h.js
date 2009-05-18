@@ -212,8 +212,13 @@ SELECTION_CLEAR = 0;
 // booleans, not the expression.
 #define mi_n(a,b) Math.min((a),(b))
 #define ma_x(a,b) Math.max((a),(b))
-#define expect_false(expr) expect ((expr) != 0, 0)
-#define expect_true(expr)  expect ((expr) != 0, 1)
+/*#define expect_false(expr) expect ((expr) != 0, 0)
+  #define expect_true(expr)  expect ((expr) != 0, 1) */
+
+#define expect_false(expr) (expr)
+#define expect_true(expr)  (expr)
+
+#define WCWIDTH(expr) 0
 
 #define NORETURN rxvt_attribute ((noreturn))
 #define UNUSED   rxvt_attribute ((unused))
@@ -803,7 +808,7 @@ Color_none = -2,
 
 // for speed reasons, we assume that all codepoints 32 to 126 are
 // single-width.
-#define WCWIDTH(c)		(IN_RANGE_INC (c, 0x20, 0x7e) ? 1 : wcwidth (c))
+//#define WCWIDTH(c)		(IN_RANGE_INC (c, 0x20, 0x7e) ? 1 : wcwidth (c))
 
 /* convert pixel dimensions to row/column values.  Everything as int32_t */
 #define Pixel2Col(x)            Pixel2Width((int32_t)(x))
@@ -917,9 +922,9 @@ Color_none = -2,
 
 */
 line_t = function() {
-  this.t= "";  //FIXED   text_t *t; // terminal the text
-  this.r= ""; //FIXED   rend_t *r; // rendition, uses RS_ flags
-  this.l= ""; //FIXED   tlen_t_ l; // length of each text line
+  this.t= [];  //FIXED   text_t *t; // terminal the text
+  this.r= []; //FIXED   rend_t *r; // rendition, uses RS_ flags
+  this.l= 0; //FIXED   tlen_t_ l; // length of each text line
   this.f= ""; //FIXED  uint32_t f; // flags
 
 };
@@ -934,7 +939,7 @@ line_t.prototype = {
     }
         
     else {
-      return f & 0x0001 // line is continued on the next row;
+      return thisf & 0x0001 // line is continued on the next row;
     }},
  /*
    is_longer : function(set){  //FIXME overloaded function, check js translation
@@ -958,13 +963,13 @@ line_t.prototype = {
   },
 
  //FIXME operator overloading
- touch : function (col) { // call whenever a line is changed/touched/updated  //   void touch () // call whenever a line is changed/touched/updated
+ touch : function (col) { // call whenever a line is changed/touched/updated  
 
 #if ENABLE_PERL
     f &= ~LINE_FILTERED;
 #endif
     if(typeof col != undefined){
-      ma_x(l, col);
+      ma_x(this.l, col);
     }
   }
 };
@@ -1265,6 +1270,7 @@ rxvt_vars = function() {}
 function rxvt_term() {
   this.screen = new screen_t();
   this.swap = new screen_t();
+  this.charsets= new Array(4);
 
 }  //FIXME
 rxvt_term.prototype = {
@@ -1434,6 +1440,7 @@ void init_asv ()
  //char           *env_term;           // environmental variable TERM     
  //char           *locale;
  //char            charsets[4];
+  
  v_buffer: [], //char           *v_buffer;           // pointer to physical buffer 
  v_buffer_ptr:0,
  v_buflen : 0 , //unsigned int    v_buflen;           // size of area to write 

@@ -403,15 +403,18 @@ rxvt_term.prototype.cmd_parse =function(){
             var str = buf, str_i = 0; //wchar_t *str = buf;
             var eol = str.length + mi_n (this.ncol, UBUFSIZ); //wchar_t *eol = str + min (ncol, UBUFSIZ);
             for (;;){//inner_for_loop
-                if (expect_false (ch == NOCHAR || (IS_CONTROL (ch) && ch != C0_LF && ch != C0_CR && ch != C0_HT))) {
+
+              console.log(ch,ord(ch),chr(ch));
+              if (expect_false (ch == NOCHAR || (IS_CONTROL (ch) && ch != C0_LF && ch != C0_CR && ch != C0_HT))) { //IS_CONTROL
                     break;}
 
                 str[str_i++]=chr(ch)  //str++ = ch; 
                 if (expect_false (ch == C0_LF || str.length >= eol)){
                     if (ch == C0_LF){
+
                         nlines++;}
                     this.refresh_count++;
-                    if (!this.option (Opt_jumpScroll) || this.refresh_count >= nrow - 1){
+                    if (!this.option (Opt_jumpScroll) || this.refresh_count >= this.nrow - 1){
                         this.refresh_count = 0;
                         if (!this.option (Opt_skipScroll) ){
                             refreshnow = true;
@@ -422,7 +425,7 @@ rxvt_term.prototype.cmd_parse =function(){
                         if (!(SHOULD_INVOKE (HOOK_ADD_LINES)
                               && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str - buf, DT_END)))) {
                             //FIXME pointermath  scr_add_lines (buf, str - buf, nlines);  
-                            this.scr_add_lines (buf, str.length - buf.length, nlines);}
+                            this.scr_add_lines (buf, str_i, nlinest);}
                         nlines = 0;
                         str = buf;
                         eol = str.length + mi_n (this.ncol, UBUFSIZ);}  // FIXME should_work
@@ -432,7 +435,7 @@ rxvt_term.prototype.cmd_parse =function(){
                             ch = NOCHAR;
                             break;}
                         else
-                            eol = mi_n (eol + ncol, buf.length + UBUFSIZ);}//str.length
+                            eol = mi_n (eol + this.ncol, buf.length + UBUFSIZ);}//str.length
                 }//expect_false
                 seq_begin = this.cmdbuf_ptr;
                 ch = ord(this.next_char()); 
@@ -440,7 +443,7 @@ rxvt_term.prototype.cmd_parse =function(){
 
             if (!(SHOULD_INVOKE (HOOK_ADD_LINES)    && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str.length - buf.length, DT_END)))){
                 //FIXED pointermath  scr_add_lines (buf, str - buf, nlines);
-                this.scr_add_lines (buf, str.length - buf.length, nlines);  
+                this.scr_add_lines (buf, str_i, nlines);  
             }   
             /* If there have been a lot of new lines, then update the screen 
              * What the heck we'll cheat and only refresh less than every page-full. 

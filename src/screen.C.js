@@ -274,7 +274,6 @@ rxvt_term.prototype.scr_reset =function(){
            this.swap_buf [row].clear (); this.scr_blank_screen_mem ( this.swap_buf [row], DEFAULT_RSTYLE);
            this.drawn_buf[row].clear (); this.scr_blank_screen_mem ( this.drawn_buf[row], DEFAULT_RSTYLE);
         }
-      //debugger
       var  old_buf =  this.row_buf, old_buf_i= this.row_buf_i;  //line_t *old_buf = row_buf;
       //row_buf = (line_t *)rxvt_calloc ( this.total_rows + nrow, sizeof (line_t));
        this.row_buf   = my_alloc ( this.total_rows + this.nrow, line_t),  this.row_buf_i=0; 
@@ -514,7 +513,7 @@ rxvt_term.prototype.scr_cursor =function(mode){
         screen.flags &= ~Screen_WrapNext;
         rstyle = s->s_rstyle;
         screen.charset = s->s_charset; 
-        charsets[screen.charset] = s->s_charset_char; 
+         this.charsets[screen.charset] = s->s_charset_char; 
         set_font_style ();
         break;
     }
@@ -788,6 +787,7 @@ rxvt_term.prototype.scr_scroll_text =function( row1,  row2,  count){
  */
 //void rxvt_term::scr_add_lines (const wchar_t *str, int len, int minlines) 
 rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){ 
+
     var str_i = 0;
   if (len <= 0)               /* sanity */
     return;
@@ -831,12 +831,13 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
     //c = (unicode_t)*str++; 
       c =  str[str_i++]; //convert to rxvt-unicodes representation 
 
-      if (expect_false (c < 0x20))
-        if (c == C0_LF){
+      if (expect_false (ord(c) < 0x20))
+          if (ord(c) == C0_LF){
           line.l= ma_x(line.l,this.screen.cur.col);
 
             this.screen.flags &= ~Screen_WrapNext;
 
+            var this_screen_cur_row = this.screen.cur.row , this_screen_bscroll =this.screen.bscroll, this_nrow = this.nrow;
             if (this.screen.cur.row == this.screen.bscroll)
               this.scr_scroll_text (this.screen.tscroll, this.screen.bscroll, 1);
             else if (this.screen.cur.row < (this.nrow - 1))
@@ -845,14 +846,14 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
             line = ROW(row);  /* _must_ refresh */
             continue;
           }
-        else if (c == C0_CR){
+          else if (ord(c) == C0_CR){
           line.l= ma_x(line.l,this.screen.cur.col);
 
             this.screen.flags &= ~Screen_WrapNext; 
             this.screen.cur.col = 0;
             continue;
           }
-        else if (c == C0_HT){
+          else if (ord(c) == C0_HT){
             this.scr_tab (1, true);
             continue;
           }
@@ -882,8 +883,9 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
         }
 
       //some utf-8 decoders "decode" surrogate characters: let's fix this. 
-      if (expect_false (IN_RANGE_INC (c, 0xd800, 0xdfff)))
-        c = 0xfffd;
+      //I don't think this matters for js
+      //if (expect_false (IN_RANGE_INC (ord(c), 0xd800, 0xdfff)))
+      //    c = 0xfffd;
 
       //rely on wcwidth to tell us the character width, do wcwidth before 
       //further replacements, as wcwidth might return -1 for the line
@@ -891,7 +893,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
       //locale.
       var width= WCWIDTH (c);   //int width = WCWIDTH (c);
 
- if (expect_false (charsets [this.screen.charset] == '0')) //DEC SPECIAL 
+ if (expect_false ( this.charsets [this.screen.charset] == '0')) //DEC SPECIAL 
         {
           //FIXME not sure about my changes why should vt100_0 need to be 62 elements big
           //vt100 special graphics and line drawing
@@ -908,8 +910,8 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
             0x2502, 0x2264, 0x2265, 0x03c0, 0x2260, 0x00a3, 0x00b7         //78-7e
                           ];
 
-          if (c >= 0x41 && c <= 0x7e && vt100_0[c - 0x41]){
-              c = vt100_0[c - 0x41];
+          if (ord(c) >= 0x41 && ord(c) <= 0x7e && vt100_0[ord(c) - 0x41]){
+              ord(c) = vt100_0[ord(c) - 0x41];
               width = 1; //vt100 line drawing characters are always single-width 
             }
         }
@@ -917,32 +919,22 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
       if (expect_false (this.screen.flags & Screen_Insert))
         this.scr_insdel_chars (width, INSERT); 
 
-      if (width != 0){
-#if !UNICODE_3
-        //trim characters we cant store directly :( 
-          if (c >= 0x10000)
-# if ENABLE_COMBINING
-            //c = rxvt_composite.compose (c); //map to lower 16 bits
-# else
-            c = 0xfffd;
-# endif
-#endif
 
             //nuke the character at this position, if required 
           if (expect_false (
-                line.t[this.screen.cur.col] == NOCHAR
+                            line.t[this.screen.cur.col] == ""
                 || (this.screen.cur.col <  this.ncol - 1
-                    && line.t[this.screen.cur.col + 1] == NOCHAR)
+                    && line.t[this.screen.cur.col + 1] == "")
              ))
               //scr_kill_char (*line, screen.cur.col); 
               this.scr_kill_char ( line, this.screen.cur.col); 
               //rend_t rend = SET_FONT (rstyle, FONTSET (rstyle)->find_font (c)); 
-              var rend= SET_FONT (rstyle, FONTSET (rstyle).find_font (c));
+              //FIXME var rend= SET_FONT (rstyle, FONTSET (rstyle).find_font (c));
 
           //if the character doesnt fit into the remaining columns... 
           if (expect_false (this.screen.cur.col >  this.ncol - width &&  this.ncol >= width)){
               //... artificially enlargen the previous one
-              c = NOCHAR;
+              c = "";// chr(NOCHAR);
               //and try the same character next loop iteration 
               --str_i;
             }
@@ -952,7 +944,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
           do
             {
               line.t[this.screen.cur.col] = c;
-              line.r[this.screen.cur.col] = rend;
+              //FONT-FIXME line.r[this.screen.cur.col] = rend;
 
               if (expect_true (this.screen.cur.col <  this.ncol - 1))
                 this.screen.cur.col++;
@@ -963,7 +955,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
                   break;
                 }
 
-              c = NOCHAR;
+              c = ""; // chr(NOCHAR);
             }
           while (expect_false (--width > 0));
 
@@ -972,12 +964,12 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
             line.touch (); 
 
             //for (int c = screen.cur.col; c < ncol && line->t[c] == NOCHAR; c++)
-            for (  c = this.screen.cur.col; c <  this.ncol && line.t[c] == NOCHAR; c++){  
+            for (  c = this.screen.cur.col; c <  this.ncol && line.t[c] == ""; c++){  
                   line.t[c] = ' ';
-                  line.r[c] = rend;
+                  //FONT-FIXME line.r[c] = rend;
                 }
             }
-        }
+      
 #if ENABLE_COMBINING
           //removed, I wont be implementing this functionality
 #endif
@@ -1657,7 +1649,7 @@ rxvt_term.prototype.scr_report_position =function(){
 //FIXED:void rxvt_term::set_font_style (){ 
 rxvt_term.prototype.set_font_style =function(){ 
 #if 0
-  switch (charsets [this.screen.charset]){ 
+  switch ( this.charsets [this.screen.charset]){ 
       case '0':                   /* DEC Special Character & Line Drawing Set */
         break;
       case 'A':                   /* United Kingdom (UK) */
@@ -1701,7 +1693,7 @@ rxvt_term.prototype.scr_charset_choose =function( set){
  */
 //FIXED:void rxvt_term::scr_charset_set (int set, unsigned int ch){ 
 rxvt_term.prototype.scr_charset_set =function( set,   ch){ 
-  this.charsets[set] = ch;  //charsets[set] = (unsigned char)ch;
+    this.charsets[set] = ch;  //charsets[set] = (unsigned char)ch;
   set_font_style ();
 }
 
@@ -1890,13 +1882,13 @@ rxvt_term.prototype.scr_refresh =function(){
          b=ROW(this.view_start + row).t;
          
          for (var col =0; col < this.ncol; col++){
-           out_string += b[col];
+             out_string += b[col]?b[col]: ' ';
            //console.log(b[col]);
          }
          out_string+="\n";
     }
 
-  document.getElementById("term").innerHtml = out_string;
+  document.getElementById("term").innerHTML = out_string;
 }
 
 //FIXME overloaded_function
