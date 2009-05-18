@@ -1199,18 +1199,20 @@ screen_t = function() {
 
 //struct selection_t
 
-selection_t = function () {};
+selection_t = function () {
+  this.beg=new row_col_t();    //row_col_t beginning of selection   <= mark         
+  this.mark=new row_col_t();   //row_col_t point of initial click   <= end          
+  this.end=new row_col_t();    //row_col_t one character past end point             
+
+};
 selection_t.prototype = {
 
  text: "",        //wchar_t          * selected text                            
- len:   0,       //unsigned int       length of selected text                  
- screen: 0,      //unsigned int       screen being used                        
- clicks: 0,      //unsigned int       number of clicks                         
+ len:   0,        //unsigned int       length of selected text                  
+ screen: 0,       //unsigned int       screen being used                        
+ clicks: 0,       //unsigned int       number of clicks                         
  op:   "",        //selection_op_t     current operation                        
- rect:  true,       //bool               rectangular selection?                   
- beg:  new row_col_t(),         //row_col_t          beginning of selection   <= mark         
- mark:  new row_col_t(),       //row_col_t          point of initial click   <= end          
- end:   new row_col_t(),       //row_col_t          one character past end point             
+ rect:  true     //bool               rectangular selection?                   
 };
 
 
@@ -1456,7 +1458,7 @@ void init_asv ()
     }
     --opt;
     return this.options[opt >>3] & ( 1 << (opt & 7));
-  },
+  }
  //ptytty         *pty;
 
  //rxvt_salloc    *talloc;             // text line allocator

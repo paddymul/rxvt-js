@@ -100,7 +100,7 @@ rxvt_term.prototype.scr_blank_line =function(l, col, width, efs){
   //efs = (((efs) & ~0xff000000UL /* plenty(?) of fonts, includes RS_Careful*/) | (((this)->fontset[0]->find_font (' ')) << 24));
   //the above line is the macro expansion of SET_FONT FONTSET 
 
-  var l = new line_t();
+  l = new line_t();
   l.t=[];
   l.r=[];
   //FIXME where is l.t an array, what should  I use for an indice of et??
@@ -198,7 +198,7 @@ rxvt_term.prototype.scr_reset =function(){
 
 
       //this code basically sets up the rendering area, alloc has no special signficance to worry about
-      //I don't understand the calls to rxvt_salloc, talloc and ralloc are never used
+      //I dont understand the calls to rxvt_salloc, talloc and ralloc are never used
       //ahh rxvt_salloc is used from lalloc
 
       //talloc = new rxvt_salloc (ncol * sizeof (text_t)); 
@@ -287,7 +287,7 @@ rxvt_term.prototype.scr_reset =function(){
       if ( this.top_row){
           //Re-wrap lines. This is rather ugly, possibly because I am too dumb
           //to come up with a lean and mean algorithm.
-          //TODO: maybe optimise when width didn't change
+          //TODO: maybe optimise when width didnt change
 
          var  ocur = this.screen.cur;  //row_col_t ocur = screen.cur;
           ocur.row = MOD ( this.term_start + ocur.row, prev_total_rows);
@@ -706,7 +706,7 @@ rxvt_term.prototype.scr_scroll_text =function( row1,  row2,  count){
 
       //now copy lines below the scroll region bottom to the
       //bottom of the screen again, so they look as if they
-      //hadn't moved.
+      //hadnt moved.
         for (  i = this.nrow; --i > row2; ){  //for (int i = this.nrow; --i > row2; )
           var l1 = ROW(i - count);  //line_t &l1 = ROW(i - count);
           var l2 = ROW(i);  //line_t &l2 = ROW(i);
@@ -919,7 +919,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
 
       if (width != 0){
 #if !UNICODE_3
-        //trim characters we can't store directly :( 
+        //trim characters we cant store directly :( 
           if (c >= 0x10000)
 # if ENABLE_COMBINING
             //c = rxvt_composite.compose (c); //map to lower 16 bits
@@ -939,7 +939,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
               //rend_t rend = SET_FONT (rstyle, FONTSET (rstyle)->find_font (c)); 
               var rend= SET_FONT (rstyle, FONTSET (rstyle).find_font (c));
 
-          //if the character doesn't fit into the remaining columns... 
+          //if the character doesnt fit into the remaining columns... 
           if (expect_false (this.screen.cur.col >  this.ncol - width &&  this.ncol >= width)){
               //... artificially enlargen the previous one
               c = NOCHAR;
@@ -979,7 +979,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
             }
         }
 #if ENABLE_COMBINING
-          //removed, I won't be implementing this functionality
+          //removed, I wont be implementing this functionality
 #endif
     }
     //FIXME max_it (line->l, screen.cur.col);
@@ -2085,7 +2085,7 @@ rxvt_term.prototype.scr_dump =function( fd){
 #ifdef USE_XIM
 //REMOVED:void rxvt_term::im_set_position (XPoint &pos) 
 #endif
-    //This is removed because ENABLE_OVERLAY is tied to iso-14755 which is a complicated standard that I won't be supporting
+    //This is removed because ENABLE_OVERLAY is tied to iso-14755 which is a complicated standard that I wont be supporting
     //it can be read about here http://en.wikipedia.org/wiki/Unicode_input
 #if ENABLE_OVERLAY
 //REMOVED:void rxvt_term::scr_overlay_new (int x, int y, int w, int h){ 
