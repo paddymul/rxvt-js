@@ -132,7 +132,7 @@ dstillz: The address of the line_t qline is assigned to be row_buf[row].
  * CLEAR_CHARS: clear <num> chars starting from pixel position <x,y> 
 uneeded, only is used used in scr_refresh
 #define CLEAR_CHARS(x, y, num)                                         \
-    if (mapped)                                                        \
+    if ( this.mapped)                                                        \
         XClearArea (dpy, vt, x, y,                                     \
           (unsigned int)Width2Pixel (num),                   \ 
           (unsigned int)Height2Pixel (1), False) 
@@ -470,7 +470,7 @@ rxvt_term.prototype.scr_reset =function(){
    this.prev_nrow = this.nrow;
    this.prev_ncol =  this.ncol;
 
-  tt_winch ();
+  this.tt_winch ();
 
   HOOK_INVOKE ((this, HOOK_RESET, DT_END));
 }  
@@ -1349,7 +1349,7 @@ rxvt_term.prototype.scr_erase_screen =function( mode){
   else if (GET_BASEBG (rstyle) == Color_bg){
       ren = DEFAULT_RSTYLE;
 
-      if (mapped && !view_start) {}
+      if ( this.mapped && !view_start) {}
           /*        XClearArea (dpy, vt, 0,
                     Row2Pixel (row - view_start), width,  //Row2Pixel (row - view_start), (unsigned int)width,   ###  c_keyword c_cast
                     Height2Pixel (num), False);  //(unsigned int)Height2Pixel (num), False);   ###  c_keyword  c_cast*/
@@ -1357,7 +1357,7 @@ rxvt_term.prototype.scr_erase_screen =function( mode){
   else{
       ren = rstyle & (RS_fgMask | RS_bgMask);
       //REWRITE:
-      if (mapped && !view_start){
+      if ( this.mapped && !view_start){
           gcvalue.foreground = pix_colors[bgcolor_of (rstyle)];
           XChangeGC (dpy, gc, GCForeground, gcvalue);
           /*          XFillRectangle (dpy, vt, gc,
@@ -1684,7 +1684,7 @@ rxvt_term.prototype.scr_rvideo_mode =function(on){
  */
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_report_position () 
 rxvt_term.prototype.scr_report_position =function(){ 
-  tt_printf ("\033[%d;%dR", this.screen.cur.row + 1, this.screen.cur.col + 1); 
+  this.tt_printf ("\033[%d;%dR", this.screen.cur.row + 1, this.screen.cur.col + 1); 
 }
 
 /* ------------------------------------------------------------------------- *
@@ -1981,7 +1981,7 @@ rxvt_term.prototype.scr_recolour =function(){
 /* ------------------------------------------------------------------------- */
 //REWRITE: js_style_functions c_keyword ^|       void rxvt_term::scr_clear (bool really){ 
 rxvt_term.prototype.scr_clear =function( really){ 
-  if (!mapped)
+  if (! this.mapped)
     return;
 
   num_scr_allow = 0;
