@@ -255,6 +255,7 @@ Opt_count = 34;
 # define strcpy(a,b)   (strcpy)(a,b)
 //template<typename T, typename U, typename V> static inline void clamp_it (T &v, U a, V b) { v = v < (T)a ? a : v >(T)b ? b : v; }
 # define clamp_it(v,a,b)  (v)=(v) < (a) ? (a) : (v) > (b) ? (b) : (v)
+function free(arg) {};
 
 //# define memset(a,c,l) (memset)(a,c,l)
 //# define memcpy(a,b,l) (memcpy)(a,b,l)
@@ -781,10 +782,10 @@ Color_none = -2,
 
 #if ENABLE_STYLES
 //# def ine FONTSET_of(t,style) (t)->fontset[GET_STYLE (style)]
-# define FONTSET_of(t,style) t.fontset[GET_STYLE (style)]  
+#define FONTSET_of(t,style) t.fontset[GET_STYLE (style)]  
 #else
 //# define FONTSET_of(t,style) (t)->fontset[0]
-# define FONTSET_of(t,style) t.fontset[0]  
+#define FONTSET_of(t,style) t.fontset[0]  
 #endif
 //#de fine FON TSET(style) FONTSET_of (this, style)
 #define FONTSET(style) FONTSET_of (this, style)  
@@ -1179,18 +1180,18 @@ rxvt_term.prototype = {
   fwidth: "",                //font width                      [pixels]
   fheight: "",               //font height                     [pixels]
   fbase: "",                 //font ascent (baseline)          [pixels]
-  ncol: 80,                  //window columns              [characters]
-  nrow: 24,                  //window rows                 [characters]
+  ncol: 0,                  //window columns              [characters]
+  nrow: 0,                  //window rows                 [characters]
   focus: "",                 //window has focus                        
   mapped: "",                //window state mapped?                    
   int_bwidth: "",            //internal border width                   
   ext_bwidth: "",            //external border width                   
   lineSpace: "",             //number of extra pixels between rows     
-  saveLines: 5,              //number of lines that fit in scrollback  
-  total_rows: 29,            //total number of rows in this terminal   
-  term_start: 5,             //term lines start here                   
-  view_start: 5,             //scrollback view starts here             
-  top_row: 5,                //   topmost row index of scrollback         
+  saveLines: 0,              //number of lines that fit in scrollback  
+  total_rows: 0,            //total number of rows in this terminal   
+  term_start: 0,             //term lines start here                   
+  view_start: 0,             //scrollback view starts here             
+  top_row: 0,                //   topmost row index of scrollback         
   parent : [],              //  Window         parent[     parent identifiers - we're parent[0]    
   vt: "",              //  Window                     vt100 window                            
   gc: "",              //  GC                         GC for drawing                          

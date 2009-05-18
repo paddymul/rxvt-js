@@ -94,12 +94,12 @@ dstillz: The address of the line_t qline is assigned to be row_buf[row].
     if (this.option (Opt_scrollTtyOutput))                                  \
         view_start = 0
 #define CLEAR_SELECTION()                                              \
-    selection.beg.row = selection.beg.col                              \
-        = selection.end.row = selection.end.col = 0
+     this.selection.beg.row =  this.selection.beg.col                              \
+        =  this.selection.end.row =  this.selection.end.col = 0
 #define CLEAR_ALL_SELECTION()                                          \
-    selection.beg.row = selection.beg.col                              \
-        = selection.mark.row = selection.mark.col                      \
-        = selection.end.row = selection.end.col = 0
+    this.selection.beg.row =  this.selection.beg.col                              \
+        =  this.selection.mark.row =  this.selection.mark.col                      \
+        =  this.selection.end.row =  this.selection.end.col = 0
 
 #define ROW_AND_COL_IS_AFTER(A, B, C, D)                               \
     (((A) > (C)) || (((A) == (C)) && ((B) > (D))))
@@ -156,7 +156,7 @@ rxvt_term.prototype.scr_blank_line =function(l, col, width, efs){
   */
 
   efs &= ~RS_baseattrMask; //remove italic etc. fontstyles
-  efs = SET_FONT (efs, FONTSET (efs).find_font (' '));
+  //FIXME efs = SET_FONT (efs, FONTSET (efs).find_font (' '));
   //efs = (((efs) & ~0xff000000UL /* plenty(?) of fonts, includes RS_Careful*/) | (((this)->fontset[0]->find_font (' ')) << 24));
   //the above line is the macro expansion of SET_FONT FONTSET 
 
@@ -262,7 +262,7 @@ rxvt_term.prototype.scr_reset =function(){
 
       //row_buf   = (line_t *)rxvt_calloc (total_rows + nrow, sizeof (line_t));
       this.row_buf   = my_alloc(this.total_rows + this.nrow, line_t), this.row_buf_i=0;  
-      //drawn_buf = (line_t *)rxvt_calloc (nrow             , sizeof (line_t));
+      // this.drawn_buf = (line_t *)rxvt_calloc (nrow             , sizeof (line_t));
       this.drawn_buf = my_alloc(this.nrow, line_t), this.drawn_buf_i=0;
       //swap_buf  = (line_t *)rxvt_calloc (nrow,sizeof (line_t));
       this.swap_buf  = my_alloc(this.nrow, line_t), this.swap_buf_i=0;  
@@ -321,30 +321,30 @@ rxvt_term.prototype.scr_reset =function(){
 
 
 
-      for ( row = mi_n (this.nrow, prev_nrow); row--; ){  //for (int row = mi_n (this.nrow, prev_nrow); row--; ){   ###  c_keyword 
-        lresize (drawn_buf[row]);  //lresize (drawn_buf[row]);
+      for ( row = mi_n (this.nrow,  this.prev_nrow); row--; ){  //for (int row = mi_n (this.nrow, prev_nrow); row--; ){   ###  c_keyword 
+        lresize ( this.drawn_buf[row]);  //lresize (drawn_buf[row]);
         lresize ( this.swap_buf [row]);  //lresize (swap_buf [row]);
         }
 
-      for ( row = prev_nrow; row < this.nrow; row++){  //for (int row = prev_nrow; row < nrow; row++){   ###  c_keyword 
+      for ( row =  this.prev_nrow; row < this.nrow; row++){  //for (int row = prev_nrow; row < nrow; row++){   ###  c_keyword 
            this.swap_buf [row].clear (); this.scr_blank_screen_mem ( this.swap_buf [row], DEFAULT_RSTYLE);
-          drawn_buf[row].clear (); this.scr_blank_screen_mem (drawn_buf[row], DEFAULT_RSTYLE);
+           this.drawn_buf[row].clear (); this.scr_blank_screen_mem ( this.drawn_buf[row], DEFAULT_RSTYLE);
         }
 
-      var  old_buf = row_buf, old_buf_i=row_buf_i;  //line_t *old_buf = row_buf;     ###  possible_pointer 
-      row_buf   = my_alloc (total_rows + this.nrow, line_t), row_buf_i=0;     //row_buf = (line_t *)rxvt_calloc (total_rows + nrow, sizeof (line_t));   ###  possible_pointer 
+      var  old_buf =  this.row_buf, old_buf_i= this.row_buf_i;  //line_t *old_buf = row_buf;     ###  possible_pointer 
+       this.row_buf   = my_alloc ( this.total_rows + this.nrow, line_t),  this.row_buf_i=0;     //row_buf = (line_t *)rxvt_calloc ( this.total_rows + nrow, sizeof (line_t));   ###  possible_pointer 
 
-      var p= MOD (term_start + prev_nrow, prev_total_rows);  //previous row   //int p    = MOD (term_start + prev_nrow, prev_total_rows);  //previous row   ###  js_style_variables 
-      var pend= MOD (term_start + top_row  , prev_total_rows);   //int pend = MOD (term_start + top_row  , prev_total_rows);   ###  js_style_variables 
- var q= total_rows; //rewrapped row   //int q    = total_rows; //rewrapped row   ###  js_style_variables 
+      var p= MOD ( this.term_start +  this.prev_nrow, prev_total_rows);  //previous row   //int p    = MOD (term_start + prev_nrow, prev_total_rows);  //previous row   ###  js_style_variables 
+      var pend= MOD ( this.term_start +  this.top_row  , prev_total_rows);   //int pend = MOD (term_start + top_row  , prev_total_rows);   ###  js_style_variables 
+ var q=  this.total_rows; //rewrapped row   //int q    =  this.total_rows; //rewrapped row   ###  js_style_variables 
 
-      if (top_row){
+      if ( this.top_row){
           //Re-wrap lines. This is rather ugly, possibly because I am too dumb
           //to come up with a lean and mean algorithm.
           //TODO: maybe optimise when width didn't change
 
          var  ocur = this.screen.cur;  //row_col_t ocur = screen.cur;
-          ocur.row = MOD (term_start + ocur.row, prev_total_rows);
+          ocur.row = MOD ( this.term_start + ocur.row, prev_total_rows);
 
           do
             {
@@ -353,13 +353,15 @@ rxvt_term.prototype.scr_reset =function(){
               assert (old_buf [MOD (p, prev_total_rows)].t);
 #endif
               var plines= 1;   //int plines = 1;   ###  js_style_variables 
+              var indice = MOD (p, prev_total_rows);
+              debugger
               var llen= old_buf [MOD (p, prev_total_rows)].l;   //int llen = old_buf [MOD (p, prev_total_rows)].l;   ###  js_style_variables 
 
               while (p != pend && old_buf [MOD (p - 1, prev_total_rows)].is_longer ()){
                   p = MOD (p - 1, prev_total_rows);
 
                   plines++;
-                  llen += prev_ncol;
+                  llen +=  this.prev_ncol;
                 }
 
               var qlines= ma_x (0, (llen - 1) /  this.ncol) + 1;   //FIXME floor division   int qlines = ma_x (0, (llen - 1) / ncol) + 1;
@@ -376,21 +378,21 @@ rxvt_term.prototype.scr_reset =function(){
               //re-assemble the full line by destination lines
               for ( var qrow = q; qlines--; qrow++){  //for (int qrow = q; qlines--; qrow++){
                   
-                  row_buf[row_buf_i + qrow]=new line_t();  //lalloc (*qline);  
-                  row_buf[row_buf_i + qrow].l =  this.ncol;
-                  row_buf[row_buf_i + qrow].is_longer (1);
+                   this.row_buf[ this.row_buf_i + qrow]=new line_t();  //lalloc (*qline);  
+                   this.row_buf[ this.row_buf_i + qrow].l =  this.ncol;
+                   this.row_buf[ this.row_buf_i + qrow].is_longer (1);
 
                   var qcol= 0;   //int qcol = 0;
 
                   //see below for cursor adjustment rationale
                   if (p == ocur.row)
-                    this.screen.cur.row = q - (total_rows - this.nrow);
+                    this.screen.cur.row = q - ( this.total_rows - this.nrow);
 
                   //fill a single destination line
                   while (lofs < llen && qcol <  this.ncol){
                     //FIXED floor division      int prow = lofs / prev_ncol;
-                    var prow= Math.floor(lofs / prev_ncol);   
-                    var pcol= lofs % prev_ncol;   //int pcol = lofs % prev_ncol;  
+                    var prow= Math.floor(lofs /  this.prev_ncol);   
+                    var pcol= lofs %  this.prev_ncol;   //int pcol = lofs % prev_ncol;  
 
                       prow = MOD (p + prow, prev_total_rows);
 
@@ -399,15 +401,15 @@ rxvt_term.prototype.scr_reset =function(){
                       //this seems to upset applications/shells/readline
                       //least.
                       if (prow == ocur.row)
-                        this.screen.cur.row = q - (total_rows - this.nrow);
+                        this.screen.cur.row = q - ( this.total_rows - this.nrow);
 
                       //line_t &pline = ; //FIXED
                       //int len = min (min (prev_ncol - pcol, ncol - qcol), llen - lofs); 
-                      var len= mi_n (mi_n (prev_ncol - pcol,  this.ncol - qcol), llen - lofs); 
+                      var len= mi_n (mi_n ( this.prev_ncol - pcol,  this.ncol - qcol), llen - lofs); 
                       //memcpy (qline->t + qcol, pline.t + pcol, len * sizeof (text_t));  
-                      row_buf[row_buf_i + qrow].t = memcpy(row_buf[row_buf_i + qrow].t, row_buf[row_buf_i + qrow].t_i +qcol, old_buf [prow].t,  old_buf [prow].t_i +pcol, len);  
+                       this.row_buf[ this.row_buf_i + qrow].t = memcpy( this.row_buf[ this.row_buf_i + qrow].t,  this.row_buf[ this.row_buf_i + qrow].t_i +qcol, old_buf [prow].t,  old_buf [prow].t_i +pcol, len);  
                       //memcpy (qline->r + qcol, pline.r + pcol, len * sizeof (rend_t));  
-                      row_buf[row_buf_i + qrow].r = memcpy(row_buf[row_buf_i + qrow].r, row_buf[row_buf_i + qrow].r_i +qcol, old_buf [prow].r, old_buf [prow].r_i +pcol, len);  
+                       this.row_buf[ this.row_buf_i + qrow].r = memcpy( this.row_buf[ this.row_buf_i + qrow].r,  this.row_buf[ this.row_buf_i + qrow].r_i +qcol, old_buf [prow].r, old_buf [prow].r_i +pcol, len);  
 
                       lofs += len;
                       qcol += len;
@@ -415,38 +417,38 @@ rxvt_term.prototype.scr_reset =function(){
                 }
 
 
-              row_buf[row_buf_i + qrow].l = llen ? MOD (llen - 1,  this.ncol) + 1 : 0;
-              row_buf[row_buf_i + qrow].is_longer (0);
+               this.row_buf[ this.row_buf_i + qrow].l = llen ? MOD (llen - 1,  this.ncol) + 1 : 0;
+               this.row_buf[ this.row_buf_i + qrow].is_longer (0);
 //FIXED: possible_pointer ^|                     scr_blank_line (*qline, qline->l, ncol - qline->l, DEFAULT_RSTYLE); 
        
-row_buf[row_buf_i + qrow] =this.scr_blank_line ( qline, qline.l,  this.ncol - qline.l, DEFAULT_RSTYLE);
+ this.row_buf[ this.row_buf_i + qrow] =this.scr_blank_line ( qline, qline.l,  this.ncol - qline.l, DEFAULT_RSTYLE);
             }
           while (p != pend && q > 0);
 
-          term_start = total_rows - this.nrow;
-          top_row = q - term_start;
+           this.term_start =  this.total_rows - this.nrow;
+           this.top_row = q -  this.term_start;
 
           //make sure all terminal lines exist
-          while (top_row > 0)
-            this.scr_blank_screen_mem (ROW (--top_row), DEFAULT_RSTYLE);
+          while ( this.top_row > 0)
+            this.scr_blank_screen_mem (ROW (-- this.top_row), DEFAULT_RSTYLE);
       }
       else{
           //if no scrollback exists (yet), wing, instead of wrap
         //for (int row = min (this.nrow, prev_nrow); row--; )
-         for (row = mi_n (this.nrow, prev_nrow); row--; ){  
+         for (row = mi_n (this.nrow,  this.prev_nrow); row--; ){  
            //line_t &pline = old_buf [MOD (term_start + row, prev_total_rows)];
-           var pline = old_buf [MOD (term_start + row, prev_total_rows)]; 
-            qline = row_buf [row];  //line_t &qline = row_buf [row];
+           var pline = old_buf [MOD ( this.term_start + row, prev_total_rows)]; 
+            qline =  this.row_buf [row];  //line_t &qline =  this.row_buf [row];
 
               qline = pline;
               lresize (qline);
          }
 
-           for (  row = prev_nrow; row < this.nrow; row++){  //for (int row = prev_nrow; row < nrow; row++)
-              row_buf [row].clear (); this.scr_blank_screen_mem (row_buf [row], DEFAULT_RSTYLE);
+           for (  row =  this.prev_nrow; row < this.nrow; row++){  //for (int row = prev_nrow; row < nrow; row++)
+               this.row_buf [row].clear (); this.scr_blank_screen_mem ( this.row_buf [row], DEFAULT_RSTYLE);
             }
 
-          term_start = 0;
+           this.term_start = 0;
         }
 
       //free (old_buf);  
@@ -457,16 +459,16 @@ row_buf[row_buf_i + qrow] =this.scr_blank_line ( qline, qline.l,  this.ncol - ql
       clamp_it (this.screen.cur.col, 0,  this.ncol - 1);
   }
 
-  free (tabs);
-  tabs = [], tabs_i=0;  //tabs = (char *)rxvt_malloc (ncol);  
+  free ( this.tabs);
+   this.tabs = [],  this.tabs_i=0;  //tabs = (char *)rxvt_malloc (ncol);  
 
    for ( var col =  this.ncol; --col; )  //for (int col = ncol; --col; ) 
-    tabs [col] = col % TABSIZE == 0;
+     this.tabs [col] = col % TABSIZE == 0;
 
   CLEAR_ALL_SELECTION ();
 
-  prev_nrow = this.nrow;
-  prev_ncol =  this.ncol;
+   this.prev_nrow = this.nrow;
+   this.prev_ncol =  this.ncol;
 
   tt_winch ();
 
@@ -483,13 +485,13 @@ rxvt_term.prototype.scr_release =function(){
       /*
       delete talloc; talloc = 0;  //FIXME what to do with allocs?
       delete ralloc; ralloc = 0;
-      free (row_buf);
+      free ( this.row_buf);
       free (swap_buf);
       free (drawn_buf);
-      row_buf = 0; //signal that we freed all the arrays above
+       this.row_buf = 0; //signal that we freed all the arrays above
 
-      free (tabs);
-      tabs = 0;
+      free ( this.tabs);
+       this.tabs = 0;
 
        */
     this.row_buf=[],  this.swap_buf=[],this.drawn_buf=[], this.row_buf_i=0, this.tabs_i=0;
@@ -503,7 +505,7 @@ rxvt_term.prototype.scr_release =function(){
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_poweron (){ 
 rxvt_term.prototype.scr_poweron =function(){ 
   this.scr_release ();
-  prev_nrow = prev_ncol = 0;
+   this.prev_nrow =  this.prev_ncol = 0;
   rvideo_mode = false;
   this.scr_soft_reset ();
   this.scr_reset ();
@@ -613,13 +615,13 @@ rxvt_term.prototype.scr_swap_screen =function(){
   if (!this.option (Opt_secondaryScreen))
     return;
 
-   for (var i = prev_nrow; i--; )  //for (int i = prev_nrow; i--; )   ### js_style_variables  c_keyword 
+   for (var i =  this.prev_nrow; i--; )  //for (int i = prev_nrow; i--; )   ### js_style_variables  c_keyword 
      swap (ROW(i),  this.swap_buf [i]);  //::swap (ROW(i), swap_buf [i]);
 
   swap (this.screen.cur, swap.cur);  //::swap (screen.cur, swap.cur);
 
-  this.screen.cur.row = clamp (this.screen.cur.row, 0, prev_nrow - 1);
-  this.screen.cur.col = clamp (this.screen.cur.col, 0, prev_ncol - 1);
+  this.screen.cur.row = clamp (this.screen.cur.row, 0,  this.prev_nrow - 1);
+  this.screen.cur.col = clamp (this.screen.cur.col, 0,  this.prev_ncol - 1);
 }
 
 /* ------------------------------------------------------------------------- */
@@ -636,7 +638,7 @@ rxvt_term.prototype.scr_change_screen =function( scrn){
   want_refresh = 1;
   view_start = 0;
 
-  selection_check (2);        /* check for boundary cross */
+   this.selection_check (2);        /* check for boundary cross */
 
   var i=  this.current_screen;  this.current_screen  = scrn; scrn = i;  //int i = current_screen; current_screen = scrn; scrn = i;   ###  js_style_variables 
 
@@ -654,7 +656,7 @@ rxvt_term.prototype.scr_change_screen =function( scrn){
   else
 #endif
     if (option (Opt_secondaryScroll))
-      this.scr_scroll_text (0, prev_nrow - 1, prev_nrow);
+      this.scr_scroll_text (0,  this.prev_nrow - 1,  this.prev_nrow);
 }
 
 //clear WrapNext indicator, solidifying position on next line
@@ -719,10 +721,10 @@ rxvt_term.prototype.scr_scroll_text =function( row1,  row2,  count){
   if (count > 0
       && row1 == 0
       && ( this.current_screen == PRIMARY || option (Opt_secondaryScroll))){
-      top_row = ma_x (top_row - count, -saveLines);
+       this.top_row = ma_x ( this.top_row - count, -saveLines);
 
       //scroll everything up 'count' lines
-      term_start = (term_start + count) % total_rows;
+       this.term_start = ( this.term_start + count) %  this.total_rows;
 
       //sever bottommost line
       {
@@ -758,16 +760,16 @@ rxvt_term.prototype.scr_scroll_text =function( row1,  row2,  count){
         }
 
       //move and/or clear selection, if any
-      if (selection.op &&  this.current_screen == selection.screen){
-          selection.beg.row  -= count;
-          selection.end.row  -= count;
-          selection.mark.row -= count;
+      if ( this.selection.op &&  this.current_screen ==  this.selection.screen){
+           this.selection.beg.row  -= count;
+           this.selection.end.row  -= count;
+           this.selection.mark.row -= count;
 
-          if (selection.beg.row < top_row
-              || selection.end.row < top_row
-              || selection.mark.row < top_row){
+          if ( this.selection.beg.row <  this.top_row
+              ||  this.selection.end.row <  this.top_row
+              ||  this.selection.mark.row <  this.top_row){
               CLEAR_ALL_SELECTION ();
-              selection.op = SELECTION_CLEAR;
+               this.selection.op = SELECTION_CLEAR;
             }
         }
 
@@ -778,26 +780,26 @@ rxvt_term.prototype.scr_scroll_text =function( row1,  row2,  count){
         this.scr_page (UP, count);
 
       if (SHOULD_INVOKE (HOOK_SCROLL_BACK))
-        HOOK_INVOKE ((this, HOOK_SCROLL_BACK, DT_INT, count, DT_INT, top_row, DT_END));
+        HOOK_INVOKE ((this, HOOK_SCROLL_BACK, DT_INT, count, DT_INT,  this.top_row, DT_END));
     }
   else{
-      if (selection.op &&  this.current_screen == selection.screen){
-          if ((selection.beg.row < row1 && selection.end.row > row1)
-              || (selection.beg.row < row2 && selection.end.row > row2)
-              || (selection.beg.row - count < row1 && selection.beg.row >= row1)
-              || (selection.beg.row - count > row2 && selection.beg.row <= row2)
-              || (selection.end.row - count < row1 && selection.end.row >= row1)
-              || (selection.end.row - count > row2 && selection.end.row <= row2)){
+      if ( this.selection.op &&  this.current_screen ==  this.selection.screen){
+          if (( this.selection.beg.row < row1 &&  this.selection.end.row > row1)
+              || ( this.selection.beg.row < row2 &&  this.selection.end.row > row2)
+              || ( this.selection.beg.row - count < row1 &&  this.selection.beg.row >= row1)
+              || ( this.selection.beg.row - count > row2 &&  this.selection.beg.row <= row2)
+              || ( this.selection.end.row - count < row1 &&  this.selection.end.row >= row1)
+              || ( this.selection.end.row - count > row2 &&  this.selection.end.row <= row2)){
               CLEAR_ALL_SELECTION ();
-              selection.op = SELECTION_CLEAR;
+               this.selection.op = SELECTION_CLEAR;
             }
-          else if (selection.end.row >= row1 && selection.end.row <= row2){
-              /* move selected region too */
-              selection.beg.row  -= count;
-              selection.end.row  -= count;
-              selection.mark.row -= count;
+          else if ( this.selection.end.row >= row1 &&  this.selection.end.row <= row2){
+              /* move  this.selected region too */
+               this.selection.beg.row  -= count;
+               this.selection.end.row  -= count;
+               this.selection.mark.row -= count;
 
-              selection_check (0);
+               this.selection_check (0);
             }
         }
 
@@ -808,7 +810,7 @@ rxvt_term.prototype.scr_scroll_text =function( row1,  row2,  count){
 
       count = mi_n(count, rows);  //min_it  (count, rows);
 
-      var temp_buf = row_buf, temp_buf_i=[total_rows];  //line_t *temp_buf = row_buf + total_rows;   ###  possible_pointer 
+      var temp_buf =  this.row_buf, temp_buf_i=this.row_buf_i+ this.total_rows;  //line_t *temp_buf =  this.row_buf + total_rows;   ###  possible_pointer 
 
        for (var row = 0; row < rows; row++){  //for (int row = 0; row < rows; row++){   ### js_style_variables  c_keyword 
           temp_buf [temp_buf_i+row] = ROW(row1 + (row + count + rows) % rows);
@@ -844,7 +846,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
 
   if (minlines > 0){
       minlines += this.screen.cur.row - this.screen.bscroll;
-      minlines = mi_n (minlines, this.screen.cur.row - top_row);  //min_it (minlines, screen.cur.row - top_row);
+      minlines = mi_n (minlines, this.screen.cur.row -  this.top_row);  //min_it (minlines, screen.cur.row - top_row);
 
       if (minlines > 0
           && this.screen.tscroll == 0
@@ -859,11 +861,11 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
 #ifdef DEBUG_STRICT
   assert (this.screen.cur.col <  this.ncol);
   assert (this.screen.cur.row < this.nrow
-          && this.screen.cur.row >= top_row);
+          && this.screen.cur.row >=  this.top_row);
 #endif
     var row= this.screen.cur.row;   //int row = screen.cur.row;   ###  js_style_variables 
 
-  checksel = selection.op &&  this.current_screen == selection.screen ? 1 : 0;
+  checksel =  this.selection.op &&  this.current_screen ==  this.selection.screen ? 1 : 0;
 
     var  line = ROW(row);  //line_t *line = &ROW(row);   ###  possible_pointer  FIXME memory reference
 
@@ -898,8 +900,8 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
 
       if (expect_false (
             checksel            /* see if we're writing within selection */
-            && !ROWCOL_IS_BEFORE (this.screen.cur, selection.beg)
-            && ROWCOL_IS_BEFORE (this.screen.cur, selection.end)
+            && !ROWCOL_IS_BEFORE (this.screen.cur,  this.selection.beg)
+            && ROWCOL_IS_BEFORE (this.screen.cur,  this.selection.end)
          )){
           checksel = 0;
           /*
@@ -1069,7 +1071,7 @@ rxvt_term.prototype.scr_tab =function( count, ht){
       //FIXME ht &= l.t[i] == ' ';  //FIXME
 
       for (; ++i <  this.ncol; )
-        if (tabs[i]){
+        if ( this.tabs[i]){
             x = i;
 
             if (!--count)
@@ -1103,7 +1105,7 @@ rxvt_term.prototype.scr_tab =function( count, ht){
   else /* if (count < 0) */
     {
       for (; --i >= 0; )
-        if (tabs[i]){
+        if ( this.tabs[i]){
             x = i;
             if (!++count)
               break;
@@ -1223,7 +1225,7 @@ rxvt_term.prototype.scr_index =function(direction){
     this.screen.cur.row += dirn;
 
   clamp_it (this.screen.cur.row, 0, this.nrow - 1);
-  selection_check (0);
+   this.selection_check (0);
 }
 
 /* ------------------------------------------------------------------------- */
@@ -1241,7 +1243,7 @@ rxvt_term.prototype.scr_erase_line =function( mode){
   want_refresh = 1;
   ZERO_SCROLLBACK ();
 
-  selection_check (1);
+   this.selection_check (1);
 
  line = ROW(this.screen.cur.row);  //line_t &line = ROW(screen.cur.row);
 
@@ -1260,8 +1262,8 @@ rxvt_term.prototype.scr_erase_line =function( mode){
         num =  this.ncol - col;
         line.l = mi_n(line.l, col);  //min_it (line.l, col);
 
-        if (ROWCOL_IN_ROW_AT_OR_AFTER (selection.beg, this.screen.cur)
-            || ROWCOL_IN_ROW_AT_OR_AFTER (selection.end, this.screen.cur))
+        if (ROWCOL_IN_ROW_AT_OR_AFTER ( this.selection.beg, this.screen.cur)
+            || ROWCOL_IN_ROW_AT_OR_AFTER ( this.selection.end, this.screen.cur))
           CLEAR_SELECTION ();
         break;
 
@@ -1269,8 +1271,8 @@ rxvt_term.prototype.scr_erase_line =function( mode){
         col = 0;
         num = this.screen.cur.col + 1;
 
-        if (ROWCOL_IN_ROW_AT_OR_BEFORE (selection.beg, this.screen.cur)
-            || ROWCOL_IN_ROW_AT_OR_BEFORE (selection.end, this.screen.cur))
+        if (ROWCOL_IN_ROW_AT_OR_BEFORE ( this.selection.beg, this.screen.cur)
+            || ROWCOL_IN_ROW_AT_OR_BEFORE ( this.selection.end, this.screen.cur))
           CLEAR_SELECTION ();
         break;
 
@@ -1278,8 +1280,8 @@ rxvt_term.prototype.scr_erase_line =function( mode){
         col = 0;
         num =  this.ncol;
         line.l = 0;
-        if (selection.beg.row <= this.screen.cur.row
-            && selection.end.row >= this.screen.cur.row)
+        if ( this.selection.beg.row <= this.screen.cur.row
+            &&  this.selection.end.row >= this.screen.cur.row)
           CLEAR_SELECTION ();
         break;
       default:
@@ -1308,19 +1310,19 @@ rxvt_term.prototype.scr_erase_screen =function( mode){
 
   switch (mode){
       case 0:                     /* erase to end of screen */
-        selection_check (1);
+         this.selection_check (1);
         this.scr_erase_line (0);
         row = this.screen.cur.row + 1;    /* possible OOB */
         num = this.nrow - row;
         break;
       case 1:                     /* erase to beginning of screen */
-        selection_check (3);
+         this.selection_check (3);
         this.scr_erase_line (1);
         row = 0;
         num = this.screen.cur.row;
         break;
       case 2:                     /* erase whole screen */
-        selection_check (3);
+         this.selection_check (3);
         row = 0;
         num = this.nrow;
         break;
@@ -1328,10 +1330,10 @@ rxvt_term.prototype.scr_erase_screen =function( mode){
         return;
     }
 
-  if (selection.op &&  this.current_screen == selection.screen
-      && ((selection.beg.row >= row && selection.beg.row <= row + num)
-          || (selection.end.row >= row
-              && selection.end.row <= row + num)))
+  if ( this.selection.op &&  this.current_screen ==  this.selection.screen
+      && (( this.selection.beg.row >= row &&  this.selection.beg.row <= row + num)
+          || ( this.selection.end.row >= row
+              &&  this.selection.end.row <= row + num)))
     CLEAR_SELECTION ();
 
   if (row >= this.nrow) /* Out Of Bounds */
@@ -1371,7 +1373,7 @@ rxvt_term.prototype.scr_erase_screen =function( mode){
       this.scr_blank_screen_mem (ROW(row), rstyle);
 
       if (!view_start)
-        this.scr_blank_line (drawn_buf [row], 0,  this.ncol, ren);
+        this.scr_blank_line ( this.drawn_buf [row], 0,  this.ncol, ren);
     }
 }
 
@@ -1381,7 +1383,7 @@ rxvt_term.prototype.scr_erase_savelines =function(){
   want_refresh = 1;
   ZERO_SCROLLBACK ();
 
-  top_row = 0;
+   this.top_row = 0;
 }
 #endif
 
@@ -1398,7 +1400,7 @@ rxvt_term.prototype.scr_E =function(){
   ZERO_SCROLLBACK ();
 
   num_scr_allow = 0;
-  selection_check (3);
+   this.selection_check (3);
 
   fs = SET_FONT (rstyle, FONTSET (rstyle).find_font ('E'));
  for (var row = this.nrow; row--; ){  //for (int row = nrow; row--; ){   ###  c_keyword 
@@ -1425,7 +1427,7 @@ rxvt_term.prototype.scr_insdel_lines =function( count,  insdel){
 
   ZERO_SCROLLBACK ();
 
-  selection_check (1);
+   this.selection_check (1);
 
   if (this.screen.cur.row > this.screen.bscroll)
     return;
@@ -1457,7 +1459,7 @@ rxvt_term.prototype.scr_insdel_chars =function( count,  insdel){
 
   this.scr_do_wrap ();
 
-  selection_check (1);
+   this.selection_check (1);
   count = mi_n(count,  this.ncol - this.screen.cur.col);  //min_it (count,  this.ncol - screen.cur.col);
 
   var row= this.screen.cur.row;   //int row = screen.cur.row;   ###  js_style_variables 
@@ -1483,16 +1485,16 @@ rxvt_term.prototype.scr_insdel_chars =function( count,  insdel){
             line.r[col] = line.r[col - count];
           }
 
-        if (selection.op &&  this.current_screen == selection.screen
-            && ROWCOL_IN_ROW_AT_OR_AFTER (selection.beg, this.screen.cur)){
-            if (selection.end.row != this.screen.cur.row
-                || (selection.end.col + count >=  this.ncol))
+        if ( this.selection.op &&  this.current_screen ==  this.selection.screen
+            && ROWCOL_IN_ROW_AT_OR_AFTER ( this.selection.beg, this.screen.cur)){
+            if ( this.selection.end.row != this.screen.cur.row
+                || ( this.selection.end.col + count >=  this.ncol))
               CLEAR_SELECTION ();
             else{
-                /* shift selection */
-                selection.beg.col  += count;
-                selection.mark.col += count; /* XXX: yes? */
-                selection.end.col  += count;
+                /* shift  this.selection */
+                 this.selection.beg.col  += count;
+                 this.selection.mark.col += count; /* XXX: yes? */
+                 this.selection.end.col  += count;
               }
           }
 
@@ -1501,7 +1503,7 @@ rxvt_term.prototype.scr_insdel_chars =function( count,  insdel){
 
       case ERASE:
         this.screen.cur.col += count;     /* don't worry if >  this.ncol */
-        selection_check (1);
+         this.selection_check (1);
         this.screen.cur.col -= count;
 
         //nuke wide char after the end 
@@ -1525,17 +1527,17 @@ rxvt_term.prototype.scr_insdel_chars =function( count,  insdel){
 
          this.scr_blank_line ( line,  this.ncol - count, count, rstyle);  //scr_blank_line (*line,  this.ncol - count, count, rstyle);   ###  possible_pointer 
 
-        if (selection.op &&  this.current_screen == selection.screen
-            && ROWCOL_IN_ROW_AT_OR_AFTER (selection.beg, this.screen.cur)){
-            if (selection.end.row != this.screen.cur.row
-                || (this.screen.cur.col >= selection.beg.col - count)
-                || selection.end.col >=  this.ncol)
+        if ( this.selection.op &&  this.current_screen ==  this.selection.screen
+            && ROWCOL_IN_ROW_AT_OR_AFTER ( this.selection.beg, this.screen.cur)){
+            if ( this.selection.end.row != this.screen.cur.row
+                || (this.screen.cur.col >=  this.selection.beg.col - count)
+                ||  this.selection.end.col >=  this.ncol)
               CLEAR_SELECTION ();
             else{
-                /* shift selection */
-                selection.beg.col  -= count;
-                selection.mark.col -= count; /* XXX: yes? */
-                selection.end.col  -= count;
+                /* shift  this.selection */
+                 this.selection.beg.col  -= count;
+                 this.selection.mark.col -= count; /* XXX: yes? */
+                 this.selection.end.col  -= count;
               }
           }
 
@@ -1635,9 +1637,9 @@ rxvt_term.prototype.scr_insert_mode =function( mode){
 //CMNT: js_style_functions c_keyword ^|       void rxvt_term::scr_set_tab (int mode) 
 rxvt_term.prototype.scr_set_tab =function( mode){ 
   if (mode < 0)
-    memset (tabs, 0,  this.ncol);
+    memset ( this.tabs, 0,  this.ncol);
   else if (this.screen.cur.col <  this.ncol)
-      tabs [this.screen.cur.col] = !!mode; //FIXME what does !! mean?
+       this.tabs [this.screen.cur.col] = !!mode; //FIXME what does !! mean?
 }
 
 /* ------------------------------------------------------------------------- */
@@ -1759,9 +1761,9 @@ rxvt_term.prototype.scr_refresh_rend =function( mask,  value){
         //rend_t *drp = drawn_buf[i].r;   ###   c_keyword possible_pointer 
 
        for ( var col = 0; col <  this.ncol; col++, drp++)  //for (int col = 0; col <  this.ncol; col++, drp++)   ### js_style_variables  c_keyword 
-           if (( drawn_buf[i].r & mask) == value){  //if ((*drp & mask) == value){   ###  possible_pointer 
+           if ((  this.drawn_buf[i].r & mask) == value){  //if ((*drp & mask) == value){   ###  possible_pointer 
             found = true;
-            drawn_buf[i].r  = ~value;  // *drp = ~value;   ###  possible_pointer 
+             this.drawn_buf[i].r  = ~value;  // *drp = ~value;   ###  possible_pointer 
           }
     }
 
@@ -1810,7 +1812,7 @@ rxvt_term.prototype.scr_expose =function( x,  y,  ewidth,  eheight, refresh){
     }
 //TODO: this line somehow causes segfault if scr_expose() is called just after resize
   for (i = rc[PART_BEG].row; i <= rc[PART_END].row; i++)
-    fill_text(drawn_buf[i].t, rc[PART_BEG].col, 0, rc[PART_END].col - rc[PART_BEG].col + 1); //FIXME this could be wrong
+    fill_text( this.drawn_buf[i].t, rc[PART_BEG].col, 0, rc[PART_END].col - rc[PART_BEG].col + 1); //FIXME this could be wrong
 
   num_scr_allow = 0;
 
@@ -1835,7 +1837,7 @@ rxvt_term.prototype.scr_touch =function(refresh){
  */
 //fixed: js_style_functions c_keyword ^|       void rxvt_term::scr_move_to (int y, int len){ 
 rxvt_term.prototype.scr_move_to =function( y,  len){ 
-    this.scr_changeview ((top_row - this.nrow) * (len - y) / len + (this.nrow - 1)); 
+    this.scr_changeview (( this.top_row - this.nrow) * (len - y) / len + (this.nrow - 1)); 
 }
 
 /* ------------------------------------------------------------------------- */
@@ -1854,7 +1856,7 @@ rxvt_term.prototype.scr_page =function( direction,  nlines){
 
 //FIXED: js_style_functions c_keyword ^|       bool rxvt_term::scr_changeview (int new_view_start){ 
 rxvt_term.prototype.scr_changeview =function( new_view_start){ 
-  clamp_it (new_view_start, top_row, 0);
+  clamp_it (new_view_start,  this.top_row, 0);
 
   if (new_view_start == view_start)
     return false;
@@ -1943,12 +1945,12 @@ rxvt_term.prototype.scr_remap_chars =function(l){
 
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_remap_chars (){ 
 rxvt_term.prototype.scr_remap_chars =function(){ 
-   for ( var  i = total_rows; i--; )  //for (int i = total_rows; i--; )   ### js_style_variables  c_keyword 
-    this.scr_remap_chars (row_buf [i]); 
+   for ( var  i =  this.total_rows; i--; )  //for (int i =  this.total_rows; i--; )   ### js_style_variables  c_keyword 
+    this.scr_remap_chars ( this.row_buf [i]); 
 
    for ( i = this.nrow; i--; ){  //for (int i = nrow; i--; ){   ### js_style_variables  c_keyword 
-    this.scr_remap_chars (drawn_buf [i]); 
-      this.scr_remap_chars ( this.swap_buf [i]); 
+    this.scr_remap_chars ( this.drawn_buf[i]); 
+      this.scr_remap_chars ( this.swap_buf[i]); 
     }
 }
 
@@ -2039,18 +2041,18 @@ rxvt_term.prototype.scr_xor_span =function( beg_row,  beg_col,  end_row,  end_co
 /* ------------------------------------------------------------------------- */
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_reverse_selection () 
 rxvt_term.prototype.scr_reverse_selection =function(){ 
-  if (selection.op
-      &&  this.current_screen == selection.screen
-      && selection.end.row >= view_start){
+  if ( this.selection.op
+      &&  this.current_screen ==  this.selection.screen
+      &&  this.selection.end.row >= view_start){
 #if !ENABLE_MINIMAL
-      if (selection.rect)
-        this.scr_xor_rect (selection.beg.row, selection.beg.col,
-                      selection.end.row, selection.end.col,
+      if ( this.selection.rect)
+        this.scr_xor_rect ( this.selection.beg.row,  this.selection.beg.col,
+                       this.selection.end.row,  this.selection.end.col,
                       RS_RVid, RS_RVid | RS_Uline);
       else
 #endif
-        this.scr_xor_span (selection.beg.row, selection.beg.col,
-                      selection.end.row, selection.end.col,
+        this.scr_xor_span ( this.selection.beg.row,  this.selection.beg.col,
+                       this.selection.end.row,  this.selection.end.col,
                       RS_RVid);
     }
 }
@@ -2072,17 +2074,17 @@ rxvt_term.prototype.scr_dump =function( fd){
 //POSTPONED: c_keyword ^|         char            r1[] = "\n"; 
               r1[] = "\n";
 
-  for (row = saveLines + top_row;
+  for (row = saveLines +  this.top_row;
        row < saveLines + this.nrow - 1; row++){
-      width = row_buf[row].l >= 0 ? row_buf[row].l
+      width =  this.row_buf[row].l >= 0 ?  this.row_buf[row].l
               :  this.ncol;
       for (towrite = width; towrite; towrite -= wrote){
-          wrote = write (fd, & (row_buf[row].t[width - towrite]),
+          wrote = write (fd, & ( this.row_buf[row].t[width - towrite]),
                         towrite);
           if (wrote < 0)
               return;         //XXX: death, no report 
         }
-      if (row_buf[row].l >= 0)
+      if ( this.row_buf[row].l >= 0)
         if (write (fd, r1, 1) <= 0)
             return; //XXX: death, no report 
     }
