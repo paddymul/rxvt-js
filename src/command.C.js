@@ -117,14 +117,14 @@ I bound them to "C-H u" "C-H o" and "C-H p"
 
 
 //REMOVED: more code related to ISO_14755
-//REMOVED: ^|#if ISO_14755
-//REMOVED: c_keyword ^|  void     rxvt_term::iso14755_54 (int x, int y) 
-//REMOVED: c_keyword ^|       void rxvt_term::iso14755_51 (unicode_t ch, rend_t r, int x, int y) 
-//REMOVED: ^| rxvt_term::commit_iso14755 ()        function ()
-//REMOVED: c_keyword ^|       static int  hex_keyval (XKeyEvent &ev)
-//REMOVED: c_keyword ^|       static inline KeySym  translate_keypad (KeySym keysym, bool kp)
-//REMOVED: c_keyword ^|       static inline int  //  map_function_key (KeySym keysym)
-//REMOVED: js_style_functions c_keyword ^|       void rxvt_term::key_press (XKeyEvent &ev) 
+//REMOVED:#if ISO_14755
+//REMOVED:void  rxvt_term::iso14755_54 (int x, int y) 
+//REMOVED:void rxvt_term::iso14755_51 (unicode_t ch, rend_t r, int x, int y) 
+//REMOVED:rxvt_term::commit_iso14755 ()        function ()
+//REMOVED:static int  hex_keyval (XKeyEvent &ev)
+//REMOVED:static inline KeySym  translate_keypad (KeySym keysym, bool kp)
+//REMOVED:static inline int  //  map_function_key (KeySym keysym)
+//REMOVED:void rxvt_term::key_press (XKeyEvent &ev) 
 
 //unsigned int rxvt_term::cmd_write (const char *str, unsigned int count)
      rxvt_term.prototype.cmd_write = function( str,  count){
@@ -157,36 +157,36 @@ I bound them to "C-H u" "C-H o" and "C-H p"
 }
 
 
-//FIXED: js_style_functions c_keyword ^|       void rxvt_term::flush ()
+//void rxvt_term::flush ()
 rxvt_term.prototype.flush =function(){ 
   flush_ev.stop ();
 
 #ifdef HAVE_BG_PIXMAP
   if (bgPixmap.check_clearChanged ()){
-//      this.scr_clear (true); This needs to be researched further!
+    //this.scr_clear (true); This needs to be researched further!
       this.scr_touch (false);
     }
 #endif
 
   if (want_refresh){ //FIXME note will probable have to wait for the macro expansion to be able to figure out whats going on
       if (SHOULD_INVOKE (HOOK_LINE_UPDATE)){
-          var row= view_start;   //int row = view_start;  ### js_style_variables 
-          var end_row= row + nrow;   //int end_row = row + nrow;  ### js_style_variables 
+          var row= view_start;   //int row = view_start; 
+          var end_row= row + nrow;   //int end_row = row + nrow;
           while (row > top_row && ROW (row - 1).is_longer ())
             --row;
           do
             {
-                var start_row= row;   //int start_row = row;  ### js_style_variables 
-                var  l ;  //line_t *l;  ### possible_pointer 
+                var start_row= row;   //int start_row = row; 
+                var  l ;  //line_t *l;  
               do
 
                 {
-                  l = ROW (row++);  //                  l = &ROW (row++);
+                  l = ROW (row++);  //l = &ROW (row++);
                   if (!(l.f & LINE_FILTERED)){
                       // line not filtered, mark it as filtered
                       l.f |= LINE_FILTERED;
                       while (l.is_longer ()){
-                        l = ROW (row++);  //                          l = &ROW (row++);
+                        l = ROW (row++);  //l = &ROW (row++);
                           l.f |= LINE_FILTERED;
                         }
                       // and filter it
@@ -202,15 +202,15 @@ rxvt_term.prototype.flush =function(){
       this.scr_refresh ();
       scrollBar.show (1);
 #ifdef USE_XIM
-      //      IMSendSpot ();
+      //IMSendSpot ();
 #endif
     }
 
   display.flush (); //FIXME what is display again
 }
-                            /*
-                            // checks wether a refresh is requested and starts the refresh timer 
-//REWRITE: js_style_functions c_keyword ^|       void rxvt_term::refresh_check () 
+/*
+// checks wether a refresh is requested and starts the refresh timer 
+//REWRITE:void rxvt_term::refresh_check () 
 rxvt_term.prototype.refresh_check =function(){ 
   if (want_refresh && !flush_ev.is_active ())
     flush_ev.start (1. / 60.); // refresh at max. 60 Hz normally
@@ -218,7 +218,7 @@ rxvt_term.prototype.refresh_check =function(){
   display->flush ();
 }
 
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::flush_cb (ev::timer &w, int revents) 
+//void rxvt_term::flush_cb (ev::timer &w, int revents) 
 rxvt_term.prototype.flush_cb =function(ev::timer &w,  revents) 
   make_current ();
 
@@ -227,7 +227,7 @@ rxvt_term.prototype.flush_cb =function(ev::timer &w,  revents)
 }
 
 #ifdef CURSOR_BLINK
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::cursor_blink_cb (ev::timer &w, int revents) 
+//CMNTvoid rxvt_term::cursor_blink_cb (ev::timer &w, int revents) 
 rxvt_term.prototype.cursor_blink_cb =function(ev::timer &w,  revents) 
   hidden_cursor = !hidden_cursor;
   want_refresh = 1;
@@ -236,7 +236,7 @@ rxvt_term.prototype.cursor_blink_cb =function(ev::timer &w,  revents)
 #endif
 
 #ifdef TEXT_BLINK
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::text_blink_cb (ev::timer &w, int revents) 
+//void rxvt_term::text_blink_cb (ev::timer &w, int revents) 
 rxvt_term.prototype.text_blink_cb =function(ev::timer &w,  revents) 
   if (this.scr_refresh_rend (RS_Blink, RS_Blink)){
       hidden_text = !hidden_text;
@@ -248,15 +248,14 @@ rxvt_term.prototype.text_blink_cb =function(ev::timer &w,  revents)
 }
 #endif
                             */
-//REMOVED: js_style_functions c_keyword ^|       void rxvt_term::cont_scroll_cb (ev::timer &w, int revents) 
-//REMOVED: js_style_functions c_keyword ^|       void rxvt_term::sel_scroll_cb (ev::timer &w, int revents) 
-//REMOVED: js_style_functions c_keyword ^|       void rxvt_term::slip_wheel_cb (ev::timer &w, int revents) 
-//THE following removal was related to the LINUX_YIELD_HACK
-//REMOVED: c_keyword ^|       static struct event_handler 
+//REMOVED:void rxvt_term::cont_scroll_cb (ev::timer &w, int revents) 
+//REMOVED:void rxvt_term::sel_scroll_cb (ev::timer &w, int revents) 
+//REMOVED:void rxvt_term::slip_wheel_cb (ev::timer &w, int revents) 
+//REMOVED:static struct event_handler // related to the LINUX_YIELD_HACK
 
 
 // this is probably where I should enter text into the system
-//REWRITE: js_style_functions ^|       bool rxvt_term::pty_fill () 
+//REWRITE:bool rxvt_term::pty_fill () 
 rxvt_term.prototype.pty_fill =function(){ 
     /*
   ssize_t n = cmdbuf_endp - cmdbuf_ptr;
@@ -292,7 +291,7 @@ rxvt_term.prototype.pty_fill =function(){
   return false;
 }
 
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::pty_cb (ev::io &w, int revents) 
+//void rxvt_term::pty_cb (ev::io &w, int revents) 
 rxvt_term.prototype.pty_cb =function(w,  revents){ 
     /*
   make_current ();
@@ -323,7 +322,7 @@ rxvt_term.prototype.pty_cb =function(w,  revents){
 }
 
 #ifdef POINTER_BLANK
-//FIXED: js_style_functions c_keyword ^|       void rxvt_term::pointer_blank () 
+//void rxvt_term::pointer_blank () 
 rxvt_term.prototype.pointer_blank =function(){ 
     /*    if (!this.option (Opt_pointerBlank))   //FIXME
     return;
@@ -334,7 +333,7 @@ rxvt_term.prototype.pointer_blank =function(){
   this.hidden_pointer = 1; 
 }
 
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::pointer_cb (ev::timer &w, int revents) 
+//void rxvt_term::pointer_cb (ev::timer &w, int revents) 
 rxvt_term.prototype.pointer_cb =function(w,  revents){ 
   this.make_current ();
 
@@ -342,16 +341,16 @@ rxvt_term.prototype.pointer_cb =function(w,  revents){
 }
 #endif
 
-//REMOVED: js_style_functions c_keyword ^|       void rxvt_term::mouse_report (XButtonEvent &ev) 
-//REMOVED: js_style_functions c_keyword ^|       void rxvt_term::x_cb (XEvent &ev) 
+//REMOVED:void rxvt_term::mouse_report (XButtonEvent &ev) 
+//REMOVED:void rxvt_term::x_cb (XEvent &ev) 
 
 #if ENABLE_FRILLS
-//FIXED: js_style_functions c_keyword ^|       void rxvt_term::set_urgency (bool enable) 
+//void rxvt_term::set_urgency (bool enable) 
 rxvt_term.prototype.set_urgency =function(enable){ 
          if (enable == this.urgency_hint) 
     return;
 
-//CMNT: c_keyword possible_pointer ^|         if (XWMHints *h = XGetWMHints (dpy, parent[0])){ 
+//if (XWMHints *h = XGetWMHints (dpy, parent[0])){ 
 /*  if (XWMHs  h  = XGetWMHs (dpy, parent[0])){
     h->flags = h->flags & ~XUrgencyHint | (enable ? XUrgencyHint : 0); 
     XSetWMHints (dpy, parent[0], h); 
@@ -361,9 +360,9 @@ rxvt_term.prototype.set_urgency =function(enable){
 }
 #endif
 
-//REMOVED: js_style_functions c_keyword ^|       void rxvt_term::focus_in () 
-//REMOVED: js_style_functions c_keyword ^|       void rxvt_term::focus_out () 
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::update_fade_color (unsigned int idx) 
+//REMOVED:void rxvt_term::focus_in () 
+//REMOVED:void rxvt_term::focus_out () 
+//void rxvt_term::update_fade_color (unsigned int idx) 
 rxvt_term.prototype.update_fade_color =function(idx){ 
 //FIXME
 #if OFF_FOCUS_FADING 
@@ -375,16 +374,16 @@ rxvt_term.prototype.update_fade_color =function(idx){
 #endif
 }
 
-//REMOVED: js_style_functions c_keyword ^|       void rxvt_term::rootwin_cb (XEvent &ev) 
-//REMOVED: js_style_functions c_keyword ^|       void rxvt_term::button_press (XButtonEvent &ev) 
-//REMOVED: js_style_functions c_keyword ^|       void rxvt_term::button_release (XButtonEvent &ev) 
+//REMOVED:void rxvt_term::rootwin_cb (XEvent &ev) 
+//REMOVED:void rxvt_term::button_press (XButtonEvent &ev) 
+//REMOVED:void rxvt_term::button_release (XButtonEvent &ev) 
 
 /*}}} */
 
-//FIXED: js_style_functions c_keyword ^|       void rxvt_term::cmd_parse () 
+//void rxvt_term::cmd_parse () 
 rxvt_term.prototype.cmd_parse =function(){ 
-    var ch= NOCHAR;  //wchar_t ch = NOCHAR;        ###  js_style_variables
-    var seq_begin;   // char *seq_begin; // remember start of esc-sequence here ### possible_pointer
+    var ch= NOCHAR;  //wchar_t ch = NOCHAR;
+    var seq_begin;   // char *seq_begin; // remember start of esc-sequence here 
 
     for (;;){ //outer_for_loop
         if (expect_false (ch == NOCHAR)){
@@ -477,11 +476,11 @@ rxvt_term.prototype.next_char =function(){
 rxvt_term.prototype.next_octet =function() NOTHROW {
     //FIXME ternary
   return this.cmdbuf_ptr < this.cmdbuf_endp
-  ?  this.cmdbuf[this.cmdbuf_ptr++]  //                ? (unsigned char)*cmdbuf_ptr++   ###  c_cast c_keyword possible_pointer 
+  ?  this.cmdbuf[this.cmdbuf_ptr++]  //                ? (unsigned char)*cmdbuf_ptr++ 
          : NOCHAR;
 }
 
-//CMNT: c_keyword ^|       static class out_of_input out_of_input; 
+//static class out_of_input out_of_input; 
 //they just created their own exception class with a null defintion
 // class out_of_input out_of_input;
 
@@ -490,9 +489,9 @@ rxvt_term.prototype.next_octet =function() NOTHROW {
  * Return the next input character after first passing any keyboard input 
  * to the command. 
  */
-//FIXED: js_style_functions c_keyword ^|       wchar_t rxvt_term::cmd_getc () THROW ((class out_of_input))
+//wchar_t rxvt_term::cmd_getc () THROW ((class out_of_input))
 rxvt_term.prototype.cmd_getc =function() THROW ((class out_of_input)){ 
-    var c= this.next_char ();   //wchar_t c = next_char ();  ### c_keyword js_style_variables 
+    var c= this.next_char ();   //wchar_t c = next_char (); 
 
   if (c == NOCHAR)
     throw out_of_input;
@@ -778,7 +777,7 @@ enum {
 #define get_byte_array_bit(array, bit)				\
     (!! ((array)[ (bit) / 8] & (128 >> ((bit) & 7))))
 
-//CMNT: c_keyword ^|       const unsigned char csi_defaults[] = 
+//const unsigned char csi_defaults[] = 
    csi_defaults = [    make_byte (1,1,1,1,1,1,1,1),	/* @, A, B, C, D, E, F, G, */
     make_byte (1,1,0,0,1,1,0,0),	/* H, I, J, K, L, M, N, O, */
     make_byte (1,0,1,1,1,1,1,0),	/* P, Q, R, S, T, U, V, W, */
@@ -790,12 +789,12 @@ enum {
                    ];
 /* *INDENT-ON* */ 
 
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::process_csi_seq ()
+//void rxvt_term::process_csi_seq ()
 rxvt_term.prototype.process_csi_seq =function(){ 
-  var ch, priv, i; //          unicode_t ch, priv, i;  ###  c_keyword inserted_var
-  var nargs, p; //          unsigned int nargs, p;  ###  c_keyword inserted_var
-  var n, ndef; //          int n, ndef;  ###  c_keyword inserted_var
-  var arg = new Array(ESC_ARGS); //          int arg[ESC_ARGS] = { };  ###  c_keyword inserted_var
+  var ch, priv, i; //          unicode_t ch, priv, i;  
+  var nargs, p; //          unsigned int nargs, p; 
+  var n, ndef; //          int n, ndef;  
+  var arg = new Array(ESC_ARGS); //int arg[ESC_ARGS] = { }; 
 
   nargs = 0;
 
@@ -867,8 +866,9 @@ rxvt_term.prototype.process_csi_seq =function(){
                 /* DECSTR: soft terminal reset, used by our terminfo since 9.06 */
                 this.scr_soft_reset ();
 
-                var pm_h= [ 7, 25 ] ;   //static const int pm_h[] = { 7, 25 };  ### js_style_variables js_style_arrays 
-                var pm_l= [ 1, 3, 4, 5, 6, 9, 66, 1000, 1001, 1049 ] ;   //static const int pm_l[] = { 1, 3, 4, 5, 6, 9, 66, 1000, 1001, 1049 };  ### js_style_variables js_style_arrays 
+                var pm_h= [ 7, 25 ] ;   //static const int pm_h[] = { 7, 25 };  
+                //static const int pm_l[] = { 1, 3, 4, 5, 6, 9, 66, 1000, 1001, 1049 };  
+                var pm_l= [ 1, 3, 4, 5, 6, 9, 66, 1000, 1001, 1049 ] ;   
 
                 this.process_terminal_mode ('h', 0, sizeof (pm_h) / sizeof (pm_h[0]), pm_h);
                 this.process_terminal_mode ('l', 0, sizeof (pm_l) / sizeof (pm_l[0]), pm_l);
@@ -1084,13 +1084,13 @@ rxvt_term.prototype.process_csi_seq =function(){
 
 #if !ENABLE_MINIMAL
 /* ARGSUSED */
-//FIXED: js_style_functions c_keyword possible_pointer ^|       void rxvt_term::process_window_ops (const int *args, unsigned int nargs)
+//void rxvt_term::process_window_ops (const int *args, unsigned int nargs)
 rxvt_term.prototype.process_window_ops =function( args,   nargs){ 
-  var x, y; //          int x, y;  ###  c_keyword inserted_var
+  var x, y; //int x, y;  
   XWindowAttributes wattr;
   Window wdummy;
 
-//CMNT: possible_pointer ^|         dLocal (Display *, dpy); 
+//dLocal (Display *, dpy); 
   dLocal (Display  ,  dpy);
 
   if (nargs == 0)
@@ -1110,7 +1110,7 @@ rxvt_term.prototype.process_window_ops =function( args,   nargs){
         XMoveWindow (dpy, parent[0], args[1], args[2]);
         break;
       case 4:			/* set size (pixels) */
-        set_widthheight (args[2] //set_widthheight ((unsigned int)args[2], (unsigned int)args[1]);        , ()args[1]);###  c_keyword c_cast
+        set_widthheight (args[2] //set_widthheight ((unsigned int)args[2], (unsigned int)args[1]);, ()args[1]);
         break;
       case 5:			/* raise window */
         XRaiseWindow (dpy, parent[0]);
@@ -1122,15 +1122,15 @@ rxvt_term.prototype.process_window_ops =function( args,   nargs){
         this.scr_touch (true);
         break;
   case 8:			/* set size (chars) */ 
-                         set_widthheight ( (args[2] *   fwidth), //set_widthheight ((unsigned int) (args[2] * fwidth),        ###  c_keyword  c_cast
-                            (args[1]    fheight)); //unsigned int) (args[1] * fheight));        ###  c_keyword 
+                         set_widthheight ( (args[2] *   fwidth), //set_widthheight ((unsigned int) (args[2] * fwidth),
+                            (args[1]    fheight)); //unsigned int) (args[1] * fheight));
         break;
 
       //case 9: NYI, TODO, restore maximized window or maximize window
       default:
         if (args[0] >= 24)	/* set height (chars) */ 
-          set_widthheight (width, //set_widthheight ((unsigned int)width,        ###  c_keyword c_cast
-                            (args[1]    fheight)); //unsigned int) (args[1] * fheight));        ###  c_keyword  c_cast
+          set_widthheight (width, //set_widthheight ((unsigned int)width,
+                            (args[1]    fheight)); //unsigned int) (args[1] * fheight));
         break;
 
       /*
@@ -1160,7 +1160,7 @@ rxvt_term.prototype.process_window_ops =function( args,   nargs){
                          /* these won't be needed, there will be nothign to report this back to
         case 20:			// report icon label 
         {
-          var s ; //                  char *s;  ###  c_keyword possible_pointer inserted_var
+          var s ; //                  char *s;
           XGetIconName (dpy, parent[0], &s);
           tt_printf ("\033]L%-.250s\234", this.option (Opt_insecure) && s ? s : "");	// 8bit ST 
           XFree (s);
@@ -1168,7 +1168,7 @@ rxvt_term.prototype.process_window_ops =function( args,   nargs){
         break;
         case 21:			//report window title 
         {
-          var s ; //                  char *s;  ###  c_keyword possible_pointer inserted_var
+          var s ; //                  char *s;  
           XFetchName (dpy, parent[0], &s);
           this.tt_printf ("\033]l%-.250s\234", this.option (Opt_insecure) && s ? s : "");	// 8bit ST 
           XFree (s);
@@ -1184,12 +1184,12 @@ rxvt_term.prototype.process_window_ops =function( args,   nargs){
  * get input up until STRING TERMINATOR (or BEL) 
  * ends_how is terminator used. returned input must be free()'d 
  */
-//CMNT: js_style_functions c_keyword ^| char *       rxvt_term::get_to_st (unicode_t &ends_how) 
+//char *rxvt_term::get_to_st (unicode_t &ends_how) 
 rxvt_term.prototype.get_to_st =function(ends_how){ 
-  var ch; //          unicode_t ch;  ###  c_keyword inserted_var
-  var seen_esc = false; //   bool seen_esc = false; c_keyword inserted_var
-  var n = 0; //          unsigned int n = 0;  ###  c_keyword inserted_var
-  var string_ = new Array(STRING_MAX); //          wchar_t string[STRING_MAX];  ###  c_keyword inserted_var js_style_array
+  var ch; //unicode_t ch; 
+  var seen_esc = false; //bool seen_esc = false;
+  var n = 0; //unsigned int n = 0;
+  var string_ = new Array(STRING_MAX); //wchar_t string[STRING_MAX];
 
   while ((ch = this.cmd_getc ()) != NOCHAR){
       if (seen_esc){
@@ -1229,10 +1229,10 @@ rxvt_term.prototype.get_to_st =function(ends_how){
 /*
  * process DEVICE CONTROL STRING `ESC P ... (ST|BEL)' or `0x90 ... (ST|BEL)' 
  */
-//CMNT: js_style_functions c_keyword ^|       void rxvt_term::process_dcs_seq () 
+//void rxvt_term::process_dcs_seq () 
 rxvt_term.prototype.process_dcs_seq =function(){ 
-  var s ; //          char *s;  ###  c_keyword possible_pointer inserted_var
-  var eh; //          unicode_t eh;  ###  c_keyword inserted_var
+  var s ; //char *s;  
+  var eh; //unicode_t eh;  
 
   /*
    * Not handled yet 
@@ -1249,17 +1249,17 @@ rxvt_term.prototype.process_dcs_seq =function(){
 /*
  * process OPERATING SYSTEM COMMAND sequence `ESC ] Ps ; Pt (ST|BEL)' 
  */
-//FIXED: js_style_functions c_keyword ^|       void rxvt_term::process_osc_seq () 
+//void rxvt_term::process_osc_seq () 
 rxvt_term.prototype.process_osc_seq =function(){ 
-  var ch, eh; //          unicode_t ch, eh;  ###  c_keyword inserted_var
-  var arg; //          int arg;  ###  c_keyword inserted_var
+  var ch, eh; //unicode_t ch, eh;
+  var arg; //int arg;
 
   ch = this.cmd_getc ();
   for (arg = 0; isdigit (ch); ch = this.cmd_getc ())
       arg = arg * 10 + (ch - '0'); 
 
   if (ch == ';'){
-    var s= this.get_to_st (eh);   //             char *s = get_to_st (eh);   ###  js_style_variables possible_pointer 
+    var s= this.get_to_st (eh);   //char *s = get_to_st (eh);   ###  js_style_variables possible_pointer 
 
       if (s){
           this.process_xterm_seq (arg, s, eh);
@@ -1561,9 +1561,9 @@ rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
  *      't' = toggle 
  * so no need for fancy checking 
  */
-//FIXED: js_style_functions c_keyword ^|       int rxvt_term::privcases (int mode, unsigned long bit)
+//int rxvt_term::privcases (int mode, unsigned long bit)
 rxvt_term.prototype.privcases =function(mode,   bit){ 
-  var state; //          int state;  ###  c_keyword inserted_var
+  var state; //int state;  
 
   if (mode == 's'){
       SavedModes |= (priv_modes & bit);
@@ -1799,11 +1799,11 @@ rxvt_term.prototype.process_terminal_mode =function(mode,  __unused__,   nargs, 
 /*}}} */
 
 /*{{{ process sgr sequences */
-//CMNT: js_style_functions c_keyword possible_pointer ^|       void rxvt_term::process_sgr_mode (unsigned int nargs, const int *arg) 
+//void rxvt_term::process_sgr_mode (unsigned int nargs, const int *arg) 
 rxvt_term.prototype.process_sgr_mode =function(nargs,    arg){ 
-  var i; //          unsigned int i;  ###  c_keyword inserted_var
-  var rendset; //          short rendset;  ###  c_keyword inserted_var
-  var rendstyle; //          int rendstyle;  ###  c_keyword inserted_var
+  var i; //unsigned int i; 
+  var rendset; //short rendset; 
+  var rendstyle; //int rendstyle;
 
   if (nargs == 0){
       this.scr_rendition (0, ~RS_None);
@@ -1884,11 +1884,11 @@ rxvt_term.prototype.process_sgr_mode =function(nargs,    arg){
           case 36:
           case 37:
           //FIXME
-          //          this.scr_color ( (minCOLOR +  //this.scr_color ((unsigned int) (minCOLOR + (arg[i] - 30)), Color_fg);        (arg[i] - 30)), Color_fg);###  c_keyword c_cast
+          //this.scr_color ( (minCOLOR +  //this.scr_color ((unsigned int) (minCOLOR + (arg[i] - 30)), Color_fg);(arg[i] - 30)), Color_fg);
             break;
           case 38: // set fg color, ISO 8613-6
             if (nargs > i + 2 && arg[i + 1] == 5){
-                //FIXME this.scr_color ( (minCOLOR +  //this.scr_color ((unsigned int) (minCOLOR + arg[i + 2]), Color_fg);        arg[i + 2]), Color_fg);###  c_keyword c_cast
+                //FIXME this.scr_color ( (minCOLOR +  //this.scr_color ((unsigned int) (minCOLOR + arg[i + 2]), Color_fg);arg[i + 2]), Color_fg);
                 i += 2;
               }
             break;
@@ -1904,11 +1904,11 @@ rxvt_term.prototype.process_sgr_mode =function(nargs,    arg){
           case 45:
           case 46:
           case 47:
-           this.scr_color ( (minCOLOR +  (arg[i] - 40)), Color_bg); //scr_color ((unsigned int) (minCOLOR + (arg[i] - 40)), Color_bg);       ###  c_keyword c_cast
+           this.scr_color ( (minCOLOR +  (arg[i] - 40)), Color_bg); //scr_color ((unsigned int) (minCOLOR + (arg[i] - 40)), Color_bg);
             break;
           case 48: // set bg color, ISO 8613-6
             if (nargs > i + 2 && arg[i + 1] == 5){
- //scr_color ((unsigned int) (minCOLOR + arg[i + 2]), Color_bg);       ###  c_keyword c_cast
+ //scr_color ((unsigned int) (minCOLOR + arg[i + 2]), Color_bg); 
                  this.scr_color ( (minCOLOR +  arg[i + 2]), Color_bg);
 
                 i += 2;
@@ -1929,7 +1929,7 @@ rxvt_term.prototype.process_sgr_mode =function(nargs,    arg){
           case 95:
           case 96:
           case 97:
-//scr_color ((unsigned int) (minBrightCOLOR + (arg[i] - 90)), Color_fg);       ###  c_keyword c_cast
+//scr_color ((unsigned int) (minBrightCOLOR + (arg[i] - 90)), Color_fg); 
           //                FIXME 
           this.scr_color ( (minBrightCOLOR   + (arg[i] - 90)), Color_fg);
             break;
@@ -1941,7 +1941,7 @@ rxvt_term.prototype.process_sgr_mode =function(nargs,    arg){
           case 105:
           case 106:
           case 107:
-//this.scr_color ((unsigned int) (minBrightCOLOR + (arg[i] - 100)), Color_bg);        LOR ###  c_keyword c_cast
+//this.scr_color ((unsigned int) (minBrightCOLOR + (arg[i] - 100)), Color_bg);    COLOR?
           this.scr_color ( (minBrightCOLOR + (arg[i] - 100)), Color_bg);
             break;
 #endif
@@ -1951,9 +1951,9 @@ rxvt_term.prototype.process_sgr_mode =function(nargs,    arg){
 /*}}} */
 
 /*{{{ (do not) process Rob Nation's own graphics mode sequences */
-//FIXED: js_style_functions c_keyword ^|       void rxvt_term::process_graphics () 
+//void rxvt_term::process_graphics () 
 rxvt_term.prototype.process_graphics =function(){ 
-                                       var ch, cmd = this.cmd_getc (); //          unicode_t ch, cmd = cmd_getc ();  ###  c_keyword inserted_var
+  var ch, cmd = this.cmd_getc (); //unicode_t ch, cmd = cmd_getc (); 
 
   if (cmd == 'Q'){
       /* query graphics */
@@ -1973,13 +1973,13 @@ rxvt_term.prototype.process_graphics =function(){
  * Send printf () formatted output to the command. 
  * Only use for small amounts of data. 
  */
-//CMNT: js_style_functions c_keyword possible_pointer ^|       void rxvt_term::tt_printf (const char *fmt,...) 
+//void rxvt_term::tt_printf (const char *fmt,...) 
 rxvt_term.prototype.tt_printf =function( fmt){ 
-    var arg_ptr; //  va_list arg_ptr;
-  var buf = new Array(256); //char buf[256];        ###  c_keyword js_style_array
+  var arg_ptr; //  va_list arg_ptr;
+  var buf = new Array(256); //char buf[256];
 
      va_start (arg_ptr, fmt);
-//CMNT: c_keyword possible_pointer ^|         vsnprintf ((char *)buf, 256, fmt, arg_ptr); 
+  //vsnprintf ((char *)buf, 256, fmt, arg_ptr); 
   vsnprintf ( buf, 256, fmt, arg_ptr);  //c_cast POINTER_MATH
   va_end (arg_ptr);
   this.tt_write (buf, strlen (buf));
@@ -1991,10 +1991,10 @@ rxvt_term.prototype.tt_printf =function( fmt){
 /* Write data to the pty as typed by the user, pasted with the mouse,
  * or generated by us in response to a query ESC sequence. 
  */
-//CMNT: c_keyword ^|       const unsigned int MAX_PTY_WRITE = 255; // minimum MAX_INPUT 
+//const unsigned int MAX_PTY_WRITE = 255; // minimum MAX_INPUT 
    MAX_PTY_WRITE = 255; // minimum MAX_INPUT
 
-//CMNT: js_style_functions c_keyword possible_pointer ^|       void rxvt_term::tt_write (const char *data, unsigned int len) 
+//void rxvt_term::tt_write (const char *data, unsigned int len) 
 rxvt_term.prototype.tt_write =function( data,   len){ 
   if (HOOK_INVOKE ((this, HOOK_TT_WRITE, DT_STR_LEN, data, len, DT_END)))
     return;
@@ -2003,18 +2003,18 @@ rxvt_term.prototype.tt_write =function( data,   len){
     return;
 
   if (v_buflen == 0){
-      //      ssize_t written = write (pty.pty, data, min (len, MAX_PTY_WRITE));
+      //ssize_t written = write (pty.pty, data, min (len, MAX_PTY_WRITE));
       var written = write (pty.pty, data, mi_n (len, MAX_PTY_WRITE)); 
 
-      if (written == len) //if ((unsigned int)written == len)        ###  c_keyword c_cast
+      if (written == len) //if ((unsigned int)written == len)
         return;
 
       data += written;
       len  -= written;
     }
 
-//CMNT: c_keyword possible_pointer ^|         v_buffer = (char *)realloc (v_buffer, v_buflen + len); 
-  v_buffer =  realloc (v_buffer, v_buflen + len); //###c_cast
+//v_buffer = (char *)realloc (v_buffer, v_buflen + len); 
+  v_buffer =  realloc (v_buffer, v_buflen + len); 
 
   memcpy (v_buffer + v_buflen, data, len);
   v_buflen += len;
@@ -2022,9 +2022,9 @@ rxvt_term.prototype.tt_write =function( data,   len){
   //  pty_ev.set (ev::READ | ev::WRITE);
 }
 
-//FIXED: js_style_functions c_keyword ^|       void rxvt_term::pty_write () 
+//void rxvt_term::pty_write () 
 rxvt_term.prototype.pty_write =function(){ 
-//CMNT: js_style_variables ^|         int written = write (pty->pty, v_buffer, min (v_buflen, MAX_PTY_WRITE)); 
+//int written = write (pty->pty, v_buffer, min (v_buflen, MAX_PTY_WRITE)); 
  var written= write (pty.pty, v_buffer, mi_n (v_buflen, MAX_PTY_WRITE)); 
 
   if (written > 0){
@@ -2034,7 +2034,7 @@ rxvt_term.prototype.pty_write =function(){
           free (v_buffer);
           v_buffer = 0;
 
-          //          pty_ev.set (ev::READ);
+          //pty_ev.set (ev::READ);
           return;
         }
 
