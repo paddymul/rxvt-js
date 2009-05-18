@@ -4,8 +4,10 @@
 
 
 var a = new rxvt_term();
+a.row_buf=false;
 a.scr_poweron();
 console.log(a);
-a.cmd_write("fo\no",4);
-//console.profileEnd();
+var wstring="foasdflkasdfkljhasdflkjhasdfkljhasdlfkjhasdflkjahsdflkjasdhflkajsdfh\no";
+  a.cmd_write(wstring, wstring.length);
+
 

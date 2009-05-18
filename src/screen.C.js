@@ -165,11 +165,13 @@ rxvt_term.prototype.scr_blank_line =function(l, col, width, efs){
   l.r=[];
   var et_i = col;  //text_t *et = l.t + col;   ###  possible_pointer FIXME where is l.t an array, what should  I use for an indice of et??
   var er_i = col;  //rend_t *er = l.r + col; 
-
+  //console.log("width");
+  //console.log(width);
   while (width--){
       l.t[et_i++] = ' ';  //   *et++ = ' '; 
       l.r[er_i++] = efs;  // *er++ = efs; 
     }
+  //console.log(l.t);
   return l;
 }
 
@@ -217,6 +219,7 @@ my_alloc = function(num, obj){
 }
 //void rxvt_term::scr_reset (){ 
 rxvt_term.prototype.scr_reset =function(){ 
+
   this.view_start = 0;
   this.num_scr = 0;
 
@@ -274,7 +277,7 @@ rxvt_term.prototype.scr_reset =function(){
       }
 
       //memset (charsets, 'B', sizeof (charsets)); 
-      this.charsets= this.memset (this.charsets, 'B', this.charsets.length);   
+      this.charsets= memset (this.charsets, 'B', 1);
       this.rstyle = DEFAULT_RSTYLE;
       this.screen.flags = Screen_DefaultFlags;
       this.screen.cur.row = this.screen.cur.col = 0;
@@ -291,7 +294,7 @@ rxvt_term.prototype.scr_reset =function(){
       this.current_screen = PRIMARY;
 #endif
 
-      this.selection.text = NULL;
+      this.selection.text = ""; //FIXME
       this.selection.len = 0;
       this.selection.op = SELECTION_CLEAR;
       this.selection.screen = PRIMARY;
@@ -307,7 +310,7 @@ rxvt_term.prototype.scr_reset =function(){
     */
 #if 0
       if (this.nrow < this.prev_nrow){
-        for ( var row = this.nrow; row < this.prev_nrow; row++){  //for (int row = nrow; row < prev_nrow; row++){   ###  c_keyword 
+        for ( var row = this.nrow; row < this.prev_nrow; row++){  //for (int row = nrow; row < prev_nrow; row++)
           delete (this.swap_buf [row]);  //lfree (swap_buf [row]);
           delete (this.drawn_buf[row]);  //lfree (drawn_buf[row]);
             }
@@ -321,22 +324,24 @@ rxvt_term.prototype.scr_reset =function(){
 
 
 
-      for ( row = mi_n (this.nrow,  this.prev_nrow); row--; ){  //for (int row = mi_n (this.nrow, prev_nrow); row--; ){   ###  c_keyword 
+      for ( row = mi_n (this.nrow,  this.prev_nrow); row--; ){  //for (int row = mi_n (this.nrow, prev_nrow); row--; )
         lresize ( this.drawn_buf[row]);  //lresize (drawn_buf[row]);
         lresize ( this.swap_buf [row]);  //lresize (swap_buf [row]);
         }
 
-      for ( row =  this.prev_nrow; row < this.nrow; row++){  //for (int row = prev_nrow; row < nrow; row++){   ###  c_keyword 
+      for ( row =  this.prev_nrow; row < this.nrow; row++){  //for (int row = prev_nrow; row < nrow; row++)
            this.swap_buf [row].clear (); this.scr_blank_screen_mem ( this.swap_buf [row], DEFAULT_RSTYLE);
            this.drawn_buf[row].clear (); this.scr_blank_screen_mem ( this.drawn_buf[row], DEFAULT_RSTYLE);
         }
-
-      var  old_buf =  this.row_buf, old_buf_i= this.row_buf_i;  //line_t *old_buf = row_buf;     ###  possible_pointer 
-       this.row_buf   = my_alloc ( this.total_rows + this.nrow, line_t),  this.row_buf_i=0;     //row_buf = (line_t *)rxvt_calloc ( this.total_rows + nrow, sizeof (line_t));   ###  possible_pointer 
-
-      var p= MOD ( this.term_start +  this.prev_nrow, prev_total_rows);  //previous row   //int p    = MOD (term_start + prev_nrow, prev_total_rows);  //previous row   ###  js_style_variables 
-      var pend= MOD ( this.term_start +  this.top_row  , prev_total_rows);   //int pend = MOD (term_start + top_row  , prev_total_rows);   ###  js_style_variables 
- var q=  this.total_rows; //rewrapped row   //int q    =  this.total_rows; //rewrapped row   ###  js_style_variables 
+      //debugger
+      var  old_buf =  this.row_buf, old_buf_i= this.row_buf_i;  //line_t *old_buf = row_buf;
+      //row_buf = (line_t *)rxvt_calloc ( this.total_rows + nrow, sizeof (line_t));
+       this.row_buf   = my_alloc ( this.total_rows + this.nrow, line_t),  this.row_buf_i=0; 
+      //previous row   //int p    = MOD (term_start + prev_nrow, prev_total_rows);  //previous row
+      var p= MOD ( this.term_start +  this.prev_nrow, prev_total_rows);  
+      //int pend = MOD (term_start + top_row  , prev_total_rows); 
+      var pend= MOD ( this.term_start +  this.top_row  , prev_total_rows);   
+      var q=  this.total_rows; //rewrapped row   //int q    =  this.total_rows;
 
       if ( this.top_row){
           //Re-wrap lines. This is rather ugly, possibly because I am too dumb
@@ -354,7 +359,6 @@ rxvt_term.prototype.scr_reset =function(){
 #endif
               var plines= 1;   //int plines = 1;   ###  js_style_variables 
               var indice = MOD (p, prev_total_rows);
-              debugger
               var llen= old_buf [MOD (p, prev_total_rows)].l;   //int llen = old_buf [MOD (p, prev_total_rows)].l;   ###  js_style_variables 
 
               while (p != pend && old_buf [MOD (p - 1, prev_total_rows)].is_longer ()){
@@ -407,7 +411,13 @@ rxvt_term.prototype.scr_reset =function(){
                       //int len = min (min (prev_ncol - pcol, ncol - qcol), llen - lofs); 
                       var len= mi_n (mi_n ( this.prev_ncol - pcol,  this.ncol - qcol), llen - lofs); 
                       //memcpy (qline->t + qcol, pline.t + pcol, len * sizeof (text_t));  
-                       this.row_buf[ this.row_buf_i + qrow].t = memcpy( this.row_buf[ this.row_buf_i + qrow].t,  this.row_buf[ this.row_buf_i + qrow].t_i +qcol, old_buf [prow].t,  old_buf [prow].t_i +pcol, len);  
+                       this.row_buf[ this.row_buf_i + qrow].t = 
+                         memcpy(
+                                this.row_buf[ this.row_buf_i + qrow].t,
+                                this.row_buf[ this.row_buf_i + qrow].t_i +qcol, 
+                                old_buf [prow].t,
+                                old_buf [prow].t_i +pcol,
+                                len);  
                       //memcpy (qline->r + qcol, pline.r + pcol, len * sizeof (rend_t));  
                        this.row_buf[ this.row_buf_i + qrow].r = memcpy( this.row_buf[ this.row_buf_i + qrow].r,  this.row_buf[ this.row_buf_i + qrow].r_i +qcol, old_buf [prow].r, old_buf [prow].r_i +pcol, len);  
 
@@ -574,10 +584,10 @@ rxvt_term.prototype.scr_cursor =function(mode){
     var s ;  //screen_t *s;   ### js_style_variables  possible_pointer 
 #if NSCREENS && !defined(NO_SECONDARY_SCREEN_CURSOR)
   if ( this.current_screen == SECONDARY)
-    s = swap;
+    s = this.swap;
   else
 #endif
-    s = screen;  //s = &screen;  ### pointer reference
+    s = this.screen;  //s = &screen;  ### pointer reference
 
   switch (mode){
       case SAVE:
@@ -585,7 +595,7 @@ rxvt_term.prototype.scr_cursor =function(mode){
         s.s_cur.col = this.screen.cur.col;
         s.s_rstyle = rstyle;
         s.s_charset = this.screen.charset; 
-        s.s_charset_char = charsets[this.screen.charset]; 
+        //FIXME s.s_charset_char = this.charsets[this.screen.charset]; 
         break;
 
       case RESTORE:
@@ -595,14 +605,14 @@ rxvt_term.prototype.scr_cursor =function(mode){
         this.screen.flags &= ~Screen_WrapNext;
         rstyle = s.s_rstyle;
         this.screen.charset = s.s_charset; 
-        charsets[this.screen.charset] = s.s_charset_char; 
+        //FIXME this.charsets[this.screen.charset] = s.s_charset_char; 
         set_font_style ();
         break;
     }
 
   /* boundary check in case screen size changed between SAVE and RESTORE */
-  min_it (s.cur.row, this.nrow - 1);
-  min_it (s.cur.col,  this.ncol - 1);
+  mi_n (s.cur.row, this.nrow - 1);
+  mi_n (s.cur.col,  this.ncol - 1);
 #ifdef DEBUG_STRICT
   assert (s.cur.row >= 0);
   assert (s.cur.col >= 0);
@@ -830,30 +840,32 @@ rxvt_term.prototype.scr_scroll_text =function( row1,  row2,  count){
 /*
  * Add text given in <str> of length <len> to screen struct 
  */
-//FIXED: js_style_functions c_keyword possible_pointer ^|       void rxvt_term::scr_add_lines (const wchar_t *str, int len, int minlines) 
+//FIXED:void rxvt_term::scr_add_lines (const wchar_t *str, int len, int minlines) 
 rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){ 
     var str_i = 0;
   if (len <= 0)               /* sanity */
     return;
 
-  var checksel;  //unsigned char checksel;   ### js_style_variables  c_keyword 
-  var c;  //unicode_t c;   ### js_style_variables  c_keyword 
-  var ncol= this.ncol;   //int ncol = this->ncol;   ### js_style_variables   FIXME does "this" mean something different in c++?
-  var strend = str, strend_i = len;  //const wchar_t *strend = str + len;   ###  c_keyword possible_pointer 
+  var checksel;  //unsigned char checksel;   
+  var c;  //unicode_t c; 
+  var ncol= this.ncol;   //int ncol = this->ncol;
+  var strend = str, strend_i = len;  //const wchar_t *strend = str + len; 
 
   want_refresh = 1;
   ZERO_SCROLLBACK ();
 
   if (minlines > 0){
       minlines += this.screen.cur.row - this.screen.bscroll;
-      minlines = mi_n (minlines, this.screen.cur.row -  this.top_row);  //min_it (minlines, screen.cur.row - top_row);
+      //min_it (minlines, screen.cur.row - top_row);
+      minlines = mi_n (minlines, this.screen.cur.row -  this.top_row);
 
       if (minlines > 0
           && this.screen.tscroll == 0
           && this.screen.bscroll == this.nrow - 1){
           /* _atleast_ this many lines need to be scrolled */
           str_i = 0;
-          //FIXME not sure what this supposed to be, look at the original scr_scroll_text (screen.tscroll, screen.bscroll minlines);
+          //FIXME not sure what this supposed to be, look at the original 
+          //scr_scroll_text (screen.tscroll, screen.bscroll minlines);
           this.screen.cur.row -= minlines;
         }
     }
@@ -863,18 +875,19 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
   assert (this.screen.cur.row < this.nrow
           && this.screen.cur.row >=  this.top_row);
 #endif
-    var row= this.screen.cur.row;   //int row = screen.cur.row;   ###  js_style_variables 
+    var row= this.screen.cur.row;   //int row = screen.cur.row;
 
   checksel =  this.selection.op &&  this.current_screen ==  this.selection.screen ? 1 : 0;
 
-    var  line = ROW(row);  //line_t *line = &ROW(row);   ###  possible_pointer  FIXME memory reference
+    var  line = ROW(row);  //line_t *line = &ROW(row); FIXME memory reference
 
-  while (str_i < strend_i){  //while (str < strend){    ### 
-      c =  str[str_i++]; //convert to rxvt-unicodes representation  //c = (unicode_t)*str++; //convert to rxvt-unicodes representation   ###  possible_pointer remove_casts 
+  while (str_i < strend_i){  //while (str < strend)
+    //c = (unicode_t)*str++; 
+      c =  str[str_i++]; //convert to rxvt-unicodes representation 
 
       if (expect_false (c < 0x20))
         if (c == C0_LF){
-          line.l= ma_x(line.l,this.screen.cur.col); //FIXED max_it (line->l, screen.cur.col);
+          line.l= ma_x(line.l,this.screen.cur.col);
 
             this.screen.flags &= ~Screen_WrapNext;
 
@@ -887,9 +900,9 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
             continue;
           }
         else if (c == C0_CR){
-          line.l= ma_x(line.l,this.screen.cur.col); //FIXED max_it (line->l, screen.cur.col);            max_it (line->l, screen.cur.col);  //max_it (line->l, screen.cur.col);    ### 
+          line.l= ma_x(line.l,this.screen.cur.col);
 
-            this.screen.flags &= ~Screen_WrapNext;  //screen.flags &= ~Screen_WrapNext;    ### 
+            this.screen.flags &= ~Screen_WrapNext; 
             this.screen.cur.col = 0;
             continue;
           }
@@ -1194,7 +1207,7 @@ rxvt_term.this.scr_forwardindex =function(){
       if (this.screen.flags & Screen_Relative){
           /* relative origin mode */
           this.screen.cur.row = row + this.screen.tscroll;
-          min_it (this.screen.cur.row, this.screen.bscroll);
+          mi_n (this.screen.cur.row, this.screen.bscroll);
         }
       else
         this.screen.cur.row = row;
@@ -1923,12 +1936,20 @@ rxvt_term.prototype.scr_printscreen =function( fullhist){
  * drawn_text/drawn_rend contain the screen information before the update. 
  * screen.text/screen.rend contain what the screen will change to. 
  */
-//REWRITE: js_style_functions c_keyword ^|       void rxvt_term::scr_refresh (){ 
+//REWRITE: void rxvt_term::scr_refresh (){ 
 rxvt_term.prototype.scr_refresh =function(){ 
+  var out_string ="";
     for(var row = 0; row < this.nrow; row++){
-        ROW(this.view_start + row).t;
+         b=ROW(this.view_start + row).t;
+         
+         for (var col =0; col < this.ncol; col++){
+           out_string += b[col];
+           //console.log(b[col]);
+         }
+         out_string+="\n";
     }
-    document.getElementById("term").innerHtml = "";
+
+  document.getElementById("term").innerHtml = out_string;
 }
 
 //FIXME overloaded_function

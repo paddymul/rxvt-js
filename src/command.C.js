@@ -450,7 +450,7 @@ rxvt_term.prototype.cmd_parse =function(){
                 this.scr_refresh ();
                 want_refresh = 1;
             }
-        }
+        } //IS_CONTROL
         else {
             try {
                 this.process_nonprinting (chr(ch));}
@@ -464,38 +464,16 @@ rxvt_term.prototype.cmd_parse =function(){
 }//cmd_parse
 
 // read the next character 
-//FIXED: js_style_functions c_keyword ^|       wchar_t rxvt_term::next_char () 
+//wchar_t rxvt_term::next_char () 
 rxvt_term.prototype.next_char =function(){ 
   while (this.cmdbuf_ptr < this.cmdbuf_endp){
-      // assume 7-bit to be ascii ALWAYS
-
-      if (expect_true ( this.cmdbuf_ptr <= 0x7f &&  this.cmdbuf_ptr != 0x1b)) //FIXME what the fuck why do we care about the memory address of a pointer?
-          return this.cmdbuf[this.cmdbuf_ptr++];  //return *cmdbuf_ptr++;  ### possible_pointer  FIXME pointer_math
-
-      var wc; //wchar_t wc;        ###  c_keyword
-      //      size_t len = mbrtowc (&wc, cmdbuf_ptr, cmdbuf_endp - cmdbuf_ptr, mbstate);  //FIXME wtf
-
-      if (len == (size_t)-2){
-          this.cmdbuf_ptr = this.cmdbuf_endp;
-          break;
-        }
-
-      if (len == (size_t)-1){
-          mbrtowc (0, 0, 0, mbstate); // reset now undefined conversion state
-//CMNT: c_cast c_keyword possible_pointer ^|                 return (unsigned char)*cmdbuf_ptr++; // the _occasional_ latin1 character is allowed to slip through 
-          return  this.cmdbuf[this.cmdbuf_ptr++]; // the _occasional_ latin1 character is allowed to slip through POINTER_MATH
-        }
-
-      // assume wchar == unicode 
-      this.cmdbuf_ptr += len; //POINTER_MATH
-      //      return wc & UN ICODE_MASK;
+    return this.cmdbuf[this.cmdbuf_ptr++]; 
     }
-
     return chr(NOCHAR);
 }
 
 // read the next octet
-//FIXED: js_style_functions ^| uint32_t rxvt_term::next_octet () NOTHROW 
+//uint32_t rxvt_term::next_octet () NOTHROW 
 rxvt_term.prototype.next_octet =function() NOTHROW {
     //FIXME ternary
   return this.cmdbuf_ptr < this.cmdbuf_endp
@@ -524,11 +502,9 @@ rxvt_term.prototype.cmd_getc =function() THROW ((class out_of_input)){
 
 //  uint32_t rxvt_term::cmd_get8 () THROW ((class out_of_input)){
     rxvt_term.prototype.cmd_get8 = function () {
-  var c = this.next_octet (); //uint32_t c = next_octet ();        ###  c_keyword
-
+  var c = this.next_octet (); //uint32_t c = next_octet ();
   if (c == NOCHAR)
     throw out_of_input;
-
   return c;
 }
 
@@ -544,7 +520,7 @@ rxvt_term.prototype.cmd_getc =function() THROW ((class out_of_input)){
 /* *INDENT-ON* */ 
 
 /*{{{ process non-printing single characters */ 
-//FIXED: js_style_functions c_keyword ^|       void rxvt_term::process_nonprinting (unicode_t ch)
+//void rxvt_term::process_nonprinting (unicode_t ch)
 rxvt_term.prototype.process_nonprinting =function(ch){ 
   switch (ch){
       case C0_ESC:
@@ -599,9 +575,9 @@ rxvt_term.prototype.process_nonprinting =function(ch){
 
 /*{{{ process VT52 escape sequences */
 
-//FIXED: c_keyword ^| void       rxvt_term::process_escape_vt52 (unicode_t ch){ 
+//rxvt_term::process_escape_vt52 (unicode_t ch)
 rxvt_term.prototype.process_escape_vt52 = function (ch){
-  var row, col; //          int row, col;  ###  c_keyword inserted_var
+  var row, col; //int row, col;
 
   switch (ch){
       case 'A':		/* cursor up */
@@ -657,9 +633,9 @@ rxvt_term.prototype.process_escape_vt52 = function (ch){
 
 
 /*{{{ process escape sequences */
-//FIXED: js_style_functions c_keyword ^|       void rxvt_term::process_escape_seq () 
+//void rxvt_term::process_escape_seq () 
 rxvt_term.prototype.process_escape_seq =function(){ 
-  var ch= this.cmd_getc();  //unicode_t ch = cmd_getc ();        ###  js_style_variables
+  var ch= this.cmd_getc();  //unicode_t ch = cmd_getc ();
 
   if (priv_modes & PrivMode_vt52){
       this.process_escape_vt52 (ch);
@@ -715,7 +691,7 @@ rxvt_term.prototype.process_escape_seq =function(){
         /* 8.3.87: NEXT LINE */
       case C1_NEL:		/* ESC E */
         {
-            var nlcr= [ C0_LF, C0_CR ] ;   //wchar_t nlcr[] = { C0_LF, C0_CR };  ### js_style_variables js_style_arrays 
+            var nlcr= [ C0_LF, C0_CR ] ;   //wchar_t nlcr[] = { C0_LF, C0_CR };
           this.scr_add_lines (nlcr, sizeof (nlcr) / sizeof (nlcr [0]), 1);
         }
         break;

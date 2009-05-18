@@ -186,6 +186,8 @@ NOCHAR = 0xffff,
 
   Opt_buffered = 0;
 Opt_count = 34;
+SAVE=0, RESTORE=1;
+SELECTION_CLEAR = 0;
 /* from rxvtutil.h */
 
 // in range including end
@@ -1109,10 +1111,11 @@ row_col_t.prototype = {row:0, col:0};
 */
 
 screen_t = function() {
-  this.s_cur= row_col_t();        //  row_col_t       s_          saved cursor position
+  this.s_cur= new row_col_t();        //row_col_t  saved cursor position
+  this.cur= new row_col_t();          //row_col_t  cursor position on the screen            
 }
   screen_t.prototype ={
-  cur: new row_col_t(),                   //     row_col_t  cursor position on the screen            
+
   tscroll: "",               //  int                         top of settable scroll region
   bscroll: "",               //  int                         bottom of settable scroll region
   charset: "",               //  unsigned int                character set number [0..3]
