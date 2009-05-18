@@ -849,12 +849,14 @@ Color_none = -2,
   };
 
 */
-line_t = function() {};
+line_t = function() {
+  this.t= "";  //FIXED   text_t *t; // terminal the text
+  this.r= ""; //FIXED   rend_t *r; // rendition, uses RS_ flags
+  this.l= ""; //FIXED   tlen_t_ l; // length of each text line
+  this.f= ""; //FIXED  uint32_t f; // flags
+
+};
 line_t.prototype = {
- t: "" , //FIXED   text_t *t; // terminal the text
- r: "" , //FIXED   rend_t *r; // rendition, uses RS_ flags
- l: "" , //FIXED   tlen_t_ l; // length of each text line
- f: "" , //FIXED  uint32_t f; // flags
     
  is_longer : function(set){  //FIXME overloaded function, check js translation
     if(set){
@@ -1106,14 +1108,16 @@ row_col_t.prototype = {row:0, col:0};
   };
 */
 
-screen_t = function() {}
+screen_t = function() {
+  this.s_cur= row_col_t();        //  row_col_t       s_          saved cursor position
+}
   screen_t.prototype ={
   cur: new row_col_t(),                   //     row_col_t  cursor position on the screen            
   tscroll: "",               //  int                         top of settable scroll region
   bscroll: "",               //  int                         bottom of settable scroll region
   charset: "",               //  unsigned int                character set number [0..3]
   flags: "",                 //  unsigned int                see below
-  s_cur: row_col_t(),        //  row_col_t       s_          saved cursor position
+
   charset: "",               //  unsigned int    s_          saved character set number [0..3]
   s_charset_char : "",       //  char
   rstyle: ""                 //  rend_t          s_          saved rendition style
@@ -1188,7 +1192,11 @@ selection_t.prototype = {
 rxvt_vars = function() {}
   rxvt_vars.prototype={
   };
-function rxvt_term() {}  //FIXME
+function rxvt_term() {
+  this.screen = new screen_t();
+  this.swap = new screen_t();
+
+}  //FIXME
 rxvt_term.prototype = {
 
   //termwin_t variables
@@ -1229,8 +1237,6 @@ rxvt_term.prototype = {
   drawn_buf : [], drawn_buf_i:0, //  line_t         *     // text on screen
   swap_buf : [] , swap_buf_i:0 , //  line_t         * ;     // lines for swap buffer
   tabs: [], tabs_i:0,            //    char           *   /* per location: 1 == tab-stop*/
-  screen: new screen_t(),                    //    screen_t        
-  swap: new screen_t(),                      //    screen_t        
   selection : new selection_t(),                //    selection_t
   pix_colors_focused: new Array(TOTAL_COLORS), //    rxvt_color
 #ifdef OFF_FOCUS_FADING

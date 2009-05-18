@@ -386,39 +386,28 @@ rxvt_term.prototype.cmd_parse =function(){
     var ch= NOCHAR;  //wchar_t ch = NOCHAR;        ###  js_style_variables
     var seq_begin;   // char *seq_begin; // remember start of esc-sequence here ### possible_pointer
 
-    for (;;){
+    for (;;){ //outer_for_loop
         if (expect_false (ch == NOCHAR)){
             seq_begin = this.cmdbuf_ptr; 
             ch = ord(this.next_char()); 
-
             if (ch == NOCHAR)
-                break;
-        }
+                break;}
 
         if (expect_true (!IS_CONTROL (ch) || ch == C0_LF || ch == C0_CR || ch == C0_HT)){
             if (expect_false (!this.seen_input)){
-                this.seen_input = 1;
-                // many badly-written programs (e.g. jed) contain a race condition:
-                // they first read the screensize and then install a SIGWINCH handler.
-                // some window managers resize the window early, and these programs
-                // then sometimes get the size wrong.
-                // unfortunately other programs are even more buggy and dislike
-                // being sent SIGWINCH, so only do it when we were in fact being
-                // resized.
-                //if (this.seen_resize && cmd_pid)
-                //  kill (-cmd_pid, SIGWINCH);
-            }
+                this.seen_input = 1;}
 
             /* Read a text string from the input buffer */
-            var buf = new Array(UBUFSIZ);  //wchar_t buf[UBUFSIZ];  ### c_keyword  js_style_array
+            var buf = new Array(UBUFSIZ);  //wchar_t buf[UBUFSIZ];  
             var refreshnow = false;
-            var nlines= 0;  //int nlines = 0;        ###  js_style_variables
-            var str = buf, str_i = 0; //                  wchar_t *str = buf;  ###  c_keyword possible_pointer inserted_var should_work
-            var eol = str.length + mi_n (this.ncol, UBUFSIZ); //                  wchar_t *eol = str + min (ncol, UBUFSIZ);  ###  c_keyword possible_pointer inserted_var
-            for (;;){
+            var nlines= 0; 
+            var str = buf, str_i = 0; //wchar_t *str = buf;
+            var eol = str.length + mi_n (this.ncol, UBUFSIZ); //wchar_t *eol = str + min (ncol, UBUFSIZ);
+            for (;;){//inner_for_loop
                 if (expect_false (ch == NOCHAR || (IS_CONTROL (ch) && ch != C0_LF && ch != C0_CR && ch != C0_HT))) {
                     break;}
-                str[str_i++]=chr(ch)  //str++ = ch;  ### possible_pointer  FIXME pre/post increment
+
+                str[str_i++]=chr(ch)  //str++ = ch; 
                 if (expect_false (ch == C0_LF || str.length >= eol)){
                     if (ch == C0_LF){
                         nlines++;}
@@ -428,60 +417,51 @@ rxvt_term.prototype.cmd_parse =function(){
                         if (!this.option (Opt_skipScroll) ){
                             refreshnow = true;
                             ch = NOCHAR;
-                            break;}}
+                            break;}/*skipScroll*/ }//jumpScroll
                     // scr_add_lines only works for nlines <= nrow - 1.
                     if (nlines >= nrow - 1){
                         if (!(SHOULD_INVOKE (HOOK_ADD_LINES)
                               && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str - buf, DT_END)))) {
-                            //CMNT   scr_add_lines (buf, str - buf, nlines);  //FIXME pointermath
-                            this.scr_add_lines (buf, str.length - buf.length, nlines);  //FIXME pointermath
-                        }
+                            //FIXME pointermath  scr_add_lines (buf, str - buf, nlines);  
+                            this.scr_add_lines (buf, str.length - buf.length, nlines);}
                         nlines = 0;
                         str = buf;
-                        eol = str.length + mi_n (this.ncol, UBUFSIZ);  // FIXME should_work
-                    }
+                        eol = str.length + mi_n (this.ncol, UBUFSIZ);}  // FIXME should_work
 
                     if (str.length >= eol){   // FIXME should_work
                         if (eol >= buf.length + UBUFSIZ){  // FIXME should_work
                             ch = NOCHAR;
-                            break;
-                        }
+                            break;}
                         else
-                            eol = mi_n (eol + ncol, buf.length + UBUFSIZ);  // FIXME should_work
-                    }
-                }
+                            eol = mi_n (eol + ncol, buf.length + UBUFSIZ);}//str.length
+                }//expect_false
                 seq_begin = this.cmdbuf_ptr;
                 ch = ord(this.next_char()); 
-            }
+            }//for(;;) inner_for_loop
 
             if (!(SHOULD_INVOKE (HOOK_ADD_LINES)    && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str.length - buf.length, DT_END)))){
-                //FIXED   scr_add_lines (buf, str - buf, nlines);  //FIXME pointermath
-                this.scr_add_lines (buf, str.length - buf.length, nlines);  //FIXME pointermath
-            }          /*
-                        * If there have been a lot of new lines, then update the screen 
-                        * What the heck we'll cheat and only refresh less than every page-full. 
-                        * if skipScroll is enabled. 
-                        */
-                if (refreshnow){
-                    this.scr_refresh ();
-                    want_refresh = 1;
-                }
-        }
-        else{
-            try    {
-                this.process_nonprinting (chr(ch)); 
+                //FIXED pointermath  scr_add_lines (buf, str - buf, nlines);
+                this.scr_add_lines (buf, str.length - buf.length, nlines);  
+            }   
+            /* If there have been a lot of new lines, then update the screen 
+             * What the heck we'll cheat and only refresh less than every page-full. 
+             * if skipScroll is enabled.                   */
+            if (refreshnow){
+                this.scr_refresh ();
+                want_refresh = 1;
             }
-
+        }
+        else {
+            try {
+                this.process_nonprinting (chr(ch));}
             catch ( out_of_input){  //FIXME exception
                 // we ran out of input, retry later
                 this.cmdbuf_ptr = seq_begin;
-                break;
-            }
-
+                break;}
             ch = NOCHAR;
-        }
-    }
-}
+        }//else
+    }//for(;;) outer_for_loop
+}//cmd_parse
 
 // read the next character 
 //FIXED: js_style_functions c_keyword ^|       wchar_t rxvt_term::next_char () 
