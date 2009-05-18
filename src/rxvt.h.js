@@ -217,6 +217,8 @@ Opt_count = 34;
 #define UNUSED   rxvt_attribute ((unused))
 #define CONST    rxvt_attribute ((const))
 
+
+
 // increases code size unless -fno-enforce-eh-specs
 #if __GNUC__
 #define NOTHROW
@@ -251,6 +253,9 @@ Opt_count = 34;
 # define strcmp(a,b)   (strcmp)(a,b)
 # define strlen(a)     (strlen)(a)
 # define strcpy(a,b)   (strcpy)(a,b)
+//template<typename T, typename U, typename V> static inline void clamp_it (T &v, U a, V b) { v = v < (T)a ? a : v >(T)b ? b : v; }
+# define clamp_it(v,a,b)  (v)=(v) < (a) ? (a) : (v) > (b) ? (b) : (v)
+
 //# define memset(a,c,l) (memset)(a,c,l)
 //# define memcpy(a,b,l) (memcpy)(a,b,l)
 #endif
@@ -1100,7 +1105,7 @@ row_col_t.prototype = {row:0, col:0};
 
 screen_t = function() {}
   screen_t.prototype ={
-  cur: row_col_t(),                   //     row_col_t  cursor position on the screen            
+  cur: new row_col_t(),                   //     row_col_t  cursor position on the screen            
   tscroll: "",               //  int                         top of settable scroll region
   bscroll: "",               //  int                         bottom of settable scroll region
   charset: "",               //  unsigned int                character set number [0..3]
@@ -1206,8 +1211,8 @@ rxvt_term.prototype = {
   drawn_buf : [], drawn_buf_i:0, //  line_t         *     // text on screen
   swap_buf : [] , swap_buf_i:0 , //  line_t         * ;     // lines for swap buffer
   tabs: [], tabs_i:0,            //    char           *   /* per location: 1 == tab-stop*/
-  screen: screen_t(),                    //    screen_t        
-  swap: screen_t(),                      //    screen_t        
+  screen: new screen_t(),                    //    screen_t        
+  swap: new screen_t(),                      //    screen_t        
   selection : "",                //    selection_t
   pix_colors_focused: new Array(TOTAL_COLORS), //    rxvt_color
 #ifdef OFF_FOCUS_FADING
