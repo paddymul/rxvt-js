@@ -262,6 +262,71 @@ function free(arg) {};
 //# define memset(a,c,l) (memset)(a,c,l)
 //# define memcpy(a,b,l) (memcpy)(a,b,l)
 #endif
+
+//SCREEN.H.JS MACROS
+#define fill_text(RECIEVE,START, VALUE, LEN)    \
+  var n_start=START, n_len = LEN;\
+  while(n_len--)\
+    recieve[n_start++]=VALUE;\
+/* ------------------------------------------------------------------------- */
+#define PROP_SIZE               256*1024 
+#define PASTE_SIZE		32768
+#define TABSIZE                 8       /* default tab size */
+
+/* ------------------------------------------------------------------------- *
+ *             GENERAL SCREEN AND SELECTION UPDATE ROUTINES                  * 
+ * ------------------------------------------------------------------------- */ 
+#define ZERO_SCROLLBACK()                                              \
+    if (this.option (Opt_scrollTtyOutput))                                  \
+        view_start = 0
+#define CLEAR_SELECTION()                                              \
+     this.selection.beg.row =  this.selection.beg.col                              \
+        =  this.selection.end.row =  this.selection.end.col = 0
+#define CLEAR_ALL_SELECTION()                                          \
+    this.selection.beg.row =  this.selection.beg.col                              \
+        =  this.selection.mark.row =  this.selection.mark.col                      \
+        =  this.selection.end.row =  this.selection.end.col = 0
+
+#define ROW_AND_COL_IS_AFTER(A, B, C, D)                               \
+    (((A) > (C)) || (((A) == (C)) && ((B) > (D))))
+#define ROW_AND_COL_IS_BEFORE(A, B, C, D)                              \
+    (((A) < (C)) || (((A) == (C)) && ((B) < (D))))
+#define ROW_AND_COL_IN_ROW_AFTER(A, B, C, D)                           \
+    (((A) == (C)) && ((B) > (D)))
+#define ROW_AND_COL_IN_ROW_AT_OR_AFTER(A, B, C, D)                     \
+    (((A) == (C)) && ((B) >= (D)))
+#define ROW_AND_COL_IN_ROW_BEFORE(A, B, C, D)                          \
+    (((A) == (C)) && ((B) < (D)))
+#define ROW_AND_COL_IN_ROW_AT_OR_BEFORE(A, B, C, D)                    \
+    (((A) == (C)) && ((B) <= (D)))
+
+/* these must be row_col_t */
+#define ROWCOL_IS_AFTER(X, Y)                                          \
+    ROW_AND_COL_IS_AFTER ((X).row, (X).col, (Y).row, (Y).col)
+#define ROWCOL_IS_BEFORE(X, Y)                                         \
+    ROW_AND_COL_IS_BEFORE ((X).row, (X).col, (Y).row, (Y).col)
+#define ROWCOL_IN_ROW_AFTER(X, Y)                                      \
+    ROW_AND_COL_IN_ROW_AFTER ((X).row, (X).col, (Y).row, (Y).col)
+#define ROWCOL_IN_ROW_BEFORE(X, Y)                                     \
+    ROW_AND_COL_IN_ROW_BEFORE ((X).row, (X).col, (Y).row, (Y).col)
+#define ROWCOL_IN_ROW_AT_OR_AFTER(X, Y)                                \
+    ROW_AND_COL_IN_ROW_AT_OR_AFTER ((X).row, (X).col, (Y).row, (Y).col)
+#define ROWCOL_IN_ROW_AT_OR_BEFORE(X, Y)                               \
+    ROW_AND_COL_IN_ROW_AT_OR_BEFORE ((X).row, (X).col, (Y).row, (Y).col)
+
+/*
+ * CLEAR_CHARS: clear <num> chars starting from pixel position <x,y> 
+uneeded, only is used used in scr_refresh
+#define CLEAR_CHARS(x, y, num)                                         \
+    if ( this.mapped)                                                        \
+        XClearArea (dpy, vt, x, y,                                     \
+          (unsigned int)Width2Pixel (num),                   \ 
+          (unsigned int)Height2Pixel (1), False) 
+
+ */
+
+
+
 memset = function(destination, destination_i, source,  _length){
   for(var i =0; i < _length; i++){
     destination[destination_i + i]=source;
