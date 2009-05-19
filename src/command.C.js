@@ -388,17 +388,17 @@ rxvt_term.prototype.update_fade_color =function(idx){
 
 //void rxvt_term::cmd_parse () 
 rxvt_term.prototype.cmd_parse =function(){ 
-    var ch= NOCHAR;  //wchar_t ch = NOCHAR;
+    var och= NOCHAR;  //wchar_t ch = NOCHAR;
     var seq_begin;   // char *seq_begin; // remember start of esc-sequence here 
 
     for (;;){ //outer_for_loop
-        if (expect_false (ch == NOCHAR)){
+        if (expect_false (och == NOCHAR)){
             seq_begin = this.cmdbuf_ptr; 
-            ch = ord(this.next_char()); 
-            if (ch == NOCHAR)
+            och = ord(this.next_char()); 
+            if (och == NOCHAR)
                 break;}
 
-        if (expect_true (!IS_CONTROL (ch) || ch == C0_LF || ch == C0_CR || ch == C0_HT)){
+        if (expect_true (!IS_CONTROL (och) || och == C0_LF || och == C0_CR || och == C0_HT)){
             if (expect_false (!this.seen_input)){
                 this.seen_input = 1;}
 
@@ -409,14 +409,13 @@ rxvt_term.prototype.cmd_parse =function(){
             var str = buf, str_i = 0; //wchar_t *str = buf;
             var eol = str.length + mi_n (this.ncol, UBUFSIZ); //wchar_t *eol = str + min (ncol, UBUFSIZ);
             for (;;){//inner_for_loop
-
               //console.log(ch,ord(ch),chr(ch));
-              if (expect_false (ch == NOCHAR || (IS_CONTROL (ch) && ch != C0_LF && ch != C0_CR && ch != C0_HT))) { //IS_CONTROL
+              if (expect_false (och == NOCHAR || (IS_CONTROL (och) && och != C0_LF && och != C0_CR && och != C0_HT))) { //IS_CONTROL
                     break;}
 
-                str[str_i++]=chr(ch)  //str++ = ch; 
-                if (expect_false (ch == C0_LF || str.length >= eol)){
-                    if (ch == C0_LF){
+                str[str_i++]=chr(och)  //str++ = ch; 
+                if (expect_false (och == C0_LF || str.length >= eol)){
+                    if (och == C0_LF){
 
                         nlines++;}
                     this.refresh_count++;
@@ -424,7 +423,7 @@ rxvt_term.prototype.cmd_parse =function(){
                         this.refresh_count = 0;
                         if (!this.option (Opt_skipScroll) ){
                             refreshnow = true;
-                            ch = NOCHAR;
+                            och = NOCHAR;
                             break;}/*skipScroll*/ }//jumpScroll
                     // scr_add_lines only works for nlines <= nrow - 1.
                     if (nlines >= nrow - 1){
@@ -438,13 +437,13 @@ rxvt_term.prototype.cmd_parse =function(){
 
                     if (str.length >= eol){   // FIXME should_work
                         if (eol >= buf.length + UBUFSIZ){  // FIXME should_work
-                            ch = NOCHAR;
+                            och = NOCHAR;
                             break;}
                         else
                             eol = mi_n (eol + this.ncol, buf.length + UBUFSIZ);}//str.length
                 }//expect_false
                 seq_begin = this.cmdbuf_ptr;
-                ch = ord(this.next_char()); 
+                och = ord(this.next_char()); 
             }//for(;;) inner_for_loop
 
             if (!(SHOULD_INVOKE (HOOK_ADD_LINES)    && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str.length - buf.length, DT_END)))){
@@ -461,14 +460,14 @@ rxvt_term.prototype.cmd_parse =function(){
         } //IS_CONTROL
         else {
           //            try {
-
-          this.process_nonprinting (ch);
+            //debugger
+          this.process_nonprinting (och);
        
             /*catch ( out_of_input){  //FIXME exception
                 // we ran out of input, retry later
                 this.cmdbuf_ptr = seq_begin;
                 break;} */
-            ch = NOCHAR;
+            och = NOCHAR;
         }//else
     }//for(;;) outer_for_loop
 }//cmd_parse
@@ -485,7 +484,7 @@ rxvt_term.prototype.next_char =function(){
 // read the next octet
 //uint32_t rxvt_term::next_octet () NOTHROW 
 rxvt_term.prototype.next_octet =function() NOTHROW {
-
+    console.log("next octect");
   return this.cmdbuf_ptr < this.cmdbuf_endp
   ?  this.cmdbuf[this.cmdbuf_ptr++]  //? (unsigned char)*cmdbuf_ptr++ 
          : NOCHAR;
@@ -508,6 +507,7 @@ rxvt_term.prototype.next_octet =function() NOTHROW {
 
 //uint32_t rxvt_term::cmd_get8 () THROW ((class out_of_input)){
     rxvt_term.prototype.cmd_get8 = function () {
+        console.log("get8");
   var c = this.next_octet (); //uint32_t c = next_octet ();
   return c;
 }
@@ -515,7 +515,7 @@ rxvt_term.prototype.next_octet =function() NOTHROW {
 /*{{{ process non-printing single characters */ 
 //void rxvt_term::process_nonprinting (unicode_t ch)
 rxvt_term.prototype.process_nonprinting =function(ch){ 
-
+    //debugger
   switch (ch){
       case C0_ESC:
         this.process_escape_seq ();
@@ -561,6 +561,8 @@ rxvt_term.prototype.process_nonprinting =function(ch){
       case 0x9d: 	/* OSC */
         this.process_osc_seq ();
         break;
+  default:
+      console.log(chr(ch));
       //#endif
     }
 }
@@ -594,9 +596,11 @@ rxvt_term.prototype.process_escape_vt52 = function (ch){
         this.scr_index (DN);
         break;
       case 'J':		/* erase to end of screen */
+          console.log("erase to end of screen");
         this.scr_erase_screen (0);
         break;
       case 'K':		/* erase to end of line */
+          console.log("erase to end of line");
         this.scr_erase_line (0);
         break;
       case 'Y':         	/* move to specified row and col */
@@ -604,6 +608,7 @@ rxvt_term.prototype.process_escape_vt52 = function (ch){
          * are encoded by adding 32 and sending the ascii 
          * character.  eg. SPACE = 0, '+' = 13, '0' = 18, 
          * etc. */ 
+          console.log("Case Y");
         row = this.cmd_getc() - ' ';
         col = this.cmd_getc() - ' ';
         this.scr_gotorc (row, col, 0);
@@ -630,6 +635,7 @@ rxvt_term.prototype.process_escape_vt52 = function (ch){
 /*{{{ process escape sequences */
 //void rxvt_term::process_escape_seq () 
 rxvt_term.prototype.process_escape_seq =function(){ 
+    //debugger;
   var ch= this.cmd_getc();  //unicode_t ch = cmd_getc ();
 
   if ( this.priv_modes & PrivMode_vt52){
@@ -687,7 +693,7 @@ rxvt_term.prototype.process_escape_seq =function(){
         /* 8.3.87: NEXT LINE */
       case C1_NEL:		/* ESC E */
         {
-            var nlcr= [ C0_LF, C0_CR ] ;   //wchar_t nlcr[] = { C0_LF, C0_CR };
+            var nlcr= [ chr(C0_LF), chr(C0_CR) ] ;   //wchar_t nlcr[] = { C0_LF, C0_CR };
             //this.scr_add_lines (nlcr, sizeof (nlcr) / sizeof (nlcr [0]), 1);
           this.scr_add_lines (nlcr, nlcr.length, 1);
         }
@@ -790,6 +796,7 @@ enum {
 //void rxvt_term::process_csi_seq ()
 rxvt_term.prototype.process_csi_seq =function(){ 
   //console.log("csi_seq");
+    //debugger
   var ch, priv, i; //unicode_t ch, priv, i;  
   var och; //ord(ch)
   var nargs, p; //unsigned int nargs, p; 
@@ -807,7 +814,9 @@ rxvt_term.prototype.process_csi_seq =function(){
       ch = this.cmd_getc ();
       och = ord(ch);
     }
-  // debugger
+  //console.log(this.row_buf[0].t);
+  //  debugger
+
   /* read any numerical arguments */
   for (n = -1; och < CSI_ICH; ){
     
@@ -823,15 +832,16 @@ rxvt_term.prototype.process_csi_seq =function(){
           n = -1;
         }
       else if (IS_CONTROL (och))
-        this.process_nonprinting (ch); 
+        this.process_nonprinting (och); 
 
       ch = this.cmd_getc ();
       och = ord(ch);
     }
 
-  if (och > CSI_7F)
+  if (och > CSI_7F){
+      console.log("och > CSI_7F)");
     return;
-
+  }
   if (nargs < ESC_ARGS)
     arg[nargs++] = n;
 
@@ -839,8 +849,8 @@ rxvt_term.prototype.process_csi_seq =function(){
   //  ndef = get_byte_array_bit (csi_defaults, i);
   ndef = get_byte_array_bit (csi_defaults, 0);
   for (p = 0; p < nargs; p++){
-    if (arg[p] == -1){
-      arg[p] = 1; } //this is a decent pick for a default
+    if (arg[p] == 1){
+      arg[p] = 8; } //this is a decent pick for a default
   }
   /*
    * private mode handling 
@@ -894,18 +904,18 @@ rxvt_term.prototype.process_csi_seq =function(){
 
       case CSI_CUU:		/* 8.3.22: (1) CURSOR UP */
       case CSI_VPR:		/* 8.3.161: (1) LINE POSITION FORWARD */
-      console.log("CSI_CUU  CSI_VPR");
+      //console.log("CSI_CUU  CSI_VPR");
         arg[0] = -arg[0];
         /* FALLTHROUGH */
       case CSI_CUD:		/* 8.3.19: (1) CURSOR DOWN */
       case CSI_VPB:		/* 8.3.160: (1) LINE POSITION BACKWARD */
-      console.log("CSI_CUD  CSI_VPB");
+      //console.log("CSI_CUD  CSI_VPB");
         this.scr_gotorc (arg[0], 0, RELATIVE);
         break;
 
       case CSI_CUB:		/* 8.3.18: (1) CURSOR LEFT */
       case CSI_HPB: 		/* 8.3.59: (1) CHARACTER POSITION BACKWARD */
-      console.log("CSI_CUB  CSI_HPB");
+      //console.log("CSI_CUB  CSI_HPB");
 #ifdef ISO6429
         arg[0] = -arg[0];
 #else				/* emulate common DEC VTs */
@@ -914,7 +924,7 @@ rxvt_term.prototype.process_csi_seq =function(){
         /* FALLTHROUGH */
       case CSI_CUF:		/* 8.3.20: (1) CURSOR RIGHT */
       case CSI_HPR:		/* 8.3.60: (1) CHARACTER POSITION FORWARD */
-      console.log("CSI_CUF  CSI_HPR");
+      //console.log("CSI_CUF  CSI_HPR");
 #ifdef ISO6429
         this.scr_gotorc (0, arg[0], RELATIVE);
 #else				/* emulate common DEC VTs */
@@ -952,10 +962,12 @@ rxvt_term.prototype.process_csi_seq =function(){
         break;
 
       case CSI_ED:		/* 8.3.40: (0) ERASE IN PAGE */
+      console.log("CSI_ED",arg);
         this.scr_erase_screen (arg[0]);
         break;
 
       case CSI_EL:		/* 8.3.42: (0) ERASE IN LINE */
+      console.log("CSI_EL",arg);
         this.scr_erase_line (arg[0]);
         break;
 
@@ -1046,6 +1058,7 @@ rxvt_term.prototype.process_csi_seq =function(){
         break;
 
       case CSI_RM:		/* 8.3.107: RESET MODE */
+      console.log("CSI_RM",arg);
         if (arg[0] == 4)
           this.scr_insert_mode (0);
         else if (arg[0] == 20)
@@ -1199,7 +1212,8 @@ rxvt_term.prototype.process_window_ops =function( args,   nargs){
  */
 //char *rxvt_term::get_to_st (unicode_t &ends_how) 
 rxvt_term.prototype.get_to_st =function(ends_how){ 
-  var ch; //unicode_t ch; 
+    console.log("get_to_st");
+    var ch, och; //unicode_t ch; 
   var seen_esc = false; //bool seen_esc = false;
   var n = 0; //unsigned int n = 0;
   var string_ = new Array(STRING_MAX); //wchar_t string[STRING_MAX];

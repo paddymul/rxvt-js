@@ -98,7 +98,7 @@ if (window.XMLHttpRequest)
 	req = new XMLHttpRequest();
 else
 	req = new ActiveXObject("Microsoft.XMLHTTP");
-//req.open("GET", "/vt100js/fishy2.vt", false);
+
 req.open("GET", "specific-test.ou", false);
 //req.open("GET", "vttest1.out", false);
 //req.open("GET", "myttyrec.out", false);
@@ -106,5 +106,7 @@ req.send(null);
 
 //vt = new VT100(80, 24, "term");
 //output_line(
-VTAnimatorOld(a,req.responseText,17500);
+//VTAnimatorOld(a,req.responseText,17500);
+resp=req.responseText;
+output_line(resp);
 console.log("hello");

@@ -1260,7 +1260,7 @@ rxvt_term.prototype.scr_erase_screen =function( mode){
 
   want_refresh = 1;
   ZERO_SCROLLBACK ();
-
+ // mode=2;
   switch (mode){
       case 0:                     /* erase to end of screen */
          this.selection_check (1);
