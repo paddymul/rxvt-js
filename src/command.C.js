@@ -485,7 +485,7 @@ rxvt_term.prototype.next_char =function(){
 // read the next octet
 //uint32_t rxvt_term::next_octet () NOTHROW 
 rxvt_term.prototype.next_octet =function() NOTHROW {
-  //              debugger;
+
   return this.cmdbuf_ptr < this.cmdbuf_endp
   ?  this.cmdbuf[this.cmdbuf_ptr++]  //? (unsigned char)*cmdbuf_ptr++ 
          : NOCHAR;
@@ -503,21 +503,18 @@ rxvt_term.prototype.next_octet =function() NOTHROW {
 //wchar_t rxvt_term::cmd_getc () THROW ((class out_of_input))
   rxvt_term.prototype.cmd_getc =function() {
     var c= this.next_char ();   //wchar_t c = next_char (); 
-    //              debugger;
   return c;
 }
 
 //uint32_t rxvt_term::cmd_get8 () THROW ((class out_of_input)){
     rxvt_term.prototype.cmd_get8 = function () {
   var c = this.next_octet (); //uint32_t c = next_octet ();
-  //              debugger;
   return c;
 }
 
 /*{{{ process non-printing single characters */ 
 //void rxvt_term::process_nonprinting (unicode_t ch)
 rxvt_term.prototype.process_nonprinting =function(ch){ 
-  //debugger
 
   switch (ch){
       case C0_ESC:
@@ -574,8 +571,7 @@ rxvt_term.prototype.process_nonprinting =function(ch){
 
 //rxvt_term::process_escape_vt52 (unicode_t ch)
 rxvt_term.prototype.process_escape_vt52 = function (ch){
-  console.log("vt52");
-  //debugger;
+  //console.log("vt52");
   var row, col; //int row, col;
 
   switch (ch){
@@ -635,7 +631,6 @@ rxvt_term.prototype.process_escape_vt52 = function (ch){
 //void rxvt_term::process_escape_seq () 
 rxvt_term.prototype.process_escape_seq =function(){ 
   var ch= this.cmd_getc();  //unicode_t ch = cmd_getc ();
-  //debugger;
 
   if ( this.priv_modes & PrivMode_vt52){
       this.process_escape_vt52 (ch);
@@ -693,7 +688,8 @@ rxvt_term.prototype.process_escape_seq =function(){
       case C1_NEL:		/* ESC E */
         {
             var nlcr= [ C0_LF, C0_CR ] ;   //wchar_t nlcr[] = { C0_LF, C0_CR };
-          this.scr_add_lines (nlcr, sizeof (nlcr) / sizeof (nlcr [0]), 1);
+            //this.scr_add_lines (nlcr, sizeof (nlcr) / sizeof (nlcr [0]), 1);
+          this.scr_add_lines (nlcr, nlcr.length, 1);
         }
         break;
 
@@ -793,8 +789,9 @@ enum {
 
 //void rxvt_term::process_csi_seq ()
 rxvt_term.prototype.process_csi_seq =function(){ 
-  console.log("csi_seq");
+  //console.log("csi_seq");
   var ch, priv, i; //unicode_t ch, priv, i;  
+  var och; //ord(ch)
   var nargs, p; //unsigned int nargs, p; 
   var n, ndef; //int n, ndef;  
   var arg = new Array(ESC_ARGS); //int arg[ESC_ARGS] = { }; 
@@ -803,10 +800,12 @@ rxvt_term.prototype.process_csi_seq =function(){
 
   priv = 0;
   ch = this.cmd_getc ();
+  och = ord(ch);
   if ((ch >= '<' && ch <= '?') || ch == '!'){
       /* '<' '=' '>' '?' '!' */
       priv = ch;
       ch = this.cmd_getc ();
+      och = ord(ch);
     }
 
   /* read any numerical arguments */
@@ -822,19 +821,20 @@ rxvt_term.prototype.process_csi_seq =function(){
             arg[nargs++] = n;
           n = -1;
         }
-      else if (IS_CONTROL (ch))
+      else if (IS_CONTROL (och))
         this.process_nonprinting (ch); 
 
       ch = this.cmd_getc ();
+      och = ord(ch);
     }
 
-  if (ch > CSI_7F)
+  if (och > CSI_7F)
     return;
 
   if (nargs < ESC_ARGS)
     arg[nargs++] = n;
 
-  i = ch - CSI_ICH;
+  i = och - CSI_ICH;
   ndef = get_byte_array_bit (csi_defaults, i);
   for (p = 0; p < nargs; p++)
     if (arg[p] == -1)
@@ -865,7 +865,7 @@ rxvt_term.prototype.process_csi_seq =function(){
             break;
 
           case '!':
-            if (ch == CSI_70){
+            if (och == CSI_70){
                 /* DECSTR: soft terminal reset, used by our terminfo since 9.06 */
                 this.scr_soft_reset ();
 
@@ -873,8 +873,10 @@ rxvt_term.prototype.process_csi_seq =function(){
                 //static const int pm_l[] = { 1, 3, 4, 5, 6, 9, 66, 1000, 1001, 1049 };  
                 var pm_l= [ 1, 3, 4, 5, 6, 9, 66, 1000, 1001, 1049 ] ;   
 
-                this.process_terminal_mode ('h', 0, sizeof (pm_h) / sizeof (pm_h[0]), pm_h);
-                this.process_terminal_mode ('l', 0, sizeof (pm_l) / sizeof (pm_l[0]), pm_l);
+                //this.process_terminal_mode ('h', 0, sizeof (pm_h) / sizeof (pm_h[0]), pm_h);
+                //this.process_terminal_mode ('l', 0, sizeof (pm_l) / sizeof (pm_l[0]), pm_l);
+                this.process_terminal_mode ('h', 0, pm_h.length, pm_h);
+                this.process_terminal_mode ('l', 0, pm_l.length, pm_l);
               }
           break;
         }
@@ -882,7 +884,7 @@ rxvt_term.prototype.process_csi_seq =function(){
       return;
     }
 
-  switch (ch){
+  switch (och){
         /*
          * ISO/IEC 6429:1992 (E) CSI sequences (defaults in parentheses) 
          */
@@ -977,7 +979,7 @@ rxvt_term.prototype.process_csi_seq =function(){
         break;
 
       case CSI_DA:		/* 8.3.24: (0) DEVICE ATTRIBUTES */
-        this.tt_write (VT100_ANS, sizeof (VT100_ANS) - 1);
+        this.tt_write (VT100_ANS,VT100_ANS.length);
         break;
 
       case CSI_SGR:		/* 8.3.118: (0) SELECT GRAPHIC RENDITION */
@@ -1681,7 +1683,9 @@ rxvt_term.prototype.process_terminal_mode =function(mode,  __unused__,   nargs, 
       state = -1;
 
       /* basic handling */
-      for (j = 0; j < (sizeof (argtopriv)/sizeof (argtopriv[0])); j++)
+        //  for (j = 0; j < (sizeof (argtopriv)/sizeof (argtopriv[0])); j++)
+      for (j = 0; j < argtopriv.length; j++)
+
         if (argtopriv[j].argval == arg[i]){
             state = privcases (mode, argtopriv[j].bit);
             break;
@@ -2001,6 +2005,10 @@ rxvt_term.prototype.tt_printf =function( fmt){
 
 //void rxvt_term::tt_write (const char *data, unsigned int len) 
 rxvt_term.prototype.tt_write =function( data,   len){ 
+    if(    console){
+        console.log(data);
+    }
+    /*
   if (HOOK_INVOKE ((this, HOOK_TT_WRITE, DT_STR_LEN, data, len, DT_END)))
     return;
 
@@ -2025,6 +2033,7 @@ rxvt_term.prototype.tt_write =function( data,   len){
   v_buflen += len;
 
   //  pty_ev.set (ev::READ | ev::WRITE);
+  */
 }
 
 //void rxvt_term::pty_write () 

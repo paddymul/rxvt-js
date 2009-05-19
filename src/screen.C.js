@@ -1018,7 +1018,8 @@ rxvt_term.prototype.scr_tab =function( count, ht){
   if (count == 0)
     return;
   else if (count > 0){
-      //FIXME line_t &l = ROW(this.screen.cur.row);
+      //FIXME line_t &l =  ROW(this.screen.cur.row);
+      var l =  ROW(this.screen.cur.row);
       var base_rend= l.r[i];  //rend_t base_rend = l.r[i];
       //FIXME ht &= l.t[i] == ' ';  //FIXME
 
@@ -1049,7 +1050,7 @@ rxvt_term.prototype.scr_tab =function( count, ht){
           //l.r[i] = base_rend;
 
           while (++i < x){
-              l.t[i] = NOCHAR;
+              l.t[i] = "";// NOCHAR;
               //  l.r[i] = base_rend;
             }
         }
@@ -1346,6 +1347,8 @@ rxvt_term.prototype.scr_erase_savelines =function(){
  */
 //void rxvt_term::scr_E () 
 rxvt_term.prototype.scr_E =function(){ 
+    //REWRITE
+    /*
  var    fs;  //rend_t fs;   ###  c_keyword js_style_variables
 
   want_refresh = 1;
@@ -1355,18 +1358,19 @@ rxvt_term.prototype.scr_E =function(){
    this.selection_check (3);
 
  //  fs = SET_FONT (rstyle, FONTSET (rstyle).find_font ('E'));
- for (var row = this.nrow; row--; ){  //for (int row = nrow; row--; ){   ###  c_keyword 
-     var line = ROW(row); //line_t &line = ROW(row); ### c_memory_ref js_style_variables FIXME
+ for (var row = this.nrow; row--; ){  //for (int row = nrow; row--; )
+     var line = ROW(row); //line_t &line = ROW(row);
 
-     fill_text (line.t, line.t_i, 'E',  this.ncol); //FIXED
-      var r1 = line.r, r1_i =0;  //rend_t *r1 = line.r;   ###  c_keyword possible_pointer js_style_variables, pointer_fix
+         fill_text (line.t, line.t_i, 'E',  this.ncol); //FIXED
+      var r1 = line.r, r1_i =0;  //rend_t *r1 = line.r;  
 
-      for (var j =  this.ncol; j--; )  //for (int j =  this.ncol; j--; )   ###  c_keyword 
-          //   line.r[r1_i++] = fs;  // *r1++ = fs;   ###  possible_pointer pointer_fix
+      for (var j =  this.ncol; j--; )  //for (int j =  this.ncol; j--; )  
+          //   line.r[r1_i++] = fs;  // *r1++ = f
 
       line.is_longer (0);
       line.touch ( this.ncol);
     }
+    */
 }
 
 /* ------------------------------------------------------------------------- */
@@ -1836,6 +1840,7 @@ rxvt_term.prototype.bell_cb =function(w,  revents){
 /* ------------------------------------------------------------------------- */
 //REWRITE:void rxvt_term::scr_bell (){ 
 rxvt_term.prototype.scr_bell =function(){ 
+    /*
 #ifndef NO_BELL
 
 # ifndef NO_MAPALERT
@@ -1860,6 +1865,7 @@ rxvt_term.prototype.scr_bell =function(){
   else
     XBell (dpy, 0);
 #endif
+    */
 }
 
 /* ------------------------------------------------------------------------- */
@@ -2019,7 +2025,10 @@ rxvt_term.prototype.scr_reverse_selection =function(){
                       RS_RVid);
     }
 }
-
+//REMOVED:void rxvt_term::selection_check (int check_more) 
+    rxvt_term.prototype.selection_check = function(check_more){
+        return;
+    }
 /* ------------------------------------------------------------------------- */
 /*
  * Dump the whole scrollback and screen to the passed filedescriptor.  The 
@@ -2054,7 +2063,7 @@ rxvt_term.prototype.scr_dump =function( fd){
 }
 */
 #endif
-//REMOVED:void rxvt_term::selection_check (int check_more) 
+
 //REMOVED:void rxvt_term::paste (char *data, unsigned int len){ 
 //REMOVED:void rxvt_term::selection_paste (Window win, Atom prop, bool delete_prop) 
 //REMOVED:void rxvt_term::incr_cb (ev::timer &w, int revents){ 

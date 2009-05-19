@@ -389,11 +389,15 @@ function free(arg) {};
 //# define memcpy(a,b,l) (memcpy)(a,b,l)
 #endif
 
+VT100_ANS = "rxvt-js";
+
 //SCREEN.H.JS MACROS
 #define fill_text(RECIEVE,START, VALUE, LEN)    \
   var n_start=START, n_len = LEN;\
   while(n_len--)\
     recieve[n_start++]=VALUE;\
+
+#define isdigit(foo) (foo) >= '0' && (foo) <='9'
 /* ------------------------------------------------------------------------- */
 #define PROP_SIZE               256*1024 
 #define PASTE_SIZE		32768
