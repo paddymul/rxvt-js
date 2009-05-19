@@ -100,7 +100,7 @@ rxvt_term.prototype.scr_blank_line =function(l, col, width, efs){
   //efs = (((efs) & ~0xff000000UL /* plenty(?) of fonts, includes RS_Careful*/) | (((this)->fontset[0]->find_font (' ')) << 24));
   //the above line is the macro expansion of SET_FONT FONTSET 
 
-  l = new line_t();
+  //l = new line_t();
   l.t=[];
   l.r=[];
   //FIXME where is l.t an array, what should  I use for an indice of et??
@@ -131,7 +131,7 @@ rxvt_term.prototype.scr_blank_screen_mem =function(l,  efs){
 //void rxvt_term::scr_kill_char (line_t &l, int col) 
 rxvt_term.prototype.scr_kill_char =function(l,  col){ 
   //find begin
-  while (col > 0 && l.t[col] == NOCHAR)
+    while (col > 0 && ord(l.t[col]) == NOCHAR)
     col--;
 
   var rend= l.r[col] & ~RS_baseattrMask;   //rend_t rend = l.r[col] & ~RS_baseattrMask;
@@ -143,7 +143,7 @@ rxvt_term.prototype.scr_kill_char =function(l,  col){
     l.t[col] = ' ';
     l.r[col] = rend;
     col++;
-  } while (col <  this.ncol && l.t[col] == NOCHAR);
+  } while (col <  this.ncol && ord(l.t[col]) == NOCHAR);
 }
 
 /* ------------------------------------------------------------------------- *
@@ -1192,7 +1192,7 @@ rxvt_term.prototype.scr_index =function(direction){
 //void rxvt_term::scr_erase_line (int mode){ 
 rxvt_term.prototype.scr_erase_line =function( mode){ 
  var    col, num; 
-
+ 
   want_refresh = 1;
   ZERO_SCROLLBACK ();
 
@@ -1202,7 +1202,7 @@ rxvt_term.prototype.scr_erase_line =function( mode){
 
   line.touch ();
   line.is_longer (0);
-
+ 
   switch (mode){
       case 3:
         if (this.screen.flags & Screen_WrapNext)
@@ -1257,7 +1257,8 @@ rxvt_term.prototype.scr_erase_screen =function( mode){
  var   row;  //int32_t row;
  var  ren;  //rend_t ren;
  var  gcvalue;//XGCValues gcvalue; 
-
+ //debugger
+ //console.log("scr_erase_screen");
   want_refresh = 1;
   ZERO_SCROLLBACK ();
  // mode=2;
@@ -1293,7 +1294,7 @@ rxvt_term.prototype.scr_erase_screen =function( mode){
     return;
 
  num = mi_n(num, this.nrow - row);  //min_it (num, this.nrow - row);
-
+ /*
   //TODO: the code below does not work when  this.view_start != 0
   //the workaround is to disable the clear and use a normal refresh
   //when  this.view_start != 0. mysterious.
@@ -1303,9 +1304,9 @@ rxvt_term.prototype.scr_erase_screen =function( mode){
       ren = DEFAULT_RSTYLE;
 
       if ( this.mapped && ! this.view_start) {}
-          /*        XClearArea (dpy, vt, 0,
-                    Row2Pixel (row -  this.view_start), width,  //Row2Pixel (row -  this.view_start), (unsigned int)width,
-                    Height2Pixel (num), False);  //(unsigned int)Height2Pixel (num), False);*/
+          //        XClearArea (dpy, vt, 0,
+          //          Row2Pixel (row -  this.view_start), width,  //Row2Pixel (row -  this.view_start), (unsigned int)width,
+          //          Height2Pixel (num), False);  //(unsigned int)Height2Pixel (num), False);
     }
   else{
       ren = rstyle & (RS_fgMask | RS_bgMask);
@@ -1313,16 +1314,17 @@ rxvt_term.prototype.scr_erase_screen =function( mode){
       if ( this.mapped && ! this.view_start){
           gcvalue.foreground = pix_colors[bgcolor_of (rstyle)];
           XChangeGC (dpy, gc, GCForeground, gcvalue);
-          /*          XFillRectangle (dpy, vt, gc,
-                          0, Row2Pixel (row -  this.view_start),
-                          width,  //(unsigned int)width,   ###  c_keyword c_cast
-                          Height2Pixel (num));  //(unsigned int)Height2Pixel (num));
-          gcvalue.foreground = pix_colors[Color_fg];
-          XChangeGC (dpy, gc, GCForeground, &gcvalue);*/
+          //          XFillRectangle (dpy, vt, gc,
+          //                0, Row2Pixel (row -  this.view_start),
+          //                width,  //(unsigned int)width,   ###  c_keyword c_cast
+          //                Height2Pixel (num));  //(unsigned int)Height2Pixel (num));
+          //gcvalue.foreground = pix_colors[Color_fg];
+          //XChangeGC (dpy, gc, GCForeground, &gcvalue);
         }
     }
-
+*/
   for (; num--; row++){
+      var selected_row =  ROW(row);
       this.scr_blank_screen_mem (ROW(row), rstyle);
 
       if (! this.view_start)
