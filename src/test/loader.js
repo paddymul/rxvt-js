@@ -27,9 +27,10 @@ function VTAnimatorOld(vt, text, bps){
 	vt.cmd_write(text.substr(where, bpf));
 	where += bpf;
 	if (where >= text.length) {
-	  clearTimeout(hnd);
-	  where = 0;
-	  setTimeout(me, 1000);
+            doAnimate=false;
+            //clearTimeout(hnd);
+            //where = 0;
+            //setTimeout(me, 1000);
 	}
       }
     }, mspf);
@@ -105,5 +106,5 @@ req.send(null);
 
 //vt = new VT100(80, 24, "term");
 //output_line(
-VTAnimatorOld(a,req.responseText,7500);
+VTAnimatorOld(a,req.responseText,17500);
 console.log("hello");

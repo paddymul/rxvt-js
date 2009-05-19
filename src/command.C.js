@@ -206,7 +206,7 @@ rxvt_term.prototype.flush =function(){
         }
 
       this.scr_refresh ();
-      scrollBar.show (1);
+      //lscrollBar.show (1);
 #ifdef USE_XIM
       //IMSendSpot ();
 #endif
@@ -721,7 +721,7 @@ rxvt_term.prototype.process_escape_seq =function(){
 
         /* 8.3.110: SINGLE CHARACTER INTRODUCER */
       case C1_SCI:		/* ESC Z */
-        this.tt_write (ESCZ_ANSWER, sizeof (ESCZ_ANSWER) - 1);
+        this.tt_write (ESCZ_ANSWER, ESCZ_ANSWER.length);
         break;			/* steal obsolete ESC [ c */
 
         /* 8.3.16: CONTROL SEQUENCE INTRODUCER (CSI) */
@@ -736,9 +736,9 @@ rxvt_term.prototype.process_escape_seq =function(){
 
         /* 8.3.106: RESET TO INITIAL STATE (RIS) */
   case 99://'c':
-        mbstate.reset ();
+    //mbstate.reset ();
         this.scr_poweron ();
-        scrollBar.show (1);
+        //scrollBar.show (1);
         break;
 
         /* 8.3.79: LOCKING-SHIFT TWO (see ISO2022) */
@@ -1742,10 +1742,12 @@ rxvt_term.prototype.process_terminal_mode =function(mode,  __unused__,   nargs, 
               break;
 #ifdef scrollBar_esc
             case scrollBar_esc:
-              if (scrollBar.map (state)){
+              //maybe later
+              /*              if (scrollBar.map (state)){
                   resize_all_windows (0, 0, 0);
                   this.scr_touch (true);
                 }
+              */
               break;
 #endif
             case 25:		/* visible/invisible cursor */
@@ -1962,17 +1964,20 @@ rxvt_term.prototype.process_sgr_mode =function(nargs,    arg){
 /*{{{ (do not) process Rob Nation's own graphics mode sequences */
 //void rxvt_term::process_graphics () 
 rxvt_term.prototype.process_graphics =function(){ 
+  //FIXME causes an infintie loop  
+/*
   var ch, cmd = this.cmd_getc (); //unicode_t ch, cmd = cmd_getc (); 
 
   if (cmd == 'Q'){
-      /* query graphics */
-    this.tt_printf ("\033G0\012");	/* no graphics */ 
+      // query graphics 
+    this.tt_printf ("\033G0\012");	// no graphics 
       return;
     }
-  /* swallow other graphics sequences until terminating ':' */
+// swallow other graphics sequences until terminating ':' 
   do
     ch = this.cmd_getc ();
   while (ch != ':');
+*/
 }
 /*}}} */
 
@@ -1984,17 +1989,11 @@ rxvt_term.prototype.process_graphics =function(){
  */
 //void rxvt_term::tt_printf (const char *fmt,...) 
 rxvt_term.prototype.tt_printf =function( fmt){ 
-  var arg_ptr; //  va_list arg_ptr;
-  var buf = new Array(256); //char buf[256];
 
-     va_start (arg_ptr, fmt);
-  //vsnprintf ((char *)buf, 256, fmt, arg_ptr); 
-  vsnprintf ( buf, 256, fmt, arg_ptr);  //c_cast POINTER_MATH
-  va_end (arg_ptr);
-  this.tt_write (buf, strlen (buf));
+  console.log(fmt);
 }
     rxvt_term.prototype.tt_winch =function( ){
-        console.log("tt_winch called, it does nothing ");
+      //console.log("tt_winch called, it does nothing ");
     }
 /* ---------------------------------------------------------------------- */
 /* Write data to the pty as typed by the user, pasted with the mouse,

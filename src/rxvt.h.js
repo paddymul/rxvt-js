@@ -135,6 +135,10 @@ f
 #ifndef RXVT_H_                /* include once only */
 #define RXVT_H_
 
+if(!console){
+  console={};
+  console.log=function(){};
+ }
 /*
   #include <cstdio>
   #include <cctype>
@@ -390,6 +394,7 @@ function free(arg) {};
 #endif
 
 VT100_ANS = "rxvt-js";
+ESCZ_ANSWER = "rxvt-js ?? escz";
 
 //SCREEN.H.JS MACROS
 #define fill_text(RECIEVE,START, VALUE, LEN)    \

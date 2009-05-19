@@ -911,7 +911,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
                           ];
 
           if (ord(c) >= 0x41 && ord(c) <= 0x7e && vt100_0[ord(c) - 0x41]){
-              ord(c) = vt100_0[ord(c) - 0x41];
+              c = vt100_0[ord(c) - 0x41];
               width = 1; //vt100 line drawing characters are always single-width 
             }
         }
@@ -1962,6 +1962,8 @@ rxvt_term.prototype.scr_clear =function( really){
 
 //void rxvt_term::scr_xor_rect (int beg_row, int beg_col, int end_row, int end_col, rend_t rstyle1, rend_t rstyle2) 
 rxvt_term.prototype.scr_xor_rect =function( beg_row,  beg_col,  end_row,  end_col,  rstyle1,  rstyle2){ 
+    //FIXME cstyle namespaces
+    /*
   var view_end=  this.view_start + this.nrow;   //int view_end = view_start + nrow;
   var row, col;  //int row, col;
 
@@ -1980,6 +1982,7 @@ rxvt_term.prototype.scr_xor_rect =function( beg_row,  beg_col,  end_row,  end_co
       if (++col < end_col)
         srp[col] ^= rstyle2;
     }
+    */
 }
 
 //void rxvt_term::scr_xor_span (int beg_row, int beg_col, int end_row, int end_col, rend_t rstyle) 
