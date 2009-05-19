@@ -2803,6 +2803,7 @@ rxvt_term::process_csi_seq ()
     arg[nargs++] = n;
 
   i = ch - CSI_ICH;
+  debugger
   ndef = get_byte_array_bit (csi_defaults, i);
   for (p = 0; p < nargs; p++)
     if (arg[p] == -1)

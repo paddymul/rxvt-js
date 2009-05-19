@@ -807,15 +807,16 @@ rxvt_term.prototype.process_csi_seq =function(){
       ch = this.cmd_getc ();
       och = ord(ch);
     }
-
+  // debugger
   /* read any numerical arguments */
-  for (n = -1; ch < CSI_ICH; ){
+  for (n = -1; och < CSI_ICH; ){
+    
       if (isdigit (ch)){
-          if (n < 0)
-            n = ch - '0';
-          else
-              n = n * 10 + ch - '0'; 
-        }
+        if (n < 0){
+          n = och - ord('0');}
+        else{
+          n = n * 10 + och - ord('0'); }
+      }//isdigit
       else if (ch == ';'){
           if (nargs < ESC_ARGS)
             arg[nargs++] = n;
@@ -835,18 +836,19 @@ rxvt_term.prototype.process_csi_seq =function(){
     arg[nargs++] = n;
 
   i = och - CSI_ICH;
-  ndef = get_byte_array_bit (csi_defaults, i);
-  for (p = 0; p < nargs; p++)
-    if (arg[p] == -1)
-      arg[p] = ndef;
-
+  //  ndef = get_byte_array_bit (csi_defaults, i);
+  ndef = get_byte_array_bit (csi_defaults, 0);
+  for (p = 0; p < nargs; p++){
+    if (arg[p] == -1){
+      arg[p] = 1; } //this is a decent pick for a default
+  }
   /*
    * private mode handling 
    */
   if (priv){
       switch (priv){
           case '>':
-            if (ch == CSI_DA)	/* secondary device attributes */
+            if (och == CSI_DA)	/* secondary device attributes */
               {
                 // first parameter is normally 0 for vt100, 1 for vt220, 'R' for rxvt,
                 // 'U' for rxvt-unicode != 7.[34] (where it was broken).
@@ -866,6 +868,7 @@ rxvt_term.prototype.process_csi_seq =function(){
 
           case '!':
             if (och == CSI_70){
+              console.log("CSI_70")
                 /* DECSTR: soft terminal reset, used by our terminfo since 9.06 */
                 this.scr_soft_reset ();
 
@@ -891,15 +894,18 @@ rxvt_term.prototype.process_csi_seq =function(){
 
       case CSI_CUU:		/* 8.3.22: (1) CURSOR UP */
       case CSI_VPR:		/* 8.3.161: (1) LINE POSITION FORWARD */
+      console.log("CSI_CUU  CSI_VPR");
         arg[0] = -arg[0];
         /* FALLTHROUGH */
       case CSI_CUD:		/* 8.3.19: (1) CURSOR DOWN */
       case CSI_VPB:		/* 8.3.160: (1) LINE POSITION BACKWARD */
+      console.log("CSI_CUD  CSI_VPB");
         this.scr_gotorc (arg[0], 0, RELATIVE);
         break;
 
       case CSI_CUB:		/* 8.3.18: (1) CURSOR LEFT */
       case CSI_HPB: 		/* 8.3.59: (1) CHARACTER POSITION BACKWARD */
+      console.log("CSI_CUB  CSI_HPB");
 #ifdef ISO6429
         arg[0] = -arg[0];
 #else				/* emulate common DEC VTs */
@@ -908,6 +914,7 @@ rxvt_term.prototype.process_csi_seq =function(){
         /* FALLTHROUGH */
       case CSI_CUF:		/* 8.3.20: (1) CURSOR RIGHT */
       case CSI_HPR:		/* 8.3.60: (1) CHARACTER POSITION FORWARD */
+      console.log("CSI_CUF  CSI_HPR");
 #ifdef ISO6429
         this.scr_gotorc (0, arg[0], RELATIVE);
 #else				/* emulate common DEC VTs */
@@ -933,6 +940,7 @@ rxvt_term.prototype.process_csi_seq =function(){
 
       case CSI_CUP:		/* 8.3.21: (1,1) CURSOR POSITION */
       case CSI_HVP:		/* 8.3.64: (1,1) CHARACTER AND LINE POSITION */
+      //debugger
         this.scr_gotorc (arg[0] - 1, nargs < 2 ? 0 : (arg[1] - 1), 0);
         break;
 

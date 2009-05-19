@@ -9,8 +9,6 @@ function output_line(str){
   a.cmd_write(str, str.length);
   a.scr_refresh();
 }
-output_line("abc def\ngh  \rijasdf");
-output_line("ursorlf(n) CUB       Move cursor left n lines               3D");
 function VTAnimatorOld(vt, text, bps){
   var mspf = 100; // milliseconds per frame
   var bpf = Math.ceil(bps * mspf / 8000);
@@ -101,7 +99,9 @@ if (window.XMLHttpRequest)
 else
 	req = new ActiveXObject("Microsoft.XMLHTTP");
 //req.open("GET", "/vt100js/fishy2.vt", false);
-req.open("GET", "myttyrec.out", false);
+req.open("GET", "specific-test.ou", false);
+//req.open("GET", "vttest1.out", false);
+//req.open("GET", "myttyrec.out", false);
 req.send(null);
 
 //vt = new VT100(80, 24, "term");

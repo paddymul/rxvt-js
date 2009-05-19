@@ -335,6 +335,7 @@ SELECTION_CLEAR = 0;
 // booleans, not the expression.
 #define mi_n(a,b) Math.min((a),(b))
 #define ma_x(a,b) Math.max((a),(b))
+#define swap(a,b) var _______ = (a); (a)= (b); (b)=_______;
 /*#define expect_false(expr) expect ((expr) != 0, 0)
   #define expect_true(expr)  expect ((expr) != 0, 1) */
 
