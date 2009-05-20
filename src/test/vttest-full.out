@@ -1,0 +1,1337 @@
+Identity added: /Users/patrickmullen/.ssh/quantrunner_com_rsa (/Users/patrickmullen/.ssh/quantrunner_com_rsa)
+Identity added: /Users/patrickmullen/.ssh/id_rsa-qr-keypair (/Users/patrickmullen/.ssh/id_rsa-qr-keypair)
+Identity added: /Users/patrickmullen/.ssh/paddy-pair (/Users/patrickmullen/.ssh/paddy-pair)
+EMACS| ~/temp/terminalcast_record/record_terminalcast |EMACS
+bash-3.2$ ~/htdocs/webalizer/[1Pshell/v .svn/     .svn/       l/2/[Kl/2/ /          
+bash: /Users/patrickmullen/htdocs/: is a directory
+EMACS| ~/temp/terminalcast_record/record_terminalcast |EMACS
+bash-3.2$ ls
+[1m[31mrecord.py[m[m  [1m[31mrecord.py~[m[m [1m[34mtty_rec[m[m
+EMACS| ~/temp/terminalcast_record/record_terminalcast |EMACS
+bash-3.2$ pwd
+/Users/patrickmullen/temp/terminalcast_record/record_terminalcast
+EMACS| ~/temp/terminalcast_record/record_terminalcast |EMACS
+bash-3.2$ cd
+EMACS| ~ |EMACS
+bash-3.2$ cd htdocs/
+EMACS| ~/htdocs |EMACS
+bash-3.2$ ls
+34079663.avi
+QRHomepage2.html
+QRHomepage2.html~
+[1m[34mQRHomepage2_files[m[m
+QuantRunner Software - Easy-to-Use Tools for Investors and Traders.html
+[1m[34mQuantRunner Software - Easy-to-Use Tools for Investors and Traders_files[m[m
+[1m[34mapache[m[m
+[1m[34martsite[m[m
+[1m[34mbuild[m[m
+[1m[34mcarol[m[m
+[1m[34mcgi[m[m
+[1m[34mdotsub[m[m
+[1m[34mdotsub2[m[m
+[1m[34mgwid[m[m
+jennifercharlton.com.html
+[1m[34mjoomlatest2[m[m
+non-time-synched-demo.tar.gz
+non-time-synched-demo.zip
+[1m[34mphpbbplay[m[m
+phpinfo.php
+[1m[34mqr[m[m
+[30m[43mquantrunner.com[m[m
+[1m[34murxvt-js[m[m
+[1m[34mvt100js[m[m
+vt100js.zip
+[1m[34mwebalizer[m[m
+[1m[34mwebshell[m[m
+[1m[34mwebshell2[m[m
+[1m[34mxampp[m[m
+EMACS| ~/htdocs |EMACS
+bash-3.2$ cd webalizer/[1Pshell/
+EMACS| ~/htdocs/webshell |EMACS
+bash-3.2$ ls
+back.png       cells.png      head.png       webshell.css
+background.jpg delete.png     heads.png      webshell.html
+cell.png       enter.png      shift.png      webshell.js
+EMACS| ~/htdocs/webshell |EMACS
+bash-3.2$ cd
+EMACS| ~ |EMACS
+bash-3.2$ cd webshell/vttest-20071216/
+EMACS| ~/webshell/vttest-20071216 |EMACS
+bash-3.2$ ls
+BUGS          [1m[31mconfig.sub[m[m    makefile      setup.o       vt220.c
+CHANGES       [1m[31mconfigure[m[m     makefile.in   sixel.c       vt220.o
+COPYING       configure.in  [1m[31mmkdirs.sh[m[m     sixel.o       vt320.c
+MANIFEST      descrip.mms   mouse.c       status.c      vt320.o
+README        draw.c        mouse.o       status.o      vt420.c
+aclocal.m4    draw.h        nonvt100.c    tech.set      vt420.o
+charsets.c    draw.o        nonvt100.o    tek4014.c     vt52.c
+charsets.o    esc.c         patchlev.h    tek4014.o     vt52.o
+color.c       esc.h         printer.c     ttymodes.c    [1m[31mvttest[m[m
+color.o       esc.o         printer.o     ttymodes.h    vttest.1
+[1m[31mconfig.guess[m[m  [1m[31minstall-sh[m[m    reports.c     ttymodes.o    vttest.h
+config.h      keyboard.c    reports.o     unix_io.c     xterm.c
+config.hin    keyboard.o    reset.c       unix_io.o     xterm.o
+config.log    main.c        reset.o       vms_io.c
+[1m[31mconfig.status[m[m main.o        setup.c       vmsbuild.com
+EMACS| ~/webshell/vttest-20071216 |EMACS
+bash-3.2$ ./  TERM=rxvt
+EMACS| ~/webshell/vttest-20071216 |EMACS
+bash-3.2$ TERM=rxvt[1@e[1@x[1@p[1@o[1@r[1@t[1@ 
+EMACS| ~/webshell/vttest-20071216 |EMACS
+bash-3.2$ ./vttest 
+[0c[?1l[?3l[?4l[?5l[?6l[?7h[?8l[?40h[?45l[r[0m[2J[3;10HVT100 test program, version 2.7 (20071216)[4;10HLine speed 38400bd [5;10HChoose test type:
+
+          0. Exit
+          1. Test of cursor movements
+          2. Test of screen features
+          3. Test of character sets
+          4. Test of double-sized characters
+          5. Test of keyboard
+          6. Test of terminal reports
+          7. Test of VT52 mode
+          8. Test of VT102 features (Insert/Delete Char/Line)
+          9. Test of known bugs
+          10. Test of reset and self-test
+          11. Test non-VT100 (e.g., VT220, XTERM) terminals
+          12. Modify test-parameters
+
+          Enter choice number (0 - 12): 1
+[2J[?3l#8[9;10H[1J[18;60H[0J[1K[9;71H[0K[10;10H[1K[10;71H[0K[11;10H[1K[11;71H[0K[12;10H[1K[12;71H[0K[13;10H[1K[13;71H[0K[14;10H[1K[14;71H[0K[15;10H[1K[15;71H[0K[16;10H[1K[16;71H[0K[17;30H[2K[24;1f*[1;1f*[24;2f*[1;2f*[24;3f*[1;3f*[24;4f*[1;4f*[24;5f*[1;5f*[24;6f*[1;6f*[24;7f*[1;7f*[24;8f*[1;8f*[24;9f*[1;9f*[24;10f*[1;10f*[24;11f*[1;11f*[24;12f*[1;12f*[24;13f*[1;13f*[24;14f*[1;14f*[24;15f*[1;15f*[24;16f*[1;16f*[24;17f*[1;17f*[24;18f*[1;18f*[24;19f*[1;19f*[24;20f*[1;20f*[24;21f*[1;21f*[24;22f*[1;22f*[24;23f*[1;23f*[24;24f*[1;24f*[24;25f*[1;25f*[24;26f*[1;26f*[24;27f*[1;27f*[24;28f*[1;28f*[24;29f*[1;29f*[24;30f*[1;30f*[24;31f*[1;31f*[24;32f*[1;32f*[24;33f*[1;33f*[24;34f*[1;34f*[24;35f*[1;35f*[24;36f*[1;36f*[24;37f*[1;37f*[24;38f*[1;38f*[24;39f*[1;39f*[24;40f*[1;40f*[24;41f*[1;41f*[24;42f*[1;42f*[24;43f*[1;43f*[24;44f*[1;44f*[24;45f*[1;45f*[24;46f*[1;46f*[24;47f*[1;47f*[24;48f*[1;48f*[24;49f*[1;49f*[24;50f*[1;50f*[24;51f*[1;51f*[24;52f*[1;52f*[24;53f*[1;53f*[24;54f*[1;54f*[24;55f*[1;55f*[24;56f*[1;56f*[24;57f*[1;57f*[24;58f*[1;58f*[24;59f*[1;59f*[24;60f*[1;60f*[24;61f*[1;61f*[24;62f*[1;62f*[24;63f*[1;63f*[24;64f*[1;64f*[24;65f*[1;65f*[24;66f*[1;66f*[24;67f*[1;67f*[24;68f*[1;68f*[24;69f*[1;69f*[24;70f*[1;70f*[24;71f*[1;71f*[24;72f*[1;72f*[24;73f*[1;73f*[24;74f*[1;74f*[24;75f*[1;75f*[24;76f*[1;76f*[24;77f*[1;77f*[24;78f*[1;78f*[24;79f*[1;79f*[24;80f*[1;80f*[2;2H+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD[23;79H+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM[2;1H*[2;80H*[10DE*[3;80H*[10DE*[4;80H*[10DE*[5;80H*[10DE*[6;80H*[10DE*[7;80H*[10DE*[8;80H*[10DE*[9;80H*[10DE*[10;80H*[10D
+*[11;80H*[10D
+*[12;80H*[10D
+*[13;80H*[10D
+*[14;80H*[10D
+*[15;80H*[10D
+*[16;80H*[10D
+*[17;80H*[10D
+*[18;80H*[10D
+*[19;80H*[10D
+*[20;80H*[10D
+*[21;80H*[10D
+*[22;80H*[10D
+*[23;80H*[10D
+[2;10H[42D[2C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C[23;70H[42C[2D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D[1;1H[10A[1A[0A[24;80H[10B[1B[0B[10;12H                                                          [1B[58D                                                          [1B[58D                                                          [1B[58D                                                          [1B[58D                                                          [1B[58D                                                          [1B[58D[5A[1CThe screen should be cleared,  and have an unbroken bor-[12;13Hder of *'s and +'s around the edge,   and exactly in the[13;13Hmiddle  there should be a frame of E's around this  text[14;13Hwith  one (1) free position around it.    Push <RETURN>[?3h#8[9;36H[1J[18;86H[0J[1K[9;97H[0K[10;36H[1K[10;97H[0K[11;36H[1K[11;97H[0K[12;36H[1K[12;97H[0K[13;36H[1K[13;97H[0K[14;36H[1K[14;97H[0K[15;36H[1K[15;97H[0K[16;36H[1K[16;97H[0K[17;30H[2K[24;1f*[1;1f*[24;2f*[1;2f*[24;3f*[1;3f*[24;4f*[1;4f*[24;5f*[1;5f*[24;6f*[1;6f*[24;7f*[1;7f*[24;8f*[1;8f*[24;9f*[1;9f*[24;10f*[1;10f*[24;11f*[1;11f*[24;12f*[1;12f*[24;13f*[1;13f*[24;14f*[1;14f*[24;15f*[1;15f*[24;16f*[1;16f*[24;17f*[1;17f*[24;18f*[1;18f*[24;19f*[1;19f*[24;20f*[1;20f*[24;21f*[1;21f*[24;22f*[1;22f*[24;23f*[1;23f*[24;24f*[1;24f*[24;25f*[1;25f*[24;26f*[1;26f*[24;27f*[1;27f*[24;28f*[1;28f*[24;29f*[1;29f*[24;30f*[1;30f*[24;31f*[1;31f*[24;32f*[1;32f*[24;33f*[1;33f*[24;34f*[1;34f*[24;35f*[1;35f*[24;36f*[1;36f*[24;37f*[1;37f*[24;38f*[1;38f*[24;39f*[1;39f*[24;40f*[1;40f*[24;41f*[1;41f*[24;42f*[1;42f*[24;43f*[1;43f*[24;44f*[1;44f*[24;45f*[1;45f*[24;46f*[1;46f*[24;47f*[1;47f*[24;48f*[1;48f*[24;49f*[1;49f*[24;50f*[1;50f*[24;51f*[1;51f*[24;52f*[1;52f*[24;53f*[1;53f*[24;54f*[1;54f*[24;55f*[1;55f*[24;56f*[1;56f*[24;57f*[1;57f*[24;58f*[1;58f*[24;59f*[1;59f*[24;60f*[1;60f*[24;61f*[1;61f*[24;62f*[1;62f*[24;63f*[1;63f*[24;64f*[1;64f*[24;65f*[1;65f*[24;66f*[1;66f*[24;67f*[1;67f*[24;68f*[1;68f*[24;69f*[1;69f*[24;70f*[1;70f*[24;71f*[1;71f*[24;72f*[1;72f*[24;73f*[1;73f*[24;74f*[1;74f*[24;75f*[1;75f*[24;76f*[1;76f*[24;77f*[1;77f*[24;78f*[1;78f*[24;79f*[1;79f*[24;80f*[1;80f*[24;81f*[1;81f*[24;82f*[1;82f*[24;83f*[1;83f*[24;84f*[1;84f*[24;85f*[1;85f*[24;86f*[1;86f*[24;87f*[1;87f*[24;88f*[1;88f*[24;89f*[1;89f*[24;90f*[1;90f*[24;91f*[1;91f*[24;92f*[1;92f*[24;93f*[1;93f*[24;94f*[1;94f*[24;95f*[1;95f*[24;96f*[1;96f*[24;97f*[1;97f*[24;98f*[1;98f*[24;99f*[1;99f*[24;100f*[1;100f*[24;101f*[1;101f*[24;102f*[1;102f*[24;103f*[1;103f*[24;104f*[1;104f*[24;105f*[1;105f*[24;106f*[1;106f*[24;107f*[1;107f*[24;108f*[1;108f*[24;109f*[1;109f*[24;110f*[1;110f*[24;111f*[1;111f*[24;112f*[1;112f*[24;113f*[1;113f*[24;114f*[1;114f*[24;115f*[1;115f*[24;116f*[1;116f*[24;117f*[1;117f*[24;118f*[1;118f*[24;119f*[1;119f*[24;120f*[1;120f*[24;121f*[1;121f*[24;122f*[1;122f*[24;123f*[1;123f*[24;124f*[1;124f*[24;125f*[1;125f*[24;126f*[1;126f*[24;127f*[1;127f*[24;128f*[1;128f*[24;129f*[1;129f*[24;130f*[1;130f*[24;131f*[1;131f*[24;132f*[1;132f*[2;2H+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD[23;131H+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM[2;1H*[2;132H*[10DE*[3;132H*[10DE*[4;132H*[10DE*[5;132H*[10DE*[6;132H*[10DE*[7;132H*[10DE*[8;132H*[10DE*[9;132H*[10DE*[10;132H*[10D
+*[11;132H*[10D
+*[12;132H*[10D
+*[13;132H*[10D
+*[14;132H*[10D
+*[15;132H*[10D
+*[16;132H*[10D
+*[17;132H*[10D
+*[18;132H*[10D
+*[19;132H*[10D
+*[20;132H*[10D
+*[21;132H*[10D
+*[22;132H*[10D
+*[23;132H*[10D
+[2;10H[68D[2C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C[23;96H[68C[2D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D[1;1H[10A[1A[0A[24;132H[10B[1B[0B[10;38H                                                          [1B[58D                                                          [1B[58D                                                          [1B[58D                                                          [1B[58D                                                          [1B[58D                                                          [1B[58D[5A[1CThe screen should be cleared,  and have an unbroken bor-[12;39Hder of *'s and +'s around the edge,   and exactly in the[13;39Hmiddle  there should be a frame of E's around this  text[14;39Hwith  one (1) free position around it.    Push <RETURN>[?3l[?3lTest of autowrap, mixing control and print characters.
+The left/right margins should have letters in order:
+[3;21r[?6h[19;1HA[19;80Ha
+[18;80HaB[19;80HB b
+[19;80HC		c[19;2HC
+[19;80H
+[18;1HD[18;80Hd[19;1HE[19;80He
+[18;80HeF[19;80HF f
+[19;80HG		g[19;2HG
+[19;80H
+[18;1HH[18;80Hh[19;1HI[19;80Hi
+[18;80HiJ[19;80HJ j
+[19;80HK		k[19;2HK
+[19;80H
+[18;1HL[18;80Hl[19;1HM[19;80Hm
+[18;80HmN[19;80HN n
+[19;80HO		o[19;2HO
+[19;80H
+[18;1HP[18;80Hp[19;1HQ[19;80Hq
+[18;80HqR[19;80HR r
+[19;80HS		s[19;2HS
+[19;80H
+[18;1HT[18;80Ht[19;1HU[19;80Hu
+[18;80HuV[19;80HV v
+[19;80HW		w[19;2HW
+[19;80H
+[18;1HX[18;80Hx[19;1HY[19;80Hy
+[18;80HyZ[19;80HZ z
+[?6l[r[22;1HPush <RETURN>[?3hTest of autowrap, mixing control and print characters.
+The left/right margins should have letters in order:
+[3;21r[?6h[19;1HA[19;132Ha
+[18;132HaB[19;132HB b
+[19;132HC		c[19;2HC
+[19;132H
+[18;1HD[18;132Hd[19;1HE[19;132He
+[18;132HeF[19;132HF f
+[19;132HG		g[19;2HG
+[19;132H
+[18;1HH[18;132Hh[19;1HI[19;132Hi
+[18;132HiJ[19;132HJ j
+[19;132HK		k[19;2HK
+[19;132H
+[18;1HL[18;132Hl[19;1HM[19;132Hm
+[18;132HmN[19;132HN n
+[19;132HO		o[19;2HO
+[19;132H
+[18;1HP[18;132Hp[19;1HQ[19;132Hq
+[18;132HqR[19;132HR r
+[19;132HS		s[19;2HS
+[19;132H
+[18;1HT[18;132Ht[19;1HU[19;132Hu
+[18;132HuV[19;132HV v
+[19;132HW		w[19;2HW
+[19;132H
+[18;1HX[18;132Hx[19;1HY[19;132Hy
+[18;132HyZ[19;132HZ z
+[?6l[r[22;1HPush <RETURN>[?3l[2J[1;1HTest of cursor-control characters inside ESC sequences.
+Below should be four identical lines:
+
+A B C D E F G H I
+A[2CB[2CC[2CD[2CE[2CF[2CG[2CH[2CI[2C
+A [2CB[4CC[6CD[8CE[10CF[12CG[14CH[16CI
+[20lA [1AB [1AC [1AD [1AE [1AF [1AG [1AH [1AI [1A
+
+Push <RETURN>[2J[1;1HTest of leading zeros in ESC sequences.
+Two lines below you should see the sentence "This is a correct sentence".[00000000004;000000001HT[00000000004;000000002Hh[00000000004;000000003Hi[00000000004;000000004Hs[00000000004;000000005H [00000000004;000000006Hi[00000000004;000000007Hs[00000000004;000000008H [00000000004;000000009Ha[00000000004;0000000010H [00000000004;0000000011Hc[00000000004;0000000012Ho[00000000004;0000000013Hr[00000000004;0000000014Hr[00000000004;0000000015He[00000000004;0000000016Hc[00000000004;0000000017Ht[00000000004;0000000018H [00000000004;0000000019Hs[00000000004;0000000020He[00000000004;0000000021Hn[00000000004;0000000022Ht[00000000004;0000000023He[00000000004;0000000024Hn[00000000004;0000000025Hc[00000000004;0000000026He[20;1HPush <RETURN>
+[2J[3;10HVT100 test program, version 2.7 (20071216)[4;10HLine speed 38400bd [5;10HChoose test type:
+
+          0. Exit
+          1. Test of cursor movements
+          2. Test of screen features
+          3. Test of character sets
+          4. Test of double-sized characters
+          5. Test of keyboard
+          6. Test of terminal reports
+          7. Test of VT52 mode
+          8. Test of VT102 features (Insert/Delete Char/Line)
+          9. Test of known bugs
+          10. Test of reset and self-test
+          11. Test non-VT100 (e.g., VT220, XTERM) terminals
+          12. Modify test-parameters
+
+          Enter choice number (0 - 12): 2
+[2J[1;1H[?7h****************************************************************************************************************************************************************[?7l[3;1H****************************************************************************************************************************************************************[?7h[5;1HThis should be three identical lines of *'s completely filling
+the top of the screen without any empty lines between.
+(Test of WRAP AROUND mode setting.)
+Push <RETURN>[2J[3g[1;1H[3CH[3CH[3CH[3CH[3CH[3CH[3CH[3CH[3CH[3CH[3CH[3CH[3CH[3CH[3CH[3CH[3CH[3CH[3CH[3CH[3CH[3CH[3CH[3CH[3CH[3CH[1;4H[0g[6C[0g[6C[0g[6C[0g[6C[0g[6C[0g[6C[0g[6C[0g[6C[0g[6C[0g[6C[0g[6C[0g[6C[0g[6C[1;7H[1g[2g[1;1H	*	*	*	*	*	*	*	*	*	*	*	*	*[2;2H     *     *     *     *     *     *     *     *     *     *     *     *     *[4;1HTest of TAB setting/resetting. These two lines
+should look the same. Push <RETURN>[?5h[?3h[2J[1;1H[3g[8CH[8CH[8CH[8CH[8CH[8CH[8CH[8CH[8CH[8CH[8CH[8CH[8CH[8CH[8CH[8CH[8CH[1;1H12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901[3;3HThis is 132 column mode, light background.[4;4HThis is 132 column mode, light background.[5;5HThis is 132 column mode, light background.[6;6HThis is 132 column mode, light background.[7;7HThis is 132 column mode, light background.[8;8HThis is 132 column mode, light background.[9;9HThis is 132 column mode, light background.[10;10HThis is 132 column mode, light background.[11;11HThis is 132 column mode, light background.[12;12HThis is 132 column mode, light background.[13;13HThis is 132 column mode, light background.[14;14HThis is 132 column mode, light background.[15;15HThis is 132 column mode, light background.[16;16HThis is 132 column mode, light background.[17;17HThis is 132 column mode, light background.[18;18HThis is 132 column mode, light background.[19;19HThis is 132 column mode, light background.[20;20HThis is 132 column mode, light background.Push <RETURN>[?3l[2J[1;1H1234567890123456789012345678901234567890123456789012345678901234567890123456789[3;3HThis is 80 column mode, light background.[4;4HThis is 80 column mode, light background.[5;5HThis is 80 column mode, light background.[6;6HThis is 80 column mode, light background.[7;7HThis is 80 column mode, light background.[8;8HThis is 80 column mode, light background.[9;9HThis is 80 column mode, light background.[10;10HThis is 80 column mode, light background.[11;11HThis is 80 column mode, light background.[12;12HThis is 80 column mode, light background.[13;13HThis is 80 column mode, light background.[14;14HThis is 80 column mode, light background.[15;15HThis is 80 column mode, light background.[16;16HThis is 80 column mode, light background.[17;17HThis is 80 column mode, light background.[18;18HThis is 80 column mode, light background.[19;19HThis is 80 column mode, light background.[20;20HThis is 80 column mode, light background.Push <RETURN>[?5l[?3h[2J[1;1H[3g[8CH[8CH[8CH[8CH[8CH[8CH[8CH[8CH[8CH[8CH[8CH[8CH[8CH[8CH[8CH[8CH[8CH[1;1H12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901[3;3HThis is 132 column mode, dark background.[4;4HThis is 132 column mode, dark background.[5;5HThis is 132 column mode, dark background.[6;6HThis is 132 column mode, dark background.[7;7HThis is 132 column mode, dark background.[8;8HThis is 132 column mode, dark background.[9;9HThis is 132 column mode, dark background.[10;10HThis is 132 column mode, dark background.[11;11HThis is 132 column mode, dark background.[12;12HThis is 132 column mode, dark background.[13;13HThis is 132 column mode, dark background.[14;14HThis is 132 column mode, dark background.[15;15HThis is 132 column mode, dark background.[16;16HThis is 132 column mode, dark background.[17;17HThis is 132 column mode, dark background.[18;18HThis is 132 column mode, dark background.[19;19HThis is 132 column mode, dark background.[20;20HThis is 132 column mode, dark background.Push <RETURN>[?3l[2J[1;1H1234567890123456789012345678901234567890123456789012345678901234567890123456789[3;3HThis is 80 column mode, dark background.[4;4HThis is 80 column mode, dark background.[5;5HThis is 80 column mode, dark background.[6;6HThis is 80 column mode, dark background.[7;7HThis is 80 column mode, dark background.[8;8HThis is 80 column mode, dark background.[9;9HThis is 80 column mode, dark background.[10;10HThis is 80 column mode, dark background.[11;11HThis is 80 column mode, dark background.[12;12HThis is 80 column mode, dark background.[13;13HThis is 80 column mode, dark background.[14;14HThis is 80 column mode, dark background.[15;15HThis is 80 column mode, dark background.[16;16HThis is 80 column mode, dark background.[17;17HThis is 80 column mode, dark background.[18;18HThis is 80 column mode, dark background.[19;19HThis is 80 column mode, dark background.[20;20HThis is 80 column mode, dark background.Push <RETURN>[2J[?6h[?4h[12;13r[2J[24BSoft scroll up region [12..13] size 2 Line 1
+Soft scroll up region [12..13] size 2 Line 2
+Soft scroll up region [12..13] size 2 Line 3
+Soft scroll up region [12..13] size 2 Line 4
+Soft scroll up region [12..13] size 2 Line 5
+Soft scroll up region [12..13] size 2 Line 6
+Soft scroll up region [12..13] size 2 Line 7
+Soft scroll up region [12..13] size 2 Line 8
+Soft scroll up region [12..13] size 2 Line 9
+Soft scroll up region [12..13] size 2 Line 10
+Soft scroll up region [12..13] size 2 Line 11
+Soft scroll up region [12..13] size 2 Line 12
+Soft scroll up region [12..13] size 2 Line 13
+Soft scroll up region [12..13] size 2 Line 14
+Soft scroll up region [12..13] size 2 Line 15
+Soft scroll up region [12..13] size 2 Line 16
+Soft scroll up region [12..13] size 2 Line 17
+Soft scroll up region [12..13] size 2 Line 18
+Soft scroll up region [12..13] size 2 Line 19
+Soft scroll up region [12..13] size 2 Line 20
+Soft scroll up region [12..13] size 2 Line 21
+Soft scroll up region [12..13] size 2 Line 22
+Soft scroll up region [12..13] size 2 Line 23
+Soft scroll up region [12..13] size 2 Line 24
+Soft scroll up region [12..13] size 2 Line 25
+Soft scroll up region [12..13] size 2 Line 26
+Soft scroll up region [12..13] size 2 Line 27
+Soft scroll up region [12..13] size 2 Line 28
+Soft scroll up region [12..13] size 2 Line 29
+[24ASoft scroll down region [12..13] size 2 Line 1
+MMSoft scroll down region [12..13] size 2 Line 2
+MMSoft scroll down region [12..13] size 2 Line 3
+MMSoft scroll down region [12..13] size 2 Line 4
+MMSoft scroll down region [12..13] size 2 Line 5
+MMSoft scroll down region [12..13] size 2 Line 6
+MMSoft scroll down region [12..13] size 2 Line 7
+MMSoft scroll down region [12..13] size 2 Line 8
+MMSoft scroll down region [12..13] size 2 Line 9
+MMSoft scroll down region [12..13] size 2 Line 10
+MMSoft scroll down region [12..13] size 2 Line 11
+MMSoft scroll down region [12..13] size 2 Line 12
+MMSoft scroll down region [12..13] size 2 Line 13
+MMSoft scroll down region [12..13] size 2 Line 14
+MMSoft scroll down region [12..13] size 2 Line 15
+MMSoft scroll down region [12..13] size 2 Line 16
+MMSoft scroll down region [12..13] size 2 Line 17
+MMSoft scroll down region [12..13] size 2 Line 18
+MMSoft scroll down region [12..13] size 2 Line 19
+MMSoft scroll down region [12..13] size 2 Line 20
+MMSoft scroll down region [12..13] size 2 Line 21
+MMSoft scroll down region [12..13] size 2 Line 22
+MMSoft scroll down region [12..13] size 2 Line 23
+MMSoft scroll down region [12..13] size 2 Line 24
+MMSoft scroll down region [12..13] size 2 Line 25
+MMSoft scroll down region [12..13] size 2 Line 26
+MMSoft scroll down region [12..13] size 2 Line 27
+MMSoft scroll down region [12..13] size 2 Line 28
+MMSoft scroll down region [12..13] size 2 Line 29
+MMPush <RETURN>[1;24r[2J[24BSoft scroll up region [1..24] size 24 Line 1
+Soft scroll up region [1..24] size 24 Line 2
+Soft scroll up region [1..24] size 24 Line 3
+Soft scroll up region [1..24] size 24 Line 4
+Soft scroll up region [1..24] size 24 Line 5
+Soft scroll up region [1..24] size 24 Line 6
+Soft scroll up region [1..24] size 24 Line 7
+Soft scroll up region [1..24] size 24 Line 8
+Soft scroll up region [1..24] size 24 Line 9
+Soft scroll up region [1..24] size 24 Line 10
+Soft scroll up region [1..24] size 24 Line 11
+Soft scroll up region [1..24] size 24 Line 12
+Soft scroll up region [1..24] size 24 Line 13
+Soft scroll up region [1..24] size 24 Line 14
+Soft scroll up region [1..24] size 24 Line 15
+Soft scroll up region [1..24] size 24 Line 16
+Soft scroll up region [1..24] size 24 Line 17
+Soft scroll up region [1..24] size 24 Line 18
+Soft scroll up region [1..24] size 24 Line 19
+Soft scroll up region [1..24] size 24 Line 20
+Soft scroll up region [1..24] size 24 Line 21
+Soft scroll up region [1..24] size 24 Line 22
+Soft scroll up region [1..24] size 24 Line 23
+Soft scroll up region [1..24] size 24 Line 24
+Soft scroll up region [1..24] size 24 Line 25
+Soft scroll up region [1..24] size 24 Line 26
+Soft scroll up region [1..24] size 24 Line 27
+Soft scroll up region [1..24] size 24 Line 28
+Soft scroll up region [1..24] size 24 Line 29
+[24ASoft scroll down region [1..24] size 24 Line 1
+MMSoft scroll down region [1..24] size 24 Line 2
+MMSoft scroll down region [1..24] size 24 Line 3
+MMSoft scroll down region [1..24] size 24 Line 4
+MMSoft scroll down region [1..24] size 24 Line 5
+MMSoft scroll down region [1..24] size 24 Line 6
+MMSoft scroll down region [1..24] size 24 Line 7
+MMSoft scroll down region [1..24] size 24 Line 8
+MMSoft scroll down region [1..24] size 24 Line 9
+MMSoft scroll down region [1..24] size 24 Line 10
+MMSoft scroll down region [1..24] size 24 Line 11
+MMSoft scroll down region [1..24] size 24 Line 12
+MMSoft scroll down region [1..24] size 24 Line 13
+MMSoft scroll down region [1..24] size 24 Line 14
+MMSoft scroll down region [1..24] size 24 Line 15
+MMSoft scroll down region [1..24] size 24 Line 16
+MMSoft scroll down region [1..24] size 24 Line 17
+MMSoft scroll down region [1..24] size 24 Line 18
+MMSoft scroll down region [1..24] size 24 Line 19
+MMSoft scroll down region [1..24] size 24 Line 20
+MMSoft scroll down region [1..24] size 24 Line 21
+MMSoft scroll down region [1..24] size 24 Line 22
+MMSoft scroll down region [1..24] size 24 Line 23
+MMSoft scroll down region [1..24] size 24 Line 24
+MMSoft scroll down region [1..24] size 24 Line 25
+MMSoft scroll down region [1..24] size 24 Line 26
+MMSoft scroll down region [1..24] size 24 Line 27
+MMSoft scroll down region [1..24] size 24 Line 28
+MMSoft scroll down region [1..24] size 24 Line 29
+MMPush <RETURN>[?4l[12;13r[2J[24BJump scroll up region [12..13] size 2 Line 1
+Jump scroll up region [12..13] size 2 Line 2
+Jump scroll up region [12..13] size 2 Line 3
+Jump scroll up region [12..13] size 2 Line 4
+Jump scroll up region [12..13] size 2 Line 5
+Jump scroll up region [12..13] size 2 Line 6
+Jump scroll up region [12..13] size 2 Line 7
+Jump scroll up region [12..13] size 2 Line 8
+Jump scroll up region [12..13] size 2 Line 9
+Jump scroll up region [12..13] size 2 Line 10
+Jump scroll up region [12..13] size 2 Line 11
+Jump scroll up region [12..13] size 2 Line 12
+Jump scroll up region [12..13] size 2 Line 13
+Jump scroll up region [12..13] size 2 Line 14
+Jump scroll up region [12..13] size 2 Line 15
+Jump scroll up region [12..13] size 2 Line 16
+Jump scroll up region [12..13] size 2 Line 17
+Jump scroll up region [12..13] size 2 Line 18
+Jump scroll up region [12..13] size 2 Line 19
+Jump scroll up region [12..13] size 2 Line 20
+Jump scroll up region [12..13] size 2 Line 21
+Jump scroll up region [12..13] size 2 Line 22
+Jump scroll up region [12..13] size 2 Line 23
+Jump scroll up region [12..13] size 2 Line 24
+Jump scroll up region [12..13] size 2 Line 25
+Jump scroll up region [12..13] size 2 Line 26
+Jump scroll up region [12..13] size 2 Line 27
+Jump scroll up region [12..13] size 2 Line 28
+Jump scroll up region [12..13] size 2 Line 29
+[24AJump scroll down region [12..13] size 2 Line 1
+MMJump scroll down region [12..13] size 2 Line 2
+MMJump scroll down region [12..13] size 2 Line 3
+MMJump scroll down region [12..13] size 2 Line 4
+MMJump scroll down region [12..13] size 2 Line 5
+MMJump scroll down region [12..13] size 2 Line 6
+MMJump scroll down region [12..13] size 2 Line 7
+MMJump scroll down region [12..13] size 2 Line 8
+MMJump scroll down region [12..13] size 2 Line 9
+MMJump scroll down region [12..13] size 2 Line 10
+MMJump scroll down region [12..13] size 2 Line 11
+MMJump scroll down region [12..13] size 2 Line 12
+MMJump scroll down region [12..13] size 2 Line 13
+MMJump scroll down region [12..13] size 2 Line 14
+MMJump scroll down region [12..13] size 2 Line 15
+MMJump scroll down region [12..13] size 2 Line 16
+MMJump scroll down region [12..13] size 2 Line 17
+MMJump scroll down region [12..13] size 2 Line 18
+MMJump scroll down region [12..13] size 2 Line 19
+MMJump scroll down region [12..13] size 2 Line 20
+MMJump scroll down region [12..13] size 2 Line 21
+MMJump scroll down region [12..13] size 2 Line 22
+MMJump scroll down region [12..13] size 2 Line 23
+MMJump scroll down region [12..13] size 2 Line 24
+MMJump scroll down region [12..13] size 2 Line 25
+MMJump scroll down region [12..13] size 2 Line 26
+MMJump scroll down region [12..13] size 2 Line 27
+MMJump scroll down region [12..13] size 2 Line 28
+MMJump scroll down region [12..13] size 2 Line 29
+MMPush <RETURN>[1;24r[2J[24BJump scroll up region [1..24] size 24 Line 1
+Jump scroll up region [1..24] size 24 Line 2
+Jump scroll up region [1..24] size 24 Line 3
+Jump scroll up region [1..24] size 24 Line 4
+Jump scroll up region [1..24] size 24 Line 5
+Jump scroll up region [1..24] size 24 Line 6
+Jump scroll up region [1..24] size 24 Line 7
+Jump scroll up region [1..24] size 24 Line 8
+Jump scroll up region [1..24] size 24 Line 9
+Jump scroll up region [1..24] size 24 Line 10
+Jump scroll up region [1..24] size 24 Line 11
+Jump scroll up region [1..24] size 24 Line 12
+Jump scroll up region [1..24] size 24 Line 13
+Jump scroll up region [1..24] size 24 Line 14
+Jump scroll up region [1..24] size 24 Line 15
+Jump scroll up region [1..24] size 24 Line 16
+Jump scroll up region [1..24] size 24 Line 17
+Jump scroll up region [1..24] size 24 Line 18
+Jump scroll up region [1..24] size 24 Line 19
+Jump scroll up region [1..24] size 24 Line 20
+Jump scroll up region [1..24] size 24 Line 21
+Jump scroll up region [1..24] size 24 Line 22
+Jump scroll up region [1..24] size 24 Line 23
+Jump scroll up region [1..24] size 24 Line 24
+Jump scroll up region [1..24] size 24 Line 25
+Jump scroll up region [1..24] size 24 Line 26
+Jump scroll up region [1..24] size 24 Line 27
+Jump scroll up region [1..24] size 24 Line 28
+Jump scroll up region [1..24] size 24 Line 29
+[24AJump scroll down region [1..24] size 24 Line 1
+MMJump scroll down region [1..24] size 24 Line 2
+MMJump scroll down region [1..24] size 24 Line 3
+MMJump scroll down region [1..24] size 24 Line 4
+MMJump scroll down region [1..24] size 24 Line 5
+MMJump scroll down region [1..24] size 24 Line 6
+MMJump scroll down region [1..24] size 24 Line 7
+MMJump scroll down region [1..24] size 24 Line 8
+MMJump scroll down region [1..24] size 24 Line 9
+MMJump scroll down region [1..24] size 24 Line 10
+MMJump scroll down region [1..24] size 24 Line 11
+MMJump scroll down region [1..24] size 24 Line 12
+MMJump scroll down region [1..24] size 24 Line 13
+MMJump scroll down region [1..24] size 24 Line 14
+MMJump scroll down region [1..24] size 24 Line 15
+MMJump scroll down region [1..24] size 24 Line 16
+MMJump scroll down region [1..24] size 24 Line 17
+MMJump scroll down region [1..24] size 24 Line 18
+MMJump scroll down region [1..24] size 24 Line 19
+MMJump scroll down region [1..24] size 24 Line 20
+MMJump scroll down region [1..24] size 24 Line 21
+MMJump scroll down region [1..24] size 24 Line 22
+MMJump scroll down region [1..24] size 24 Line 23
+MMJump scroll down region [1..24] size 24 Line 24
+MMJump scroll down region [1..24] size 24 Line 25
+MMJump scroll down region [1..24] size 24 Line 26
+MMJump scroll down region [1..24] size 24 Line 27
+MMJump scroll down region [1..24] size 24 Line 28
+MMJump scroll down region [1..24] size 24 Line 29
+MMPush <RETURN>[2J[23;24r
+Origin mode test. This line should be at the bottom of the screen.[1;1HThis line should be the one above the bottom of the screen. Push <RETURN>[2J[?6l[24;1HOrigin mode test. This line should be at the bottom of the screen.[1;1HThis line should be at the top of the screen. Push <RETURN>[1;24r[2J[1;20HGraphic rendition test pattern:[4;1H[0mvanilla[4;40H[0;1mbold[6;6H[;4munderline[6;45H[;1m[4mbold underline[8;1H[0;5mblink[8;40H[0;5;1mbold blink[10;6H[0;4;5munderline blink[10;45H[0;1;4;5mbold underline blink[12;1H[1;4;5;0;7mnegative[12;40H[0;1;7mbold negative[14;6H[0;4;7munderline negative[14;45H[0;1;4;7mbold underline negative[16;1H[1;4;;5;7mblink negative[16;40H[0;1;5;7mbold blink negative[18;6H[0;4;5;7munderline blink negative[18;45H[0;1;4;5;7mbold underline blink negative[m[?5l[23;1H[0KDark background. Push <RETURN>[?5h[23;1H[0KLight background. Push <RETURN>[?5l[2J[8;12Hnormal[8;24Hbold[8;36Hunderscored[8;48Hblinking[8;60Hreversed[10;1Hstars:[12;1Hline:[14;1Hx'es:[16;1Hdiamonds:[10;12H[;0m(B)B*****7[1;1H[m(B)BA8*****[10;24H[;1m(B)B*****7[1;2H[m(B)BA8*****[10;36H[;4m(B)B*****7[1;3H[m(B)BA8*****[10;48H[;5m(B)B*****7[1;4H[m(B)BA8*****[10;60H[;7m(B)B*****7[1;5H[m(B)BA8*****[12;12H[;0m(0)Bqqqqq7[2;1H[m(B)BA8qqqqq[12;24H[;1m(0)Bqqqqq7[2;2H[m(B)BA8qqqqq[12;36H[;4m(0)Bqqqqq7[2;3H[m(B)BA8qqqqq[12;48H[;5m(0)Bqqqqq7[2;4H[m(B)BA8qqqqq[12;60H[;7m(0)Bqqqqq7[2;5H[m(B)BA8qqqqq[14;12H[;0m(B)Bxxxxx7[3;1H[m(B)BA8xxxxx[14;24H[;1m(B)Bxxxxx7[3;2H[m(B)BA8xxxxx[14;36H[;4m(B)Bxxxxx7[3;3H[m(B)BA8xxxxx[14;48H[;5m(B)Bxxxxx7[3;4H[m(B)BA8xxxxx[14;60H[;7m(B)Bxxxxx7[3;5H[m(B)BA8xxxxx[16;12H[;0m(0)B`````7[4;1H[m(B)BA8`````[16;24H[;1m(0)B`````7[4;2H[m(B)BA8`````[16;36H[;4m(0)B`````7[4;3H[m(B)BA8`````[16;48H[;5m(0)B`````7[4;4H[m(B)BA8`````[16;60H[;7m(0)B`````7[4;5H[m(B)BA8`````[0m(B)B[21;1HTest of the SAVE/RESTORE CURSOR feature. There should
+be ten characters of each flavour, and a rectangle
+of 5 x 4 A's filling the top left of the screen.
+Push <RETURN>
+[2J[3;10HVT100 test program, version 2.7 (20071216)[4;10HLine speed 38400bd [5;10HChoose test type:
+
+          0. Exit
+          1. Test of cursor movements
+          2. Test of screen features
+          3. Test of character sets
+          4. Test of double-sized characters
+          5. Test of keyboard
+          6. Test of terminal reports
+          7. Test of VT52 mode
+          8. Test of VT102 features (Insert/Delete Char/Line)
+          9. Test of known bugs
+          10. Test of reset and self-test
+          11. Test non-VT100 (e.g., VT220, XTERM) terminals
+          12. Modify test-parameters
+
+          Enter choice number (0 - 12): 3
+[2J[?42l(B)B*B+B[1;10HSelected as G0 (with SI)[1;48HSelected as G1 (with SO))B(B[3;1H[1mCharacter set A (UK / national)[0m(A)B[4;10H !"#$%&'()*+,-./0123456789:;<=>?[5;10H@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_[6;10H`abcdefghijklmnopqrstuvwxyz{|}~)A(B[4;48H !"#$%&'()*+,-./0123456789:;<=>?[5;48H@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_[6;48H`abcdefghijklmnopqrstuvwxyz{|}~)B(B[7;1H[1mCharacter set B (US ASCII)[0m(B)B[8;10H !"#$%&'()*+,-./0123456789:;<=>?[9;10H@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_[10;10H`abcdefghijklmnopqrstuvwxyz{|}~)B(B[8;48H !"#$%&'()*+,-./0123456789:;<=>?[9;48H@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_[10;48H`abcdefghijklmnopqrstuvwxyz{|}~)B(B[11;1H[1mCharacter set 0 (Special graphics and line drawing)[0m(0)B[12;10H !"#$%&'()*+,-./0123456789:;<=>?[13;10H@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_[14;10H`abcdefghijklmnopqrstuvwxyz{|}~)0(B[12;48H !"#$%&'()*+,-./0123456789:;<=>?[13;48H@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_[14;48H`abcdefghijklmnopqrstuvwxyz{|}~)B(B[15;1H[1mCharacter set 1 (Alternate character ROM standard characters)[0m(1)B[16;10H !"#$%&'()*+,-./0123456789:;<=>?[17;10H@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_[18;10H`abcdefghijklmnopqrstuvwxyz{|}~)1(B[16;48H !"#$%&'()*+,-./0123456789:;<=>?[17;48H@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_[18;48H`abcdefghijklmnopqrstuvwxyz{|}~)B(B[19;1H[1mCharacter set 2 (Alternate character ROM special graphics)[0m(2)B[20;10H !"#$%&'()*+,-./0123456789:;<=>?[21;10H@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_[22;10H`abcdefghijklmnopqrstuvwxyz{|}~)2(B[20;48H !"#$%&'()*+,-./0123456789:;<=>?[21;48H@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_[22;48H`abcdefghijklmnopqrstuvwxyz{|}~(B)B[24;1HThese are the installed character sets. Push <RETURN>
+[2J[3;10HVT100 test program, version 2.7 (20071216)[4;10HLine speed 38400bd [5;10HChoose test type:
+
+          0. Exit
+          1. Test of cursor movements
+          2. Test of screen features
+          3. Test of character sets
+          4. Test of double-sized characters
+          5. Test of keyboard
+          6. Test of terminal reports
+          7. Test of VT52 mode
+          8. Test of VT102 features (Insert/Delete Char/Line)
+          9. Test of known bugs
+          10. Test of reset and self-test
+          11. Test non-VT100 (e.g., VT220, XTERM) terminals
+          12. Modify test-parameters
+
+          Enter choice number (0 - 12): 4
+[2J[2J[1;1H[?3l 80 column mode[5;3Hv------- left margin[7;3HThis is a normal-sized line#3#4#6#5[9;2HThis is a Double-width line#5#3#4#6[11;2H#6#5#4#3This is a Double-width-and-height line[12;2H#6#5#3#4This is a Double-width-and-height line[14;2H#6#5#4#3[2KThis is another such line[15;2H#6#5#3#4This is another such line[17;3H^------- left margin[21;1HThis is not a double-width line[21;6His not#5[23;1HPush <RETURN>
+[21;6H**is**#6[23;1HPush <RETURN>
+[2J[1;1H[?3h132 column mode[5;29Hv------- left margin[7;29HThis is a normal-sized line#3#4#6#5[9;15HThis is a Double-width line#5#3#4#6[11;15H#6#5#4#3This is a Double-width-and-height line[12;15H#6#5#3#4This is a Double-width-and-height line[14;15H#6#5#4#3[2KThis is another such line[15;15H#6#5#3#4This is another such line[17;29H^------- left margin[21;1HThis is not a double-width line[21;6His not#5[23;1HPush <RETURN>
+[21;6H**is**#6[23;1HPush <RETURN>
+[1;1H[3g[8CH[8CH[8CH[8CH[8CH[8CH[8CH[8CH[8CH[8CH[8CH[8CH[8CH[8CH[8CH[8CH[8CH[?3l[2J(0)B[8;1H#3lqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqk[9;1H#4lqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqk[10;1H#3x					x[11;1H#4x					x[12;1H#3x					x[13;1H#4x					x)0(B[14;1H#3x                                      x[15;1H#4x                                      x[16;1H#3mqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqj[17;1H#4mqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqj(B)B[1;5m[12;3H* The mad programmer strikes again * [13;3H	[6D* The mad programmer strikes again *[0m[22;1HAnother test pattern...  a frame with blinking bold text,
+all in double-height double-width size. Push <RETURN>
+[8;24r[8;1HMMMMMMMMMMMM[r[1;1HExactly half of the box should remain. Push <RETURN>
+[2J[3;10HVT100 test program, version 2.7 (20071216)[4;10HLine speed 38400bd [5;10HChoose test type:
+
+          0. Exit
+          1. Test of cursor movements
+          2. Test of screen features
+          3. Test of character sets
+          4. Test of double-sized characters
+          5. Test of keyboard
+          6. Test of terminal reports
+          7. Test of VT52 mode
+          8. Test of VT102 features (Insert/Delete Char/Line)
+          9. Test of known bugs
+          10. Test of reset and self-test
+          11. Test non-VT100 (e.g., VT220, XTERM) terminals
+          12. Modify test-parameters
+
+          Enter choice number (0 - 12): 5
+[2J[2J[3;10HMenu 5: Keyboard Tests[5;10HChoose test type:
+
+          0. Exit
+          1. LED Lights
+          2. Auto Repeat
+          3. KeyBoard Layout
+          4. Cursor Keys
+          5. Numeric Keypad
+          6. Editing Keypad
+          7. Function Keys
+          8. AnswerBack
+          9. Control Keys
+
+          Enter choice number (0 - 9): 0
+[2J[2J[3;10HVT100 test program, version 2.7 (20071216)[4;10HLine speed 38400bd [5;10HChoose test type:
+
+          0. Exit
+          1. Test of cursor movements
+          2. Test of screen features
+          3. Test of character sets
+          4. Test of double-sized characters
+          5. Test of keyboard
+          6. Test of terminal reports
+          7. Test of VT52 mode
+          8. Test of VT102 features (Insert/Delete Char/Line)
+          9. Test of known bugs
+          10. Test of reset and self-test
+          11. Test non-VT100 (e.g., VT220, XTERM) terminals
+          12. Modify test-parameters
+
+          Enter choice number (0 - 12): 7
+[2J[?2lHJHFooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar Bletch
+FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar Bletch
+FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar Bletch
+FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar Bletch
+FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar Bletch
+FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar Bletch
+FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar Bletch
+FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar Bletch
+FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar Bletch
+FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar Bletch
+FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar Bletch
+FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar Bletch
+FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar Bletch
+FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar Bletch
+FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar Bletch
+FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar Bletch
+FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar Bletch
+FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar Bletch
+FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar Bletch
+FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar Bletch
+FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar Bletch
+FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar Bletch
+FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar Bletch
+FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar FooBar Bletch
+HJY&Nnothing more.THIS SHOULD GO AWAY! THIS SHOULD GO AWAY! THIS SHOULD GO AWAY! THIS SHOULD GO AWAY! THIS SHOULD GO AWAY! THIS SHOULD GO AWAY! THIS SHOULD GO AWAY! THIS SHOULD GO AWAY! THIS SHOULD GO AWAY! THIS SHOULD GO AWAY! Y  Back scroll (this should go away)IY  Back scroll (this should go away)IY  Back scroll (this should go away)IY  Back scroll (this should go away)IY  Back scroll (this should go away)IY+[JY! KY" KY# KY$ KY% KY!e**FoobarY"e**FoobarY#e**FoobarY$e**FoobarY%e**FoobarY&e**FoobarY'e**FoobarY(e**FoobarY)e**FoobarY*e**FoobarY+e**FoobarY,e**FoobarY-e**FoobarY.e**FoobarY/e**FoobarY0e**FoobarY1e**FoobarY2e**FoobarY3e**FoobarY4e**FoobarY5e**FoobarY6e**FoobarY6)*I*I*I*I*I*I*I*I*I*I*I*I*I*I*I*I*I*I*I*I*I*IY e*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DD*DDY7)*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*C*CY!*!B!B!B!B!B!B!B!B!B!B!B!B!B!B!B!B!B!B!B!B!B!BY6d!A!A!A!A!A!A!A!A!A!A!A!A!A!A!A!A!A!A!A!A!A!AY!fKY"fKY#fKY$fKY%fKY&fKY'fKY(fKY)fKY*fKY+fKY,fKY-fKY.fKY/fKY0fKY1fKY2fKY3fKY4fKY5fKY6fKY)/The screen should be cleared, and have a centeredY*/rectangle of "*"s with "!"s on the inside to theY+/left and right. Only this, andY,/Push <RETURN>
+HJThis is the normal character set:Y"/ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOY#/PQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~Y% This is the special graphics character set:FY'/ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOY(/PQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~GY+ Push <RETURN>
+HJTest of terminal response to IDENTIFY command
+Z
+<[61"pResponse was  [7m <13> [m
+
+Push <RETURN>
+[2J[3;10HVT100 test program, version 2.7 (20071216)[4;10HLine speed 38400bd [5;10HChoose test type:
+
+          0. Exit
+          1. Test of cursor movements
+          2. Test of screen features
+          3. Test of character sets
+          4. Test of double-sized characters
+          5. Test of keyboard
+          6. Test of terminal reports
+          7. Test of VT52 mode
+          8. Test of VT102 features (Insert/Delete Char/Line)
+          9. Test of known bugs
+          10. Test of reset and self-test
+          11. Test non-VT100 (e.g., VT220, XTERM) terminals
+          12. Modify test-parameters
+
+          Enter choice number (0 - 12): 8
+[2J[?3l[2J[1;1H[1;1HAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA[2;1HBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB[3;1HCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC[4;1HDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD[5;1HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE[6;1HFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF[7;1HGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG[8;1HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[9;1HIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII[10;1HJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ[11;1HKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK[12;1HLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL[13;1HMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM[14;1HNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN[15;1HOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO[16;1HPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP[17;1HQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ[18;1HRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR[19;1HSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS[20;1HTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT[21;1HUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU[22;1HVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV[23;1HWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW[24;1HXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX[4;1HScreen accordion test (Insert & Delete Line). Push <RETURN>
+M[2K[2;23r[?6h[1;1H[1L[1M[2L[2M[3L[3M[4L[4M[5L[5M[6L[6M[7L[7M[8L[8M[9L[9M[10L[10M[11L[11M[12L[12M[13L[13M[14L[14M[15L[15M[16L[16M[17L[17M[18L[18M[19L[19M[20L[20M[21L[21M[22L[22M[23L[23M[24L[24M[?6l[r[2;1HTop line: A's, bottom line: X's, this line, nothing more. Push <RETURN>
+[2;1H[0J[1;2HB[1D[4h******************************************************************************[4l[4;1HTest of 'Insert Mode'. The top line should be 'A*** ... ***B'. Push <RETURN>
+M[2K[1;2H[78P[4;1HTest of 'Delete Character'. The top line should be 'AB'. Push <RETURN>
+[2J[1;1HAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA[1;79H[1P[2;1HBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB[2;78H[2P[3;1HCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC[3;77H[3P[4;1HDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD[4;76H[4P[5;1HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE[5;75H[5P[6;1HFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF[6;74H[6P[7;1HGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG[7;73H[7P[8;1HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[8;72H[8P[9;1HIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII[9;71H[9P[10;1HJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ[10;70H[10P[11;1HKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK[11;69H[11P[12;1HLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL[12;68H[12P[13;1HMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM[13;67H[13P[14;1HNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN[14;66H[14P[15;1HOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO[15;65H[15P[16;1HPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP[16;64H[16P[17;1HQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ[17;63H[17P[18;1HRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR[18;62H[18P[19;1HSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS[19;61H[19P[20;1HTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT[20;60H[20P[21;1HUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU[21;59H[21P[22;1HVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV[22;58H[22P[23;1HWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW[23;57H[23P[24;1HXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX[24;56H[24P[4;1HThe right column should be staggered 
+by one.  Push <RETURN>
+[2J[1;1H#6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA[1;39H[1P[2;1H#6BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB[2;38H[2P[3;1H#6CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC[3;37H[3P[4;1H#6DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD[4;36H[4P[5;1H#6EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE[5;35H[5P[6;1H#6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF[6;34H[6P[7;1H#6GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG[7;33H[7P[8;1H#6HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[8;32H[8P[9;1H#6IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII[9;31H[9P[10;1H#6JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ[10;30H[10P[11;1H#6KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK[11;29H[11P[12;1H#6LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL[12;28H[12P[13;1H#6MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM[13;27H[13P[14;1H#6NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN[14;26H[14P[15;1H#6OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO[15;25H[15P[16;1H#6PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP[16;24H[16P[17;1H#6QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ[17;23H[17P[18;1H#6RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR[18;22H[18P[19;1H#6SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS[19;21H[19P[20;1H#6TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT[20;20H[20P[21;1H#6UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU[21;19H[21P[22;1H#6VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV[22;18H[22P[23;1H#6WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW[23;17H[23P[24;1H#6XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX[24;16H[24P[4;1HThe right column should be staggered 
+by one.  Push <RETURN>
+[2J[1;1HIf your terminal has the ANSI 'Insert Character' function
+(the VT102 does not), then you should see a line like this
+  A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+below:
+
+Z[2@Y[2@X[2@W[2@V[2@U[2@T[2@S[2@R[2@Q[2@P[2@O[2@N[2@M[2@L[2@K[2@J[2@I[2@H[2@G[2@F[2@E[2@D[2@C[2@B[2@A[2@[10;1HPush <RETURN>
+[?3h[2J[1;1H[1;1HAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA[2;1HBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB[3;1HCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC[4;1HDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD[5;1HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE[6;1HFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF[7;1HGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG[8;1HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[9;1HIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII[10;1HJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ[11;1HKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK[12;1HLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL[13;1HMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM[14;1HNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN[15;1HOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO[16;1HPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP[17;1HQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ[18;1HRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR[19;1HSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS[20;1HTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT[21;1HUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU[22;1HVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV[23;1HWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW[24;1HXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX[4;1HScreen accordion test (Insert & Delete Line). Push <RETURN>
+M[2K[2;23r[?6h[1;1H[1L[1M[2L[2M[3L[3M[4L[4M[5L[5M[6L[6M[7L[7M[8L[8M[9L[9M[10L[10M[11L[11M[12L[12M[13L[13M[14L[14M[15L[15M[16L[16M[17L[17M[18L[18M[19L[19M[20L[20M[21L[21M[22L[22M[23L[23M[24L[24M[?6l[r[2;1HTop line: A's, bottom line: X's, this line, nothing more. Push <RETURN>
+[2;1H[0J[1;2HB[1D[4h**********************************************************************************************************************************[4l[4;1HTest of 'Insert Mode'. The top line should be 'A*** ... ***B'. Push <RETURN>
+M[2K[1;2H[130P[4;1HTest of 'Delete Character'. The top line should be 'AB'. Push <RETURN>
+[2J[1;1HAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA[1;131H[1P[2;1HBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB[2;130H[2P[3;1HCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC[3;129H[3P[4;1HDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD[4;128H[4P[5;1HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE[5;127H[5P[6;1HFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF[6;126H[6P[7;1HGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG[7;125H[7P[8;1HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[8;124H[8P[9;1HIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII[9;123H[9P[10;1HJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ[10;122H[10P[11;1HKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK[11;121H[11P[12;1HLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL[12;120H[12P[13;1HMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM[13;119H[13P[14;1HNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN[14;118H[14P[15;1HOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO[15;117H[15P[16;1HPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP[16;116H[16P[17;1HQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ[17;115H[17P[18;1HRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR[18;114H[18P[19;1HSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS[19;113H[19P[20;1HTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT[20;112H[20P[21;1HUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU[21;111H[21P[22;1HVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV[22;110H[22P[23;1HWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW[23;109H[23P[24;1HXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX[24;108H[24P[4;1HThe right column should be staggered 
+by one.  Push <RETURN>
+[2J[1;1H#6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA[1;65H[1P[2;1H#6BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB[2;64H[2P[3;1H#6CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC[3;63H[3P[4;1H#6DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD[4;62H[4P[5;1H#6EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE[5;61H[5P[6;1H#6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF[6;60H[6P[7;1H#6GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG[7;59H[7P[8;1H#6HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[8;58H[8P[9;1H#6IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII[9;57H[9P[10;1H#6JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ[10;56H[10P[11;1H#6KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK[11;55H[11P[12;1H#6LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL[12;54H[12P[13;1H#6MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM[13;53H[13P[14;1H#6NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN[14;52H[14P[15;1H#6OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO[15;51H[15P[16;1H#6PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP[16;50H[16P[17;1H#6QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ[17;49H[17P[18;1H#6RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR[18;48H[18P[19;1H#6SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS[19;47H[19P[20;1H#6TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT[20;46H[20P[21;1H#6UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU[21;45H[21P[22;1H#6VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV[22;44H[22P[23;1H#6WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW[23;43H[23P[24;1H#6XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX[24;42H[24P[4;1HThe right column should be staggered 
+by one.  Push <RETURN>
+[2J[1;1HIf your terminal has the ANSI 'Insert Character' function
+(the VT102 does not), then you should see a line like this
+  A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+below:
+
+Z[2@Y[2@X[2@W[2@V[2@U[2@T[2@S[2@R[2@Q[2@P[2@O[2@N[2@M[2@L[2@K[2@J[2@I[2@H[2@G[2@F[2@E[2@D[2@C[2@B[2@A[2@[10;1HPush <RETURN>
+[?3l[2J[3;10HVT100 test program, version 2.7 (20071216)[4;10HLine speed 38400bd [5;10HChoose test type:
+
+          0. Exit
+          1. Test of cursor movements
+          2. Test of screen features
+          3. Test of character sets
+          4. Test of double-sized characters
+          5. Test of keyboard
+          6. Test of terminal reports
+          7. Test of VT52 mode
+          8. Test of VT102 features (Insert/Delete Char/Line)
+          9. Test of known bugs
+          10. Test of reset and self-test
+          11. Test non-VT100 (e.g., VT220, XTERM) terminals
+          12. Modify test-parameters
+
+          Enter choice number (0 - 12): 10
+[2J[2J[3;10HMenu 10: Test of reset and self-test[5;10HChoose test type:
+
+          0. Exit
+          1. Reset to Initial State (RIS)
+          2. Invoke Terminal Test (DECTST)
+          3. Soft Terminal Reset (DECSTR)
+
+          Enter choice number (0 - 3): 1
+[2J[1;1HReset to Initial State (RIS)
+(VT100 & up, not recommended)
+
+The terminal will now be RESET. Push <RETURN>
+cPush <RETURN>
+[2J[3;10HMenu 10: Test of reset and self-test[5;10HChoose test type:
+
+          0. Exit
+          1. Reset to Initial State (RIS)
+          2. Invoke Terminal Test (DECTST)
+          3. Soft Terminal Reset (DECSTR)
+
+          Enter choice number (0 - 3): 2
+[2J[1;1HInvoke Terminal Test (DECTST)
+
+The terminal is now RESET.  Next, the built-in confidence test
+will be invoked. Push <RETURN>
+[2J[2;1y[10;1HIf the built-in confidence test found any errors, a code
+is visible above. Push <RETURN>
+[2J[3;10HMenu 10: Test of reset and self-test[5;10HChoose test type:
+
+          0. Exit
+          1. Reset to Initial State (RIS)
+          2. Invoke Terminal Test (DECTST)
+          3. Soft Terminal Reset (DECSTR)
+
+          Enter choice number (0 - 3): 3
+[2J[1;1HSoft Terminal Reset (DECSTR)
+(VT220 & up)
+
+The terminal will now soft-reset
+Push <RETURN>
+[!pPush <RETURN>
+[2J[3;10HMenu 10: Test of reset and self-test[5;10HChoose test type:
+
+          0. Exit
+          1. Reset to Initial State (RIS)
+          2. Invoke Terminal Test (DECTST)
+          3. Soft Terminal Reset (DECSTR)
+
+          Enter choice number (0 - 3): 0
+[2J[2J[3;10HVT100 test program, version 2.7 (20071216)[4;10HLine speed 38400bd [5;10HChoose test type:
+
+          0. Exit
+          1. Test of cursor movements
+          2. Test of screen features
+          3. Test of character sets
+          4. Test of double-sized characters
+          5. Test of keyboard
+          6. Test of terminal reports
+          7. Test of VT52 mode
+          8. Test of VT102 features (Insert/Delete Char/Line)
+          9. Test of known bugs
+          10. Test of reset and self-test
+          11. Test non-VT100 (e.g., VT220, XTERM) terminals
+          12. Modify test-parameters
+
+          Enter choice number (0 - 12): 1 9
+[2J[2J[1;1HTest of known bugs in the DEC VT100 series. The numbering of some of
+the bugs (A-F) refers to the article 'VT100 MAGIC' by Sami Tabih in
+the 'Proceedings of the DEC Users Society' at St. Louis, Missouri, May
+1983. To understand some of the tests, you have to look at the source
+code or the article. Of course, a good VT100-compatible terminal
+should not have these bugs (or have some means of disabling them)! If
+a bug appears, you might want to RESET the terminal before continuing
+the test. There is a test of the RESET function in the main menu.
+
+          Choose bug test number:
+
+          0. Exit to main menu
+          1. Bug A: Smooth scroll to jump scroll
+          2. Bug B: Scrolling region
+          3. Bug C: Wide to narrow screen
+          4. Bug D: Narrow to wide screen
+          5. Bug E: Cursor move from double- to single-wide line
+          6. Bug F: Column mode escape sequence
+          7. Wrap around with cursor addressing
+          8. Erase right half of double width lines
+          9. Funny scroll regions
+
+          Enter choice number (0 - 9): 1
+[2J[10;1HThis is a test of the VT100 'Scroll while toggle softscroll'
+bug.  The cursor may disappear, or move UP the screen, or
+multiple copies of some lines may appear.
+Push <RETURN>
+[24H[?4l
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[?4h
+
+
+
+
+
+
+
+
+
+[?4l
+
+
+
+
+[?4hE[?4lESoftscroll bug test, line 1.  Push <RETURN>
+Softscroll bug test, line 2.  Push <RETURN>
+Softscroll bug test, line 3.  Push <RETURN>
+Softscroll bug test, line 4.  Push <RETURN>
+Softscroll bug test, line 5.  Push <RETURN>
+Softscroll bug test, line 6.  Push <RETURN>
+Softscroll bug test, line 7.  Push <RETURN>
+Softscroll bug test, line 8.  Push <RETURN>
+Softscroll bug test, line 9.  Push <RETURN>
+Softscroll bug test, line 10.  Push <RETURN>
+That should have been enough to show the bug, if present.
+Push <RETURN>
+[2J[1;1HTest of known bugs in the DEC VT100 series. The numbering of some of
+the bugs (A-F) refers to the article 'VT100 MAGIC' by Sami Tabih in
+the 'Proceedings of the DEC Users Society' at St. Louis, Missouri, May
+1983. To understand some of the tests, you have to look at the source
+code or the article. Of course, a good VT100-compatible terminal
+should not have these bugs (or have some means of disabling them)! If
+a bug appears, you might want to RESET the terminal before continuing
+the test. There is a test of the RESET function in the main menu.
+
+          Choose bug test number:
+
+          0. Exit to main menu
+          1. Bug A: Smooth scroll to jump scroll
+          2. Bug B: Scrolling region
+          3. Bug C: Wide to narrow screen
+          4. Bug D: Narrow to wide screen
+          5. Bug E: Cursor move from double- to single-wide line
+          6. Bug F: Column mode escape sequence
+          7. Wrap around with cursor addressing
+          8. Erase right half of double width lines
+          9. Funny scroll regions
+
+          Enter choice number (0 - 9): 
+
+
+
+
+
+
+
+
+2
+[2J#8[1;1H[0KLine 11 should be double-wide, line 12 should be cleared.[2;1H[0KThen, the letters A-P should be written at the beginning[3;1H[0Kof lines 12-24, and the empty line and A-E are scrolled away.[4;1H[0KIf the bug is present, some lines are confused, look at K-P.[11;1H#6[12;24r[12;1H[0KHere we go... Push <RETURN>
+[12;1HMA
+B
+C
+D
+E
+F
+G
+H
+I
+J
+K
+L
+M
+N
+O
+P
+Push <RETURN>
+[r[2J[1;1HTest of known bugs in the DEC VT100 series. The numbering of some of
+the bugs (A-F) refers to the article 'VT100 MAGIC' by Sami Tabih in
+the 'Proceedings of the DEC Users Society' at St. Louis, Missouri, May
+1983. To understand some of the tests, you have to look at the source
+code or the article. Of course, a good VT100-compatible terminal
+should not have these bugs (or have some means of disabling them)! If
+a bug appears, you might want to RESET the terminal before continuing
+the test. There is a test of the RESET function in the main menu.
+
+          Choose bug test number:
+
+          0. Exit to main menu
+          1. Bug A: Smooth scroll to jump scroll
+          2. Bug B: Scrolling region
+          3. Bug C: Wide to narrow screen
+          4. Bug D: Narrow to wide screen
+          5. Bug E: Cursor move from double- to single-wide line
+          6. Bug F: Column mode escape sequence
+          7. Wrap around with cursor addressing
+          8. Erase right half of double width lines
+          9. Funny scroll regions
+
+          Enter choice number (0 - 9): 3
+[2J[?3h[1;81H[?3l[12;5HExcept for this line, the screen should be blank. Push <RETURN>
+[2J[1;1HTest of known bugs in the DEC VT100 series. The numbering of some of
+the bugs (A-F) refers to the article 'VT100 MAGIC' by Sami Tabih in
+the 'Proceedings of the DEC Users Society' at St. Louis, Missouri, May
+1983. To understand some of the tests, you have to look at the source
+code or the article. Of course, a good VT100-compatible terminal
+should not have these bugs (or have some means of disabling them)! If
+a bug appears, you might want to RESET the terminal before continuing
+the test. There is a test of the RESET function in the main menu.
+
+          Choose bug test number:
+
+          0. Exit to main menu
+          1. Bug A: Smooth scroll to jump scroll
+          2. Bug B: Scrolling region
+          3. Bug C: Wide to narrow screen
+          4. Bug D: Narrow to wide screen
+          5. Bug E: Cursor move from double- to single-wide line
+          6. Bug F: Column mode escape sequence
+          7. Wrap around with cursor addressing
+          8. Erase right half of double width lines
+          9. Funny scroll regions
+
+          Enter choice number (0 - 9): 4
+[2J[14;1H[?3h[1;9H#6You should see blinking text at the bottom line.
+[3;9H#6Enter 0 to exit, 1 to try to invoke the bug again.
+[24;9H#6[1;5;7mIf you can see this then the bug did not appear.[m[4;9H#6
+0
+[?3l[?4h[23;1HIf the bug is present, this should make things much worse!
+If the bug is present, this should make things much worse!
+If the bug is present, this should make things much worse!
+If the bug is present, this should make things much worse!
+If the bug is present, this should make things much worse!
+Push <RETURN>
+[?4l[2J[1;1HTest of known bugs in the DEC VT100 series. The numbering of some of
+the bugs (A-F) refers to the article 'VT100 MAGIC' by Sami Tabih in
+the 'Proceedings of the DEC Users Society' at St. Louis, Missouri, May
+1983. To understand some of the tests, you have to look at the source
+code or the article. Of course, a good VT100-compatible terminal
+should not have these bugs (or have some means of disabling them)! If
+a bug appears, you might want to RESET the terminal before continuing
+the test. There is a test of the RESET function in the main menu.
+
+          Choose bug test number:
+
+          0. Exit to main menu
+          1. Bug A: Smooth scroll to jump scroll
+          2. Bug B: Scrolling region
+          3. Bug C: Wide to narrow screen
+          4. Bug D: Narrow to wide screen
+          5. Bug E: Cursor move from double- to single-wide line
+          6. Bug F: Column mode escape sequence
+          7. Wrap around with cursor addressing
+          8. Erase right half of double width lines
+          9. Funny scroll regions
+
+          Enter choice number (0 - 9): 4
+[2J[14;1H[?3h[1;9H#6You should see blinking text at the bottom line.
+[3;9H#6Enter 0 to exit, 1 to try to invoke the bug again.
+[24;9H#6[1;5;7mIf you can see this then the bug did not appear.[m[4;9H#60
+[?3l[?4h[23;1HIf the bug is present, this should make things much worse!
+If the bug is present, this should make things much worse!
+If the bug is present, this should make things much worse!
+If the bug is present, this should make things much worse!
+If the bug is present, this should make things much worse!
+Push <RETURN>
+[?4l[2J[1;1HTest of known bugs in the DEC VT100 series. The numbering of some of
+the bugs (A-F) refers to the article 'VT100 MAGIC' by Sami Tabih in
+the 'Proceedings of the DEC Users Society' at St. Louis, Missouri, May
+1983. To understand some of the tests, you have to look at the source
+code or the article. Of course, a good VT100-compatible terminal
+should not have these bugs (or have some means of disabling them)! If
+a bug appears, you might want to RESET the terminal before continuing
+the test. There is a test of the RESET function in the main menu.
+
+          Choose bug test number:
+
+          0. Exit to main menu
+          1. Bug A: Smooth scroll to jump scroll
+          2. Bug B: Scrolling region
+          3. Bug C: Wide to narrow screen
+          4. Bug D: Narrow to wide screen
+          5. Bug E: Cursor move from double- to single-wide line
+          6. Bug F: Column mode escape sequence
+          7. Wrap around with cursor addressing
+          8. Erase right half of double width lines
+          9. Funny scroll regions
+
+          Enter choice number (0 - 9): 5
+[2J[?3h[1;1H#6This test should put an 'X' at line 3 column 100.
+1234567890[7m1234567890[m1234567890[7m1234567890[m1234567890[7m1234567890[m1234567890[7m1234567890[m1234567890[7m1234567890[m1234567890[7m1234567890[m[1;1H[3;100HX[4;66H!                                 ![5;1H--------------------------- The 'X' should NOT be above here ----+------------ but above here -----+[10;1H#6Push <RETURN>
+[?3l[2J[1;1HTest of known bugs in the DEC VT100 series. The numbering of some of
+the bugs (A-F) refers to the article 'VT100 MAGIC' by Sami Tabih in
+the 'Proceedings of the DEC Users Society' at St. Louis, Missouri, May
+1983. To understand some of the tests, you have to look at the source
+code or the article. Of course, a good VT100-compatible terminal
+should not have these bugs (or have some means of disabling them)! If
+a bug appears, you might want to RESET the terminal before continuing
+the test. There is a test of the RESET function in the main menu.
+
+          Choose bug test number:
+
+          0. Exit to main menu
+          1. Bug A: Smooth scroll to jump scroll
+          2. Bug B: Scrolling region
+          3. Bug C: Wide to narrow screen
+          4. Bug D: Narrow to wide screen
+          5. Bug E: Cursor move from double- to single-wide line
+          6. Bug F: Column mode escape sequence
+          7. Wrap around with cursor addressing
+          8. Erase right half of double width lines
+          9. Funny scroll regions
+
+          Enter choice number (0 - 9): 6
+[2J[?5h[?3hTest VT100 'Toggle origin mode, forget rest' bug, part 1.
+The screen should be in reverse, 132 column mode.
+Push <RETURN>
+[2J[?6;5;3lTest VT100 'Toggle origin mode, forget rest' bug, part 2.
+
+The screen should be in non-reverse, 80 column mode.
+Push <RETURN>
+[2J[1;1HTest of known bugs in the DEC VT100 series. The numbering of some of
+the bugs (A-F) refers to the article 'VT100 MAGIC' by Sami Tabih in
+the 'Proceedings of the DEC Users Society' at St. Louis, Missouri, May
+1983. To understand some of the tests, you have to look at the source
+code or the article. Of course, a good VT100-compatible terminal
+should not have these bugs (or have some means of disabling them)! If
+a bug appears, you might want to RESET the terminal before continuing
+the test. There is a test of the RESET function in the main menu.
+
+          Choose bug test number:
+
+          0. Exit to main menu
+          1. Bug A: Smooth scroll to jump scroll
+          2. Bug B: Scrolling region
+          3. Bug C: Wide to narrow screen
+          4. Bug D: Narrow to wide screen
+          5. Bug E: Cursor move from double- to single-wide line
+          6. Bug F: Column mode escape sequence
+          7. Wrap around with cursor addressing
+          8. Erase right half of double width lines
+          9. Funny scroll regions
+
+          Enter choice number (0 - 9): 6
+[2J[?5h[?3hTest VT100 'Toggle origin mode, forget rest' bug, part 1.
+The screen should be in reverse, 132 column mode.
+Push <RETURN>
+[2J[?6;5;3lTest VT100 'Toggle origin mode, forget rest' bug, part 2.
+
+The screen should be in non-reverse, 80 column mode.
+Push <RETURN>
+[2J[1;1HTest of known bugs in the DEC VT100 series. The numbering of some of
+the bugs (A-F) refers to the article 'VT100 MAGIC' by Sami Tabih in
+the 'Proceedings of the DEC Users Society' at St. Louis, Missouri, May
+1983. To understand some of the tests, you have to look at the source
+code or the article. Of course, a good VT100-compatible terminal
+should not have these bugs (or have some means of disabling them)! If
+a bug appears, you might want to RESET the terminal before continuing
+the test. There is a test of the RESET function in the main menu.
+
+          Choose bug test number:
+
+          0. Exit to main menu
+          1. Bug A: Smooth scroll to jump scroll
+          2. Bug B: Scrolling region
+          3. Bug C: Wide to narrow screen
+          4. Bug D: Narrow to wide screen
+          5. Bug E: Cursor move from double- to single-wide line
+          6. Bug F: Column mode escape sequence
+          7. Wrap around with cursor addressing
+          8. Erase right half of double width lines
+          9. Funny scroll regions
+
+          Enter choice number (0 - 9): 7
+[2J[16;1H   This illustrates the "wrap around bug" which exists on a
+   standard VT100. At the top of the screen there should be
+   a row of +'s, and the rightmost column should be filled
+   with *'s. But if the bug is present, some of the *'s may
+   be placed in other places, e.g. in the leftmost column,
+   and the top line of +'s may be scrolled away.
+[1;1H+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++[1;80f*[2;80f*[3;80f*[4;80f*[5;80f*[6;80f*[7;80f*[8;80f*[9;80f*[10;80f*[11;80f*[12;80f*[13;80f*[14;80f*[15;80f*[16;80f*[17;80f*[18;80f*[19;80f*[20;80f*[21;80f*[22;80f*[23;80f*[24;80f*[24;1HPush <RETURN>
+[2J[1;1HTest of known bugs in the DEC VT100 series. The numbering of some of
+the bugs (A-F) refers to the article 'VT100 MAGIC' by Sami Tabih in
+the 'Proceedings of the DEC Users Society' at St. Louis, Missouri, May
+1983. To understand some of the tests, you have to look at the source
+code or the article. Of course, a good VT100-compatible terminal
+should not have these bugs (or have some means of disabling them)! If
+a bug appears, you might want to RESET the terminal before continuing
+the test. There is a test of the RESET function in the main menu.
+
+          Choose bug test number:
+
+          0. Exit to main menu
+          1. Bug A: Smooth scroll to jump scroll
+          2. Bug B: Scrolling region
+          3. Bug C: Wide to narrow screen
+          4. Bug D: Narrow to wide screen
+          5. Bug E: Cursor move from double- to single-wide line
+          6. Bug F: Column mode escape sequence
+          7. Wrap around with cursor addressing
+          8. Erase right half of double width lines
+          9. Funny scroll regions
+
+          Enter choice number (0 - 9): 8
+[2J[15;1HThis-is-a-long-line-This-is-a-long-line-This-is-a-long-line-This-is-a-long-line-[1;1HThis is a test of what happens to the right half of double-width lines.
+A common misfeature is that the right half does not come back when a long
+single-width line is set to double-width and then reset to single-width.
+[5;1HNow the line below should contain 80 characters in single width.
+Push <RETURN>
+[15;1H#6[8;1HNow the line below should contain 40 characters in double width.
+Push <RETURN>
+[15;1H#5[11;1HNow the line below should contain 80 characters in single width.
+Push <RETURN>
+[?3h[2J[15;1HThis-is-a-long-line-This-is-a-long-line-This-is-a-long-line-This-is-a-long-line-This-is-a-long-line-This-is-a-long-line-ending-here-[1;1HThis is the same test in 132 column mode.[5;1HNow the line below should contain 132 characters in single width.
+Push <RETURN>
+[15;1H#6[8;1HNow the line below should contain 66 characters in double width.
+Push <RETURN>
+[15;1H#5[11;1HNow the line below should contain 132 characters in single width.
+Push <RETURN>
+[?3l[2J[1;1HTest of known bugs in the DEC VT100 series. The numbering of some of
+the bugs (A-F) refers to the article 'VT100 MAGIC' by Sami Tabih in
+the 'Proceedings of the DEC Users Society' at St. Louis, Missouri, May
+1983. To understand some of the tests, you have to look at the source
+code or the article. Of course, a good VT100-compatible terminal
+should not have these bugs (or have some means of disabling them)! If
+a bug appears, you might want to RESET the terminal before continuing
+the test. There is a test of the RESET function in the main menu.
+
+          Choose bug test number:
+
+          0. Exit to main menu
+          1. Bug A: Smooth scroll to jump scroll
+          2. Bug B: Scrolling region
+          3. Bug C: Wide to narrow screen
+          4. Bug D: Narrow to wide screen
+          5. Bug E: Cursor move from double- to single-wide line
+          6. Bug F: Column mode escape sequence
+          7. Wrap around with cursor addressing
+          8. Erase right half of double width lines
+          9. Funny scroll regions
+
+          Enter choice number (0 - 9): 9
+[2J[20;10r[1;1HThis is 20 lines of text (line 1), no scroll region.
+This is 20 lines of text (line 2), no scroll region.
+This is 20 lines of text (line 3), no scroll region.
+This is 20 lines of text (line 4), no scroll region.
+This is 20 lines of text (line 5), no scroll region.
+This is 20 lines of text (line 6), no scroll region.
+This is 20 lines of text (line 7), no scroll region.
+This is 20 lines of text (line 8), no scroll region.
+This is 20 lines of text (line 9), no scroll region.
+This is 20 lines of text (line 10), no scroll region.
+This is 20 lines of text (line 11), no scroll region.
+This is 20 lines of text (line 12), no scroll region.
+This is 20 lines of text (line 13), no scroll region.
+This is 20 lines of text (line 14), no scroll region.
+This is 20 lines of text (line 15), no scroll region.
+This is 20 lines of text (line 16), no scroll region.
+This is 20 lines of text (line 17), no scroll region.
+This is 20 lines of text (line 18), no scroll region.
+This is 20 lines of text (line 19), no scroll region.
+This is 20 lines of text (line 20), no scroll region.
+Push <RETURN>
+[2J[0;1r[1;1HThis is 20 lines of text (line 1), no scroll region.
+This is 20 lines of text (line 2), no scroll region.
+This is 20 lines of text (line 3), no scroll region.
+This is 20 lines of text (line 4), no scroll region.
+This is 20 lines of text (line 5), no scroll region.
+This is 20 lines of text (line 6), no scroll region.
+This is 20 lines of text (line 7), no scroll region.
+This is 20 lines of text (line 8), no scroll region.
+This is 20 lines of text (line 9), no scroll region.
+This is 20 lines of text (line 10), no scroll region.
+This is 20 lines of text (line 11), no scroll region.
+This is 20 lines of text (line 12), no scroll region.
+This is 20 lines of text (line 13), no scroll region.
+This is 20 lines of text (line 14), no scroll region.
+This is 20 lines of text (line 15), no scroll region.
+This is 20 lines of text (line 16), no scroll region.
+This is 20 lines of text (line 17), no scroll region.
+This is 20 lines of text (line 18), no scroll region.
+This is 20 lines of text (line 19), no scroll region.
+This is 20 lines of text (line 20), no scroll region.
+Push <RETURN>
+[r[2J[1;1HTest of known bugs in the DEC VT100 series. The numbering of some of
+the bugs (A-F) refers to the article 'VT100 MAGIC' by Sami Tabih in
+the 'Proceedings of the DEC Users Society' at St. Louis, Missouri, May
+1983. To understand some of the tests, you have to look at the source
+code or the article. Of course, a good VT100-compatible terminal
+should not have these bugs (or have some means of disabling them)! If
+a bug appears, you might want to RESET the terminal before continuing
+the test. There is a test of the RESET function in the main menu.
+
+          Choose bug test number:
+
+          0. Exit to main menu
+          1. Bug A: Smooth scroll to jump scroll
+          2. Bug B: Scrolling region
+          3. Bug C: Wide to narrow screen
+          4. Bug D: Narrow to wide screen
+          5. Bug E: Cursor move from double- to single-wide line
+          6. Bug F: Column mode escape sequence
+          7. Wrap around with cursor addressing
+          8. Erase right half of double width lines
+          9. Funny scroll regions
+
+          Enter choice number (0 - 9): 
+0
+[2J[2J[3;10HVT100 test program, version 2.7 (20071216)[4;10HLine speed 38400bd [5;10HChoose test type:
+
+          0. Exit
+          1. Test of cursor movements
+          2. Test of screen features
+          3. Test of character sets
+          4. Test of double-sized characters
+          5. Test of keyboard
+          6. Test of terminal reports
+          7. Test of VT52 mode
+          8. Test of VT102 features (Insert/Delete Char/Line)
+          9. Test of known bugs
+          10. Test of reset and self-test
+          11. Test non-VT100 (e.g., VT220, XTERM) terminals
+          12. Modify test-parameters
+
+          Enter choice number (0 - 12): 11
+[2J[2J[3;10HMenu 11: Non-VT100 Tests[5;10HChoose test type:
+
+          0. Exit
+          1. Test of VT220 features
+          2. Test of VT320 features
+          3. Test of VT420 features
+          4. Test ISO-6429 cursor-movement
+          5. Test ISO-6429 colors
+          6. Test other ISO-6429 features
+          7. Test XTERM special features
+
+          Enter choice number (0 - 7): 1
+[2J[2J[3;10HMenu 11.1: VT220 Tests[5;10HChoose test type:
+
+          0. Exit
+          1. Test reporting functions
+          2. Test screen-display functions
+          3. Test 8-bit controls (S7C1T/S8C1T)
+          4. Test Printer (MC)
+          5. Test Soft Character Sets (DECDLD)
+          6. Test Soft Terminal Reset (DECSTR)
+          7. Test User-Defined Keys (DECUDK)
+
+          Enter choice number (0 - 7): 2
+[2J[2J[3;10HMenu 11.1.2: VT220 Screen-Display Tests[5;10HChoose test type:
+
+          0. Exit
+          1. Test Send/Receive mode (SRM)
+          2. Test Visible/Invisible Cursor (DECTCEM)
+          3. Test Erase Char (ECH)
+          4. Test Protected-Areas (DECSCA)
+
+          Enter choice number (0 - 4): 1
+[2J[1;1HTest Send/Receive mode (SRM)
+[12lLocal echo is enabled, remote echo disabled.  Press any keys, repeat to quit.
+[3;10H[12h[10;1HLocal echo is disabled, remote echo enabled.  Press any keys, repeat to quit.
+[11;10H[23;1HPush <RETURN>
+[2J[3;10HMenu 11.1.2: VT220 Screen-Display Tests[5;10HChoose test type:
+
+          0. Exit
+          1. Test Send/Receive mode (SRM)
+          2. Test Visible/Invisible Cursor (DECTCEM)
+          3. Test Erase Char (ECH)
+          4. Test Protected-Areas (DECSCA)
+
+          Enter choice number (0 - 4): 2
+[2J[1;1H[?25lThe cursor should be invisible
+Push <RETURN>
+[?25hThe cursor should be visible again
+Push <RETURN>
+[2J[3;10HMenu 11.1.2: VT220 Screen-Display Tests[5;10HChoose test type:
+
+          0. Exit
+          1. Test Send/Receive mode (SRM)
+          2. Test Visible/Invisible Cursor (DECTCEM)
+          3. Test Erase Char (ECH)
+          4. Test Protected-Areas (DECSCA)
+
+          Enter choice number (0 - 4): 3
+[2J#8[1;77H[X[1;78H*[80X*[2;76H[X[2;77H*[80X*[3;75H[X[3;76H*[80X*[4;74H[X[4;75H*[80X*[5;73H[X[5;74H*[80X*[6;72H[X[6;73H*[80X*[7;71H[X[7;72H*[80X*[8;70H[X[8;71H*[80X*[9;69H[X[9;70H*[80X*[10;68H[X[10;69H*[80X*[11;67H[X[11;68H*[80X*[12;66H[X[12;67H*[80X*[13;65H[X[13;66H*[80X*[14;64H[X[14;65H*[80X*[15;63H[X[15;64H*[80X*[16;62H[X[16;63H*[80X*[17;61H[X[17;62H*[80X*[18;60H[X[18;61H*[80X*[19;59H[X[19;60H*[80X*[20;58H[X[20;59H*[80X*[21;57H[X[21;58H*[80X*[22;56H[X[22;57H*[80X*[23;55H[X[23;56H*[80X*[24;54H[X[24;55H*[80X*[20;1H[0J[20;50Hdiagonal: ^^ (clear)
+ECH test: there should be E's with a gap before diagonal of **'s
+The lower-right diagonal region should be cleared.  Nothing else.
+Push <RETURN>
+[2J[3;10HMenu 11.1.2: VT220 Screen-Display Tests[5;10HChoose test type:
+
+          0. Exit
+          1. Test Send/Receive mode (SRM)
+          2. Test Visible/Invisible Cursor (DECTCEM)
+          3. Test Erase Char (ECH)
+          4. Test Protected-Areas (DECSCA)
+
+          Enter choice number (0 - 4): 4
+[2J[1"q[5;20H*****************************************[6;20H*****************************************[7;20H*****************************************[8;20H*****************************************[9;20H*****************************************[10;20H*****************************************[11;20H*****************************************[12;20H*****************************************[13;20H*****************************************[14;20H*****************************************[15;20H*****************************************[16;20H*****************************************[0"q[1;16H*[1;64H*[2;17H*[2;63H*[3;18H*[3;62H*[4;19H*[4;61H*[17;19H*[17;61H*[18;18H*[18;62H*[19;17H*[19;63H*[20;16H*[20;64H*[21;15H*[21;65H*[22;14H*[22;66H*[23;13H*[23;67H*[12;40H[?0J[1;17H*[1;63H*[2;18H*[2;62H*[3;19H*[3;61H*[4;20H*[4;60H*[17;20H*[17;60H*[18;19H*[18;61H*[19;18H*[19;62H*[20;17H*[20;63H*[21;16H*[21;64H*[22;15H*[22;65H*[23;14H*[23;66H*[12;40H[?1J[1;18H*[1;62H*[2;19H*[2;61H*[3;20H*[3;60H*[4;21H*[4;59H*[17;21H*[17;59H*[18;20H*[18;60H*[19;19H*[19;61H*[20;18H*[20;62H*[21;17H*[21;63H*[22;16H*[22;64H*[23;15H*[23;65H*[12;40H[?2J[5;61H*[12;61H*[5;62H*[12;62H*[5;63H*[12;63H*[5;64H*[12;64H*[5;65H*[12;65H*[5;66H*[12;66H*[5;67H*[12;67H*[5;68H*[12;68H*[5;69H*[12;69H*[5;70H*[12;70H*[5;71H*[12;71H*[5;72H*[12;72H*[5;73H*[12;73H*[5;74H*[12;74H*[5;75H*[12;75H*[5;76H*[12;76H*[5;77H*[12;77H*[5;78H*[12;78H*[5;79H*[12;79H*[5;80H*[12;80H*[12;40H[?0K[5;1H*[12;1H*[5;2H*[12;2H*[5;3H*[12;3H*[5;4H*[12;4H*[5;5H*[12;5H*[5;6H*[12;6H*[5;7H*[12;7H*[5;8H*[12;8H*[5;9H*[12;9H*[5;10H*[12;10H*[5;11H*[12;11H*[5;12H*[12;12H*[5;13H*[12;13H*[5;14H*[12;14H*[5;15H*[12;15H*[5;16H*[12;16H*[5;17H*[12;17H*[5;18H*[12;18H*[5;19H*[12;19H*[12;40H[?1K[5;40H[?2K[21;1H[0JIf your terminal supports DEC protected areas (DECSCA, DECSED, DECSEL),
+there will be an solid box made of *'s in the middle of the screen.
+Push <RETURN>
+[5;20H*****************************************[6;20H*****************************************[7;20H*****************************************[8;20H*****************************************[9;20H*****************************************[10;20H*****************************************[11;20H*****************************************[12;20H*****************************************[13;20H*****************************************[14;20H*****************************************[15;20H*****************************************[16;20H*****************************************[2J[3;10HMenu 11.1.2: VT220 Screen-Display Tests[5;10HChoose test type:
+
+          0. Exit
+          1. Test Send/Receive mode (SRM)
+          2. Test Visible/Invisible Cursor (DECTCEM)
+          3. Test Erase Char (ECH)
+          4. Test Protected-Areas (DECSCA)
+
+          Enter choice number (0 - 4): 0
+[2J[2J[3;10HMenu 11.1: VT220 Tests[5;10HChoose test type:
+
+          0. Exit
+          1. Test reporting functions
+          2. Test screen-display functions
+          3. Test 8-bit controls (S7C1T/S8C1T)
+          4. Test Printer (MC)
+          5. Test Soft Character Sets (DECDLD)
+          6. Test Soft Terminal Reset (DECSTR)
+          7. Test User-Defined Keys (DECUDK)
+
+          Enter choice number (0 - 7): 3
+[2J[1;1HTest 8-bit controls (S7C1T/S8C1T)
+[5;1HThis tests the VT200+ control sequence to direct the terminal to emit 8-bit
+control-sequences instead of <esc> sequences.
+ G[1;1H[6n[10;1H8-bit controls enabled:   [7m <27> [ 1 ; 1 R [m failed F[1;1H[6n[13;1H8-bit controls disabled:   [7m <27> [ 1 ; 1 R [m ok[23;1HPush <RETURN>
+[2J[3;10HMenu 11.1: VT220 Tests[5;10HChoose test type:
+
+          0. Exit
+          1. Test reporting functions
+          2. Test screen-display functions
+          3. Test 8-bit controls (S7C1T/S8C1T)
+          4. Test Printer (MC)
+          5. Test Soft Character Sets (DECDLD)
+          6. Test Soft Terminal Reset (DECSTR)
+          7. Test User-Defined Keys (DECUDK)
+
+          Enter choice number (0 - 7): 6 6
+[2J[1;1HTest Soft Terminal Reset (DECSTR)
+(VT220 & up)
+
+The terminal will now soft-reset
+Push <RETURN>
+[!pPush <RETURN>
+[2J[3;10HMenu 11.1: VT220 Tests[5;10HChoose test type:
+
+          0. Exit
+          1. Test reporting functions
+          2. Test screen-display functions
+          3. Test 8-bit controls (S7C1T/S8C1T)
+          4. Test Printer (MC)
+          5. Test Soft Character Sets (DECDLD)
+          6. Test Soft Terminal Reset (DECSTR)
+          7. Test User-Defined Keys (DECUDK)
+
+          Enter choice number (0 - 7): 0
+[2J[2J[3;10HMenu 11: Non-VT100 Tests[5;10HChoose test type:
+
+          0. Exit
+          1. Test of VT220 features
+          2. Test of VT320 features
+          3. Test of VT420 features
+          4. Test ISO-6429 cursor-movement
+          5. Test ISO-6429 colors
+          6. Test other ISO-6429 features
+          7. Test XTERM special features
+
+          Enter choice number (0 - 7): 0
+[2J[2J[3;10HVT100 test program, version 2.7 (20071216)[4;10HLine speed 38400bd [5;10HChoose test type:
+
+          0. Exit
+          1. Test of cursor movements
+          2. Test of screen features
+          3. Test of character sets
+          4. Test of double-sized characters
+          5. Test of keyboard
+          6. Test of terminal reports
+          7. Test of VT52 mode
+          8. Test of VT102 features (Insert/Delete Char/Line)
+          9. Test of known bugs
+          10. Test of reset and self-test
+          11. Test non-VT100 (e.g., VT220, XTERM) terminals
+          12. Modify test-parameters
+
+          Enter choice number (0 - 12): 0
+[2J[?1l[?3l[?5l[?6l[?7h[?8h[r[0m[2J[12;30HThat's all, folks!
+
+
+
+EMACS| ~/webshell/vttest-20071216 |EMACS
+bash-3.2$ exit
+exit

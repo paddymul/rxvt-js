@@ -151,9 +151,12 @@ I bound them to "C-H u" "C-H o" and "C-H p"
        this.cmdbuf[this.cmdbuf_endp++] = str[str_ptr++];
      this.cmd_parse ();
      */
-        
-     this.cmdbuf=str;
-     this.cmdbuf_ptr=0;
+         if(this.cmdbuf_endp == this.cmdbuf_ptr){
+             this.cmdbuf=str;   
+             this.cmdbuf_ptr=0;
+             }
+         else {
+             this.cmdbuf.concat(str);}
      this.cmdbuf_endp=this.cmdbuf.length;
      this.cmd_parse ();
 
@@ -443,6 +446,9 @@ rxvt_term.prototype.cmd_parse =function(){
                             eol = mi_n (eol + this.ncol, buf.length + UBUFSIZ);}//str.length
                 }//expect_false
                 seq_begin = this.cmdbuf_ptr;
+                /*while(new Date() % 20 != 0) {
+                    
+                }*/
                 och = ord(this.next_char()); 
             }//for(;;) inner_for_loop
 
@@ -530,7 +536,9 @@ rxvt_term.prototype.process_nonprinting =function(ch){
         this.scr_bell ();
         break;
       case C0_BS:		/* backspace */
+      //debusgger
         this.scr_backspace ();
+      //console.log(this.screen.cur);
         break;
       case C0_HT:		/* tab */
         this.scr_tab (1);
@@ -596,11 +604,11 @@ rxvt_term.prototype.process_escape_vt52 = function (ch){
         this.scr_index (DN);
         break;
       case 'J':		/* erase to end of screen */
-          console.log("erase to end of screen");
+          //console.log("erase to end of screen");
         this.scr_erase_screen (0);
         break;
       case 'K':		/* erase to end of line */
-          console.log("erase to end of line");
+          //console.log("erase to end of line");
         this.scr_erase_line (0);
         break;
       case 'Y':         	/* move to specified row and col */
@@ -609,8 +617,8 @@ rxvt_term.prototype.process_escape_vt52 = function (ch){
          * character.  eg. SPACE = 0, '+' = 13, '0' = 18, 
          * etc. */ 
           console.log("Case Y");
-        row = this.cmd_getc() - ' ';
-        col = this.cmd_getc() - ' ';
+          row = ord(this.cmd_getc()) - ord(' ');
+          col = ord(this.cmd_getc()) - ord(' ');
         this.scr_gotorc (row, col, 0);
         break;
       case 'Z':		/* identify the terminal type */
@@ -839,7 +847,7 @@ rxvt_term.prototype.process_csi_seq =function(){
     }
 
   if (och > CSI_7F){
-      console.log("och > CSI_7F)");
+      //console.log("och > CSI_7F)");
     return;
   }
   if (nargs < ESC_ARGS)
@@ -849,8 +857,8 @@ rxvt_term.prototype.process_csi_seq =function(){
   //  ndef = get_byte_array_bit (csi_defaults, i);
   ndef = get_byte_array_bit (csi_defaults, 0);
   for (p = 0; p < nargs; p++){
-    if (arg[p] == 1){
-      arg[p] = 8; } //this is a decent pick for a default
+    if (arg[p] == -1){
+      arg[p] = 0; } //this is a decent pick for a default
   }
   /*
    * private mode handling 
@@ -878,7 +886,6 @@ rxvt_term.prototype.process_csi_seq =function(){
 
           case '!':
             if (och == CSI_70){
-              console.log("CSI_70")
                 /* DECSTR: soft terminal reset, used by our terminfo since 9.06 */
                 this.scr_soft_reset ();
 
@@ -962,12 +969,12 @@ rxvt_term.prototype.process_csi_seq =function(){
         break;
 
       case CSI_ED:		/* 8.3.40: (0) ERASE IN PAGE */
-      console.log("CSI_ED",arg);
+      //console.log("CSI_ED",arg);
         this.scr_erase_screen (arg[0]);
         break;
 
       case CSI_EL:		/* 8.3.42: (0) ERASE IN LINE */
-      console.log("CSI_EL",arg);
+      //console.log("CSI_EL",arg);
         this.scr_erase_line (arg[0]);
         break;
 
@@ -1058,7 +1065,7 @@ rxvt_term.prototype.process_csi_seq =function(){
         break;
 
       case CSI_RM:		/* 8.3.107: RESET MODE */
-      console.log("CSI_RM",arg);
+      //console.log("CSI_RM",arg);
         if (arg[0] == 4)
           this.scr_insert_mode (0);
         else if (arg[0] == 20)
@@ -1113,8 +1120,8 @@ rxvt_term.prototype.process_csi_seq =function(){
 //void rxvt_term::process_window_ops (const int *args, unsigned int nargs)
 rxvt_term.prototype.process_window_ops =function( args,   nargs){ 
   var x, y; //int x, y;  
-  XWindowAttributes wattr;
-  Window wdummy;
+  //XWindowAttributes wattr;
+  //Window wdummy;
 
 //dLocal (Display *, dpy); 
   dLocal (Display  ,  dpy);

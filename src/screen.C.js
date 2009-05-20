@@ -1126,7 +1126,7 @@ rxvt_term.this.scr_forwardindex =function(){
   clamp_it (this.screen.cur.col, 0,  this.ncol - 1);
 
   this.screen.flags &= ~Screen_WrapNext;
-
+  //debugger
   if (relative & R_RELATIVE){
       if (row > 0){
           if (this.screen.cur.row <= this.screen.bscroll
@@ -1350,10 +1350,10 @@ rxvt_term.prototype.scr_erase_savelines =function(){
 //void rxvt_term::scr_E () 
 rxvt_term.prototype.scr_E =function(){ 
     //REWRITE
-    /*
+    
  var    fs;  //rend_t fs;   ###  c_keyword js_style_variables
 
-  want_refresh = 1;
+  this.want_refresh = 1;
   ZERO_SCROLLBACK ();
 
   this.num_scr_allow = 0;
@@ -1363,16 +1363,16 @@ rxvt_term.prototype.scr_E =function(){
  for (var row = this.nrow; row--; ){  //for (int row = nrow; row--; )
      var line = ROW(row); //line_t &line = ROW(row);
 
-         fill_text (line.t, line.t_i, 'E',  this.ncol); //FIXED
-      var r1 = line.r, r1_i =0;  //rend_t *r1 = line.r;  
+         fill_text (line.t, 0, 'E',  this.ncol); //FIXED
+         //var r1 = line.r, r1_i =0;  //rend_t *r1 = line.r;  
 
-      for (var j =  this.ncol; j--; )  //for (int j =  this.ncol; j--; )  
+         //for (var j =  this.ncol; j--; )  //for (int j =  this.ncol; j--; )  
           //   line.r[r1_i++] = fs;  // *r1++ = f
 
       line.is_longer (0);
       line.touch ( this.ncol);
     }
-    */
+
 }
 
 /* ------------------------------------------------------------------------- */

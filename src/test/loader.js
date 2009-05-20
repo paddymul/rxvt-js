@@ -99,14 +99,26 @@ if (window.XMLHttpRequest)
 else
 	req = new ActiveXObject("Microsoft.XMLHTTP");
 
-req.open("GET", "specific-test.ou", false);
+//req.open("GET", "specific-test.ou", false);
 //req.open("GET", "vttest1.out", false);
-//req.open("GET", "myttyrec.out", false);
+req.open("GET", "myttyrec.out", false);
 req.send(null);
 
 //vt = new VT100(80, 24, "term");
 //output_line(
-//VTAnimatorOld(a,req.responseText,17500);
 resp=req.responseText;
-output_line(resp);
-console.log("hello");
+//VTAnimatorOld(a,resp.slice(1,9600);
+
+
+var counter = 0;
+function forward(num){
+    counter += num;
+    output_line(resp.slice(0,counter));
+    document.getElementById('counter').innerHTML=counter;
+}
+function backward(num){
+    counter -= num;
+    output_line(resp.slice(0,counter));
+    document.getElementById('counter').innerHTML=counter;
+}
+//console.log("hello");

@@ -399,9 +399,9 @@ ESCZ_ANSWER = "rxvt-js ?? escz";
 
 //SCREEN.H.JS MACROS
 #define fill_text(RECIEVE,START, VALUE, LEN)    \
-  var n_start=START, n_len = LEN;\
+    var n_start=(START), n_len = (LEN);         \
   while(n_len--)\
-    recieve[n_start++]=VALUE;\
+      (RECIEVE)[n_start++]=(VALUE);             \
 
 #define isdigit(foo) (foo) >= '0' && (foo) <='9'
 /* ------------------------------------------------------------------------- */
