@@ -1,5 +1,5 @@
 
-var a = new rxvt_term(document.getElementById('term'));
+var a = new rxvt_term(document.getElementById('term'),"pre_term");
 a.row_buf=false;
 a.scr_poweron();
 //console.log(a);
@@ -111,7 +111,7 @@ function setupTiming2(){
 
   output_jumps=[];
   output_timing=[];
-  var min_milli_jump=24;
+  var min_milli_jump=70;
   var residual_milli_jump=0;
   var residual_jump=0;
   for(var i=0; i < intervalMilliSecs.length; i++){
@@ -150,15 +150,15 @@ function VTAnimator2(vt, text){
     function() {
       if(doAnimate){
           
-          /*
+
         soundPointer+=mspf/1000;
 
         var diff = player_el.currentTime -soundPointer;
         if(diff > 0.2) {
-            //soundSeek(soundPointer);
+            soundSeek(soundPointer);
             console.log(diff);
         }
-*/
+
         console.log(timingPointer);
 	bpf=local_output_jumps[timingPointer];
 	var me = arguments.callee;
@@ -202,13 +202,10 @@ req.send(null);
 //output_line(
 resp=req.responseText;
 function animate(){
-    //    VTAnimatorOld(a,resp.slice(1,600), 2400);
-    //
     setupTiming2();
-    //soundPlay();
+    soundPlay();
     VTAnimator2(a,resp);
-    //VTAnimator(a,resp);
-    
+        
     doAnimate=!doAnimate;
     console.log(doAnimate);
 }

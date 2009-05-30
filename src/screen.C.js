@@ -427,16 +427,16 @@ rxvt_term.prototype.scr_reset =function(){
 
   this.tt_winch ();
 
-  this.term_el.innerHTML="";
+  //this.term_el.innerHTML="";
   this.dom_text_rows=[]
   for(var i = 0; i < this.nrow; i++){
 
       var dom_row = $("<pre></pre>");
       //this.dom_rows.push(dom_row);
-      this.term_el.append(dom_row);
+      //this.term_el.append(dom_row);
       this.dom_text_rows.push([]);
   }
-  this.dom_rows=this.term_el.contents();
+  //this.dom_rows=this.term_el.contents();
   HOOK_INVOKE ((this, HOOK_RESET, DT_END));
 }  
 /*
@@ -1920,7 +1920,7 @@ rxvt_term.prototype.scr_printscreen =function( fullhist){
  * screen.text/screen.rend contain what the screen will change to. 
  */
 //REWRITE: void rxvt_term::scr_refresh (){ 
-var term_el =     document.getElementById("term")
+
 rxvt_term.prototype.scr_refresh =function(){ 
     var out_string =[];
     var b=-1;
@@ -1938,8 +1938,9 @@ rxvt_term.prototype.scr_refresh =function(){
         //r=ROW(this.view_start + row);
         //r=(this.row_buf [((((this).term_start +   this.view_start + row) + ( (this).total_rows)) % ( (this).total_rows))]);
         r=row_buf [row_plus + row];
-
+        dr[row].textContent= r.t.join("");
          //if(b.join("") != dtr[row]) {
+        /*
          if(r.modified){
              r.modified=false;
              b=r.t;
@@ -1956,6 +1957,7 @@ rxvt_term.prototype.scr_refresh =function(){
 
              //console.log("wrote a row");
          }
+        */
          /*
          else{
              console.log("skipped a row");
@@ -1964,6 +1966,29 @@ rxvt_term.prototype.scr_refresh =function(){
     }
     //term_el.innerHTML = 
 
+} 
+
+rxvt_term.prototype.scr_refresh =function(){ 
+    var out_string =[];
+    var b=-1;
+    var dtr = this.dom_text_rows;
+    var dr = this.dom_rows;
+    var view_start= this.view_start;
+    var total_rows = this.total_rows;
+    var term_start = this.term_start;
+    var row_buf = this.row_buf;
+    var term_view_start = term_start+view_start;
+    var mod_total_rows = total_rows % total_rows;
+    var row_plus = mod_total_rows + term_view_start;
+    var r;
+    for(var row = 0; row < this.nrow; row++){
+        r=row_buf [row_plus + row];
+        dtr[row]= r.t.join("");
+    }
+    //console.log(dtr.join("\n"));
+    //this.pre_term_el.innerHTML = dtr.join("\n");
+    //$("pt")
+    document.getElementById("pt").innerHTML = dtr.join("\n");
 } 
 
 //FIXME overloaded_function

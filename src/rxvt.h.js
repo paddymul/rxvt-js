@@ -1665,8 +1665,9 @@ selection_t.prototype = {
 rxvt_vars = function() {}
   rxvt_vars.prototype={
   };
-function rxvt_term(term_el) {
-    this.term_el=$(term_el);
+function rxvt_term(term_el, pre_term_el) {
+    //this.term_el=$(term_el);
+    this.pre_term_el=$(pre_term_el);
   this.screen = new screen_t();
   this.swap = new screen_t();
   this.charsets= new Array(4);
