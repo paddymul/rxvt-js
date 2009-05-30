@@ -29,6 +29,7 @@ function VTAnimatorOld(vt, text, bps){
 	where += bpf;
 	if (where >= text.length) {
             doAnimate=false;
+            console.log("done");
             //clearTimeout(hnd);
             //where = 0;
             //setTimeout(me, 1000);
@@ -213,7 +214,7 @@ function animate(){
 }
 
 function fast_animate(){
-    VTAnimatorOld(a,resp, 4800);
+    VTAnimatorOld(a,resp.slice(0,50000), 4800);
 }
 //VTAnimatorOld(a,resp);
 

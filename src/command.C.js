@@ -405,7 +405,7 @@ rxvt_term.prototype.cmd_parse =function(){
     for (;;){ //outer_for_loop
         if (expect_false (och == NOCHAR)){
             seq_begin = this.cmdbuf_ptr; 
-            och = ord(this.next_char()); 
+            och = ord(this_next_char()); 
             if (och == NOCHAR)
                 break;}
 
@@ -457,7 +457,7 @@ rxvt_term.prototype.cmd_parse =function(){
                 /*while(new Date() % 20 != 0) {
                     
                 }*/
-                och = ord(this.next_char()); 
+                och = ord(this_next_char()); 
             }//for(;;) inner_for_loop
 
             if (!(SHOULD_INVOKE (HOOK_ADD_LINES)    && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str.length - buf.length, DT_END)))){
@@ -514,7 +514,7 @@ rxvt_term.prototype.next_octet =function() NOTHROW {
  */
 //wchar_t rxvt_term::cmd_getc () THROW ((class out_of_input))
   rxvt_term.prototype.cmd_getc =function() {
-    var c= this.next_char ();   //wchar_t c = next_char (); 
+    var c= this_next_char ();   //wchar_t c = next_char (); 
   return c;
 }
 
