@@ -134,11 +134,12 @@ f
 
 #ifndef RXVT_H_                /* include once only */
 #define RXVT_H_
-
+/*
 if(!console){
   console={};
   console.log=function(){};
  }
+*/
 /*
   #include <cstdio>
   #include <cctype>
@@ -674,13 +675,53 @@ PRIMARY = 0,
 #define Sel_UTF8String          0x20    /* last request was UTF8_STRING */
 #define ESC_ARGS	32	/* max # of args for esc sequences */
 
+/*
 var  C0_NUL = 0x00,  C0_SOH= 0x1  ,  C0_STX= 0x2 ,  C0_ETX= 0x3 ,  C0_EOT= 0x4  ,
   C0_ENQ= 0x5 ,  C0_ACK= 0x6,  C0_BEL= 0x7,  C0_BS = 0x8,  C0_HT = 0x9 ,
   C0_LF = 0xa ,  C0_VT = 0xb , C0_FF = 0xc , C0_CR = 0xd , C0_SO = 0xe ,
   C0_SI = 0xf , C0_DLE= 0x10, C0_DC1= 0x11, C0_DC2= 0x12, D0_DC3= 0x13,
   C0_DC4= 0x14, C0_NAK= 0x15, C0_SYN= 0x16, C0_ETB= 0x17, C0_CAN= 0x18,
   C0_EM = 0x19, C0_SUB= 0x1a, C0_ESC= 0x1b, C0_IS4= 0x1c, C0_IS3= 0x1d,
-  C0_IS2= 0x1e, C0_IS1= 0x1f;
+  C0_IS2= 0x1e, C0_IS1= 0x1f;*/
+
+#define  C0_NUL 0x00
+#define  C0_SOH 0x1  
+#define  C0_STX 0x2 
+#define  C0_ETX 0x3 
+#define  C0_EOT 0x4  
+
+#define C0_ENQ 0x5 
+#define C0_ACK 0x6
+#define C0_BEL 0x7
+#define C0_BS 0x8
+#define C0_HT 0x9 
+
+#define C0_LF 0xa 
+#define C0_VT 0xb 
+#define C0_FF 0xc 
+#define C0_CR 0xd 
+#define C0_SO 0xe 
+
+#define C0_SI 0xf 
+#define C0_DLE 0x10
+#define C0_DC1 0x11
+#define C0_DC2 0x12
+#define D0_DC3 0x13
+
+#define C0_DC4 0x14
+#define C0_NAK 0x15
+#define C0_SYN 0x16
+#define C0_ETB 0x17
+#define C0_CAN 0x18
+
+#define C0_EM 0x19
+#define C0_SUB 0x1a
+#define C0_ESC 0x1b
+#define C0_IS4 0x1c
+#define C0_IS3 0x1d
+
+#define C0_IS2 0x1e
+#define C0_IS1 0x1f
 
 /*
   enum {
@@ -691,7 +732,7 @@ var  C0_NUL = 0x00,  C0_SOH= 0x1  ,  C0_STX= 0x2 ,  C0_ETX= 0x3 ,  C0_EOT= 0x4  
   C0_CAN, C0_EM , C0_SUB, C0_ESC, C0_IS4, C0_IS3, C0_IS2, C0_IS1,
   };
 */
-
+/*
 var  C1_40 = 0x40,
   C1_41 =0x41,
   C1_BPH=0x42,
@@ -727,6 +768,43 @@ var  C1_40 = 0x40,
   C1_OSC=0x5d,
   C1_PM =0x5e,
   C1_APC=0x5f;
+*/
+
+#define C1_40 0x40
+#define C1_41 0x41
+#define C1_BPH 0x42
+#define C1_NBH 0x43
+#define C1_44 0x44
+#define C1_NEL 0x45
+#define C1_SSA 0x46
+#define C1_ESA 0x47
+
+#define C1_HTS 0x48
+#define C1_HTJ 0x49
+#define C1_VTS 0x4a
+#define C1_PLD 0x4b
+#define C1_PLU 0x4c
+#define C1_RI 0x4d
+#define C1_SS2 0x4e
+#define C1_SS3 0x4f
+
+#define C1_DCS 0x50
+#define C1_PU1 0x51
+#define C1_PU2 0x52
+#define C1_STS 0x53
+#define C1_CCH 0x54
+#define C1_MW 0x55
+#define C1_SPA 0x56
+#define C1_EPA 0x57
+
+#define C1_SOS 0x58
+#define C1_59 0x59
+#define C1_SCI 0x5a
+#define C1_CSI 0x5b
+#define CS_ST 0x5c
+#define C1_OSC 0x5d
+#define C1_PM 0x5e
+#define C1_APC 0x5f;
 
 
 
@@ -734,7 +812,7 @@ var  C1_40 = 0x40,
 
 /* *INDENT-OFF* */ 
 /* enum {
-  C1_40 = 0x40,
+  C1_40 = 0x40
           C1_41 , C1_BPH, C1_NBH, C1_44 , C1_NEL, C1_SSA, C1_ESA,
   C1_HTS, C1_HTJ, C1_VTS, C1_PLD, C1_PLU, C1_RI , C1_SS2, C1_SS3,
   C1_DCS, C1_PU1, C1_PU2, C1_STS, C1_CCH, C1_MW , C1_SPA, C1_EPA,
@@ -742,7 +820,7 @@ var  C1_40 = 0x40,
 };
 */
 /* *INDENT-ON* */ 
-
+/*
 var CSI_ICH =   0x40,
  CSI_CUU =   0x41, 
  CSI_CUD =   0x42, 
@@ -807,6 +885,72 @@ var CSI_ICH =   0x40,
  CSI_7D  =   0x7d, 
  CSI_7E  =   0x7e, 
   CSI_7F  =   0x7f;
+*/
+
+#define CSI_ICH 0x40
+#define CSI_CUU 0x41
+#define CSI_CUD 0x42
+#define CSI_CUF 0x43
+#define CSI_CUB 0x44
+#define CSI_CNL 0x45
+#define CSI_CPL 0x46
+#define CSI_CHA 0x47
+#define CSI_CUP 0x48
+#define CSI_CHT 0x49
+#define CSI_ED 0x4a
+#define CSI_EL 0x4b
+#define CSI_IL 0x4c
+#define CSI_DL 0x4d
+#define CSI_EF 0x4e
+#define CSI_EA 0x4f
+#define CSI_DCH 0x50
+#define CSI_SEE 0x51
+#define CSI_CPR 0x52
+#define CSI_SU 0x53
+#define CSI_SD 0x54
+#define CSI_NP 0x55
+#define CSI_PP 0x56
+#define CSI_CTC 0x57
+#define CSI_ECH 0x58
+#define CSI_CVT 0x59
+#define CSI_CBT 0x5a
+#define CSI_SRS 0x5b
+#define CSI_PTX 0x5c
+#define CSI_SDS 0x5d
+#define CSI_SIMD 0x5e
+#define CSI_5F 0x5f
+#define CSI_HPA 0x60
+#define CSI_HPR 0x61
+#define CSI_REP 0x62
+#define CSI_DA 0x63
+#define CSI_VPA 0x64
+#define CSI_VPR 0x65
+#define CSI_HVP 0x66
+#define CSI_TBC 0x67
+#define CSI_SM 0x68
+#define CSI_MC 0x69
+#define CSI_HPB 0x6a
+#define CSI_VPB 0x6b
+#define CSI_RM 0x6c
+#define CSI_SGR 0x6d
+#define CSI_DSR 0x6e
+#define CSI_DAQ 0x6f
+#define CSI_70 0x70
+#define CSI_71 0x71
+#define CSI_72 0x72
+#define CSI_73 0x73
+#define CSI_74 0x74
+#define CSI_75 0x75
+#define CSI_76 0x76
+#define CSI_77 0x77
+#define CSI_78 0x78
+#define CSI_79 0x79
+#define CSI_7A 0x7a
+#define CSI_7B 0x7b
+#define CSI_7C 0x7c
+#define CSI_7D 0x7d
+#define CSI_7E 0x7e
+#define CSI_7F 0x7f
 
 
 
@@ -1852,15 +1996,12 @@ function chr(integer){
 function unichr(integer){
   return String.fromCharCode(integer);
   }
+
 function ord(_string){ //this might fail for unicode
 
   var code="";
-  try{
+
     code =_string.toString().charCodeAt(0);
-  }
-  catch(ex){
-//    code =_string.charCodeAt(0);
-  }
 
   return code;
 }

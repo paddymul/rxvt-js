@@ -127,6 +127,8 @@ I bound them to "C-H u" "C-H o" and "C-H p"
 //REMOVED:void rxvt_term::key_press (XKeyEvent &ev) 
 
 //unsigned int rxvt_term::cmd_write (const char *str, unsigned int count)
+
+
  rxvt_term.prototype.cmd_write = function( str,  count){
      /*         
      var str_ptr=0;
@@ -151,12 +153,17 @@ I bound them to "C-H u" "C-H o" and "C-H p"
        this.cmdbuf[this.cmdbuf_endp++] = str[str_ptr++];
      this.cmd_parse ();
      */
+         //console.log(str);
+         //str=str + chr(NOCHAR);
+         //console.log(str);
          if(this.cmdbuf_endp == this.cmdbuf_ptr){
              this.cmdbuf=str;   
              this.cmdbuf_ptr=0;
              }
          else {
-             this.cmdbuf.concat(str);}
+             this.cmdbuf= this.cmdbuf.concat(str);             
+             //this.cmdbuf= this.cmdbuf.slice(0,this.cmdbuf.length-1).concat(str);
+         }
      this.cmdbuf_endp=this.cmdbuf.length;
      this.cmd_parse ();
 
@@ -167,6 +174,7 @@ I bound them to "C-H u" "C-H o" and "C-H p"
 
 
 //void rxvt_term::flush ()
+rxvt_term.prototype.minimum_buf_size=40;
 rxvt_term.prototype.flush =function(){ 
   flush_ev.stop ();
 
@@ -465,14 +473,13 @@ rxvt_term.prototype.cmd_parse =function(){
             }
         } //IS_CONTROL
         else {
-          //            try {
-            //debugger
-          this.process_nonprinting (och);
-       
-            /*catch ( out_of_input){  //FIXME exception
+         try {
+
+             this.process_nonprinting (och);
+         } catch ( out_of_input){  //FIXME exception
                 // we ran out of input, retry later
                 this.cmdbuf_ptr = seq_begin;
-                break;} */
+                break;} 
             och = NOCHAR;
         }//else
     }//for(;;) outer_for_loop
@@ -521,6 +528,12 @@ rxvt_term.prototype.next_octet =function() NOTHROW {
 /*{{{ process non-printing single characters */ 
 //void rxvt_term::process_nonprinting (unicode_t ch)
 rxvt_term.prototype.process_nonprinting =function(ch){ 
+        if ( (  this.cmdbuf_endp - this.cmdbuf_ptr) < this.minimum_buf_size) {
+            //    if ( (  foo.cmdbuf_endp - foo.cmdbuf_ptr) < foo.minimum_buf_size) {
+            //this.cmdbuf_ptr--;
+            throw "out_of_input";
+        return;
+    }
     //debugger
   switch (ch){
       case C0_ESC:
@@ -570,7 +583,7 @@ rxvt_term.prototype.process_nonprinting =function(ch){
         this.process_osc_seq ();
         break;
   default:
-      console.log(chr(ch));
+      //console.log(chr(ch));
       //#endif
     }
 }
@@ -616,7 +629,7 @@ rxvt_term.prototype.process_escape_vt52 = function (ch){
          * are encoded by adding 32 and sending the ascii 
          * character.  eg. SPACE = 0, '+' = 13, '0' = 18, 
          * etc. */ 
-          console.log("Case Y");
+          //console.log("Case Y");
           row = ord(this.cmd_getc()) - ord(' ');
           col = ord(this.cmd_getc()) - ord(' ');
         this.scr_gotorc (row, col, 0);
@@ -1841,6 +1854,7 @@ rxvt_term.prototype.process_terminal_mode =function(mode,  __unused__,   nargs, 
 /*{{{ process sgr sequences */
 //void rxvt_term::process_sgr_mode (unsigned int nargs, const int *arg) 
 rxvt_term.prototype.process_sgr_mode =function(nargs,    arg){ 
+
   var i; //unsigned int i; 
   var rendset; //short rendset; 
   var rendstyle; //int rendstyle;

@@ -6,6 +6,7 @@ a.scr_poweron();
 
 
 function output_line(str){
+    //console.log("hello");
   a.cmd_write(str, str.length);
   a.scr_refresh();
 }
@@ -22,7 +23,9 @@ function VTAnimatorOld(vt, text, bps){
       if(doAnimate){
 	var me = arguments.callee;
 	var hnd = setTimeout(me, mspf);
+        
 	vt.cmd_write(text.substr(where, bpf));
+        vt.scr_refresh();
 	where += bpf;
 	if (where >= text.length) {
             doAnimate=false;
@@ -65,22 +68,54 @@ function setupTiming2(){
     intervalMilliSecs[i]=normalizedMilliSecs[i]-normalizedMilliSecs[i-1];
   }
 
-}
-//setupTiming2();
-function VTAnimator(vt, text, bps){
+  output_jumps=[];
+  output_timing=[];
+  var min_milli_jump=50;
+  var residual_milli_jump=0;
+  var residual_jump=0;
+  for(var i=0; i < intervalMilliSecs.length; i++){
+      var current_milli_jump = intervalMilliSecs[i];
+      var current_jump = timing[i][2];
+      if((current_milli_jump + residual_milli_jump) > min_milli_jump){
+          output_timing.push(current_milli_jump +residual_milli_jump);
+          output_jumps.push(current_jump + residual_jump);
+          residual_milli_jump=0;
+          residual_jump=0;
+      }
+      else{
+          residual_milli_jump += current_milli_jump;
+          residual_jump += current_jump;
+      }
+  }
 
-  var bpf = Math.ceil(bps * mspf / 8000);
+
+
+}
+
+function VTAnimator(vt, text){
+
+    //var bpf = Math.ceil(bps * mspf / 8000);
   var where = 0;
   var mspf =intervalMilliSecs[0];
-  bpf=timing[0][2];
+  var bpf=timing[0][2];
   var timingPointer=0;
+  var soundPointer=0;
   setTimeout(
     function() {
       if(doAnimate){
-	mspf=intervalMilliSecs[timingPointer];
+          
+
+        soundPointer+=mspf/1000;
+        var diff=document.getElementById('player').currentTime -soundPointer;
+        if(diff > 0.2) {
+            soundSeek(soundPointer);
+            console.log(diff);
+        }
 	bpf=timing[timingPointer][2];
 	var me = arguments.callee;
+	mspf=intervalMilliSecs[timingPointer];
 	var hnd = setTimeout(me, mspf);
+        //console.log(mspf);
 	output_line(text.substr(where, bpf));
 	timingPointer++;
 	where += bpf;
@@ -88,12 +123,61 @@ function VTAnimator(vt, text, bps){
 	  clearTimeout(hnd);
 	  where = 0;
 	  timingPointer=0;
-	  setTimeout(me, 1000);
+          vt.scr_poweron();
+	  setTimeout(me, 0);
+          soundSeek(0);
+          
 	}
       }
     }, mspf);
 }
 
+
+function VTAnimator2(vt, text){
+
+    //var bpf = Math.ceil(bps * mspf / 8000);
+  var where = 0;
+  var mspf =output_timing[0];
+  var bpf=output_jumps[0];
+  var timingPointer=0;
+  var soundPointer=0;
+  setTimeout(
+    function() {
+      if(doAnimate){
+          
+
+        soundPointer+=mspf/1000;
+        var diff=document.getElementById('player').currentTime -soundPointer;
+        if(diff > 0.2) {
+            soundSeek(soundPointer);
+            console.log(diff);
+        }
+	bpf=output_jumps[timingPointer];
+	var me = arguments.callee;
+	mspf=output_timing[timingPointer];
+
+        //console.log(mspf);
+	output_line(text.substr(where, bpf));
+
+        //console.log(timingPointer);
+	timingPointer++;
+	where += bpf;
+	if (where >= text.length) {
+	  clearTimeout(hnd);
+	  where = 0;
+	  timingPointer=0;
+          vt.scr_poweron();
+	  setTimeout(me, 0);
+          soundSeek(0);
+          
+	}
+        else {
+            var hnd = setTimeout(me, mspf);
+        }
+      }
+    }, mspf);
+}
+var doAnimate=false;
 if (window.XMLHttpRequest)
 	req = new XMLHttpRequest();
 else
@@ -107,7 +191,17 @@ req.send(null);
 //vt = new VT100(80, 24, "term");
 //output_line(
 resp=req.responseText;
-//VTAnimatorOld(a,resp.slice(1,9600);
+function animate(){
+    //    VTAnimatorOld(a,resp.slice(1,600), 2400);
+    //VTAnimatorOld(a,resp, 4800);
+    setupTiming2();
+    soundPlay();
+    //VTAnimator(a,resp);
+    VTAnimator2(a,resp);
+    doAnimate=!doAnimate;
+    console.log(doAnimate);
+}
+//VTAnimatorOld(a,resp);
 
 
 var counter = 0;

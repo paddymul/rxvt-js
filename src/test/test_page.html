@@ -21,8 +21,22 @@
     <script type="text/javascript" src="no_display_test.js"></script>
 -->
     <script type="text/javascript" src="loader.js"></script>   
+    <script type="text/javascript" src="timing.js"></script>   
 
+    <audio id="player" src="foo.wav"> 
+<!--      autoplay="true">                                         -->
+      Your browser does not support the audio element.
+    </audio>
+    <script>
+      function soundSeek(position){
+      document.getElementById("player").currentTime=position;
+      }
+      function soundPlay(position){
+      document.getElementById("player").play ();
+      }
+    </script>
 
+<button onclick="animate();">animate</button>
 <button onclick="backward(1000);">backward 1000</button>
 <button onclick="backward(500);">backward 500</button>
 <button onclick="backward(100);">backward 100</button>

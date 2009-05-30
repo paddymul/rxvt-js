@@ -507,7 +507,7 @@ rxvt_term.prototype.scr_cursor =function(mode){
         break;
 
       case RESTORE:
-        want_refresh = 1;
+       this.want_refresh = 1;
         screen.cur.row = s->s_cur.row;
         screen.cur.col = s->s_cur.col;
         screen.flags &= ~Screen_WrapNext;
@@ -544,7 +544,7 @@ rxvt_term.prototype.scr_cursor =function(mode){
         break;
 
       case RESTORE:
-        want_refresh = 1;
+       this.want_refresh = 1;
         this.screen.cur.row = s.s_cur.row;
         this.screen.cur.col = s.s_cur.col;
         this.screen.flags &= ~Screen_WrapNext;
@@ -590,7 +590,7 @@ rxvt_term.prototype.scr_change_screen =function( scrn){
   if (scrn ==  this.current_screen)
     return;
 
-  want_refresh = 1;
+ this.want_refresh = 1;
    this.view_start = 0;
 
    this.selection_check (2);        /* check for boundary cross */
@@ -670,7 +670,7 @@ rxvt_term.prototype.scr_scroll_text =function( row1,  row2,  count){
   if (count == 0 || (row1 > row2))
     return 0;
 
-  want_refresh = 1;
+ this.want_refresh = 1;
   this.num_scr += count;
 
   if (count > 0
@@ -797,7 +797,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
   var ncol= this.ncol;   //int ncol = this->ncol;
   var strend = str, strend_i = len;  //const wchar_t *strend = str + len; 
 
-  want_refresh = 1;
+ this.want_refresh = 1;
   ZERO_SCROLLBACK ();
 
   if (minlines > 0){
@@ -825,7 +825,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
 
   checksel =  this.selection.op &&  this.current_screen ==  this.selection.screen ? 1 : 0;
 
-    var  line = ROW(row);  //line_t *line = &ROW(row); FIXME memory reference
+    var  line = ROW(row);  
 
   while (str_i < strend_i){  //while (str < strend)
     //c = (unicode_t)*str++; 
@@ -994,7 +994,7 @@ rxvt_term.prototype.scr_backspace =function(){
           this.screen.cur.col = ncol - 1;
           --this.screen.cur.row;
 
-          want_refresh = 1;
+         this.want_refresh = 1;
 #endif
         }
     }
@@ -1012,7 +1012,7 @@ rxvt_term.prototype.scr_backspace =function(){
 rxvt_term.prototype.scr_tab =function( count, ht){ 
   var i, x; 
 
-  want_refresh = 1;
+ this.want_refresh = 1;
   i = x = this.screen.cur.col;
 
   if (count == 0)
@@ -1118,8 +1118,8 @@ rxvt_term.this.scr_forwardindex =function(){
  * Goto Row/Column 
  */
 //void rxvt_term::scr_gotorc (int row, int col, int relative)
-    rxvt_term.prototype.scr_gotorc =function( row,  col,  relative){  //I'm suspsicious
-  want_refresh = 1;
+    rxvt_term.prototype.scr_gotorc =function( row,  col,  relative){  //Im suspsicious
+  this.want_refresh = 1;
   ZERO_SCROLLBACK ();
 
   this.screen.cur.col = relative & C_RELATIVE ? this.screen.cur.col + col : col;
@@ -1164,7 +1164,7 @@ rxvt_term.this.scr_forwardindex =function(){
 rxvt_term.prototype.scr_index =function(direction){ 
     var dirn;     
 
-  want_refresh = 1;
+ this.want_refresh = 1;
   ZERO_SCROLLBACK ();
 
   dirn = ((direction == UP) ? 1 : -1);
@@ -1193,7 +1193,7 @@ rxvt_term.prototype.scr_index =function(direction){
 rxvt_term.prototype.scr_erase_line =function( mode){ 
  var    col, num; 
  
-  want_refresh = 1;
+ this.want_refresh = 1;
   ZERO_SCROLLBACK ();
 
    this.selection_check (1);
@@ -1259,7 +1259,7 @@ rxvt_term.prototype.scr_erase_screen =function( mode){
  var  gcvalue;//XGCValues gcvalue; 
  //debugger
  //console.log("scr_erase_screen");
-  want_refresh = 1;
+ this.want_refresh = 1;
   ZERO_SCROLLBACK ();
  // mode=2;
   switch (mode){
@@ -1335,7 +1335,7 @@ rxvt_term.prototype.scr_erase_screen =function( mode){
 #if !ENABLE_MINIMAL
 //void rxvt_term::scr_erase_savelines (){ 
 rxvt_term.prototype.scr_erase_savelines =function(){ 
-  want_refresh = 1;
+ this.want_refresh = 1;
   ZERO_SCROLLBACK ();
 
    this.top_row = 0;
@@ -1409,7 +1409,7 @@ rxvt_term.prototype.scr_insdel_lines =function( count,  insdel){
  */
 //void rxvt_term::scr_insdel_chars (int count, int insdel) 
 rxvt_term.prototype.scr_insdel_chars =function( count,  insdel){ 
-  want_refresh = 1;
+ this.want_refresh = 1;
   ZERO_SCROLLBACK ();
 
   if (count <= 0)
@@ -1529,7 +1529,7 @@ rxvt_term.prototype.scr_scroll_region =function( top,  bot){
  */
 //void rxvt_term::scr_cursor_visible (int mode) 
 rxvt_term.prototype.scr_cursor_visible =function( mode){ 
-  want_refresh = 1;
+ this.want_refresh = 1;
 
   if (mode)
     this.screen.flags |= Screen_VisibleCursor;
@@ -1897,7 +1897,7 @@ rxvt_term.prototype.scr_refresh =function(){
     }
 
   document.getElementById("term").innerHTML = out_string;
-}
+} 
 
 //FIXME overloaded_function
 // void rxvt_term::scr_remap_chars (line_t &l) 
@@ -1928,9 +1928,9 @@ rxvt_term.prototype.scr_remap_chars =function(){
 //REWRITE:void rxvt_term::scr_recolour () 
 rxvt_term.prototype.scr_recolour =function(){ 
 #ifdef HAVE_BG_PIXMAP
-  bgPixmap.apply ();
+// bgPixmap.apply ();
 #else
-
+/*
   XSetWindowBackground (dpy, parent[0], pix_colors[Color_border]);
   XClearWindow (dpy, parent[0]);
   XSetWindowBackground (dpy, vt, pix_colors[Color_bg]);
@@ -1940,13 +1940,13 @@ rxvt_term.prototype.scr_recolour =function(){
      scrollBar.state = STATE_IDLE;
      scrollBar.show (0);
    }
-
+*/
 #endif
 
   //bgPixmap.apply () does not do the following : 
   this.scr_clear ();
   this.scr_touch (true);
-  want_refresh = 1;
+this.want_refresh = 1;
 }
 
 /* ------------------------------------------------------------------------- */
