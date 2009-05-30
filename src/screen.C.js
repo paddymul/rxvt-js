@@ -427,9 +427,42 @@ rxvt_term.prototype.scr_reset =function(){
 
   this.tt_winch ();
 
+  this.term_el.innerHTML="";
+  this.dom_text_rows=[]
+  for(var i = 0; i < this.nrow; i++){
+
+      var dom_row = $("<pre></pre>");
+      //this.dom_rows.push(dom_row);
+      this.term_el.append(dom_row);
+      this.dom_text_rows.push([]);
+  }
+  this.dom_rows=this.term_el.contents();
   HOOK_INVOKE ((this, HOOK_RESET, DT_END));
 }  
+/*
+void
+rxvt_term::set_widthheight (unsigned int newwidth, unsigned int newheight)
+{
+  XWindowAttributes wattr;
 
+  if (newwidth == 0 || newheight == 0)
+    {
+      XGetWindowAttributes (dpy, display->root, &wattr);
+
+      if (newwidth == 0)
+        newwidth = wattr.width - szHint.base_width;
+      if (newheight == 0)
+        newheight = wattr.height - szHint.base_height;
+    }
+
+  if (newwidth != width || newheight != height)
+    {
+      newwidth += szHint.base_width;
+      newheight += szHint.base_height;
+      resize_all_windows (newwidth, newheight, 0);
+    }
+}
+*/
 /* ------------------------------------------------------------------------- */
 /*
  * Free everything.  That way malloc debugging can find leakage. 
@@ -857,19 +890,17 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
             this.scr_tab (1, true);
             continue;
           }
-
+      // see if we're writing within selection 
       if (expect_false (
-            checksel            /* see if we're writing within selection */
+            checksel            
             && !ROWCOL_IS_BEFORE (this.screen.cur,  this.selection.beg)
             && ROWCOL_IS_BEFORE (this.screen.cur,  this.selection.end)
          )){
           checksel = 0;
-          /*
-           * If we wrote anywhere in the selected area, kill the selection 
-           * XXX: should we kill the mark too?  Possibly, but maybe that 
-           *      should be a similar check. 
-           */
-          CLEAR_SELECTION ();
+            //If we wrote anywhere in the selected area, kill the selection 
+            //XXX: should we kill the mark too?  Possibly, but maybe that 
+            //should be a similar check. 
+                 CLEAR_SELECTION ();
         }
 
       if (expect_false (this.screen.flags & Screen_WrapNext)){
@@ -892,9 +923,8 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
       //drawing characters below as they might be invalid in the current 
       //locale.
       var width= WCWIDTH (c);   //int width = WCWIDTH (c);
-
- if (expect_false ( this.charsets [this.screen.charset] == '0')) //DEC SPECIAL 
-        {
+      
+      if (expect_false ( this.charsets [this.screen.charset] == '0')) { //DEC SPECIAL 
           //FIXME not sure about my changes why should vt100_0 need to be 62 elements big
           //vt100 special graphics and line drawing
           //5f-7e standard vt100 
@@ -915,6 +945,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
               width = 1; //vt100 line drawing characters are always single-width 
             }
         }
+      
 
       if (expect_false (this.screen.flags & Screen_Insert))
         this.scr_insdel_chars (width, INSERT); 
@@ -1884,19 +1915,50 @@ rxvt_term.prototype.scr_printscreen =function( fullhist){
  * screen.text/screen.rend contain what the screen will change to. 
  */
 //REWRITE: void rxvt_term::scr_refresh (){ 
+var term_el =     document.getElementById("term")
 rxvt_term.prototype.scr_refresh =function(){ 
-  var out_string ="";
+    var out_string =[];
+    var b=-1;
+    var dtr = this.dom_text_rows;
+    var dr = this.dom_rows;
+    var view_start= this.view_start;
+    var total_rows = this.total_rows;
+    var term_start = this.term_start;
+    var row_buf = this.row_buf;
+    var term_view_start = term_start+view_start;
+    var mod_total_rows = total_rows % total_rows;
+    var row_plus = mod_total_rows + term_view_start;
+    var r;
     for(var row = 0; row < this.nrow; row++){
-         b=ROW(this.view_start + row).t;
-         
-         for (var col =0; col < this.ncol; col++){
-             out_string += b[col]?b[col]: ' ';
-           //console.log(b[col]);
-         }
-         out_string+="\n";
-    }
+        //r=ROW(this.view_start + row);
+        //r=(this.row_buf [((((this).term_start +   this.view_start + row) + ( (this).total_rows)) % ( (this).total_rows))]);
+        r=row_buf [row_plus + row];
 
-  document.getElementById("term").innerHTML = out_string;
+         //if(b.join("") != dtr[row]) {
+         if(r.modified){
+             r.modified=false;
+             b=r.t;
+             
+             out_string =[];
+             for (var col =0; col < this.ncol; col++){
+                 //out_string[out_string.length]= b[col]?b[col]: ' ';
+                 out_string[out_string.length]= b[col];
+                 //console.log(b[col]);
+             }
+             dr[row].textContent= out_string.join("");
+             //dr[row].textContent= b.join("");             
+             
+
+             //console.log("wrote a row");
+         }
+         /*
+         else{
+             console.log("skipped a row");
+         }
+         */
+    }
+    //term_el.innerHTML = 
+
 } 
 
 //FIXME overloaded_function

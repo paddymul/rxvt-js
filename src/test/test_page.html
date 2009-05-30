@@ -8,23 +8,24 @@
     <title>asdf </title>
 
 
+    <style>
+      #term {   margin:5px; height:400px;  background:black; color:green ;}
+      #term, #term pre {overflow:hidden; width:800px;  display:block;}
+      #term pre {display:block; height:15px; margin:0; padding:0;}
+    </style>
 
-
-
+    <script type="text/javascript" src="jquery-1.3.1.js"></script>
   </head>
 <body>
   
-    <pre id="term"></pre>
+    <div id="term"></div>
     <script type="text/javascript" src="../expand_both.c.js"></script>
-    <!-- 
 
-    <script type="text/javascript" src="no_display_test.js"></script>
--->
     <script type="text/javascript" src="loader.js"></script>   
     <script type="text/javascript" src="timing.js"></script>   
 
     <audio id="player" src="foo.wav"> 
-<!--      autoplay="true">                                         -->
+
       Your browser does not support the audio element.
     </audio>
     <script>
@@ -35,7 +36,7 @@
       document.getElementById("player").play ();
       }
     </script>
-
+<button onclick="fast_animate();"> fast animate</button>
 <button onclick="animate();">animate</button>
 <button onclick="backward(1000);">backward 1000</button>
 <button onclick="backward(500);">backward 500</button>

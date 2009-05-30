@@ -1156,7 +1156,7 @@ rxvt_term.prototype.process_window_ops =function( args,   nargs){
         XMoveWindow (dpy, parent[0], args[1], args[2]);
         break;
       case 4:			/* set size (pixels) */
-        set_widthheight (args[2] //set_widthheight ((unsigned int)args[2], (unsigned int)args[1]);, ()args[1]);
+        set_widthheight (args[2], ()args[1]);  //set_widthheight ((unsigned int)args[2], (unsigned int)args[1]);
         break;
       case 5:			/* raise window */
         XRaiseWindow (dpy, parent[0]);

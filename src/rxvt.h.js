@@ -1320,6 +1320,7 @@ line_t = function() {
   this.r= []; //FIXED   rend_t *r; // rendition, uses RS_ flags
   this.l= 0; //FIXED   tlen_t_ l; // length of each text line
   this.f= ""; //FIXED  uint32_t f; // flags
+  this.modified=false;
 
 };
 line_t.prototype = {
@@ -1357,7 +1358,7 @@ line_t.prototype = {
   },
 
  //FIXME operator overloading
- touch : function (col) { // call whenever a line is changed/touched/updated  
+ /* touch : function (col) { // call whenever a line is changed/touched/updated  
 
 #if ENABLE_PERL
     f &= ~LINE_FILTERED;
@@ -1365,6 +1366,9 @@ line_t.prototype = {
     if(typeof col != undefined){
       ma_x(this.l, col);
     }
+    }*/
+  touch : function (col) { // call whenever a line is changed/touched/updated  
+        this.modified=true;
   }
 };
 
@@ -1661,7 +1665,8 @@ selection_t.prototype = {
 rxvt_vars = function() {}
   rxvt_vars.prototype={
   };
-function rxvt_term() {
+function rxvt_term(term_el) {
+    this.term_el=$(term_el);
   this.screen = new screen_t();
   this.swap = new screen_t();
   this.charsets= new Array(4);
