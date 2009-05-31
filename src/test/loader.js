@@ -1,9 +1,36 @@
 
+var counter = 0;
+function forward(num){
+    counter += num;
+    output_line(resp.slice(0,counter));
+    document.getElementById('counter').innerHTML=counter;
+}
+function backward(num){
+    counter -= num;
+    output_line(resp.slice(0,counter));
+    document.getElementById('counter').innerHTML=counter;
+}
+//console.log("hello");
 var a = new rxvt_term(document.getElementById('term'),"pre_term");
 a.row_buf=false;
 a.scr_poweron();
 //console.log(a);
 
+
+var doAnimate=false;
+if (window.XMLHttpRequest)
+	req = new XMLHttpRequest();
+else
+	req = new ActiveXObject("Microsoft.XMLHTTP");
+
+//req.open("GET", "specific-test.ou", false);
+//req.open("GET", "vttest1.out", false);
+req.open("GET", "myttyrec.out", false);
+req.send(null);
+
+//vt = new VT100(80, 24, "term");
+//output_line(
+resp=req.responseText;
 
 function output_line(str){
     //console.log("hello");
@@ -135,7 +162,7 @@ function setupTiming2(){
   console.log(intervalMilliSecs.length ,output_timing.length);
 }
 
-function VTAnimator2(vt, text){
+function VTAnimator2(vt, text, start_from, end){
 
     //var bpf = Math.ceil(bps * mspf / 8000);
   var where = 0;
@@ -146,6 +173,15 @@ function VTAnimator2(vt, text){
   var player_el=document.getElementById('player');
   var local_output_timing=output_timing;
   var local_output_jumps=output_jumps;
+  if(start_from){
+      for(; timingPointer < start_from; timingPointer++){
+	mspf=local_output_timing[timingPointer];
+        soundPointer+=mspf/1000;
+	bpf=local_output_jumps[timingPointer];
+	where += bpf;
+      }
+  }
+  var stop = end ? end : local_output_timing.length;//if(!end)
   setTimeout(
     function() {
       if(doAnimate){
@@ -170,40 +206,30 @@ function VTAnimator2(vt, text){
         //console.log(timingPointer);
 	timingPointer++;
 	where += bpf;
-	if (where >= text.length) {
-	  clearTimeout(hnd);
-	  where = 0;
-	  timingPointer=0;
-          vt.scr_poweron();
-	  setTimeout(me, 0);
-          soundSeek(0);
-          
-	}
+        if(timingPointer > stop){
+            clearTimeout(hnd);
+        }
         else {
-            var hnd = setTimeout(me, mspf);
+            if (where >= text.length) {
+                clearTimeout(hnd);
+                where = 0;
+                timingPointer=0;
+                vt.scr_poweron();
+                setTimeout(me, 0);
+                soundSeek(0);
+            }
+            else {
+                var hnd = setTimeout(me, mspf);
+            }
         }
       }
     }, mspf);
 }
 
-
-var doAnimate=false;
-if (window.XMLHttpRequest)
-	req = new XMLHttpRequest();
-else
-	req = new ActiveXObject("Microsoft.XMLHTTP");
-
-//req.open("GET", "specific-test.ou", false);
-//req.open("GET", "vttest1.out", false);
-req.open("GET", "myttyrec.out", false);
-req.send(null);
-
-//vt = new VT100(80, 24, "term");
-//output_line(
-resp=req.responseText;
 function animate(){
     setupTiming2();
-    soundPlay();
+    //soundPlay();
+    //VTAnimator2(a,resp,230,245);
     VTAnimator2(a,resp);
         
     doAnimate=!doAnimate;
@@ -211,20 +237,8 @@ function animate(){
 }
 
 function fast_animate(){
-    VTAnimatorOld(a,resp.slice(0,50000), 4800);
+    //VTAnimatorOld(a,resp.slice(560500, 563750), 5700);
+    VTAnimatorOld(a,resp.slice(560500, 565750), 12700);
 }
 //VTAnimatorOld(a,resp);
 
-
-var counter = 0;
-function forward(num){
-    counter += num;
-    output_line(resp.slice(0,counter));
-    document.getElementById('counter').innerHTML=counter;
-}
-function backward(num){
-    counter -= num;
-    output_line(resp.slice(0,counter));
-    document.getElementById('counter').innerHTML=counter;
-}
-//console.log("hello");

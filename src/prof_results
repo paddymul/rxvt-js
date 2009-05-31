@@ -1,0 +1,226 @@
+
+before macro ord chr
+
+
+cmd_parse()	243	23.32%	136.441ms	530.734ms	2.184ms	0.474ms	19.278ms	expand_both.c.js (line 621)
+scr_add_lines()	361	18.47%	108.059ms	206.077ms	0.571ms	0.012ms	4.865ms	expand_both.c.js (line 2186)
+next_char()	15051	13.05%	76.345ms	77.359ms	0.005ms	0.001ms	0.398ms	expand_both.c.js (line 697)
+ord	25515	10.93%	63.967ms	63.967ms	0.003ms	0ms	0.158ms	expand_both.c.js (line 514)
+scr_refresh()	355	10.19%	59.6ms	67.702ms	0.191ms	0.007ms	7.388ms	expand_both.c.js (line 2783)
+scr_scroll_text()	109	6.02%	35.225ms	64.832ms	0.595ms	0.033ms	1.66ms	expand_both.c.js (line 2091)
+(?)()	243	5.11%	29.878ms	593.456ms	2.442ms	0.591ms	19.461ms	loader.js (line 23)
+scr_blank_line()	83	4.41%	25.805ms	25.805ms	0.311ms	0.025ms	0.918ms	expand_both.c.js (line 1709)
+chr	15034	4.35%	25.435ms	25.435ms	0.002ms	0ms	0.057ms	expand_both.c.js (line 508)
+touch()	10390	1.56%	9.155ms	9.155ms	0.001ms	0ms	0.077ms	expand_both.c.js (line 310)
+scr_do_wrap()	111	0.84%	4.896ms	55.543ms	0.5ms	0.005ms	2.042ms	expand_both.c.js (line 2062)
+option()	694	0.58%	3.419ms	3.419ms	0.005ms	0ms	0.171ms	expand_both.c.js (line 489)
+scr_blank_screen_mem()	60	0.4%	2.328ms	21.894ms	0.365ms	0.03ms	0.962ms	expand_both.c.js (line 1731)
+cmd_write()	243	0.37%	2.153ms	532.887ms	2.193ms	0.48ms	19.287ms	expand_both.c.js (line 534)
+is_longer()	220	0.16%	0.958ms	0.958ms	0.004ms	0ms	0.043ms	expand_both.c.js (line 288)
+scr_gotorc()	10	0.11%	0.671ms	0.807ms	0.081ms	0.007ms	0.698ms	expand_both.c.js (line 2394)
+process_nonprinting()	12	0.07%	0.401ms	1.666ms	0.139ms	0.012ms	0.888ms	expand_both.c.js (line 728)
+
+
+
+after 
+	loader.js (line 198)
+Profile (452.544ms, 19453 calls)
+Function
+	
+Calls
+	
+Percent
+	
+Own Time
+	
+Time
+	
+Avg
+	
+Min
+	
+Max
+	
+File
+cmd_parse()	214	32.78%	148.332ms	400.987ms	1.874ms	0.382ms	15.479ms	expand_both.c.js (line 621)
+scr_add_lines()	320	17.16%	77.669ms	137.059ms	0.428ms	0.011ms	4.161ms	expand_both.c.js (line 2186)
+next_char()	13250	16.64%	75.312ms	75.312ms	0.006ms	0.001ms	0.401ms	expand_both.c.js (line 697)
+scr_refresh()	314	13.19%	59.673ms	67.596ms	0.215ms	0.007ms	7.86ms	expand_both.c.js (line 2783)
+scr_blank_line()	49	6.04%	27.355ms	27.355ms	0.558ms	0.05ms	0.902ms	expand_both.c.js (line 1709)
+(?)()	214	5.77%	26.133ms	460.783ms	2.153ms	0.49ms	15.715ms	loader.js (line 23)
+scr_scroll_text()	52	4.77%	21.591ms	51.445ms	0.989ms	0.023ms	1.685ms	expand_both.c.js (line 2091)
+touch()	4172	0.84%	3.806ms	3.806ms	0.001ms	0ms	0.02ms	expand_both.c.js (line 310)
+option()	430	0.76%	3.461ms	3.461ms	0.008ms	0.001ms	0.187ms	expand_both.c.js (line 489)
+scr_do_wrap()	50	0.47%	2.141ms	36.915ms	0.738ms	0.005ms	1.893ms	expand_both.c.js (line 2062)
+scr_gotorc()	10	0.43%	1.956ms	2.322ms	0.232ms	0.01ms	0.766ms	expand_both.c.js (line 2394)
+cmd_write()	214	0.42%	1.884ms	402.871ms	1.883ms	0.39ms	15.494ms	expand_both.c.js (line 534)
+scr_blank_screen_mem()	36	0.31%	1.417ms	22.575ms	0.627ms	0.056ms	0.945ms	expand_both.c.js (line 1731)
+is_longer()	103	0.15%	0.675ms	0.675ms	0.007ms	0.001ms	0.051ms	expand_both.c.js (line 288)
+process_nonprinting()	12	0.14%	0.635ms	3.612ms	0.301ms	0.016ms	1.046ms	expand_both.c.js (line 728)
+scr_backspace()	10	0.08%	0.341ms	2.663ms	0.266ms	0.013ms	0.926ms	expand_both.c.js (line 2332)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+scr_blank_screen_mem()	167	0.43%	        6.672ms	        53.525m	0.321ms	0.031ms	1.009ms	expand_both.c.js (line 1733)
+scr_do_wrap()	419	0.26%	4.002ms	133.734ms	0.319ms	0.002ms	1.79ms	expand_both.c.js (line 2064)
+is_longer()	839	0.12%	1.919ms	1.919ms	0.002ms	0.001ms	0.047ms	expand_both.c.js (line 288)
+scr_gotorc()	10	0.04%	0.691ms	0.825ms	0.083ms	0.006ms	0.726ms	expand_both.c.js (line 2396)
+process_nonprinting()	12	0.02%	0.374ms	1.636ms	0.136ms	0.01ms	0.92ms	expand_both.c.js (line 730)
+scr_backspace()	10	0.01%	0.105ms	0.93ms	0.093ms	0.008ms	0.801ms	expand_both.c.js (line 2334)
+done
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+50,000 no macros
+
+Profile (1543.296ms, 261840 calls)
+
+
+Function        Calls   Percent Own Time        Time            Avg     Min     Max     File
+scr_add_lines()	1204	19.8%	305.509ms	605.09ms	0.503ms	0.012ms	6.75ms	expand_both.c.js (line 2188)
+cmd_parse()	834	19.03%	293.622ms	1327.858ms	1.592ms	0.358ms	21.81ms	expand_both.c.js (line 623)
+ord             100362	12.36%	190.792ms	190.792ms	0.002ms	0ms	0.197ms	expand_both.c.js (line 514)
+scr_refresh()	1202	11.33%	174.902ms	199.416ms	0.166ms	0.007ms	7.772ms	expand_both.c.js (line 2785)
+next_char()	51646	11.28%	174.139ms	177.381ms	0.003ms	0.001ms	0.361ms	expand_both.c.js (line 699)
+(?)()	        835	6.94%	107.101ms	1571.363ms	1.882ms	0.011ms	24.241ms	loader.js (line 23)
+scr_scroll_text(417	6.02%	92.895ms	173.111ms	0.415ms	0.044ms	1.624ms	expand_both.c.js (line 2093)
+scr_blank_line( 247	4.61%	71.081ms	71.081ms	0.288ms	0.025ms	0.955ms	expand_both.c.js (line 1711)
+chr	        51581	3.97%	61.307ms	61.307ms	0.001ms	0ms	0.072ms	expand_both.c.js (line 508)
+touch()	        48957	2.71%	41.777ms	41.777ms	0.001ms	0ms	0.115ms	expand_both.c.js (line 310)
+cmd_write()	834	0.58%	9.011ms	        1336.869ms	1.603ms	0.368ms	21.82ms	expand_both.c.js (line 536)
+option()	2261	0.47%	7.213ms	        7.213ms	        0.003ms	0ms	0.111ms	expand_both.c.js (line 489)
+
+
+
+50k, chr ord macros
+
+Profile (1228.073ms, 105392 calls)
+Function        Calls   Percent Own Time        Time            Avg     Min     Max     File
+scr_add_lines()	1204	21.25%	260.961ms	512.873ms	0.426ms	0.01ms	5.294ms	expand_both.c.js (line 2186)
+cmd_parse()	834	19.67%	241.583ms	1012.931ms	1.215ms	0.25ms	17.981ms	expand_both.c.js (line 621)
+scr_refresh()	1202	15.03%	184.568ms	210.335ms	0.175ms	0.007ms	7.951ms	expand_both.c.js (line 2783)
+next_char()	51653	13.73%	168.603ms	168.603ms	0.003ms	0.001ms	0.533ms	expand_both.c.js (line 697)
+scr_scroll_text(397	8.7%	106.887ms	203.831ms	0.513ms	0.034ms	1.74ms	expand_both.c.js (line 2091)
+(?)()	        835	8.63%	105.98ms	1256.889ms	1.505ms	0.014ms	18.36ms	loader.js (line 23)
+scr_blank_line( 280	6.89%	84.671ms	84.671ms	0.302ms	0.026ms	1.082ms	expand_both.c.js (line 1709)
+touch()	        44389	3.12%	38.282ms	38.282ms	0.001ms	0ms	0.124ms	expand_both.c.js (line 310)
+option()	2325	0.75%	9.164ms	        9.164ms	        0.004ms	0ms	0.728ms	expand_both.c.js (line 489)
+_screen_mem()	212	0.69%	8.474ms	        79.968ms	0.377ms	0.033ms	1.127ms	expand_both.c.js (line 1731)
+cmd_write()	834	0.61%	7.521ms	        1020.452ms	1.224ms	0.258ms	17.99ms	expand_both.c.js (line 534)
+scr_do_wrap()	397	0.41%	5.056ms	        154.283ms	0.389ms	0.002ms	2.028ms	expand_both.c.js (line 2062)
+scr_gotorc()	10	0.23%	2.793ms	3.27ms	0.327ms	0.009ms	0.874ms	expand_both.c.js (line 2394)
+is_longer()	795	0.18%	2.192ms	2.192ms	0.003ms	0ms	0.063ms	expand_both.c.js (line 288)
+process_nonprinting()	12	0.06%	0.767ms	4.686ms	0.391ms	0.013ms	1.076ms	expand_both.c.js (line 728)
+scr_backspace()	10	0.03%	0.338ms	3.608ms	0.361ms	0.011ms	0.952ms	expand_both.c.js (line 2332)
+done
+
+this_next_char_macro
+Profile (1094.038ms, 57474 calls)
+Function        Calls   Percent Own Time        Time            Avg     Min     Max     File
+scr_add_lines()	1204	27.57%	301.679ms	575.175ms	0.478ms	0.01ms	6.708ms	   expand_both.c.js (line 2187)  
+cmd_parse()	834	20.2%	220.942ms	879.546ms	1.055ms	0.168ms	20.033ms   expand_both.c.js (line 622)   
+scr_refresh()	1202	15.94%	174.431ms	199.509ms	0.166ms	0.007ms	7.78ms	   expand_both.c.js (line 2784)  
+scroll_text()	417	10.47%	114.554ms	222.205ms	0.533ms	0.042ms	1.89ms	   expand_both.c.js (line 2092)  
+(?)()	        835	9.78%	106.953ms	1122.667ms	1.345ms	0.014ms	22.539ms   loader.js (line 23)           
+_blank_line()	304	8.77%	95.893ms	95.893ms	0.315ms	0.024ms	1.25ms	   expand_both.c.js (line 1710)  
+touch()	        47997	3.93%	42.953ms	42.953ms	0.001ms	0ms	0.242ms	   expand_both.c.js (line 310)   
+cmd_write()	834	0.89%	9.779ms	        889.325ms	1.066ms	0.179ms	20.045ms   expand_both.c.js (line 535)   
+_screen_mem()	218	0.83%	9.098ms	        78.574ms	0.36ms	0.026ms	1.307ms	   expand_both.c.js (line 1732)  
+option()	2335	0.76%	8.328ms	        8.328ms	        0.004ms	0ms	0.142ms	expand_both.c.js (line 489)
+scr_do_wrap()	420	0.34%	3.68ms	        162.561ms	0.387ms	0.002ms	1.997ms	expand_both.c.js (line 2063)
+
+
+line.touch no longer called
+Profile (970.729ms, 9307 calls)
+
+Function        Calls   Percent Own Time        Time            Avg     Min     Max     File
+cmd_parse()	834	23.55%	228.568ms	752.989ms	0.903ms	0.14ms	17.245ms   expand_both.c.js (line 622)    
+scr_add_lines()	1204	22.72%	220.548ms	442.012ms	0.367ms	0.007ms	5.019ms	   expand_both.c.js (line 2189)   
+scr_refresh()	1202	18.46%	179.158ms	204.135ms	0.17ms	0.007ms	7.717ms	   expand_both.c.js (line 2788)   
+_scroll_text()	386	11.49%	111.517ms	209.1ms	        0.542ms	0.033ms	1.724ms	   expand_both.c.js (line 2092)   
+(?)()	        835	11.26%	109.264ms	999.004ms	1.196ms	0.011ms	17.98ms	   loader.js (line 23)            
+_blank_line()	282	8.86%	86.016ms	86.016ms	0.305ms	0.022ms	1.238ms	   expand_both.c.js (line 1710)   
+k_screen_mem()	212	0.94%	9.127ms	        81.755ms	0.386ms	0.033ms	1.294ms	   expand_both.c.js (line 1732)   
+option()	2322	0.88%	8.54ms	        8.54ms	        0.004ms	0ms	0.306ms	   expand_both.c.js (line 489)    
+cmd_write()	834	0.86%	8.357ms	        761.346ms	0.913ms	0.15ms	17.258ms   expand_both.c.js (line 535)    
+scr_do_wrap()	388	0.71%	6.87ms	        139.156ms	0.359ms	0.005ms	2.071ms	   expand_both.c.js (line 2063)      
+is_longer()	773	0.22%	2.17ms	        2.17ms	        0.003ms	0ms	0.065ms	   expand_both.c.js (line 288)
+_nonprinting()	12	0.03%	0.276ms	        0.727ms         0.061ms	0.007ms	0.313ms	   expand_both.c.js (line 729)

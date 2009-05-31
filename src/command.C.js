@@ -165,6 +165,7 @@ I bound them to "C-H u" "C-H o" and "C-H p"
              //this.cmdbuf= this.cmdbuf.slice(0,this.cmdbuf.length-1).concat(str);
          }
      this.cmdbuf_endp=this.cmdbuf.length;
+
      this.cmd_parse ();
 
 
@@ -403,6 +404,9 @@ rxvt_term.prototype.cmd_parse =function(){
     var seq_begin;   // char *seq_begin; // remember start of esc-sequence here 
 
     for (;;){ //outer_for_loop
+        /*    if( this.row_buf[8].t.join("") == [" ", " ", "9", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "].join("") && this.cmdbuf_ptr>1460) {
+        debugger
+        } */
         if (expect_false (och == NOCHAR)){
             seq_begin = this.cmdbuf_ptr; 
             och = ord(this_next_char()); 

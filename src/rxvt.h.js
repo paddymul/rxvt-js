@@ -2011,8 +2011,8 @@ function ord(_string){ //this might fail for unicode
 
   return code;
 }
-#define ord(_string) ((_string)[0].charCodeAt(0))
-#define chr(inte) (String.fromCharCode(inte))
+//#define ord(_string) ((_string)[0].charCodeAt(0))
+//#define chr(inte) (String.fromCharCode(inte))
 
 #define this_next_char() ( this.cmdbuf_ptr < this.cmdbuf_endp ? this.cmdbuf[this.cmdbuf_ptr++] : chr(NOCHAR))
 //( a.cmdbuf_ptr < a.cmdbuf_endp ? a.cmdbuf[a.cmdbuf_ptr++] : "")

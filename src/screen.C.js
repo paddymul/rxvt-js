@@ -101,8 +101,8 @@ rxvt_term.prototype.scr_blank_line =function(l, col, width, efs){
   //the above line is the macro expansion of SET_FONT FONTSET 
 
   //l = new line_t();
-  l.t=[];
-  l.r=[];
+  //l.t=[];
+  //l.r=[];
   //FIXME where is l.t an array, what should  I use for an indice of et??
   var et_i = col;  //text_t *et = l.t + col; 
   var er_i = col;  //rend_t *er = l.r + col; 
@@ -1017,7 +1017,200 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
   assert (this_screen_cur.row >= 0);
 #endif
 }
+rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){ 
 
+    var str_i = 0;
+  if (len <= 0)               /* sanity */
+    return;
+
+  var checksel;  //unsigned char checksel;   
+  var c;  //unicode_t c; 
+  var ncol= this.ncol;   //int ncol = this->ncol;
+  var strend = str, strend_i = len;  //const wchar_t *strend = str + len; 
+
+ this.want_refresh = 1;
+  ZERO_SCROLLBACK ();
+
+  if (minlines > 0){
+      minlines += this.screen.cur.row - this.screen.bscroll;
+      //min_it (minlines, screen.cur.row - top_row);
+      minlines = mi_n (minlines, this.screen.cur.row -  this.top_row);
+
+      if (minlines > 0
+          && this.screen.tscroll == 0
+          && this.screen.bscroll == this.nrow - 1){
+          /* _atleast_ this many lines need to be scrolled */
+          str_i = 0;
+          //FIXME not sure what this supposed to be, look at the original 
+          //scr_scroll_text (screen.tscroll, screen.bscroll minlines);
+          this.screen.cur.row -= minlines;
+        }
+    }
+
+#ifdef DEBUG_STRICT
+  assert (this.screen.cur.col <  this.ncol);
+  assert (this.screen.cur.row < this.nrow
+          && this.screen.cur.row >=  this.top_row);
+#endif
+    var row= this.screen.cur.row;   //int row = screen.cur.row;
+
+  checksel =  this.selection.op &&  this.current_screen ==  this.selection.screen ? 1 : 0;
+
+    var  line = ROW(row);  
+
+  while (str_i < strend_i){  //while (str < strend)
+    //c = (unicode_t)*str++; 
+      c =  str[str_i++]; //convert to rxvt-unicodes representation 
+
+      if (expect_false (ord(c) < 0x20))
+          if (ord(c) == C0_LF){
+          line.l= ma_x(line.l,this.screen.cur.col);
+
+            this.screen.flags &= ~Screen_WrapNext;
+
+            var this_screen_cur_row = this.screen.cur.row , this_screen_bscroll =this.screen.bscroll, this_nrow = this.nrow;
+            if (this.screen.cur.row == this.screen.bscroll)
+              this.scr_scroll_text (this.screen.tscroll, this.screen.bscroll, 1);
+            else if (this.screen.cur.row < (this.nrow - 1))
+              row = ++this.screen.cur.row;
+
+            line = ROW(row);  /* _must_ refresh */
+            continue;
+          }
+          else if (ord(c) == C0_CR){
+          line.l= ma_x(line.l,this.screen.cur.col);
+
+            this.screen.flags &= ~Screen_WrapNext; 
+            this.screen.cur.col = 0;
+            continue;
+          }
+          else if (ord(c) == C0_HT){
+            this.scr_tab (1, true);
+            continue;
+          }
+
+      if (expect_false (
+            checksel            /* see if we're writing within selection */
+            && !ROWCOL_IS_BEFORE (this.screen.cur,  this.selection.beg)
+            && ROWCOL_IS_BEFORE (this.screen.cur,  this.selection.end)
+         )){
+          checksel = 0;
+          /*
+           * If we wrote anywhere in the selected area, kill the selection 
+           * XXX: should we kill the mark too?  Possibly, but maybe that 
+           *      should be a similar check. 
+           */
+          CLEAR_SELECTION ();
+        }
+
+      if (expect_false (this.screen.flags & Screen_WrapNext)){
+          this.scr_do_wrap ();
+
+          line.l =  this.ncol;
+          line.is_longer(1);
+
+          row = this.screen.cur.row;
+          line = ROW(row);   /* _must_ refresh */  //line = &ROW(row);   /* _must_ refresh */
+        }
+
+      //some utf-8 decoders "decode" surrogate characters: let's fix this. 
+      //I don't think this matters for js
+      //if (expect_false (IN_RANGE_INC (ord(c), 0xd800, 0xdfff)))
+      //    c = 0xfffd;
+
+      //rely on wcwidth to tell us the character width, do wcwidth before 
+      //further replacements, as wcwidth might return -1 for the line
+      //drawing characters below as they might be invalid in the current 
+      //locale.
+      var width= WCWIDTH (c);   //int width = WCWIDTH (c);
+
+ if (expect_false ( this.charsets [this.screen.charset] == '0')) //DEC SPECIAL 
+        {
+          //FIXME not sure about my changes why should vt100_0 need to be 62 elements big
+          //vt100 special graphics and line drawing
+          //5f-7e standard vt100 
+          //40-5e rxvt extension for extra curses acs chars 
+          var vt100_0 = [ //41 .. 7e   //static uint16_t vt100_0[62] = { //41 .. 7e 
+                    0x2191, 0x2193, 0x2192, 0x2190, 0x2588, 0x259a, 0x2603, //41-47 hi mr. snowman!
+                 0,      0,      0,      0,      0,      0,      0,      0, //48-4f
+                 0,      0,      0,      0,      0,      0,      0,      0, //50-57
+                 0,      0,      0,      0,      0,      0,      0, 0x0020, //58-5f
+            0x25c6, 0x2592, 0x2409, 0x240c, 0x240d, 0x240a, 0x00b0, 0x00b1, //60-67
+            0x2424, 0x240b, 0x2518, 0x2510, 0x250c, 0x2514, 0x253c, 0x23ba, //68-6f
+            0x23bb, 0x2500, 0x23bc, 0x23bd, 0x251c, 0x2524, 0x2534, 0x252c, //70-77
+            0x2502, 0x2264, 0x2265, 0x03c0, 0x2260, 0x00a3, 0x00b7         //78-7e
+                          ];
+
+          if (ord(c) >= 0x41 && ord(c) <= 0x7e && vt100_0[ord(c) - 0x41]){
+              c = vt100_0[ord(c) - 0x41];
+              width = 1; //vt100 line drawing characters are always single-width 
+            }
+        }
+
+      if (expect_false (this.screen.flags & Screen_Insert))
+        this.scr_insdel_chars (width, INSERT); 
+
+
+            //nuke the character at this position, if required 
+          if (expect_false (
+                            line.t[this.screen.cur.col] == ""
+                || (this.screen.cur.col <  this.ncol - 1
+                    && line.t[this.screen.cur.col + 1] == "")
+             ))
+              //scr_kill_char (*line, screen.cur.col); 
+              this.scr_kill_char ( line, this.screen.cur.col); 
+              //rend_t rend = SET_FONT (rstyle, FONTSET (rstyle)->find_font (c)); 
+              //FIXME var rend= SET_FONT (rstyle, FONTSET (rstyle).find_font (c));
+
+          //if the character doesnt fit into the remaining columns... 
+          if (expect_false (this.screen.cur.col >  this.ncol - width &&  this.ncol >= width)){
+              //... artificially enlargen the previous one
+              c = "";// chr(NOCHAR);
+              //and try the same character next loop iteration 
+              --str_i;
+            }
+
+          line.touch();
+
+          do
+            {
+              line.t[this.screen.cur.col] = c;
+              //FONT-FIXME line.r[this.screen.cur.col] = rend;
+
+              if (expect_true (this.screen.cur.col <  this.ncol - 1))
+                this.screen.cur.col++;
+              else{
+                line.l =  this.ncol; 
+                  if (this.screen.flags & Screen_Autowrap)
+                    this.screen.flags |= Screen_WrapNext;
+                  break;
+                }
+
+              c = ""; // chr(NOCHAR);
+            }
+          while (expect_false (--width > 0));
+
+          //pad with spaces when overwriting wide character with smaller one 
+          if (expect_false (!width)){
+            line.touch (); 
+
+            //for (int c = screen.cur.col; c < ncol && line->t[c] == NOCHAR; c++)
+            for (  c = this.screen.cur.col; c <  this.ncol && line.t[c] == ""; c++){  
+                  line.t[c] = ' ';
+                  //FONT-FIXME line.r[c] = rend;
+                }
+            }
+      
+#if ENABLE_COMBINING
+          //removed, I wont be implementing this functionality
+#endif
+    }
+    //FIXME max_it (line->l, screen.cur.col);
+      line.l = ma_x(line.l, this.screen.cur.col);
+#ifdef DEBUG_STRICT
+  assert (this.screen.cur.row >= 0);
+#endif
+}
 /* ------------------------------------------------------------------------- */
 /*
  * Process Backspace.  Move back the cursor back a position, wrap if have to 
@@ -1982,13 +2175,15 @@ rxvt_term.prototype.scr_refresh =function(){
     var row_plus = mod_total_rows + term_view_start;
     var r;
     for(var row = 0; row < this.nrow; row++){
-        r=row_buf [row_plus + row];
+        //r=row_buf [row_plus + row];
+        r=ROW(this.view_start + row);
         dtr[row]= r.t.join("");
     }
     //console.log(dtr.join("\n"));
     //this.pre_term_el.innerHTML = dtr.join("\n");
     //$("pt")
     document.getElementById("pt").innerHTML = dtr.join("\n");
+
 } 
 
 //FIXME overloaded_function
