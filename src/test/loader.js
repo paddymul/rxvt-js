@@ -2,9 +2,11 @@
 var counter = 0;
 //if(!console){
 //    alert("you don't have firebug");
+try{
     console ={
         log : function(){}}
     //}
+} catch(e) {}
 function forward(num){
     counter += num;
     output_line(resp.slice(0,counter));

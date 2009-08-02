@@ -439,6 +439,7 @@ rxvt_term.prototype.scr_reset =function(){
   //this.dom_rows=this.term_el.contents();
   HOOK_INVOKE ((this, HOOK_RESET, DT_END));
 }  
+
 /*
 void
 rxvt_term::set_widthheight (unsigned int newwidth, unsigned int newheight)
@@ -463,6 +464,21 @@ rxvt_term::set_widthheight (unsigned int newwidth, unsigned int newheight)
     }
 }
 */
+
+rxvt_term.prototype.set_widthheight = function( newwidth, newheight){
+
+    console.log("called");
+    if(true){
+        return;
+    }
+    if (!newwidth == 0){
+        this.ncol=newwidth;}
+    if (!newheight == 0){
+        this.nrow = newheight;}
+    this.scr_reset();
+
+}
+
 /* ------------------------------------------------------------------------- */
 /*
  * Free everything.  That way malloc debugging can find leakage. 

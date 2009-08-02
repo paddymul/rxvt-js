@@ -1115,11 +1115,11 @@ rxvt_term.prototype.process_csi_seq =function(){
         this.scr_cursor (RESTORE);
         break;
 
-#if !ENABLE_MINIMAL
+      /* #if !ENABLE_MINIMAL */
       case CSI_74:
-        this.process_window_ops (arg, nargs);
+      this.process_window_ops (arg, nargs);
         break;
-#endif
+      /* #endif */
 
       case CSI_78:		/* DECREQTPARM */
         if (arg[0] == 0 || arg[0] == 1)
@@ -1132,16 +1132,12 @@ rxvt_term.prototype.process_csi_seq =function(){
 }
 /*}}} */
 
-#if !ENABLE_MINIMAL
+//#if !ENABLE_MINIMAL
 /* ARGSUSED */
 //void rxvt_term::process_window_ops (const int *args, unsigned int nargs)
 rxvt_term.prototype.process_window_ops =function( args,   nargs){ 
   var x, y; //int x, y;  
-  //XWindowAttributes wattr;
-  //Window wdummy;
-
-//dLocal (Display *, dpy); 
-  dLocal (Display  ,  dpy);
+  //XWindowAttributes wattr;  //Window wdummy;//dLocal (Display *, dpy); 
 
   if (nargs == 0)
     return;
@@ -1151,61 +1147,62 @@ rxvt_term.prototype.process_window_ops =function( args,   nargs){
        * commands 
        */
       case 1:			/* deiconify window */
-        XMapWindow (dpy, parent[0]);
+          //XMapWindow (dpy, parent[0]);
         break;
       case 2:			/* iconify window */
-        XIconifyWindow (dpy, parent[0], display.screen);
+          //XIconifyWindow (dpy, parent[0], display.screen);
         break;
       case 3:			/* set position (pixels) */
-        XMoveWindow (dpy, parent[0], args[1], args[2]);
+          //XMoveWindow (dpy, parent[0], args[1], args[2]);
         break;
       case 4:			/* set size (pixels) */
-        set_widthheight (args[2], ()args[1]);  //set_widthheight ((unsigned int)args[2], (unsigned int)args[1]);
+          //this.set_widthheight (args[2], args[1]);  //set_widthheight ((unsigned int)args[2], (unsigned int)args[1]);
         break;
       case 5:			/* raise window */
-        XRaiseWindow (dpy, parent[0]);
+          //XRaiseWindow (dpy, parent[0]);
         break;
       case 6:			/* lower window */
-        XLowerWindow (dpy, parent[0]);
+          //XLowerWindow (dpy, parent[0]);
         break;
       case 7:			/* refresh window */
-        this.scr_touch (true);
+          //this.scr_touch (true);
         break;
   case 8:			/* set size (chars) */ 
-                         set_widthheight ( (args[2] *   fwidth), //set_widthheight ((unsigned int) (args[2] * fwidth),
-                            (args[1]    fheight)); //unsigned int) (args[1] * fheight));
+        this.set_widthheight (args[2], args[1]); 
+        //set_widthheight ((unsigned int) (args[2] * fwidth),
+        //unsigned int) (args[1] * fheight));
         break;
 
       //case 9: NYI, TODO, restore maximized window or maximize window
       default:
-        if (args[0] >= 24)	/* set height (chars) */ 
-          set_widthheight (width, //set_widthheight ((unsigned int)width,
-                            (args[1]    fheight)); //unsigned int) (args[1] * fheight));
+          //if (args[0] >= 24)	/* set height (chars) */ 
+            //set_widthheight ((unsigned int)width,
+            //unsigned int) (args[1] * fheight));
         break;
 
       /*
        * reports - some output format copied from XTerm 
        */
       case 11:			/* report window state */
-        XGetWindowAttributes (dpy, parent[0], &wattr);
-                         this.tt_printf ("\033[%dt", wattr.map_state == IsViewable ? 1 : 2); 
+          //XGetWindowAttributes (dpy, parent[0], &wattr);
+          //this.tt_printf ("\033[%dt", wattr.map_state == IsViewable ? 1 : 2); 
         break;
       case 13:			/* report window position */
-        XGetWindowAttributes (dpy, parent[0], &wattr);
-        XTranslateCoordinates (dpy, parent[0], wattr.root,
-                               -wattr.border_width, -wattr.border_width,
-                               &x, &y, &wdummy);
-                         this.tt_printf ("\033[3;%d;%dt", x, y); 
+          //XGetWindowAttributes (dpy, parent[0], &wattr);
+          //XTranslateCoordinates (dpy, parent[0], wattr.root,
+          //-wattr.border_width, -wattr.border_width,
+          //&x, &y, &wdummy);
+          //this.tt_printf ("\033[3;%d;%dt", x, y); 
         break;
       case 14:			/* report window size (pixels) */
-        XGetWindowAttributes (dpy, parent[0], &wattr);
-                         this.tt_printf ("\033[4;%d;%dt", wattr.height, wattr.width); 
+          //XGetWindowAttributes (dpy, parent[0], &wattr);
+          //this.tt_printf ("\033[4;%d;%dt", wattr.height, wattr.width); 
         break;
   case 18:			/* report text area size (chars) */ 
-    this.tt_printf ("\033[8;%d;%dt", nrow, ncol); 
+      //this.tt_printf ("\033[8;%d;%dt", nrow, ncol); 
         break;
   case 19:			/* report window size (chars) */ 
-    this.tt_printf ("\033[9;%d;%dt", nrow, ncol); 
+      //this.tt_printf ("\033[9;%d;%dt", nrow, ncol); 
         break;
                          /* these won't be needed, there will be nothign to report this back to
         case 20:			// report icon label 
@@ -1227,7 +1224,7 @@ rxvt_term.prototype.process_window_ops =function( args,   nargs){
                          */
     }
 }
-#endif
+//#endif
 
 /*----------------------------------------------------------------------*/
 /*
