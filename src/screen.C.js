@@ -510,11 +510,13 @@ rxvt_term.prototype.set_widthheight = function( newwidth, newheight){
     }
 
     */
+    /*
     if (!newwidth == 0){
         this.ncol=newwidth;}
     if (!newheight == 0){
         this.nrow = newheight;}
-    this.scr_reset();
+    */
+    //this.scr_reset();
 
 }
 

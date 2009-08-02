@@ -1351,8 +1351,10 @@ line_t.prototype = {
    },
  */
  clear : function ()   { //FIXME should this whole thing be an object, probably
-    this.t = [];
-    this.r = [];
+        //this.t = [];
+        //this.r = [];
+        this.t = 0;
+        this.r = 0;
     this.l = 0;
     this.f = 0;
   },
