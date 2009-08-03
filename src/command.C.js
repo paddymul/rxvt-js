@@ -177,8 +177,7 @@ I bound them to "C-H u" "C-H o" and "C-H p"
 //void rxvt_term::flush ()
 rxvt_term.prototype.minimum_buf_size=40;
 rxvt_term.prototype.flush =function(){ 
-    console.log("flush");
-    //flush_ev.stop ();
+  flush_ev.stop ();
 
 #ifdef HAVE_BG_PIXMAP
   if (bgPixmap.check_clearChanged ()){

@@ -1351,8 +1351,8 @@ line_t.prototype = {
    },
  */
  clear : function ()   { //FIXME should this whole thing be an object, probably
-    this.t = [];
-    this.r = [];
+    this.t = 0;
+    this.r = 0;
     this.l = 0;
     this.f = 0;
   },
@@ -1996,37 +1996,6 @@ void init_asv ()
                               #if ENABLE_OVERLAY
                               overlay_base ov;
 */
-
-/*
-  void lresize (line_t &l) const
-  {
-    if (!l.t)
-      return;
-
-    l.t = (text_t *)talloc->alloc (l.t, prev_ncol * sizeof (text_t));
-    l.r = (rend_t *)ralloc->alloc (l.r, prev_ncol * sizeof (rend_t));
-
-    l.l = min (l.l, ncol);
-
-    if (ncol > prev_ncol)
-      scr_blank_line (l, prev_ncol, ncol - prev_ncol, DEFAULT_RSTYLE);
-  }
-*/
-rxvt_term.prototype.lresize = function (l)
-  {
-    if (!l.t)
-      return;
-
-    //l.t = (text_t *)talloc->alloc (l.t, prev_ncol * sizeof (text_t));
-    //l.r = (rend_t *)ralloc->alloc (l.r, prev_ncol * sizeof (rend_t));
-
-    l.l = mi_n(l.l, this.ncol);
-
-    if (this.ncol > this.prev_ncol)
-      this.scr_blank_line (l, this.prev_ncol, this.ncol - this.prev_ncol, DEFAULT_RSTYLE);
-  }
-
-
 function chr(inte){
   return String.fromCharCode(inte);
   }

@@ -106,10 +106,13 @@ rxvt_term.prototype.scr_blank_line =function(l, col, width, efs){
   //FIXME where is l.t an array, what should  I use for an indice of et??
   var et_i = col;  //text_t *et = l.t + col; 
   var er_i = col;  //rend_t *er = l.r + col; 
+  //console.log("width");
+  //console.log(width);
   while (width--){
       l.t[et_i++] = ' ';  //   *et++ = ' '; 
       l.r[er_i++] = efs;  // *er++ = efs; 
     }
+  //console.log(l.t);
   return l;
 }
 
@@ -155,51 +158,20 @@ my_alloc = function(num, obj){
   }
   return ptr;
 }
-
-rxvt_term.prototype.check_row_buf_join = function (){
-    var r;
-        for(var i = 0 ; i < this.row_buf.length; i++){
-            r = this.row_buf[i];
-            if(!r.t.join){return true;}
-        }
-}
-
-function double_join(arr) {
-    var ret_string = [];
-    for(var i = 0; i < arr; i++){
-        ret_string.push(arr[i].t.join(""));
-    }
-            return ret_string.join("");
-
-}
-rxvt_term.prototype.row_buf_contents = function(){
-    return double_join(this.row_buf);
-}
-
-rxvt_term.prototype.old_row_buf_contents = function(){
-    return double_join(this.__old_row_buf);
-}
-
 //void rxvt_term::scr_reset (){ 
 rxvt_term.prototype.scr_reset =function(){ 
-
-    if(this.check_row_buf_join()){console.log("top scr_reset");}
-
 
   this.view_start = 0;
   this.num_scr = 0;
 
-  if (this.ncol == 0){
+  if (this.ncol == 0)
     this.ncol = 80;
-  }
 
-  if (this.nrow == 0){
+  if (this.nrow == 0)
     this.nrow = 24;
-  }
 
-  if (this.ncol == this.prev_ncol && this.nrow == this.prev_nrow){
+  if (this.ncol == this.prev_ncol && this.nrow == this.prev_nrow)
     return;
-  }
 
   //we need at least two lines for wrapping to work correctly
   while (this.nrow + this.saveLines < 2){
@@ -273,10 +245,10 @@ rxvt_term.prototype.scr_reset =function(){
       /*
        * add or delete rows as appropriate 
        */
-
-      /*rxvt_salloc *old_ta = talloc; talloc = new rxvt_salloc (ncol * sizeof (text_t)); 
-        rxvt_salloc *old_ra = ralloc; ralloc = new rxvt_salloc (ncol * sizeof (rend_t));  */
-
+    /*
+      rxvt_salloc *old_ta = talloc; talloc = new rxvt_salloc (ncol * sizeof (text_t)); 
+      rxvt_salloc *old_ra = ralloc; ralloc = new rxvt_salloc (ncol * sizeof (rend_t)); 
+    */
 #if 0
       if (this.nrow < this.prev_nrow){
         for ( var row = this.nrow; row < this.prev_nrow; row++){  //for (int row = nrow; row < prev_nrow; row++)
@@ -286,17 +258,16 @@ rxvt_term.prototype.scr_reset =function(){
         }
 #endif
 
-
-
-
-      this.drawn_buf = my_alloc(this.nrow, line_t);//drawn_buf = (line_t *)rxvt_realloc (drawn_buf, nrow * sizeof (line_t)); 
-      this.swap_buf  = my_alloc(this.nrow, line_t);//swap_buf  = (line_t *)rxvt_realloc (swap_buf , nrow * sizeof (line_t)); 
+//drawn_buf = (line_t *)rxvt_realloc (drawn_buf, nrow * sizeof (line_t)); 
+//swap_buf  = (line_t *)rxvt_realloc (swap_buf , nrow * sizeof (line_t)); 
+      this.drawn_buf = my_alloc(this.nrow, line_t);
+      this.swap_buf  = my_alloc(this.nrow, line_t);
 
 
 
       for ( row = mi_n (this.nrow,  this.prev_nrow); row--; ){  //for (int row = mi_n (this.nrow, prev_nrow); row--; )
-        this.lresize ( this.drawn_buf[row]);  //lresize (drawn_buf[row]);
-        this.lresize ( this.swap_buf [row]);  //lresize (swap_buf [row]);
+        lresize ( this.drawn_buf[row]);  //lresize (drawn_buf[row]);
+        lresize ( this.swap_buf [row]);  //lresize (swap_buf [row]);
         }
 
       for ( row =  this.prev_nrow; row < this.nrow; row++){  //for (int row = prev_nrow; row < nrow; row++)
@@ -304,7 +275,6 @@ rxvt_term.prototype.scr_reset =function(){
            this.drawn_buf[row].clear (); this.scr_blank_screen_mem ( this.drawn_buf[row], DEFAULT_RSTYLE);
         }
       var  old_buf =  this.row_buf, old_buf_i= this.row_buf_i;  //line_t *old_buf = row_buf;
-      this.__old_row_buf = old_buf;
       //row_buf = (line_t *)rxvt_calloc ( this.total_rows + nrow, sizeof (line_t));
        this.row_buf   = my_alloc ( this.total_rows + this.nrow, line_t),  this.row_buf_i=0; 
       //previous row   //int p    = MOD (term_start + prev_nrow, prev_total_rows);  //previous row
@@ -348,7 +318,7 @@ rxvt_term.prototype.scr_reset =function(){
 
               var lofs= 0;   //int lofs = 0;
               var  qline = [], qline_i=0;  //line_t *qline;
-              debugger;
+
               //re-assemble the full line by destination lines
               for ( var qrow = q; qlines--; qrow++){  //for (int qrow = q; qlines--; qrow++){
                   
@@ -426,15 +396,11 @@ rxvt_term.prototype.scr_reset =function(){
             qline =  this.row_buf [row];  //line_t &qline =  this.row_buf [row];
 
               qline = pline;
-              this.lresize (qline);
+              lresize (qline);
          }
 
            for (  row =  this.prev_nrow; row < this.nrow; row++){  //for (int row = prev_nrow; row < nrow; row++)
-
-               this.row_buf [row].clear (); 
-               if(this.check_row_buf_join()){debugger;;}
-               this.scr_blank_screen_mem ( this.row_buf [row], DEFAULT_RSTYLE);
-               if(this.check_row_buf_join()){debugger;;}
+               this.row_buf [row].clear (); this.scr_blank_screen_mem ( this.row_buf [row], DEFAULT_RSTYLE);
             }
 
            this.term_start = 0;
@@ -454,7 +420,7 @@ rxvt_term.prototype.scr_reset =function(){
    for ( var col =  this.ncol; --col; )  //for (int col = ncol; --col; ) 
      this.tabs [col] = col % TABSIZE == 0;
 
-  /*  CLEAR_ALL_SELECTION (); */
+  CLEAR_ALL_SELECTION ();
 
    this.prev_nrow = this.nrow;
    this.prev_ncol =  this.ncol;
@@ -471,8 +437,7 @@ rxvt_term.prototype.scr_reset =function(){
       this.dom_text_rows.push([]);
   }
   //this.dom_rows=this.term_el.contents();
-  /* HOOK_INVOKE ((this, HOOK_RESET, DT_END)); */
-    if(this.check_row_buf_join()){console.log("bottom scr_reset");}
+  HOOK_INVOKE ((this, HOOK_RESET, DT_END));
 }  
 
 /*
@@ -501,15 +466,11 @@ rxvt_term::set_widthheight (unsigned int newwidth, unsigned int newheight)
 */
 
 rxvt_term.prototype.set_widthheight = function( newwidth, newheight){
-    
-    console.log("called");
 
-    /*
-      if(true){
+    console.log("called");
+    if(true){
         return;
     }
-
-    */
     if (!newwidth == 0){
         this.ncol=newwidth;}
     if (!newheight == 0){
@@ -524,7 +485,6 @@ rxvt_term.prototype.set_widthheight = function( newwidth, newheight){
  */
 //void rxvt_term::scr_release () 
 rxvt_term.prototype.scr_release =function(){ 
-    if(this.check_row_buf_join()){    console.log("scr_release");}
   if (this.row_buf){
       /*
       delete talloc; talloc = 0;  //FIXME what to do with allocs?
@@ -540,7 +500,6 @@ rxvt_term.prototype.scr_release =function(){
        */
     this.row_buf=[],  this.swap_buf=[],this.drawn_buf=[], this.row_buf_i=0, this.tabs_i=0;
     }
-    if(this.check_row_buf_join()){    console.log("scr_release");}
 }
 
 /* ------------------------------------------------------------------------- */
@@ -757,7 +716,6 @@ rxvt_term.prototype.scr_rendition =function( set,  style){
  */
 //int rxvt_term::scr_scroll_text (int row1, int row2, int count){ 
 rxvt_term.prototype.scr_scroll_text =function( row1,  row2,  count){ 
-    if(this.check_row_buf_join()){    console.log("scr_scroll_text");}
   if (count == 0 || (row1 > row2))
     return 0;
 
@@ -872,7 +830,6 @@ rxvt_term.prototype.scr_scroll_text =function( row1,  row2,  count){
     }
 
   return count;
-    if(this.check_row_buf_join()){    console.log("scr_scroll_text");}
 }
 
 /* ------------------------------------------------------------------------- */
@@ -1542,14 +1499,12 @@ rxvt_term.prototype.scr_erase_line =function( mode){
  */
 //void rxvt_term::scr_erase_screen (int mode) 
 rxvt_term.prototype.scr_erase_screen =function( mode){ 
-    if(this.check_row_buf_join()){    console.log("scr_erase_screen_text");}
  var    num;  //int num;
  var   row;  //int32_t row;
  var  ren;  //rend_t ren;
  var  gcvalue;//XGCValues gcvalue; 
  //debugger
  //console.log("scr_erase_screen");
-
  this.want_refresh = 1;
   ZERO_SCROLLBACK ();
  // mode=2;
@@ -1621,7 +1576,6 @@ rxvt_term.prototype.scr_erase_screen =function( mode){
       if (! this.view_start)
         this.scr_blank_line ( this.drawn_buf [row], 0,  this.ncol, ren);
     }
-    if(this.check_row_buf_join()){    console.log("scr_erase_screen_text");}
 }
 
 #if !ENABLE_MINIMAL
@@ -2177,7 +2131,6 @@ rxvt_term.prototype.scr_printscreen =function( fullhist){
 //REWRITE: void rxvt_term::scr_refresh (){ 
 
 rxvt_term.prototype.scr_refresh =function(){ 
-    if(this.check_row_buf_join()){    console.log("scr_refresh");}
     var out_string =[];
     var b=-1;
     var dtr = this.dom_text_rows;
@@ -2194,15 +2147,9 @@ rxvt_term.prototype.scr_refresh =function(){
         //r=ROW(this.view_start + row);
         //r=(this.row_buf [((((this).term_start +   this.view_start + row) + ( (this).total_rows)) % ( (this).total_rows))]);
         r=row_buf [row_plus + row];
-        if(r.t.join){
-            dtr[row].textContent= r.t.join("");}
-        else {
-            debugger;
-            console.log("r.t",r.t);}
-
+        dr[row].textContent= r.t.join("");
          //if(b.join("") != dtr[row]) {
         /*
-        //working to only change modified lines   
          if(r.modified){
              r.modified=false;
              b=r.t;
@@ -2227,8 +2174,34 @@ rxvt_term.prototype.scr_refresh =function(){
          */
     }
     //term_el.innerHTML = 
-    if(this.check_row_buf_join()){    console.log("scr_refresh");}
+
 } 
+
+rxvt_term.prototype.scr_refresh =function(){ 
+    var out_string =[];
+    var b=-1;
+    var dtr = this.dom_text_rows;
+    var dr = this.dom_rows;
+    var view_start= this.view_start;
+    var total_rows = this.total_rows;
+    var term_start = this.term_start;
+    var row_buf = this.row_buf;
+    var term_view_start = term_start+view_start;
+    var mod_total_rows = total_rows % total_rows;
+    var row_plus = mod_total_rows + term_view_start;
+    var r;
+    for(var row = 0; row < this.nrow; row++){
+        //r=row_buf [row_plus + row];
+        r=ROW(this.view_start + row);
+        dtr[row]= r.t.join("");
+    }
+    //console.log(dtr.join("\n"));
+    //this.pre_term_el.innerHTML = dtr.join("\n");
+    //$("pt")
+    document.getElementById("pt").innerHTML = dtr.join("\n");
+
+} 
+
 //FIXME overloaded_function
 // void rxvt_term::scr_remap_chars (line_t &l) 
 rxvt_term.prototype.scr_remap_chars =function(l){ 
@@ -2246,7 +2219,6 @@ return
 
 //FIXED:void rxvt_term::scr_remap_chars (){ 
 rxvt_term.prototype.scr_remap_chars =function(){ 
-    if(this.check_row_buf_join()){    console.log("scr_remap_chars");}
    for ( var  i =  this.total_rows; i--; )  //for (int i =  this.total_rows; i--; )
     this.scr_remap_chars ( this.row_buf [i]); 
 
@@ -2254,7 +2226,6 @@ rxvt_term.prototype.scr_remap_chars =function(){
     this.scr_remap_chars ( this.drawn_buf[i]); 
       this.scr_remap_chars ( this.swap_buf[i]); 
     }
-    if(this.check_row_buf_join()){    console.log("scr_remap_chars");}
 }
 
 //REWRITE:void rxvt_term::scr_recolour () 
@@ -2321,8 +2292,6 @@ rxvt_term.prototype.scr_xor_rect =function( beg_row,  beg_col,  end_row,  end_co
 
 //void rxvt_term::scr_xor_span (int beg_row, int beg_col, int end_row, int end_col, rend_t rstyle) 
 rxvt_term.prototype.scr_xor_span =function( beg_row,  beg_col,  end_row,  end_col,  rstyle){ 
-
-    if(this.check_row_buf_join()){    console.log("scr_xor_span");}
   var view_end= this.view_start + this.nrow;   //int view_end =  this.view_start + nrow;
   var row, col;  //int row, col;
 
@@ -2344,7 +2313,6 @@ rxvt_term.prototype.scr_xor_span =function( beg_row,  beg_col,  end_row,  end_co
 //for (rend_t *srp = ROW(row).r; col < end_col; col++) 
     for (  srp = ROW(row).r; col < end_col; col++)
       srp[col] ^= rstyle;
-    if(this.check_row_buf_join()){    console.log("scr_xor_span");}
 }
 
 /* ------------------------------------------------------------------------- */

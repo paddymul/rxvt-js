@@ -114,7 +114,7 @@ function Animator(termEl, reqUrl){
 
 Animator.prototype = {
     output_line : function (str){
-        //console.log("hello");
+        console.log("hello");
         this.a.cmd_write(str, str.length);
         this.a.scr_refresh();
     },
