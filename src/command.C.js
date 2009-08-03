@@ -1168,7 +1168,7 @@ rxvt_term.prototype.process_window_ops =function( args,   nargs){
           //this.scr_touch (true);
         break;
   case 8:			/* set size (chars) */ 
-        this.set_widthheight (args[2], args[1]); 
+      //this.set_widthheight (args[2], args[1]); 
         //set_widthheight ((unsigned int) (args[2] * fwidth),
         //unsigned int) (args[1] * fheight));
         break;
