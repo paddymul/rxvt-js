@@ -7,6 +7,7 @@ try{
         log : function(){}}
     //}
 } catch(e) {}
+
 function forward(num){
     counter += num;
     output_line(resp.slice(0,counter));
@@ -28,7 +29,8 @@ function soundPlay(position){
 
 function Animator(termEl, reqUrl){
     this.a = new rxvt_term(document.getElementById('term'),"pre_term");
-    this.max_diff = .1;
+    this.max_diff = .2;
+    this.min_milli_jump=10;
     this.a.row_buf=false;
     this.a.scr_poweron();
     //console.log(a);
@@ -79,7 +81,7 @@ function Animator(termEl, reqUrl){
                                console.log(diff);
                            }
 
-                           console.log(timingPointer);
+                           //console.log(timingPointer);
                            bpf=local_output_jumps[timingPointer];
                            var me = arguments.callee;
                            mspf=local_output_timing[timingPointer];
@@ -114,9 +116,14 @@ function Animator(termEl, reqUrl){
 
 Animator.prototype = {
     output_line : function (str){
-        console.log("hello");
+        if(this.is_outputting){
+            console.log("outputting while already outputting");
+        }
+        this.is_outputting=true;
+        console.log(str);
         this.a.cmd_write(str, str.length);
-        this.a.scr_refresh();
+        //this.a.scr_refresh();
+        this.is_outputting=false;
     },
 
     setupTiming2: function(){
@@ -150,13 +157,13 @@ Animator.prototype = {
 
         this.output_jumps=[];
         this.output_timing=[];
-        var min_milli_jump=70;
+
         var residual_milli_jump=0;
         var residual_jump=0;
         for(var i=0; i < intervalMilliSecs.length; i++){
             var current_milli_jump = intervalMilliSecs[i];
             var current_jump = timing[i][2];
-            if((current_milli_jump + residual_milli_jump) > min_milli_jump){
+            if((current_milli_jump + residual_milli_jump) > this.min_milli_jump){
                 this.output_timing.push(current_milli_jump +residual_milli_jump);
                 this.output_jumps.push(current_jump + residual_jump);
                 residual_milli_jump=0;
@@ -181,7 +188,7 @@ Animator.prototype = {
     }
 }
 
-var tty_file ="myttyrec.out";
+//var tty_file ="myttyrec.out";
 
 function animate(){
 

@@ -160,16 +160,18 @@ my_alloc = function(num, obj){
 }
 //void rxvt_term::scr_reset (){ 
 rxvt_term.prototype.scr_reset =function(){ 
-
+    console.log("scr_reset");
+    console.log("this.ncol",this.ncol);
   this.view_start = 0;
   this.num_scr = 0;
-
-  if (this.ncol == 0)
-    this.ncol = 80;
-
+  
+  if (this.ncol == 0){
+      console.log("setting ncol to 80");
+      this.ncol = 80;
+  }
   if (this.nrow == 0)
     this.nrow = 24;
-
+    
   if (this.ncol == this.prev_ncol && this.nrow == this.prev_nrow)
     return;
 
@@ -467,16 +469,20 @@ rxvt_term::set_widthheight (unsigned int newwidth, unsigned int newheight)
 
 rxvt_term.prototype.set_widthheight = function( newwidth, newheight){
 
-    console.log("called");
-    if(true){
+
+    if(this.have_called_set_widthheight){
+        console.log("called");
         return;
     }
+
+
     if (!newwidth == 0){
         this.ncol=newwidth;}
     if (!newheight == 0){
         this.nrow = newheight;}
-    this.scr_reset();
-
+    this.scr_poweron();
+    //this.scr_reset();
+    this.have_called_set_widthheight = true;
 }
 
 /* ------------------------------------------------------------------------- */
@@ -510,7 +516,7 @@ rxvt_term.prototype.scr_release =function(){
 rxvt_term.prototype.scr_poweron =function(){ 
   this.scr_release ();
    this.prev_nrow =  this.prev_ncol = 0;
-  rvideo_mode = false;
+  this.rvideo_mode = false;
   this.scr_soft_reset ();
   this.scr_reset ();
 
@@ -1503,7 +1509,6 @@ rxvt_term.prototype.scr_erase_screen =function( mode){
  var   row;  //int32_t row;
  var  ren;  //rend_t ren;
  var  gcvalue;//XGCValues gcvalue; 
- //debugger
  //console.log("scr_erase_screen");
  this.want_refresh = 1;
   ZERO_SCROLLBACK ();
@@ -2131,6 +2136,7 @@ rxvt_term.prototype.scr_printscreen =function( fullhist){
 //REWRITE: void rxvt_term::scr_refresh (){ 
 
 rxvt_term.prototype.scr_refresh =function(){ 
+    console.log("scr_refresh called");
     var out_string =[];
     var b=-1;
     var dtr = this.dom_text_rows;
@@ -2178,6 +2184,7 @@ rxvt_term.prototype.scr_refresh =function(){
 } 
 
 rxvt_term.prototype.scr_refresh =function(){ 
+    console.log("scr_refresh called ");
     var out_string =[];
     var b=-1;
     var dtr = this.dom_text_rows;

@@ -1168,9 +1168,9 @@ rxvt_term.prototype.process_window_ops =function( args,   nargs){
           //this.scr_touch (true);
         break;
   case 8:			/* set size (chars) */ 
-      //this.set_widthheight (args[2], args[1]); 
-        //set_widthheight ((unsigned int) (args[2] * fwidth),
-        //unsigned int) (args[1] * fheight));
+      this.set_widthheight (args[2], args[1]); 
+      this.scr_poweron();
+        
         break;
 
       //case 9: NYI, TODO, restore maximized window or maximize window
