@@ -977,16 +977,16 @@ struct rxvt_term : zero_initialized, rxvt_vars, rxvt_screen
                   current_screen:1,	/* primary or secondary              */
                   num_scr_allow:1,
                   bypass_keystate:1,
-#if ENABLE_FRILLS
+#ifdef ENABLE_FRILLS
                   urgency_hint:1,
 #endif
-#if CURSOR_BLINK
+#ifdef CURSOR_BLINK
                   hidden_cursor:1,
 #endif
-#if TEXT_BLINK
+#ifdef TEXT_BLINK
                   hidden_text:1,
 #endif
-#if POINTER_BLANK
+#ifdef POINTER_BLANK
                   hidden_pointer:1,
 #endif
                   enc_utf8:1,		/* wether locale uses utf-8 */
@@ -1236,11 +1236,7 @@ struct rxvt_term : zero_initialized, rxvt_vars, rxvt_screen
   void button_release (XButtonEvent &ev);
   void focus_in ();
   void focus_out ();
-#if ENABLE_FRILLS
   void set_urgency (bool enable);
-#else
-  void set_urgency (bool enable) { }
-#endif
   void update_fade_color (unsigned int idx);
 #ifdef PRINTPIPE
   FILE *popen_printer ();

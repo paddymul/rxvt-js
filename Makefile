@@ -15,10 +15,10 @@ man3dir = ${prefix}/share/man/man3
 man3ext = 3
 man7dir = ${prefix}/share/man/man7
 man7ext = 7
-PERL = 
-INSTALL = /usr/bin/install -c
-INSTALL_PROGRAM = /usr/bin/install -c -m 755
-INSTALL_DATA = /usr/bin/install -c -m 644
+PERL = /opt/local/bin/perl
+INSTALL = /opt/local/bin/ginstall -c
+INSTALL_PROGRAM = /opt/local/bin/ginstall -c -m 755
+INSTALL_DATA = /opt/local/bin/ginstall -c -m 644
 
 VERNAME = rxvt-unicode-$(VERSION)
 

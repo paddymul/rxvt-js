@@ -12,19 +12,19 @@
 /* #undef EIGHT_BIT_CONTROLS */
 
 /* Define if you want to automatically compose combining characters */
-/* #undef ENABLE_COMBINING */
+#define ENABLE_COMBINING 1
 
 /* Define if you want handling for rarely used but handy features */
-/* #undef ENABLE_FRILLS */
+#define ENABLE_FRILLS 1
 
 /* Define if you can embed a perl interpreter */
-/* #undef ENABLE_PERL */
+#define ENABLE_PERL 1
 
 /* Define if you want bold and italic support */
-/* #undef ENABLE_STYLES */
+#define ENABLE_STYLES 1
 
 /* Define if you want your background to use the parent window background */
-/* #undef ENABLE_TRANSPARENCY */
+#define ENABLE_TRANSPARENCY 1
 
 /* Define if you want european extended codesets */
 #define ENCODING_EU 1
@@ -259,7 +259,7 @@
 #define HAVE_WCHAR_H 1
 
 /* Define to 1 if you have the <X11/Xft/Xft.h> header file. */
-/* #undef HAVE_X11_XFT_XFT_H */
+#define HAVE_X11_XFT_XFT_H 1
 
 /* Define if you have XPointer typedef */
 #define HAVE_XPOINTER 1
@@ -280,37 +280,37 @@
 /* #undef LASTLOG_FILE */
 
 /* Define if you want to have lastlog support when utmp/utmpx is enabled */
-/* #undef LASTLOG_SUPPORT */
+#define LASTLOG_SUPPORT 1
 
 /* Define to have CTRL cause wheel events to accelerate scrolling. Release
    CTRL to halt scrolling */
-/* #undef MOUSE_SLIP_WHEELING */
+#define MOUSE_SLIP_WHEELING 1
 
 /* Define to use wheel events (button4 and button5) to scroll */
-/* #undef MOUSE_WHEEL */
+#define MOUSE_WHEEL 1
 
 /* Support NeXT style scrollbars */
-/* #undef NEXT_SCROLLBAR */
+#define NEXT_SCROLLBAR 1
 
 /* Define if you don't want support for the backspace key */
-#define NO_BACKSPACE_KEY 1
+/* #undef NO_BACKSPACE_KEY */
 
 /* Define if you don't want support for the (non-keypad) delete key */
-#define NO_DELETE_KEY 1
+/* #undef NO_DELETE_KEY */
 
 /* Define if you don't want any resources read */
-#define NO_RESOURCES 1
+/* #undef NO_RESOURCES */
 
 /* Define for continual scrolling when you keep the scrollbar button pressed
    */
-#define NO_SCROLLBAR_BUTTON_CONTINUAL_SCROLLING 1
+/* #undef NO_SCROLLBAR_BUTTON_CONTINUAL_SCROLLING */
 
 /* Disable the secondary screen. Many programs use the secondary screen as
    their workplace */
-#define NO_SECONDARY_SCREEN 1
+/* #undef NO_SECONDARY_SCREEN */
 
 /* Define if you want faded colors when focus is lost */
-/* #undef OFF_FOCUS_FADING */
+#define OFF_FOCUS_FADING 1
 
 /* Define to the address where bug reports for this package should be sent. */
 #define PACKAGE_BUGREPORT ""
@@ -331,7 +331,7 @@
 #define PLAIN_SCROLLBAR 1
 
 /* Define if you want hide the pointer while typing */
-/* #undef POINTER_BLANK */
+#define POINTER_BLANK 1
 
 /* Resource class */
 #define RESCLASS "URxvt"
@@ -346,14 +346,14 @@
 #define RXVTNAME "urxvt"
 
 /* Support Rxvt original style scrollbars */
-/* #undef RXVT_SCROLLBAR */
+#define RXVT_SCROLLBAR 1
 
 /* Set TERMINFO value to the value given by configure */
 /* #undef RXVT_TERMINFO */
 
 /* Define to allow scrolling when the selection moves to the top or bottom of
    the screen */
-/* #undef SELECTION_SCROLLING */
+#define SELECTION_SCROLLING 1
 
 /* Define to use "smart" resize behavior */
 /* #undef SMART_RESIZE */
@@ -378,7 +378,7 @@
 
 /* Define if you want to have XIM (X Input Method) protocol support - required
    for multibyte characters input */
-/* #undef USE_XIM */
+#define USE_XIM 1
 
 /* Define location of utmpx */
 #define UTMPX_FILE "/var/run/utmpx"
@@ -396,10 +396,10 @@
 #define WTMP_FILE "/var/log/wtmp"
 
 /* Define if you want to have wtmp support when utmp/utmpx is enabled */
-/* #undef WTMP_SUPPORT */
+#define WTMP_SUPPORT 1
 
 /* Define to enable xft support */
-/* #undef XFT */
+#define XFT 1
 
 /* Define if your XIMCallback specifies XIC as first type. */
 /* #undef XIMCB_PROTO_BROKEN */
