@@ -2184,6 +2184,7 @@ rxvt_term.prototype.scr_refresh =function(){
 
 rxvt_term.prototype.scr_refresh =function(){ 
     console.log("scr_refresh called ");
+#ifndef DEBUG
     var out_string =[];
     var b=-1;
     var dtr = this.dom_text_rows;
@@ -2205,7 +2206,7 @@ rxvt_term.prototype.scr_refresh =function(){
     //this.pre_term_el.innerHTML = dtr.join("\n");
     //$("pt")
     document.getElementById("pt").innerHTML = dtr.join("\n");
-
+#endif
 } 
 
 //FIXME overloaded_function

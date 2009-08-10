@@ -231,6 +231,12 @@ if(!console){
 */
 /*from rxvtperl.h */
 
+#if DEBUG
+#define FUNCTION_DEBUG(function_name) print(function_name);
+#else 
+#define FUNCTION_DEBUG(function_name) 
+#endif
+
 #if ENABLE_PERL
 
 #else
@@ -1667,7 +1673,9 @@ rxvt_vars = function() {}
   };
 function rxvt_term(term_el, pre_term_el) {
     //this.term_el=$(term_el);
-    this.pre_term_el=$(pre_term_el);
+
+    this.pre_term_el=pre_term_el;
+
   this.screen = new screen_t();
   this.swap = new screen_t();
   this.charsets= new Array(4);

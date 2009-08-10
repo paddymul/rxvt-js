@@ -369,6 +369,30 @@ enum {
 };
 #define CHAR_ST                 0x9c    /* 0234 */
 
+
+
+
+#define FUNCTION_DEBUG(function_name)  fprintf(stdout,function_name); fprintf(stdout, "\n");
+/*
+ FILE * pFile;\
+  pFile = fopen("/Users/patrickmullen/myfile.txt","w");       \
+     fprintf(pFile,function_name);\
+   fclose (pFile);
+/*
+int n;
+char name [100];
+
+   for (n=0 ; n<3 ; n++)
+   {
+     puts ("please, enter a name: ");
+     gets (name);
+     fprintf (1, "Name %d [%-10.10s]\n",n,name);
+   }
+
+
+   return 0;
+*/
+
 /*
  * XTerm Operating System Commands: ESC ] Ps;Pt (ST|BEL)
  * colour extensions by Christian W. Zuckschwerdt <zany@triq.net>

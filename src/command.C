@@ -136,6 +136,7 @@ static unsigned short iso14755_symtab[] = {
 void
 rxvt_term::iso14755_54 (int x, int y)
 {
+  FUNCTION_DEBUG("iso14755_54 ")
   x = Pixel2Col (x);
   y = Pixel2Row (y);
 
@@ -163,6 +164,7 @@ rxvt_term::iso14755_54 (int x, int y)
 void
 rxvt_term::iso14755_51 (unicode_t ch, rend_t r, int x, int y)
 {
+  FUNCTION_DEBUG("iso14755_51 ")
   rxvt_fontset *fs = FONTSET (r);
   rxvt_font *f = (*fs)[fs->find_font (ch)];
   wchar_t *chr, *alloc, ch2, *fname;
@@ -253,6 +255,7 @@ rxvt_term::iso14755_51 (unicode_t ch, rend_t r, int x, int y)
 void
 rxvt_term::commit_iso14755 ()
 {
+  FUNCTION_DEBUG("commit_iso14755 ")
   wchar_t ch[2];
 
   ch[0] = iso14755buf & ISO_14755_MASK;
@@ -398,6 +401,7 @@ map_function_key (KeySym keysym)
 void
 rxvt_term::key_press (XKeyEvent &ev)
 {
+  FUNCTION_DEBUG("key_press ")
   int ctrl, meta, shft, len;
   KeySym keysym;
   int valid_keysym;
@@ -856,6 +860,7 @@ rxvt_term::key_press (XKeyEvent &ev)
 void
 rxvt_term::key_release (XKeyEvent &ev)
 {
+  FUNCTION_DEBUG("key_release ")
 #if (MOUSE_WHEEL && MOUSE_SLIP_WHEELING) || ISO_14755 || ENABLE_PERL
   KeySym keysym;
 
@@ -934,6 +939,7 @@ rxvt_term::key_release (XKeyEvent &ev)
 unsigned int
 rxvt_term::cmd_write (const char *str, unsigned int count)
 {
+  FUNCTION_DEBUG("cmd_write ")
   unsigned int n, s;
 
   n = cmdbuf_ptr - cmdbuf_base;
@@ -966,6 +972,7 @@ rxvt_term::cmd_write (const char *str, unsigned int count)
 void
 rxvt_term::flush ()
 {
+  FUNCTION_DEBUG("flush ")
   flush_ev.stop ();
 
 #ifdef HAVE_BG_PIXMAP
@@ -1030,6 +1037,7 @@ rxvt_term::flush ()
 void
 rxvt_term::refresh_check ()
 {
+  FUNCTION_DEBUG("refresh_check ")
   if (want_refresh && !flush_ev.is_active ())
     flush_ev.start (1. / 60.); // refresh at max. 60 Hz normally
 
@@ -1039,6 +1047,7 @@ rxvt_term::refresh_check ()
 void
 rxvt_term::flush_cb (ev::timer &w, int revents)
 {
+  FUNCTION_DEBUG("flush_cb ")
   make_current ();
 
   refresh_count = 0;
@@ -1049,6 +1058,7 @@ rxvt_term::flush_cb (ev::timer &w, int revents)
 void
 rxvt_term::cursor_blink_cb (ev::timer &w, int revents)
 {
+  FUNCTION_DEBUG("cursor_blink_cb ")
   hidden_cursor = !hidden_cursor;
   want_refresh = 1;
   refresh_check ();
@@ -1059,6 +1069,7 @@ rxvt_term::cursor_blink_cb (ev::timer &w, int revents)
 void
 rxvt_term::text_blink_cb (ev::timer &w, int revents)
 {
+  FUNCTION_DEBUG("text_blink_cb ")
   if (scr_refresh_rend (RS_Blink, RS_Blink))
     {
       hidden_text = !hidden_text;
@@ -1074,6 +1085,7 @@ rxvt_term::text_blink_cb (ev::timer &w, int revents)
 void
 rxvt_term::cont_scroll_cb (ev::timer &w, int revents)
 {
+  FUNCTION_DEBUG("cont_scroll_cb ")
   if ((scrollBar.state == STATE_UP || scrollBar.state == STATE_DOWN)
       && scr_page (scrollBar.state == STATE_UP ? UP : DN, 1))
     {
@@ -1089,6 +1101,7 @@ rxvt_term::cont_scroll_cb (ev::timer &w, int revents)
 void
 rxvt_term::sel_scroll_cb (ev::timer &w, int revents)
 {
+  FUNCTION_DEBUG("sel_scroll_cb ")
   if (scr_page (scroll_selection_dir, scroll_selection_lines))
     {
       selection_extend (selection_save_x, selection_save_y, selection_save_state);
@@ -1104,6 +1117,7 @@ rxvt_term::sel_scroll_cb (ev::timer &w, int revents)
 void
 rxvt_term::slip_wheel_cb (ev::timer &w, int revents)
 {
+  FUNCTION_DEBUG("slip_wheel_cb ")
   if (scr_changeview (view_start - mouse_slip_wheel_speed))
     {
       want_refresh = 1;
@@ -1149,6 +1163,7 @@ static struct event_handler
 bool
 rxvt_term::pty_fill ()
 {
+  FUNCTION_DEBUG("pty_fill ")
   ssize_t n = cmdbuf_endp - cmdbuf_ptr;
 
   if (CBUFSIZ == n)
@@ -1189,6 +1204,7 @@ rxvt_term::pty_fill ()
 void
 rxvt_term::pty_cb (ev::io &w, int revents)
 {
+  FUNCTION_DEBUG("pty_cb ")
   make_current ();
 
   if (revents & ev::READ)
@@ -1205,6 +1221,7 @@ rxvt_term::pty_cb (ev::io &w, int revents)
 void
 rxvt_term::pointer_unblank ()
 {
+  FUNCTION_DEBUG("pointer_unblank ")
   XDefineCursor (dpy, vt, TermWin_cursor);
   recolour_cursor ();
 
@@ -1220,6 +1237,7 @@ rxvt_term::pointer_unblank ()
 void
 rxvt_term::pointer_blank ()
 {
+  FUNCTION_DEBUG("pointer_blank ")
   if (!option (Opt_pointerBlank))
     return;
 
@@ -1232,6 +1250,7 @@ rxvt_term::pointer_blank ()
 void
 rxvt_term::pointer_cb (ev::timer &w, int revents)
 {
+  FUNCTION_DEBUG("pointer_cb ")
   make_current ();
 
   pointer_blank ();
@@ -1241,6 +1260,7 @@ rxvt_term::pointer_cb (ev::timer &w, int revents)
 void
 rxvt_term::mouse_report (XButtonEvent &ev)
 {
+  FUNCTION_DEBUG("mouse_report ")
   int button_number, key_state = 0;
   int x, y;
   int code = 32;
@@ -1319,6 +1339,7 @@ rxvt_term::mouse_report (XButtonEvent &ev)
 void
 rxvt_term::x_cb (XEvent &ev)
 {
+  //FUNCTION_DEBUG("x_cb ")
   make_current ();
 
   dLocal (Display *, dpy);
@@ -1689,6 +1710,7 @@ rxvt_term::x_cb (XEvent &ev)
 void
 rxvt_term::set_urgency (bool enable)
 {
+  FUNCTION_DEBUG("set_urgency ")
   if (enable == urgency_hint)
     return;
 
@@ -1703,6 +1725,7 @@ rxvt_term::set_urgency (bool enable)
 void
 rxvt_term::focus_in ()
 {
+  FUNCTION_DEBUG("focus_in ")
   if (!focus)
     {
       focus = 1;
@@ -1738,6 +1761,7 @@ rxvt_term::focus_in ()
 void
 rxvt_term::focus_out ()
 {
+  FUNCTION_DEBUG("focus_out ")
   if (focus)
     {
       focus = 0;
@@ -1781,6 +1805,7 @@ rxvt_term::focus_out ()
 void
 rxvt_term::update_fade_color (unsigned int idx)
 {
+  //FUNCTION_DEBUG("update_fade_color ")
 #if OFF_FOCUS_FADING
   if (rs[Rs_fade])
     {
@@ -1795,6 +1820,7 @@ rxvt_term::update_fade_color (unsigned int idx)
 void
 rxvt_term::rootwin_cb (XEvent &ev)
 {
+  FUNCTION_DEBUG("rootwin_cb ")
   make_current ();
 
   if (SHOULD_INVOKE (HOOK_ROOT_EVENT)
@@ -1827,6 +1853,7 @@ rxvt_term::rootwin_cb (XEvent &ev)
 void
 rxvt_term::button_press (XButtonEvent &ev)
 {
+  FUNCTION_DEBUG("button_press ")
   int reportmode = 0, clickintime;
 
   bypass_keystate = ev.state & (ModMetaMask | ShiftMask);
@@ -2073,6 +2100,7 @@ rxvt_term::button_press (XButtonEvent &ev)
 void
 rxvt_term::button_release (XButtonEvent &ev)
 {
+  FUNCTION_DEBUG("button_release ")
   int reportmode = 0;
 
   csrO = 0;		/* reset csr Offset */
@@ -2189,6 +2217,7 @@ rxvt_term::button_release (XButtonEvent &ev)
 void
 rxvt_term::cmd_parse ()
 {
+  FUNCTION_DEBUG("cmd_parse ")
   wchar_t ch = NOCHAR;
   char *seq_begin; // remember start of esc-sequence here
 
@@ -2318,6 +2347,7 @@ rxvt_term::cmd_parse ()
 wchar_t
 rxvt_term::next_char () NOTHROW
 {
+  //FUNCTION_DEBUG("next_char ")
   while (cmdbuf_ptr < cmdbuf_endp)
     {
       // assume 7-bit to be ascii ALWAYS
@@ -2352,6 +2382,7 @@ rxvt_term::next_char () NOTHROW
 uint32_t
 rxvt_term::next_octet () NOTHROW
 {
+  FUNCTION_DEBUG("next_octet ")
   return cmdbuf_ptr < cmdbuf_endp
          ? (unsigned char)*cmdbuf_ptr++
          : NOCHAR;
@@ -2367,6 +2398,7 @@ static class out_of_input out_of_input;
 wchar_t
 rxvt_term::cmd_getc () THROW ((class out_of_input))
 {
+  //FUNCTION_DEBUG("cmd_getc ")
   wchar_t c = next_char ();
 
   if (c == NOCHAR)
@@ -2378,6 +2410,7 @@ rxvt_term::cmd_getc () THROW ((class out_of_input))
 uint32_t
 rxvt_term::cmd_get8 () THROW ((class out_of_input))
 {
+  FUNCTION_DEBUG("cmd_get8 ")
   uint32_t c = next_octet ();
 
   if (c == NOCHAR)
@@ -2392,6 +2425,7 @@ rxvt_term::cmd_get8 () THROW ((class out_of_input))
 FILE *
 rxvt_term::popen_printer ()
 {
+  FUNCTION_DEBUG("popen_printer ")
   FILE *stream = popen (rs[Rs_print_pipe] ? rs[Rs_print_pipe] : PRINTPIPE, "w");
 
   if (stream == NULL)
@@ -2403,6 +2437,7 @@ rxvt_term::popen_printer ()
 int
 rxvt_term::pclose_printer (FILE *stream)
 {
+  FUNCTION_DEBUG("pclose_printer ")
   fflush (stream);
   return pclose (stream);
 }
@@ -2413,6 +2448,7 @@ rxvt_term::pclose_printer (FILE *stream)
 void
 rxvt_term::process_print_pipe ()
 {
+  FUNCTION_DEBUG("process_print_pipe ")
   FILE *fd = popen_printer ();
 
   if (!fd)
@@ -2480,6 +2516,7 @@ enum {
 void
 rxvt_term::process_nonprinting (unicode_t ch)
 {
+  FUNCTION_DEBUG("process_nonprinting ")
   switch (ch)
     {
       case C0_ESC:
@@ -2536,6 +2573,7 @@ rxvt_term::process_nonprinting (unicode_t ch)
 void
 rxvt_term::process_escape_vt52 (unicode_t ch)
 {
+  FUNCTION_DEBUG("process_escape_vt52 ")
   int row, col;
 
   switch (ch)
@@ -2596,6 +2634,7 @@ rxvt_term::process_escape_vt52 (unicode_t ch)
 void
 rxvt_term::process_escape_seq ()
 {
+  FUNCTION_DEBUG("process_escape_seq ")
   unicode_t ch = cmd_getc ();
 
   if (priv_modes & PrivMode_vt52)
@@ -2756,6 +2795,7 @@ const unsigned char csi_defaults[] =
 void
 rxvt_term::process_csi_seq ()
 {
+  FUNCTION_DEBUG("process_csi_seq ")
   unicode_t ch, priv, i;
   unsigned int nargs, p;
   int n, ndef;
@@ -3075,6 +3115,7 @@ rxvt_term::process_csi_seq ()
 void
 rxvt_term::process_window_ops (const int *args, unsigned int nargs)
 {
+  FUNCTION_DEBUG("process_window_ops ")
   int x, y;
   XWindowAttributes wattr;
   Window wdummy;
@@ -3174,6 +3215,7 @@ rxvt_term::process_window_ops (const int *args, unsigned int nargs)
 char *
 rxvt_term::get_to_st (unicode_t &ends_how)
 {
+  FUNCTION_DEBUG("get_to_st ")
   unicode_t ch;
   bool seen_esc = false;
   unsigned int n = 0;
@@ -3223,6 +3265,7 @@ rxvt_term::get_to_st (unicode_t &ends_how)
 void
 rxvt_term::process_dcs_seq ()
 {
+  FUNCTION_DEBUG("process_dcs_seq ")
   char *s;
   unicode_t eh;
 
@@ -3243,6 +3286,7 @@ rxvt_term::process_dcs_seq ()
 void
 rxvt_term::process_osc_seq ()
 {
+  FUNCTION_DEBUG("process_osc_seq ")
   unicode_t ch, eh;
   int arg;
 
@@ -3265,6 +3309,7 @@ rxvt_term::process_osc_seq ()
 void
 rxvt_term::process_color_seq (int report, int color, const char *str, char resp)
 {
+  FUNCTION_DEBUG("process_color_seq ")
   if (str[0] == '?' && !str[1])
     {
       rgba c;
@@ -3287,6 +3332,7 @@ rxvt_term::process_color_seq (int report, int color, const char *str, char resp)
 void
 rxvt_term::process_xterm_seq (int op, const char *str, char resp)
 {
+  FUNCTION_DEBUG("process_xterm_seq ")
   int color;
   char *buf, *name;
   bool query = str[0] == '?' && !str[1];
@@ -3558,6 +3604,7 @@ rxvt_term::process_xterm_seq (int op, const char *str, char resp)
 int
 rxvt_term::privcases (int mode, unsigned long bit)
 {
+  FUNCTION_DEBUG("privcases ")
   int state;
 
   if (mode == 's')
@@ -3581,6 +3628,7 @@ rxvt_term::privcases (int mode, unsigned long bit)
 void
 rxvt_term::process_terminal_mode (int mode, int priv UNUSED, unsigned int nargs, const int *arg)
 {
+  FUNCTION_DEBUG("process_terminal_mode ")
   unsigned int i, j;
   int state;
 
@@ -3776,6 +3824,7 @@ rxvt_term::process_terminal_mode (int mode, int priv UNUSED, unsigned int nargs,
 void
 rxvt_term::process_sgr_mode (unsigned int nargs, const int *arg)
 {
+  FUNCTION_DEBUG("process_sgr_mode ")
   unsigned int i;
   short rendset;
   int rendstyle;
@@ -3930,6 +3979,7 @@ rxvt_term::process_sgr_mode (unsigned int nargs, const int *arg)
 void
 rxvt_term::process_graphics ()
 {
+  FUNCTION_DEBUG("process_graphics ")
   unicode_t ch, cmd = cmd_getc ();
 
   if (cmd == 'Q')
@@ -3954,6 +4004,7 @@ rxvt_term::process_graphics ()
 void
 rxvt_term::tt_printf (const char *fmt,...)
 {
+  FUNCTION_DEBUG("tt_printf ")
   va_list arg_ptr;
   char buf[256];
 
@@ -3972,6 +4023,7 @@ const unsigned int MAX_PTY_WRITE = 255; // minimum MAX_INPUT
 void
 rxvt_term::tt_write (const char *data, unsigned int len)
 {
+  FUNCTION_DEBUG("tt_write ")
   if (HOOK_INVOKE ((this, HOOK_TT_WRITE, DT_STR_LEN, data, len, DT_END)))
     return;
 
@@ -3999,6 +4051,7 @@ rxvt_term::tt_write (const char *data, unsigned int len)
 
 void rxvt_term::pty_write ()
 {
+  FUNCTION_DEBUG("pty_write ")
   int written = write (pty->pty, v_buffer, min (v_buflen, MAX_PTY_WRITE));
 
   if (written > 0)

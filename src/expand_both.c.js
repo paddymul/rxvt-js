@@ -417,7 +417,7 @@ rxvt_term.prototype = {
   current_screen:1,	// primary or secondary              
   num_scr_allow:1,
   bypass_keystate:1,
-//# 1755 "rxvt.h.js"
+//# 1757 "rxvt.h.js"
   enc_utf8:1,		// wether locale uses utf-8 
   seen_input:1,         // wether we have seen some program output yet 
   seen_resize:1,	// wether we had a resize event 
@@ -466,7 +466,7 @@ rxvt_term.prototype = {
 //XComposeStatus  compose;
 //struct termios  tio;  //FIXME termios might be needed
  oldcursor: row_col_t(), //row_col_t
-//# 1835 "rxvt.h.js"
+//# 1837 "rxvt.h.js"
  allocated: [], //???? // vector<void *> allocated;           // free these memory blocks with free()
  //char            env_windowid[21];   // environmental variable WINDOWID 
  //char            env_colorfgbg[sizeof ("COLORFGBG=default;default;bg") + 1];
@@ -504,7 +504,7 @@ rxvt_term.prototype = {
  //rxvt_salloc    *ralloc;             // rend line allocator
  //static vector<rxvt_term *> termlist; // a vector of all running rxvt_term's
 }
-//# 2000 "rxvt.h.js"
+//# 2002 "rxvt.h.js"
 function chr(inte){
   return String.fromCharCode(inte);
   }
@@ -535,8 +535,9 @@ function hex(_integer){
 //REMOVED:void rxvt_term::key_press (XKeyEvent &ev) 
 //unsigned int rxvt_term::cmd_write (const char *str, unsigned int count)
  rxvt_term.prototype.cmd_write = function( str,  count){
+     FUNCTION_DEBUG("cmd_write");
      
-//# 163 "command.C.js"
+//# 165 "command.C.js"
          //console.log(str);
          //str=str + chr(NOCHAR);
          //console.log(str);
@@ -555,6 +556,7 @@ function hex(_integer){
 //void rxvt_term::flush ()
 rxvt_term.prototype.minimum_buf_size=40;
 rxvt_term.prototype.flush =function(){ 
+  FUNCTION_DEBUG("flush");
   flush_ev.stop ();
   if (want_refresh){ //FIXME note will probable have to wait for the macro expansion to be able to figure out whats going on
       if (false){
@@ -590,7 +592,7 @@ rxvt_term.prototype.flush =function(){
     }
   display.flush (); //FIXME what is display again
 }
-//# 276 "command.C.js"
+//# 288 "command.C.js"
 //REMOVED:void rxvt_term::cont_scroll_cb (ev::timer &w, int revents) 
 //REMOVED:void rxvt_term::sel_scroll_cb (ev::timer &w, int revents) 
 //REMOVED:void rxvt_term::slip_wheel_cb (ev::timer &w, int revents) 
@@ -598,30 +600,34 @@ rxvt_term.prototype.flush =function(){
 // this is probably where I should enter text into the system
 //REWRITE:bool rxvt_term::pty_fill () 
 rxvt_term.prototype.pty_fill =function(){ 
+    FUNCTION_DEBUG("pty");
     
-//# 316 "command.C.js"
+//# 330 "command.C.js"
   return false;
 }
 //void rxvt_term::pty_cb (ev::io &w, int revents) 
 rxvt_term.prototype.pty_cb =function(w,  revents){ 
+    FUNCTION_DEBUG("pty");
     
-//# 347 "command.C.js"
+//# 363 "command.C.js"
 }
-//# 368 "command.C.js"
+//# 388 "command.C.js"
 //REMOVED:void rxvt_term::mouse_report (XButtonEvent &ev) 
 //REMOVED:void rxvt_term::x_cb (XEvent &ev) 
-//# 387 "command.C.js"
+//# 409 "command.C.js"
 //REMOVED:void rxvt_term::focus_in () 
 //REMOVED:void rxvt_term::focus_out () 
 //void rxvt_term::update_fade_color (unsigned int idx) 
-rxvt_term.prototype.update_fade_color =function(idx){ 
+rxvt_term.prototype.update_fade_color =function(idx){
+//FUNCTION_DEBUG("update_fade_color");
 //FIXME
 }
 //REMOVED:void rxvt_term::rootwin_cb (XEvent &ev) 
 //REMOVED:void rxvt_term::button_press (XButtonEvent &ev) 
 //REMOVED:void rxvt_term::button_release (XButtonEvent &ev) 
 //void rxvt_term::cmd_parse () 
-rxvt_term.prototype.cmd_parse =function(){ 
+rxvt_term.prototype.cmd_parse =function(){
+FUNCTION_DEBUG("cmd_parse");
     var och= NOCHAR;  //wchar_t ch = NOCHAR;
     var seq_begin;   // char *seq_begin; // remember start of esc-sequence here 
     for (;;){ //outer_for_loop
@@ -701,7 +707,9 @@ rxvt_term.prototype.cmd_parse =function(){
 }//cmd_parse
 // read the next character 
 //wchar_t rxvt_term::next_char () 
-rxvt_term.prototype.next_char =function(){ 
+rxvt_term.prototype.next_char =function(){
+    FUNCTION_DEBUG("next_char");
+    
   while (this.cmdbuf_ptr < this.cmdbuf_endp){
     return this.cmdbuf[this.cmdbuf_ptr++]; 
     }
@@ -710,8 +718,8 @@ rxvt_term.prototype.next_char =function(){
 // read the next octet
 //uint32_t rxvt_term::next_octet ()  
 rxvt_term.prototype.next_octet =function()  {
-    console.log("next octect");
-  return this.cmdbuf_ptr < this.cmdbuf_endp
+    //FUNCTION_DEBUG("next_octet");
+    return this.cmdbuf_ptr < this.cmdbuf_endp
   ?  this.cmdbuf[this.cmdbuf_ptr++]  //? (unsigned char)*cmdbuf_ptr++ 
          : NOCHAR;
 }
@@ -721,18 +729,23 @@ rxvt_term.prototype.next_octet =function()  {
  
 //wchar_t rxvt_term::cmd_getc () 
   rxvt_term.prototype.cmd_getc =function() {
+      //FUNCTION_DEBUG("cmd_getc");
+      
     var c= ( this.cmdbuf_ptr < this.cmdbuf_endp ? this.cmdbuf[this.cmdbuf_ptr++] : chr(NOCHAR));   //wchar_t c = next_char (); 
   return c;
 }
 //uint32_t rxvt_term::cmd_get8 () {
     rxvt_term.prototype.cmd_get8 = function () {
-        console.log("get8");
+        FUNCTION_DEBUG("cmd_get8");
+        
   var c = this.next_octet (); //uint32_t c = next_octet ();
   return c;
 }
  
 //void rxvt_term::process_nonprinting (unicode_t ch)
-rxvt_term.prototype.process_nonprinting =function(ch){ 
+rxvt_term.prototype.process_nonprinting =function(ch){
+    FUNCTION_DEBUG("process_nonprinting");
+    
         if ( (  this.cmdbuf_endp - this.cmdbuf_ptr) < this.minimum_buf_size) {
             //    if ( (  foo.cmdbuf_endp - foo.cmdbuf_ptr) < foo.minimum_buf_size) {
             //this.cmdbuf_ptr--;
@@ -792,6 +805,8 @@ rxvt_term.prototype.process_nonprinting =function(ch){
 }
 //rxvt_term::process_escape_vt52 (unicode_t ch)
 rxvt_term.prototype.process_escape_vt52 = function (ch){
+    FUNCTION_DEBUG("process_escape_vt52");
+    
   //console.log("vt52");
   var row, col; //int row, col;
   switch (ch){
@@ -845,7 +860,9 @@ rxvt_term.prototype.process_escape_vt52 = function (ch){
     }
 }
 //void rxvt_term::process_escape_seq () 
-rxvt_term.prototype.process_escape_seq =function(){ 
+rxvt_term.prototype.process_escape_seq =function(){
+    FUNCTION_DEBUG("process_escape_seq");
+    
   var ch= this.cmd_getc();  //unicode_t ch = cmd_getc ();
   if ( this.priv_modes & (1<<18)){
       this.process_escape_vt52 (ch);
@@ -943,7 +960,7 @@ rxvt_term.prototype.process_escape_seq =function(){
     }
 }
  
-//# 816 "command.C.js"
+//# 853 "command.C.js"
 //const unsigned char csi_defaults[] = 
    csi_defaults = [    (((1) << 7) | ((1) << 6) | ((1) << 5) | ((1) << 4)	     | ((1) << 3) | ((1) << 2) | ((1) << 1) | (1)),	
     (((1) << 7) | ((1) << 6) | ((0) << 5) | ((0) << 4)	     | ((1) << 3) | ((1) << 2) | ((0) << 1) | (0)),	
@@ -956,7 +973,8 @@ rxvt_term.prototype.process_escape_seq =function(){
                    ];
  
 //void rxvt_term::process_csi_seq ()
-rxvt_term.prototype.process_csi_seq =function(){ 
+rxvt_term.prototype.process_csi_seq =function(){
+FUNCTION_DEBUG("process_csi_seq");
   //console.log("csi_seq");
   var ch, priv, i; //unicode_t ch, priv, i;  
   var och; //ord(ch)
@@ -1226,7 +1244,8 @@ rxvt_term.prototype.process_csi_seq =function(){
 }
 //#if !1
 //void rxvt_term::process_window_ops (const int *args, unsigned int nargs)
-rxvt_term.prototype.process_window_ops =function( args,   nargs){ 
+rxvt_term.prototype.process_window_ops =function( args,   nargs){
+FUNCTION_DEBUG("process_window_ops");
   var x, y; //int x, y;  
   //XWindowAttributes wattr;  //Window wdummy;//Display * const  dpy = this-> dpy; 
   if (nargs == 0)
@@ -1288,12 +1307,13 @@ rxvt_term.prototype.process_window_ops =function( args,   nargs){
       //this.tt_printf ("\033[9;%d;%dt", nrow, ncol); 
         break;
                          
-//# 1243 "command.C.js"
+//# 1284 "command.C.js"
     }
 }
 //#endif
 //char *rxvt_term::get_to_st (unicode_t &ends_how) 
-rxvt_term.prototype.get_to_st =function(ends_how){ 
+rxvt_term.prototype.get_to_st =function(ends_how){
+FUNCTION_DEBUG("get_to_st");
     console.log("get_to_st");
     var ch, och; //unicode_t ch; 
   var seen_esc = false; //bool seen_esc = false;
@@ -1327,7 +1347,8 @@ rxvt_term.prototype.get_to_st =function(ends_how){
   return rxvt_wcstombs (string_); //FIXME rxvt_wcstombs what the hell does it do, seems to take wide_chars and return regualr chars
 }
 //void rxvt_term::process_dcs_seq () 
-rxvt_term.prototype.process_dcs_seq =function(){ 
+rxvt_term.prototype.process_dcs_seq =function(){
+FUNCTION_DEBUG("process_dcs_seq");
   console.log("dcs_seq");
   var s ; //char *s;  
   var eh; //unicode_t eh;  
@@ -1339,7 +1360,9 @@ rxvt_term.prototype.process_dcs_seq =function(){
   return;
 }
 //void rxvt_term::process_osc_seq () 
-rxvt_term.prototype.process_osc_seq =function(){ 
+rxvt_term.prototype.process_osc_seq =function(){
+    FUNCTION_DEBUG("process_osc_seq");
+    
   console.log("osc_seq");
   var ch, eh; //unicode_t ch, eh;
   var arg; //int arg;
@@ -1355,7 +1378,9 @@ rxvt_term.prototype.process_osc_seq =function(){
     }
 }
 //void rxvt_term::process_color_seq (int report, int color, const char *str, char resp) 
-rxvt_term.prototype.process_color_seq =function(report,  color,    str,  resp){ 
+rxvt_term.prototype.process_color_seq =function(report,  color,    str,  resp){
+    FUNCTION_DEBUG("process_color_seq");
+    
   if (str[0] == '?' && !str[1]){
     var c;  //      rgba c;
       pix_colors_focused[color].get (c);
@@ -1365,7 +1390,9 @@ rxvt_term.prototype.process_color_seq =function(report,  color,    str,  resp){
     set_window_color (color, str);
 }
 //void rxvt_term::process_xterm_seq (int op, const char *str, char resp) 
-rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){ 
+rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
+    FUNCTION_DEBUG("process_xterm_seq");
+    
   var color; //int color; 
   var buf,  name, buf_i =0, name_i=0; //char *buf, *name;
   var query = str[0] == '?' && !str[1]; //bool query = str[0] == '?' && !str[1];
@@ -1386,7 +1413,7 @@ rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
         break;
       case XTerm_property:
             
-//# 1423 "command.C.js"
+//# 1474 "command.C.js"
         break;
       case XTerm_Color:
         //for (buf = (char *)str; buf && *buf;)
@@ -1436,17 +1463,17 @@ rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
       case URxvt_Color_border:
         this.process_color_seq (op, Color_border, str, resp);
         break;
-//# 1498 "command.C.js"
-//# 1535 "command.C.js"
+//# 1549 "command.C.js"
+//# 1586 "command.C.js"
       case XTerm_logfile:
         // TODO, when secure mode?
         break;
-//# 1551 "command.C.js"
+//# 1602 "command.C.js"
       case XTerm_font:
         op = URxvt_font;
       case URxvt_font:
           
-//# 1576 "command.C.js"
+//# 1627 "command.C.js"
         break;
       case URxvt_version:
         if (query)
@@ -1455,12 +1482,14 @@ rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
                      rs[Rs_name], VERSION[0], VERSION[2],
                      resp);
         break;
-//# 1611 "command.C.js"
+//# 1662 "command.C.js"
     }
 }
-//# 1631 "command.C.js"
+//# 1682 "command.C.js"
 //int rxvt_term::privcases (int mode, unsigned long bit)
-rxvt_term.prototype.privcases =function(mode,   bit){ 
+rxvt_term.prototype.privcases =function(mode,   bit){
+    FUNCTION_DEBUG("privcases");
+    
   var state; //int state;  
   if (mode == 's'){
       SavedModes |= ( this.priv_modes & bit);
@@ -1476,9 +1505,10 @@ rxvt_term.prototype.privcases =function(mode,   bit){
   return state;
 }
   
-//# 1684 "command.C.js"
+//# 1737 "command.C.js"
 //void rxvt_term::process_terminal_mode (int mode, int priv UN USED, unsigned int nargs, const int *arg) 
-rxvt_term.prototype.process_terminal_mode =function(mode,  __unused__,   nargs,    arg){ 
+rxvt_term.prototype.process_terminal_mode =function(mode,  __unused__,   nargs,    arg){
+FUNCTION_DEBUG("process_terminal_mode");
     var i, j; //  unsigned int i, j; 
     var state; //  int state; 
   //FIXME I already made this
@@ -1632,7 +1662,9 @@ rxvt_term.prototype.process_terminal_mode =function(mode,  __unused__,   nargs, 
     }
 }
 //void rxvt_term::process_sgr_mode (unsigned int nargs, const int *arg) 
-rxvt_term.prototype.process_sgr_mode =function(nargs,    arg){ 
+rxvt_term.prototype.process_sgr_mode =function(nargs,    arg){
+    FUNCTION_DEBUG("process_sgr_mode");
+    
   var i; //unsigned int i; 
   var rendset; //short rendset; 
   var rendstyle; //int rendstyle;
@@ -1744,34 +1776,40 @@ rxvt_term.prototype.process_sgr_mode =function(nargs,    arg){
             this.scr_color (Color_bg, Color_bg);
             break;
           //case 50: // not variable spacing
-//# 2021 "command.C.js"
+//# 2078 "command.C.js"
         }
     }
 }
 //void rxvt_term::process_graphics () 
-rxvt_term.prototype.process_graphics =function(){ 
+rxvt_term.prototype.process_graphics =function(){
+FUNCTION_DEBUG("process_graphics");
   //FIXME causes an infintie loop  
-//# 2043 "command.C.js"
+//# 2102 "command.C.js"
 }
 //void rxvt_term::tt_printf (const char *fmt,...) 
-rxvt_term.prototype.tt_printf =function( fmt){ 
+rxvt_term.prototype.tt_printf =function( fmt){
+FUNCTION_DEBUG("tt_printf");
   console.log(fmt);
 }
     rxvt_term.prototype.tt_winch =function( ){
+    FUNCTION_DEBUG("tt_winch");
+    
       //console.log("tt_winch called, it does nothing ");
     }
 //const unsigned int MAX_PTY_WRITE = 255; // minimum MAX_INPUT 
    MAX_PTY_WRITE = 255; // minimum MAX_INPUT
 //void rxvt_term::tt_write (const char *data, unsigned int len) 
-rxvt_term.prototype.tt_write =function( data,   len){ 
+rxvt_term.prototype.tt_write =function( data,   len){
+FUNCTION_DEBUG("tt_write");
     if(    console){
         console.log(data);
     }
     
-//# 2098 "command.C.js"
+//# 2163 "command.C.js"
 }
 //void rxvt_term::pty_write () 
-rxvt_term.prototype.pty_write =function(){ 
+rxvt_term.prototype.pty_write =function(){
+FUNCTION_DEBUG("pty_write");
 //int written = write (pty->pty, v_buffer, min (v_buflen, MAX_PTY_WRITE)); 
  var written= write (pty.pty, v_buffer, Math.min((v_buflen),( MAX_PTY_WRITE))); 
   if (written > 0){

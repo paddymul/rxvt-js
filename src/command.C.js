@@ -130,6 +130,8 @@ I bound them to "C-H u" "C-H o" and "C-H p"
 
 
  rxvt_term.prototype.cmd_write = function( str,  count){
+     FUNCTION_DEBUG("cmd_write");
+
      /*         
      var str_ptr=0;
      var n, s; //  unsigned int 
@@ -176,7 +178,9 @@ I bound them to "C-H u" "C-H o" and "C-H p"
 
 //void rxvt_term::flush ()
 rxvt_term.prototype.minimum_buf_size=40;
+
 rxvt_term.prototype.flush =function(){ 
+  FUNCTION_DEBUG("flush");
   flush_ev.stop ();
 
 #ifdef HAVE_BG_PIXMAP
@@ -230,6 +234,8 @@ rxvt_term.prototype.flush =function(){
 // checks wether a refresh is requested and starts the refresh timer 
 //REWRITE:void rxvt_term::refresh_check () 
 rxvt_term.prototype.refresh_check =function(){ 
+FUNCTION_DEBUG("refresh_check");
+
   if (want_refresh && !flush_ev.is_active ())
     flush_ev.start (1. / 60.); // refresh at max. 60 Hz normally
 
@@ -238,6 +244,8 @@ rxvt_term.prototype.refresh_check =function(){
 
 //void rxvt_term::flush_cb (ev::timer &w, int revents) 
 rxvt_term.prototype.flush_cb =function(ev::timer &w,  revents) 
+FUNCTION_DEBUG("flush_cb");
+
   make_current ();
 
   refresh_count = 0;
@@ -247,6 +255,8 @@ rxvt_term.prototype.flush_cb =function(ev::timer &w,  revents)
 #ifdef CURSOR_BLINK
 //CMNTvoid rxvt_term::cursor_blink_cb (ev::timer &w, int revents) 
 rxvt_term.prototype.cursor_blink_cb =function(ev::timer &w,  revents) 
+FUNCTION_DEBUG("cursor");
+
   hidden_cursor = !hidden_cursor;
   want_refresh = 1;
   refresh_check ();
@@ -256,6 +266,8 @@ rxvt_term.prototype.cursor_blink_cb =function(ev::timer &w,  revents)
 #ifdef TEXT_BLINK
 //void rxvt_term::text_blink_cb (ev::timer &w, int revents) 
 rxvt_term.prototype.text_blink_cb =function(ev::timer &w,  revents) 
+FUNCTION_DEBUG("text");
+
   if (this.scr_refresh_rend (RS_Blink, RS_Blink)){
       hidden_text = !hidden_text;
       want_refresh = 1;
@@ -275,6 +287,8 @@ rxvt_term.prototype.text_blink_cb =function(ev::timer &w,  revents)
 // this is probably where I should enter text into the system
 //REWRITE:bool rxvt_term::pty_fill () 
 rxvt_term.prototype.pty_fill =function(){ 
+    FUNCTION_DEBUG("pty");
+
     /*
   ssize_t n = cmdbuf_endp - cmdbuf_ptr;
 
@@ -311,6 +325,8 @@ rxvt_term.prototype.pty_fill =function(){
 
 //void rxvt_term::pty_cb (ev::io &w, int revents) 
 rxvt_term.prototype.pty_cb =function(w,  revents){ 
+    FUNCTION_DEBUG("pty");
+
     /*
   make_current ();
 
@@ -342,6 +358,8 @@ rxvt_term.prototype.pty_cb =function(w,  revents){
 #ifdef POINTER_BLANK
 //void rxvt_term::pointer_blank () 
 rxvt_term.prototype.pointer_blank =function(){ 
+    FUNCTION_DEBUG("pointer_blank");
+
     /*    if (!this.option (Opt_pointerBlank))   //FIXME
     return;
 
@@ -353,6 +371,8 @@ rxvt_term.prototype.pointer_blank =function(){
 
 //void rxvt_term::pointer_cb (ev::timer &w, int revents) 
 rxvt_term.prototype.pointer_cb =function(w,  revents){ 
+    FUNCTION_DEBUG("pointer_cb");
+
   this.make_current ();
 
   this.pointer_blank (); 
@@ -365,6 +385,8 @@ rxvt_term.prototype.pointer_cb =function(w,  revents){
 #if ENABLE_FRILLS
 //void rxvt_term::set_urgency (bool enable) 
 rxvt_term.prototype.set_urgency =function(enable){ 
+    FUNCTION_DEBUG("set_urgency");
+
          if (enable == this.urgency_hint) 
     return;
 
@@ -381,7 +403,9 @@ rxvt_term.prototype.set_urgency =function(enable){
 //REMOVED:void rxvt_term::focus_in () 
 //REMOVED:void rxvt_term::focus_out () 
 //void rxvt_term::update_fade_color (unsigned int idx) 
-rxvt_term.prototype.update_fade_color =function(idx){ 
+rxvt_term.prototype.update_fade_color =function(idx){
+//FUNCTION_DEBUG("update_fade_color");
+
 //FIXME
 #if OFF_FOCUS_FADING 
   if (rs[Rs_fade]){
@@ -399,7 +423,9 @@ rxvt_term.prototype.update_fade_color =function(idx){
 /*}}} */
 
 //void rxvt_term::cmd_parse () 
-rxvt_term.prototype.cmd_parse =function(){ 
+rxvt_term.prototype.cmd_parse =function(){
+FUNCTION_DEBUG("cmd_parse");
+
     var och= NOCHAR;  //wchar_t ch = NOCHAR;
     var seq_begin;   // char *seq_begin; // remember start of esc-sequence here 
 
@@ -494,7 +520,9 @@ rxvt_term.prototype.cmd_parse =function(){
 
 // read the next character 
 //wchar_t rxvt_term::next_char () 
-rxvt_term.prototype.next_char =function(){ 
+rxvt_term.prototype.next_char =function(){
+    FUNCTION_DEBUG("next_char");
+    
   while (this.cmdbuf_ptr < this.cmdbuf_endp){
     return this.cmdbuf[this.cmdbuf_ptr++]; 
     }
@@ -504,8 +532,8 @@ rxvt_term.prototype.next_char =function(){
 // read the next octet
 //uint32_t rxvt_term::next_octet () NOTHROW 
 rxvt_term.prototype.next_octet =function() NOTHROW {
-    console.log("next octect");
-  return this.cmdbuf_ptr < this.cmdbuf_endp
+    //FUNCTION_DEBUG("next_octet");
+    return this.cmdbuf_ptr < this.cmdbuf_endp
   ?  this.cmdbuf[this.cmdbuf_ptr++]  //? (unsigned char)*cmdbuf_ptr++ 
          : NOCHAR;
 }
@@ -521,20 +549,25 @@ rxvt_term.prototype.next_octet =function() NOTHROW {
  */
 //wchar_t rxvt_term::cmd_getc () THROW ((class out_of_input))
   rxvt_term.prototype.cmd_getc =function() {
+      //FUNCTION_DEBUG("cmd_getc");
+      
     var c= this_next_char ();   //wchar_t c = next_char (); 
   return c;
 }
 
 //uint32_t rxvt_term::cmd_get8 () THROW ((class out_of_input)){
     rxvt_term.prototype.cmd_get8 = function () {
-        console.log("get8");
+        FUNCTION_DEBUG("cmd_get8");
+        
   var c = this.next_octet (); //uint32_t c = next_octet ();
   return c;
 }
 
 /*{{{ process non-printing single characters */ 
 //void rxvt_term::process_nonprinting (unicode_t ch)
-rxvt_term.prototype.process_nonprinting =function(ch){ 
+rxvt_term.prototype.process_nonprinting =function(ch){
+    FUNCTION_DEBUG("process_nonprinting");
+    
         if ( (  this.cmdbuf_endp - this.cmdbuf_ptr) < this.minimum_buf_size) {
             //    if ( (  foo.cmdbuf_endp - foo.cmdbuf_ptr) < foo.minimum_buf_size) {
             //this.cmdbuf_ptr--;
@@ -600,6 +633,8 @@ rxvt_term.prototype.process_nonprinting =function(ch){
 
 //rxvt_term::process_escape_vt52 (unicode_t ch)
 rxvt_term.prototype.process_escape_vt52 = function (ch){
+    FUNCTION_DEBUG("process_escape_vt52");
+    
   //console.log("vt52");
   var row, col; //int row, col;
 
@@ -661,7 +696,9 @@ rxvt_term.prototype.process_escape_vt52 = function (ch){
 
 /*{{{ process escape sequences */
 //void rxvt_term::process_escape_seq () 
-rxvt_term.prototype.process_escape_seq =function(){ 
+rxvt_term.prototype.process_escape_seq =function(){
+    FUNCTION_DEBUG("process_escape_seq");
+    
   var ch= this.cmd_getc();  //unicode_t ch = cmd_getc ();
 
   if ( this.priv_modes & PrivMode_vt52){
@@ -820,7 +857,9 @@ enum {
 /* *INDENT-ON* */ 
 
 //void rxvt_term::process_csi_seq ()
-rxvt_term.prototype.process_csi_seq =function(){ 
+rxvt_term.prototype.process_csi_seq =function(){
+FUNCTION_DEBUG("process_csi_seq");
+
   //console.log("csi_seq");
   var ch, priv, i; //unicode_t ch, priv, i;  
   var och; //ord(ch)
@@ -1146,7 +1185,9 @@ rxvt_term.prototype.process_csi_seq =function(){
 //#if !ENABLE_MINIMAL
 /* ARGSUSED */
 //void rxvt_term::process_window_ops (const int *args, unsigned int nargs)
-rxvt_term.prototype.process_window_ops =function( args,   nargs){ 
+rxvt_term.prototype.process_window_ops =function( args,   nargs){
+FUNCTION_DEBUG("process_window_ops");
+
   var x, y; //int x, y;  
   //XWindowAttributes wattr;  //Window wdummy;//dLocal (Display *, dpy); 
 
@@ -1243,7 +1284,9 @@ rxvt_term.prototype.process_window_ops =function( args,   nargs){
  * ends_how is terminator used. returned input must be free()'d 
  */
 //char *rxvt_term::get_to_st (unicode_t &ends_how) 
-rxvt_term.prototype.get_to_st =function(ends_how){ 
+rxvt_term.prototype.get_to_st =function(ends_how){
+FUNCTION_DEBUG("get_to_st");
+
     console.log("get_to_st");
     var ch, och; //unicode_t ch; 
   var seen_esc = false; //bool seen_esc = false;
@@ -1289,7 +1332,9 @@ rxvt_term.prototype.get_to_st =function(ends_how){
  * process DEVICE CONTROL STRING `ESC P ... (ST|BEL)' or `0x90 ... (ST|BEL)' 
  */
 //void rxvt_term::process_dcs_seq () 
-rxvt_term.prototype.process_dcs_seq =function(){ 
+rxvt_term.prototype.process_dcs_seq =function(){
+FUNCTION_DEBUG("process_dcs_seq");
+
   console.log("dcs_seq");
   var s ; //char *s;  
   var eh; //unicode_t eh;  
@@ -1310,7 +1355,9 @@ rxvt_term.prototype.process_dcs_seq =function(){
  * process OPERATING SYSTEM COMMAND sequence `ESC ] Ps ; Pt (ST|BEL)' 
  */
 //void rxvt_term::process_osc_seq () 
-rxvt_term.prototype.process_osc_seq =function(){ 
+rxvt_term.prototype.process_osc_seq =function(){
+    FUNCTION_DEBUG("process_osc_seq");
+    
   console.log("osc_seq");
   var ch, eh; //unicode_t ch, eh;
   var arg; //int arg;
@@ -1330,7 +1377,9 @@ rxvt_term.prototype.process_osc_seq =function(){
 }
 
 //void rxvt_term::process_color_seq (int report, int color, const char *str, char resp) 
-rxvt_term.prototype.process_color_seq =function(report,  color,    str,  resp){ 
+rxvt_term.prototype.process_color_seq =function(report,  color,    str,  resp){
+    FUNCTION_DEBUG("process_color_seq");
+    
   if (str[0] == '?' && !str[1]){
     var c;  //      rgba c;
       pix_colors_focused[color].get (c);
@@ -1351,7 +1400,9 @@ rxvt_term.prototype.process_color_seq =function(report,  color,    str,  resp){
  * XTerm escape sequences: ESC ] Ps;Pt (ST|BEL) 
  */
 //void rxvt_term::process_xterm_seq (int op, const char *str, char resp) 
-rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){ 
+rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
+    FUNCTION_DEBUG("process_xterm_seq");
+    
   var color; //int color; 
   var buf,  name, buf_i =0, name_i=0; //char *buf, *name;
   var query = str[0] == '?' && !str[1]; //bool query = str[0] == '?' && !str[1];
@@ -1622,7 +1673,9 @@ rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
  * so no need for fancy checking 
  */
 //int rxvt_term::privcases (int mode, unsigned long bit)
-rxvt_term.prototype.privcases =function(mode,   bit){ 
+rxvt_term.prototype.privcases =function(mode,   bit){
+    FUNCTION_DEBUG("privcases");
+    
   var state; //int state;  
 
   if (mode == 's'){
@@ -1676,7 +1729,9 @@ var rxvt_t_proto = {
 */
 /* we're not using priv _yet_ */
 //void rxvt_term::process_terminal_mode (int mode, int priv UN USED, unsigned int nargs, const int *arg) 
-rxvt_term.prototype.process_terminal_mode =function(mode,  __unused__,   nargs,    arg){ 
+rxvt_term.prototype.process_terminal_mode =function(mode,  __unused__,   nargs,    arg){
+FUNCTION_DEBUG("process_terminal_mode");
+
 
     var i, j; //  unsigned int i, j; 
     var state; //  int state; 
@@ -1865,7 +1920,9 @@ rxvt_term.prototype.process_terminal_mode =function(mode,  __unused__,   nargs, 
 
 /*{{{ process sgr sequences */
 //void rxvt_term::process_sgr_mode (unsigned int nargs, const int *arg) 
-rxvt_term.prototype.process_sgr_mode =function(nargs,    arg){ 
+rxvt_term.prototype.process_sgr_mode =function(nargs,    arg){
+    FUNCTION_DEBUG("process_sgr_mode");
+    
 
   var i; //unsigned int i; 
   var rendset; //short rendset; 
@@ -2018,7 +2075,9 @@ rxvt_term.prototype.process_sgr_mode =function(nargs,    arg){
 
 /*{{{ (do not) process Rob Nation's own graphics mode sequences */
 //void rxvt_term::process_graphics () 
-rxvt_term.prototype.process_graphics =function(){ 
+rxvt_term.prototype.process_graphics =function(){
+FUNCTION_DEBUG("process_graphics");
+
   //FIXME causes an infintie loop  
 /*
   var ch, cmd = this.cmd_getc (); //unicode_t ch, cmd = cmd_getc (); 
@@ -2043,11 +2102,15 @@ rxvt_term.prototype.process_graphics =function(){
  * Only use for small amounts of data. 
  */
 //void rxvt_term::tt_printf (const char *fmt,...) 
-rxvt_term.prototype.tt_printf =function( fmt){ 
+rxvt_term.prototype.tt_printf =function( fmt){
+FUNCTION_DEBUG("tt_printf");
+
 
   console.log(fmt);
 }
     rxvt_term.prototype.tt_winch =function( ){
+    FUNCTION_DEBUG("tt_winch");
+    
       //console.log("tt_winch called, it does nothing ");
     }
 /* ---------------------------------------------------------------------- */
@@ -2058,7 +2121,9 @@ rxvt_term.prototype.tt_printf =function( fmt){
    MAX_PTY_WRITE = 255; // minimum MAX_INPUT
 
 //void rxvt_term::tt_write (const char *data, unsigned int len) 
-rxvt_term.prototype.tt_write =function( data,   len){ 
+rxvt_term.prototype.tt_write =function( data,   len){
+FUNCTION_DEBUG("tt_write");
+
     if(    console){
         console.log(data);
     }
@@ -2091,7 +2156,9 @@ rxvt_term.prototype.tt_write =function( data,   len){
 }
 
 //void rxvt_term::pty_write () 
-rxvt_term.prototype.pty_write =function(){ 
+rxvt_term.prototype.pty_write =function(){
+FUNCTION_DEBUG("pty_write");
+
 //int written = write (pty->pty, v_buffer, min (v_buflen, MAX_PTY_WRITE)); 
  var written= write (pty.pty, v_buffer, mi_n (v_buflen, MAX_PTY_WRITE)); 
 

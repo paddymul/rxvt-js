@@ -49,18 +49,6 @@ extern "C" {
 #  include "config.h"
 # endif
 
-# if HAVE_CLOCK_SYSCALL
-#  ifndef EV_USE_CLOCK_SYSCALL
-#   define EV_USE_CLOCK_SYSCALL 1
-#   ifndef EV_USE_REALTIME
-#    define EV_USE_REALTIME  0
-#   endif
-#   ifndef EV_USE_MONOTONIC
-#    define EV_USE_MONOTONIC 1
-#   endif
-#  endif
-# endif
-
 # if HAVE_CLOCK_GETTIME
 #  ifndef EV_USE_MONOTONIC
 #   define EV_USE_MONOTONIC 1
@@ -177,14 +165,6 @@ extern "C" {
 #endif
 
 /* this block tries to deduce configuration from header-defined symbols and defaults */
-
-#ifndef EV_USE_CLOCK_SYSCALL
-# if __linux && __GLIBC__ >= 2
-#  define EV_USE_CLOCK_SYSCALL 1
-# else
-#  define EV_USE_CLOCK_SYSCALL 0
-# endif
-#endif
 
 #ifndef EV_USE_MONOTONIC
 # if defined (_POSIX_MONOTONIC_CLOCK) && _POSIX_MONOTONIC_CLOCK >= 0
@@ -320,15 +300,6 @@ extern "C" {
 
 #if EV_SELECT_IS_WINSOCKET
 # include <winsock.h>
-#endif
-
-/* on linux, we can use a (slow) syscall to avoid a dependency on pthread, */
-/* which makes programs even slower. might work on other unices, too. */
-#if EV_USE_CLOCK_SYSCALL
-# include <syscall.h>
-# define clock_gettime(id, ts) syscall (SYS_clock_gettime, (id), (ts))
-# undef EV_USE_MONOTONIC
-# define EV_USE_MONOTONIC 1
 #endif
 
 #if EV_USE_EVENTFD
@@ -1272,8 +1243,8 @@ ev_recommended_backends (void)
   flags &= ~EVBACKEND_KQUEUE;
 #endif
 #ifdef __APPLE__
-  // flags &= ~EVBACKEND_KQUEUE & ~EVBACKEND_POLL; for documentation
-  flags &= ~EVBACKEND_SELECT;
+  // flags &= ~EVBACKEND_KQUEUE; for documentation
+  flags &= ~EVBACKEND_POLL;
 #endif
 
   return flags;
@@ -2480,8 +2451,8 @@ infy_add (EV_P_ ev_stat *w)
 
               char *pend = strrchr (path, '/');
 
-              if (!pend || pend == path)
-                break;
+              if (!pend)
+                break; /* whoops, no '/', complain to your admin */
 
               *pend = 0;
               w->wd = inotify_add_watch (fs_fd, path, mask);
@@ -2489,8 +2460,7 @@ infy_add (EV_P_ ev_stat *w)
           while (w->wd < 0 && (errno == ENOENT || errno == EACCES));
         }
     }
-
-  if (w->wd >= 0)
+  else
     {
       wlist_add (&fs_hash [w->wd & (EV_INOTIFY_HASHSIZE - 1)].head, (WL)w);
 
@@ -2550,7 +2520,6 @@ infy_wd (EV_P_ int slot, int wd, struct inotify_event *ev)
             {
               if (ev->mask & (IN_IGNORED | IN_UNMOUNT | IN_DELETE_SELF))
                 {
-                  wlist_del (&fs_hash [slot & (EV_INOTIFY_HASHSIZE - 1)].head, (WL)w);
                   w->wd = -1;
                   infy_add (EV_A_ w); /* re-add, no matter what */
                 }
@@ -2907,16 +2876,11 @@ embed_fork_cb (EV_P_ ev_fork *fork_w, int revents)
 {
   ev_embed *w = (ev_embed *)(((char *)fork_w) - offsetof (ev_embed, fork));
 
-  ev_embed_stop (EV_A_ w);
-
   {
     struct ev_loop *loop = w->other;
 
     ev_loop_fork (EV_A);
-    ev_loop (EV_A_ EVLOOP_NONBLOCK);
   }
-
-  ev_embed_start (EV_A_ w);
 }
 
 #if 0
