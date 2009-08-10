@@ -1351,7 +1351,6 @@ line_t.prototype = {
    },
  */
  clear : function ()   { //FIXME should this whole thing be an object, probably
-        console.log("clear");
     this.t = [];
     this.r = [];
     this.l = 0;

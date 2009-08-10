@@ -2,10 +2,10 @@
 var counter = 0;
 //if(!console){
 //    alert("you don't have firebug");
+
 try{
-    console ={
-        log : function(){}}
-    //}
+    console ={};
+
 } catch(e) {}
 
 function forward(num){
@@ -120,7 +120,7 @@ Animator.prototype = {
             console.log("outputting while already outputting");
         }
         this.is_outputting=true;
-        console.log(str);
+        //console.log(str);
         this.a.cmd_write(str, str.length);
         //this.a.scr_refresh();
         this.is_outputting=false;
@@ -188,21 +188,24 @@ Animator.prototype = {
     }
 }
 
-//var tty_file ="myttyrec.out";
+$('document').ready(
 
-function animate(){
-
-    doAnimate = true;
-    console.log('animate called');
-    a = new Animator("pt",tty_file);
-    a.startAnimate();
-    soundPlay();
-    console.log(" animator setup ");
-}
-console.log("loaded loaded");
-    function fast_animate(){
-        //VTAnimatorOld(a,resp.slice(560500, 563750), 5700);
-        VTAnimatorOld(a,resp.slice(560500, 565750), 12700);
-    }
-    //VTAnimatorOld(a,resp);
-
+    function (){
+        a = new Animator("pt",tty_file);
+        function animate(){
+            doAnimate = true;
+            console.log('animate called');
+            //a = new Animator("pt",tty_file);
+            a.startAnimate();
+            soundPlay();
+            console.log(" animator setup ");
+        }
+        console.log("ready function");
+        $('#play_start').click(animate);
+        $('#fast_forward').click(
+            function(){
+                //a.output_line(a.resp.slice(5150,5250));
+                a.output_line(a.resp.slice(0,5650));
+                a.a.scr_refresh();
+                                 });
+    });

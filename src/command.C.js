@@ -217,7 +217,7 @@ rxvt_term.prototype.flush =function(){
           while (row < end_row);
         }
 
-      this.scr_refresh ();
+      this.scr_refresh();
       //lscrollBar.show (1);
 #ifdef USE_XIM
       //IMSendSpot ();
@@ -471,8 +471,11 @@ rxvt_term.prototype.cmd_parse =function(){
             /* If there have been a lot of new lines, then update the screen 
              * What the heck we'll cheat and only refresh less than every page-full. 
              * if skipScroll is enabled.                   */
+            //debugger;
+              refreshnow=true;
             if (refreshnow){
                 this.scr_refresh ();
+                this.scr_refresh();
                 want_refresh = 1;
             }
         } //IS_CONTROL
@@ -538,7 +541,6 @@ rxvt_term.prototype.process_nonprinting =function(ch){
             throw "out_of_input";
         return;
     }
-    //debugger
   switch (ch){
       case C0_ESC:
         this.process_escape_seq ();
@@ -660,7 +662,6 @@ rxvt_term.prototype.process_escape_vt52 = function (ch){
 /*{{{ process escape sequences */
 //void rxvt_term::process_escape_seq () 
 rxvt_term.prototype.process_escape_seq =function(){ 
-    //debugger;
   var ch= this.cmd_getc();  //unicode_t ch = cmd_getc ();
 
   if ( this.priv_modes & PrivMode_vt52){
@@ -821,7 +822,6 @@ enum {
 //void rxvt_term::process_csi_seq ()
 rxvt_term.prototype.process_csi_seq =function(){ 
   //console.log("csi_seq");
-    //debugger
   var ch, priv, i; //unicode_t ch, priv, i;  
   var och; //ord(ch)
   var nargs, p; //unsigned int nargs, p; 
@@ -840,7 +840,6 @@ rxvt_term.prototype.process_csi_seq =function(){
       och = ord(ch);
     }
   //console.log(this.row_buf[0].t);
-  //  debugger
 
   /* read any numerical arguments */
   for (n = -1; och < CSI_ICH; ){
@@ -862,7 +861,7 @@ rxvt_term.prototype.process_csi_seq =function(){
       ch = this.cmd_getc ();
       och = ord(ch);
     }
-
+  console.log(och);
   if (och > CSI_7F){
       //console.log("och > CSI_7F)");
     return;
@@ -921,6 +920,7 @@ rxvt_term.prototype.process_csi_seq =function(){
       return;
     }
 
+  console.log(och);
   switch (och){
         /*
          * ISO/IEC 6429:1992 (E) CSI sequences (defaults in parentheses) 
@@ -928,18 +928,21 @@ rxvt_term.prototype.process_csi_seq =function(){
 
       case CSI_CUU:		/* 8.3.22: (1) CURSOR UP */
       case CSI_VPR:		/* 8.3.161: (1) LINE POSITION FORWARD */
-      //console.log("CSI_CUU  CSI_VPR");
+        if(debug.csi_debug){
+          console.log("CSI_CUU  CSI_VPR", -arg[0]);}
         arg[0] = -arg[0];
         /* FALLTHROUGH */
       case CSI_CUD:		/* 8.3.19: (1) CURSOR DOWN */
       case CSI_VPB:		/* 8.3.160: (1) LINE POSITION BACKWARD */
-      //console.log("CSI_CUD  CSI_VPB");
+        if(debug.csi_debug){
+          console.log("CSI_CUD  CSI_VPB", arg[0]);}
         this.scr_gotorc (arg[0], 0, RELATIVE);
         break;
 
       case CSI_CUB:		/* 8.3.18: (1) CURSOR LEFT */
       case CSI_HPB: 		/* 8.3.59: (1) CHARACTER POSITION BACKWARD */
-      //console.log("CSI_CUB  CSI_HPB");
+        if(debug.csi_debug){
+          console.log("CSI_CUB  CSI_HPB", arg[0]);}
 #ifdef ISO6429
         arg[0] = -arg[0];
 #else				/* emulate common DEC VTs */
@@ -948,7 +951,8 @@ rxvt_term.prototype.process_csi_seq =function(){
         /* FALLTHROUGH */
       case CSI_CUF:		/* 8.3.20: (1) CURSOR RIGHT */
       case CSI_HPR:		/* 8.3.60: (1) CHARACTER POSITION FORWARD */
-      //console.log("CSI_CUF  CSI_HPR");
+        if(debug.csi_debug){
+          console.log("CSI_CUF  CSI_HPR", arg[0]);}
 #ifdef ISO6429
         this.scr_gotorc (0, arg[0], RELATIVE);
 #else				/* emulate common DEC VTs */
@@ -973,8 +977,12 @@ rxvt_term.prototype.process_csi_seq =function(){
         break;
 
       case CSI_CUP:		/* 8.3.21: (1,1) CURSOR POSITION */
+        if(debug.csi_debug){
+          console.log("CUP", arg[0] , nargs < 2 ? 0 : (arg[1] - 1), 0);}
+          //debugger;
       case CSI_HVP:		/* 8.3.64: (1,1) CHARACTER AND LINE POSITION */
       //debugger
+
         this.scr_gotorc (arg[0] - 1, nargs < 2 ? 0 : (arg[1] - 1), 0);
         break;
 
@@ -986,12 +994,14 @@ rxvt_term.prototype.process_csi_seq =function(){
         break;
 
       case CSI_ED:		/* 8.3.40: (0) ERASE IN PAGE */
-      //console.log("CSI_ED",arg);
+      if(debug.csi_debug){
+        console.log("CSI_ED",arg);}
         this.scr_erase_screen (arg[0]);
         break;
 
       case CSI_EL:		/* 8.3.42: (0) ERASE IN LINE */
-      //console.log("CSI_EL",arg);
+        if(debug.csi_debug){
+          console.log("CSI_EL",arg);}
         this.scr_erase_line (arg[0]);
         break;
 
@@ -1082,7 +1092,8 @@ rxvt_term.prototype.process_csi_seq =function(){
         break;
 
       case CSI_RM:		/* 8.3.107: RESET MODE */
-      //console.log("CSI_RM",arg);
+      if(debug.csi_debug){
+        console.log("CSI_RM",arg);}
         if (arg[0] == 4)
           this.scr_insert_mode (0);
         else if (arg[0] == 20)

@@ -882,7 +882,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
 #endif
     var row= this_screen_cur.row;   //int row = screen.cur.row;
 
-  checksel =  this.selection.op &&  this.current_screen ==  this.selection.screen ? 1 : 0;
+    //  checksel =  this.selection.op &&  this.current_screen ==  this.selection.screen ? 1 : 0;
 
     var  line = ROW(row);  
 
@@ -1370,7 +1370,7 @@ rxvt_term.this.scr_forwardindex =function(){
  * Goto Row/Column 
  */
 //void rxvt_term::scr_gotorc (int row, int col, int relative)
-    rxvt_term.prototype.scr_gotorc =function( row,  col,  relative){  //Im suspsicious
+rxvt_term.prototype.scr_gotorc =function( row,  col,  relative){  //Im suspsicious
   this.want_refresh = 1;
   ZERO_SCROLLBACK ();
 
@@ -2172,8 +2172,7 @@ rxvt_term.prototype.scr_refresh =function(){
 
              //console.log("wrote a row");
          }
-        */
-         /*
+        
          else{
              console.log("skipped a row");
          }
