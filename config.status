@@ -337,7 +337,7 @@ Copyright (C) 2006 Free Software Foundation, Inc.
 This config.status script is free software; the Free Software Foundation
 gives unlimited permission to copy, distribute and modify it."
 
-ac_pwd='/Users/patrickmullen/temp/downloads/linux/rxvt-unicode-9.06'
+ac_pwd='/Users/patrickmullen/dj_terminalcast/rxvt-js'
 srcdir='.'
 INSTALL='/opt/local/bin/ginstall -c'
 # If no file are specified by the user, then we need to provide default

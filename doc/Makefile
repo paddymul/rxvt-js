@@ -15,10 +15,10 @@ man3dir = ${prefix}/share/man/man3
 man3ext = 3
 man7dir = ${prefix}/share/man/man7
 man7ext = 7
-PERL = 
-INSTALL = /usr/bin/install -c
-INSTALL_PROGRAM = /usr/bin/install -c -m 755
-INSTALL_DATA = /usr/bin/install -c -m 644
+PERL = /opt/local/bin/perl
+INSTALL = /opt/local/bin/ginstall -c
+INSTALL_PROGRAM = /opt/local/bin/ginstall -c -m 755
+INSTALL_DATA = /opt/local/bin/ginstall -c -m 644
 
 srcdir =	.
 
@@ -41,7 +41,7 @@ all:
 	sed $(SEDREPLACE) < $(srcdir)/rxvtc.1.man.in >rxvtc.1.man
 	sed $(SEDREPLACE) < $(srcdir)/rxvtd.1.man.in >rxvtd.1.man
 	sed $(SEDREPLACE) < $(srcdir)/rxvt.7.man.in  >rxvt.7.man
-#	sed $(SEDREPLACE) < $(srcdir)/rxvtperl.3.man.in >rxvtperl.3.man
+	sed $(SEDREPLACE) < $(srcdir)/rxvtperl.3.man.in >rxvtperl.3.man
 
 rxvtperl.3.pod: ../src/urxvt.pm
 	cp $< $@
@@ -96,8 +96,8 @@ install: all
 	$(INSTALL_DATA) rxvtc.1.man $(DESTDIR)$(man1dir)/$(RXVTNAME)c.$(man1ext)
 	$(INSTALL_DATA) rxvtd.1.man $(DESTDIR)$(man1dir)/$(RXVTNAME)d.$(man1ext)
 	$(INSTALL_DATA) rxvt.7.man  $(DESTDIR)$(man7dir)/$(RXVTNAME).$(man7ext)
-#	$(INSTALL) -d $(DESTDIR)$(man3dir)
-#	$(INSTALL_DATA) rxvtperl.3.man $(DESTDIR)$(man3dir)/$(RXVTNAME)perl.$(man3ext)
+	$(INSTALL) -d $(DESTDIR)$(man3dir)
+	$(INSTALL_DATA) rxvtperl.3.man $(DESTDIR)$(man3dir)/$(RXVTNAME)perl.$(man3ext)
 	/opt/local/bin/tic $(srcdir)/etc/rxvt-unicode.terminfo
 
 distdepend: alldoc
