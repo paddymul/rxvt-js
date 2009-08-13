@@ -1,6 +1,7 @@
 #!/bin/bash
 
-./run_rxvt 58-bak 2> rxvt-out
+./run_rxvt 58-bak 2> rxvt-tmp-out
+cat rxvt-tmp-out | grep -v BEGIN | grep -v "urxvt: unable" | grep -v "locate urxvt.pm" > rxvt-out
 java -jar ~/temp/downloads/js/rhino/rhino1_6R7/js.jar spdr_test.js 58-bak > rxvt-js-out
 
 echo "RXVT OUTPUT " > report.txt

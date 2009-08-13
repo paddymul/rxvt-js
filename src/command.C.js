@@ -130,7 +130,7 @@ I bound them to "C-H u" "C-H o" and "C-H p"
 
 
  rxvt_term.prototype.cmd_write = function( str,  count){
-     FUNCTION_DEBUG("cmd_write");
+         //FUNCTION_DEBUG("cmd_write");
 
      /*         
      var str_ptr=0;
@@ -424,7 +424,7 @@ rxvt_term.prototype.update_fade_color =function(idx){
 
 //void rxvt_term::cmd_parse () 
 rxvt_term.prototype.cmd_parse =function(){
-FUNCTION_DEBUG("cmd_parse");
+    //FUNCTION_DEBUG("cmd_parse");
 
     var och= NOCHAR;  //wchar_t ch = NOCHAR;
     var seq_begin;   // char *seq_begin; // remember start of esc-sequence here 

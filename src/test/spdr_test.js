@@ -17,7 +17,6 @@ function output_file(args){
     if(args[2]) {
         end=args[2];
     }
-    print(args);
     output_section(contents,start,end);
 }
 output_file(arguments);

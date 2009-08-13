@@ -1,23 +1,15 @@
 RXVT OUTPUT 
-   1 BEGIN failed--compilation aborted at -e line 1.
-   1 Can't locate urxvt.pm in @INC (@INC contains: /usr/local/lib/urxvt /opt/local/lib/perl5/5.8.8/darwin-2level /opt/local/lib/perl5/5.8.8 /opt/local/lib/perl5/site_perl/5.8.8/darwin-2level /opt/local/lib/perl5/site_perl/5.8.8 /opt/local/lib/perl5/site_perl /opt/local/lib/perl5/vendor_perl/5.8.8/darwin-2level /opt/local/lib/perl5/vendor_perl/5.8.8 /opt/local/lib/perl5/vendor_perl .) at -e line 1.
-   1 text_blink_cb 
    1 tt_write 
-   1 urxvt: unable to initialize perl-interpreter, continuing without.
    2 process_sgr_mode 
    2 process_xterm_seq 
-   3 pty_cb 
    8 process_window_ops 
-  19 refresh_check 
   22 privcases 
   25 process_terminal_mode 
+  26 refresh_check 
 2204 process_csi_seq 
-2311 process_escape_seq 
-2591 process_nonprinting 
+2313 process_escape_seq 
+2593 process_nonprinting 
 JS OUTPUT 
-   1 58-bak
-   1 cmd_parse
-   1 cmd_write
    1 tt_write
    2 process_sgr_mode
    8 process_window_ops

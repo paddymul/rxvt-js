@@ -1069,7 +1069,7 @@ rxvt_term::cursor_blink_cb (ev::timer &w, int revents)
 void
 rxvt_term::text_blink_cb (ev::timer &w, int revents)
 {
-  FUNCTION_DEBUG("text_blink_cb ")
+  //FUNCTION_DEBUG("text_blink_cb ")
   if (scr_refresh_rend (RS_Blink, RS_Blink))
     {
       hidden_text = !hidden_text;
@@ -1204,7 +1204,7 @@ rxvt_term::pty_fill ()
 void
 rxvt_term::pty_cb (ev::io &w, int revents)
 {
-  FUNCTION_DEBUG("pty_cb ")
+  //FUNCTION_DEBUG("pty_cb ")
   make_current ();
 
   if (revents & ev::READ)
