@@ -506,13 +506,16 @@ FUNCTION_DEBUG("cmd_parse");
             }
         } //IS_CONTROL
         else {
+             this.process_nonprinting (och);
+             /*
          try {
 
-             this.process_nonprinting (och);
+
          } catch ( out_of_input){  //FIXME exception
                 // we ran out of input, retry later
                 this.cmdbuf_ptr = seq_begin;
                 break;} 
+             */
             och = NOCHAR;
         }//else
     }//for(;;) outer_for_loop

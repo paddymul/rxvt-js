@@ -1,0 +1,7 @@
+#!/bin/bash
+
+./run_rxvt 58-bak 2> rxvt-out
+java -jar ~/temp/downloads/js/rhino/rhino1_6R7/js.jar spdr_test.js 58-bak > rxvt-js-out
+
+cat rxvt-out | sort | uniq -c | sort -n
+cat rxvt-js-out  | sort | uniq -c | sort -n

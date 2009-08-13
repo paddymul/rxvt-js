@@ -1,0 +1,3 @@
+#!/bin/bash
+
+../rxvt -e cat $1

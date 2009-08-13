@@ -21,20 +21,5 @@ function output_file(args){
     output_section(contents,start,end);
 }
 output_file(arguments);
-
-/*
-var input =[];
-*/
-//java -jar ~/temp/downloads/js/rhino/rhino1_6R7/js.jar spdr_test.js
-
-/*
-print(args);
-
-for(var i =0; i <a.length; i++){
-    if(i%2==0){
-        print(a[i]);
-    }
-}
-*/
-//f = new File(args[0]);
-//print(f);
+" run like this "
++ " java -jar ~/temp/downloads/js/rhino/rhino1_6R7/js.jar spdr_test.js 58-bak"
