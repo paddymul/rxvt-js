@@ -409,8 +409,8 @@ rxvt_term.prototype.scr_reset =function(){
         }
 
       //free (old_buf);  
-      delete old_ta;
-      delete old_ra;
+      //delete old_ta;
+      //delete old_ra;
 
       clamp_it (this.screen.cur.row, 0, this.nrow - 1);
       clamp_it (this.screen.cur.col, 0,  this.ncol - 1);

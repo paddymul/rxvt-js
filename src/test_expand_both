@@ -1,0 +1,5 @@
+#!/bin/bash
+cpp test_expand_both.h |\
+  gsed -r 's/^#/\/\/#/' |\
+  gsed '/^$/d' > test_expand_both.c.js 
+
