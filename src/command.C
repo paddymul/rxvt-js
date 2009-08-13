@@ -972,7 +972,7 @@ rxvt_term::cmd_write (const char *str, unsigned int count)
 void
 rxvt_term::flush ()
 {
-  FUNCTION_DEBUG("flush ")
+  //FUNCTION_DEBUG("flush ")
   flush_ev.stop ();
 
 #ifdef HAVE_BG_PIXMAP
@@ -1047,7 +1047,7 @@ rxvt_term::refresh_check ()
 void
 rxvt_term::flush_cb (ev::timer &w, int revents)
 {
-  FUNCTION_DEBUG("flush_cb ")
+  //FUNCTION_DEBUG("flush_cb ")
   make_current ();
 
   refresh_count = 0;
@@ -1163,7 +1163,7 @@ static struct event_handler
 bool
 rxvt_term::pty_fill ()
 {
-  FUNCTION_DEBUG("pty_fill ")
+  //FUNCTION_DEBUG("pty_fill ")
   ssize_t n = cmdbuf_endp - cmdbuf_ptr;
 
   if (CBUFSIZ == n)
@@ -1221,7 +1221,7 @@ rxvt_term::pty_cb (ev::io &w, int revents)
 void
 rxvt_term::pointer_unblank ()
 {
-  FUNCTION_DEBUG("pointer_unblank ")
+  //FUNCTION_DEBUG("pointer_unblank ")
   XDefineCursor (dpy, vt, TermWin_cursor);
   recolour_cursor ();
 
@@ -1725,7 +1725,7 @@ rxvt_term::set_urgency (bool enable)
 void
 rxvt_term::focus_in ()
 {
-  FUNCTION_DEBUG("focus_in ")
+  //FUNCTION_DEBUG("focus_in ")
   if (!focus)
     {
       focus = 1;
@@ -1820,7 +1820,7 @@ rxvt_term::update_fade_color (unsigned int idx)
 void
 rxvt_term::rootwin_cb (XEvent &ev)
 {
-  FUNCTION_DEBUG("rootwin_cb ")
+  //FUNCTION_DEBUG("rootwin_cb ")
   make_current ();
 
   if (SHOULD_INVOKE (HOOK_ROOT_EVENT)
@@ -2217,7 +2217,7 @@ rxvt_term::button_release (XButtonEvent &ev)
 void
 rxvt_term::cmd_parse ()
 {
-  FUNCTION_DEBUG("cmd_parse ")
+  //FUNCTION_DEBUG("cmd_parse ")
   wchar_t ch = NOCHAR;
   char *seq_begin; // remember start of esc-sequence here
 
