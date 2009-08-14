@@ -3758,6 +3758,9 @@ rxvt_term::process_terminal_mode (int mode, int priv UNUSED, unsigned int nargs,
   FUNCTION_DEBUG("process_terminal_mode ")
 VAR_DEBUG("mode",mode);
 VAR_DEBUG("nargs", nargs);
+VAR_DEBUG("priv_modes", priv_modes)
+VAR_DEBUG("SavedModes", SavedModes)
+
     //    FUNCTION_DEBUG(arg)
 
 
@@ -3869,6 +3872,7 @@ VAR_DEBUG("modelo", mode)
               break;
             case 3:			/* 80/132 */
               CASE_DEBUG("case 3:")
+                    VAR_DEBUG("priv_modes", priv_modes)
               if (priv_modes & PrivMode_132OK)
                 set_widthheight ((state ? 132 : 80) * fwidth, 24 * fheight);
               break;
@@ -3970,6 +3974,9 @@ VAR_DEBUG("modelo", mode)
               break;
           }
     }
+VAR_DEBUG("priv_modes", priv_modes)
+VAR_DEBUG("SavedModes", SavedModes)
+
 }
 /*}}} */
 

@@ -1674,7 +1674,7 @@ rxvt_vars = function() {}
   };
 function rxvt_term(term_el, pre_term_el) {
     //this.term_el=$(term_el);
-
+    this.privmodes = SavedModes = PrivMode_Default;
     this.pre_term_el=pre_term_el;
 
   this.screen = new screen_t();
@@ -1810,8 +1810,18 @@ rxvt_term.prototype = {
 //  ModNumLockMask;
  old_width: 0,  //int last used width in screen resize          
  old_height: 0, //int last used height in screen resize         
- priv_modes:0 , //unsigned long   
- SavedModes:"", //  SavedModes;
+  // priv_modes:0 , //unsigned long   
+  // SavedModes:"", //  SavedModes;
+
+
+  //Note this is an utter hack, I grabbed these values by taking the first runtime state of
+  //them in rxvt running live
+  priv_modes: 19744, 
+  SavedModes :19488, 
+
+
+
+
 // ---------- 
  xa :[] ,  //Atom            *;
  xa_ptr:0,

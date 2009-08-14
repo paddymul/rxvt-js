@@ -1001,7 +1001,7 @@ FUNCTION_DEBUG("process_csi_seq");
 //VAR_DEBUG(i);
   ndef = get_byte_array_bit (csi_defaults, i);
   FUNCTION_DEBUG("get_byte_array_bit")
-    VAR_DEBUG(i,ndef)
+VAR_DEBUG(i,ndef)
   for (p = 0; p < nargs; p++){
     if (arg[p] == -1){
       arg[p] = 0; } //this is a decent pick for a default
@@ -1829,12 +1829,12 @@ rxvt_term.prototype.privcases =function(mode,   bit){
   var state; //int state;  
 
   if (mode == 's'){
-      SavedModes |= ( this.priv_modes & bit);
+      this.SavedModes |= ( this.priv_modes & bit);
       return -1;
     }
   else{
       if (mode == 'r')
-        state = (SavedModes & bit) ? 1 : 0;	/* no overlapping */
+        state = (this.SavedModes & bit) ? 1 : 0;	/* no overlapping */
       else
         state = (mode == 't') ? ! ( this.priv_modes & bit) : mode;
        this.set_privmode (bit, state);
@@ -1883,6 +1883,8 @@ rxvt_term.prototype.process_terminal_mode =function(mode,  __unused__,   nargs, 
 FUNCTION_DEBUG("process_terminal_mode");
 VAR_DEBUG("mode",mode);
 VAR_DEBUG("nargs", nargs);
+VAR_DEBUG("priv_modes", this.priv_modes)
+VAR_DEBUG("SavedModes", this.SavedModes)
 //FUNCTION_DEBUG(arg);
 var cmode=chr(mode);
     var i, j; //  unsigned int i, j; 
@@ -1987,6 +1989,7 @@ VAR_DEBUG("modelo", mode)
               break;
             case 3:			/* 80/132 */
                 CASE_DEBUG("case 3:")
+                    VAR_DEBUG("priv_modes", this.priv_modes)
               if ( this.priv_modes & PrivMode_132OK)
                   set_widthheight ((state ? 132 : 80) * fwidth, 24 * fheight); 
               break;
@@ -2090,6 +2093,9 @@ VAR_DEBUG("modelo", mode)
               break;
           }
     }
+VAR_DEBUG("priv_modes", this.priv_modes)
+VAR_DEBUG("SavedModes", this.SavedModes)
+
 }
 /*}}} */
 
