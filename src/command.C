@@ -2934,6 +2934,7 @@ rxvt_term::process_csi_seq ()
 
           case '?':
             CASE_DEBUG("case '?':")
+              VAR_DEBUG("ch", ch)
             if (ch == 'h' || ch == 'l' || ch == 'r' || ch == 's' || ch == 't')
               process_terminal_mode (ch, priv, nargs, arg);
             break;
@@ -3754,8 +3755,8 @@ void
 rxvt_term::process_terminal_mode (int mode, int priv UNUSED, unsigned int nargs, const int *arg)
 {
   FUNCTION_DEBUG("process_terminal_mode ")
-    FUNCTION_DEBUG(mode)
-    FUNCTION_DEBUG(nargs)
+VAR_DEBUG("mode",mode);
+VAR_DEBUG("nargs", nargs);
     //    FUNCTION_DEBUG(arg)
 
 

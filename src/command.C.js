@@ -1028,8 +1028,9 @@ FUNCTION_DEBUG("process_csi_seq");
 
           case '?':
           CASE_DEBUG("case '?':")
+          VAR_DEBUG("ch", och)
             if (ch == 'h' || ch == 'l' || ch == 'r' || ch == 's' || ch == 't')
-              this.process_terminal_mode (ch, priv, nargs, arg);
+              this.process_terminal_mode (och, priv, nargs, arg);
             break;
 
           case '!':
