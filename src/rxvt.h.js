@@ -134,12 +134,12 @@ f
 
 #ifndef RXVT_H_                /* include once only */
 #define RXVT_H_
-/*
+
 if(!console){
   console={};
   console.log=function(){};
  }
-*/
+
 /*
   #include <cstdio>
   #include <cctype>
@@ -1890,9 +1890,21 @@ void init_asv ()
       this.priv_modes |= bit;
     else
       this.priv_modes &= ~bit;
+    },
+  set_option: function ( opt,  set){
 
+    if (!opt)
+      return;
 
+    --opt;
+    if (set)
+      this.options[opt >> 3] |= (1 << (opt & 7));
+    else
+      this.options[opt >> 3] &= ~(1 << (opt & 7));
   }
+
+
+
  //ptytty         *pty;
 
  //rxvt_salloc    *talloc;             // text line allocator

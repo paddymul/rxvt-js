@@ -3856,7 +3856,7 @@ VAR_DEBUG("modelo", mode)
                 scr_cursor (SAVE);
             break;
         }
-
+      VAR_DEBUG("state",state)
       if (state >= 0)
         /* extra handling for values with valid 0 or 1 state */
         switch (arg[i])

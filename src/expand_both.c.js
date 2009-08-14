@@ -8,6 +8,10 @@
 //# 119 "command.C.js"
 //# 1 "rxvt.h.js" 1
 //# 135 "rxvt.h.js"
+if(!console){
+  console={};
+  console.log=function(){};
+ }
 //# 173 "rxvt.h.js"
 //using namespace std;
 //# 193 "rxvt.h.js"
@@ -74,10 +78,10 @@ VT100_ANS = "rxvt-js";
 ESCZ_ANSWER = "rxvt-js ?? escz";
 //SCREEN.H.JS MACROS
  
-//# 427 "rxvt.h.js"
-//# 440 "rxvt.h.js"
-//# 454 "rxvt.h.js"
-//# 465 "rxvt.h.js"
+//# 434 "rxvt.h.js"
+//# 447 "rxvt.h.js"
+//# 461 "rxvt.h.js"
+//# 472 "rxvt.h.js"
 memset = function(destination, destination_i, source,  _length){
   for(var i =0; i < _length; i++){
     destination[destination_i + i]=source;
@@ -102,10 +106,10 @@ memset = function(destination, destination_i, source,  _length){
   
   // main.C
   
-//# 540 "rxvt.h.js"
+//# 547 "rxvt.h.js"
   
   
-//# 557 "rxvt.h.js"
+//# 564 "rxvt.h.js"
     var
     NO_REFRESH       = 0, // Window not visible at all!      
   FAST_REFRESH     = 1, // Fully exposed window            
@@ -155,17 +159,17 @@ PRIMARY = 0,
 //FIXED c_style_UL #de fine RS _Careful		0x80000000UL	            
 // not 127 or 256, see rxvtfont.h
 // plenty(?) of fonts, includes 0x80000000
-//# 678 "rxvt.h.js"
-//# 736 "rxvt.h.js"
-//# 773 "rxvt.h.js"
-//# 782 "rxvt.h.js"
-//# 791 "rxvt.h.js"
-//# 800 "rxvt.h.js"
-//# 809 "rxvt.h.js"
+//# 685 "rxvt.h.js"
+//# 743 "rxvt.h.js"
+//# 780 "rxvt.h.js"
+//# 789 "rxvt.h.js"
+//# 798 "rxvt.h.js"
+//# 807 "rxvt.h.js"
+//# 816 "rxvt.h.js"
  
  
-//# 890 "rxvt.h.js"
-//# 955 "rxvt.h.js"
+//# 897 "rxvt.h.js"
+//# 962 "rxvt.h.js"
 //enum {
 var  XTerm_name             =  0,
   XTerm_iconName         =  1,
@@ -244,7 +248,7 @@ Color_none = -2,
   Color_UL = 25,
   Color_RV = 26,
   Color_scroll = 27,
-//# 1086 "rxvt.h.js"
+//# 1093 "rxvt.h.js"
   NRS_COLORS = 28,                 
   TOTAL_COLORS = NRS_COLORS
   ;
@@ -252,20 +256,20 @@ Color_none = -2,
 //# include "rsinc.h"
 //  NUM_RESOURCES
 //FIXME does bitshifting an unsigned long result in a different value than bitshifting any number in js would?
-//# 1136 "rxvt.h.js"
+//# 1143 "rxvt.h.js"
 // do not change these constants li
 // input modifier buffer sizesghtly, there are many interdependencies
 // size of command buffer// size of keyboard mapping buffer
 // never call pty_fill/cmd_parse more than this often in a row8    
 // character buffer
-//# 1169 "rxvt.h.js"
+//# 1176 "rxvt.h.js"
 // for speed reasons, we assume that all codepoints 32 to 126 are
 // single-width.
 //#define 0		(((c) - ( 0x20) <= ( 0x7e) - ( 0x20)) ? 1 : wcwidth (c))
-//# 1217 "rxvt.h.js"
+//# 1224 "rxvt.h.js"
 //#defi ne LIN ENO_of(t,n) ((((t)->term_start + int(n)) + ( (t)->total_rows)) % ( (t)->total_rows))
 //#def ine RO W_of(t,n) (t->row_buf [((((t).term_start +  n) + ( (t).total_rows)) % ( (t).total_rows))]
-//# 1244 "rxvt.h.js"
+//# 1251 "rxvt.h.js"
 //# define FONTSET_of(t,style) (t)->fontset[0]
 //#de fine FON TSET(style) this.fontset[0]
 //typedef callback<void (const char *)> log_callback;
@@ -274,7 +278,7 @@ Color_none = -2,
 // line has been compressed (NYI)
 // line needs to be filtered before display (NYI)
 // line needs bidi (NYI)
-//# 1319 "rxvt.h.js"
+//# 1326 "rxvt.h.js"
 line_t = function() {
   this.t= [];  //FIXED   text_t *t; // terminal the text
   this.r= []; //FIXED   rend_t *r; // rendition, uses RS_ flags
@@ -296,7 +300,7 @@ line_t.prototype = {
       return thisf & 0x0001 // line is continued on the next row;
     }},
  
-//# 1354 "rxvt.h.js"
+//# 1361 "rxvt.h.js"
  clear : function ()   { //FIXME should this whole thing be an object, probably
     this.t = [];
     this.r = [];
@@ -305,25 +309,25 @@ line_t.prototype = {
   },
  //FIXME operator overloading
  
-//# 1371 "rxvt.h.js"
+//# 1378 "rxvt.h.js"
   touch : function (col) { // call whenever a line is changed/touched/updated  
         this.modified=true;
   }
 };
 // primitive wrapper around mbstate_t to ensure initialisation
-//# 1390 "rxvt.h.js"
+//# 1397 "rxvt.h.js"
 //FIXED c_style_ul #define UNICODE_MASK 0x1fffffUL
-//# 1408 "rxvt.h.js"
+//# 1415 "rxvt.h.js"
 //FIXED c_style_UL #  define COMPOSE_LO 0xd800UL
 //FIXED c_style_UL #  define COMPOSE_HI 0xf8ffUL 
-//# 1446 "rxvt.h.js"
+//# 1453 "rxvt.h.js"
 function row_col_t(){};
 row_col_t.prototype = {row:0, col:0};
-//# 1474 "rxvt.h.js"
-//# 1517 "rxvt.h.js"
-//# 1546 "rxvt.h.js"
-//# 1565 "rxvt.h.js"
-//# 1581 "rxvt.h.js"
+//# 1481 "rxvt.h.js"
+//# 1524 "rxvt.h.js"
+//# 1553 "rxvt.h.js"
+//# 1572 "rxvt.h.js"
+//# 1588 "rxvt.h.js"
 screen_t = function() {
   this.s_cur= new row_col_t();        //row_col_t  saved cursor position
   this.cur= new row_col_t();          //row_col_t  cursor position on the screen            
@@ -353,13 +357,14 @@ selection_t.prototype = {
  rect:  true     //bool               rectangular selection?                   
 };
 //# includeoptinc.h"
-//# 1666 "rxvt.h.js"
+//# 1673 "rxvt.h.js"
 rxvt_vars = function() {}
   rxvt_vars.prototype={
   };
 function rxvt_term(term_el, pre_term_el) {
     //this.term_el=$(term_el);
-    this.pre_term_el=$(pre_term_el);
+    this.privmodes = SavedModes = ((1<<5)|(1<<10)|(1<<11));
+    this.pre_term_el=pre_term_el;
   this.screen = new screen_t();
   this.swap = new screen_t();
   this.charsets= new Array(4);
@@ -417,7 +422,7 @@ rxvt_term.prototype = {
   current_screen:1,	// primary or secondary              
   num_scr_allow:1,
   bypass_keystate:1,
-//# 1757 "rxvt.h.js"
+//# 1764 "rxvt.h.js"
   enc_utf8:1,		// wether locale uses utf-8 
   seen_input:1,         // wether we have seen some program output yet 
   seen_resize:1,	// wether we had a resize event 
@@ -449,8 +454,12 @@ rxvt_term.prototype = {
 //  ModNumLockMask;
  old_width: 0,  //int last used width in screen resize          
  old_height: 0, //int last used height in screen resize         
- priv_modes:0 , //unsigned long   
- SavedModes:"", //  SavedModes;
+  // priv_modes:0 , //unsigned long   
+  // SavedModes:"", //  SavedModes;
+  //Note this is an utter hack, I grabbed these values by taking the first runtime state of
+  //them in rxvt running live
+  priv_modes: 19744, 
+  SavedModes :19488, 
 // ---------- 
  xa :[] ,  //Atom            *;
  xa_ptr:0,
@@ -466,7 +475,7 @@ rxvt_term.prototype = {
 //XComposeStatus  compose;
 //struct termios  tio;  //FIXME termios might be needed
  oldcursor: row_col_t(), //row_col_t
-//# 1837 "rxvt.h.js"
+//# 1854 "rxvt.h.js"
  allocated: [], //???? // vector<void *> allocated;           // free these memory blocks with free()
  //char            env_windowid[21];   // environmental variable WINDOWID 
  //char            env_colorfgbg[sizeof ("COLORFGBG=default;default;bg") + 1];
@@ -498,13 +507,22 @@ rxvt_term.prototype = {
       this.priv_modes |= bit;
     else
       this.priv_modes &= ~bit;
+    },
+  set_option: function ( opt,  set){
+    if (!opt)
+      return;
+    --opt;
+    if (set)
+      this.options[opt >> 3] |= (1 << (opt & 7));
+    else
+      this.options[opt >> 3] &= ~(1 << (opt & 7));
   }
  //ptytty         *pty;
  //rxvt_salloc    *talloc;             // text line allocator
  //rxvt_salloc    *ralloc;             // rend line allocator
  //static vector<rxvt_term *> termlist; // a vector of all running rxvt_term's
 }
-//# 2002 "rxvt.h.js"
+//# 2031 "rxvt.h.js"
 function chr(inte){
   return String.fromCharCode(inte);
   }
@@ -535,7 +553,7 @@ function hex(_integer){
 //REMOVED:void rxvt_term::key_press (XKeyEvent &ev) 
 //unsigned int rxvt_term::cmd_write (const char *str, unsigned int count)
  rxvt_term.prototype.cmd_write = function( str,  count){
-     FUNCTION_DEBUG("cmd_write");
+         //;
      
 //# 165 "command.C.js"
          //console.log(str);
@@ -556,7 +574,7 @@ function hex(_integer){
 //void rxvt_term::flush ()
 rxvt_term.prototype.minimum_buf_size=40;
 rxvt_term.prototype.flush =function(){ 
-  FUNCTION_DEBUG("flush");
+  ;
   flush_ev.stop ();
   if (want_refresh){ //FIXME note will probable have to wait for the macro expansion to be able to figure out whats going on
       if (false){
@@ -600,14 +618,14 @@ rxvt_term.prototype.flush =function(){
 // this is probably where I should enter text into the system
 //REWRITE:bool rxvt_term::pty_fill () 
 rxvt_term.prototype.pty_fill =function(){ 
-    FUNCTION_DEBUG("pty");
+    ;
     
 //# 330 "command.C.js"
   return false;
 }
 //void rxvt_term::pty_cb (ev::io &w, int revents) 
 rxvt_term.prototype.pty_cb =function(w,  revents){ 
-    FUNCTION_DEBUG("pty");
+    ;
     
 //# 363 "command.C.js"
 }
@@ -619,7 +637,7 @@ rxvt_term.prototype.pty_cb =function(w,  revents){
 //REMOVED:void rxvt_term::focus_out () 
 //void rxvt_term::update_fade_color (unsigned int idx) 
 rxvt_term.prototype.update_fade_color =function(idx){
-//FUNCTION_DEBUG("update_fade_color");
+//;
 //FIXME
 }
 //REMOVED:void rxvt_term::rootwin_cb (XEvent &ev) 
@@ -627,7 +645,7 @@ rxvt_term.prototype.update_fade_color =function(idx){
 //REMOVED:void rxvt_term::button_release (XButtonEvent &ev) 
 //void rxvt_term::cmd_parse () 
 rxvt_term.prototype.cmd_parse =function(){
-FUNCTION_DEBUG("cmd_parse");
+    //;
     var och= NOCHAR;  //wchar_t ch = NOCHAR;
     var seq_begin;   // char *seq_begin; // remember start of esc-sequence here 
     for (;;){ //outer_for_loop
@@ -708,7 +726,7 @@ FUNCTION_DEBUG("cmd_parse");
 // read the next character 
 //wchar_t rxvt_term::next_char () 
 rxvt_term.prototype.next_char =function(){
-    FUNCTION_DEBUG("next_char");
+    ;
     
   while (this.cmdbuf_ptr < this.cmdbuf_endp){
     return this.cmdbuf[this.cmdbuf_ptr++]; 
@@ -718,7 +736,7 @@ rxvt_term.prototype.next_char =function(){
 // read the next octet
 //uint32_t rxvt_term::next_octet ()  
 rxvt_term.prototype.next_octet =function()  {
-    //FUNCTION_DEBUG("next_octet");
+    //;
     return this.cmdbuf_ptr < this.cmdbuf_endp
   ?  this.cmdbuf[this.cmdbuf_ptr++]  //? (unsigned char)*cmdbuf_ptr++ 
          : NOCHAR;
@@ -729,14 +747,14 @@ rxvt_term.prototype.next_octet =function()  {
  
 //wchar_t rxvt_term::cmd_getc () 
   rxvt_term.prototype.cmd_getc =function() {
-      //FUNCTION_DEBUG("cmd_getc");
+      //;
       
     var c= ( this.cmdbuf_ptr < this.cmdbuf_endp ? this.cmdbuf[this.cmdbuf_ptr++] : chr(NOCHAR));   //wchar_t c = next_char (); 
   return c;
 }
 //uint32_t rxvt_term::cmd_get8 () {
     rxvt_term.prototype.cmd_get8 = function () {
-        FUNCTION_DEBUG("cmd_get8");
+        ;
         
   var c = this.next_octet (); //uint32_t c = next_octet ();
   return c;
@@ -744,7 +762,7 @@ rxvt_term.prototype.next_octet =function()  {
  
 //void rxvt_term::process_nonprinting (unicode_t ch)
 rxvt_term.prototype.process_nonprinting =function(ch){
-    FUNCTION_DEBUG("process_nonprinting");
+    ;
     
         if ( (  this.cmdbuf_endp - this.cmdbuf_ptr) < this.minimum_buf_size) {
             //    if ( (  foo.cmdbuf_endp - foo.cmdbuf_ptr) < foo.minimum_buf_size) {
@@ -754,48 +772,62 @@ rxvt_term.prototype.process_nonprinting =function(ch){
     }
   switch (ch){
       case 0x1b:
+      CASE_DEBUG("case C0_ESC:")
         this.process_escape_seq ();
         break;
       case 0x5:	
+      CASE_DEBUG("case C0_ENQ:")
         if (rs[Rs_answerbackstring])
           this.tt_write (rs [Rs_answerbackstring], (strlen)(rs [Rs_answerbackstring]));
         else
           this.tt_write (VT100_ANS, (strlen)(VT100_ANS));
         break;
       case 0x7:	
+      CASE_DEBUG("case C0_BEL:")
         this.scr_bell ();
         break;
       case 0x8:		
+      CASE_DEBUG("case C0_BS:")
       //debusgger
         this.scr_backspace ();
       //console.log(this.screen.cur);
         break;
       case 0x9:		
+      CASE_DEBUG("case C0_HT:")
         this.scr_tab (1);
         break;
       case 0xd:		
+      CASE_DEBUG("case C0_CR:")
         this.scr_gotorc (0, 0, R_RELATIVE);
         break;
       case 0xb:		
+      CASE_DEBUG("case C0_VT:")
       case 0xc:
+      CASE_DEBUG("case C0_FF:")
       case 0xa:		
+      CASE_DEBUG("case C0_LF:")
         this.scr_index (UP);
         break;
       case 0xe:		
+      CASE_DEBUG("case C0_SO:")
       this.scr_charset_choose (1); 
         break;
       case 0xf:		
+      CASE_DEBUG("case C0_SI:")
       this.scr_charset_choose (0); 
         break;
       //#ifdef EIGHT_BIT_CONTROLS
       // 8-bit controls
       case 0x90: 	
+      CASE_DEBUG("case 0x90:")
         this.process_dcs_seq ();
         break;
       case 0x9b: 	
+      CASE_DEBUG("case 0x9b:")
         this.process_csi_seq ();
         break;
       case 0x9d: 	
+      CASE_DEBUG("case 0x9d:")
         this.process_osc_seq ();
         break;
   default:
@@ -805,38 +837,47 @@ rxvt_term.prototype.process_nonprinting =function(ch){
 }
 //rxvt_term::process_escape_vt52 (unicode_t ch)
 rxvt_term.prototype.process_escape_vt52 = function (ch){
-    FUNCTION_DEBUG("process_escape_vt52");
+    ;
     
   //console.log("vt52");
   var row, col; //int row, col;
   switch (ch){
       case 'A':		
+          CASE_DEBUG("case 'A':")
         this.scr_gotorc (-1, 0, R_RELATIVE | C_RELATIVE);
         break;
       case 'B':		
+          CASE_DEBUG("case 'B':")
         this.scr_gotorc (1, 0, R_RELATIVE | C_RELATIVE);
         break;
       case 'C':		
+          CASE_DEBUG("case 'C':")
         this.scr_gotorc (0, 1, R_RELATIVE | C_RELATIVE);
         break;
       case 'D':		
+          CASE_DEBUG("case 'D':")
         this.scr_gotorc (0, -1, R_RELATIVE | C_RELATIVE);
         break;
       case 'H':		
+          CASE_DEBUG("case 'H':")
         this.scr_gotorc (0, 0, 0);
         break;
       case 'I':		
+          CASE_DEBUG("case 'I':")
         this.scr_index (DN);
         break;
       case 'J':		
+          CASE_DEBUG("case 'J':")
           //console.log("erase to end of screen");
         this.scr_erase_screen (0);
         break;
       case 'K':		
+          CASE_DEBUG("case 'K':")
           //console.log("erase to end of line");
         this.scr_erase_line (0);
         break;
       case 'Y':         	
+          CASE_DEBUG("case 'Y':")
          
           //console.log("Case Y");
           row = ord(this.cmd_getc()) - ord(' ');
@@ -844,24 +885,30 @@ rxvt_term.prototype.process_escape_vt52 = function (ch){
         this.scr_gotorc (row, col, 0);
         break;
       case 'Z':		
+          CASE_DEBUG("case 'Z':")
         this.tt_printf ("\033/Z");	 
         break;
       case '<':		
+          CASE_DEBUG("case '<':")
          this.set_privmode ((1<<18), 0);
         break;
   case 'F':     	 
+      CASE_DEBUG("case 'F':")
   case 'G':            
+      CASE_DEBUG("case 'G':")
         
         break;
       case '=':     	
+          CASE_DEBUG("case '=':")
       case '>':           
+          CASE_DEBUG("case '>':")
         
         break;
     }
 }
 //void rxvt_term::process_escape_seq () 
 rxvt_term.prototype.process_escape_seq =function(){
-    FUNCTION_DEBUG("process_escape_seq");
+    ;
     
   var ch= this.cmd_getc();  //unicode_t ch = cmd_getc ();
   if ( this.priv_modes & (1<<18)){
@@ -869,42 +916,55 @@ rxvt_term.prototype.process_escape_seq =function(){
       return;
     }
   var och=ord(ch);
+    ;
   switch (och){
         
   case 35: //'#':
+      CASE_DEBUG("case '#':") // thats what it originally was, to compare with rxvt
         if (this.cmd_getc () == '8')
           this.scr_E ();
         break;
   case 40:// '(':
+      CASE_DEBUG("case 40:// '(':")
       this.scr_charset_set (0,this.cmd_getc ()); 
         break;
   case 41:// ')':
+      CASE_DEBUG("case 41:// ')':")
       this.scr_charset_set (1,this.cmd_getc ()); 
         break;
   case 42://'*': 
+      CASE_DEBUG("case 42://'*':")
       this.scr_charset_set (2,this.cmd_getc ()); 
         break;
       case '+':
+          CASE_DEBUG("case '+':")
       this.scr_charset_set (3,this.cmd_getc ()); 
         break;
   case 55://'7':
+        CASE_DEBUG("case 55://'7':")
         this.scr_cursor (SAVE);
         break;
   case 56://'8':
+      CASE_DEBUG("case 56://'8':")
         this.scr_cursor (RESTORE);
         break;
   case 61://'=':
+        CASE_DEBUG("case 61://'=':")
   case 62://'>':
+        CASE_DEBUG("case 62://'>':")
          this.set_privmode ((1<<7), ch == '=');
         break;
       case 0x40:
+          CASE_DEBUG("case C1_40:")
         this.cmd_getc();
         break;
       case 0x44:
+          CASE_DEBUG("case C1_44:")
         this.scr_index (UP);
         break;
         
       case 0x45:		
+          CASE_DEBUG("case C1_NEL:")
         {
             var nlcr= [ chr(0xa), chr(0xd) ] ;   //wchar_t nlcr[] = { 0xa, 0xd };
             //this.scr_add_lines (nlcr, sizeof (nlcr) / sizeof (nlcr [0]), 1);
@@ -913,54 +973,67 @@ rxvt_term.prototype.process_escape_seq =function(){
         break;
         
       case 0x47:		
+          CASE_DEBUG("case C1_ESA:")
         this.process_graphics ();
         break;
         
       case 0x48:		
+          CASE_DEBUG("case C1_HTS:")
         this.scr_set_tab (1);
         break;
         
       case 0x4d:			
+          CASE_DEBUG("case C1_RI:")
         this.scr_index (DN);
         break;
         
       
+        CASE_DEBUG("case C1_SS2:")
         
       
+            CASE_DEBUG("case C1_SS3:")
         
       case 0x50:		
+        CASE_DEBUG("case C1_DCS:")
         this.process_dcs_seq ();
         break;
         
       case 0x5a:		
+          CASE_DEBUG("case C1_SCI:")
         this.tt_write (ESCZ_ANSWER, ESCZ_ANSWER.length);
         break;			
         
       case 0x5b:		
+          CASE_DEBUG("case C1_CSI:")
         this.process_csi_seq ();
         break;
         
       case 0x5d:		
+          CASE_DEBUG("case C1_OSC:")
         this.process_osc_seq ();
         break;
         
   case 99://'c':
+      CASE_DEBUG("case 99://'c':")
     //mbstate.reset ();
         this.scr_poweron ();
         //scrollBar.show (1);
         break;
         
   case 110://'n':
+      CASE_DEBUG("case 110://'n':")
       this.scr_charset_choose (2); 
         break;
         
   case 111://'o':
+      CASE_DEBUG("case 111://'o':")
       this.scr_charset_choose (3); 
         break;
     }
 }
  
-//# 853 "command.C.js"
+//# 910 "command.C.js"
+//#define get_byte_array_bit(array, bit)                //#    (!! ((array)[ (bit) / 8] & (128 >> ((bit) & 7))))
 //const unsigned char csi_defaults[] = 
    csi_defaults = [    (((1) << 7) | ((1) << 6) | ((1) << 5) | ((1) << 4)	     | ((1) << 3) | ((1) << 2) | ((1) << 1) | (1)),	
     (((1) << 7) | ((1) << 6) | ((0) << 5) | ((0) << 4)	     | ((1) << 3) | ((1) << 2) | ((0) << 1) | (0)),	
@@ -972,9 +1045,33 @@ rxvt_term.prototype.process_escape_seq =function(){
     (((0) << 7) | ((0) << 6) | ((0) << 5) | ((0) << 4)	     | ((0) << 3) | ((0) << 2) | ((0) << 1) | (0))	
                    ];
  
+function get_byte_array_bit(lst1, val){
+    switch(val) {
+    case      10 :
+    case      11 :
+    case      35 :
+    case      40 :
+    case      44 :
+    case      45 :
+    case      50 :
+    case      52 :
+        return 0;
+        break;
+    case     1  :
+    case     2  :
+    case     3  :
+    case     4  :
+    case     8  :
+    case     30  :
+    case     38 :
+        return 1;
+        break;
+    }
+    return true;
+}
 //void rxvt_term::process_csi_seq ()
 rxvt_term.prototype.process_csi_seq =function(){
-FUNCTION_DEBUG("process_csi_seq");
+;
   //console.log("csi_seq");
   var ch, priv, i; //unicode_t ch, priv, i;  
   var och; //ord(ch)
@@ -985,7 +1082,9 @@ FUNCTION_DEBUG("process_csi_seq");
   priv = 0;
   ch = this.cmd_getc ();
   och = ord(ch);
+  
   if ((ch >= '<' && ch <= '?') || ch == '!'){
+      
       
       priv = ch;
       ch = this.cmd_getc ();
@@ -996,6 +1095,8 @@ FUNCTION_DEBUG("process_csi_seq");
   for (n = -1; och < 0x40; ){
     
       if ((ch) >= '0' && (ch) <='9'){
+          
+          
         if (n < 0){
           n = och - ord('0');}
         else{
@@ -1019,8 +1120,11 @@ FUNCTION_DEBUG("process_csi_seq");
   if (nargs < 32)
     arg[nargs++] = n;
   i = och - 0x40;
-  //  ndef = (!! ((csi_defaults)[ ( i) / 8] & (128 >> (( i) & 7))));
-  ndef = (!! ((csi_defaults)[ ( 0) / 8] & (128 >> (( 0) & 7))));
+  //  ndef = get_byte_array_bit (csi_defaults, i);
+//VAR_DEBUG(i);
+  ndef = get_byte_array_bit (csi_defaults, i);
+  
+VAR_DEBUG(i,ndef)
   for (p = 0; p < nargs; p++){
     if (arg[p] == -1){
       arg[p] = 0; } //this is a decent pick for a default
@@ -1029,6 +1133,7 @@ FUNCTION_DEBUG("process_csi_seq");
   if (priv){
       switch (priv){
           case '>':
+          CASE_DEBUG("case '>':")
             if (och == 0x63)	
               {
                 // first parameter is normally 0 for vt100, 1 for vt220, 'R' for rxvt,
@@ -1042,10 +1147,13 @@ FUNCTION_DEBUG("process_csi_seq");
               }
             break;
           case '?':
+          CASE_DEBUG("case '?':")
+          VAR_DEBUG("ch", och)
             if (ch == 'h' || ch == 'l' || ch == 'r' || ch == 's' || ch == 't')
-              this.process_terminal_mode (ch, priv, nargs, arg);
+              this.process_terminal_mode (och, priv, nargs, arg);
             break;
           case '!':
+          CASE_DEBUG("case '!':")
             if (och == 0x70){
                 
                 this.scr_soft_reset ();
@@ -1065,142 +1173,191 @@ FUNCTION_DEBUG("process_csi_seq");
   switch (och){
         
       case 0x41:		
+          CASE_DEBUG("case CSI_CUU:		/* 8.3.22:")
       case 0x65:		
+          CASE_DEBUG("case CSI_VPR:		/* 8.3.161:")
         if(debug.csi_debug){
           console.log("CSI_CUU  CSI_VPR", -arg[0]);}
         arg[0] = -arg[0];
         
       case 0x42:		
+          CASE_DEBUG("case CSI_CUD:		/* 8.3.19:")
       case 0x6b:		
+          CASE_DEBUG("case CSI_VPB:		/* 8.3.160:")
         if(debug.csi_debug){
           console.log("CSI_CUD  CSI_VPB", arg[0]);}
         this.scr_gotorc (arg[0], 0, RELATIVE);
         break;
       case 0x44:		
+          CASE_DEBUG("case CSI_CUB:		/* 8.3.18:")
       case 0x6a: 		
+          CASE_DEBUG("case CSI_HPB: 		/* 8.3.59:")
         if(debug.csi_debug){
           console.log("CSI_CUB  CSI_HPB", arg[0]);}
         arg[0] = arg[0] ? -arg[0] : -1;
         
       case 0x43:		
+        CASE_DEBUG("case CSI_CUF:		/* 8.3.20:")
       case 0x61:		
+        CASE_DEBUG("case CSI_HPR:		/* 8.3.60:")
         if(debug.csi_debug){
           console.log("CSI_CUF  CSI_HPR", arg[0]);}
         this.scr_gotorc (0, arg[0] ? arg[0] : 1, RELATIVE);
         break;
       case 0x46:		
+          CASE_DEBUG("case CSI_CPL:		/* 8.3.13:")
         arg[0] = -arg[0];
         
       case 0x45:		
+          CASE_DEBUG("case CSI_CNL:		/* 8.3.12:")
         this.scr_gotorc (arg[0], 0, R_RELATIVE);
         break;
       case 0x47:		
+          CASE_DEBUG("case CSI_CHA:		/* 8.3.9:")
       case 0x60:		
+          CASE_DEBUG("case CSI_HPA:		/* 8.3.58:")
         this.scr_gotorc (0, arg[0] - 1, R_RELATIVE);
         break;
       case 0x64:		
+          CASE_DEBUG("case CSI_VPA:		/* 8.3.159:")
         this.scr_gotorc (arg[0] - 1, 0, C_RELATIVE);
         break;
       case 0x48:		
+          CASE_DEBUG("case CSI_CUP:		/* 8.3.21:")
         if(debug.csi_debug){
           console.log("CUP", arg[0] , nargs < 2 ? 0 : (arg[1] - 1), 0);}
           //debugger;
       case 0x66:		
+          CASE_DEBUG("case CSI_HVP:		/* 8.3.64:")
       //debugger
         this.scr_gotorc (arg[0] - 1, nargs < 2 ? 0 : (arg[1] - 1), 0);
         break;
       case 0x5a:		
+          CASE_DEBUG("case CSI_CBT:		/* 8.3.7:")
         arg[0] = -arg[0];
         
       case 0x49:		
+          CASE_DEBUG("case CSI_CHT:		/* 8.3.10:")
         this.scr_tab (arg[0]);
         break;
       case 0x4a:		
+          CASE_DEBUG("case CSI_ED:		/* 8.3.40:")
       if(debug.csi_debug){
         console.log("CSI_ED",arg);}
         this.scr_erase_screen (arg[0]);
         break;
       case 0x4b:		
+          CASE_DEBUG("case CSI_EL:		/* 8.3.42:")
         if(debug.csi_debug){
           console.log("CSI_EL",arg);}
         this.scr_erase_line (arg[0]);
         break;
       case 0x40:		
+          CASE_DEBUG("case CSI_ICH:		/* 8.3.65:")
       this.scr_insdel_chars (arg[0], INSERT); 
         break;
       case 0x4c:		
+          CASE_DEBUG("case CSI_IL:		/* 8.3.68:")
         this.scr_insdel_lines (arg[0], INSERT);
         break;
       case 0x4d:		
+          CASE_DEBUG("case CSI_DL:		/* 8.3.33:")
         this.scr_insdel_lines (arg[0], DELETE);
         break;
       case 0x58:		
+          CASE_DEBUG("case CSI_ECH:		/* 8.3.39:")
       this.scr_insdel_chars (arg[0], ERASE); 
         break;
       case 0x50:		
+          CASE_DEBUG("case CSI_DCH:		/* 8.3.26:")
       this.scr_insdel_chars (arg[0], DELETE); 
         break;
       case 0x54:		
+          CASE_DEBUG("case CSI_SD:		/* 8.3.114:")
         arg[0] = -arg[0];
         
       case 0x53:		
+          CASE_DEBUG("case CSI_SU:		/* 8.3.148:")
         this.scr_scroll_text (screen.tscroll, screen.bscroll, arg[0]);
         break;
       case 0x63:		
+          CASE_DEBUG("case CSI_DA:		/* 8.3.24:")
         this.tt_write (VT100_ANS,VT100_ANS.length);
         break;
       case 0x6d:		
+          CASE_DEBUG("case CSI_SGR:		/* 8.3.118:")
         this.process_sgr_mode (nargs, arg);
         break;
       case 0x6e:		
+          CASE_DEBUG("case CSI_DSR:		/* 8.3.36:")
         switch (arg[0]){
             case 5:			
+                CASE_DEBUG("case 5:")
               this.tt_printf ("\033[0n"); 
               break;
             case 6:			
+                CASE_DEBUG("case 6:")
               this.scr_report_position ();
               break;
             case 7:			
+                CASE_DEBUG("case 7:")
               if (this.option (Opt_insecure))
                 this.tt_printf ("%-.250s\012", rs[Rs_display_name]); 
               break;
             case 8:			
+                CASE_DEBUG("case 8:")
                 // FIXME process_xterm_seq (XTerm_title, RESNAME "-" VERSION, 0x9c);
               break;
           }
         break;
       case 0x67:		
+          CASE_DEBUG("case CSI_TBC:		/* 8.3.155:")
         switch (arg[0]){
         case 0:			 
+            CASE_DEBUG("case 0:")
               this.scr_set_tab (0);
               break;
               		
+              CASE_DEBUG("case 1:")
               		 
+                  CASE_DEBUG("case 2:")
         case 3:			 
+              CASE_DEBUG("case 3:")
               		
+                  CASE_DEBUG("case 4:")
         case 5:			
+              CASE_DEBUG("case 5:")
           this.scr_set_tab (-1);
               break;
           }
         break;
       case 0x57:		
+          CASE_DEBUG("case CSI_CTC:		/* 8.3.17:")
         switch (arg[0]){
         case 0:			 
+            CASE_DEBUG("case 0:")
               this.scr_set_tab (1);
               break;		
               		
+              CASE_DEBUG("case 1:")
         case 2:			 
+              CASE_DEBUG("case 2:")
               this.scr_set_tab (0);
               break;		
               		
+              CASE_DEBUG("case 3:")
               		 
+                  CASE_DEBUG("case 4:")
         case 5:			 
+              CASE_DEBUG("case 5:")
               this.scr_set_tab (-1);
               break;		
               		
+              CASE_DEBUG("case 6:")
           }
         break;
       case 0x6c:		
+          CASE_DEBUG("case CSI_RM:		/* 8.3.107:")
       if(debug.csi_debug){
         console.log("CSI_RM",arg);}
         if (arg[0] == 4)
@@ -1209,6 +1366,7 @@ FUNCTION_DEBUG("process_csi_seq");
            this.priv_modes &= ~(1<<19);
         break;
       case 0x68:		
+          CASE_DEBUG("case CSI_SM:		/* 8.3.126:")
         if (arg[0] == 4)
           this.scr_insert_mode (1);
         else if (arg[0] == 20)
@@ -1216,6 +1374,7 @@ FUNCTION_DEBUG("process_csi_seq");
         break;
         
       case 0x72:		
+          CASE_DEBUG("case CSI_72:		/* DECSTBM:")
         if (nargs == 1)
           this.scr_scroll_region (arg[0] - 1, 10000 - 1);
         else if (nargs == 0 || arg[0] >= arg[1])
@@ -1224,17 +1383,21 @@ FUNCTION_DEBUG("process_csi_seq");
           this.scr_scroll_region (arg[0] - 1, arg[1] - 1);
         break;
       case 0x73:
+          CASE_DEBUG("case CSI_73:")
         this.scr_cursor (SAVE);
         break;
       case 0x75:
+          CASE_DEBUG("case CSI_75:")
         this.scr_cursor (RESTORE);
         break;
       
       case 0x74:
+          CASE_DEBUG("case CSI_74:")
       this.process_window_ops (arg, nargs);
         break;
       
       case 0x78:		
+          CASE_DEBUG("case CSI_78:")
         if (arg[0] == 0 || arg[0] == 1)
           this.tt_printf ("\033[%d;1;1;128;128;1;0x", arg[0] + 2); 
         break;
@@ -1245,7 +1408,7 @@ FUNCTION_DEBUG("process_csi_seq");
 //#if !1
 //void rxvt_term::process_window_ops (const int *args, unsigned int nargs)
 rxvt_term.prototype.process_window_ops =function( args,   nargs){
-FUNCTION_DEBUG("process_window_ops");
+;
   var x, y; //int x, y;  
   //XWindowAttributes wattr;  //Window wdummy;//Display * const  dpy = this-> dpy; 
   if (nargs == 0)
@@ -1307,13 +1470,13 @@ FUNCTION_DEBUG("process_window_ops");
       //this.tt_printf ("\033[9;%d;%dt", nrow, ncol); 
         break;
                          
-//# 1284 "command.C.js"
+//# 1434 "command.C.js"
     }
 }
 //#endif
 //char *rxvt_term::get_to_st (unicode_t &ends_how) 
 rxvt_term.prototype.get_to_st =function(ends_how){
-FUNCTION_DEBUG("get_to_st");
+;
     console.log("get_to_st");
     var ch, och; //unicode_t ch; 
   var seen_esc = false; //bool seen_esc = false;
@@ -1348,7 +1511,7 @@ FUNCTION_DEBUG("get_to_st");
 }
 //void rxvt_term::process_dcs_seq () 
 rxvt_term.prototype.process_dcs_seq =function(){
-FUNCTION_DEBUG("process_dcs_seq");
+;
   console.log("dcs_seq");
   var s ; //char *s;  
   var eh; //unicode_t eh;  
@@ -1361,7 +1524,7 @@ FUNCTION_DEBUG("process_dcs_seq");
 }
 //void rxvt_term::process_osc_seq () 
 rxvt_term.prototype.process_osc_seq =function(){
-    FUNCTION_DEBUG("process_osc_seq");
+    ;
     
   console.log("osc_seq");
   var ch, eh; //unicode_t ch, eh;
@@ -1379,7 +1542,7 @@ rxvt_term.prototype.process_osc_seq =function(){
 }
 //void rxvt_term::process_color_seq (int report, int color, const char *str, char resp) 
 rxvt_term.prototype.process_color_seq =function(report,  color,    str,  resp){
-    FUNCTION_DEBUG("process_color_seq");
+    ;
     
   if (str[0] == '?' && !str[1]){
     var c;  //      rgba c;
@@ -1391,7 +1554,7 @@ rxvt_term.prototype.process_color_seq =function(report,  color,    str,  resp){
 }
 //void rxvt_term::process_xterm_seq (int op, const char *str, char resp) 
 rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
-    FUNCTION_DEBUG("process_xterm_seq");
+    ;
     
   var color; //int color; 
   var buf,  name, buf_i =0, name_i=0; //char *buf, *name;
@@ -1413,7 +1576,7 @@ rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
         break;
       case XTerm_property:
             
-//# 1474 "command.C.js"
+//# 1624 "command.C.js"
         break;
       case XTerm_Color:
         //for (buf = (char *)str; buf && *buf;)
@@ -1463,17 +1626,17 @@ rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
       case URxvt_Color_border:
         this.process_color_seq (op, Color_border, str, resp);
         break;
-//# 1549 "command.C.js"
-//# 1586 "command.C.js"
+//# 1699 "command.C.js"
+//# 1736 "command.C.js"
       case XTerm_logfile:
         // TODO, when secure mode?
         break;
-//# 1602 "command.C.js"
+//# 1752 "command.C.js"
       case XTerm_font:
         op = URxvt_font;
       case URxvt_font:
           
-//# 1627 "command.C.js"
+//# 1777 "command.C.js"
         break;
       case URxvt_version:
         if (query)
@@ -1482,92 +1645,107 @@ rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
                      rs[Rs_name], VERSION[0], VERSION[2],
                      resp);
         break;
-//# 1662 "command.C.js"
+//# 1812 "command.C.js"
     }
 }
-//# 1682 "command.C.js"
+//# 1832 "command.C.js"
 //int rxvt_term::privcases (int mode, unsigned long bit)
 rxvt_term.prototype.privcases =function(mode,   bit){
-    FUNCTION_DEBUG("privcases");
-    
+    ;
+    VAR_DEBUG("bit",bit);  
   var state; //int state;  
   if (mode == 's'){
-      SavedModes |= ( this.priv_modes & bit);
+      this.SavedModes |= ( this.priv_modes & bit);
       return -1;
     }
   else{
       if (mode == 'r')
-        state = (SavedModes & bit) ? 1 : 0;	
+        state = (this.SavedModes & bit) ? 1 : 0;	
       else
         state = (mode == 't') ? ! ( this.priv_modes & bit) : mode;
        this.set_privmode (bit, state);
     }
+    
+    //There are issues with char to int casts, this is hacky
+    if (state="l"){
+        state=0;
+    }
+    else if(state="h"){
+        state=1;
+    }
   return state;
 }
-  
-//# 1737 "command.C.js"
 //void rxvt_term::process_terminal_mode (int mode, int priv UN USED, unsigned int nargs, const int *arg) 
 rxvt_term.prototype.process_terminal_mode =function(mode,  __unused__,   nargs,    arg){
-FUNCTION_DEBUG("process_terminal_mode");
+;
+VAR_DEBUG("mode",mode);
+VAR_DEBUG("nargs", nargs);
+VAR_DEBUG("priv_modes", this.priv_modes)
+VAR_DEBUG("SavedModes", this.SavedModes)
+//;
+var cmode=chr(mode);
     var i, j; //  unsigned int i, j; 
     var state; //  int state; 
-  //FIXME I already made this
     var argtopriv  = [
-{ 1: (1<<6) },       // DECCKM
-                  { 2: (1<<18) },
-                  { 3: (1<<0) },          // DECCOLM
-                  { 4: (1<<17) }, // DECSCLM
-                  { 5: (1<<2) },       // DECSCNM
-                  { 6: (1<<3) },    // DECOM
-                  { 7: (1<<5) },     // DECAWM
-                 // 8: auto-repeat keys         // DECARM
-                  { 9: (1<<12) },
-                  // 18 end FF to printer after print screen 
-                  // 19 Print screen prints full screen/scorll region 
-                  { 25: (1<<11) }, // cnorm/cvvis/civis
-                  { 30: (1<<14) },
-                  { 35: (1<<10) },   // rxvt extension
-                 // 38: tektronix mode          // DECTEK
-{ 40: (1<<1) },
-                 // 41 xterm more fixes NYI
-                 // 45 margin bell NYI
-                 // 46 start logging
-                  { 47: (1<<4) },
-                  { 66: (1<<7) },       // DECPAM/DECPNM
-                  { 67: (1<<9) },   // DECBKM
-                  { 1000: (1<<13) },
-                  { 1002: (1<<20) },
-                  { 1003: (1<<21) },
-                  { 1010: (1<<15) }, // rxvt extension
-                  { 1011: (1<<16) }, // rxvt extension
-                 // 1035 enable modifiers for alt, numlock NYI
-                 // 1036 send ESC for meta keys NYI
-                 // 1037 send DEL for keypad delete NYI
-                  { 1047: (1<<4) },
-                 // 1048 save and restore cursor
-                  { 1049: (1<<4) }, 
-                 // 1051, 1052, 1060, 1061 keyboard emulation NYI
-                  { 2004: (1<<22) }
+                  {argval: 1,    bit:   (1<<6) },       // DECCKM
+                  {argval: 2,    bit:   (1<<18) },
+                  {argval: 3,    bit:   (1<<0) },          // DECCOLM
+                  {argval: 4,    bit:   (1<<17) }, // DECSCLM
+                  {argval: 5,    bit:   (1<<2) },       // DECSCNM
+                  {argval: 6,    bit:   (1<<3) },    // DECOM
+                  {argval: 7,    bit:   (1<<5) },     // DECAWM
+                 //argval: 8,    bit:   auto-repeat keys         // DECARM
+                  {argval: 9,    bit:   (1<<12) },
+                 //argval: 18,   bit:   end FF to printer after print screen 
+                 //argval: 19,   bit:   Print screen prints full screen/scorll region 
+                  {argval: 25,   bit:   (1<<11) }, // cnorm/cvvis/civis
+{ argval:30,          bit: (1<<14) },
+                  {argval: 35,   bit:   (1<<10) },   // rxvt extension
+                 //argval: 38,   bit:   tektronix mode          // DECTEK
+                  {argval: 40,   bit:   (1<<1) },
+                 //argval: 41,   bit:   xterm more fixes NYI
+                 //argval: 45,   bit:   margin bell NYI
+                 //argval: 46,   bit:   start logging
+                  {argval: 47,   bit:   (1<<4) },
+                  {argval: 66,   bit:   (1<<7) },       // DECPAM/DECPNM
+                  {argval: 67,   bit:   (1<<9) },   // DECBKM
+                  {argval: 1000, bit:   (1<<13) },
+                  {argval: 1002, bit:   (1<<20) },
+                  {argval: 1003, bit:   (1<<21) },
+                  {argval: 1010, bit:   (1<<15) }, // rxvt extension
+                  {argval: 1011, bit:   (1<<16) }, // rxvt extension
+                 //argval: 1035, bit:   enable modifiers for alt, numlock NYI
+                 //argval: 1036, bit:   send ESC for meta keys NYI
+                 //argval: 1037, bit:   send DEL for keypad delete NYI
+                  {argval: 1047, bit:   (1<<4) },
+                 //argval: 1048, bit:   save and restore cursor
+                  {argval: 1049, bit:   (1<<4) }, 
+                 //argval: 1051, bit:   1052, 1060, 1061 keyboard emulation NYI
+                  {argval: 2004, bit:   (1<<22) }
                       ];
   if (nargs == 0)
     return;
   
-  if (mode == 'l')
+  if (cmode == 'l')
     mode = 0;		
-  else if (mode == 'h')
+  else if (cmode == 'h')
     mode = 1;		
+VAR_DEBUG("modelo", mode)
   for (i = 0; i < nargs; i++){
       state = -1;
       
         //  for (j = 0; j < (sizeof (argtopriv)/sizeof (argtopriv[0])); j++)
       for (j = 0; j < argtopriv.length; j++)
         if (argtopriv[j].argval == arg[i]){
-            state = privcases (mode, argtopriv[j].bit);
+            state = this.privcases (cmode, argtopriv[j].bit);
+            VAR_DEBUG("argtopriv[j].bit",argtopriv[j].bit);
             break;
           }
       
+      VAR_DEBUG("ptm arg[i]", arg[i])
       switch (arg[i]){
           case 1048:		
+            CASE_DEBUG("case 1048:")
             if (this.option (Opt_secondaryScreen))
               if (mode == 0)
                 this.scr_cursor (RESTORE);
@@ -1575,55 +1753,72 @@ FUNCTION_DEBUG("process_terminal_mode");
                 this.scr_cursor (SAVE);
             break;
         }
+      VAR_DEBUG("state",state)
       if (state >= 0)
         
         switch (arg[i]){
               
             case 2:			
+            CASE_DEBUG("case 2:")
               
                this.set_privmode ((1<<18), 1);
               break;
             case 3:			
+                CASE_DEBUG("case 3:")
+                    VAR_DEBUG("priv_modes", this.priv_modes)
               if ( this.priv_modes & (1<<1))
                   set_widthheight ((state ? 132 : 80) * fwidth, 24 * fheight); 
               break;
             case 4:			
+                CASE_DEBUG("case 4:")
               this.set_option (Opt_jumpScroll, !state);
               break;
             case 5:			
+                CASE_DEBUG("case 5:")
               this.scr_rvideo_mode (state);
               break;
             case 6:			
+                CASE_DEBUG("case 6:")
               this.scr_relative_origin (state);
               break;
             case 7:			
+                CASE_DEBUG("case 7:")
               this.scr_autowrap (state);
               break;
             
             case 9:			
+              CASE_DEBUG("case 9:")
               if (state)		
                  this.priv_modes &= ~((1<<13)|(1<<20)|(1<<21));
               break;
             case 30:
+              CASE_DEBUG("case scrollBar_esc:")
               //maybe later
               
               break;
             case 25:		
+              CASE_DEBUG("case 25:")
               this.scr_cursor_visible (state);
               break;
             
+              CASE_DEBUG("case 35:")
             
+                  CASE_DEBUG("case 40:")
             case 47:		
+              CASE_DEBUG("case 47:")
               this.scr_change_screen (state);
               break;
             
             
             case 1000:		
+              CASE_DEBUG("case 1000:")
               if (state)		
                  this.priv_modes &= ~((1<<12)|(1<<20)|(1<<21));
               break;
             case 1002:
+                CASE_DEBUG("case 1002:")
             case 1003:
+                CASE_DEBUG("case 1003:")
               if (state){
                    this.priv_modes &= ~((1<<12)|(1<<13));
                    this.priv_modes &= arg[i] == 1003 ? ~(1<<20) : ~(1<<21);
@@ -1634,18 +1829,22 @@ FUNCTION_DEBUG("process_terminal_mode");
               vt_select_input ();
               break;
             case 1010:		
+                CASE_DEBUG("case 1010:")
               this.set_option (Opt_scrollTtyOutput, !state);
               break;
             case 1011:		
+                CASE_DEBUG("case 1011:")
               this.set_option (Opt_scrollTtyKeypress, state);
               break;
             case 1047:		
+                CASE_DEBUG("case 1047:")
               if (option (Opt_secondaryScreen))
                 if (!state)
                   this.scr_erase_screen (2);
               this.scr_change_screen (state);
               break;
             case 1049:		
+                CASE_DEBUG("case 1049:")
               if (option (Opt_secondaryScreen))
                 if (state)
                   this.scr_cursor (SAVE);
@@ -1660,10 +1859,12 @@ FUNCTION_DEBUG("process_terminal_mode");
               break;
           }
     }
+VAR_DEBUG("priv_modes", this.priv_modes)
+VAR_DEBUG("SavedModes", this.SavedModes)
 }
 //void rxvt_term::process_sgr_mode (unsigned int nargs, const int *arg) 
 rxvt_term.prototype.process_sgr_mode =function(nargs,    arg){
-    FUNCTION_DEBUG("process_sgr_mode");
+    ;
     
   var i; //unsigned int i; 
   var rendset; //short rendset; 
@@ -1776,23 +1977,23 @@ rxvt_term.prototype.process_sgr_mode =function(nargs,    arg){
             this.scr_color (Color_bg, Color_bg);
             break;
           //case 50: // not variable spacing
-//# 2078 "command.C.js"
+//# 2232 "command.C.js"
         }
     }
 }
 //void rxvt_term::process_graphics () 
 rxvt_term.prototype.process_graphics =function(){
-FUNCTION_DEBUG("process_graphics");
+;
   //FIXME causes an infintie loop  
-//# 2102 "command.C.js"
+//# 2256 "command.C.js"
 }
 //void rxvt_term::tt_printf (const char *fmt,...) 
 rxvt_term.prototype.tt_printf =function( fmt){
-FUNCTION_DEBUG("tt_printf");
+;
   console.log(fmt);
 }
     rxvt_term.prototype.tt_winch =function( ){
-    FUNCTION_DEBUG("tt_winch");
+        //;
     
       //console.log("tt_winch called, it does nothing ");
     }
@@ -1800,16 +2001,16 @@ FUNCTION_DEBUG("tt_printf");
    MAX_PTY_WRITE = 255; // minimum MAX_INPUT
 //void rxvt_term::tt_write (const char *data, unsigned int len) 
 rxvt_term.prototype.tt_write =function( data,   len){
-FUNCTION_DEBUG("tt_write");
+;
     if(    console){
         console.log(data);
     }
     
-//# 2163 "command.C.js"
+//# 2317 "command.C.js"
 }
 //void rxvt_term::pty_write () 
 rxvt_term.prototype.pty_write =function(){
-FUNCTION_DEBUG("pty_write");
+;
 //int written = write (pty->pty, v_buffer, min (v_buflen, MAX_PTY_WRITE)); 
  var written= write (pty.pty, v_buffer, Math.min((v_buflen),( MAX_PTY_WRITE))); 
   if (written > 0){
@@ -2073,8 +2274,8 @@ rxvt_term.prototype.scr_reset =function(){
            this.term_start = 0;
         }
       //free (old_buf);  
-      delete old_ta;
-      delete old_ra;
+      //delete old_ta;
+      //delete old_ra;
       (this.screen.cur.row)=(this.screen.cur.row) < ( 0) ? ( 0) : (this.screen.cur.row) > ( this.nrow - 1) ? ( this.nrow - 1) : (this.screen.cur.row);
       (this.screen.cur.col)=(this.screen.cur.col) < ( 0) ? ( 0) : (this.screen.cur.col) > (  this.ncol - 1) ? (  this.ncol - 1) : (this.screen.cur.col);
   }
@@ -3131,7 +3332,7 @@ rxvt_term.prototype.scr_remap_chars =function(){
 }
 //REWRITE:void rxvt_term::scr_recolour () 
 rxvt_term.prototype.scr_recolour =function(){ 
-//# 2260 "screen.C.js"
+//# 2261 "screen.C.js"
   //bgPixmap.apply () does not do the following : 
   this.scr_clear ();
   this.scr_touch (true);
@@ -3150,7 +3351,7 @@ rxvt_term.prototype.scr_clear =function( really){
 rxvt_term.prototype.scr_xor_rect =function( beg_row,  beg_col,  end_row,  end_col,  rstyle1,  rstyle2){ 
     //FIXME cstyle namespaces
     
-//# 2303 "screen.C.js"
+//# 2304 "screen.C.js"
 }
 //void rxvt_term::scr_xor_span (int beg_row, int beg_col, int end_row, int end_col, rend_t rstyle) 
 rxvt_term.prototype.scr_xor_span =function( beg_row,  beg_col,  end_row,  end_col,  rstyle){ 
@@ -3187,7 +3388,7 @@ rxvt_term.prototype.scr_reverse_selection =function(){
     rxvt_term.prototype.selection_check = function(check_more){
         return;
     }
-//# 2386 "screen.C.js"
+//# 2387 "screen.C.js"
 //REMOVED:void rxvt_term::paste (char *data, unsigned int len){ 
 //REMOVED:void rxvt_term::selection_paste (Window win, Atom prop, bool delete_prop) 
 //REMOVED:void rxvt_term::incr_cb (ev::timer &w, int revents){ 
@@ -3210,5 +3411,5 @@ rxvt_term.prototype.scr_reverse_selection =function(){
 //REMOVED:void rxvt_term::selection_send (const XSelectionRequestEvent &rq){ 
     //This is removed because ENABLE_OVERLAY is tied to iso-14755 which is a complicated standard that I wont be supporting
     //it can be read about here http://en.wikipedia.org/wiki/Unicode_input
-//# 2422 "screen.C.js"
+//# 2423 "screen.C.js"
 //# 3 "expand_both.h" 2

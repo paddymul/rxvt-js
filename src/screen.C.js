@@ -73,6 +73,10 @@ paddyaoue:          what does this line mean?
 paddyaoue:              line_t &qline = row_buf [row];
 dstillz: The address of the line_t qline is assigned to be row_buf[row].
 
+(fset 'case_debug
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([134217747 99 97 115 101 46 42 58 13 67108896 18 99 97 115 101 13 24 11 25 14 1 return 16 tab 67 65 83 69 95 68 69 66 85 71 40 34 89 backspace 25 34 41] 0 "%d")) arg)))
+
+
 */
 /*
  * This file handles _all_ screen updates and selections 

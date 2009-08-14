@@ -1,13 +1,11 @@
 
 var counter = 0;
-//if(!console){
-//    alert("you don't have firebug");
-
+if(!console){
 try{
-    console ={};
+    console ={log:function(){}};
 
 } catch(e) {}
-
+}
 function forward(num){
     counter += num;
     output_line(resp.slice(0,counter));
@@ -120,7 +118,7 @@ Animator.prototype = {
             console.log("outputting while already outputting");
         }
         this.is_outputting=true;
-        //console.log(str);
+        console.log(str);
         this.a.cmd_write(str, str.length);
         //this.a.scr_refresh();
         this.is_outputting=false;
