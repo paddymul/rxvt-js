@@ -51,7 +51,8 @@
 #include "rxvtperl.h"
 #include "version.h"
 #include "command.h"
-//#include <iostream.h>
+#include <iostream>
+
 #ifdef KEYSYM_RESOURCE
 # include "keyboard.h"
 #endif
@@ -1037,7 +1038,7 @@ rxvt_term::flush ()
 void
 rxvt_term::refresh_check ()
 {
-  FUNCTION_DEBUG("refresh_check ")
+  //FUNCTION_DEBUG("refresh_check ")
   if (want_refresh && !flush_ev.is_active ())
     flush_ev.start (1. / 60.); // refresh at max. 60 Hz normally
 
@@ -2665,8 +2666,8 @@ rxvt_term::process_escape_seq ()
 {
   FUNCTION_DEBUG("process_escape_seq ")
   unicode_t ch = cmd_getc ();
-  FUNCTION_DEBUG(" ch 2668")
-    //FUNCTION_DEBUG(39999);
+ 
+  FUNCTION_DEBUG(ch)
   if (priv_modes & PrivMode_vt52)
     {
       process_escape_vt52 (ch);

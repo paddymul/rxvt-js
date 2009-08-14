@@ -739,7 +739,7 @@ rxvt_term.prototype.process_escape_seq =function(){
     }
 
   var och=ord(ch);
-    FUNCTION_DEBUG(ch);
+    FUNCTION_DEBUG(och);
   switch (och){
         /* case 1:        do_tek_mode (); break; */
   case 35: //'#':
@@ -2226,7 +2226,7 @@ FUNCTION_DEBUG("tt_printf");
   console.log(fmt);
 }
     rxvt_term.prototype.tt_winch =function( ){
-    FUNCTION_DEBUG("tt_winch");
+        //FUNCTION_DEBUG("tt_winch");
     
       //console.log("tt_winch called, it does nothing ");
     }
