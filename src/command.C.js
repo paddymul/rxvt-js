@@ -1825,7 +1825,7 @@ rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
 //int rxvt_term::privcases (int mode, unsigned long bit)
 rxvt_term.prototype.privcases =function(mode,   bit){
     FUNCTION_DEBUG("privcases");
-    
+    VAR_DEBUG("bit",bit);  
   var state; //int state;  
 
   if (mode == 's'){
@@ -1881,65 +1881,65 @@ var rxvt_t_proto = {
 //void rxvt_term::process_terminal_mode (int mode, int priv UN USED, unsigned int nargs, const int *arg) 
 rxvt_term.prototype.process_terminal_mode =function(mode,  __unused__,   nargs,    arg){
 FUNCTION_DEBUG("process_terminal_mode");
-FUNCTION_DEBUG(mode);
-FUNCTION_DEBUG(nargs);
+VAR_DEBUG("mode",mode);
+VAR_DEBUG("nargs", nargs);
 //FUNCTION_DEBUG(arg);
-
+var cmode=chr(mode);
     var i, j; //  unsigned int i, j; 
     var state; //  int state; 
-  //FIXME I already made this
+
 
     var argtopriv  = [
-{ 1: PrivMode_aplCUR },       // DECCKM
-                  { 2: PrivMode_vt52 },
-                  { 3: PrivMode_132 },          // DECCOLM
-                  { 4: PrivMode_smoothScroll }, // DECSCLM
-                  { 5: PrivMode_rVideo },       // DECSCNM
-                  { 6: PrivMode_relOrigin },    // DECOM
-                  { 7: PrivMode_Autowrap },     // DECAWM
-                 // 8: auto-repeat keys         // DECARM
-                  { 9: PrivMode_MouseX10 },
-                  // 18 end FF to printer after print screen 
-                  // 19 Print screen prints full screen/scorll region 
-                  { 25: PrivMode_VisibleCursor }, // cnorm/cvvis/civis
+                  {argval: 1,    bit:   PrivMode_aplCUR },       // DECCKM
+                  {argval: 2,    bit:   PrivMode_vt52 },
+                  {argval: 3,    bit:   PrivMode_132 },          // DECCOLM
+                  {argval: 4,    bit:   PrivMode_smoothScroll }, // DECSCLM
+                  {argval: 5,    bit:   PrivMode_rVideo },       // DECSCNM
+                  {argval: 6,    bit:   PrivMode_relOrigin },    // DECOM
+                  {argval: 7,    bit:   PrivMode_Autowrap },     // DECAWM
+                 //argval: 8,    bit:   auto-repeat keys         // DECARM
+                  {argval: 9,    bit:   PrivMode_MouseX10 },
+                 //argval: 18,   bit:   end FF to printer after print screen 
+                 //argval: 19,   bit:   Print screen prints full screen/scorll region 
+                  {argval: 25,   bit:   PrivMode_VisibleCursor }, // cnorm/cvvis/civis
 #ifdef scrollBar_esc
-                  { scrollBar_esc: PrivMode_scrollBar },
+{ argval:scrollBar_esc,          bit: PrivMode_scrollBar },
 #endif
-                  { 35: PrivMode_ShiftKeys },   // rxvt extension
-                 // 38: tektronix mode          // DECTEK
-{ 40: PrivMode_132OK },
-                 // 41 xterm more fixes NYI
-                 // 45 margin bell NYI
-                 // 46 start logging
-                  { 47: PrivMode_Screen },
-                  { 66: PrivMode_aplKP },       // DECPAM/DECPNM
+                  {argval: 35,   bit:   PrivMode_ShiftKeys },   // rxvt extension
+                 //argval: 38,   bit:   tektronix mode          // DECTEK
+                  {argval: 40,   bit:   PrivMode_132OK },
+                 //argval: 41,   bit:   xterm more fixes NYI
+                 //argval: 45,   bit:   margin bell NYI
+                 //argval: 46,   bit:   start logging
+                  {argval: 47,   bit:   PrivMode_Screen },
+                  {argval: 66,   bit:   PrivMode_aplKP },       // DECPAM/DECPNM
 #ifndef NO_BACKSPACE_KEY
-                  { 67: PrivMode_BackSpace },   // DECBKM
+                  {argval: 67,   bit:   PrivMode_BackSpace },   // DECBKM
 #endif
-                  { 1000: PrivMode_MouseX11 },
-                  { 1002: PrivMode_MouseBtnEvent },
-                  { 1003: PrivMode_MouseAnyEvent },
-                  { 1010: PrivMode_TtyOutputInh }, // rxvt extension
-                  { 1011: PrivMode_Keypress }, // rxvt extension
-                 // 1035 enable modifiers for alt, numlock NYI
-                 // 1036 send ESC for meta keys NYI
-                 // 1037 send DEL for keypad delete NYI
-                  { 1047: PrivMode_Screen },
-                 // 1048 save and restore cursor
-                  { 1049: PrivMode_Screen }, /* xterm extension, clear screen on ti rather than te */
-                 // 1051, 1052, 1060, 1061 keyboard emulation NYI
-                  { 2004: PrivMode_BracketPaste }
+                  {argval: 1000, bit:   PrivMode_MouseX11 },
+                  {argval: 1002, bit:   PrivMode_MouseBtnEvent },
+                  {argval: 1003, bit:   PrivMode_MouseAnyEvent },
+                  {argval: 1010, bit:   PrivMode_TtyOutputInh }, // rxvt extension
+                  {argval: 1011, bit:   PrivMode_Keypress }, // rxvt extension
+                 //argval: 1035, bit:   enable modifiers for alt, numlock NYI
+                 //argval: 1036, bit:   send ESC for meta keys NYI
+                 //argval: 1037, bit:   send DEL for keypad delete NYI
+                  {argval: 1047, bit:   PrivMode_Screen },
+                 //argval: 1048, bit:   save and restore cursor
+                  {argval: 1049, bit:   PrivMode_Screen }, /* xterm extension, clear screen on ti rather than te */
+                 //argval: 1051, bit:   1052, 1060, 1061 keyboard emulation NYI
+                  {argval: 2004, bit:   PrivMode_BracketPaste }
                       ];
 
   if (nargs == 0)
     return;
 
   /* make lo/hi boolean */
-  if (mode == 'l')
+  if (cmode == 'l')
     mode = 0;		/* reset */
-  else if (mode == 'h')
+  else if (cmode == 'h')
     mode = 1;		/* set */
-
+VAR_DEBUG("modelo", mode)
   for (i = 0; i < nargs; i++){
       state = -1;
 
@@ -1948,19 +1948,23 @@ FUNCTION_DEBUG(nargs);
       for (j = 0; j < argtopriv.length; j++)
 
         if (argtopriv[j].argval == arg[i]){
-            state = privcases (mode, argtopriv[j].bit);
+            state = this.privcases (cmode, argtopriv[j].bit);
+            VAR_DEBUG("argtopriv[j].bit",argtopriv[j].bit);
             break;
           }
 
       /* extra handling for values with state unkept  */
+      VAR_DEBUG("ptm arg[i]", arg[i])
       switch (arg[i]){
 #if ENABLE_STYLES
           case 1021:
+              CASE_DEBUG("case 1021:")
               this.set_option (Opt_intensityStyles, mode); 
               this.scr_touch (true);
             break;
 #endif
           case 1048:		/* alternative cursor save */
+            CASE_DEBUG("case 1048:")
             if (this.option (Opt_secondaryScreen))
               if (mode == 0)
                 this.scr_cursor (RESTORE);
@@ -1974,6 +1978,7 @@ FUNCTION_DEBUG(nargs);
         switch (arg[i]){
               /* case 1:	- application cursor keys */
             case 2:			/* VT52 mode */
+            CASE_DEBUG("case 2:")
               /* oddball mode.  should be set regardless of set/reset
                * parameter.  Return from VT52 mode with an ESC < from 
                * within VT52 mode 
@@ -1981,28 +1986,35 @@ FUNCTION_DEBUG(nargs);
                this.set_privmode (PrivMode_vt52, 1);
               break;
             case 3:			/* 80/132 */
+                CASE_DEBUG("case 3:")
               if ( this.priv_modes & PrivMode_132OK)
                   set_widthheight ((state ? 132 : 80) * fwidth, 24 * fheight); 
               break;
             case 4:			/* smooth scrolling */
+                CASE_DEBUG("case 4:")
               this.set_option (Opt_jumpScroll, !state);
               break;
             case 5:			/* reverse video */
+                CASE_DEBUG("case 5:")
               this.scr_rvideo_mode (state);
               break;
             case 6:			/* relative/absolute origins  */
+                CASE_DEBUG("case 6:")
               this.scr_relative_origin (state);
               break;
             case 7:			/* autowrap */
+                CASE_DEBUG("case 7:")
               this.scr_autowrap (state);
               break;
             /* case 8:	- auto repeat, can't do on a per window basis */
             case 9:			/* X10 mouse reporting */
+              CASE_DEBUG("case 9:")
               if (state)		/* orthogonal */
                  this.priv_modes &= ~(PrivMode_MouseX11|PrivMode_MouseBtnEvent|PrivMode_MouseAnyEvent);
               break;
 #ifdef scrollBar_esc
             case scrollBar_esc:
+              CASE_DEBUG("case scrollBar_esc:")
               //maybe later
               /*              if (scrollBar.map (state)){
                   resize_all_windows (0, 0, 0);
@@ -2012,21 +2024,28 @@ FUNCTION_DEBUG(nargs);
               break;
 #endif
             case 25:		/* visible/invisible cursor */
+              CASE_DEBUG("case 25:")
               this.scr_cursor_visible (state);
               break;
             /* case 35:	- shift keys */
+              CASE_DEBUG("case 35:")
             /* case 40:	- 80 <--> 132 mode */
+                  CASE_DEBUG("case 40:")
             case 47:		/* secondary screen */
+              CASE_DEBUG("case 47:")
               this.scr_change_screen (state);
               break;
             /* case 66:	- application key pad */
             /* case 67:	- backspace key */
             case 1000:		/* X11 mouse reporting */
+              CASE_DEBUG("case 1000:")
               if (state)		/* orthogonal */
                  this.priv_modes &= ~(PrivMode_MouseX10|PrivMode_MouseBtnEvent|PrivMode_MouseAnyEvent);
               break;
             case 1002:
+                CASE_DEBUG("case 1002:")
             case 1003:
+                CASE_DEBUG("case 1003:")
               if (state){
                    this.priv_modes &= ~(PrivMode_MouseX10|PrivMode_MouseX11);
                    this.priv_modes &= arg[i] == 1003 ? ~PrivMode_MouseBtnEvent : ~PrivMode_MouseAnyEvent;
@@ -2038,12 +2057,15 @@ FUNCTION_DEBUG(nargs);
               vt_select_input ();
               break;
             case 1010:		/* scroll to bottom on TTY output inhibit */
+                CASE_DEBUG("case 1010:")
               this.set_option (Opt_scrollTtyOutput, !state);
               break;
             case 1011:		/* scroll to bottom on key press */
+                CASE_DEBUG("case 1011:")
               this.set_option (Opt_scrollTtyKeypress, state);
               break;
             case 1047:		/* secondary screen w/ clearing last */
+                CASE_DEBUG("case 1047:")
               if (option (Opt_secondaryScreen))
                 if (!state)
                   this.scr_erase_screen (2);
@@ -2051,6 +2073,7 @@ FUNCTION_DEBUG(nargs);
               this.scr_change_screen (state);
               break;
             case 1049:		/* secondary screen w/ clearing first */
+                CASE_DEBUG("case 1049:")
               if (option (Opt_secondaryScreen))
                 if (state)
                   this.scr_cursor (SAVE);

@@ -3731,6 +3731,7 @@ int
 rxvt_term::privcases (int mode, unsigned long bit)
 {
   FUNCTION_DEBUG("privcases ")
+    VAR_DEBUG("bit",bit);  
   int state;
 
   if (mode == 's')
@@ -3817,7 +3818,7 @@ VAR_DEBUG("nargs", nargs);
     mode = 0;		/* reset */
   else if (mode == 'h')
     mode = 1;		/* set */
-
+VAR_DEBUG("modelo", mode)
   for (i = 0; i < nargs; i++)
     {
       state = -1;
@@ -3827,20 +3828,24 @@ VAR_DEBUG("nargs", nargs);
         if (argtopriv[j].argval == arg[i])
           {
             state = privcases (mode, argtopriv[j].bit);
+            VAR_DEBUG("argtopriv[j].bit",argtopriv[j].bit);
             break;
           }
 
       /* extra handling for values with state unkept  */
+      VAR_DEBUG("ptm arg[i]", arg[i])
       switch (arg[i])
         {
 #if ENABLE_STYLES
           case 1021:
+            CASE_DEBUG("case 1021:")
             set_option (Opt_intensityStyles, mode);
 
             scr_touch (true);
             break;
 #endif
           case 1048:		/* alternative cursor save */
+            CASE_DEBUG("case 1048:")
             if (option (Opt_secondaryScreen))
               if (mode == 0)
                 scr_cursor (RESTORE);
@@ -3855,6 +3860,7 @@ VAR_DEBUG("nargs", nargs);
           {
               /* case 1:	- application cursor keys */
             case 2:			/* VT52 mode */
+              CASE_DEBUG("case 2:")
               /* oddball mode.  should be set regardless of set/reset
                * parameter.  Return from VT52 mode with an ESC < from
                * within VT52 mode
@@ -3862,28 +3868,35 @@ VAR_DEBUG("nargs", nargs);
               set_privmode (PrivMode_vt52, 1);
               break;
             case 3:			/* 80/132 */
+              CASE_DEBUG("case 3:")
               if (priv_modes & PrivMode_132OK)
                 set_widthheight ((state ? 132 : 80) * fwidth, 24 * fheight);
               break;
             case 4:			/* smooth scrolling */
+              CASE_DEBUG("case 4:")
               set_option (Opt_jumpScroll, !state);
               break;
             case 5:			/* reverse video */
+              CASE_DEBUG("case 5:")
               scr_rvideo_mode (state);
               break;
             case 6:			/* relative/absolute origins  */
+              CASE_DEBUG("case 6:")
               scr_relative_origin (state);
               break;
             case 7:			/* autowrap */
+              CASE_DEBUG("case 7:")
               scr_autowrap (state);
               break;
             /* case 8:	- auto repeat, can't do on a per window basis */
             case 9:			/* X10 mouse reporting */
+                CASE_DEBUG("case 9:")
               if (state)		/* orthogonal */
                 priv_modes &= ~(PrivMode_MouseX11|PrivMode_MouseBtnEvent|PrivMode_MouseAnyEvent);
               break;
 #ifdef scrollBar_esc
             case scrollBar_esc:
+              CASE_DEBUG("case scrollBar_esc:")
               if (scrollBar.map (state))
                 {
                   resize_all_windows (0, 0, 0);
@@ -3892,21 +3905,26 @@ VAR_DEBUG("nargs", nargs);
               break;
 #endif
             case 25:		/* visible/invisible cursor */
+              CASE_DEBUG("case 25:")
               scr_cursor_visible (state);
               break;
             /* case 35:	- shift keys */
             /* case 40:	- 80 <--> 132 mode */
             case 47:		/* secondary screen */
+                CASE_DEBUG("case 47:")
               scr_change_screen (state);
               break;
             /* case 66:	- application key pad */
             /* case 67:	- backspace key */
             case 1000:		/* X11 mouse reporting */
+                CASE_DEBUG("case 1000:")
               if (state)		/* orthogonal */
                 priv_modes &= ~(PrivMode_MouseX10|PrivMode_MouseBtnEvent|PrivMode_MouseAnyEvent);
               break;
             case 1002:
+              CASE_DEBUG("case 1002:")
             case 1003:
+              CASE_DEBUG("case 1003:")
               if (state)
                 {
                   priv_modes &= ~(PrivMode_MouseX10|PrivMode_MouseX11);
@@ -3919,12 +3937,15 @@ VAR_DEBUG("nargs", nargs);
               vt_select_input ();
               break;
             case 1010:		/* scroll to bottom on TTY output inhibit */
+              CASE_DEBUG("case 1010:")
               set_option (Opt_scrollTtyOutput, !state);
               break;
             case 1011:		/* scroll to bottom on key press */
+              CASE_DEBUG("case 1011:")
               set_option (Opt_scrollTtyKeypress, state);
               break;
             case 1047:		/* secondary screen w/ clearing last */
+              CASE_DEBUG("case 1047:")
               if (option (Opt_secondaryScreen))
                 if (!state)
                   scr_erase_screen (2);
@@ -3932,6 +3953,7 @@ VAR_DEBUG("nargs", nargs);
               scr_change_screen (state);
               break;
             case 1049:		/* secondary screen w/ clearing first */
+              CASE_DEBUG("case 1049:")
               if (option (Opt_secondaryScreen))
                 if (state)
                   scr_cursor (SAVE);
