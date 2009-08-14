@@ -931,8 +931,10 @@ FUNCTION_DEBUG("process_csi_seq");
   priv = 0;
   ch = this.cmd_getc ();
   och = ord(ch);
+  FUNCTION_DEBUG(ch)
   if ((ch >= '<' && ch <= '?') || ch == '!'){
       /* '<' '=' '>' '?' '!' */
+      FUNCTION_DEBUG("setting priv")
       priv = ch;
       ch = this.cmd_getc ();
       och = ord(ch);
@@ -943,6 +945,8 @@ FUNCTION_DEBUG("process_csi_seq");
   for (n = -1; och < CSI_ICH; ){
     
       if (isdigit (ch)){
+          FUNCTION_DEBUG("isdigit csi")
+          FUNCTION_DEBUG(och)
         if (n < 0){
           n = och - ord('0');}
         else{
@@ -1848,7 +1852,9 @@ var rxvt_t_proto = {
 //void rxvt_term::process_terminal_mode (int mode, int priv UN USED, unsigned int nargs, const int *arg) 
 rxvt_term.prototype.process_terminal_mode =function(mode,  __unused__,   nargs,    arg){
 FUNCTION_DEBUG("process_terminal_mode");
-
+FUNCTION_DEBUG(mode);
+FUNCTION_DEBUG(nargs);
+FUNCTION_DEBUG(arg);
 
     var i, j; //  unsigned int i, j; 
     var state; //  int state; 

@@ -2862,9 +2862,11 @@ rxvt_term::process_csi_seq ()
 
   priv = 0;
   ch = cmd_getc ();
+  FUNCTION_DEBUG(ch)
   if ((ch >= '<' && ch <= '?') || ch == '!')
     {
       /* '<' '=' '>' '?' '!' */
+      FUNCTION_DEBUG("setting priv")
       priv = ch;
       ch = cmd_getc ();
     }
@@ -2874,6 +2876,8 @@ rxvt_term::process_csi_seq ()
     {
       if (isdigit (ch))
         {
+          FUNCTION_DEBUG("isdigit csi")
+          FUNCTION_DEBUG(ch)
           if (n < 0)
             n = ch - '0';
           else
@@ -3747,6 +3751,11 @@ void
 rxvt_term::process_terminal_mode (int mode, int priv UNUSED, unsigned int nargs, const int *arg)
 {
   FUNCTION_DEBUG("process_terminal_mode ")
+    FUNCTION_DEBUG(mode)
+    FUNCTION_DEBUG(nargs)
+    FUNCTION_DEBUG(arg)
+
+
   unsigned int i, j;
   int state;
 
