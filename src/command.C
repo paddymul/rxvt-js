@@ -2520,47 +2520,61 @@ rxvt_term::process_nonprinting (unicode_t ch)
   switch (ch)
     {
       case C0_ESC:
+        CASE_DEBUG("case C0_ESC:")
         process_escape_seq ();
         break;
       case C0_ENQ:	/* terminal Status */
+        CASE_DEBUG("case C0_ENQ:")
         if (rs[Rs_answerbackstring])
           tt_write (rs [Rs_answerbackstring], strlen (rs [Rs_answerbackstring]));
         else
           tt_write (VT100_ANS, strlen (VT100_ANS));
         break;
       case C0_BEL:	/* bell */
+        CASE_DEBUG("case C0_BEL:")
         scr_bell ();
         break;
       case C0_BS:		/* backspace */
+        CASE_DEBUG("case C0_BS:")
         scr_backspace ();
         break;
       case C0_HT:		/* tab */
+        CASE_DEBUG("case C0_HT:")
         scr_tab (1);
         break;
       case C0_CR:		/* carriage return */
+        CASE_DEBUG("case C0_CR:")
         scr_gotorc (0, 0, R_RELATIVE);
         break;
       case C0_VT:		/* vertical tab, form feed */
+        CASE_DEBUG("case C0_VT:")
       case C0_FF:
+        CASE_DEBUG("case C0_FF:")
       case C0_LF:		/* line feed */
+        CASE_DEBUG("case C0_LF:")
         scr_index (UP);
         break;
       case C0_SO:		/* shift out - acs */
+        CASE_DEBUG("case C0_SO:")
         scr_charset_choose (1);
         break;
       case C0_SI:		/* shift in - acs */
+        CASE_DEBUG("case C0_SI:")
         scr_charset_choose (0);
         break;
 
 #ifdef EIGHT_BIT_CONTROLS
       // 8-bit controls
       case 0x90: 	/* DCS */
+        CASE_DEBUG("case 0x90:")
         process_dcs_seq ();
         break;
       case 0x9b: 	/* CSI */
+        CASE_DEBUG("case 0x9b:")
         process_csi_seq ();
         break;
       case 0x9d: 	/* OSC */
+        CASE_DEBUG("case 0x9d:")
         process_osc_seq ();
         break;
 #endif
@@ -2579,30 +2593,39 @@ rxvt_term::process_escape_vt52 (unicode_t ch)
   switch (ch)
     {
       case 'A':		/* cursor up */
+        CASE_DEBUG("case 'A':")
         scr_gotorc (-1, 0, R_RELATIVE | C_RELATIVE);
         break;
       case 'B':		/* cursor down */
+        CASE_DEBUG("case 'B':")
         scr_gotorc (1, 0, R_RELATIVE | C_RELATIVE);
         break;
       case 'C':		/* cursor right */
+        CASE_DEBUG("case 'C':")
         scr_gotorc (0, 1, R_RELATIVE | C_RELATIVE);
         break;
       case 'D':		/* cursor left */
+        CASE_DEBUG("case 'D':")
         scr_gotorc (0, -1, R_RELATIVE | C_RELATIVE);
         break;
       case 'H':		/* cursor home */
+        CASE_DEBUG("case 'H':")
         scr_gotorc (0, 0, 0);
         break;
       case 'I':		/* cursor up and scroll down if needed */
+        CASE_DEBUG("case 'I':")
         scr_index (DN);
         break;
       case 'J':		/* erase to end of screen */
+        CASE_DEBUG("case 'J':")
         scr_erase_screen (0);
         break;
       case 'K':		/* erase to end of line */
+        CASE_DEBUG("case 'K':")
         scr_erase_line (0);
         break;
       case 'Y':         	/* move to specified row and col */
+        CASE_DEBUG("case 'Y':")
         /* full command is 'ESC Y row col' where row and col
          * are encoded by adding 32 and sending the ascii
          * character.  eg. SPACE = 0, '+' = 13, '0' = 18,
@@ -2612,17 +2635,23 @@ rxvt_term::process_escape_vt52 (unicode_t ch)
         scr_gotorc (row, col, 0);
         break;
       case 'Z':		/* identify the terminal type */
+        CASE_DEBUG("case 'Z':")
         tt_printf ("\033/Z");	/* I am a VT100 emulating a VT52 */
         break;
       case '<':		/* turn off VT52 mode */
+        CASE_DEBUG("case '<':")
         set_privmode (PrivMode_vt52, 0);
         break;
       case 'F':     	/* use special graphics character set */
+        CASE_DEBUG("case 'F':")
       case 'G':           /* use regular character set */
+        CASE_DEBUG("case 'G':")
         /* unimplemented */
         break;
       case '=':     	/* use alternate keypad mode */
+        CASE_DEBUG("case '=':")
       case '>':           /* use regular keypad mode */
+        CASE_DEBUG("case '>':")
         /* unimplemented */
         break;
     }
@@ -2647,51 +2676,65 @@ rxvt_term::process_escape_seq ()
     {
         /* case 1:        do_tek_mode (); break; */
       case '#':
+        CASE_DEBUG("case '#':")
         if (cmd_getc () == '8')
           scr_E ();
         break;
       case '(':
+        CASE_DEBUG("case '(':")
         scr_charset_set (0, (unsigned int)cmd_getc ());
         break;
       case ')':
+        CASE_DEBUG("case ')':")
         scr_charset_set (1, (unsigned int)cmd_getc ());
         break;
       case '*':
+        CASE_DEBUG("case '*':")
         scr_charset_set (2, (unsigned int)cmd_getc ());
         break;
       case '+':
+        CASE_DEBUG("case '+':")
         scr_charset_set (3, (unsigned int)cmd_getc ());
         break;
 #if !ENABLE_MINIMAL
       case '6':
+        CASE_DEBUG("case '6':")
         scr_backindex ();
         break;
 #endif
       case '7':
+        CASE_DEBUG("case '7':")
         scr_cursor (SAVE);
         break;
       case '8':
+        CASE_DEBUG("case '8':")
         scr_cursor (RESTORE);
         break;
 #if !ENABLE_MINIMAL
       case '9':
+        CASE_DEBUG("case '9':")
         scr_forwardindex ();
         break;
 #endif
       case '=':
+        CASE_DEBUG("case '=':")
       case '>':
+        CASE_DEBUG("case '>':")
         set_privmode (PrivMode_aplKP, ch == '=');
         break;
 
       case C1_40:
+        CASE_DEBUG("case C1_40:")
         cmd_getc ();
         break;
       case C1_44:
+        CASE_DEBUG("case C1_44:")
         scr_index (UP);
         break;
 
         /* 8.3.87: NEXT LINE */
       case C1_NEL:		/* ESC E */
+        CASE_DEBUG("case C1_NEL:")
         {
           wchar_t nlcr[] = { C0_LF, C0_CR };
           scr_add_lines (nlcr, sizeof (nlcr) / sizeof (nlcr [0]), 1);
@@ -2700,47 +2743,57 @@ rxvt_term::process_escape_seq ()
 
         /* kidnapped escape sequence: Should be 8.3.48 */
       case C1_ESA:		/* ESC G */
+        CASE_DEBUG("case C1_ESA:")
         process_graphics ();
         break;
 
         /* 8.3.63: CHARACTER TABULATION SET */
       case C1_HTS:		/* ESC H */
+        CASE_DEBUG("case C1_HTS:")
         scr_set_tab (1);
         break;
 
         /* 8.3.105: REVERSE LINE FEED */
       case C1_RI:			/* ESC M */
+        CASE_DEBUG("case C1_RI:")
         scr_index (DN);
         break;
 
         /* 8.3.142: SINGLE-SHIFT TWO */
       /*case C1_SS2: scr_single_shift (2);   break; */
+        CASE_DEBUG("case C1_SS2:")
 
         /* 8.3.143: SINGLE-SHIFT THREE */
       /*case C1_SS3: scr_single_shift (3);   break; */
+          CASE_DEBUG("case C1_SS3:")
 
         /* 8.3.27: DEVICE CONTROL STRING */
       case C1_DCS:		/* ESC P */
+          CASE_DEBUG("case C1_DCS:")
         process_dcs_seq ();
         break;
 
         /* 8.3.110: SINGLE CHARACTER INTRODUCER */
       case C1_SCI:		/* ESC Z */
+        CASE_DEBUG("case C1_SCI:")
         tt_write (ESCZ_ANSWER, sizeof (ESCZ_ANSWER) - 1);
         break;			/* steal obsolete ESC [ c */
 
         /* 8.3.16: CONTROL SEQUENCE INTRODUCER (CSI) */
       case C1_CSI:		/* ESC [ */
+        CASE_DEBUG("case C1_CSI:")
         process_csi_seq ();
         break;
 
         /* 8.3.90: OPERATING SYSTEM COMMAND (OSC) */
       case C1_OSC:		/* ESC ] */
+        CASE_DEBUG("case C1_OSC:")
         process_osc_seq ();
         break;
 
         /* 8.3.106: RESET TO INITIAL STATE (RIS) */
       case 'c':
+        CASE_DEBUG("case 'c':")
         mbstate.reset ();
         scr_poweron ();
         scrollBar.show (1);
@@ -2748,11 +2801,13 @@ rxvt_term::process_escape_seq ()
 
         /* 8.3.79: LOCKING-SHIFT TWO (see ISO2022) */
       case 'n':
+        CASE_DEBUG("case 'n':")
         scr_charset_choose (2);
         break;
 
         /* 8.3.81: LOCKING-SHIFT THREE (see ISO2022) */
       case 'o':
+        CASE_DEBUG("case 'o':")
         scr_charset_choose (3);
         break;
     }
@@ -2854,6 +2909,7 @@ rxvt_term::process_csi_seq ()
       switch (priv)
         {
           case '>':
+            CASE_DEBUG("case '>':")
             if (ch == CSI_DA)	/* secondary device attributes */
               {
                 // first parameter is normally 0 for vt100, 1 for vt220, 'R' for rxvt,
@@ -2868,11 +2924,13 @@ rxvt_term::process_csi_seq ()
             break;
 
           case '?':
+            CASE_DEBUG("case '?':")
             if (ch == 'h' || ch == 'l' || ch == 'r' || ch == 's' || ch == 't')
               process_terminal_mode (ch, priv, nargs, arg);
             break;
 
           case '!':
+            CASE_DEBUG("case '!':")
             if (ch == CSI_70)
               {
                 /* DECSTR: soft terminal reset, used by our terminfo since 9.06 */
@@ -2897,12 +2955,15 @@ rxvt_term::process_csi_seq ()
          */
 #ifdef PRINTPIPE
       case CSI_MC:		/* 8.3.83: (0) MEDIA COPY */
+        CASE_DEBUG("case CSI_MC:		/* 8.3.83:")
         switch (arg[0])
           {
             case 0:			/* initiate transfer to primary aux device */
+              CASE_DEBUG("case 0:")
               scr_printscreen (0);
               break;
             case 5:			/* start relay to primary aux device */
+              CASE_DEBUG("case 5:")
               process_print_pipe ();
               break;
           }
@@ -2910,16 +2971,22 @@ rxvt_term::process_csi_seq ()
 #endif
 
       case CSI_CUU:		/* 8.3.22: (1) CURSOR UP */
+        CASE_DEBUG("case CSI_CUU:		/* 8.3.22:")
       case CSI_VPR:		/* 8.3.161: (1) LINE POSITION FORWARD */
+        CASE_DEBUG("case CSI_VPR:		/* 8.3.161:")
         arg[0] = -arg[0];
         /* FALLTHROUGH */
       case CSI_CUD:		/* 8.3.19: (1) CURSOR DOWN */
+        CASE_DEBUG("case CSI_CUD:		/* 8.3.19:")
       case CSI_VPB:		/* 8.3.160: (1) LINE POSITION BACKWARD */
+        CASE_DEBUG("case CSI_VPB:		/* 8.3.160:")
         scr_gotorc (arg[0], 0, RELATIVE);
         break;
 
       case CSI_CUB:		/* 8.3.18: (1) CURSOR LEFT */
+        CASE_DEBUG("case CSI_CUB:		/* 8.3.18:")
       case CSI_HPB: 		/* 8.3.59: (1) CHARACTER POSITION BACKWARD */
+        CASE_DEBUG("case CSI_HPB: 		/* 8.3.59:")
 #ifdef ISO6429
         arg[0] = -arg[0];
 #else				/* emulate common DEC VTs */
@@ -2927,7 +2994,9 @@ rxvt_term::process_csi_seq ()
 #endif
         /* FALLTHROUGH */
       case CSI_CUF:		/* 8.3.20: (1) CURSOR RIGHT */
+        CASE_DEBUG("case CSI_CUF:		/* 8.3.20:")
       case CSI_HPR:		/* 8.3.60: (1) CHARACTER POSITION FORWARD */
+        CASE_DEBUG("case CSI_HPR:		/* 8.3.60:")
 #ifdef ISO6429
         scr_gotorc (0, arg[0], RELATIVE);
 #else				/* emulate common DEC VTs */
@@ -2936,131 +3005,172 @@ rxvt_term::process_csi_seq ()
         break;
 
       case CSI_CPL:		/* 8.3.13: (1) CURSOR PRECEDING LINE */
+        CASE_DEBUG("case CSI_CPL:		/* 8.3.13:")
         arg[0] = -arg[0];
         /* FALLTHROUGH */
       case CSI_CNL:		/* 8.3.12: (1) CURSOR NEXT LINE */
+        CASE_DEBUG("case CSI_CNL:		/* 8.3.12:")
         scr_gotorc (arg[0], 0, R_RELATIVE);
         break;
 
       case CSI_CHA:		/* 8.3.9: (1) CURSOR CHARACTER ABSOLUTE */
+        CASE_DEBUG("case CSI_CHA:		/* 8.3.9:")
       case CSI_HPA:		/* 8.3.58: (1) CURSOR POSITION ABSOLUTE */
+        CASE_DEBUG("case CSI_HPA:		/* 8.3.58:")
         scr_gotorc (0, arg[0] - 1, R_RELATIVE);
         break;
 
       case CSI_VPA:		/* 8.3.159: (1) LINE POSITION ABSOLUTE */
+        CASE_DEBUG("case CSI_VPA:		/* 8.3.159:")
         scr_gotorc (arg[0] - 1, 0, C_RELATIVE);
         break;
 
       case CSI_CUP:		/* 8.3.21: (1,1) CURSOR POSITION */
+        CASE_DEBUG("case CSI_CUP:		/* 8.3.21:")
       case CSI_HVP:		/* 8.3.64: (1,1) CHARACTER AND LINE POSITION */
+        CASE_DEBUG("case CSI_HVP:		/* 8.3.64:")
         scr_gotorc (arg[0] - 1, nargs < 2 ? 0 : (arg[1] - 1), 0);
         break;
 
       case CSI_CBT:		/* 8.3.7: (1) CURSOR BACKWARD TABULATION */
+        CASE_DEBUG("case CSI_CBT:		/* 8.3.7:")
         arg[0] = -arg[0];
         /* FALLTHROUGH */
       case CSI_CHT:		/* 8.3.10: (1) CURSOR FORWARD TABULATION */
+        CASE_DEBUG("case CSI_CHT:		/* 8.3.10:")
         scr_tab (arg[0]);
         break;
 
       case CSI_ED:		/* 8.3.40: (0) ERASE IN PAGE */
+        CASE_DEBUG("case CSI_ED:		/* 8.3.40:")
         scr_erase_screen (arg[0]);
         break;
 
       case CSI_EL:		/* 8.3.42: (0) ERASE IN LINE */
+        CASE_DEBUG("case CSI_EL:		/* 8.3.42:")
         scr_erase_line (arg[0]);
         break;
 
       case CSI_ICH:		/* 8.3.65: (1) INSERT CHARACTER */
+        CASE_DEBUG("case CSI_ICH:		/* 8.3.65:")
         scr_insdel_chars (arg[0], INSERT);
         break;
 
       case CSI_IL:		/* 8.3.68: (1) INSERT LINE */
+        CASE_DEBUG("case CSI_IL:		/* 8.3.68:")
         scr_insdel_lines (arg[0], INSERT);
         break;
 
       case CSI_DL:		/* 8.3.33: (1) DELETE LINE */
+        CASE_DEBUG("case CSI_DL:		/* 8.3.33:")
         scr_insdel_lines (arg[0], DELETE);
         break;
 
       case CSI_ECH:		/* 8.3.39: (1) ERASE CHARACTER */
+        CASE_DEBUG("case CSI_ECH:		/* 8.3.39:")
         scr_insdel_chars (arg[0], ERASE);
         break;
 
       case CSI_DCH:		/* 8.3.26: (1) DELETE CHARACTER */
+        CASE_DEBUG("case CSI_DCH:		/* 8.3.26:")
         scr_insdel_chars (arg[0], DELETE);
         break;
 
       case CSI_SD:		/* 8.3.114: (1) SCROLL DOWN */
+        CASE_DEBUG("case CSI_SD:		/* 8.3.114:")
         arg[0] = -arg[0];
         /* FALLTHROUGH */
       case CSI_SU:		/* 8.3.148: (1) SCROLL UP */
+        CASE_DEBUG("case CSI_SU:		/* 8.3.148:")
         scr_scroll_text (screen.tscroll, screen.bscroll, arg[0]);
         break;
 
       case CSI_DA:		/* 8.3.24: (0) DEVICE ATTRIBUTES */
+        CASE_DEBUG("case CSI_DA:		/* 8.3.24:")
         tt_write (VT100_ANS, sizeof (VT100_ANS) - 1);
         break;
 
       case CSI_SGR:		/* 8.3.118: (0) SELECT GRAPHIC RENDITION */
+        CASE_DEBUG("case CSI_SGR:		/* 8.3.118:")
         process_sgr_mode (nargs, arg);
         break;
 
       case CSI_DSR:		/* 8.3.36: (0) DEVICE STATUS REPORT */
+        CASE_DEBUG("case CSI_DSR:		/* 8.3.36:")
         switch (arg[0])
           {
             case 5:			/* DSR requested */
+              CASE_DEBUG("case 5:")
               tt_printf ("\033[0n");
               break;
             case 6:			/* CPR requested */
+              CASE_DEBUG("case 6:")
               scr_report_position ();
               break;
             case 7:			/* unofficial extension */
+              CASE_DEBUG("case 7:")
               if (option (Opt_insecure))
                 tt_printf ("%-.250s\012", rs[Rs_display_name]);
               break;
             case 8:			/* unofficial extension */
+              CASE_DEBUG("case 8:")
               process_xterm_seq (XTerm_title, RESNAME "-" VERSION, CHAR_ST);
               break;
           }
         break;
 
       case CSI_TBC:		/* 8.3.155: (0) TABULATION CLEAR */
+        CASE_DEBUG("case CSI_TBC:		/* 8.3.155:")
         switch (arg[0])
           {
             case 0:			/* char tab stop cleared at active position */
+              CASE_DEBUG("case 0:")
               scr_set_tab (0);
               break;
               /* case 1: */		/* line tab stop cleared in active line */
+              CASE_DEBUG("case 1:")
               /* case 2: */		/* char tab stops cleared in active line */
+                CASE_DEBUG("case 2:")
             case 3:			/* all char tab stops are cleared */
+                CASE_DEBUG("case 3:")
               /* case 4: */		/* all line tab stops are cleared */
+                CASE_DEBUG("case 4:")
             case 5:			/* all tab stops are cleared */
+                CASE_DEBUG("case 5:")
               scr_set_tab (-1);
               break;
           }
         break;
 
       case CSI_CTC:		/* 8.3.17: (0) CURSOR TABULATION CONTROL */
+        CASE_DEBUG("case CSI_CTC:		/* 8.3.17:")
         switch (arg[0])
           {
             case 0:			/* char tab stop set at active position */
+              CASE_DEBUG("case 0:")
               scr_set_tab (1);
               break;		/* = ESC H */
               /* case 1: */		/* line tab stop set at active line */
+              CASE_DEBUG("case 1:")
             case 2:			/* char tab stop cleared at active position */
+                CASE_DEBUG("case 2:")
               scr_set_tab (0);
               break;		/* = ESC [ 0 g */
               /* case 3: */		/* line tab stop cleared at active line */
+              CASE_DEBUG("case 3:")
               /* case 4: */		/* char tab stops cleared at active line */
+                CASE_DEBUG("case 4:")
             case 5:			/* all char tab stops are cleared */
+                CASE_DEBUG("case 5:")
               scr_set_tab (-1);
               break;		/* = ESC [ 3 g */
               /* case 6: */		/* all line tab stops are cleared */
+              CASE_DEBUG("case 6:")
           }
         break;
 
       case CSI_RM:		/* 8.3.107: RESET MODE */
+        CASE_DEBUG("case CSI_RM:		/* 8.3.107:")
         if (arg[0] == 4)
           scr_insert_mode (0);
         else if (arg[0] == 20)
@@ -3068,6 +3178,7 @@ rxvt_term::process_csi_seq ()
         break;
 
       case CSI_SM:		/* 8.3.126: SET MODE */
+        CASE_DEBUG("case CSI_SM:		/* 8.3.126:")
         if (arg[0] == 4)
           scr_insert_mode (1);
         else if (arg[0] == 20)
@@ -3078,6 +3189,7 @@ rxvt_term::process_csi_seq ()
          * PRIVATE USE beyond this point.  All CSI_7? sequences here
          */
       case CSI_72:		/* DECSTBM: set top and bottom margins */
+        CASE_DEBUG("case CSI_72:		/* DECSTBM:")
         if (nargs == 1)
           scr_scroll_region (arg[0] - 1, MAX_ROWS - 1);
         else if (nargs == 0 || arg[0] >= arg[1])
@@ -3087,19 +3199,23 @@ rxvt_term::process_csi_seq ()
         break;
 
       case CSI_73:
+        CASE_DEBUG("case CSI_73:")
         scr_cursor (SAVE);
         break;
       case CSI_75:
+        CASE_DEBUG("case CSI_75:")
         scr_cursor (RESTORE);
         break;
 
 #if !ENABLE_MINIMAL
       case CSI_74:
+        CASE_DEBUG("case CSI_74:")
         process_window_ops (arg, nargs);
         break;
 #endif
 
       case CSI_78:		/* DECREQTPARM */
+        CASE_DEBUG("case CSI_78:")
         if (arg[0] == 0 || arg[0] == 1)
           tt_printf ("\033[%d;1;1;128;128;1;0x", arg[0] + 2);
         break;

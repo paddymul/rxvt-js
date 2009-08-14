@@ -579,49 +579,63 @@ rxvt_term.prototype.process_nonprinting =function(ch){
     }
   switch (ch){
       case C0_ESC:
+      CASE_DEBUG("case C0_ESC:")
         this.process_escape_seq ();
         break;
       case C0_ENQ:	/* terminal Status */
+      CASE_DEBUG("case C0_ENQ:")
         if (rs[Rs_answerbackstring])
           this.tt_write (rs [Rs_answerbackstring], strlen (rs [Rs_answerbackstring]));
         else
           this.tt_write (VT100_ANS, strlen (VT100_ANS));
         break;
       case C0_BEL:	/* bell */
+      CASE_DEBUG("case C0_BEL:")
         this.scr_bell ();
         break;
       case C0_BS:		/* backspace */
+      CASE_DEBUG("case C0_BS:")
       //debusgger
         this.scr_backspace ();
       //console.log(this.screen.cur);
         break;
       case C0_HT:		/* tab */
+      CASE_DEBUG("case C0_HT:")
         this.scr_tab (1);
         break;
       case C0_CR:		/* carriage return */
+      CASE_DEBUG("case C0_CR:")
         this.scr_gotorc (0, 0, R_RELATIVE);
         break;
       case C0_VT:		/* vertical tab, form feed */
+      CASE_DEBUG("case C0_VT:")
       case C0_FF:
+      CASE_DEBUG("case C0_FF:")
       case C0_LF:		/* line feed */
+      CASE_DEBUG("case C0_LF:")
         this.scr_index (UP);
         break;
       case C0_SO:		/* shift out - acs */
+      CASE_DEBUG("case C0_SO:")
       this.scr_charset_choose (1); 
         break;
       case C0_SI:		/* shift in - acs */
+      CASE_DEBUG("case C0_SI:")
       this.scr_charset_choose (0); 
         break;
 
       //#ifdef EIGHT_BIT_CONTROLS
       // 8-bit controls
       case 0x90: 	/* DCS */
+      CASE_DEBUG("case 0x90:")
         this.process_dcs_seq ();
         break;
       case 0x9b: 	/* CSI */
+      CASE_DEBUG("case 0x9b:")
         this.process_csi_seq ();
         break;
       case 0x9d: 	/* OSC */
+      CASE_DEBUG("case 0x9d:")
         this.process_osc_seq ();
         break;
   default:
@@ -643,32 +657,41 @@ rxvt_term.prototype.process_escape_vt52 = function (ch){
 
   switch (ch){
       case 'A':		/* cursor up */
+          CASE_DEBUG("case 'A':")
         this.scr_gotorc (-1, 0, R_RELATIVE | C_RELATIVE);
         break;
       case 'B':		/* cursor down */
+          CASE_DEBUG("case 'B':")
         this.scr_gotorc (1, 0, R_RELATIVE | C_RELATIVE);
         break;
       case 'C':		/* cursor right */
+          CASE_DEBUG("case 'C':")
         this.scr_gotorc (0, 1, R_RELATIVE | C_RELATIVE);
         break;
       case 'D':		/* cursor left */
+          CASE_DEBUG("case 'D':")
         this.scr_gotorc (0, -1, R_RELATIVE | C_RELATIVE);
         break;
       case 'H':		/* cursor home */
+          CASE_DEBUG("case 'H':")
         this.scr_gotorc (0, 0, 0);
         break;
       case 'I':		/* cursor up and scroll down if needed */
+          CASE_DEBUG("case 'I':")
         this.scr_index (DN);
         break;
       case 'J':		/* erase to end of screen */
+          CASE_DEBUG("case 'J':")
           //console.log("erase to end of screen");
         this.scr_erase_screen (0);
         break;
       case 'K':		/* erase to end of line */
+          CASE_DEBUG("case 'K':")
           //console.log("erase to end of line");
         this.scr_erase_line (0);
         break;
       case 'Y':         	/* move to specified row and col */
+          CASE_DEBUG("case 'Y':")
         /* full command is 'ESC Y row col' where row and col
          * are encoded by adding 32 and sending the ascii 
          * character.  eg. SPACE = 0, '+' = 13, '0' = 18, 
@@ -679,17 +702,23 @@ rxvt_term.prototype.process_escape_vt52 = function (ch){
         this.scr_gotorc (row, col, 0);
         break;
       case 'Z':		/* identify the terminal type */
+          CASE_DEBUG("case 'Z':")
         this.tt_printf ("\033/Z");	/* I am a VT100 emulating a VT52 */ 
         break;
       case '<':		/* turn off VT52 mode */
+          CASE_DEBUG("case '<':")
          this.set_privmode (PrivMode_vt52, 0);
         break;
   case 'F':     	/* use special graphics character set */ 
+      CASE_DEBUG("case 'F':")
   case 'G':           /* use regular character set */ 
+      CASE_DEBUG("case 'G':")
         /* unimplemented */
         break;
       case '=':     	/* use alternate keypad mode */
+          CASE_DEBUG("case '=':")
       case '>':           /* use regular keypad mode */
+          CASE_DEBUG("case '>':")
         /* unimplemented */
         break;
     }
@@ -713,51 +742,65 @@ rxvt_term.prototype.process_escape_seq =function(){
   switch (och){
         /* case 1:        do_tek_mode (); break; */
   case 35: //'#':
+      CASE_DEBUG("case 35: //'#':")
         if (this.cmd_getc () == '8')
           this.scr_E ();
         break;
   case 40:// '(':
+      CASE_DEBUG("case 40:// '(':")
       this.scr_charset_set (0,this.cmd_getc ()); 
         break;
   case 41:// ')':
+      CASE_DEBUG("case 41:// ')':")
       this.scr_charset_set (1,this.cmd_getc ()); 
         break;
   case 42://'*': 
+      CASE_DEBUG("case 42://'*':")
       this.scr_charset_set (2,this.cmd_getc ()); 
         break;
       case '+':
+          CASE_DEBUG("case '+':")
       this.scr_charset_set (3,this.cmd_getc ()); 
         break;
 #if !ENABLE_MINIMAL
   case 54: //'6':
+      CASE_DEBUG("case 54: //'6':")
         this.scr_backindex ();
         break;
 #endif
   case 55://'7':
+        CASE_DEBUG("case 55://'7':")
         this.scr_cursor (SAVE);
         break;
   case 56://'8':
+      CASE_DEBUG("case 56://'8':")
         this.scr_cursor (RESTORE);
         break;
 #if !ENABLE_MINIMAL
   case 57://'9':
+      CASE_DEBUG("case 57://'9':")
         this.scr_forwardindex ();
         break;
 #endif
   case 61://'=':
+        CASE_DEBUG("case 61://'=':")
   case 62://'>':
+        CASE_DEBUG("case 62://'>':")
          this.set_privmode (PrivMode_aplKP, ch == '=');
         break;
 
       case C1_40:
+          CASE_DEBUG("case C1_40:")
         this.cmd_getc();
         break;
       case C1_44:
+          CASE_DEBUG("case C1_44:")
         this.scr_index (UP);
         break;
 
         /* 8.3.87: NEXT LINE */
       case C1_NEL:		/* ESC E */
+          CASE_DEBUG("case C1_NEL:")
         {
             var nlcr= [ chr(C0_LF), chr(C0_CR) ] ;   //wchar_t nlcr[] = { C0_LF, C0_CR };
             //this.scr_add_lines (nlcr, sizeof (nlcr) / sizeof (nlcr [0]), 1);
@@ -767,47 +810,57 @@ rxvt_term.prototype.process_escape_seq =function(){
 
         /* kidnapped escape sequence: Should be 8.3.48 */
       case C1_ESA:		/* ESC G */
+          CASE_DEBUG("case C1_ESA:")
         this.process_graphics ();
         break;
 
         /* 8.3.63: CHARACTER TABULATION SET */
       case C1_HTS:		/* ESC H */
+          CASE_DEBUG("case C1_HTS:")
         this.scr_set_tab (1);
         break;
 
         /* 8.3.105: REVERSE LINE FEED */
       case C1_RI:			/* ESC M */
+          CASE_DEBUG("case C1_RI:")
         this.scr_index (DN);
         break;
 
         /* 8.3.142: SINGLE-SHIFT TWO */
       /*case C1_SS2: this.scr_single_shift (2);   break; */
+        CASE_DEBUG("case C1_SS2:")
 
         /* 8.3.143: SINGLE-SHIFT THREE */
       /*case C1_SS3: scr_single_shift (3);   break; */
+            CASE_DEBUG("case C1_SS3:")
 
         /* 8.3.27: DEVICE CONTROL STRING */
       case C1_DCS:		/* ESC P */
+        CASE_DEBUG("case C1_DCS:")
         this.process_dcs_seq ();
         break;
 
         /* 8.3.110: SINGLE CHARACTER INTRODUCER */
       case C1_SCI:		/* ESC Z */
+          CASE_DEBUG("case C1_SCI:")
         this.tt_write (ESCZ_ANSWER, ESCZ_ANSWER.length);
         break;			/* steal obsolete ESC [ c */
 
         /* 8.3.16: CONTROL SEQUENCE INTRODUCER (CSI) */
       case C1_CSI:		/* ESC [ */
+          CASE_DEBUG("case C1_CSI:")
         this.process_csi_seq ();
         break;
 
         /* 8.3.90: OPERATING SYSTEM COMMAND (OSC) */
       case C1_OSC:		/* ESC ] */
+          CASE_DEBUG("case C1_OSC:")
         this.process_osc_seq ();
         break;
 
         /* 8.3.106: RESET TO INITIAL STATE (RIS) */
   case 99://'c':
+      CASE_DEBUG("case 99://'c':")
     //mbstate.reset ();
         this.scr_poweron ();
         //scrollBar.show (1);
@@ -815,11 +868,13 @@ rxvt_term.prototype.process_escape_seq =function(){
 
         /* 8.3.79: LOCKING-SHIFT TWO (see ISO2022) */
   case 110://'n':
+      CASE_DEBUG("case 110://'n':")
       this.scr_charset_choose (2); 
         break;
 
         /* 8.3.81: LOCKING-SHIFT THREE (see ISO2022) */
   case 111://'o':
+      CASE_DEBUG("case 111://'o':")
       this.scr_charset_choose (3); 
         break;
     }
@@ -924,6 +979,7 @@ FUNCTION_DEBUG("process_csi_seq");
   if (priv){
       switch (priv){
           case '>':
+          CASE_DEBUG("case '>':")
             if (och == CSI_DA)	/* secondary device attributes */
               {
                 // first parameter is normally 0 for vt100, 1 for vt220, 'R' for rxvt,
@@ -938,11 +994,13 @@ FUNCTION_DEBUG("process_csi_seq");
             break;
 
           case '?':
+          CASE_DEBUG("case '?':")
             if (ch == 'h' || ch == 'l' || ch == 'r' || ch == 's' || ch == 't')
               this.process_terminal_mode (ch, priv, nargs, arg);
             break;
 
           case '!':
+          CASE_DEBUG("case '!':")
             if (och == CSI_70){
                 /* DECSTR: soft terminal reset, used by our terminfo since 9.06 */
                 this.scr_soft_reset ();
@@ -969,20 +1027,26 @@ FUNCTION_DEBUG("process_csi_seq");
          */
 
       case CSI_CUU:		/* 8.3.22: (1) CURSOR UP */
+          CASE_DEBUG("case CSI_CUU:		/* 8.3.22:")
       case CSI_VPR:		/* 8.3.161: (1) LINE POSITION FORWARD */
+          CASE_DEBUG("case CSI_VPR:		/* 8.3.161:")
         if(debug.csi_debug){
           console.log("CSI_CUU  CSI_VPR", -arg[0]);}
         arg[0] = -arg[0];
         /* FALLTHROUGH */
       case CSI_CUD:		/* 8.3.19: (1) CURSOR DOWN */
+          CASE_DEBUG("case CSI_CUD:		/* 8.3.19:")
       case CSI_VPB:		/* 8.3.160: (1) LINE POSITION BACKWARD */
+          CASE_DEBUG("case CSI_VPB:		/* 8.3.160:")
         if(debug.csi_debug){
           console.log("CSI_CUD  CSI_VPB", arg[0]);}
         this.scr_gotorc (arg[0], 0, RELATIVE);
         break;
 
       case CSI_CUB:		/* 8.3.18: (1) CURSOR LEFT */
+          CASE_DEBUG("case CSI_CUB:		/* 8.3.18:")
       case CSI_HPB: 		/* 8.3.59: (1) CHARACTER POSITION BACKWARD */
+          CASE_DEBUG("case CSI_HPB: 		/* 8.3.59:")
         if(debug.csi_debug){
           console.log("CSI_CUB  CSI_HPB", arg[0]);}
 #ifdef ISO6429
@@ -992,7 +1056,9 @@ FUNCTION_DEBUG("process_csi_seq");
 #endif
         /* FALLTHROUGH */
       case CSI_CUF:		/* 8.3.20: (1) CURSOR RIGHT */
+        CASE_DEBUG("case CSI_CUF:		/* 8.3.20:")
       case CSI_HPR:		/* 8.3.60: (1) CHARACTER POSITION FORWARD */
+        CASE_DEBUG("case CSI_HPR:		/* 8.3.60:")
         if(debug.csi_debug){
           console.log("CSI_CUF  CSI_HPR", arg[0]);}
 #ifdef ISO6429
@@ -1003,137 +1069,178 @@ FUNCTION_DEBUG("process_csi_seq");
         break;
 
       case CSI_CPL:		/* 8.3.13: (1) CURSOR PRECEDING LINE */
+          CASE_DEBUG("case CSI_CPL:		/* 8.3.13:")
         arg[0] = -arg[0];
         /* FALLTHROUGH */
       case CSI_CNL:		/* 8.3.12: (1) CURSOR NEXT LINE */
+          CASE_DEBUG("case CSI_CNL:		/* 8.3.12:")
         this.scr_gotorc (arg[0], 0, R_RELATIVE);
         break;
 
       case CSI_CHA:		/* 8.3.9: (1) CURSOR CHARACTER ABSOLUTE */
+          CASE_DEBUG("case CSI_CHA:		/* 8.3.9:")
       case CSI_HPA:		/* 8.3.58: (1) CURSOR POSITION ABSOLUTE */
+          CASE_DEBUG("case CSI_HPA:		/* 8.3.58:")
         this.scr_gotorc (0, arg[0] - 1, R_RELATIVE);
         break;
 
       case CSI_VPA:		/* 8.3.159: (1) LINE POSITION ABSOLUTE */
+          CASE_DEBUG("case CSI_VPA:		/* 8.3.159:")
         this.scr_gotorc (arg[0] - 1, 0, C_RELATIVE);
         break;
 
       case CSI_CUP:		/* 8.3.21: (1,1) CURSOR POSITION */
+          CASE_DEBUG("case CSI_CUP:		/* 8.3.21:")
         if(debug.csi_debug){
           console.log("CUP", arg[0] , nargs < 2 ? 0 : (arg[1] - 1), 0);}
           //debugger;
       case CSI_HVP:		/* 8.3.64: (1,1) CHARACTER AND LINE POSITION */
+          CASE_DEBUG("case CSI_HVP:		/* 8.3.64:")
       //debugger
 
         this.scr_gotorc (arg[0] - 1, nargs < 2 ? 0 : (arg[1] - 1), 0);
         break;
 
       case CSI_CBT:		/* 8.3.7: (1) CURSOR BACKWARD TABULATION */
+          CASE_DEBUG("case CSI_CBT:		/* 8.3.7:")
         arg[0] = -arg[0];
         /* FALLTHROUGH */
       case CSI_CHT:		/* 8.3.10: (1) CURSOR FORWARD TABULATION */
+          CASE_DEBUG("case CSI_CHT:		/* 8.3.10:")
         this.scr_tab (arg[0]);
         break;
 
       case CSI_ED:		/* 8.3.40: (0) ERASE IN PAGE */
+          CASE_DEBUG("case CSI_ED:		/* 8.3.40:")
       if(debug.csi_debug){
         console.log("CSI_ED",arg);}
         this.scr_erase_screen (arg[0]);
         break;
 
       case CSI_EL:		/* 8.3.42: (0) ERASE IN LINE */
+          CASE_DEBUG("case CSI_EL:		/* 8.3.42:")
         if(debug.csi_debug){
           console.log("CSI_EL",arg);}
         this.scr_erase_line (arg[0]);
         break;
 
       case CSI_ICH:		/* 8.3.65: (1) INSERT CHARACTER */
+          CASE_DEBUG("case CSI_ICH:		/* 8.3.65:")
       this.scr_insdel_chars (arg[0], INSERT); 
         break;
 
       case CSI_IL:		/* 8.3.68: (1) INSERT LINE */
+          CASE_DEBUG("case CSI_IL:		/* 8.3.68:")
         this.scr_insdel_lines (arg[0], INSERT);
         break;
 
       case CSI_DL:		/* 8.3.33: (1) DELETE LINE */
+          CASE_DEBUG("case CSI_DL:		/* 8.3.33:")
         this.scr_insdel_lines (arg[0], DELETE);
         break;
 
       case CSI_ECH:		/* 8.3.39: (1) ERASE CHARACTER */
+          CASE_DEBUG("case CSI_ECH:		/* 8.3.39:")
       this.scr_insdel_chars (arg[0], ERASE); 
         break;
 
       case CSI_DCH:		/* 8.3.26: (1) DELETE CHARACTER */
+          CASE_DEBUG("case CSI_DCH:		/* 8.3.26:")
       this.scr_insdel_chars (arg[0], DELETE); 
         break;
 
       case CSI_SD:		/* 8.3.114: (1) SCROLL DOWN */
+          CASE_DEBUG("case CSI_SD:		/* 8.3.114:")
         arg[0] = -arg[0];
         /* FALLTHROUGH */
       case CSI_SU:		/* 8.3.148: (1) SCROLL UP */
+          CASE_DEBUG("case CSI_SU:		/* 8.3.148:")
         this.scr_scroll_text (screen.tscroll, screen.bscroll, arg[0]);
         break;
 
       case CSI_DA:		/* 8.3.24: (0) DEVICE ATTRIBUTES */
+          CASE_DEBUG("case CSI_DA:		/* 8.3.24:")
         this.tt_write (VT100_ANS,VT100_ANS.length);
         break;
 
       case CSI_SGR:		/* 8.3.118: (0) SELECT GRAPHIC RENDITION */
+          CASE_DEBUG("case CSI_SGR:		/* 8.3.118:")
         this.process_sgr_mode (nargs, arg);
         break;
 
       case CSI_DSR:		/* 8.3.36: (0) DEVICE STATUS REPORT */
+          CASE_DEBUG("case CSI_DSR:		/* 8.3.36:")
         switch (arg[0]){
             case 5:			/* DSR requested */
+                CASE_DEBUG("case 5:")
               this.tt_printf ("\033[0n"); 
               break;
             case 6:			/* CPR requested */
+                CASE_DEBUG("case 6:")
               this.scr_report_position ();
               break;
             case 7:			/* unofficial extension */
+                CASE_DEBUG("case 7:")
               if (this.option (Opt_insecure))
                 this.tt_printf ("%-.250s\012", rs[Rs_display_name]); 
               break;
             case 8:			/* unofficial extension */
+                CASE_DEBUG("case 8:")
                 // FIXME process_xterm_seq (XTerm_title, RESNAME "-" VERSION, CHAR_ST);
               break;
           }
         break;
 
       case CSI_TBC:		/* 8.3.155: (0) TABULATION CLEAR */
+          CASE_DEBUG("case CSI_TBC:		/* 8.3.155:")
         switch (arg[0]){
         case 0:			/* char tab stop cleared at active position */ 
+            CASE_DEBUG("case 0:")
               this.scr_set_tab (0);
               break;
               /* case 1: */		/* line tab stop cleared in active line */
+              CASE_DEBUG("case 1:")
               /* case 2: */		/* char tab stops cleared in active line */ 
+                  CASE_DEBUG("case 2:")
         case 3:			/* all char tab stops are cleared */ 
+              CASE_DEBUG("case 3:")
               /* case 4: */		/* all line tab stops are cleared */
+                  CASE_DEBUG("case 4:")
         case 5:			/* all tab stops are cleared */
+              CASE_DEBUG("case 5:")
           this.scr_set_tab (-1);
               break;
           }
         break;
 
       case CSI_CTC:		/* 8.3.17: (0) CURSOR TABULATION CONTROL */
+          CASE_DEBUG("case CSI_CTC:		/* 8.3.17:")
         switch (arg[0]){
         case 0:			/* char tab stop set at active position */ 
+            CASE_DEBUG("case 0:")
               this.scr_set_tab (1);
               break;		/* = ESC H */
               /* case 1: */		/* line tab stop set at active line */
+              CASE_DEBUG("case 1:")
         case 2:			/* char tab stop cleared at active position */ 
+              CASE_DEBUG("case 2:")
               this.scr_set_tab (0);
               break;		/* = ESC [ 0 g */
               /* case 3: */		/* line tab stop cleared at active line */
+              CASE_DEBUG("case 3:")
               /* case 4: */		/* char tab stops cleared at active line */ 
+                  CASE_DEBUG("case 4:")
         case 5:			/* all char tab stops are cleared */ 
+              CASE_DEBUG("case 5:")
               this.scr_set_tab (-1);
               break;		/* = ESC [ 3 g */
               /* case 6: */		/* all line tab stops are cleared */
+              CASE_DEBUG("case 6:")
           }
         break;
 
       case CSI_RM:		/* 8.3.107: RESET MODE */
+          CASE_DEBUG("case CSI_RM:		/* 8.3.107:")
       if(debug.csi_debug){
         console.log("CSI_RM",arg);}
         if (arg[0] == 4)
@@ -1143,6 +1250,7 @@ FUNCTION_DEBUG("process_csi_seq");
         break;
 
       case CSI_SM:		/* 8.3.126: SET MODE */
+          CASE_DEBUG("case CSI_SM:		/* 8.3.126:")
         if (arg[0] == 4)
           this.scr_insert_mode (1);
         else if (arg[0] == 20)
@@ -1153,6 +1261,7 @@ FUNCTION_DEBUG("process_csi_seq");
          * PRIVATE USE beyond this point.  All CSI_7? sequences here 
          */
       case CSI_72:		/* DECSTBM: set top and bottom margins */
+          CASE_DEBUG("case CSI_72:		/* DECSTBM:")
         if (nargs == 1)
           this.scr_scroll_region (arg[0] - 1, MAX_ROWS - 1);
         else if (nargs == 0 || arg[0] >= arg[1])
@@ -1162,19 +1271,23 @@ FUNCTION_DEBUG("process_csi_seq");
         break;
 
       case CSI_73:
+          CASE_DEBUG("case CSI_73:")
         this.scr_cursor (SAVE);
         break;
       case CSI_75:
+          CASE_DEBUG("case CSI_75:")
         this.scr_cursor (RESTORE);
         break;
 
       /* #if !ENABLE_MINIMAL */
       case CSI_74:
+          CASE_DEBUG("case CSI_74:")
       this.process_window_ops (arg, nargs);
         break;
       /* #endif */
 
       case CSI_78:		/* DECREQTPARM */
+          CASE_DEBUG("case CSI_78:")
         if (arg[0] == 0 || arg[0] == 1)
           this.tt_printf ("\033[%d;1;1;128;128;1;0x", arg[0] + 2); 
         break;

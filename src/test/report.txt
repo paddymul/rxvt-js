@@ -1,20 +1,78 @@
 RXVT OUTPUT 
+   1 case CSI_DA:		/* 8.3.24:
+   1 case CSI_RM:		/* 8.3.107:
    1 tt_write 
+   2 case CSI_SGR:		/* 8.3.118:
    2 process_sgr_mode 
    2 process_xterm_seq 
+   4 case '#':
+   6 case CSI_72:		/* DECSTBM:
+   8 case C0_CR:
+   8 case CSI_74:
    8 process_window_ops 
+   9 case C0_FF:
+   9 case C0_LF:
+   9 case C0_VT:
+  11 case CSI_ED:		/* 8.3.40:
+  16 case C1_NEL:
+  17 case CSI_CUU:		/* 8.3.22:
+  17 case CSI_VPR:		/* 8.3.161:
   22 privcases 
+  25 case '?':
   25 process_terminal_mode 
-  26 refresh_check 
+  28 refresh_check 
+  34 case CSI_EL:		/* 8.3.42:
+  35 case CSI_CUD:		/* 8.3.19:
+  35 case CSI_VPB:		/* 8.3.160:
+  44 case C1_44:
+  44 case C1_RI:
+ 256 case CSI_CUP:		/* 8.3.21:
+ 263 case C0_BS:
+ 680 case CSI_HVP:		/* 8.3.64:
+ 760 case CSI_CUB:		/* 8.3.18:
+ 760 case CSI_HPB: 		/* 8.3.59:
+1395 case CSI_CUF:		/* 8.3.20:
+1395 case CSI_HPR:		/* 8.3.60:
+2204 case C1_CSI:
 2204 process_csi_seq 
-2313 process_escape_seq 
-2593 process_nonprinting 
+2311 case C0_ESC:
+2311 process_escape_seq 
+2591 process_nonprinting 
 JS OUTPUT 
+   1 case CSI_DA:		/* 8.3.24:
+   1 case CSI_RM:		/* 8.3.107:
    1 tt_write
+   2 case 35: //'#':
+   2 case CSI_SGR:		/* 8.3.118:
    2 process_sgr_mode
+   6 case CSI_72:		/* DECSTBM:
+   8 case C0_CR:
+   8 case CSI_74:
    8 process_window_ops
+   9 case C0_FF:
+   9 case C0_LF:
+   9 case C0_VT:
   10 tt_winch
+  11 case CSI_ED:		/* 8.3.40:
+  16 case C1_NEL:
+  17 case CSI_CUU:		/* 8.3.22:
+  17 case CSI_VPR:		/* 8.3.161:
+  25 case '?':
   25 process_terminal_mode
+  34 case CSI_EL:		/* 8.3.42:
+  35 case CSI_CUD:		/* 8.3.19:
+  35 case CSI_VPB:		/* 8.3.160:
+  44 case C1_44:
+  44 case C1_RI:
+ 256 case CSI_CUP:		/* 8.3.21:
+ 263 case C0_BS:
+ 680 case CSI_HVP:		/* 8.3.64:
+ 760 case CSI_CUB:		/* 8.3.18:
+ 760 case CSI_HPB: 		/* 8.3.59:
+1395 case CSI_CUF:		/* 8.3.20:
+1395 case CSI_HPR:		/* 8.3.60:
+2198 case C1_CSI:
 2198 process_csi_seq
+2304 case C0_ESC:
 2304 process_escape_seq
 2584 process_nonprinting
