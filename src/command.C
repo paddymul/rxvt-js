@@ -2902,7 +2902,10 @@ rxvt_term::process_csi_seq ()
     arg[nargs++] = n;
 
   i = ch - CSI_ICH;
+  //  VAR_DEBUG(i)
   ndef = get_byte_array_bit (csi_defaults, i);
+  FUNCTION_DEBUG("get_byte_array_bit")
+    VAR_DEBUG(i,ndef)
   for (p = 0; p < nargs; p++)
     if (arg[p] == -1)
       arg[p] = ndef;
@@ -3753,7 +3756,7 @@ rxvt_term::process_terminal_mode (int mode, int priv UNUSED, unsigned int nargs,
   FUNCTION_DEBUG("process_terminal_mode ")
     FUNCTION_DEBUG(mode)
     FUNCTION_DEBUG(nargs)
-    FUNCTION_DEBUG(arg)
+    //    FUNCTION_DEBUG(arg)
 
 
   unsigned int i, j;

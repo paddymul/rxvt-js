@@ -233,6 +233,7 @@ if(!console){
 
 #if DEBUG
 #define FUNCTION_DEBUG(function_name) print(function_name);
+#define VAR_DEBUG(var_name, var_val) print(var_name,var_val);
 #else 
 #define FUNCTION_DEBUG(function_name) 
 #endif

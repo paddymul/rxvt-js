@@ -900,8 +900,8 @@ enum {
 #define make_byte(b7,b6,b5,b4,b3,b2,b1,b0)			\
     (((b7) << 7) | ((b6) << 6) | ((b5) << 5) | ((b4) << 4)	\
      | ((b3) << 3) | ((b2) << 2) | ((b1) << 1) | (b0))
-#define get_byte_array_bit(array, bit)				\
-    (!! ((array)[ (bit) / 8] & (128 >> ((bit) & 7))))
+//#define get_byte_array_bit(array, bit)                \
+//#    (!! ((array)[ (bit) / 8] & (128 >> ((bit) & 7))))
 
 //const unsigned char csi_defaults[] = 
    csi_defaults = [    make_byte (1,1,1,1,1,1,1,1),	/* @, A, B, C, D, E, F, G, */
@@ -914,7 +914,32 @@ enum {
     make_byte (0,0,0,0,0,0,0,0)	/* x, y, z, {, |, }, ~,    */
                    ];
 /* *INDENT-ON* */ 
+function get_byte_array_bit(lst1, val){
+    switch(val) {
 
+    case      10 :
+    case      11 :
+    case      35 :
+    case      40 :
+    case      44 :
+    case      45 :
+    case      50 :
+    case      52 :
+        return 0;
+        break;
+
+    case     1  :
+    case     2  :
+    case     3  :
+    case     4  :
+    case     8  :
+    case     30  :
+    case     38 :
+        return 1;
+        break;
+    }
+    return true;
+}
 //void rxvt_term::process_csi_seq ()
 rxvt_term.prototype.process_csi_seq =function(){
 FUNCTION_DEBUG("process_csi_seq");
@@ -931,7 +956,7 @@ FUNCTION_DEBUG("process_csi_seq");
   priv = 0;
   ch = this.cmd_getc ();
   och = ord(ch);
-  FUNCTION_DEBUG(ch)
+  FUNCTION_DEBUG(och)
   if ((ch >= '<' && ch <= '?') || ch == '!'){
       /* '<' '=' '>' '?' '!' */
       FUNCTION_DEBUG("setting priv")
@@ -973,7 +998,10 @@ FUNCTION_DEBUG("process_csi_seq");
 
   i = och - CSI_ICH;
   //  ndef = get_byte_array_bit (csi_defaults, i);
-  ndef = get_byte_array_bit (csi_defaults, 0);
+//VAR_DEBUG(i);
+  ndef = get_byte_array_bit (csi_defaults, i);
+  FUNCTION_DEBUG("get_byte_array_bit")
+    VAR_DEBUG(i,ndef)
   for (p = 0; p < nargs; p++){
     if (arg[p] == -1){
       arg[p] = 0; } //this is a decent pick for a default
@@ -1854,7 +1882,7 @@ rxvt_term.prototype.process_terminal_mode =function(mode,  __unused__,   nargs, 
 FUNCTION_DEBUG("process_terminal_mode");
 FUNCTION_DEBUG(mode);
 FUNCTION_DEBUG(nargs);
-FUNCTION_DEBUG(arg);
+//FUNCTION_DEBUG(arg);
 
     var i, j; //  unsigned int i, j; 
     var state; //  int state; 
