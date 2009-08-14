@@ -51,7 +51,7 @@
 #include "rxvtperl.h"
 #include "version.h"
 #include "command.h"
-
+//#include <iostream.h>
 #ifdef KEYSYM_RESOURCE
 # include "keyboard.h"
 #endif
@@ -2665,7 +2665,8 @@ rxvt_term::process_escape_seq ()
 {
   FUNCTION_DEBUG("process_escape_seq ")
   unicode_t ch = cmd_getc ();
-
+  FUNCTION_DEBUG(" ch 2668")
+    //FUNCTION_DEBUG(39999);
   if (priv_modes & PrivMode_vt52)
     {
       process_escape_vt52 (ch);

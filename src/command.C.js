@@ -739,10 +739,11 @@ rxvt_term.prototype.process_escape_seq =function(){
     }
 
   var och=ord(ch);
+    FUNCTION_DEBUG(ch);
   switch (och){
         /* case 1:        do_tek_mode (); break; */
   case 35: //'#':
-      CASE_DEBUG("case 35: //'#':")
+      CASE_DEBUG("case '#':") // thats what it originally was, to compare with rxvt
         if (this.cmd_getc () == '8')
           this.scr_E ();
         break;

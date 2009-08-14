@@ -15,7 +15,7 @@ def columnize(strings):
     "Given a sequence of strings, show them in columns."
     print_table(tabulate(strings))
  
-def tabulate(strings, width=76):
+def tabulate(strings, width=130):
     """Given a sequence of strings, return a matrix of the same
 strings in column order, trying to fit them in the given width."""
     maxwidth = max([1] + map(len, strings))

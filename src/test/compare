@@ -4,9 +4,12 @@
 cat rxvt-tmp-out | grep -v BEGIN | grep -v "urxvt: unable" | grep -v "locate urxvt.pm" > rxvt-out
 java -jar ~/temp/downloads/js/rhino/rhino1_6R7/js.jar spdr_test.js 58-bak > rxvt-js-out
 
-echo "RXVT OUTPUT " > report.txt
-cat rxvt-out | sort | uniq -c | sort -n >>  report.txt
-echo "JS OUTPUT " >> report.txt
-cat rxvt-js-out  | sort | uniq -c | sort -n  >> report.txt
 
-cat report.txt
+python report.py
+
+# echo "RXVT OUTPUT " > report.txt
+# cat rxvt-out | sort | uniq -c | sort -n >>  report.txt
+# echo "JS OUTPUT " >> report.txt
+# cat rxvt-js-out  | sort | uniq -c | sort -n  >> report.txt
+
+# cat report.txt

@@ -372,7 +372,9 @@ enum {
 
 
 
+
 #define FUNCTION_DEBUG(function_name)  fprintf(stdout,function_name); fprintf(stdout, "\n");
+//#define FUNCTION_DEBUG(function_name)  cout << function_name ;
 #define CASE_DEBUG(function_name)  fprintf(stdout,function_name); fprintf(stdout, "\n");
 /*
  FILE * pFile;\
