@@ -480,20 +480,20 @@ rxvt_term::set_widthheight (unsigned int newwidth, unsigned int newheight)
 rxvt_term.prototype.set_widthheight = function( newwidth, newheight){
     FUNCTION_DEBUG("set_widthheight")
 
-
+    /*
     if(this.have_called_set_widthheight){
         console.log("called");
         return;
     }
 
-
+    */
     if (!newwidth == 0){
         this.ncol=newwidth;}
     if (!newheight == 0){
         this.nrow = newheight;}
-    this.scr_poweron();
+    //this.scr_poweron();
     //this.scr_reset();
-    this.have_called_set_widthheight = true;
+    //this.have_called_set_widthheight = true;
 }
 
 /* ------------------------------------------------------------------------- */
@@ -1061,6 +1061,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
   assert (this_screen_cur.row >= 0);
 #endif
 }
+
 rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){ 
     FUNCTION_DEBUG("scr_add_lines")
 
@@ -1212,7 +1213,13 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
               //... artificially enlargen the previous one
               c = "";// chr(NOCHAR);
               //and try the same character next loop iteration 
-              --str_i;
+              
+
+              //I have to comment this out so that we don't end up in an infinite loop
+              // this is is either dealing with unicode character widht or actual charcter display width
+              // either way it doesn't matter for javascript/html
+
+              //--str_i;
             }
 
           line.touch();
