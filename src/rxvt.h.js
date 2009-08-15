@@ -1681,6 +1681,7 @@ function rxvt_term(term_el, pre_term_el) {
   this.swap = new screen_t();
   this.charsets= new Array(4);
 
+
 }  //FIXME
 rxvt_term.prototype = {
 
@@ -1690,8 +1691,8 @@ rxvt_term.prototype = {
   fwidth: "",                //font width                      [pixels]
   fheight: "",               //font height                     [pixels]
   fbase: "",                 //font ascent (baseline)          [pixels]
-  ncol: 0,                  //window columns              [characters]
-  nrow: 0,                  //window rows                 [characters]
+  ncol: 80,                  //window columns              [characters]
+  nrow: 24,                  //window rows                 [characters]
   focus: "",                 //window has focus                        
   mapped: "",                //window state mapped?                    
   int_bwidth: "",            //internal border width                   

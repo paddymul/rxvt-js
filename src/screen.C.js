@@ -1819,9 +1819,15 @@ rxvt_term.prototype.scr_insdel_chars =function( count,  insdel){
 //void rxvt_term::scr_scroll_region (int top, int bot){ 
 rxvt_term.prototype.scr_scroll_region =function( top,  bot){ 
     FUNCTION_DEBUG("scr_scroll_region")
+    VAR_DEBUG("top",top)
+    VAR_DEBUG("bot",bot)
+    VAR_DEBUG("nrow",this.nrow)
   top = ma_x(top,0); //FIXED max_it (top, 0);
   bot = mi_n (bot, this.nrow -1); //FIXED min_it (bot, nrow - 1);
 
+    /*  there are times when this isn't true, in js and it is in regular,
+        thats probabl
+ */
   if (top > bot)
     return;
 

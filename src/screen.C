@@ -1616,6 +1616,9 @@ void
 rxvt_term::scr_scroll_region (int top, int bot) NOTHROW
 {
   FUNCTION_DEBUG("scr_scroll_region")
+    VAR_DEBUG("top",top)
+    VAR_DEBUG("bot",bot)
+    VAR_DEBUG("nrow",nrow)
   max_it (top, 0);
   min_it (bot, nrow - 1);
 
