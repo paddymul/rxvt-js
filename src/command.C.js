@@ -1372,7 +1372,7 @@ FUNCTION_DEBUG("process_window_ops");
         break;
   case 8:			/* set size (chars) */ 
       this.set_widthheight (args[2], args[1]); 
-      this.scr_poweron();
+      //this.scr_poweron();
         
         break;
 

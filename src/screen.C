@@ -19,7 +19,10 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *--------------------------------------------------------------------------*/
+/*
 
+(local-set-key (kbd "H-C-c") 'case_debug)
+ */
 /*
  * This file handles _all_ screen updates and selections
  */
@@ -499,6 +502,7 @@ rxvt_term::scr_cursor (cursor_mode mode) NOTHROW
   switch (mode)
     {
       case SAVE:
+        CASE_DEBUG("case SAVE:")
         s->s_cur.row = screen.cur.row;
         s->s_cur.col = screen.cur.col;
         s->s_rstyle = rstyle;
@@ -507,6 +511,7 @@ rxvt_term::scr_cursor (cursor_mode mode) NOTHROW
         break;
 
       case RESTORE:
+        CASE_DEBUG("case RESTORE:")
         want_refresh = 1;
         screen.cur.row = s->s_cur.row;
         screen.cur.col = s->s_cur.col;
@@ -1275,12 +1280,14 @@ rxvt_term::scr_erase_line (int mode) NOTHROW
   switch (mode)
     {
       case 3:
+        CASE_DEBUG("case 3:")
         if (screen.flags & Screen_WrapNext)
           return;
 
         /* fall through */
 
       case 0:                     /* erase to end of line */
+        CASE_DEBUG("case 0:")
         col = screen.cur.col;
         num = ncol - col;
         min_it (line.l, col);
@@ -1291,6 +1298,7 @@ rxvt_term::scr_erase_line (int mode) NOTHROW
         break;
 
       case 1:                     /* erase to beginning of line */
+        CASE_DEBUG("case 1:")
         col = 0;
         num = screen.cur.col + 1;
 
@@ -1300,6 +1308,7 @@ rxvt_term::scr_erase_line (int mode) NOTHROW
         break;
 
       case 2:                     /* erase whole line */
+        CASE_DEBUG("case 2:")
         col = 0;
         num = ncol;
         line.l = 0;
@@ -1336,18 +1345,21 @@ rxvt_term::scr_erase_screen (int mode) NOTHROW
   switch (mode)
     {
       case 0:                     /* erase to end of screen */
+        CASE_DEBUG("case 0:")
         selection_check (1);
         scr_erase_line (0);
         row = screen.cur.row + 1;    /* possible OOB */
         num = nrow - row;
         break;
       case 1:                     /* erase to beginning of screen */
+        CASE_DEBUG("case 1:")
         selection_check (3);
         scr_erase_line (1);
         row = 0;
         num = screen.cur.row;
         break;
       case 2:                     /* erase whole screen */
+        CASE_DEBUG("case 2:")
         selection_check (3);
         row = 0;
         num = nrow;
@@ -1516,6 +1528,7 @@ rxvt_term::scr_insdel_chars (int count, int insdel) NOTHROW
   switch (insdel)
     {
       case INSERT:
+        CASE_DEBUG("case INSERT:")
         line->l = min (line->l + count, ncol);
 
         if (line->t[screen.cur.col] == NOCHAR)
@@ -1546,6 +1559,7 @@ rxvt_term::scr_insdel_chars (int count, int insdel) NOTHROW
         break;
 
       case ERASE:
+        CASE_DEBUG("case ERASE:")
         screen.cur.col += count;     /* don't worry if > ncol */
         selection_check (1);
         screen.cur.col -= count;
@@ -1558,6 +1572,7 @@ rxvt_term::scr_insdel_chars (int count, int insdel) NOTHROW
         break;
 
       case DELETE:
+        CASE_DEBUG("case DELETE:")
         line->l = max (line->l - count, 0);
 
         // nuke wide char spanning the end
@@ -1764,18 +1779,25 @@ rxvt_term::set_font_style () NOTHROW
   switch (charsets [screen.charset])
     {
       case '0':                   /* DEC Special Character & Line Drawing Set */
+        CASE_DEBUG("case '0':")
         break;
       case 'A':                   /* United Kingdom (UK) */
+        CASE_DEBUG("case 'A':")
         break;
       case 'B':                   /* United States (USASCII) */
+        CASE_DEBUG("case 'B':")
         break;
       case '<':                   /* Multinational character set */
+        CASE_DEBUG("case '<':")
         break;
       case '5':                   /* Finnish character set */
+        CASE_DEBUG("case '5':")
         break;
       case 'C':                   /* Finnish character set */
+        CASE_DEBUG("case 'C':")
         break;
       case 'K':                   /* German character set */
+        CASE_DEBUG("case 'K':")
         break;
     }
 #endif
@@ -3045,11 +3067,14 @@ rxvt_term::selection_make (Time tm)
   switch (selection.op)
     {
       case SELECTION_CONT:
+        CASE_DEBUG("case SELECTION_CONT:")
         break;
       case SELECTION_INIT:
+        CASE_DEBUG("case SELECTION_INIT:")
         CLEAR_SELECTION ();
         /* FALLTHROUGH */
       case SELECTION_BEGIN:
+        CASE_DEBUG("case SELECTION_BEGIN:")
         selection.op = SELECTION_DONE;
         /* FALLTHROUGH */
       default:
@@ -3400,20 +3425,25 @@ rxvt_term::selection_extend_colrow (int32_t col, int32_t row, int button3, int b
   switch (selection.op)
     {
       case SELECTION_INIT:
+        CASE_DEBUG("case SELECTION_INIT:")
         CLEAR_SELECTION ();
         selection.op = SELECTION_BEGIN;
         /* FALLTHROUGH */
       case SELECTION_BEGIN:
+        CASE_DEBUG("case SELECTION_BEGIN:")
         if (row != selection.mark.row || col != selection.mark.col
             || (!button3 && buttonpress))
           selection.op = SELECTION_CONT;
         break;
       case SELECTION_DONE:
+        CASE_DEBUG("case SELECTION_DONE:")
         selection.op = SELECTION_CONT;
         /* FALLTHROUGH */
       case SELECTION_CONT:
+        CASE_DEBUG("case SELECTION_CONT:")
         break;
       case SELECTION_CLEAR:
+        CASE_DEBUG("case SELECTION_CLEAR:")
         selection_start_colrow (col, row);
         /* FALLTHROUGH */
       default:

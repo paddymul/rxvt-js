@@ -77,7 +77,7 @@ dstillz: The address of the line_t qline is assigned to be row_buf[row].
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([134217747 99 97 115 101 46 42 58 13 67108896 18 99 97 115 101 13 24 11 25 14 1 return 16 tab 67 65 83 69 95 68 69 66 85 71 40 34 89 backspace 25 34 41] 0 "%d")) arg)))
 (fset 'js-insert-function-debug
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([19 112 114 111 116 111 116 121 112 101 46 13 67108896 19 32 127 61 13 2 24 11 25 5 return tab 70 85 78 67 84 73 79 78 95 68 69 66 85 71 40 34 25 134217820 34 41] 0 "%d")) arg)))
-
+(local-set-key (kbd "H-C-c") 'case_debug)
 
 */
 /*
@@ -569,6 +569,7 @@ rxvt_term.prototype.scr_cursor =function(mode){
     var s ;  //screen_t *s;   ### js_style_variables  possible_pointer 
   switch (mode){
       case SAVE:
+      CASE_DEBUG("case SAVE:")
         s->s_cur.row = screen.cur.row;
         s->s_cur.col = screen.cur.col;
         s->s_rstyle = rstyle;
@@ -577,6 +578,7 @@ rxvt_term.prototype.scr_cursor =function(mode){
         break;
 
       case RESTORE:
+      CASE_DEBUG("case RESTORE:")
        this.want_refresh = 1;
         screen.cur.row = s->s_cur.row;
         screen.cur.col = s->s_cur.col;
@@ -606,6 +608,7 @@ rxvt_term.prototype.scr_cursor =function(mode){
 
   switch (mode){
       case SAVE:
+          CASE_DEBUG("case SAVE:")
         s.s_cur.row = this.screen.cur.row;
         s.s_cur.col = this.screen.cur.col;
         s.s_rstyle = rstyle;
@@ -614,6 +617,7 @@ rxvt_term.prototype.scr_cursor =function(mode){
         break;
 
       case RESTORE:
+          CASE_DEBUG("case RESTORE:")
        this.want_refresh = 1;
         this.screen.cur.row = s.s_cur.row;
         this.screen.cur.col = s.s_cur.col;
@@ -636,7 +640,7 @@ rxvt_term.prototype.scr_cursor =function(mode){
 }
 
 //void rxvt_term::scr_swap_screen () 
-rxvt_term.prototype.scr_swap_screen =function(){ 
+rxvt_term.prototype.scr_swap_screen =function(){
     FUNCTION_DEBUG("scr_swap_screen")
   if (!this.option (Opt_secondaryScreen))
     return;
@@ -1493,12 +1497,14 @@ rxvt_term.prototype.scr_erase_line =function( mode){
  
     switch (mode){
        case 3:
+           CASE_DEBUG("case 3:")
         if (this.screen.flags & Screen_WrapNext)
           return;
 
         /* fall through */
 
       case 0:                     /* erase to end of line */
+          CASE_DEBUG("case 0:")
         col = this.screen.cur.col;
         num =  this.ncol - col;
         line.l = mi_n(line.l, col);  //min_it (line.l, col);
@@ -1509,6 +1515,7 @@ rxvt_term.prototype.scr_erase_line =function( mode){
         break;
 
       case 1:                     /* erase to beginning of line */
+          CASE_DEBUG("case 1:")
         col = 0;
         num = this.screen.cur.col + 1;
 
@@ -1518,6 +1525,7 @@ rxvt_term.prototype.scr_erase_line =function( mode){
         break;
 
       case 2:                     /* erase whole line */
+          CASE_DEBUG("case 2:")
         col = 0;
         num =  this.ncol;
         line.l = 0;
@@ -1552,18 +1560,21 @@ rxvt_term.prototype.scr_erase_screen =function( mode){
  // mode=2;
   switch (mode){
       case 0:                     /* erase to end of screen */
+          CASE_DEBUG("case 0:")
          this.selection_check (1);
         this.scr_erase_line (0);
         row = this.screen.cur.row + 1;    /* possible OOB */
         num = this.nrow - row;
         break;
       case 1:                     /* erase to beginning of screen */
+          CASE_DEBUG("case 1:")
          this.selection_check (3);
         this.scr_erase_line (1);
         row = 0;
         num = this.screen.cur.row;
         break;
       case 2:                     /* erase whole screen */
+          CASE_DEBUG("case 2:")
          this.selection_check (3);
         row = 0;
         num = this.nrow;
@@ -1614,9 +1625,12 @@ rxvt_term.prototype.scr_erase_screen =function( mode){
   for (; num--; row++){
       var selected_row =  ROW(row);
       this.scr_blank_screen_mem (ROW(row), rstyle);
-
+      /*
+        this is causing errors with scr_blank_line getting an undefined variable
+this.drawn_buf[row], and trying to access .t on it , for nwo we will skip it
       if (! this.view_start)
         this.scr_blank_line ( this.drawn_buf [row], 0,  this.ncol, ren);
+      */
     }
 }
 
@@ -1725,6 +1739,7 @@ rxvt_term.prototype.scr_insdel_chars =function( count,  insdel){
 
     switch (insdel){
         case INSERT:
+            CASE_DEBUG("case INSERT:")
             line.l = mi_n (line.l + count,  this.ncol);
         if (line.t[this.screen.cur.col] == NOCHAR)
           this.scr_kill_char ( line, this.screen.cur.col);  //scr_kill_char (*line, screen.cur.col);   ###  c_keyword possible_pointer 
@@ -1751,6 +1766,7 @@ rxvt_term.prototype.scr_insdel_chars =function( count,  insdel){
         break;
 
       case ERASE:
+          CASE_DEBUG("case ERASE:")
         this.screen.cur.col += count;     /* don't worry if >  this.ncol */
          this.selection_check (1);
         this.screen.cur.col -= count;
@@ -1763,6 +1779,7 @@ rxvt_term.prototype.scr_insdel_chars =function( count,  insdel){
         break;
 
       case DELETE:
+          CASE_DEBUG("case DELETE:")
         line.l = ma_x (line.l - count, 0);
 
         //nuke wide char spanning the end 
@@ -1957,18 +1974,25 @@ rxvt_term.prototype.set_font_style =function(){
 #if 0
   switch ( this.charsets [this.screen.charset]){ 
       case '0':                   /* DEC Special Character & Line Drawing Set */
+      CASE_DEBUG("case '0':")
         break;
       case 'A':                   /* United Kingdom (UK) */
+      CASE_DEBUG("case 'A':")
         break;
       case 'B':                   /* United States (USASCII) */
+      CASE_DEBUG("case 'B':")
         break;
   case '<':                   /* Multinational character set */ 
+      CASE_DEBUG("case '<':")
         break;
   case '5':                   /* Finnish character set */ 
+      CASE_DEBUG("case '5':")
         break;
   case 'C':                   /* Finnish character set */ 
+      CASE_DEBUG("case 'C':")
         break;
   case 'K':                   /* German character set */ 
+      CASE_DEBUG("case 'K':")
         break;
     }
 #endif
