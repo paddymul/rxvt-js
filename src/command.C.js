@@ -467,7 +467,7 @@ rxvt_term.prototype.cmd_parse =function(){
                             och = NOCHAR;
                             break;}/*skipScroll*/ }//jumpScroll
                     // scr_add_lines only works for nlines <= nrow - 1.
-                    if (nlines >= nrow - 1){
+                    if (nlines >= this.nrow - 1){
                         if (!(SHOULD_INVOKE (HOOK_ADD_LINES)
                               && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str - buf, DT_END)))) {
                             //FIXME pointermath  scr_add_lines (buf, str - buf, nlines);  
@@ -507,15 +507,16 @@ rxvt_term.prototype.cmd_parse =function(){
         } //IS_CONTROL
         else {
 
-
-         try {
              this.process_nonprinting (och);
+             /*
+         try {
+
 
          } catch ( out_of_input){  //FIXME exception
                 // we ran out of input, retry later
                 this.cmdbuf_ptr = seq_begin;
                 break;} 
-
+             */
             och = NOCHAR;
         }//else
     }//for(;;) outer_for_loop
@@ -1233,9 +1234,9 @@ VAR_DEBUG(i,ndef)
               this.scr_set_tab (0);
               break;
               /* case 1: */		/* line tab stop cleared in active line */
-              CASE_DEBUG("case 1:")
+              //CASE_DEBUG("case 1:")
               /* case 2: */		/* char tab stops cleared in active line */ 
-                  CASE_DEBUG("case 2:")
+              //  CASE_DEBUG("case 2:")
         case 3:			/* all char tab stops are cleared */ 
               CASE_DEBUG("case 3:")
               /* case 4: */		/* all line tab stops are cleared */
@@ -1261,9 +1262,9 @@ VAR_DEBUG(i,ndef)
               this.scr_set_tab (0);
               break;		/* = ESC [ 0 g */
               /* case 3: */		/* line tab stop cleared at active line */
-              CASE_DEBUG("case 3:")
+              //CASE_DEBUG("case 3:")
               /* case 4: */		/* char tab stops cleared at active line */ 
-                  CASE_DEBUG("case 4:")
+              //  CASE_DEBUG("case 4:")
         case 5:			/* all char tab stops are cleared */ 
               CASE_DEBUG("case 5:")
               this.scr_set_tab (-1);
@@ -1964,7 +1965,8 @@ VAR_DEBUG("modelo", mode)
                 CASE_DEBUG("case 3:")
                     VAR_DEBUG("priv_modes", this.priv_modes)
               if ( this.priv_modes & PrivMode_132OK)
-                  set_widthheight ((state ? 132 : 80) * fwidth, 24 * fheight); 
+                  //this.set_widthheight ((state ? 132 : 80) * fwidth, 24 * fheight); 
+                  this.set_widthheight ((state ? 132 : 80), 24); 
               break;
             case 4:			/* smooth scrolling */
                 CASE_DEBUG("case 4:")
