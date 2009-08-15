@@ -492,7 +492,7 @@ rxvt_term.prototype.set_widthheight = function( newwidth, newheight){
     if (!newheight == 0){
         this.nrow = newheight;}
     //this.scr_poweron();
-    //this.scr_reset();
+    this.scr_reset();
     //this.have_called_set_widthheight = true;
 }
 

@@ -1350,27 +1350,35 @@ FUNCTION_DEBUG("process_window_ops");
        * commands 
        */
       case 1:			/* deiconify window */
+          CASE_DEBUG("case 1:")
           //XMapWindow (dpy, parent[0]);
         break;
       case 2:			/* iconify window */
+          CASE_DEBUG("case 2:")
           //XIconifyWindow (dpy, parent[0], display.screen);
         break;
       case 3:			/* set position (pixels) */
+          CASE_DEBUG("case 3:")
           //XMoveWindow (dpy, parent[0], args[1], args[2]);
         break;
       case 4:			/* set size (pixels) */
+          CASE_DEBUG("case 4:")
           //this.set_widthheight (args[2], args[1]);  //set_widthheight ((unsigned int)args[2], (unsigned int)args[1]);
         break;
       case 5:			/* raise window */
+          CASE_DEBUG("case 5:")
           //XRaiseWindow (dpy, parent[0]);
         break;
       case 6:			/* lower window */
+          CASE_DEBUG("case 6:")
           //XLowerWindow (dpy, parent[0]);
         break;
       case 7:			/* refresh window */
+          CASE_DEBUG("case 7:")
           //this.scr_touch (true);
         break;
   case 8:			/* set size (chars) */ 
+      CASE_DEBUG("case 8:")
       this.set_widthheight (args[2], args[1]); 
       //this.scr_poweron();
         
@@ -1387,10 +1395,12 @@ FUNCTION_DEBUG("process_window_ops");
        * reports - some output format copied from XTerm 
        */
       case 11:			/* report window state */
+          CASE_DEBUG("case 11:")
           //XGetWindowAttributes (dpy, parent[0], &wattr);
           //this.tt_printf ("\033[%dt", wattr.map_state == IsViewable ? 1 : 2); 
         break;
       case 13:			/* report window position */
+          CASE_DEBUG("case 13:")
           //XGetWindowAttributes (dpy, parent[0], &wattr);
           //XTranslateCoordinates (dpy, parent[0], wattr.root,
           //-wattr.border_width, -wattr.border_width,
@@ -1398,13 +1408,16 @@ FUNCTION_DEBUG("process_window_ops");
           //this.tt_printf ("\033[3;%d;%dt", x, y); 
         break;
       case 14:			/* report window size (pixels) */
+          CASE_DEBUG("case 14:")
           //XGetWindowAttributes (dpy, parent[0], &wattr);
           //this.tt_printf ("\033[4;%d;%dt", wattr.height, wattr.width); 
         break;
   case 18:			/* report text area size (chars) */ 
+      CASE_DEBUG("case 18:")
       //this.tt_printf ("\033[8;%d;%dt", nrow, ncol); 
         break;
   case 19:			/* report window size (chars) */ 
+      CASE_DEBUG("case 19:")
       //this.tt_printf ("\033[9;%d;%dt", nrow, ncol); 
         break;
                          /* these won't be needed, there will be nothign to report this back to

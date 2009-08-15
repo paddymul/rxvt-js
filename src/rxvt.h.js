@@ -2052,5 +2052,22 @@ function hex(_integer){
   return _integer.toString(16);
   }
 
+function lresize (l)   {
+    if (!l.t)
+      return;
+
+    /* not quite sure what to do here yet, this is probably wrong 
+    l.t = (text_t *)talloc->alloc (l.t, prev_ncol * sizeof (text_t));
+    l.r = (rend_t *)ralloc->alloc (l.r, prev_ncol * sizeof (rend_t));
+
+    l.l = min (l.l, ncol);
+
+    if (ncol > prev_ncol)
+      scr_blank_line (l, prev_ncol, ncol - prev_ncol, DEFAULT_RSTYLE);
+    */
+  }
+
+
+
 #endif // _RXVT_H_ 
 

@@ -1015,6 +1015,7 @@ rxvt_term::resize_all_windows (unsigned int newwidth, unsigned int newheight, in
 void
 rxvt_term::set_widthheight (unsigned int newwidth, unsigned int newheight)
 {
+  CASE_DEBUG("set_widthheight")
   XWindowAttributes wattr;
 
   if (newwidth == 0 || newheight == 0)
