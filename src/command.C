@@ -3288,6 +3288,7 @@ rxvt_term::process_window_ops (const int *args, unsigned int nargs)
         CASE_DEBUG("case 8:")
         set_widthheight ((unsigned int) (args[2] * fwidth),
                          (unsigned int) (args[1] * fheight));
+      FUNCTION_DEBUG("after set_widthheight case8")
         break;
 
       //case 9: NYI, TODO, restore maximized window or maximize window
@@ -3295,6 +3296,7 @@ rxvt_term::process_window_ops (const int *args, unsigned int nargs)
         if (args[0] >= 24)	/* set height (chars) */
           set_widthheight ((unsigned int)width,
                            (unsigned int) (args[1] * fheight));
+
         break;
 
       /*
