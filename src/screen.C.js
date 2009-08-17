@@ -454,6 +454,112 @@ rxvt_term.prototype.scr_reset =function(){
 }  
 
 /*
+FROM MAIN.C
+void
+rxvt_term::resize_all_windows (unsigned int newwidth, unsigned int newheight, int ignoreparent)
+{
+  int fix_screen;
+  int old_width  = szHint.width;
+  int old_height = szHint.height;
+
+  window_calc (newwidth, newheight);
+
+  bool set_hint = !HOOK_INVOKE ((this, HOOK_RESIZE_ALL_WINDOWS, DT_INT, newwidth, DT_INT, newheight, DT_END));
+
+  // to avoid races between us and the wm, we clear the incremental size hints around the xresizewindow
+  if (set_hint)
+    {
+      szHint.flags &= ~(PBaseSize | PResizeInc);
+      XSetWMNormalHints (dpy, parent[0], &szHint);
+      szHint.flags |= PBaseSize | PResizeInc;
+    }
+
+  if (!ignoreparent)
+    {
+#ifdef SMART_RESIZE
+      
+       // resize by Marius Gedminas <marius.gedminas@uosis.mif.vu.lt>
+       // reposition window on resize depending on placement on screen
+
+      int x, y, x1, y1;
+      int dx, dy;
+      unsigned int unused_w1, unused_h1, unused_b1, unused_d1;
+      Window unused_cr;
+
+      XTranslateCoordinates (dpy, parent[0], display->root,
+                             0, 0, &x, &y, &unused_cr);
+      XGetGeometry (dpy, parent[0], &unused_cr, &x1, &y1,
+                    &unused_w1, &unused_h1, &unused_b1, &unused_d1);
+
+       // if display->root isn't the parent window, a WM will probably have offset
+       // our position for handles and decorations.  Counter it
+       
+      if (x1 != x || y1 != y)
+        {
+          x -= x1;
+          y -= y1;
+        }
+
+      x1 = (DisplayWidth  (dpy, display->screen) - old_width ) / 2;
+      y1 = (DisplayHeight (dpy, display->screen) - old_height) / 2;
+      dx = old_width  - szHint.width;
+      dy = old_height - szHint.height;
+
+      //Check position of the center of the window 
+      if (x < x1)             // left half 
+        dx = 0;
+      else if (x == x1)       // exact center 
+        dx /= 2;
+        if (y < y1)             // top half 
+        dy = 0;
+        else if (y == y1)       // exact center 
+        dy /= 2;
+
+      XMoveResizeWindow (dpy, parent[0], x + dx, y + dy,
+                         szHint.width, szHint.height);
+#else
+      XResizeWindow (dpy, parent[0], szHint.width, szHint.height);
+#endif
+    }
+
+  if (set_hint)
+    XSetWMNormalHints (dpy, parent[0], &szHint);
+
+  fix_screen = ncol != prev_ncol || nrow != prev_nrow;
+
+  if (fix_screen || newwidth != old_width || newheight != old_height)
+    {
+      if (scrollBar.state)
+        scrollBar.resize ();
+
+      XMoveResizeWindow (dpy, vt,
+                         window_vt_x, window_vt_y,
+                         width, height);
+
+#ifdef HAVE_BG_PIXMAP
+      if (bgPixmap.window_size_sensitive ())
+        update_background ();
+#endif
+    }
+
+  if (fix_screen || old_height == 0)
+    scr_reset ();
+
+  // TODO, with nvidia-8178, resizes kill the alpha channel, report if not fixed in newer version
+  //scr_touch (false);
+
+#ifdef HAVE_BG_PIXMAP
+//  TODO: this don't seem to have any effect - do we still need it ? If so - in which case exactly ?
+//  if (bgPixmap.pixmap)
+//    scr_touch (false);
+#endif
+
+#ifdef USE_XIM
+  IMSetPosition ();
+#endif
+}
+
+
 void
 rxvt_term::set_widthheight (unsigned int newwidth, unsigned int newheight)
 {
@@ -488,12 +594,16 @@ rxvt_term.prototype.set_widthheight = function( newwidth, newheight){
     }
 
     */
-    if (!newwidth == 0){
-        this.ncol=newwidth;}
-    if (!newheight == 0){
-        this.nrow = newheight;}
-    //this.scr_poweron();
-    //this.scr_reset();
+    if( (!newwidth == 0 || !newheight == 0) && (this.ncol !=newwidth || this.nrow != newheight)){
+
+        if (!newwidth == 0){
+            this.ncol=newwidth;}
+        if (!newheight == 0){
+            this.nrow = newheight;}
+
+        // a bit of a hack,  look at resize_all_windows 
+        this.scr_reset();
+    }
     //this.have_called_set_widthheight = true;
 }
 
