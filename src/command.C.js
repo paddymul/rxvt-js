@@ -430,17 +430,25 @@ rxvt_term.prototype.cmd_parse =function(){
     var seq_begin;   // char *seq_begin; // remember start of esc-sequence here 
 
     for (;;){ //outer_for_loop
+        FUNCTION_DEBUG("outer_for_loop")
+        FUNCTION_DEBUG(och)
         /*    if( this.row_buf[8].t.join("") == [" ", " ", "9", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "].join("") && this.cmdbuf_ptr>1460) {
         debugger
         } */
         if (expect_false (och == NOCHAR)){
+            FUNCTION_DEBUG("och == NOCHAR)){");
             seq_begin = this.cmdbuf_ptr; 
             och = ord(this_next_char()); 
-            if (och == NOCHAR)
-                break;}
+            if (och == NOCHAR){
+                break;
+            }
+        }
 
         if (expect_true (!IS_CONTROL (och) || och == C0_LF || och == C0_CR || och == C0_HT)){
+            
+            FUNCTION_DEBUG("expect_true (!IS_CONTROL (ch) || ch == C0_LF || ch == C0_CR || ch == C0_HT))");
             if (expect_false (!this.seen_input)){
+                //   FUNCTION_DEBUG("expect_false (!this.seen_input)){");
                 this.seen_input = 1;}
 
             /* Read a text string from the input buffer */
@@ -450,46 +458,62 @@ rxvt_term.prototype.cmd_parse =function(){
             var str = buf, str_i = 0; //wchar_t *str = buf;
             var eol = str.length + mi_n (this.ncol, UBUFSIZ); //wchar_t *eol = str + min (ncol, UBUFSIZ);
             for (;;){//inner_for_loop
-              //console.log(ch,ord(ch),chr(ch));
+              FUNCTION_DEBUG("inner_for_loop")
+              FUNCTION_DEBUG(och)
+
               if (expect_false (och == NOCHAR || (IS_CONTROL (och) && och != C0_LF && och != C0_CR && och != C0_HT))) { //IS_CONTROL
+                  FUNCTION_DEBUG(" is_ctrl 2266")
                     break;}
-
                 str[str_i++]=chr(och)  //str++ = ch; 
+              if(str.length >= eol){FUNCTION_DEBUG("str >= eol")}
                 if (expect_false (och == C0_LF || str.length >= eol)){
+                    FUNCTION_DEBUG("Linefeed, eol")
                     if (och == C0_LF){
-
+                      FUNCTION_DEBUG("LF nlines++");
                         nlines++;}
                     this.refresh_count++;
                     if (!this.option (Opt_jumpScroll) || this.refresh_count >= this.nrow - 1){
+                      FUNCTION_DEBUG("Opt_jumscroll refresh_count");
                         this.refresh_count = 0;
+                        /*
                         if (!this.option (Opt_skipScroll) ){
+                          FUNCTION_DEBUG("time_based");
                             refreshnow = true;
                             och = NOCHAR;
-                            break;}/*skipScroll*/ }//jumpScroll
+                            break;}//skipScroll
+                        */
+                    }//jumpScroll
                     // scr_add_lines only works for nlines <= nrow - 1.
                     if (nlines >= this.nrow - 1){
+                        FUNCTION_DEBUG("nlines >= this.nrow - 1){")
                         if (!(SHOULD_INVOKE (HOOK_ADD_LINES)
                               && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str - buf, DT_END)))) {
+                        FUNCTION_DEBUG(" scr_add_lines (buf, str - buf, nlines);")
                             //FIXME pointermath  scr_add_lines (buf, str - buf, nlines);  
                             this.scr_add_lines (buf, str_i, nlinest);}
                         nlines = 0;
-                        str = buf;
-                        eol = str.length + mi_n (this.ncol, UBUFSIZ);}  // FIXME should_work
-
+                        str_i = buf_i;
+                        eol = str.length + mi_n (this.ncol, UBUFSIZ);  // FIXME should_work
+                        VAR_DEBUG("eol",eol);
+                    }
                     if (str.length >= eol){   // FIXME should_work
+                        FUNCTION_DEBUG("str.length >= eol")
                         if (eol >= buf.length + UBUFSIZ){  // FIXME should_work
                             och = NOCHAR;
                             break;}
-                        else
-                            eol = mi_n (eol + this.ncol, buf.length + UBUFSIZ);}//str.length
+                        else{
+                            eol = mi_n (eol + this.ncol, buf.length + UBUFSIZ);
+                        }
+                    }//str.length
                 }//expect_false
                 seq_begin = this.cmdbuf_ptr;
                 /*while(new Date() % 20 != 0) {
                     
                 }*/
                 och = ord(this_next_char()); 
+                FUNCTION_DEBUG("innerend of inner_for_loop")
             }//for(;;) inner_for_loop
-
+            FUNCTION_DEBUG("the inner_for_loop has closed ")
             if (!(SHOULD_INVOKE (HOOK_ADD_LINES)    && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str.length - buf.length, DT_END)))){
                 //FIXED pointermath  scr_add_lines (buf, str - buf, nlines);
                 this.scr_add_lines (buf, str_i, nlines);  
@@ -506,7 +530,7 @@ rxvt_term.prototype.cmd_parse =function(){
             }
         } //IS_CONTROL
         else {
-
+          FUNCTION_DEBUG("else 2351")
              this.process_nonprinting (och);
              /*
          try {
@@ -517,7 +541,7 @@ rxvt_term.prototype.cmd_parse =function(){
                 this.cmdbuf_ptr = seq_begin;
                 break;} 
              */
-            och = NOCHAR;
+          och = ord(NOCHAR);
         }//else
     }//for(;;) outer_for_loop
 }//cmd_parse
@@ -525,11 +549,17 @@ rxvt_term.prototype.cmd_parse =function(){
 // read the next character 
 //wchar_t rxvt_term::next_char () 
 rxvt_term.prototype.next_char =function(){
-    FUNCTION_DEBUG("next_char");
-    
+  FUNCTION_DEBUG("next_char")
   while (this.cmdbuf_ptr < this.cmdbuf_endp){
-    return this.cmdbuf[this.cmdbuf_ptr++]; 
+      var ret_char = this.cmdbuf[this.cmdbuf_ptr++];
+      //if(expect_true(ord(c_char) <= 0x7f && ord(c_char) != 0x1b)){
+          VAR_DEBUG("next_char return", ret_char);
+      return ret_char;
+      //return this.cmdbuf[this.cmdbuf_ptr++]; 
+      //}
     }
+  FUNCTION_DEBUG("return NOCHAR");
+  VAR_DEBUG("next_char return", chr(NOCHAR));
     return chr(NOCHAR);
 }
 

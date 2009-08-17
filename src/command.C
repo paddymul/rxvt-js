@@ -2224,8 +2224,11 @@ rxvt_term::cmd_parse ()
 
   for (;;)
     {
+      FUNCTION_DEBUG("outer_for_loop");
+      FUNCTION_DEBUG(ch)
       if (expect_false (ch == NOCHAR))
         {
+          FUNCTION_DEBUG("och == NOCHAR)){");
           seq_begin = cmdbuf_ptr;
           ch = next_char ();
 
@@ -2235,8 +2238,11 @@ rxvt_term::cmd_parse ()
 
       if (expect_true (!IS_CONTROL (ch) || ch == C0_LF || ch == C0_CR || ch == C0_HT))
         {
+          FUNCTION_DEBUG("expect_true (!IS_CONTROL (ch) || ch == C0_LF || ch == C0_CR || ch == C0_HT))");            
+
           if (expect_false (!seen_input))
             {
+              FUNCTION_DEBUG("expect_false (!this.seen_input)){");
               seen_input = 1;
               // many badly-written programs (e.g. jed) contain a race condition:
               // they first read the screensize and then install a SIGWINCH handler.
@@ -2255,61 +2261,78 @@ rxvt_term::cmd_parse ()
           int nlines = 0;
           wchar_t *str = buf;
           wchar_t *eol = str + min (ncol, UBUFSIZ);
-
+          
           for (;;)
-            {
-              if (expect_false (ch == NOCHAR || (IS_CONTROL (ch) && ch != C0_LF && ch != C0_CR && ch != C0_HT)))
-                break;
+            {        
+              FUNCTION_DEBUG("inner_for_loop")
+                FUNCTION_DEBUG(ch)
+
+              if (expect_false (ch == NOCHAR || (IS_CONTROL (ch) && ch != C0_LF && ch != C0_CR && ch != C0_HT))){
+                FUNCTION_DEBUG(" is_ctrl 2266")
+                  break;}
 
               *str++ = ch;
 
+              if(str >= eol){FUNCTION_DEBUG("str >= eol")}
               if (expect_false (ch == C0_LF || str >= eol))
                 {
-                  if (ch == C0_LF)
+                  FUNCTION_DEBUG("Linefeed, eol")
+                    if (ch == C0_LF){
+                      FUNCTION_DEBUG("LF nlines++");
                     nlines++;
-
+                    }
                   refresh_count++;
 
                   if (!option (Opt_jumpScroll) || refresh_count >= nrow - 1)
                     {
+                      FUNCTION_DEBUG("Opt_jumscroll refresh_count");
                       refresh_count = 0;
 
                       if (!option (Opt_skipScroll) || ev_time () > ev::now () + 1. / 60.)
                         {
+                          FUNCTION_DEBUG("time_based");
                           refreshnow = true;
                           ch = NOCHAR;
                           break;
                         }
-                    }
+                    }// !Opt_jumscroll
 
                   // scr_add_lines only works for nlines <= nrow - 1.
                   if (nlines >= nrow - 1)
                     {
+                    FUNCTION_DEBUG("nlines >= this.nrow - 1){")
                       if (!(SHOULD_INVOKE (HOOK_ADD_LINES)
-                            && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str - buf, DT_END))))
+                            && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str - buf, DT_END)))){
+                        FUNCTION_DEBUG(" scr_add_lines (buf, str - buf, nlines);")
                         scr_add_lines (buf, str - buf, nlines);
+                      }
 
                       nlines = 0;
                       str = buf;
                       eol = str + min (ncol, UBUFSIZ);
+                      VAR_DEBUG("eol",eol)
                     }
 
                   if (str >= eol)
                     {
+                        FUNCTION_DEBUG("str.length >= eol")
                       if (eol >= buf + UBUFSIZ)
                         {
                           ch = NOCHAR;
                           break;
                         }
-                      else
+                      else{
                         eol = min (eol + ncol, buf + UBUFSIZ);
+                      }
                     }
 
                 }
 
               seq_begin = cmdbuf_ptr;
               ch = next_char ();
-            }
+              FUNCTION_DEBUG("innerend of inner_for_loop")
+            }             
+            FUNCTION_DEBUG("the inner_for_loop has closed ")
 
           if (!(SHOULD_INVOKE (HOOK_ADD_LINES)
                 && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str - buf, DT_END))))
@@ -2328,6 +2351,7 @@ rxvt_term::cmd_parse ()
         }
       else
         {
+          FUNCTION_DEBUG("else 2351")
           try
             {
               process_nonprinting (ch);
@@ -2335,6 +2359,7 @@ rxvt_term::cmd_parse ()
           catch (const class out_of_input &o)
             {
               // we ran out of input, retry later
+              FUNCTION_DEBUG("caught out_of_input")
               cmdbuf_ptr = seq_begin;
               break;
             }
@@ -2348,12 +2373,17 @@ rxvt_term::cmd_parse ()
 wchar_t
 rxvt_term::next_char () NOTHROW
 {
-  //FUNCTION_DEBUG("next_char ")
+  FUNCTION_DEBUG("next_char")
   while (cmdbuf_ptr < cmdbuf_endp)
     {
       // assume 7-bit to be ascii ALWAYS
-      if (expect_true ((unsigned char)*cmdbuf_ptr <= 0x7f && *cmdbuf_ptr != 0x1b))
-        return *cmdbuf_ptr++;
+      if (expect_true ((unsigned char)*cmdbuf_ptr <= 0x7f && *cmdbuf_ptr != 0x1b)){
+          unsigned char ret_char=  (unsigned char)*cmdbuf_ptr++;
+          VAR_DEBUG("next_char return", ret_char);
+            return ret_char;
+
+            //return *cmdbuf_ptr++;
+      }
 
       wchar_t wc;
       size_t len = mbrtowc (&wc, cmdbuf_ptr, cmdbuf_endp - cmdbuf_ptr, mbstate);
@@ -2361,21 +2391,29 @@ rxvt_term::next_char () NOTHROW
       if (len == (size_t)-2)
         {
           // the mbstate stores incomplete sequences. didn't know this :/
+          FUNCTION_DEBUG("len == (size_t)-2")
           cmdbuf_ptr = cmdbuf_endp;
           break;
         }
 
       if (len == (size_t)-1)
         {
+          FUNCTION_DEBUG("len == (size_t)-1")
           mbrtowc (0, 0, 0, mbstate); // reset now undefined conversion state
-          return (unsigned char)*cmdbuf_ptr++; // the _occasional_ latin1 character is allowed to slip through
+          unsigned char ret_char=  (unsigned char)*cmdbuf_ptr++;
+          VAR_DEBUG("next_char return", ret_char);
+            return ret_char;// the _occasional_ latin1 character is allowed to slip through
+
         }
 
       // assume wchar == unicode
       cmdbuf_ptr += len;
+      //FUNCTION_DEBUG("wc & unicode");
+      VAR_DEBUG("next_char return", (unsigned char) (wc & UNICODE_MASK));
       return wc & UNICODE_MASK;
     }
-
+  FUNCTION_DEBUG("return NOCHAR")
+    VAR_DEBUG("next_char return", NOCHAR);
   return NOCHAR;
 }
 
@@ -3473,7 +3511,7 @@ rxvt_term::process_color_seq (int report, int color, const char *str, char resp)
 void
 rxvt_term::process_xterm_seq (int op, const char *str, char resp)
 {
-  FUNCTION_DEBUG("process_xterm_seq ")
+  //FUNCTION_DEBUG("process_xterm_seq ")
   int color;
   char *buf, *name;
   bool query = str[0] == '?' && !str[1];

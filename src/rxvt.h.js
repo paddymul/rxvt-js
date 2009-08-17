@@ -2046,7 +2046,8 @@ function ord(_string){ //this might fail for unicode
 //#define ord(_string) ((_string)[0].charCodeAt(0))
 //#define chr(inte) (String.fromCharCode(inte))
 
-#define this_next_char() ( this.cmdbuf_ptr < this.cmdbuf_endp ? this.cmdbuf[this.cmdbuf_ptr++] : chr(NOCHAR))
+//#define this_next_char() ( this.cmdbuf_ptr < this.cmdbuf_endp ? this.cmdbuf[this.cmdbuf_ptr++] : chr(NOCHAR))
+#define this_next_char() ( this.next_char())
 //( a.cmdbuf_ptr < a.cmdbuf_endp ? a.cmdbuf[a.cmdbuf_ptr++] : "")
 
 function hex(_integer){

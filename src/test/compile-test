@@ -1,0 +1,7 @@
+#!/bin/bash
+cd ../ 
+./test_expand_both
+ make
+ cd test
+ ./compare
+ diff -y rxvt-out rxvt-js-out 
