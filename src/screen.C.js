@@ -202,6 +202,7 @@ rxvt_term.prototype.scr_reset =function(){
   this.screen.bscroll = this.nrow - 1;
 
   if (!this.row_buf){
+      FUNCTION_DEBUG("no rowbuf")
       /*
        * first time called so just malloc everything: don't rely on this.realloc 
        */
@@ -516,7 +517,8 @@ rxvt_term.prototype.scr_release =function(){
        this.tabs = 0;
 
        */
-    this.row_buf=[],  this.swap_buf=[],this.drawn_buf=[], this.row_buf_i=0, this.tabs_i=0;
+      //this.row_buf=[],  this.swap_buf=[],this.drawn_buf=[], this.row_buf_i=0, this.tabs_i=0;
+    this.row_buf=false,  this.swap_buf=false,this.drawn_buf=false, this.row_buf_i=0, this.tabs_i=0;
     }
 }
 

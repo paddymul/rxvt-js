@@ -199,6 +199,7 @@ rxvt_term::scr_reset ()
 
   if (!row_buf)
     {
+      FUNCTION_DEBUG("no rowbuf")
       /*
        * first time called so just malloc everything: don't rely on realloc
        */
