@@ -794,6 +794,7 @@ rxvt_term::scr_add_lines (const wchar_t *str, int len, int minlines) NOTHROW
 
   if (minlines > 0)
     {
+      FUNCTION_DEBUG("minlines >0")
       minlines += screen.cur.row - screen.bscroll;
       min_it (minlines, screen.cur.row - top_row);
 
@@ -801,6 +802,7 @@ rxvt_term::scr_add_lines (const wchar_t *str, int len, int minlines) NOTHROW
           && screen.tscroll == 0
           && screen.bscroll == nrow - 1)
         {
+          FUNCTION_DEBUG("minlines >0 and tscroll and bscroll")
           /* _at least_ this many lines need to be scrolled */
           scr_scroll_text (screen.tscroll, screen.bscroll, minlines);
           screen.cur.row -= minlines;
@@ -821,10 +823,11 @@ rxvt_term::scr_add_lines (const wchar_t *str, int len, int minlines) NOTHROW
   while (str < strend)
     {
       c = (unicode_t)*str++; // convert to rxvt-unicodes representation
-
+      FUNCTION_DEBUG(c)
       if (expect_false (c < 0x20))
         if (c == C0_LF)
           {
+            FUNCTION_DEBUG("c == C0_LF");
             max_it (line->l, screen.cur.col);
 
             screen.flags &= ~Screen_WrapNext;
@@ -839,6 +842,7 @@ rxvt_term::scr_add_lines (const wchar_t *str, int len, int minlines) NOTHROW
           }
         else if (c == C0_CR)
           {
+            FUNCTION_DEBUG("c == C0_CR")
             max_it (line->l, screen.cur.col);
 
             screen.flags &= ~Screen_WrapNext;
@@ -847,6 +851,7 @@ rxvt_term::scr_add_lines (const wchar_t *str, int len, int minlines) NOTHROW
           }
         else if (c == C0_HT)
           {
+            FUNCTION_DEBUG("c == C0_HT")
             scr_tab (1, true);
             continue;
           }

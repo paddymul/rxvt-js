@@ -1194,6 +1194,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
   ZERO_SCROLLBACK ();
 
   if (minlines > 0){
+      FUNCTION_DEBUG("minlines >0")
       minlines += this.screen.cur.row - this.screen.bscroll;
       //min_it (minlines, screen.cur.row - top_row);
       minlines = mi_n (minlines, this.screen.cur.row -  this.top_row);
@@ -1201,6 +1202,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
       if (minlines > 0
           && this.screen.tscroll == 0
           && this.screen.bscroll == this.nrow - 1){
+          FUNCTION_DEBUG("minlines >0 and tscroll and bscroll")
           /* _atleast_ this many lines need to be scrolled */
           str_i = 0;
           //FIXME not sure what this supposed to be, look at the original 
@@ -1223,23 +1225,28 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
   while (str_i < strend_i){  //while (str < strend)
     //c = (unicode_t)*str++; 
       c =  str[str_i++]; //convert to rxvt-unicodes representation 
-
+      FUNCTION_DEBUG(ord(c))
       if (expect_false (ord(c) < 0x20))
           if (ord(c) == C0_LF){
-          line.l= ma_x(line.l,this.screen.cur.col);
+              FUNCTION_DEBUG("c == C0_LF");
+              line.l= ma_x(line.l,this.screen.cur.col);
 
             this.screen.flags &= ~Screen_WrapNext;
 
             var this_screen_cur_row = this.screen.cur.row , this_screen_bscroll =this.screen.bscroll, this_nrow = this.nrow;
-            if (this.screen.cur.row == this.screen.bscroll)
-              this.scr_scroll_text (this.screen.tscroll, this.screen.bscroll, 1);
-            else if (this.screen.cur.row < (this.nrow - 1))
-              row = ++this.screen.cur.row;
+            if (this.screen.cur.row == this.screen.bscroll){
+                FUNCTION_DEBUG("screen.cur.row == screen.bscroll){");
+                this.scr_scroll_text (this.screen.tscroll, this.screen.bscroll, 1);}
+            else if (this.screen.cur.row < (this.nrow - 1)){
+                FUNCTION_DEBUG("screen.cur.row < (nrow - 1)){");
+                row = ++this.screen.cur.row;
+            }
 
             line = ROW(row);  /* _must_ refresh */
             continue;
           }
           else if (ord(c) == C0_CR){
+            FUNCTION_DEBUG("c == C0_CR")
           line.l= ma_x(line.l,this.screen.cur.col);
 
             this.screen.flags &= ~Screen_WrapNext; 
@@ -1247,6 +1254,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
             continue;
           }
           else if (ord(c) == C0_HT){
+            FUNCTION_DEBUG("c == C0_HT")
             this.scr_tab (1, true);
             continue;
           }
