@@ -430,13 +430,11 @@ rxvt_term.prototype.cmd_parse =function(){
     var seq_begin;   // char *seq_begin; // remember start of esc-sequence here 
 
     for (;;){ //outer_for_loop
-        FUNCTION_DEBUG("outer_for_loop")
-        FUNCTION_DEBUG(och)
-        /*    if( this.row_buf[8].t.join("") == [" ", " ", "9", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "].join("") && this.cmdbuf_ptr>1460) {
-        debugger
-        } */
+        //FUNCTION_DEBUG("outer_for_loop")
+        //FUNCTION_DEBUG(och)
+        
         if (expect_false (och == NOCHAR)){
-            FUNCTION_DEBUG("och == NOCHAR)){");
+            //FUNCTION_DEBUG("och == NOCHAR)){");
             seq_begin = this.cmdbuf_ptr; 
             och = ord(this_next_char()); 
             if (och == NOCHAR){
@@ -446,7 +444,7 @@ rxvt_term.prototype.cmd_parse =function(){
 
         if (expect_true (!IS_CONTROL (och) || och == C0_LF || och == C0_CR || och == C0_HT)){
             
-            FUNCTION_DEBUG("expect_true (!IS_CONTROL (ch) || ch == C0_LF || ch == C0_CR || ch == C0_HT))");
+            //FUNCTION_DEBUG("expect_true (!IS_CONTROL (ch) || ch == C0_LF || ch == C0_CR || ch == C0_HT))");
             if (expect_false (!this.seen_input)){
                 //   FUNCTION_DEBUG("expect_false (!this.seen_input)){");
                 this.seen_input = 1;}
@@ -458,22 +456,24 @@ rxvt_term.prototype.cmd_parse =function(){
             var str = buf, str_i = 0; //wchar_t *str = buf;
             var eol = str.length + mi_n (this.ncol, UBUFSIZ); //wchar_t *eol = str + min (ncol, UBUFSIZ);
             for (;;){//inner_for_loop
-              FUNCTION_DEBUG("inner_for_loop")
-              FUNCTION_DEBUG(och)
+                //FUNCTION_DEBUG("inner_for_loop")
+                //FUNCTION_DEBUG(och)
 
               if (expect_false (och == NOCHAR || (IS_CONTROL (och) && och != C0_LF && och != C0_CR && och != C0_HT))) { //IS_CONTROL
-                  FUNCTION_DEBUG(" is_ctrl 2266")
+                  //FUNCTION_DEBUG(" is_ctrl 2266")
                     break;}
-                str[str_i++]=chr(och)  //str++ = ch; 
-              if(str.length >= eol){FUNCTION_DEBUG("str >= eol")}
+              VAR_DEBUG("och",och);
+              str[str_i++]=chr(och)  //str++ = ch; 
+                  //if(str.length >= eol){FUNCTION_DEBUG("str >= eol")}
                 if (expect_false (och == C0_LF || str.length >= eol)){
-                    FUNCTION_DEBUG("Linefeed, eol")
+                    //FUNCTION_DEBUG("Linefeed, eol")
                     if (och == C0_LF){
                       FUNCTION_DEBUG("LF nlines++");
                         nlines++;}
+                    FUNCTION_DEBUG("refresh_count++;");
                     this.refresh_count++;
                     if (!this.option (Opt_jumpScroll) || this.refresh_count >= this.nrow - 1){
-                      FUNCTION_DEBUG("Opt_jumscroll refresh_count");
+                        //FUNCTION_DEBUG("Opt_jumscroll refresh_count");
                         this.refresh_count = 0;
                         /*
                         if (!this.option (Opt_skipScroll) ){
@@ -485,7 +485,7 @@ rxvt_term.prototype.cmd_parse =function(){
                     }//jumpScroll
                     // scr_add_lines only works for nlines <= nrow - 1.
                     if (nlines >= this.nrow - 1){
-                        FUNCTION_DEBUG("nlines >= this.nrow - 1){")
+                        //FUNCTION_DEBUG("nlines >= this.nrow - 1){")
                         if (!(SHOULD_INVOKE (HOOK_ADD_LINES)
                               && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str - buf, DT_END)))) {
                         FUNCTION_DEBUG(" scr_add_lines (buf, str - buf, nlines);")
@@ -494,10 +494,10 @@ rxvt_term.prototype.cmd_parse =function(){
                         nlines = 0;
                         str_i = buf_i;
                         eol = str.length + mi_n (this.ncol, UBUFSIZ);  // FIXME should_work
-                        VAR_DEBUG("eol",eol);
+                        //VAR_DEBUG("eol",eol);
                     }
                     if (str.length >= eol){   // FIXME should_work
-                        FUNCTION_DEBUG("str.length >= eol")
+                        //FUNCTION_DEBUG("str.length >= eol")
                         if (eol >= buf.length + UBUFSIZ){  // FIXME should_work
                             och = NOCHAR;
                             break;}
@@ -511,9 +511,9 @@ rxvt_term.prototype.cmd_parse =function(){
                     
                 }*/
                 och = ord(this_next_char()); 
-                FUNCTION_DEBUG("innerend of inner_for_loop")
+                //FUNCTION_DEBUG("innerend of inner_for_loop")
             }//for(;;) inner_for_loop
-            FUNCTION_DEBUG("the inner_for_loop has closed ")
+            //FUNCTION_DEBUG("the inner_for_loop has closed ")
             if (!(SHOULD_INVOKE (HOOK_ADD_LINES)    && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str.length - buf.length, DT_END)))){
                 //FIXED pointermath  scr_add_lines (buf, str - buf, nlines);
                 this.scr_add_lines (buf, str_i, nlines);  

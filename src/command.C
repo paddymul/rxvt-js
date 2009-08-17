@@ -2224,11 +2224,11 @@ rxvt_term::cmd_parse ()
 
   for (;;)
     {
-      FUNCTION_DEBUG("outer_for_loop");
-      FUNCTION_DEBUG(ch)
+      //FUNCTION_DEBUG("outer_for_loop");
+      //FUNCTION_DEBUG(ch)
       if (expect_false (ch == NOCHAR))
         {
-          FUNCTION_DEBUG("och == NOCHAR)){");
+          //FUNCTION_DEBUG("och == NOCHAR)){");
           seq_begin = cmdbuf_ptr;
           ch = next_char ();
 
@@ -2238,11 +2238,11 @@ rxvt_term::cmd_parse ()
 
       if (expect_true (!IS_CONTROL (ch) || ch == C0_LF || ch == C0_CR || ch == C0_HT))
         {
-          FUNCTION_DEBUG("expect_true (!IS_CONTROL (ch) || ch == C0_LF || ch == C0_CR || ch == C0_HT))");            
+          //FUNCTION_DEBUG("expect_true (!IS_CONTROL (ch) || ch == C0_LF || ch == C0_CR || ch == C0_HT))");            
 
           if (expect_false (!seen_input))
             {
-              FUNCTION_DEBUG("expect_false (!this.seen_input)){");
+              //FUNCTION_DEBUG("expect_false (!this.seen_input)){");
               seen_input = 1;
               // many badly-written programs (e.g. jed) contain a race condition:
               // they first read the screensize and then install a SIGWINCH handler.
@@ -2264,33 +2264,35 @@ rxvt_term::cmd_parse ()
           
           for (;;)
             {        
-              FUNCTION_DEBUG("inner_for_loop")
-                FUNCTION_DEBUG(ch)
+              //FUNCTION_DEBUG("inner_for_loop")
+              //FUNCTION_DEBUG(ch)
 
               if (expect_false (ch == NOCHAR || (IS_CONTROL (ch) && ch != C0_LF && ch != C0_CR && ch != C0_HT))){
-                FUNCTION_DEBUG(" is_ctrl 2266")
+                //FUNCTION_DEBUG(" is_ctrl 2266")
                   break;}
 
+              VAR_DEBUG("och",ch);
               *str++ = ch;
 
-              if(str >= eol){FUNCTION_DEBUG("str >= eol")}
+              //if(str >= eol){FUNCTION_DEBUG("str >= eol")}
               if (expect_false (ch == C0_LF || str >= eol))
                 {
-                  FUNCTION_DEBUG("Linefeed, eol")
+                  //FUNCTION_DEBUG("Linefeed, eol")
                     if (ch == C0_LF){
                       FUNCTION_DEBUG("LF nlines++");
                     nlines++;
                     }
-                  refresh_count++;
+                    FUNCTION_DEBUG("refresh_count++;");
+                    refresh_count++;
 
                   if (!option (Opt_jumpScroll) || refresh_count >= nrow - 1)
                     {
-                      FUNCTION_DEBUG("Opt_jumscroll refresh_count");
+                      //FUNCTION_DEBUG("Opt_jumscroll refresh_count");
                       refresh_count = 0;
 
                       if (!option (Opt_skipScroll) || ev_time () > ev::now () + 1. / 60.)
                         {
-                          FUNCTION_DEBUG("time_based");
+                          //FUNCTION_DEBUG("time_based");
                           refreshnow = true;
                           ch = NOCHAR;
                           break;
@@ -2300,7 +2302,7 @@ rxvt_term::cmd_parse ()
                   // scr_add_lines only works for nlines <= nrow - 1.
                   if (nlines >= nrow - 1)
                     {
-                    FUNCTION_DEBUG("nlines >= this.nrow - 1){")
+                      //FUNCTION_DEBUG("nlines >= this.nrow - 1){")
                       if (!(SHOULD_INVOKE (HOOK_ADD_LINES)
                             && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str - buf, DT_END)))){
                         FUNCTION_DEBUG(" scr_add_lines (buf, str - buf, nlines);")
@@ -2310,12 +2312,12 @@ rxvt_term::cmd_parse ()
                       nlines = 0;
                       str = buf;
                       eol = str + min (ncol, UBUFSIZ);
-                      VAR_DEBUG("eol",eol)
+                      //VAR_DEBUG("eol",eol)
                     }
 
                   if (str >= eol)
                     {
-                        FUNCTION_DEBUG("str.length >= eol")
+                      //FUNCTION_DEBUG("str.length >= eol")
                       if (eol >= buf + UBUFSIZ)
                         {
                           ch = NOCHAR;
@@ -2330,9 +2332,9 @@ rxvt_term::cmd_parse ()
 
               seq_begin = cmdbuf_ptr;
               ch = next_char ();
-              FUNCTION_DEBUG("innerend of inner_for_loop")
+              //FUNCTION_DEBUG("innerend of inner_for_loop")
             }             
-            FUNCTION_DEBUG("the inner_for_loop has closed ")
+          //FUNCTION_DEBUG("the inner_for_loop has closed ")
 
           if (!(SHOULD_INVOKE (HOOK_ADD_LINES)
                 && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str - buf, DT_END))))
@@ -2351,7 +2353,7 @@ rxvt_term::cmd_parse ()
         }
       else
         {
-          FUNCTION_DEBUG("else 2351")
+          //FUNCTION_DEBUG("else 2351")
           try
             {
               process_nonprinting (ch);
