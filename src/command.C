@@ -2222,8 +2222,7 @@ rxvt_term::cmd_parse ()
   wchar_t ch = NOCHAR;
   char *seq_begin; // remember start of esc-sequence here
 
-  for (;;)
-    {
+  for (;;){//OUTERLOOP
       //FUNCTION_DEBUG("outer_for_loop");
       //FUNCTION_DEBUG(ch)
       if (expect_false (ch == NOCHAR))
@@ -2262,8 +2261,7 @@ rxvt_term::cmd_parse ()
           wchar_t *str = buf;
           wchar_t *eol = str + min (ncol, UBUFSIZ);
           
-          for (;;)
-            {        
+          for (;;) {  //INNERLOOP
               //FUNCTION_DEBUG("inner_for_loop")
               //FUNCTION_DEBUG(ch)
 
@@ -2287,7 +2285,7 @@ rxvt_term::cmd_parse ()
 
                   if (!option (Opt_jumpScroll) || refresh_count >= nrow - 1)
                     {
-                      //FUNCTION_DEBUG("Opt_jumscroll refresh_count");
+                      FUNCTION_DEBUG("Opt_jumscroll refresh_count");
                       refresh_count = 0;
 
                       if (!option (Opt_skipScroll) || ev_time () > ev::now () + 1. / 60.)
@@ -2333,7 +2331,8 @@ rxvt_term::cmd_parse ()
               seq_begin = cmdbuf_ptr;
               ch = next_char ();
               //FUNCTION_DEBUG("innerend of inner_for_loop")
-            }             
+            }         
+            VAR_DEBUG("close_inner, str",str)    
           //FUNCTION_DEBUG("the inner_for_loop has closed ")
 
           if (!(SHOULD_INVOKE (HOOK_ADD_LINES)
@@ -2356,7 +2355,9 @@ rxvt_term::cmd_parse ()
           //FUNCTION_DEBUG("else 2351")
           try
             {
+            FUNCTION_DEBUG("process_nonprinting from cmd_parse")
               process_nonprinting (ch);
+            FUNCTION_DEBUG("END process_nonprinting from cmd_parse")
             }
           catch (const class out_of_input &o)
             {
@@ -2375,13 +2376,13 @@ rxvt_term::cmd_parse ()
 wchar_t
 rxvt_term::next_char () NOTHROW
 {
-  FUNCTION_DEBUG("next_char")
+  //FUNCTION_DEBUG("next_char")
   while (cmdbuf_ptr < cmdbuf_endp)
     {
       // assume 7-bit to be ascii ALWAYS
       if (expect_true ((unsigned char)*cmdbuf_ptr <= 0x7f && *cmdbuf_ptr != 0x1b)){
           unsigned char ret_char=  (unsigned char)*cmdbuf_ptr++;
-          VAR_DEBUG("next_char return", ret_char);
+          //VAR_DEBUG("next_char return", ret_char);
             return ret_char;
 
             //return *cmdbuf_ptr++;
@@ -2403,7 +2404,7 @@ rxvt_term::next_char () NOTHROW
           FUNCTION_DEBUG("len == (size_t)-1")
           mbrtowc (0, 0, 0, mbstate); // reset now undefined conversion state
           unsigned char ret_char=  (unsigned char)*cmdbuf_ptr++;
-          VAR_DEBUG("next_char return", ret_char);
+          //VAR_DEBUG("next_char return", ret_char);
             return ret_char;// the _occasional_ latin1 character is allowed to slip through
 
         }
@@ -2411,11 +2412,11 @@ rxvt_term::next_char () NOTHROW
       // assume wchar == unicode
       cmdbuf_ptr += len;
       //FUNCTION_DEBUG("wc & unicode");
-      VAR_DEBUG("next_char return", (unsigned char) (wc & UNICODE_MASK));
+      //VAR_DEBUG("next_char return", (unsigned char) (wc & UNICODE_MASK));
       return wc & UNICODE_MASK;
     }
-  FUNCTION_DEBUG("return NOCHAR")
-    VAR_DEBUG("next_char return", NOCHAR);
+  //FUNCTION_DEBUG("return NOCHAR")
+  //VAR_DEBUG("next_char return", NOCHAR);
   return NOCHAR;
 }
 
@@ -2620,6 +2621,7 @@ rxvt_term::process_nonprinting (unicode_t ch)
         break;
 #endif
     }
+    FUNCTION_DEBUG("ENDOF process_nonprinting");
 }
 /*}}} */
 
@@ -2929,18 +2931,20 @@ rxvt_term::process_csi_seq ()
             arg[nargs++] = n;
           n = -1;
         }
-      else if (IS_CONTROL (ch))
+      else if (IS_CONTROL (ch)){
+        FUNCTION_DEBUG("process_nonprinting from process_csi_seq");
         process_nonprinting (ch);
-
+      }
       ch = cmd_getc ();
     }
 
-  if (ch > CSI_7F)
+  if (ch > CSI_7F){
+      FUNCTION_DEBUG("och > CSI_7F, RETURN")
     return;
-
-  if (nargs < ESC_ARGS)
+  }
+  if (nargs < ESC_ARGS){
     arg[nargs++] = n;
-
+  }
   i = ch - CSI_ICH;
   //  VAR_DEBUG(i)
   ndef = get_byte_array_bit (csi_defaults, i);
@@ -2994,7 +2998,7 @@ rxvt_term::process_csi_seq ()
               }
           break;
         }
-
+      FUNCTION_DEBUG("return from priv csi")
       return;
     }
 
@@ -3273,6 +3277,7 @@ rxvt_term::process_csi_seq ()
       default:
         break;
     }
+FUNCTION_DEBUG("END OF process_csi_seq")
 }
 /*}}} */
 

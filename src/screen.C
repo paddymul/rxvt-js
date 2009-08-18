@@ -827,7 +827,7 @@ rxvt_term::scr_add_lines (const wchar_t *str, int len, int minlines) NOTHROW
       if (expect_false (c < 0x20))
         if (c == C0_LF)
           {
-            FUNCTION_DEBUG("c == C0_LF");
+            //FUNCTION_DEBUG("c == C0_LF");
             max_it (line->l, screen.cur.col);
 
             screen.flags &= ~Screen_WrapNext;
@@ -842,7 +842,7 @@ rxvt_term::scr_add_lines (const wchar_t *str, int len, int minlines) NOTHROW
           }
         else if (c == C0_CR)
           {
-            FUNCTION_DEBUG("c == C0_CR")
+            //FUNCTION_DEBUG("c == C0_CR")
             max_it (line->l, screen.cur.col);
 
             screen.flags &= ~Screen_WrapNext;
@@ -851,7 +851,7 @@ rxvt_term::scr_add_lines (const wchar_t *str, int len, int minlines) NOTHROW
           }
         else if (c == C0_HT)
           {
-            FUNCTION_DEBUG("c == C0_HT")
+            //FUNCTION_DEBUG("c == C0_HT")
             scr_tab (1, true);
             continue;
           }

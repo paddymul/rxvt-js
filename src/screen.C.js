@@ -1228,7 +1228,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
       FUNCTION_DEBUG(ord(c))
       if (expect_false (ord(c) < 0x20))
           if (ord(c) == C0_LF){
-              FUNCTION_DEBUG("c == C0_LF");
+              //FUNCTION_DEBUG("c == C0_LF");
               line.l= ma_x(line.l,this.screen.cur.col);
 
             this.screen.flags &= ~Screen_WrapNext;
@@ -1246,7 +1246,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
             continue;
           }
           else if (ord(c) == C0_CR){
-            FUNCTION_DEBUG("c == C0_CR")
+              //FUNCTION_DEBUG("c == C0_CR")
           line.l= ma_x(line.l,this.screen.cur.col);
 
             this.screen.flags &= ~Screen_WrapNext; 
@@ -1254,7 +1254,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
             continue;
           }
           else if (ord(c) == C0_HT){
-            FUNCTION_DEBUG("c == C0_HT")
+              //FUNCTION_DEBUG("c == C0_HT")
             this.scr_tab (1, true);
             continue;
           }

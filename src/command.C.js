@@ -473,7 +473,7 @@ rxvt_term.prototype.cmd_parse =function(){
                     FUNCTION_DEBUG("refresh_count++;");
                     this.refresh_count++;
                     if (!this.option (Opt_jumpScroll) || this.refresh_count >= this.nrow - 1){
-                        //FUNCTION_DEBUG("Opt_jumscroll refresh_count");
+                        FUNCTION_DEBUG("Opt_jumscroll refresh_count");
                         this.refresh_count = 0;
                         /*
                         if (!this.option (Opt_skipScroll) ){
@@ -513,6 +513,7 @@ rxvt_term.prototype.cmd_parse =function(){
                 och = ord(this_next_char()); 
                 //FUNCTION_DEBUG("innerend of inner_for_loop")
             }//for(;;) inner_for_loop
+            VAR_DEBUG("close_inner, str",str.join(""))
             //FUNCTION_DEBUG("the inner_for_loop has closed ")
             if (!(SHOULD_INVOKE (HOOK_ADD_LINES)    && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str.length - buf.length, DT_END)))){
                 //FIXED pointermath  scr_add_lines (buf, str - buf, nlines);
@@ -530,8 +531,10 @@ rxvt_term.prototype.cmd_parse =function(){
             }
         } //IS_CONTROL
         else {
-          FUNCTION_DEBUG("else 2351")
+            FUNCTION_DEBUG("process_nonprinting from cmd_parse")
+            
              this.process_nonprinting (och);
+            FUNCTION_DEBUG("END process_nonprinting from cmd_parse")
              /*
          try {
 
@@ -541,7 +544,8 @@ rxvt_term.prototype.cmd_parse =function(){
                 this.cmdbuf_ptr = seq_begin;
                 break;} 
              */
-          och = ord(NOCHAR);
+                //          och = ord(NOCHAR);
+                och = NOCHAR;
         }//else
     }//for(;;) outer_for_loop
 }//cmd_parse
@@ -549,18 +553,18 @@ rxvt_term.prototype.cmd_parse =function(){
 // read the next character 
 //wchar_t rxvt_term::next_char () 
 rxvt_term.prototype.next_char =function(){
-  FUNCTION_DEBUG("next_char")
+    //FUNCTION_DEBUG("next_char")
   while (this.cmdbuf_ptr < this.cmdbuf_endp){
       var ret_char = this.cmdbuf[this.cmdbuf_ptr++];
       //if(expect_true(ord(c_char) <= 0x7f && ord(c_char) != 0x1b)){
-          VAR_DEBUG("next_char return", ret_char);
+      //VAR_DEBUG("next_char return", ret_char);
       return ret_char;
       //return this.cmdbuf[this.cmdbuf_ptr++]; 
       //}
     }
-  FUNCTION_DEBUG("return NOCHAR");
-  VAR_DEBUG("next_char return", chr(NOCHAR));
-    return chr(NOCHAR);
+  //FUNCTION_DEBUG("return NOCHAR");
+  //VAR_DEBUG("next_char return", chr(NOCHAR));
+  return chr(NOCHAR);
 }
 
 // read the next octet
@@ -673,6 +677,7 @@ rxvt_term.prototype.process_nonprinting =function(ch){
       //console.log(chr(ch));
       //#endif
     }
+    FUNCTION_DEBUG("ENDOF process_nonprinting");
 }
 /*}}} */
 
@@ -1013,15 +1018,16 @@ FUNCTION_DEBUG("process_csi_seq");
             arg[nargs++] = n;
           n = -1;
         }
-      else if (IS_CONTROL (och))
+      else if (IS_CONTROL (och)){
+          FUNCTION_DEBUG("process_nonprinting from process_csi_seq");
         this.process_nonprinting (och); 
-
+      }
       ch = this.cmd_getc ();
       och = ord(ch);
     }
-  console.log(och);
   if (och > CSI_7F){
       //console.log("och > CSI_7F)");
+      FUNCTION_DEBUG("och > CSI_7F, RETURN")
     return;
   }
   if (nargs < ESC_ARGS)
@@ -1032,7 +1038,7 @@ FUNCTION_DEBUG("process_csi_seq");
 //VAR_DEBUG(i);
   ndef = get_byte_array_bit (csi_defaults, i);
   FUNCTION_DEBUG("get_byte_array_bit")
-VAR_DEBUG(i,ndef)
+  VAR_DEBUG(i,ndef)
   for (p = 0; p < nargs; p++){
     if (arg[p] == -1){
       arg[p] = 0; } //this is a decent pick for a default
@@ -1081,11 +1087,10 @@ VAR_DEBUG(i,ndef)
               }
           break;
         }
-
+      FUNCTION_DEBUG("return from priv csi")
       return;
     }
 
-  console.log(och);
   switch (och){
         /*
          * ISO/IEC 6429:1992 (E) CSI sequences (defaults in parentheses) 
@@ -1360,6 +1365,7 @@ VAR_DEBUG(i,ndef)
       default:
         break;
     }
+FUNCTION_DEBUG("END OF process_csi_seq")
 }
 /*}}} */
 
@@ -1469,7 +1475,7 @@ FUNCTION_DEBUG("process_window_ops");
         }
         break;
                          */
-    }
+  }
 }
 //#endif
 

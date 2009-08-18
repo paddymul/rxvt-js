@@ -3,7 +3,7 @@
 ./run_rxvt 58-bak 2> rxvt-tmp-out
 cat rxvt-tmp-out | grep -v BEGIN | grep -v "urxvt: unable" | grep -v "locate urxvt.pm" > rxvt-out
 java -jar ~/temp/downloads/js/rhino/rhino1_6R7/js.jar spdr_test.js 58-bak > rxvt-js-out
-python report.py
+#python report.py
 
 head -n 200 rxvt-out |  sed 's/ *$//g' | sed 's/^ *//g'  > rxvt-out-for-ediff
 head -n 200 rxvt-js-out |sed 's/ *$//g' | sed 's/^ *//g'  > rxvt-js-out-for-ediff
