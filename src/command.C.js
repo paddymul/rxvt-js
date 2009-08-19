@@ -502,7 +502,7 @@ rxvt_term.prototype.cmd_parse =function(){
                               && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str - buf, DT_END)))) {
                         FUNCTION_DEBUG(" scr_add_lines (buf, str - buf, nlines);")
                             //FIXME pointermath  scr_add_lines (buf, str - buf, nlines);  
-                            this.scr_add_lines (buf, str_i, nlinest);}
+                            this.scr_add_lines (buf, str_i, nlines);}
                         nlines = 0;
                         str_i = buf_i;
                         eol = str.length + mi_n (this.ncol, UBUFSIZ);  // FIXME should_work

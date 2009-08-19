@@ -832,11 +832,14 @@ rxvt_term::scr_add_lines (const wchar_t *str, int len, int minlines) NOTHROW
 
             screen.flags &= ~Screen_WrapNext;
 
-            if (screen.cur.row == screen.bscroll)
+            if (screen.cur.row == screen.bscroll){
+                FUNCTION_DEBUG("screen.cur.row == screen.bscroll){");
               scr_scroll_text (screen.tscroll, screen.bscroll, 1);
-            else if (screen.cur.row < (nrow - 1))
+            }
+            else if (screen.cur.row < (nrow - 1)){
+                FUNCTION_DEBUG("screen.cur.row < (nrow - 1)){");
               row = ++screen.cur.row;
-
+            }
             line = &ROW(row);  /* _must_ refresh */
             continue;
           }
@@ -3839,7 +3842,7 @@ rxvt_term::im_set_position (XPoint &pos) NOTHROW
 void
 rxvt_term::scr_overlay_new (int x, int y, int w, int h) NOTHROW
 {
-  FUNCTION_DEBUG("scr_overlay_new")
+  //Not enabled for rxvt-js  FUNCTION_DEBUG("scr_overlay_new")
   if (nrow < 1 || ncol < 1)
     return;
 
