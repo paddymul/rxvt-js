@@ -2282,6 +2282,9 @@ rxvt_term::cmd_parse ()
               *str++ = ch;
 
               //if(str >= eol){FUNCTION_DEBUG("str >= eol")}
+              //VAR_DEBUG("str.length", str);
+              //VAR_DEBUG("eol", eol);
+
               if (expect_false (ch == C0_LF || str >= eol))
                 {
                   FUNCTION_DEBUG("Linefeed, eol")

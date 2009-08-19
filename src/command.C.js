@@ -463,7 +463,8 @@ rxvt_term.prototype.cmd_parse =function(){
             var refreshnow = false;
             var nlines= 0; 
             var str = buf, str_i = 0; //wchar_t *str = buf;
-            var eol = str.length + mi_n (this.ncol, UBUFSIZ); //wchar_t *eol = str + min (ncol, UBUFSIZ);
+            //var eol = str.length + mi_n (this.ncol, UBUFSIZ); //wchar_t *eol = str + min (ncol, UBUFSIZ);
+            var eol = str_i + mi_n (this.ncol, UBUFSIZ); //wchar_t *eol = str + min (ncol, UBUFSIZ);
             for (;;){//inner_for_loop
                 //FUNCTION_DEBUG("inner_for_loop")
                 //FUNCTION_DEBUG(och)
@@ -474,15 +475,17 @@ rxvt_term.prototype.cmd_parse =function(){
               VAR_DEBUG("och",och);
               str[str_i++]=chr(och);  //str++ = ch; 
               //if(str.length >= eol){FUNCTION_DEBUG("str >= eol")}
-              if (expect_false (och == C0_LF || str.length >= eol)){
+              VAR_DEBUG("str.length", str_i);
+              VAR_DEBUG("eol", eol);
+              if (expect_false (och == C0_LF || str_i >= eol)){
                     FUNCTION_DEBUG("Linefeed, eol")
                     if (och == C0_LF){
                       FUNCTION_DEBUG("LF nlines++");
                         nlines++;}
                     FUNCTION_DEBUG("refresh_count++;");
                     this.refresh_count++;
-                    VAR_DEBUG("refresh_count",this.refresh_count);
-                    VAR_DEBUG("this.nrow", this.nrow );
+                    //VAR_DEBUG("refresh_count",this.refresh_count);
+                    //VAR_DEBUG("this.nrow", this.nrow );
 
                     if ((!this.option (Opt_jumpScroll)) || this.refresh_count >= (this.nrow - 1)){
                         FUNCTION_DEBUG("Opt_jumscroll refresh_count");
@@ -509,7 +512,7 @@ rxvt_term.prototype.cmd_parse =function(){
                         eol = str.length + mi_n (this.ncol, UBUFSIZ);  // FIXME should_work
                         //VAR_DEBUG("eol",eol);
                     }
-                    if (str.length >= eol){   // FIXME should_work
+                    if (str_i >= eol){   // FIXME should_work
                         FUNCTION_DEBUG("str.length >= eol")
                         if (eol >= buf.length + UBUFSIZ){  // FIXME should_work
                             och = NOCHAR;
