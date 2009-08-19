@@ -2407,6 +2407,7 @@ rxvt_term.prototype.scr_refresh =function(){
     FUNCTION_DEBUG("scr_refresh")
     console.log("scr_refresh called ");
 #ifndef DEBUG
+    console.log("scr_refresh called ");
     var out_string =[];
     var b=-1;
     var dtr = this.dom_text_rows;

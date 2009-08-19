@@ -176,6 +176,8 @@ I bound them to "C-H u" "C-H o" and "C-H p"
 }
 
 
+
+
 //void rxvt_term::flush ()
 rxvt_term.prototype.minimum_buf_size=40;
 
@@ -540,7 +542,7 @@ rxvt_term.prototype.cmd_parse =function(){
              * What the heck we'll cheat and only refresh less than every page-full. 
              * if skipScroll is enabled.                   */
             //debugger;
-            //refreshnow=true;
+            refreshnow=true;
             if (refreshnow){
                 FUNCTION_DEBUG("refreshnow");
                 this.scr_refresh();
@@ -548,20 +550,18 @@ rxvt_term.prototype.cmd_parse =function(){
             }
         } //IS_CONTROL
         else {
+             
+         try {
             FUNCTION_DEBUG("process_nonprinting from cmd_parse")
             
              this.process_nonprinting (och);
             FUNCTION_DEBUG("END process_nonprinting from cmd_parse")
-             /*
-         try {
 
 
          } catch ( out_of_input){  //FIXME exception
                 // we ran out of input, retry later
                 this.cmdbuf_ptr = seq_begin;
                 break;} 
-             */
-                //          och = ord(NOCHAR);
                 och = NOCHAR;
         }//else
 #endif
@@ -1067,10 +1067,11 @@ FUNCTION_DEBUG("process_csi_seq");
 
   i = och - CSI_ICH;
   //  ndef = get_byte_array_bit (csi_defaults, i);
-//VAR_DEBUG(i);
+
   ndef = get_byte_array_bit (csi_defaults, i);
-  FUNCTION_DEBUG("get_byte_array_bit")
-  VAR_DEBUG(i,ndef)
+VAR_DEBUG("i",ndef);
+FUNCTION_DEBUG("get_byte_array_bit");
+
   for (p = 0; p < nargs; p++){
     if (arg[p] == -1){
       arg[p] = 0; } //this is a decent pick for a default
@@ -1097,7 +1098,6 @@ FUNCTION_DEBUG("process_csi_seq");
 
           case '?':
           CASE_DEBUG("case '?':")
-          VAR_DEBUG("ch", och)
             if (ch == 'h' || ch == 'l' || ch == 'r' || ch == 's' || ch == 't')
               this.process_terminal_mode (och, priv, nargs, arg);
             break;

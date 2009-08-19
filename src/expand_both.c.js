@@ -17,6 +17,7 @@ if(!console){
 //# 193 "rxvt.h.js"
 //# 214 "rxvt.h.js"
 //# 233 "rxvt.h.js"
+//# 245 "rxvt.h.js"
 Opt_secondaryScroll=22;
 Opt_secondaryScreen=21;
 NOCHAR = 0xffff,
@@ -78,10 +79,10 @@ VT100_ANS = "rxvt-js";
 ESCZ_ANSWER = "rxvt-js ?? escz";
 //SCREEN.H.JS MACROS
  
-//# 434 "rxvt.h.js"
-//# 447 "rxvt.h.js"
-//# 461 "rxvt.h.js"
-//# 472 "rxvt.h.js"
+//# 439 "rxvt.h.js"
+//# 452 "rxvt.h.js"
+//# 466 "rxvt.h.js"
+//# 477 "rxvt.h.js"
 memset = function(destination, destination_i, source,  _length){
   for(var i =0; i < _length; i++){
     destination[destination_i + i]=source;
@@ -106,10 +107,10 @@ memset = function(destination, destination_i, source,  _length){
   
   // main.C
   
-//# 547 "rxvt.h.js"
+//# 552 "rxvt.h.js"
   
   
-//# 564 "rxvt.h.js"
+//# 569 "rxvt.h.js"
     var
     NO_REFRESH       = 0, // Window not visible at all!      
   FAST_REFRESH     = 1, // Fully exposed window            
@@ -159,17 +160,17 @@ PRIMARY = 0,
 //FIXED c_style_UL #de fine RS _Careful		0x80000000UL	            
 // not 127 or 256, see rxvtfont.h
 // plenty(?) of fonts, includes 0x80000000
-//# 685 "rxvt.h.js"
-//# 743 "rxvt.h.js"
-//# 780 "rxvt.h.js"
-//# 789 "rxvt.h.js"
-//# 798 "rxvt.h.js"
-//# 807 "rxvt.h.js"
-//# 816 "rxvt.h.js"
+//# 690 "rxvt.h.js"
+//# 748 "rxvt.h.js"
+//# 785 "rxvt.h.js"
+//# 794 "rxvt.h.js"
+//# 803 "rxvt.h.js"
+//# 812 "rxvt.h.js"
+//# 821 "rxvt.h.js"
  
  
-//# 897 "rxvt.h.js"
-//# 962 "rxvt.h.js"
+//# 902 "rxvt.h.js"
+//# 967 "rxvt.h.js"
 //enum {
 var  XTerm_name             =  0,
   XTerm_iconName         =  1,
@@ -248,7 +249,7 @@ Color_none = -2,
   Color_UL = 25,
   Color_RV = 26,
   Color_scroll = 27,
-//# 1093 "rxvt.h.js"
+//# 1098 "rxvt.h.js"
   NRS_COLORS = 28,                 
   TOTAL_COLORS = NRS_COLORS
   ;
@@ -256,20 +257,20 @@ Color_none = -2,
 //# include "rsinc.h"
 //  NUM_RESOURCES
 //FIXME does bitshifting an unsigned long result in a different value than bitshifting any number in js would?
-//# 1143 "rxvt.h.js"
+//# 1148 "rxvt.h.js"
 // do not change these constants li
 // input modifier buffer sizesghtly, there are many interdependencies
 // size of command buffer// size of keyboard mapping buffer
 // never call pty_fill/cmd_parse more than this often in a row8    
 // character buffer
-//# 1176 "rxvt.h.js"
+//# 1181 "rxvt.h.js"
 // for speed reasons, we assume that all codepoints 32 to 126 are
 // single-width.
 //#define 0		(((c) - ( 0x20) <= ( 0x7e) - ( 0x20)) ? 1 : wcwidth (c))
-//# 1224 "rxvt.h.js"
+//# 1229 "rxvt.h.js"
 //#defi ne LIN ENO_of(t,n) ((((t)->term_start + int(n)) + ( (t)->total_rows)) % ( (t)->total_rows))
 //#def ine RO W_of(t,n) (t->row_buf [((((t).term_start +  n) + ( (t).total_rows)) % ( (t).total_rows))]
-//# 1251 "rxvt.h.js"
+//# 1256 "rxvt.h.js"
 //# define FONTSET_of(t,style) (t)->fontset[0]
 //#de fine FON TSET(style) this.fontset[0]
 //typedef callback<void (const char *)> log_callback;
@@ -278,7 +279,7 @@ Color_none = -2,
 // line has been compressed (NYI)
 // line needs to be filtered before display (NYI)
 // line needs bidi (NYI)
-//# 1326 "rxvt.h.js"
+//# 1331 "rxvt.h.js"
 line_t = function() {
   this.t= [];  //FIXED   text_t *t; // terminal the text
   this.r= []; //FIXED   rend_t *r; // rendition, uses RS_ flags
@@ -300,7 +301,7 @@ line_t.prototype = {
       return thisf & 0x0001 // line is continued on the next row;
     }},
  
-//# 1361 "rxvt.h.js"
+//# 1366 "rxvt.h.js"
  clear : function ()   { //FIXME should this whole thing be an object, probably
     this.t = [];
     this.r = [];
@@ -309,25 +310,25 @@ line_t.prototype = {
   },
  //FIXME operator overloading
  
-//# 1378 "rxvt.h.js"
+//# 1383 "rxvt.h.js"
   touch : function (col) { // call whenever a line is changed/touched/updated  
         this.modified=true;
   }
 };
 // primitive wrapper around mbstate_t to ensure initialisation
-//# 1397 "rxvt.h.js"
+//# 1402 "rxvt.h.js"
 //FIXED c_style_ul #define UNICODE_MASK 0x1fffffUL
-//# 1415 "rxvt.h.js"
+//# 1420 "rxvt.h.js"
 //FIXED c_style_UL #  define COMPOSE_LO 0xd800UL
 //FIXED c_style_UL #  define COMPOSE_HI 0xf8ffUL 
-//# 1453 "rxvt.h.js"
+//# 1458 "rxvt.h.js"
 function row_col_t(){};
 row_col_t.prototype = {row:0, col:0};
-//# 1481 "rxvt.h.js"
-//# 1524 "rxvt.h.js"
-//# 1553 "rxvt.h.js"
-//# 1572 "rxvt.h.js"
-//# 1588 "rxvt.h.js"
+//# 1486 "rxvt.h.js"
+//# 1529 "rxvt.h.js"
+//# 1558 "rxvt.h.js"
+//# 1577 "rxvt.h.js"
+//# 1593 "rxvt.h.js"
 screen_t = function() {
   this.s_cur= new row_col_t();        //row_col_t  saved cursor position
   this.cur= new row_col_t();          //row_col_t  cursor position on the screen            
@@ -357,7 +358,7 @@ selection_t.prototype = {
  rect:  true     //bool               rectangular selection?                   
 };
 //# includeoptinc.h"
-//# 1673 "rxvt.h.js"
+//# 1678 "rxvt.h.js"
 rxvt_vars = function() {}
   rxvt_vars.prototype={
   };
@@ -368,6 +369,16 @@ function rxvt_term(term_el, pre_term_el) {
   this.screen = new screen_t();
   this.swap = new screen_t();
   this.charsets= new Array(4);
+  this.set_option (Opt_scrollBar, true);
+  this.set_option (Opt_scrollTtyOutput, true);
+  this.set_option (Opt_jumpScroll, true);
+  this.set_option (Opt_skipScroll, true);
+  this.set_option (Opt_secondaryScreen, true);
+  this.set_option (Opt_secondaryScroll, true);
+  this.set_option (Opt_pastableTabs, true);
+  this.set_option (Opt_intensityStyles, true);
+  this.set_option (Opt_iso14755_52, true);
+  this.set_option (Opt_buffered, true);
 }  //FIXME
 rxvt_term.prototype = {
   //termwin_t variables
@@ -376,8 +387,8 @@ rxvt_term.prototype = {
   fwidth: "",                //font width                      [pixels]
   fheight: "",               //font height                     [pixels]
   fbase: "",                 //font ascent (baseline)          [pixels]
-  ncol: 0,                  //window columns              [characters]
-  nrow: 0,                  //window rows                 [characters]
+  ncol: 80,                  //window columns              [characters]
+  nrow: 24,                  //window rows                 [characters]
   focus: "",                 //window has focus                        
   mapped: "",                //window state mapped?                    
   int_bwidth: "",            //internal border width                   
@@ -422,7 +433,7 @@ rxvt_term.prototype = {
   current_screen:1,	// primary or secondary              
   num_scr_allow:1,
   bypass_keystate:1,
-//# 1764 "rxvt.h.js"
+//# 1782 "rxvt.h.js"
   enc_utf8:1,		// wether locale uses utf-8 
   seen_input:1,         // wether we have seen some program output yet 
   seen_resize:1,	// wether we had a resize event 
@@ -475,7 +486,7 @@ rxvt_term.prototype = {
 //XComposeStatus  compose;
 //struct termios  tio;  //FIXME termios might be needed
  oldcursor: row_col_t(), //row_col_t
-//# 1854 "rxvt.h.js"
+//# 1872 "rxvt.h.js"
  allocated: [], //???? // vector<void *> allocated;           // free these memory blocks with free()
  //char            env_windowid[21];   // environmental variable WINDOWID 
  //char            env_colorfgbg[sizeof ("COLORFGBG=default;default;bg") + 1];
@@ -496,13 +507,14 @@ rxvt_term.prototype = {
  cmdbuf_ptr:0, cmdbuf_endp:0,//char           *cmdbuf_ptr, *cmdbuf_endp;
  cmdbuf_base : [], //char            cmdbuf_base[204];
   option: function (opt) {
-    if(!opt){
-      return 0;
-    }
-    --opt;
-    return this.options[opt >>3] & ( 1 << (opt & 7));
-  },
- set_privmode: function(bit,set){
+       
+        if(!opt){
+            return 0;
+        }
+        --opt;
+        return this.options[opt >>3] & ( 1 << (opt & 7));
+    },
+  set_privmode: function(bit,set){
     if (set)
       this.priv_modes |= bit;
     else
@@ -522,7 +534,7 @@ rxvt_term.prototype = {
  //rxvt_salloc    *ralloc;             // rend line allocator
  //static vector<rxvt_term *> termlist; // a vector of all running rxvt_term's
 }
-//# 2031 "rxvt.h.js"
+//# 2051 "rxvt.h.js"
 function chr(inte){
   return String.fromCharCode(inte);
   }
@@ -536,9 +548,16 @@ function ord(_string){ //this might fail for unicode
 }
 //#define ord(_string) ((_string)[0].charCodeAt(0))
 //#define chr(inte) (String.fromCharCode(inte))
+//#define this_next_char() ( this.cmdbuf_ptr < this.cmdbuf_endp ? this.cmdbuf[this.cmdbuf_ptr++] : chr(NOCHAR))
 //( a.cmdbuf_ptr < a.cmdbuf_endp ? a.cmdbuf[a.cmdbuf_ptr++] : "")
 function hex(_integer){
   return _integer.toString(16);
+  }
+function lresize (l)   {
+    if (!l.t)
+      return;
+    
+//# 2090 "rxvt.h.js"
   }
 //# 122 "command.C.js" 2
 //#de fine IS_CONTRO L(ch) !((ch) & 0xffffff60UL)
@@ -610,7 +629,7 @@ rxvt_term.prototype.flush =function(){
     }
   display.flush (); //FIXME what is display again
 }
-//# 288 "command.C.js"
+//# 290 "command.C.js"
 //REMOVED:void rxvt_term::cont_scroll_cb (ev::timer &w, int revents) 
 //REMOVED:void rxvt_term::sel_scroll_cb (ev::timer &w, int revents) 
 //REMOVED:void rxvt_term::slip_wheel_cb (ev::timer &w, int revents) 
@@ -620,19 +639,19 @@ rxvt_term.prototype.flush =function(){
 rxvt_term.prototype.pty_fill =function(){ 
     ;
     
-//# 330 "command.C.js"
+//# 332 "command.C.js"
   return false;
 }
 //void rxvt_term::pty_cb (ev::io &w, int revents) 
 rxvt_term.prototype.pty_cb =function(w,  revents){ 
     ;
     
-//# 363 "command.C.js"
+//# 365 "command.C.js"
 }
-//# 388 "command.C.js"
+//# 390 "command.C.js"
 //REMOVED:void rxvt_term::mouse_report (XButtonEvent &ev) 
 //REMOVED:void rxvt_term::x_cb (XEvent &ev) 
-//# 409 "command.C.js"
+//# 411 "command.C.js"
 //REMOVED:void rxvt_term::focus_in () 
 //REMOVED:void rxvt_term::focus_out () 
 //void rxvt_term::update_fade_color (unsigned int idx) 
@@ -648,90 +667,147 @@ rxvt_term.prototype.cmd_parse =function(){
     //;
     var och= NOCHAR;  //wchar_t ch = NOCHAR;
     var seq_begin;   // char *seq_begin; // remember start of esc-sequence here 
+    
     for (;;){ //outer_for_loop
+//# 450 "command.C.js"
+        //
+        //
         
         if ((och == NOCHAR)){
+            //;
             seq_begin = this.cmdbuf_ptr; 
-            och = ord(( this.cmdbuf_ptr < this.cmdbuf_endp ? this.cmdbuf[this.cmdbuf_ptr++] : chr(NOCHAR))); 
-            if (och == NOCHAR)
-                break;}
+            och = ord(( this.next_char())); 
+            if (och == NOCHAR){
+                break;
+            }
+        }
         if ((!!((och) & 0xffffff60) || och == 0xa || och == 0xd || och == 0x9)){
+            
+            //;
             if ((!this.seen_input)){
+                //   ;
                 this.seen_input = 1;}
             
             var buf = new Array(2048);  //wchar_t buf[2048];  
             var refreshnow = false;
             var nlines= 0; 
             var str = buf, str_i = 0; //wchar_t *str = buf;
-            var eol = str.length + Math.min((this.ncol),( 2048)); //wchar_t *eol = str + min (ncol, 2048);
+            //var eol = str.length + Math.min((this.ncol),( 2048)); //wchar_t *eol = str + min (ncol, 2048);
+            var eol = str_i + Math.min((this.ncol),( 2048)); //wchar_t *eol = str + min (ncol, 2048);
             for (;;){//inner_for_loop
-              //console.log(ch,ord(ch),chr(ch));
+                //
+                //
               if ((och == NOCHAR || (!((och) & 0xffffff60) && och != 0xa && och != 0xd && och != 0x9))) { //IS_CONTROL
+                  //
                     break;}
-                str[str_i++]=chr(och)  //str++ = ch; 
-                if ((och == 0xa || str.length >= eol)){
+              ;
+              str[str_i++]=chr(och);  //str++ = ch; 
+              //if(str.length >= eol){}
+              //;
+              //;
+              if ((och == 0xa || str_i -2 >= eol)){
+                    
                     if (och == 0xa){
+                      ;
                         nlines++;}
+                    ;
                     this.refresh_count++;
-                    if (!this.option (Opt_jumpScroll) || this.refresh_count >= this.nrow - 1){
+                    ;
+                    ;
+                    if ((!this.option (Opt_jumpScroll)) || this.refresh_count >= (this.nrow - 1)){
+                        ;
                         this.refresh_count = 0;
                         if (!this.option (Opt_skipScroll) ){
+                            //;
                             refreshnow = true;
                             och = NOCHAR;
-                            break;} }//jumpScroll
+                            break;}//skipScroll
+                    }//jumpScroll
                     // scr_add_lines only works for nlines <= nrow - 1.
-                    if (nlines >= nrow - 1){
+                    if (nlines >= this.nrow - 1){
+                        
                         if (!(false
                               && false)) {
+                        
                             //FIXME pointermath  scr_add_lines (buf, str - buf, nlines);  
-                            this.scr_add_lines (buf, str_i, nlinest);}
+                            this.scr_add_lines (buf, str_i, nlines);}
                         nlines = 0;
-                        str = buf;
-                        eol = str.length + Math.min((this.ncol),( 2048));}  // FIXME should_work
-                    if (str.length >= eol){   // FIXME should_work
-                        if (eol >= buf.length + 2048){  // FIXME should_work
+                        //str_i = buf_i;
+                        str = buf; str_i=0;
+                        eol = str_i + Math.min((this.ncol),( 2048));  // FIXME should_work
+                        //;
+                    }
+                    if (str_i >= eol){   // FIXME should_work
+                        
+                        if (eol >=  2048){  // FIXME should_work
+                            ;
                             och = NOCHAR;
                             break;}
-                        else
-                            eol = Math.min((eol + this.ncol),( buf.length + 2048));}//str.length
+                        else{
+                            eol = Math.min((eol + this.ncol),(  2048));
+                        }
+                    }//str.length
                 }//expect_false
                 seq_begin = this.cmdbuf_ptr;
                 
-                och = ord(( this.cmdbuf_ptr < this.cmdbuf_endp ? this.cmdbuf[this.cmdbuf_ptr++] : chr(NOCHAR))); 
+                och = ord(( this.next_char())); 
+                
             }//for(;;) inner_for_loop
+            //
+            //
             if (!(false    && false)){
                 //FIXED pointermath  scr_add_lines (buf, str - buf, nlines);
                 this.scr_add_lines (buf, str_i, nlines);  
             }   
             
             //debugger;
-              refreshnow=true;
+            refreshnow=true;
             if (refreshnow){
-                this.scr_refresh ();
+                ;
                 this.scr_refresh();
                 want_refresh = 1;
             }
         } //IS_CONTROL
         else {
+             
          try {
+            
+            
              this.process_nonprinting (och);
+            
          } catch ( out_of_input){  //FIXME exception
                 // we ran out of input, retry later
                 this.cmdbuf_ptr = seq_begin;
                 break;} 
-            och = NOCHAR;
+                och = NOCHAR;
         }//else
     }//for(;;) outer_for_loop
 }//cmd_parse
+    rxvt_term.prototype.cr_seen=false;
 // read the next character 
 //wchar_t rxvt_term::next_char () 
 rxvt_term.prototype.next_char =function(){
-    ;
-    
+    //
   while (this.cmdbuf_ptr < this.cmdbuf_endp){
-    return this.cmdbuf[this.cmdbuf_ptr++]; 
+      var ret_char = this.cmdbuf[this.cmdbuf_ptr++];
+      if( ord(ret_char) == 13 ){
+          if(!this.cr_seen){
+              this.cr_seen=true;
+              this.cmdbuf_ptr--
+          }
+          else{
+              this.cr_seen=false;
+          }
+      }
+      //if((ord(c_char) <= 0x7f && ord(c_char) != 0x1b)){
+      //;
+      return ret_char;
+      //return this.cmdbuf[this.cmdbuf_ptr++]; 
+      //}
     }
-    return chr(NOCHAR);
+  //;
+  //;
+  return chr(NOCHAR);
 }
 // read the next octet
 //uint32_t rxvt_term::next_octet ()  
@@ -749,7 +825,7 @@ rxvt_term.prototype.next_octet =function()  {
   rxvt_term.prototype.cmd_getc =function() {
       //;
       
-    var c= ( this.cmdbuf_ptr < this.cmdbuf_endp ? this.cmdbuf[this.cmdbuf_ptr++] : chr(NOCHAR));   //wchar_t c = next_char (); 
+    var c= ( this.next_char());   //wchar_t c = next_char (); 
   return c;
 }
 //uint32_t rxvt_term::cmd_get8 () {
@@ -772,68 +848,69 @@ rxvt_term.prototype.process_nonprinting =function(ch){
     }
   switch (ch){
       case 0x1b:
-      CASE_DEBUG("case C0_ESC:")
+      
         this.process_escape_seq ();
         break;
       case 0x5:	
-      CASE_DEBUG("case C0_ENQ:")
+      
         if (rs[Rs_answerbackstring])
           this.tt_write (rs [Rs_answerbackstring], (strlen)(rs [Rs_answerbackstring]));
         else
           this.tt_write (VT100_ANS, (strlen)(VT100_ANS));
         break;
       case 0x7:	
-      CASE_DEBUG("case C0_BEL:")
+      
         this.scr_bell ();
         break;
       case 0x8:		
-      CASE_DEBUG("case C0_BS:")
+      
       //debusgger
         this.scr_backspace ();
       //console.log(this.screen.cur);
         break;
       case 0x9:		
-      CASE_DEBUG("case C0_HT:")
+      
         this.scr_tab (1);
         break;
       case 0xd:		
-      CASE_DEBUG("case C0_CR:")
+      
         this.scr_gotorc (0, 0, R_RELATIVE);
         break;
       case 0xb:		
-      CASE_DEBUG("case C0_VT:")
+      
       case 0xc:
-      CASE_DEBUG("case C0_FF:")
+      
       case 0xa:		
-      CASE_DEBUG("case C0_LF:")
+      
         this.scr_index (UP);
         break;
       case 0xe:		
-      CASE_DEBUG("case C0_SO:")
+      
       this.scr_charset_choose (1); 
         break;
       case 0xf:		
-      CASE_DEBUG("case C0_SI:")
+      
       this.scr_charset_choose (0); 
         break;
       //#ifdef EIGHT_BIT_CONTROLS
       // 8-bit controls
       case 0x90: 	
-      CASE_DEBUG("case 0x90:")
+      
         this.process_dcs_seq ();
         break;
       case 0x9b: 	
-      CASE_DEBUG("case 0x9b:")
+      
         this.process_csi_seq ();
         break;
       case 0x9d: 	
-      CASE_DEBUG("case 0x9d:")
+      
         this.process_osc_seq ();
         break;
   default:
       //console.log(chr(ch));
       //#endif
     }
+    ;
 }
 //rxvt_term::process_escape_vt52 (unicode_t ch)
 rxvt_term.prototype.process_escape_vt52 = function (ch){
@@ -843,41 +920,41 @@ rxvt_term.prototype.process_escape_vt52 = function (ch){
   var row, col; //int row, col;
   switch (ch){
       case 'A':		
-          CASE_DEBUG("case 'A':")
+          
         this.scr_gotorc (-1, 0, R_RELATIVE | C_RELATIVE);
         break;
       case 'B':		
-          CASE_DEBUG("case 'B':")
+          
         this.scr_gotorc (1, 0, R_RELATIVE | C_RELATIVE);
         break;
       case 'C':		
-          CASE_DEBUG("case 'C':")
+          
         this.scr_gotorc (0, 1, R_RELATIVE | C_RELATIVE);
         break;
       case 'D':		
-          CASE_DEBUG("case 'D':")
+          
         this.scr_gotorc (0, -1, R_RELATIVE | C_RELATIVE);
         break;
       case 'H':		
-          CASE_DEBUG("case 'H':")
+          
         this.scr_gotorc (0, 0, 0);
         break;
       case 'I':		
-          CASE_DEBUG("case 'I':")
+          
         this.scr_index (DN);
         break;
       case 'J':		
-          CASE_DEBUG("case 'J':")
+          
           //console.log("erase to end of screen");
         this.scr_erase_screen (0);
         break;
       case 'K':		
-          CASE_DEBUG("case 'K':")
+          
           //console.log("erase to end of line");
         this.scr_erase_line (0);
         break;
       case 'Y':         	
-          CASE_DEBUG("case 'Y':")
+          
          
           //console.log("Case Y");
           row = ord(this.cmd_getc()) - ord(' ');
@@ -885,23 +962,23 @@ rxvt_term.prototype.process_escape_vt52 = function (ch){
         this.scr_gotorc (row, col, 0);
         break;
       case 'Z':		
-          CASE_DEBUG("case 'Z':")
+          
         this.tt_printf ("\033/Z");	 
         break;
       case '<':		
-          CASE_DEBUG("case '<':")
+          
          this.set_privmode ((1<<18), 0);
         break;
   case 'F':     	 
-      CASE_DEBUG("case 'F':")
+      
   case 'G':            
-      CASE_DEBUG("case 'G':")
+      
         
         break;
       case '=':     	
-          CASE_DEBUG("case '=':")
+          
       case '>':           
-          CASE_DEBUG("case '>':")
+          
         
         break;
     }
@@ -920,51 +997,51 @@ rxvt_term.prototype.process_escape_seq =function(){
   switch (och){
         
   case 35: //'#':
-      CASE_DEBUG("case '#':") // thats what it originally was, to compare with rxvt
+       // thats what it originally was, to compare with rxvt
         if (this.cmd_getc () == '8')
           this.scr_E ();
         break;
   case 40:// '(':
-      CASE_DEBUG("case 40:// '(':")
+      
       this.scr_charset_set (0,this.cmd_getc ()); 
         break;
   case 41:// ')':
-      CASE_DEBUG("case 41:// ')':")
+      
       this.scr_charset_set (1,this.cmd_getc ()); 
         break;
   case 42://'*': 
-      CASE_DEBUG("case 42://'*':")
+      
       this.scr_charset_set (2,this.cmd_getc ()); 
         break;
       case '+':
-          CASE_DEBUG("case '+':")
+          
       this.scr_charset_set (3,this.cmd_getc ()); 
         break;
   case 55://'7':
-        CASE_DEBUG("case 55://'7':")
+        
         this.scr_cursor (SAVE);
         break;
   case 56://'8':
-      CASE_DEBUG("case 56://'8':")
+      
         this.scr_cursor (RESTORE);
         break;
   case 61://'=':
-        CASE_DEBUG("case 61://'=':")
+        
   case 62://'>':
-        CASE_DEBUG("case 62://'>':")
+        
          this.set_privmode ((1<<7), ch == '=');
         break;
       case 0x40:
-          CASE_DEBUG("case C1_40:")
+          
         this.cmd_getc();
         break;
       case 0x44:
-          CASE_DEBUG("case C1_44:")
+          
         this.scr_index (UP);
         break;
         
       case 0x45:		
-          CASE_DEBUG("case C1_NEL:")
+          
         {
             var nlcr= [ chr(0xa), chr(0xd) ] ;   //wchar_t nlcr[] = { 0xa, 0xd };
             //this.scr_add_lines (nlcr, sizeof (nlcr) / sizeof (nlcr [0]), 1);
@@ -973,66 +1050,66 @@ rxvt_term.prototype.process_escape_seq =function(){
         break;
         
       case 0x47:		
-          CASE_DEBUG("case C1_ESA:")
+          
         this.process_graphics ();
         break;
         
       case 0x48:		
-          CASE_DEBUG("case C1_HTS:")
+          
         this.scr_set_tab (1);
         break;
         
       case 0x4d:			
-          CASE_DEBUG("case C1_RI:")
+          
         this.scr_index (DN);
         break;
         
       
-        CASE_DEBUG("case C1_SS2:")
+        
         
       
-            CASE_DEBUG("case C1_SS3:")
+            
         
       case 0x50:		
-        CASE_DEBUG("case C1_DCS:")
+        
         this.process_dcs_seq ();
         break;
         
       case 0x5a:		
-          CASE_DEBUG("case C1_SCI:")
+          
         this.tt_write (ESCZ_ANSWER, ESCZ_ANSWER.length);
         break;			
         
       case 0x5b:		
-          CASE_DEBUG("case C1_CSI:")
+          
         this.process_csi_seq ();
         break;
         
       case 0x5d:		
-          CASE_DEBUG("case C1_OSC:")
+          
         this.process_osc_seq ();
         break;
         
   case 99://'c':
-      CASE_DEBUG("case 99://'c':")
+      
     //mbstate.reset ();
         this.scr_poweron ();
         //scrollBar.show (1);
         break;
         
   case 110://'n':
-      CASE_DEBUG("case 110://'n':")
+      
       this.scr_charset_choose (2); 
         break;
         
   case 111://'o':
-      CASE_DEBUG("case 111://'o':")
+      
       this.scr_charset_choose (3); 
         break;
     }
 }
  
-//# 910 "command.C.js"
+//# 978 "command.C.js"
 //#define get_byte_array_bit(array, bit)                //#    (!! ((array)[ (bit) / 8] & (128 >> ((bit) & 7))))
 //const unsigned char csi_defaults[] = 
    csi_defaults = [    (((1) << 7) | ((1) << 6) | ((1) << 5) | ((1) << 4)	     | ((1) << 3) | ((1) << 2) | ((1) << 1) | (1)),	
@@ -1107,24 +1184,25 @@ rxvt_term.prototype.process_csi_seq =function(){
             arg[nargs++] = n;
           n = -1;
         }
-      else if (!((och) & 0xffffff60))
+      else if (!((och) & 0xffffff60)){
+          ;
         this.process_nonprinting (och); 
+      }
       ch = this.cmd_getc ();
       och = ord(ch);
     }
-  console.log(och);
   if (och > 0x7f){
       //console.log("och > CSI_7F)");
+      
     return;
   }
   if (nargs < 32)
     arg[nargs++] = n;
   i = och - 0x40;
   //  ndef = get_byte_array_bit (csi_defaults, i);
-//VAR_DEBUG(i);
   ndef = get_byte_array_bit (csi_defaults, i);
-  
-VAR_DEBUG(i,ndef)
+;
+;
   for (p = 0; p < nargs; p++){
     if (arg[p] == -1){
       arg[p] = 0; } //this is a decent pick for a default
@@ -1133,7 +1211,7 @@ VAR_DEBUG(i,ndef)
   if (priv){
       switch (priv){
           case '>':
-          CASE_DEBUG("case '>':")
+          
             if (och == 0x63)	
               {
                 // first parameter is normally 0 for vt100, 1 for vt220, 'R' for rxvt,
@@ -1147,13 +1225,12 @@ VAR_DEBUG(i,ndef)
               }
             break;
           case '?':
-          CASE_DEBUG("case '?':")
-          VAR_DEBUG("ch", och)
+          
             if (ch == 'h' || ch == 'l' || ch == 'r' || ch == 's' || ch == 't')
               this.process_terminal_mode (och, priv, nargs, arg);
             break;
           case '!':
-          CASE_DEBUG("case '!':")
+          
             if (och == 0x70){
                 
                 this.scr_soft_reset ();
@@ -1167,197 +1244,197 @@ VAR_DEBUG(i,ndef)
               }
           break;
         }
+      
       return;
     }
-  console.log(och);
   switch (och){
         
       case 0x41:		
-          CASE_DEBUG("case CSI_CUU:		/* 8.3.22:")
+          
       case 0x65:		
-          CASE_DEBUG("case CSI_VPR:		/* 8.3.161:")
+          
         if(debug.csi_debug){
           console.log("CSI_CUU  CSI_VPR", -arg[0]);}
         arg[0] = -arg[0];
         
       case 0x42:		
-          CASE_DEBUG("case CSI_CUD:		/* 8.3.19:")
+          
       case 0x6b:		
-          CASE_DEBUG("case CSI_VPB:		/* 8.3.160:")
+          
         if(debug.csi_debug){
           console.log("CSI_CUD  CSI_VPB", arg[0]);}
         this.scr_gotorc (arg[0], 0, RELATIVE);
         break;
       case 0x44:		
-          CASE_DEBUG("case CSI_CUB:		/* 8.3.18:")
+          
       case 0x6a: 		
-          CASE_DEBUG("case CSI_HPB: 		/* 8.3.59:")
+          
         if(debug.csi_debug){
           console.log("CSI_CUB  CSI_HPB", arg[0]);}
         arg[0] = arg[0] ? -arg[0] : -1;
         
       case 0x43:		
-        CASE_DEBUG("case CSI_CUF:		/* 8.3.20:")
+        
       case 0x61:		
-        CASE_DEBUG("case CSI_HPR:		/* 8.3.60:")
+        
         if(debug.csi_debug){
           console.log("CSI_CUF  CSI_HPR", arg[0]);}
         this.scr_gotorc (0, arg[0] ? arg[0] : 1, RELATIVE);
         break;
       case 0x46:		
-          CASE_DEBUG("case CSI_CPL:		/* 8.3.13:")
+          
         arg[0] = -arg[0];
         
       case 0x45:		
-          CASE_DEBUG("case CSI_CNL:		/* 8.3.12:")
+          
         this.scr_gotorc (arg[0], 0, R_RELATIVE);
         break;
       case 0x47:		
-          CASE_DEBUG("case CSI_CHA:		/* 8.3.9:")
+          
       case 0x60:		
-          CASE_DEBUG("case CSI_HPA:		/* 8.3.58:")
+          
         this.scr_gotorc (0, arg[0] - 1, R_RELATIVE);
         break;
       case 0x64:		
-          CASE_DEBUG("case CSI_VPA:		/* 8.3.159:")
+          
         this.scr_gotorc (arg[0] - 1, 0, C_RELATIVE);
         break;
       case 0x48:		
-          CASE_DEBUG("case CSI_CUP:		/* 8.3.21:")
+          
         if(debug.csi_debug){
           console.log("CUP", arg[0] , nargs < 2 ? 0 : (arg[1] - 1), 0);}
           //debugger;
       case 0x66:		
-          CASE_DEBUG("case CSI_HVP:		/* 8.3.64:")
+          
       //debugger
         this.scr_gotorc (arg[0] - 1, nargs < 2 ? 0 : (arg[1] - 1), 0);
         break;
       case 0x5a:		
-          CASE_DEBUG("case CSI_CBT:		/* 8.3.7:")
+          
         arg[0] = -arg[0];
         
       case 0x49:		
-          CASE_DEBUG("case CSI_CHT:		/* 8.3.10:")
+          
         this.scr_tab (arg[0]);
         break;
       case 0x4a:		
-          CASE_DEBUG("case CSI_ED:		/* 8.3.40:")
+          
       if(debug.csi_debug){
         console.log("CSI_ED",arg);}
         this.scr_erase_screen (arg[0]);
         break;
       case 0x4b:		
-          CASE_DEBUG("case CSI_EL:		/* 8.3.42:")
+          
         if(debug.csi_debug){
           console.log("CSI_EL",arg);}
         this.scr_erase_line (arg[0]);
         break;
       case 0x40:		
-          CASE_DEBUG("case CSI_ICH:		/* 8.3.65:")
+          
       this.scr_insdel_chars (arg[0], INSERT); 
         break;
       case 0x4c:		
-          CASE_DEBUG("case CSI_IL:		/* 8.3.68:")
+          
         this.scr_insdel_lines (arg[0], INSERT);
         break;
       case 0x4d:		
-          CASE_DEBUG("case CSI_DL:		/* 8.3.33:")
+          
         this.scr_insdel_lines (arg[0], DELETE);
         break;
       case 0x58:		
-          CASE_DEBUG("case CSI_ECH:		/* 8.3.39:")
+          
       this.scr_insdel_chars (arg[0], ERASE); 
         break;
       case 0x50:		
-          CASE_DEBUG("case CSI_DCH:		/* 8.3.26:")
+          
       this.scr_insdel_chars (arg[0], DELETE); 
         break;
       case 0x54:		
-          CASE_DEBUG("case CSI_SD:		/* 8.3.114:")
+          
         arg[0] = -arg[0];
         
       case 0x53:		
-          CASE_DEBUG("case CSI_SU:		/* 8.3.148:")
+          
         this.scr_scroll_text (screen.tscroll, screen.bscroll, arg[0]);
         break;
       case 0x63:		
-          CASE_DEBUG("case CSI_DA:		/* 8.3.24:")
+          
         this.tt_write (VT100_ANS,VT100_ANS.length);
         break;
       case 0x6d:		
-          CASE_DEBUG("case CSI_SGR:		/* 8.3.118:")
+          
         this.process_sgr_mode (nargs, arg);
         break;
       case 0x6e:		
-          CASE_DEBUG("case CSI_DSR:		/* 8.3.36:")
+          
         switch (arg[0]){
             case 5:			
-                CASE_DEBUG("case 5:")
+                
               this.tt_printf ("\033[0n"); 
               break;
             case 6:			
-                CASE_DEBUG("case 6:")
+                
               this.scr_report_position ();
               break;
             case 7:			
-                CASE_DEBUG("case 7:")
+                
               if (this.option (Opt_insecure))
                 this.tt_printf ("%-.250s\012", rs[Rs_display_name]); 
               break;
             case 8:			
-                CASE_DEBUG("case 8:")
+                
                 // FIXME process_xterm_seq (XTerm_title, RESNAME "-" VERSION, 0x9c);
               break;
           }
         break;
       case 0x67:		
-          CASE_DEBUG("case CSI_TBC:		/* 8.3.155:")
+          
         switch (arg[0]){
         case 0:			 
-            CASE_DEBUG("case 0:")
+            
               this.scr_set_tab (0);
               break;
               		
-              CASE_DEBUG("case 1:")
+              //
               		 
-                  CASE_DEBUG("case 2:")
+              //  
         case 3:			 
-              CASE_DEBUG("case 3:")
+              
               		
-                  CASE_DEBUG("case 4:")
+                  
         case 5:			
-              CASE_DEBUG("case 5:")
+              
           this.scr_set_tab (-1);
               break;
           }
         break;
       case 0x57:		
-          CASE_DEBUG("case CSI_CTC:		/* 8.3.17:")
+          
         switch (arg[0]){
         case 0:			 
-            CASE_DEBUG("case 0:")
+            
               this.scr_set_tab (1);
               break;		
               		
-              CASE_DEBUG("case 1:")
+              
         case 2:			 
-              CASE_DEBUG("case 2:")
+              
               this.scr_set_tab (0);
               break;		
               		
-              CASE_DEBUG("case 3:")
+              //
               		 
-                  CASE_DEBUG("case 4:")
+              //  
         case 5:			 
-              CASE_DEBUG("case 5:")
+              
               this.scr_set_tab (-1);
               break;		
               		
-              CASE_DEBUG("case 6:")
+              
           }
         break;
       case 0x6c:		
-          CASE_DEBUG("case CSI_RM:		/* 8.3.107:")
+          
       if(debug.csi_debug){
         console.log("CSI_RM",arg);}
         if (arg[0] == 4)
@@ -1366,7 +1443,7 @@ VAR_DEBUG(i,ndef)
            this.priv_modes &= ~(1<<19);
         break;
       case 0x68:		
-          CASE_DEBUG("case CSI_SM:		/* 8.3.126:")
+          
         if (arg[0] == 4)
           this.scr_insert_mode (1);
         else if (arg[0] == 20)
@@ -1374,7 +1451,7 @@ VAR_DEBUG(i,ndef)
         break;
         
       case 0x72:		
-          CASE_DEBUG("case CSI_72:		/* DECSTBM:")
+          
         if (nargs == 1)
           this.scr_scroll_region (arg[0] - 1, 10000 - 1);
         else if (nargs == 0 || arg[0] >= arg[1])
@@ -1383,21 +1460,21 @@ VAR_DEBUG(i,ndef)
           this.scr_scroll_region (arg[0] - 1, arg[1] - 1);
         break;
       case 0x73:
-          CASE_DEBUG("case CSI_73:")
+          
         this.scr_cursor (SAVE);
         break;
       case 0x75:
-          CASE_DEBUG("case CSI_75:")
+          
         this.scr_cursor (RESTORE);
         break;
       
       case 0x74:
-          CASE_DEBUG("case CSI_74:")
+          
       this.process_window_ops (arg, nargs);
         break;
       
       case 0x78:		
-          CASE_DEBUG("case CSI_78:")
+          
         if (arg[0] == 0 || arg[0] == 1)
           this.tt_printf ("\033[%d;1;1;128;128;1;0x", arg[0] + 2); 
         break;
@@ -1416,29 +1493,38 @@ rxvt_term.prototype.process_window_ops =function( args,   nargs){
   switch (args[0]){
       
       case 1:			
+          
           //XMapWindow (dpy, parent[0]);
         break;
       case 2:			
+          
           //XIconifyWindow (dpy, parent[0], display.screen);
         break;
       case 3:			
+          
           //XMoveWindow (dpy, parent[0], args[1], args[2]);
         break;
       case 4:			
+          
           //this.set_widthheight (args[2], args[1]);  //set_widthheight ((unsigned int)args[2], (unsigned int)args[1]);
         break;
       case 5:			
+          
           //XRaiseWindow (dpy, parent[0]);
         break;
       case 6:			
+          
           //XLowerWindow (dpy, parent[0]);
         break;
       case 7:			
+          
           //this.scr_touch (true);
         break;
   case 8:			 
+      
       this.set_widthheight (args[2], args[1]); 
-      this.scr_poweron();
+      
+      //this.scr_poweron();
         
         break;
       //case 9: NYI, TODO, restore maximized window or maximize window
@@ -1449,10 +1535,12 @@ rxvt_term.prototype.process_window_ops =function( args,   nargs){
         break;
       
       case 11:			
+          
           //XGetWindowAttributes (dpy, parent[0], &wattr);
           //this.tt_printf ("\033[%dt", wattr.map_state == IsViewable ? 1 : 2); 
         break;
       case 13:			
+          
           //XGetWindowAttributes (dpy, parent[0], &wattr);
           //XTranslateCoordinates (dpy, parent[0], wattr.root,
           //-wattr.border_width, -wattr.border_width,
@@ -1460,18 +1548,21 @@ rxvt_term.prototype.process_window_ops =function( args,   nargs){
           //this.tt_printf ("\033[3;%d;%dt", x, y); 
         break;
       case 14:			
+          
           //XGetWindowAttributes (dpy, parent[0], &wattr);
           //this.tt_printf ("\033[4;%d;%dt", wattr.height, wattr.width); 
         break;
   case 18:			 
+      
       //this.tt_printf ("\033[8;%d;%dt", nrow, ncol); 
         break;
   case 19:			 
+      
       //this.tt_printf ("\033[9;%d;%dt", nrow, ncol); 
         break;
                          
-//# 1434 "command.C.js"
-    }
+//# 1517 "command.C.js"
+  }
 }
 //#endif
 //char *rxvt_term::get_to_st (unicode_t &ends_how) 
@@ -1576,7 +1667,7 @@ rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
         break;
       case XTerm_property:
             
-//# 1624 "command.C.js"
+//# 1707 "command.C.js"
         break;
       case XTerm_Color:
         //for (buf = (char *)str; buf && *buf;)
@@ -1626,17 +1717,17 @@ rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
       case URxvt_Color_border:
         this.process_color_seq (op, Color_border, str, resp);
         break;
-//# 1699 "command.C.js"
-//# 1736 "command.C.js"
+//# 1782 "command.C.js"
+//# 1819 "command.C.js"
       case XTerm_logfile:
         // TODO, when secure mode?
         break;
-//# 1752 "command.C.js"
+//# 1835 "command.C.js"
       case XTerm_font:
         op = URxvt_font;
       case URxvt_font:
           
-//# 1777 "command.C.js"
+//# 1860 "command.C.js"
         break;
       case URxvt_version:
         if (query)
@@ -1645,14 +1736,14 @@ rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
                      rs[Rs_name], VERSION[0], VERSION[2],
                      resp);
         break;
-//# 1812 "command.C.js"
+//# 1895 "command.C.js"
     }
 }
-//# 1832 "command.C.js"
+//# 1915 "command.C.js"
 //int rxvt_term::privcases (int mode, unsigned long bit)
 rxvt_term.prototype.privcases =function(mode,   bit){
     ;
-    VAR_DEBUG("bit",bit);  
+    ;  
   var state; //int state;  
   if (mode == 's'){
       this.SavedModes |= ( this.priv_modes & bit);
@@ -1678,10 +1769,8 @@ rxvt_term.prototype.privcases =function(mode,   bit){
 //void rxvt_term::process_terminal_mode (int mode, int priv UN USED, unsigned int nargs, const int *arg) 
 rxvt_term.prototype.process_terminal_mode =function(mode,  __unused__,   nargs,    arg){
 ;
-VAR_DEBUG("mode",mode);
-VAR_DEBUG("nargs", nargs);
-VAR_DEBUG("priv_modes", this.priv_modes)
-VAR_DEBUG("SavedModes", this.SavedModes)
+;
+;
 //;
 var cmode=chr(mode);
     var i, j; //  unsigned int i, j; 
@@ -1730,7 +1819,6 @@ var cmode=chr(mode);
     mode = 0;		
   else if (cmode == 'h')
     mode = 1;		
-VAR_DEBUG("modelo", mode)
   for (i = 0; i < nargs; i++){
       state = -1;
       
@@ -1738,14 +1826,14 @@ VAR_DEBUG("modelo", mode)
       for (j = 0; j < argtopriv.length; j++)
         if (argtopriv[j].argval == arg[i]){
             state = this.privcases (cmode, argtopriv[j].bit);
-            VAR_DEBUG("argtopriv[j].bit",argtopriv[j].bit);
+            ;
             break;
           }
       
-      VAR_DEBUG("ptm arg[i]", arg[i])
+      
       switch (arg[i]){
           case 1048:		
-            CASE_DEBUG("case 1048:")
+            
             if (this.option (Opt_secondaryScreen))
               if (mode == 0)
                 this.scr_cursor (RESTORE);
@@ -1753,72 +1841,73 @@ VAR_DEBUG("modelo", mode)
                 this.scr_cursor (SAVE);
             break;
         }
-      VAR_DEBUG("state",state)
+      
       if (state >= 0)
         
         switch (arg[i]){
               
             case 2:			
-            CASE_DEBUG("case 2:")
+            
               
                this.set_privmode ((1<<18), 1);
               break;
             case 3:			
-                CASE_DEBUG("case 3:")
-                    VAR_DEBUG("priv_modes", this.priv_modes)
+                
+                    
               if ( this.priv_modes & (1<<1))
-                  set_widthheight ((state ? 132 : 80) * fwidth, 24 * fheight); 
+                  //this.set_widthheight ((state ? 132 : 80) * fwidth, 24 * fheight); 
+                  this.set_widthheight ((state ? 132 : 80), 24); 
               break;
             case 4:			
-                CASE_DEBUG("case 4:")
+                
               this.set_option (Opt_jumpScroll, !state);
               break;
             case 5:			
-                CASE_DEBUG("case 5:")
+                
               this.scr_rvideo_mode (state);
               break;
             case 6:			
-                CASE_DEBUG("case 6:")
+                
               this.scr_relative_origin (state);
               break;
             case 7:			
-                CASE_DEBUG("case 7:")
+                
               this.scr_autowrap (state);
               break;
             
             case 9:			
-              CASE_DEBUG("case 9:")
+              
               if (state)		
                  this.priv_modes &= ~((1<<13)|(1<<20)|(1<<21));
               break;
             case 30:
-              CASE_DEBUG("case scrollBar_esc:")
+              
               //maybe later
               
               break;
             case 25:		
-              CASE_DEBUG("case 25:")
+              
               this.scr_cursor_visible (state);
               break;
             
-              CASE_DEBUG("case 35:")
+              
             
-                  CASE_DEBUG("case 40:")
+                  
             case 47:		
-              CASE_DEBUG("case 47:")
+              
               this.scr_change_screen (state);
               break;
             
             
             case 1000:		
-              CASE_DEBUG("case 1000:")
+              
               if (state)		
                  this.priv_modes &= ~((1<<12)|(1<<20)|(1<<21));
               break;
             case 1002:
-                CASE_DEBUG("case 1002:")
+                
             case 1003:
-                CASE_DEBUG("case 1003:")
+                
               if (state){
                    this.priv_modes &= ~((1<<12)|(1<<13));
                    this.priv_modes &= arg[i] == 1003 ? ~(1<<20) : ~(1<<21);
@@ -1829,22 +1918,22 @@ VAR_DEBUG("modelo", mode)
               vt_select_input ();
               break;
             case 1010:		
-                CASE_DEBUG("case 1010:")
+                
               this.set_option (Opt_scrollTtyOutput, !state);
               break;
             case 1011:		
-                CASE_DEBUG("case 1011:")
+                
               this.set_option (Opt_scrollTtyKeypress, state);
               break;
             case 1047:		
-                CASE_DEBUG("case 1047:")
+                
               if (option (Opt_secondaryScreen))
                 if (!state)
                   this.scr_erase_screen (2);
               this.scr_change_screen (state);
               break;
             case 1049:		
-                CASE_DEBUG("case 1049:")
+                
               if (option (Opt_secondaryScreen))
                 if (state)
                   this.scr_cursor (SAVE);
@@ -1859,8 +1948,6 @@ VAR_DEBUG("modelo", mode)
               break;
           }
     }
-VAR_DEBUG("priv_modes", this.priv_modes)
-VAR_DEBUG("SavedModes", this.SavedModes)
 }
 //void rxvt_term::process_sgr_mode (unsigned int nargs, const int *arg) 
 rxvt_term.prototype.process_sgr_mode =function(nargs,    arg){
@@ -1977,7 +2064,7 @@ rxvt_term.prototype.process_sgr_mode =function(nargs,    arg){
             this.scr_color (Color_bg, Color_bg);
             break;
           //case 50: // not variable spacing
-//# 2232 "command.C.js"
+//# 2316 "command.C.js"
         }
     }
 }
@@ -1985,7 +2072,7 @@ rxvt_term.prototype.process_sgr_mode =function(nargs,    arg){
 rxvt_term.prototype.process_graphics =function(){
 ;
   //FIXME causes an infintie loop  
-//# 2256 "command.C.js"
+//# 2340 "command.C.js"
 }
 //void rxvt_term::tt_printf (const char *fmt,...) 
 rxvt_term.prototype.tt_printf =function( fmt){
@@ -2006,7 +2093,7 @@ rxvt_term.prototype.tt_write =function( data,   len){
         console.log(data);
     }
     
-//# 2317 "command.C.js"
+//# 2401 "command.C.js"
 }
 //void rxvt_term::pty_write () 
 rxvt_term.prototype.pty_write =function(){
@@ -2029,10 +2116,11 @@ rxvt_term.prototype.pty_write =function(){
 }
 //# 2 "expand_both.h" 2
 //# 1 "screen.C.js" 1
-//# 83 "screen.C.js"
+//# 89 "screen.C.js"
  
 //void rxvt_term::scr_blank_line (line_t &l, unsigned int col, unsigned int width, rend_t efs){ 
 rxvt_term.prototype.scr_blank_line =function(l, col, width, efs){ 
+  //
   
   efs &= ~(0x00008000 | 0x00004000 | 0x00010000 | 0x00020000 | 0x00040000); //remove italic etc. fontstyles
   //FIXME efs = (((efs) & ~0xff000000) | (( this.fontset[0].find_font (' ')) << 24));
@@ -2055,6 +2143,7 @@ rxvt_term.prototype.scr_blank_line =function(l, col, width, efs){
 }
 //void rxvt_term::scr_blank_screen_mem (line_t &l, rend_t efs) 
 rxvt_term.prototype.scr_blank_screen_mem =function(l,  efs){ 
+    //    
   l = this.scr_blank_line (l, 0,  this.ncol, efs);
   l.l = 0;
   l.f = 0;
@@ -2063,6 +2152,7 @@ rxvt_term.prototype.scr_blank_screen_mem =function(l,  efs){
 //nuke a single wide character at the given column 
 //void rxvt_term::scr_kill_char (line_t &l, int col) 
 rxvt_term.prototype.scr_kill_char =function(l,  col){ 
+    // 
   //find begin
     while (col > 0 && ord(l.t[col]) == NOCHAR)
     col--;
@@ -2087,6 +2177,7 @@ my_alloc = function(num, obj){
 }
 //void rxvt_term::scr_reset (){ 
 rxvt_term.prototype.scr_reset =function(){ 
+    
     console.log("scr_reset");
     console.log("this.ncol",this.ncol);
   this.view_start = 0;
@@ -2114,6 +2205,7 @@ rxvt_term.prototype.scr_reset =function(){
   this.screen.tscroll = 0;
   this.screen.bscroll = this.nrow - 1;
   if (!this.row_buf){
+      
       
       this.top_row    = 0;
       this.term_start = 0;
@@ -2156,7 +2248,7 @@ rxvt_term.prototype.scr_reset =function(){
   else{
       
     
-//# 268 "screen.C.js"
+//# 279 "screen.C.js"
 //drawn_buf = (line_t *)rxvt_realloc (drawn_buf, nrow * sizeof (line_t)); 
 //swap_buf  = (line_t *)rxvt_realloc (swap_buf , nrow * sizeof (line_t)); 
       this.drawn_buf = my_alloc(this.nrow, line_t);
@@ -2298,30 +2390,33 @@ rxvt_term.prototype.scr_reset =function(){
   //this.dom_rows=this.term_el.contents();
   false;
 }  
-//# 475 "screen.C.js"
+//# 592 "screen.C.js"
 rxvt_term.prototype.set_widthheight = function( newwidth, newheight){
-    if(this.have_called_set_widthheight){
-        console.log("called");
-        return;
+    
+    
+    if( (!newwidth == 0 || !newheight == 0) && (this.ncol !=newwidth || this.nrow != newheight)){
+        if (!newwidth == 0){
+            this.ncol=newwidth;}
+        if (!newheight == 0){
+            this.nrow = newheight;}
+        // a bit of a hack,  look at resize_all_windows 
+        this.scr_reset();
     }
-    if (!newwidth == 0){
-        this.ncol=newwidth;}
-    if (!newheight == 0){
-        this.nrow = newheight;}
-    this.scr_poweron();
-    //this.scr_reset();
-    this.have_called_set_widthheight = true;
+    //this.have_called_set_widthheight = true;
 }
 //void rxvt_term::scr_release () 
 rxvt_term.prototype.scr_release =function(){ 
+    
   if (this.row_buf){
       
-//# 513 "screen.C.js"
-    this.row_buf=[],  this.swap_buf=[],this.drawn_buf=[], this.row_buf_i=0, this.tabs_i=0;
+//# 636 "screen.C.js"
+      //this.row_buf=[],  this.swap_buf=[],this.drawn_buf=[], this.row_buf_i=0, this.tabs_i=0;
+    this.row_buf=false,  this.swap_buf=false,this.drawn_buf=false, this.row_buf_i=0, this.tabs_i=0;
     }
 }
 //void rxvt_term::scr_poweron (){ 
 rxvt_term.prototype.scr_poweron =function(){ 
+    
   this.scr_release ();
    this.prev_nrow =  this.prev_ncol = 0;
   this.rvideo_mode = false;
@@ -2332,6 +2427,7 @@ rxvt_term.prototype.scr_poweron =function(){
 }
 //void rxvt_term::scr_soft_reset () 
 rxvt_term.prototype.scr_soft_reset =function(){ 
+    
   
   if ( this.current_screen != PRIMARY)
     this.scr_swap_screen ();
@@ -2343,7 +2439,8 @@ rxvt_term.prototype.scr_soft_reset =function(){
 //void rxvt_term::scr_cursor (cursor_mode mode){ 
 rxvt_term.prototype.scr_cursor =function(mode){ 
     
-//# 590 "screen.C.js"
+    
+//# 719 "screen.C.js"
     var s ;  //screen_t *s;
   if ( this.current_screen == SECONDARY)
     s = this.swap;
@@ -2351,6 +2448,7 @@ rxvt_term.prototype.scr_cursor =function(mode){
     s = this.screen;  //s = &screen;
   switch (mode){
       case SAVE:
+          
         s.s_cur.row = this.screen.cur.row;
         s.s_cur.col = this.screen.cur.col;
         s.s_rstyle = rstyle;
@@ -2358,6 +2456,7 @@ rxvt_term.prototype.scr_cursor =function(mode){
         //FIXME s.s_charset_char = this.charsets[this.screen.charset]; 
         break;
       case RESTORE:
+          
        this.want_refresh = 1;
         this.screen.cur.row = s.s_cur.row;
         this.screen.cur.col = s.s_cur.col;
@@ -2373,17 +2472,25 @@ rxvt_term.prototype.scr_cursor =function(mode){
   Math.min((s.cur.col),(  this.ncol - 1));
 }
 //void rxvt_term::scr_swap_screen () 
-rxvt_term.prototype.scr_swap_screen =function(){ 
+rxvt_term.prototype.scr_swap_screen =function(){
+    
   if (!this.option (Opt_secondaryScreen))
     return;
-   for (var i =  this.prev_nrow; i--; )  //for (int i = prev_nrow; i--; )
-     var _______ = ((this.row_buf [((((this).term_start +   i) + ( (this).total_rows)) % ( (this).total_rows))])); ((this.row_buf [((((this).term_start +   i) + ( (this).total_rows)) % ( (this).total_rows))]))= (  this.swap_buf [i]); (  this.swap_buf [i])=_______;;  //::var _______ = ((this.row_buf [((((this).term_start +   i) + ( (this).total_rows)) % ( (this).total_rows))])); ((this.row_buf [((((this).term_start +   i) + ( (this).total_rows)) % ( (this).total_rows))]))= ( swap_buf [i]); ( swap_buf [i])=_______;;
-  var _______ = (this.screen.cur); (this.screen.cur)= ( swap.cur); ( swap.cur)=_______;;  //::var _______ = (screen.cur); (screen.cur)= ( swap.cur); ( swap.cur)=_______;;
-  this.screen.cur.row = clamp (this.screen.cur.row, 0,  this.prev_nrow - 1);
-  this.screen.cur.col = clamp (this.screen.cur.col, 0,  this.prev_ncol - 1);
+    
+    for (var i =  this.prev_nrow; i--; ) { //for (int i = prev_nrow; i--; )
+        var foo = (this.row_buf [((((this).term_start +   i) + ( (this).total_rows)) % ( (this).total_rows))]);
+                   (this.row_buf [((((this).term_start +   i) + ( (this).total_rows)) % ( (this).total_rows))])=this.swap_buf[i];
+                   this.swap_buf[i] = foo;
+                   }
+            //,  this.swap_buf [i]);  }//::var _______ = ((this.row_buf [((((this).term_start +   i) + ( (this).total_rows)) % ( (this).total_rows))])); ((this.row_buf [((((this).term_start +   i) + ( (this).total_rows)) % ( (this).total_rows))]))= ( swap_buf [i]); ( swap_buf [i])=_______;;
+            //  var _______ = (this.screen.cur); (this.screen.cur)= ( this.swap.cur); ( this.swap.cur)=_______;;  //::var _______ = (screen.cur); (screen.cur)= ( swap.cur); ( swap.cur)=_______;;
+        var foo = this.screen.cur; this.screen.cur = this.swap.cur; this.swap.cur = foo;
+  this.screen.cur.row = (this.screen.cur.row)=(this.screen.cur.row) < ( 0) ? ( 0) : (this.screen.cur.row) > (  this.prev_nrow - 1) ? (  this.prev_nrow - 1) : (this.screen.cur.row);
+  this.screen.cur.col = (this.screen.cur.col)=(this.screen.cur.col) < ( 0) ? ( 0) : (this.screen.cur.col) > (  this.prev_ncol - 1) ? (  this.prev_ncol - 1) : (this.screen.cur.col);
 }
 // void rxvt_term::scr_change_screen (int scrn){ 
 rxvt_term.prototype.scr_change_screen =function( scrn){ 
+    
   if (scrn ==  this.current_screen)
     return;
  this.want_refresh = 1;
@@ -2405,6 +2512,7 @@ rxvt_term.prototype.scr_change_screen =function( scrn){
 //clear WrapNext indicator, solidifying position on next line
 //void rxvt_term::scr_do_wrap () 
 rxvt_term.prototype.scr_do_wrap =function(){ 
+    
   if (!(this.screen.flags & (1<<4)))
     return;
   this.screen.flags &= ~(1<<4);
@@ -2416,6 +2524,7 @@ rxvt_term.prototype.scr_do_wrap =function(){
 }
 //void rxvt_term::scr_color (unsigned int color, int fgbg){ 
 rxvt_term.prototype.scr_color =function(  color,  fgbg){ 
+    
   if (!((color) - ( minCOLOR) <= ( maxTermCOLOR) - ( minCOLOR)))
     color = fgbg;
   if (fgbg == Color_fg)
@@ -2425,6 +2534,7 @@ rxvt_term.prototype.scr_color =function(  color,  fgbg){
 }
 //void rxvt_term::scr_rendition (int set, int style) 
 rxvt_term.prototype.scr_rendition =function( set,  style){ 
+    
   if (set)
     rstyle |= style;
   else if (style == ~0)
@@ -2434,6 +2544,7 @@ rxvt_term.prototype.scr_rendition =function( set,  style){
 }
 //int rxvt_term::scr_scroll_text (int row1, int row2, int count){ 
 rxvt_term.prototype.scr_scroll_text =function( row1,  row2,  count){ 
+    
   if (count == 0 || (row1 > row2))
     return 0;
  this.want_refresh = 1;
@@ -2530,154 +2641,9 @@ rxvt_term.prototype.scr_scroll_text =function( row1,  row2,  count){
   return count;
 }
 //void rxvt_term::scr_add_lines (const wchar_t *str, int len, int minlines) 
+//# 1198 "screen.C.js"
 rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){ 
-    var str_i = 0;
-    if (len <= 0)               
-        return;
-    var checksel;  //unsigned char checksel;   
-    var c;  //unicode_t c; 
-    var ncol= this.ncol;   //int ncol = this->ncol;
-    var strend = str, strend_i = len;  //const wchar_t *strend = str + len; 
-    var this_screen = this.screen;
-    var this_screen_cur = this.screen.cur;
-    this.want_refresh = 1;
-    if (this.option (Opt_scrollTtyOutput))                                          view_start = 0;
-    if (minlines > 0){
-        minlines += this_screen_cur.row - this_screen.bscroll;
-      //min_it (minlines, screen.cur.row - top_row);
-      minlines = Math.min((minlines),( this_screen_cur.row -  this.top_row));
-      if (minlines > 0
-          && this_screen.tscroll == 0
-          && this_screen.bscroll == this.nrow - 1){
-          
-          str_i = 0;
-          //FIXME not sure what this supposed to be, look at the original 
-          //scr_scroll_text (screen.tscroll, screen.bscroll minlines);
-          this_screen_cur.row -= minlines;
-        }
-    }
-    var row= this_screen_cur.row;   //int row = screen.cur.row;
-    //  checksel =  this.selection.op &&  this.current_screen ==  this.selection.screen ? 1 : 0;
-    var  line = (this.row_buf [((((this).term_start +   row) + ( (this).total_rows)) % ( (this).total_rows))]);  
-  while (str_i < strend_i){  //while (str < strend)
-    //c = (unicode_t)*str++; 
-      c =  str[str_i++]; //convert to rxvt-unicodes representation 
-      if ((ord(c) < 0x20))
-          if (ord(c) == 0xa){
-          line.l= Math.max((line.l),(this_screen_cur.col));
-            this_screen.flags &= ~(1<<4);
-            var this_screen_cur_row = this_screen_cur.row , this_screen_bscroll =this_screen.bscroll, this_nrow = this.nrow;
-            if (this_screen_cur.row == this_screen.bscroll)
-              this.scr_scroll_text (this_screen.tscroll, this_screen.bscroll, 1);
-            else if (this_screen_cur.row < (this.nrow - 1))
-              row = ++this_screen_cur.row;
-            line = (this.row_buf [((((this).term_start +   row) + ( (this).total_rows)) % ( (this).total_rows))]);  
-            continue;
-          }
-          else if (ord(c) == 0xd){
-          line.l= Math.max((line.l),(this_screen_cur.col));
-            this_screen.flags &= ~(1<<4); 
-            this_screen_cur.col = 0;
-            continue;
-          }
-          else if (ord(c) == 0x9){
-            this.scr_tab (1, true);
-            continue;
-          }
-      // see if we're writing within selection 
-      if ((             checksel                         && !((((this_screen_cur).row) < ( (  this.selection.beg).row)) || ((((this_screen_cur).row) == ( (  this.selection.beg).row)) && (( (this_screen_cur).col) < ( (  this.selection.beg).col))))             && ((((this_screen_cur).row) < ( (  this.selection.end).row)) || ((((this_screen_cur).row) == ( (  this.selection.end).row)) && (( (this_screen_cur).col) < ( (  this.selection.end).col))))          )){
-          checksel = 0;
-            //If we wrote anywhere in the selected area, kill the selection 
-            //XXX: should we kill the mark too?  Possibly, but maybe that 
-            //should be a similar check. 
-                 this.selection.beg.row =  this.selection.beg.col                                      =  this.selection.end.row =  this.selection.end.col = 0;
-        }
-      if ((this_screen.flags & (1<<4))){
-          this.scr_do_wrap ();
-          line.l =  this.ncol;
-          line.is_longer(1);
-          row = this_screen_cur.row;
-          line = (this.row_buf [((((this).term_start +   row) + ( (this).total_rows)) % ( (this).total_rows))]);     //line = &(this.row_buf [((((this).term_start +   row) + ( (this).total_rows)) % ( (this).total_rows))]);   
-        }
-      //some utf-8 decoders "decode" surrogate characters: let's fix this. 
-      //I don't think this matters for js
-      //if ((((ord(c)) - ( 0xd800) <= ( 0xdfff) - ( 0xd800))))
-      //    c = 0xfffd;
-      //rely on wcwidth to tell us the character width, do wcwidth before 
-      //further replacements, as wcwidth might return -1 for the line
-      //drawing characters below as they might be invalid in the current 
-      //locale.
-      var width= 0;   //int width = 0;
-      
-      if (( this.charsets [this_screen.charset] == '0')) { //DEC SPECIAL 
-          //FIXME not sure about my changes why should vt100_0 need to be 62 elements big
-          //vt100 special graphics and line drawing
-          //5f-7e standard vt100 
-          //40-5e rxvt extension for extra curses acs chars 
-          var vt100_0 = [ //41 .. 7e   //static uint16_t vt100_0[62] = { //41 .. 7e 
-                    0x2191, 0x2193, 0x2192, 0x2190, 0x2588, 0x259a, 0x2603, //41-47 hi mr. snowman!
-                 0,      0,      0,      0,      0,      0,      0,      0, //48-4f
-                 0,      0,      0,      0,      0,      0,      0,      0, //50-57
-                 0,      0,      0,      0,      0,      0,      0, 0x0020, //58-5f
-            0x25c6, 0x2592, 0x2409, 0x240c, 0x240d, 0x240a, 0x00b0, 0x00b1, //60-67
-            0x2424, 0x240b, 0x2518, 0x2510, 0x250c, 0x2514, 0x253c, 0x23ba, //68-6f
-            0x23bb, 0x2500, 0x23bc, 0x23bd, 0x251c, 0x2524, 0x2534, 0x252c, //70-77
-            0x2502, 0x2264, 0x2265, 0x03c0, 0x2260, 0x00a3, 0x00b7         //78-7e
-                          ];
-          if (ord(c) >= 0x41 && ord(c) <= 0x7e && vt100_0[ord(c) - 0x41]){
-              c = vt100_0[ord(c) - 0x41];
-              width = 1; //vt100 line drawing characters are always single-width 
-            }
-        }
-      
-      if ((this_screen.flags & (1<<3)))
-        this.scr_insdel_chars (width, INSERT); 
-            //nuke the character at this position, if required 
-          if ((                             line.t[this_screen_cur.col] == ""                 || (this_screen_cur.col <  this.ncol - 1                     && line.t[this_screen_cur.col + 1] == "")              ))
-              //scr_kill_char (*line, screen_cur.col); 
-              this.scr_kill_char ( line, this_screen_cur.col); 
-              //rend_t rend = (((rstyle) & ~0xff000000) | (( this.fontset[0]->find_font (c)) << 24)); 
-              //FIXME var rend= (((rstyle) & ~0xff000000) | (( this.fontset[0].find_font (c)) << 24));
-          //if the character doesnt fit into the remaining columns... 
-          if ((this_screen_cur.col >  this.ncol - width &&  this.ncol >= width)){
-              //... artificially enlargen the previous one
-              c = "";// chr(NOCHAR);
-              //and try the same character next loop iteration 
-              --str_i;
-            }
-          //line.touch();
-          line.modified=true;
-          do
-            {
-              line.t[this_screen_cur.col] = c;
-              //FONT-FIXME line.r[this_screen.cur.col] = rend;
-              if ((this_screen_cur.col <  this.ncol - 1))
-                this_screen_cur.col++;
-              else{
-                line.l =  this.ncol; 
-                  if (this_screen.flags & (1<<2))
-                    this_screen.flags |= (1<<4);
-                  break;
-                }
-              c = ""; // chr(NOCHAR);
-            }
-          while ((--width > 0));
-          //pad with spaces when overwriting wide character with smaller one 
-          if ((!width)){
-              //line.touch (); 
-              line.modified=true;
-            //for (int c = screen.cur.col; c < ncol && line->t[c] == NOCHAR; c++)
-            for (  c = this_screen_cur.col; c <  this.ncol && line.t[c] == ""; c++){  
-                  line.t[c] = ' ';
-                  //FONT-FIXME line.r[c] = rend;
-                }
-            }
-      
-    }
-    //FIXME max_it (line->l, screen.cur.col);
-      line.l = Math.max((line.l),( this_screen_cur.col));
-}
-rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){ 
+    
     var str_i = 0;
   if (len <= 0)               
     return;
@@ -2688,16 +2654,16 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
  this.want_refresh = 1;
   if (this.option (Opt_scrollTtyOutput))                                          view_start = 0;
   if (minlines > 0){
+      
       minlines += this.screen.cur.row - this.screen.bscroll;
       //min_it (minlines, screen.cur.row - top_row);
       minlines = Math.min((minlines),( this.screen.cur.row -  this.top_row));
-      if (minlines > 0
-          && this.screen.tscroll == 0
-          && this.screen.bscroll == this.nrow - 1){
-          
+      if (minlines > 0 && this.screen.tscroll == 0 && this.screen.bscroll == this.nrow - 1){
+          ;
+          // _atleast_ this many lines need to be scrolled 
           str_i = 0;
           //FIXME not sure what this supposed to be, look at the original 
-          //scr_scroll_text (screen.tscroll, screen.bscroll minlines);
+          this.scr_scroll_text (this.screen.tscroll, this.screen.bscroll, minlines);
           this.screen.cur.row -= minlines;
         }
     }
@@ -2707,25 +2673,32 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
   while (str_i < strend_i){  //while (str < strend)
     //c = (unicode_t)*str++; 
       c =  str[str_i++]; //convert to rxvt-unicodes representation 
+      
       if ((ord(c) < 0x20))
           if (ord(c) == 0xa){
-          line.l= Math.max((line.l),(this.screen.cur.col));
+              //;
+              line.l= Math.max((line.l),(this.screen.cur.col));
             this.screen.flags &= ~(1<<4);
             var this_screen_cur_row = this.screen.cur.row , this_screen_bscroll =this.screen.bscroll, this_nrow = this.nrow;
-            if (this.screen.cur.row == this.screen.bscroll)
-              this.scr_scroll_text (this.screen.tscroll, this.screen.bscroll, 1);
-            else if (this.screen.cur.row < (this.nrow - 1))
-              row = ++this.screen.cur.row;
+            if (this.screen.cur.row == this.screen.bscroll){
+                ;
+                this.scr_scroll_text (this.screen.tscroll, this.screen.bscroll, 1);}
+            else if (this.screen.cur.row < (this.nrow - 1)){
+                ;
+                row = ++this.screen.cur.row;
+            }
             line = (this.row_buf [((((this).term_start +   row) + ( (this).total_rows)) % ( (this).total_rows))]);  
             continue;
           }
           else if (ord(c) == 0xd){
+              //
           line.l= Math.max((line.l),(this.screen.cur.col));
             this.screen.flags &= ~(1<<4); 
             this.screen.cur.col = 0;
             continue;
           }
           else if (ord(c) == 0x9){
+              //
             this.scr_tab (1, true);
             continue;
           }
@@ -2784,7 +2757,11 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
               //... artificially enlargen the previous one
               c = "";// chr(NOCHAR);
               //and try the same character next loop iteration 
-              --str_i;
+              
+              //I have to comment this out so that we don't end up in an infinite loop
+              // this is is either dealing with unicode character widht or actual charcter display width
+              // either way it doesn't matter for javascript/html
+              //--str_i;
             }
           line.touch();
           do
@@ -2818,6 +2795,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
 }
 //void rxvt_term::scr_backspace (){ 
 rxvt_term.prototype.scr_backspace =function(){ 
+    
   if (this.screen.cur.col == 0){
       if (this.screen.cur.row > 0){
         }
@@ -2827,6 +2805,7 @@ rxvt_term.prototype.scr_backspace =function(){
 }
 //void rxvt_term::scr_tab (int count, bool ht) 
 rxvt_term.prototype.scr_tab =function( count, ht){ 
+    
   var i, x; 
  this.want_refresh = 1;
   i = x = this.screen.cur.col;
@@ -2876,10 +2855,11 @@ rxvt_term.prototype.scr_tab =function( count, ht){
   if (x != this.screen.cur.col)
     this.scr_gotorc (0, x, R_RELATIVE);
 }
-//# 1349 "screen.C.js"
-//# 1373 "screen.C.js"
+//# 1515 "screen.C.js"
+//# 1539 "screen.C.js"
 //void rxvt_term::scr_gotorc (int row, int col, int relative)
 rxvt_term.prototype.scr_gotorc =function( row,  col,  relative){  //Im suspsicious
+    
   this.want_refresh = 1;
   if (this.option (Opt_scrollTtyOutput))                                          view_start = 0;
   this.screen.cur.col = relative & C_RELATIVE ? this.screen.cur.col + col : col;
@@ -2915,6 +2895,7 @@ rxvt_term.prototype.scr_gotorc =function( row,  col,  relative){  //Im suspsicio
 }
     //void rxvt_term::scr_index (enum page_dirn direction) 
 rxvt_term.prototype.scr_index =function(direction){ 
+    
     var dirn;     
  this.want_refresh = 1;
   if (this.option (Opt_scrollTtyOutput))                                          view_start = 0;
@@ -2930,6 +2911,7 @@ rxvt_term.prototype.scr_index =function(direction){
 }
 //void rxvt_term::scr_erase_line (int mode){ 
 rxvt_term.prototype.scr_erase_line =function( mode){ 
+    
     var    col, num; 
  
     this.want_refresh = 1;
@@ -2941,10 +2923,12 @@ rxvt_term.prototype.scr_erase_line =function( mode){
  
     switch (mode){
        case 3:
+           
         if (this.screen.flags & (1<<4))
           return;
         
       case 0:                     
+          
         col = this.screen.cur.col;
         num =  this.ncol - col;
         line.l = Math.min((line.l),( col));  //min_it (line.l, col);
@@ -2953,6 +2937,7 @@ rxvt_term.prototype.scr_erase_line =function( mode){
           this.selection.beg.row =  this.selection.beg.col                                      =  this.selection.end.row =  this.selection.end.col = 0;
         break;
       case 1:                     
+          
         col = 0;
         num = this.screen.cur.col + 1;
         if ((((( this.selection.beg).row) == ( ( this.screen.cur).row)) && (( ( this.selection.beg).col) <= ( ( this.screen.cur).col)))
@@ -2960,6 +2945,7 @@ rxvt_term.prototype.scr_erase_line =function( mode){
           this.selection.beg.row =  this.selection.beg.col                                      =  this.selection.end.row =  this.selection.end.col = 0;
         break;
       case 2:                     
+          
         col = 0;
         num =  this.ncol;
         line.l = 0;
@@ -2974,6 +2960,7 @@ rxvt_term.prototype.scr_erase_line =function( mode){
 }
 //void rxvt_term::scr_erase_screen (int mode) 
 rxvt_term.prototype.scr_erase_screen =function( mode){ 
+    
  var    num;  //int num;
  var   row;  //int32_t row;
  var  ren;  //rend_t ren;
@@ -2984,18 +2971,21 @@ rxvt_term.prototype.scr_erase_screen =function( mode){
  // mode=2;
   switch (mode){
       case 0:                     
+          
          this.selection_check (1);
         this.scr_erase_line (0);
         row = this.screen.cur.row + 1;    
         num = this.nrow - row;
         break;
       case 1:                     
+          
          this.selection_check (3);
         this.scr_erase_line (1);
         row = 0;
         num = this.screen.cur.row;
         break;
       case 2:                     
+          
          this.selection_check (3);
         row = 0;
         num = this.nrow;
@@ -3012,17 +3002,17 @@ rxvt_term.prototype.scr_erase_screen =function( mode){
     return;
  num = Math.min((num),( this.nrow - row));  //min_it (num, this.nrow - row);
  
-//# 1583 "screen.C.js"
+//# 1760 "screen.C.js"
   for (; num--; row++){
       var selected_row =  (this.row_buf [((((this).term_start +   row) + ( (this).total_rows)) % ( (this).total_rows))]);
       this.scr_blank_screen_mem ((this.row_buf [((((this).term_start +   row) + ( (this).total_rows)) % ( (this).total_rows))]), rstyle);
-      if (! this.view_start)
-        this.scr_blank_line ( this.drawn_buf [row], 0,  this.ncol, ren);
+      
     }
 }
-//# 1601 "screen.C.js"
+//# 1782 "screen.C.js"
 //void rxvt_term::scr_E () 
 rxvt_term.prototype.scr_E =function(){ 
+    
     //REWRITE
     
  var    fs;  //rend_t fs;   ###  c_keyword js_style_variables
@@ -3043,6 +3033,7 @@ rxvt_term.prototype.scr_E =function(){
 }
 //void rxvt_term::scr_insdel_lines (int count, int insdel){ 
 rxvt_term.prototype.scr_insdel_lines =function( count,  insdel){ 
+    
     var end;  //int end;   ###  c_keyword js_style_variables
   if (this.option (Opt_scrollTtyOutput))                                          view_start = 0;
    this.selection_check (1);
@@ -3060,6 +3051,7 @@ rxvt_term.prototype.scr_insdel_lines =function( count,  insdel){
 }
 //void rxvt_term::scr_insdel_chars (int count, int insdel) 
 rxvt_term.prototype.scr_insdel_chars =function( count,  insdel){ 
+    
     this.want_refresh = 1;
     if (this.option (Opt_scrollTtyOutput))                                          view_start = 0;
     if (count <= 0)
@@ -3076,6 +3068,7 @@ rxvt_term.prototype.scr_insdel_chars =function( count,  insdel){
         this.scr_kill_char ( line, this.screen.cur.col);  //scr_kill_char (*line, screen.cur.col);   ###  c_keyword possible_pointer 
     switch (insdel){
         case INSERT:
+            
             line.l = Math.min((line.l + count),(  this.ncol));
         if (line.t[this.screen.cur.col] == NOCHAR)
           this.scr_kill_char ( line, this.screen.cur.col);  //scr_kill_char (*line, screen.cur.col);   ###  c_keyword possible_pointer 
@@ -3098,6 +3091,7 @@ rxvt_term.prototype.scr_insdel_chars =function( count,  insdel){
         this.scr_blank_line ( line, this.screen.cur.col, count, rstyle);  //scr_blank_line (*line, screen.cur.col, count, rstyle);   ###  possible_pointer 
         break;
       case ERASE:
+          
         this.screen.cur.col += count;     
          this.selection_check (1);
         this.screen.cur.col -= count;
@@ -3107,6 +3101,7 @@ rxvt_term.prototype.scr_insdel_chars =function( count,  insdel){
         this.scr_blank_line ( line, this.screen.cur.col, count, rstyle);  //scr_blank_line (*line, screen.cur.col, count, rstyle);   ###  possible_pointer 
         break;
       case DELETE:
+          
         line.l = Math.max((line.l - count),( 0));
         //nuke wide char spanning the end 
         if (this.screen.cur.col + count <  this.ncol && line.t[this.screen.cur.col + count] == NOCHAR)
@@ -3134,8 +3129,13 @@ rxvt_term.prototype.scr_insdel_chars =function( count,  insdel){
 }
 //void rxvt_term::scr_scroll_region (int top, int bot){ 
 rxvt_term.prototype.scr_scroll_region =function( top,  bot){ 
+    
+    
+    
+    
   top = Math.max((top),(0)); //FIXED max_it (top, 0);
   bot = Math.min((bot),( this.nrow -1)); //FIXED min_it (bot, nrow - 1);
+    
   if (top > bot)
     return;
   this.screen.tscroll = top;
@@ -3144,6 +3144,7 @@ rxvt_term.prototype.scr_scroll_region =function( top,  bot){
 }
 //void rxvt_term::scr_cursor_visible (int mode) 
 rxvt_term.prototype.scr_cursor_visible =function( mode){ 
+    
  this.want_refresh = 1;
   if (mode)
     this.screen.flags |= (1<<1);
@@ -3152,14 +3153,16 @@ rxvt_term.prototype.scr_cursor_visible =function( mode){
 }
 //void rxvt_term::scr_autowrap (int mode){ 
 rxvt_term.prototype.scr_autowrap =function( mode){ 
+    
   if (mode)
     this.screen.flags |= (1<<2);
   else
     this.screen.flags &= ~((1<<2) | (1<<4));
 }
-//# 1820 "screen.C.js"
+//# 2016 "screen.C.js"
 //void rxvt_term::scr_relative_origin (int mode) 
 rxvt_term.prototype.scr_relative_origin =function( mode){ 
+    
   if (mode)
     this.screen.flags |= (1<<0);
   else
@@ -3168,6 +3171,7 @@ rxvt_term.prototype.scr_relative_origin =function( mode){
 }
 //void rxvt_term::scr_insert_mode (int mode){ 
 rxvt_term.prototype.scr_insert_mode =function( mode){ 
+    
   if (mode)
     this.screen.flags |= (1<<3);
   else
@@ -3175,6 +3179,7 @@ rxvt_term.prototype.scr_insert_mode =function( mode){
 }
 //void rxvt_term::scr_set_tab (int mode) 
 rxvt_term.prototype.scr_set_tab =function( mode){ 
+    
   if (mode < 0)
     memset ( this.tabs, 0,  this.ncol);
   else if (this.screen.cur.col <  this.ncol)
@@ -3183,24 +3188,29 @@ rxvt_term.prototype.scr_set_tab =function( mode){
 //void rxvt_term::scr_rvideo_mode (bool on){ 
 rxvt_term.prototype.scr_rvideo_mode =function(on){ 
     
-//# 1892 "screen.C.js"
+    
+//# 2092 "screen.C.js"
 }
 //FIXED:void rxvt_term::scr_report_position () 
 rxvt_term.prototype.scr_report_position =function(){ 
+    
   this.tt_printf ("\033[%d;%dR", this.screen.cur.row + 1, this.screen.cur.col + 1); 
 }
  
 //FIXED:void rxvt_term::set_font_style (){ 
 rxvt_term.prototype.set_font_style =function(){ 
-//# 1931 "screen.C.js"
+    
+//# 2140 "screen.C.js"
 }
 //FIXED:void rxvt_term::scr_charset_choose (int set) 
 rxvt_term.prototype.scr_charset_choose =function( set){ 
+    
   this.screen.charset = set; 
   // set_font_style ();
 }
 //FIXED:void rxvt_term::scr_charset_set (int set, unsigned int ch){ 
 rxvt_term.prototype.scr_charset_set =function( set,   ch){ 
+    
     this.charsets[set] = ch;  //charsets[set] = (unsigned char)ch;
     //  set_font_style ();
 }
@@ -3208,6 +3218,7 @@ rxvt_term.prototype.scr_charset_set =function( set,   ch){
  
 //FIXED:bool rxvt_term::scr_refresh_rend (rend_t mask, rend_t value) 
 rxvt_term.prototype.scr_refresh_rend =function( mask,  value){ 
+    
   var found = false;
   for (var i = 0; i < this.nrow; i++){  //for (int i = 0; i < nrow; i++){   ### js_style_variables  c_keyword 
         //rend_t *drp = drawn_buf[i].r;   ###   c_keyword possible_pointer 
@@ -3222,18 +3233,22 @@ rxvt_term.prototype.scr_refresh_rend =function( mask,  value){
 //FIXED: js_style_functions c_keyword ^|       void rxvt_term::scr_expose (int x, int y, int ewidth, int eheight, bool refresh){ 
 rxvt_term.prototype.scr_expose =function( x,  y,  ewidth,  eheight, refresh){ 
     
-//# 2036 "screen.C.js"
+    
+//# 2249 "screen.C.js"
 }
 //FIXED:void rxvt_term::scr_touch (bool refresh) 
 rxvt_term.prototype.scr_touch =function(refresh){ 
+    
   this.scr_expose (0, 0, width, height, refresh);
 }
 //fixed:void rxvt_term::scr_move_to (int y, int len){ 
 rxvt_term.prototype.scr_move_to =function( y,  len){ 
+    
     this.scr_changeview (( this.top_row - this.nrow) * (len - y) / len + (this.nrow - 1)); 
 }
 //CMNT:bool rxvt_term::scr_page (enum page_dirn direction, int nlines) 
 rxvt_term.prototype.scr_page =function( direction,  nlines){ 
+    
     var new_view_start=   //int new_view_start =   ###  js_style_variables 
     direction == UP ?  this.view_start - nlines  //FIXME enum
                     :  this.view_start + nlines;
@@ -3241,6 +3256,7 @@ rxvt_term.prototype.scr_page =function( direction,  nlines){
 }
 //FIXED:bool rxvt_term::scr_changeview (int new_view_start){ 
 rxvt_term.prototype.scr_changeview =function( new_view_start){ 
+    
   (new_view_start)=(new_view_start) < (  this.top_row) ? (  this.top_row) : (new_view_start) > ( 0) ? ( 0) : (new_view_start);
   if (new_view_start == this.view_start)
     return false;
@@ -3252,21 +3268,25 @@ rxvt_term.prototype.scr_changeview =function( new_view_start){
 }
 //REWRITE:void rxvt_term::bell_cb (ev::timer &w, int revents) 
 rxvt_term.prototype.bell_cb =function(w,  revents){ 
+    
   console.log("bell");
   
 }
 //REWRITE:void rxvt_term::scr_bell (){ 
 rxvt_term.prototype.scr_bell =function(){ 
     
-//# 2127 "screen.C.js"
+    
+//# 2346 "screen.C.js"
 }
  //FIXME what does argused mean?
 //REWRITE: js_style_functions c_keyword ^|       void rxvt_term::scr_printscreen (int fullhist) 
 rxvt_term.prototype.scr_printscreen =function( fullhist){ 
+    
   console.log(fullhist);
 }
 //REWRITE: void rxvt_term::scr_refresh (){ 
 rxvt_term.prototype.scr_refresh =function(){ 
+    
     console.log("scr_refresh called");
     var out_string =[];
     var b=-1;
@@ -3287,11 +3307,13 @@ rxvt_term.prototype.scr_refresh =function(){
         dr[row].textContent= r.t.join("");
          //if(b.join("") != dtr[row]) {
         
-//# 2186 "screen.C.js"
+//# 2407 "screen.C.js"
     }
     //term_el.innerHTML = 
 } 
 rxvt_term.prototype.scr_refresh =function(){ 
+    
+    console.log("scr_refresh called ");
     console.log("scr_refresh called ");
     var out_string =[];
     var b=-1;
@@ -3318,11 +3340,13 @@ rxvt_term.prototype.scr_refresh =function(){
 //FIXME overloaded_function
 // void rxvt_term::scr_remap_chars (line_t &l) 
 rxvt_term.prototype.scr_remap_chars =function(l){ 
+    
     //FIXME 
 return
 }
 //FIXED:void rxvt_term::scr_remap_chars (){ 
 rxvt_term.prototype.scr_remap_chars =function(){ 
+    
    for ( var  i =  this.total_rows; i--; )  //for (int i =  this.total_rows; i--; )
     this.scr_remap_chars ( this.row_buf [i]); 
    for ( i = this.nrow; i--; ){  //for (int i = nrow; i--; ){
@@ -3332,7 +3356,8 @@ rxvt_term.prototype.scr_remap_chars =function(){
 }
 //REWRITE:void rxvt_term::scr_recolour () 
 rxvt_term.prototype.scr_recolour =function(){ 
-//# 2261 "screen.C.js"
+    
+//# 2487 "screen.C.js"
   //bgPixmap.apply () does not do the following : 
   this.scr_clear ();
   this.scr_touch (true);
@@ -3340,6 +3365,7 @@ this.want_refresh = 1;
 }
 //REWRITE:void rxvt_term::scr_clear (bool really){ 
 rxvt_term.prototype.scr_clear =function( really){ 
+    
   if (! this.mapped)
     return;
   this.num_scr_allow = 0;
@@ -3349,12 +3375,14 @@ rxvt_term.prototype.scr_clear =function( really){
 }
 //void rxvt_term::scr_xor_rect (int beg_row, int beg_col, int end_row, int end_col, rend_t rstyle1, rend_t rstyle2) 
 rxvt_term.prototype.scr_xor_rect =function( beg_row,  beg_col,  end_row,  end_col,  rstyle1,  rstyle2){ 
+    
     //FIXME cstyle namespaces
     
-//# 2304 "screen.C.js"
+//# 2532 "screen.C.js"
 }
 //void rxvt_term::scr_xor_span (int beg_row, int beg_col, int end_row, int end_col, rend_t rstyle) 
 rxvt_term.prototype.scr_xor_span =function( beg_row,  beg_col,  end_row,  end_col,  rstyle){ 
+    
   var view_end= this.view_start + this.nrow;   //int view_end =  this.view_start + nrow;
   var row, col;  //int row, col;
   if (beg_row >=  this.view_start){
@@ -3376,6 +3404,7 @@ rxvt_term.prototype.scr_xor_span =function( beg_row,  beg_col,  end_row,  end_co
 }
 //void rxvt_term::scr_reverse_selection () 
 rxvt_term.prototype.scr_reverse_selection =function(){ 
+    
   if ( this.selection.op
       &&  this.current_screen ==  this.selection.screen
       &&  this.selection.end.row >=  this.view_start){
@@ -3386,9 +3415,10 @@ rxvt_term.prototype.scr_reverse_selection =function(){
 }
 //REMOVED:void rxvt_term::selection_check (int check_more) 
     rxvt_term.prototype.selection_check = function(check_more){
+        
         return;
     }
-//# 2387 "screen.C.js"
+//# 2619 "screen.C.js"
 //REMOVED:void rxvt_term::paste (char *data, unsigned int len){ 
 //REMOVED:void rxvt_term::selection_paste (Window win, Atom prop, bool delete_prop) 
 //REMOVED:void rxvt_term::incr_cb (ev::timer &w, int revents){ 
@@ -3411,5 +3441,5 @@ rxvt_term.prototype.scr_reverse_selection =function(){
 //REMOVED:void rxvt_term::selection_send (const XSelectionRequestEvent &rq){ 
     //This is removed because ENABLE_OVERLAY is tied to iso-14755 which is a complicated standard that I wont be supporting
     //it can be read about here http://en.wikipedia.org/wiki/Unicode_input
-//# 2423 "screen.C.js"
+//# 2655 "screen.C.js"
 //# 3 "expand_both.h" 2

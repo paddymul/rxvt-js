@@ -234,8 +234,12 @@ if(!console){
 #if DEBUG
 #define FUNCTION_DEBUG(function_name) print(function_name);
 #define VAR_DEBUG(var_name, var_val) print(var_name,var_val);
+#define CASE_DEBUG(function_name)  print(function_name);
+
 #else 
 #define FUNCTION_DEBUG(function_name) 
+#define VAR_DEBUG(var_name, var_val)
+#define CASE_DEBUG(function_name) 
 #endif
 /*#define chr_debug_loop 1*/
 
