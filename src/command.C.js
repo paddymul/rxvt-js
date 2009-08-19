@@ -504,7 +504,8 @@ rxvt_term.prototype.cmd_parse =function(){
                             //FIXME pointermath  scr_add_lines (buf, str - buf, nlines);  
                             this.scr_add_lines (buf, str_i, nlines);}
                         nlines = 0;
-                        str_i = buf_i;
+                        //str_i = buf_i;
+                        str = buf; str_i=0;
                         eol = str.length + mi_n (this.ncol, UBUFSIZ);  // FIXME should_work
                         //VAR_DEBUG("eol",eol);
                     }
@@ -525,7 +526,7 @@ rxvt_term.prototype.cmd_parse =function(){
                 och = ord(this_next_char()); 
                 FUNCTION_DEBUG("innerend of inner_for_loop")
             }//for(;;) inner_for_loop
-            VAR_DEBUG("close_inner, str",str.join(""))
+            //VAR_DEBUG("close_inner, str",str.join(""))
             //FUNCTION_DEBUG("the inner_for_loop has closed ")
             if (!(SHOULD_INVOKE (HOOK_ADD_LINES)    && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str.length - buf.length, DT_END)))){
                 //FIXED pointermath  scr_add_lines (buf, str - buf, nlines);

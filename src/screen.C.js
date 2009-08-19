@@ -990,11 +990,12 @@ rxvt_term.prototype.scr_scroll_text =function( row1,  row2,  count){
  * Add text given in <str> of length <len> to screen struct 
  */
 //void rxvt_term::scr_add_lines (const wchar_t *str, int len, int minlines) 
+/*
 rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){ 
     FUNCTION_DEBUG("scr_add_lines")
 
     var str_i = 0;
-    if (len <= 0)               /* sanity */
+    if (len <= 0)               //sanity 
         return;
 
     var checksel;  //unsigned char checksel;   
@@ -1015,7 +1016,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
       if (minlines > 0
           && this_screen.tscroll == 0
           && this_screen.bscroll == this.nrow - 1){
-          /* _atleast_ this many lines need to be scrolled */
+          // _atleast_ this many lines need to be scrolled 
           str_i = 0;
           //FIXME not sure what this supposed to be, look at the original 
           //scr_scroll_text (screen.tscroll, screen.bscroll minlines);
@@ -1050,7 +1051,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
             else if (this_screen_cur.row < (this.nrow - 1))
               row = ++this_screen_cur.row;
 
-            line = ROW(row);  /* _must_ refresh */
+            line = ROW(row);  // _must_ refresh 
             continue;
           }
           else if (ord(c) == C0_CR){
@@ -1084,7 +1085,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
           line.is_longer(1);
 
           row = this_screen_cur.row;
-          line = ROW(row);   /* _must_ refresh */  //line = &ROW(row);   /* _must_ refresh */
+          line = ROW(row);   // _must_ refresh   //line = &ROW(row);   
         }
 
       //some utf-8 decoders "decode" surrogate characters: let's fix this. 
@@ -1187,7 +1188,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
   assert (this_screen_cur.row >= 0);
 #endif
 }
-
+*/
 rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){ 
     FUNCTION_DEBUG("scr_add_lines")
 
@@ -1209,14 +1210,12 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
       //min_it (minlines, screen.cur.row - top_row);
       minlines = mi_n (minlines, this.screen.cur.row -  this.top_row);
 
-      if (minlines > 0
-          && this.screen.tscroll == 0
-          && this.screen.bscroll == this.nrow - 1){
-          FUNCTION_DEBUG("minlines >0 and tscroll and bscroll")
-          /* _atleast_ this many lines need to be scrolled */
+      if (minlines > 0 && this.screen.tscroll == 0 && this.screen.bscroll == this.nrow - 1){
+          FUNCTION_DEBUG("minlines >0 and tscroll and bscroll");
+          // _atleast_ this many lines need to be scrolled 
           str_i = 0;
           //FIXME not sure what this supposed to be, look at the original 
-          //scr_scroll_text (screen.tscroll, screen.bscroll minlines);
+          this.scr_scroll_text (this.screen.tscroll, this.screen.bscroll, minlines);
           this.screen.cur.row -= minlines;
         }
     }

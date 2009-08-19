@@ -2342,7 +2342,7 @@ rxvt_term::cmd_parse ()
               ch = next_char ();
               FUNCTION_DEBUG("innerend of inner_for_loop")
             }         
-            VAR_DEBUG("close_inner, str",str)    
+          //VAR_DEBUG("close_inner, str",str)    
           //FUNCTION_DEBUG("the inner_for_loop has closed ")
 
           if (!(SHOULD_INVOKE (HOOK_ADD_LINES)
