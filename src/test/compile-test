@@ -4,4 +4,4 @@ cd ../
  make
  cd test
  ./compare
- diff -y rxvt-out rxvt-js-out 
+./run_diff 50000000

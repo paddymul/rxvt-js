@@ -2221,10 +2221,19 @@ rxvt_term::cmd_parse ()
   //FUNCTION_DEBUG("cmd_parse ")
   wchar_t ch = NOCHAR;
   char *seq_begin; // remember start of esc-sequence here
-
+    VAR_DEBUG("!this.option (Opt_jumpScroll) ",!option (Opt_jumpScroll) )
   for (;;){//OUTERLOOP
       //FUNCTION_DEBUG("outer_for_loop");
       //FUNCTION_DEBUG(ch)
+#ifdef chr_debug_loop
+          ch = next_char ();
+
+          if (ch == NOCHAR)
+            break;
+
+    VAR_DEBUG("och",ch);
+#endif     
+#ifndef chr_debug_loop
       if (expect_false (ch == NOCHAR))
         {
           //FUNCTION_DEBUG("och == NOCHAR)){");
@@ -2260,7 +2269,7 @@ rxvt_term::cmd_parse ()
           int nlines = 0;
           wchar_t *str = buf;
           wchar_t *eol = str + min (ncol, UBUFSIZ);
-          
+
           for (;;) {  //INNERLOOP
               //FUNCTION_DEBUG("inner_for_loop")
               //FUNCTION_DEBUG(ch)
@@ -2275,15 +2284,16 @@ rxvt_term::cmd_parse ()
               //if(str >= eol){FUNCTION_DEBUG("str >= eol")}
               if (expect_false (ch == C0_LF || str >= eol))
                 {
-                  //FUNCTION_DEBUG("Linefeed, eol")
+                  FUNCTION_DEBUG("Linefeed, eol")
                     if (ch == C0_LF){
                       FUNCTION_DEBUG("LF nlines++");
                     nlines++;
                     }
                     FUNCTION_DEBUG("refresh_count++;");
                     refresh_count++;
-
-                  if (!option (Opt_jumpScroll) || refresh_count >= nrow - 1)
+                    VAR_DEBUG("refresh_count",refresh_count);
+                    VAR_DEBUG("this.nrow", nrow );
+                    if (!option (Opt_jumpScroll) || refresh_count >= (nrow - 1))
                     {
                       FUNCTION_DEBUG("Opt_jumscroll refresh_count");
                       refresh_count = 0;
@@ -2300,7 +2310,7 @@ rxvt_term::cmd_parse ()
                   // scr_add_lines only works for nlines <= nrow - 1.
                   if (nlines >= nrow - 1)
                     {
-                      //FUNCTION_DEBUG("nlines >= this.nrow - 1){")
+                      FUNCTION_DEBUG("nlines >= this.nrow - 1){")
                       if (!(SHOULD_INVOKE (HOOK_ADD_LINES)
                             && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str - buf, DT_END)))){
                         FUNCTION_DEBUG(" scr_add_lines (buf, str - buf, nlines);")
@@ -2315,7 +2325,7 @@ rxvt_term::cmd_parse ()
 
                   if (str >= eol)
                     {
-                      //FUNCTION_DEBUG("str.length >= eol")
+                      FUNCTION_DEBUG("str.length >= eol")
                       if (eol >= buf + UBUFSIZ)
                         {
                           ch = NOCHAR;
@@ -2330,7 +2340,7 @@ rxvt_term::cmd_parse ()
 
               seq_begin = cmdbuf_ptr;
               ch = next_char ();
-              //FUNCTION_DEBUG("innerend of inner_for_loop")
+              FUNCTION_DEBUG("innerend of inner_for_loop")
             }         
             VAR_DEBUG("close_inner, str",str)    
           //FUNCTION_DEBUG("the inner_for_loop has closed ")
@@ -2369,7 +2379,8 @@ rxvt_term::cmd_parse ()
 
           ch = NOCHAR;
         }
-    }
+#endif
+  }
 }
 
 // read the next character

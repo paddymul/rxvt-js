@@ -757,10 +757,20 @@ rxvt_term.prototype.scr_swap_screen =function(){
   if (!this.option (Opt_secondaryScreen))
     return;
 
+    /*
    for (var i =  this.prev_nrow; i--; )  //for (int i = prev_nrow; i--; )
      swap (ROW(i),  this.swap_buf [i]);  //::swap (ROW(i), swap_buf [i]);
+    */
 
-  swap (this.screen.cur, swap.cur);  //::swap (screen.cur, swap.cur);
+    for (var i =  this.prev_nrow; i--; ) { //for (int i = prev_nrow; i--; )
+        var foo = (ROW(i);
+                   ROW(i)=this.swap_buf[i];
+                   this.swap_buf[i] = foo;
+                   }
+            //,  this.swap_buf [i]);  }//::swap (ROW(i), swap_buf [i]);
+
+            //  swap (this.screen.cur, this.swap.cur);  //::swap (screen.cur, swap.cur);
+        var foo = this.screen.cur; this.screen.cur = this.swap.cur; this.swap.cur = foo;
 
   this.screen.cur.row = clamp (this.screen.cur.row, 0,  this.prev_nrow - 1);
   this.screen.cur.col = clamp (this.screen.cur.col, 0,  this.prev_ncol - 1);

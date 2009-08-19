@@ -237,6 +237,7 @@ if(!console){
 #else 
 #define FUNCTION_DEBUG(function_name) 
 #endif
+/*#define chr_debug_loop 1*/
 
 #if ENABLE_PERL
 
@@ -1681,6 +1682,18 @@ function rxvt_term(term_el, pre_term_el) {
   this.swap = new screen_t();
   this.charsets= new Array(4);
 
+  this.set_option (Opt_scrollBar, true);
+  this.set_option (Opt_scrollTtyOutput, true);
+  this.set_option (Opt_jumpScroll, true);
+  this.set_option (Opt_skipScroll, true);
+  this.set_option (Opt_secondaryScreen, true);
+  this.set_option (Opt_secondaryScroll, true);
+  this.set_option (Opt_pastableTabs, true);
+  this.set_option (Opt_intensityStyles, true);
+  this.set_option (Opt_iso14755_52, true);
+  this.set_option (Opt_buffered, true);
+
+
 
 }  //FIXME
 rxvt_term.prototype = {
@@ -1880,13 +1893,15 @@ void init_asv ()
  cmdbuf_ptr:0, cmdbuf_endp:0,//char           *cmdbuf_ptr, *cmdbuf_endp;
  cmdbuf_base : [], //char            cmdbuf_base[CBUFSIZ];
   option: function (opt) {
-    if(!opt){
-      return 0;
-    }
-    --opt;
-    return this.options[opt >>3] & ( 1 << (opt & 7));
-  },
- set_privmode: function(bit,set){
+       
+        if(!opt){
+            return 0;
+        }
+        --opt;
+        return this.options[opt >>3] & ( 1 << (opt & 7));
+    },
+
+  set_privmode: function(bit,set){
     if (set)
       this.priv_modes |= bit;
     else

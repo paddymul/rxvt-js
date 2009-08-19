@@ -377,6 +377,7 @@ enum {
 #define FUNCTION_DEBUG(function_name)  std::cout << function_name << "\n";
 #define VAR_DEBUG(var_name, var_val)  std::cout << var_name << " " << var_val  << "\n";
 #define CASE_DEBUG(function_name)  fprintf(stdout,function_name); fprintf(stdout, "\n");
+/*#define chr_debug_loop 1 */
 /*
  FILE * pFile;\
   pFile = fopen("/Users/patrickmullen/myfile.txt","w");       \
