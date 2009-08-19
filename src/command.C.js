@@ -475,50 +475,51 @@ rxvt_term.prototype.cmd_parse =function(){
               VAR_DEBUG("och",och);
               str[str_i++]=chr(och);  //str++ = ch; 
               //if(str.length >= eol){FUNCTION_DEBUG("str >= eol")}
-              VAR_DEBUG("str.length", str_i);
-              VAR_DEBUG("eol", eol);
-              if (expect_false (och == C0_LF || str_i >= eol)){
+              //VAR_DEBUG("str.length", str_i);
+              //VAR_DEBUG("eol", eol);
+              if (expect_false (och == C0_LF || str_i -2 >= eol)){
                     FUNCTION_DEBUG("Linefeed, eol")
                     if (och == C0_LF){
                       FUNCTION_DEBUG("LF nlines++");
                         nlines++;}
                     FUNCTION_DEBUG("refresh_count++;");
                     this.refresh_count++;
-                    //VAR_DEBUG("refresh_count",this.refresh_count);
-                    //VAR_DEBUG("this.nrow", this.nrow );
+                    VAR_DEBUG("refresh_count",this.refresh_count);
+                    VAR_DEBUG("this.nrow", this.nrow );
 
                     if ((!this.option (Opt_jumpScroll)) || this.refresh_count >= (this.nrow - 1)){
                         FUNCTION_DEBUG("Opt_jumscroll refresh_count");
                         this.refresh_count = 0;
-                        /*
+
                         if (!this.option (Opt_skipScroll) ){
-                          FUNCTION_DEBUG("time_based");
+                            //FUNCTION_DEBUG("time_based");
                             refreshnow = true;
                             och = NOCHAR;
                             break;}//skipScroll
-                        */
+
                     }//jumpScroll
                     // scr_add_lines only works for nlines <= nrow - 1.
                     if (nlines >= this.nrow - 1){
                         FUNCTION_DEBUG("nlines >= this.nrow - 1){")
                         if (!(SHOULD_INVOKE (HOOK_ADD_LINES)
-                              && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str - buf, DT_END)))) {
+                              && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str_i, DT_END)))) {
                         FUNCTION_DEBUG(" scr_add_lines (buf, str - buf, nlines);")
                             //FIXME pointermath  scr_add_lines (buf, str - buf, nlines);  
                             this.scr_add_lines (buf, str_i, nlines);}
                         nlines = 0;
                         //str_i = buf_i;
                         str = buf; str_i=0;
-                        eol = str.length + mi_n (this.ncol, UBUFSIZ);  // FIXME should_work
+                        eol = str_i + mi_n (this.ncol, UBUFSIZ);  // FIXME should_work
                         //VAR_DEBUG("eol",eol);
                     }
                     if (str_i >= eol){   // FIXME should_work
                         FUNCTION_DEBUG("str.length >= eol")
-                        if (eol >= buf.length + UBUFSIZ){  // FIXME should_work
+                        if (eol >=  UBUFSIZ){  // FIXME should_work
+                            FUNCTION_DEBUG(" (eol >= buf.length + UBUFSIZ)");
                             och = NOCHAR;
                             break;}
                         else{
-                            eol = mi_n (eol + this.ncol, buf.length + UBUFSIZ);
+                            eol = mi_n (eol + this.ncol,  UBUFSIZ);
                         }
                     }//str.length
                 }//expect_false
@@ -539,9 +540,9 @@ rxvt_term.prototype.cmd_parse =function(){
              * What the heck we'll cheat and only refresh less than every page-full. 
              * if skipScroll is enabled.                   */
             //debugger;
-              refreshnow=true;
+            //refreshnow=true;
             if (refreshnow){
-                this.scr_refresh ();
+                FUNCTION_DEBUG("refreshnow");
                 this.scr_refresh();
                 want_refresh = 1;
             }

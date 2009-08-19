@@ -2331,6 +2331,7 @@ rxvt_term::cmd_parse ()
                       FUNCTION_DEBUG("str.length >= eol")
                       if (eol >= buf + UBUFSIZ)
                         {
+                            FUNCTION_DEBUG(" (eol >= buf.length + UBUFSIZ)");
                           ch = NOCHAR;
                           break;
                         }
@@ -2359,6 +2360,7 @@ rxvt_term::cmd_parse ()
            */
           if (refreshnow)
             {
+                FUNCTION_DEBUG("refreshnow");
               scr_refresh ();
               want_refresh = 1;
             }
