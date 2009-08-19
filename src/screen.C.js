@@ -763,7 +763,7 @@ rxvt_term.prototype.scr_swap_screen =function(){
     */
 
     for (var i =  this.prev_nrow; i--; ) { //for (int i = prev_nrow; i--; )
-        var foo = (ROW(i);
+        var foo = ROW(i);
                    ROW(i)=this.swap_buf[i];
                    this.swap_buf[i] = foo;
                    }
@@ -772,8 +772,8 @@ rxvt_term.prototype.scr_swap_screen =function(){
             //  swap (this.screen.cur, this.swap.cur);  //::swap (screen.cur, swap.cur);
         var foo = this.screen.cur; this.screen.cur = this.swap.cur; this.swap.cur = foo;
 
-  this.screen.cur.row = clamp (this.screen.cur.row, 0,  this.prev_nrow - 1);
-  this.screen.cur.col = clamp (this.screen.cur.col, 0,  this.prev_ncol - 1);
+  this.screen.cur.row = clamp_it (this.screen.cur.row, 0,  this.prev_nrow - 1);
+  this.screen.cur.col = clamp_it (this.screen.cur.col, 0,  this.prev_ncol - 1);
 }
 
 /* ------------------------------------------------------------------------- */
