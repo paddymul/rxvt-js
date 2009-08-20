@@ -1164,7 +1164,7 @@ static struct event_handler
 bool
 rxvt_term::pty_fill ()
 {
-  FUNCTION_DEBUG("pty_fill ")
+  //FUNCTION_DEBUG("pty_fill ")
   ssize_t n = cmdbuf_endp - cmdbuf_ptr;
 
   if (CBUFSIZ == n)
@@ -2230,7 +2230,7 @@ rxvt_term::cmd_parse ()
   //FUNCTION_DEBUG("cmd_parse ")
   wchar_t ch = NOCHAR;
   char *seq_begin; // remember start of esc-sequence here
-    VAR_DEBUG("!this.option (Opt_jumpScroll) ",!option (Opt_jumpScroll) )
+  //VAR_DEBUG("!this.option (Opt_jumpScroll) ",!option (Opt_jumpScroll) )
   for (;;){//OUTERLOOP
       //FUNCTION_DEBUG("outer_for_loop");
       //FUNCTION_DEBUG(ch)

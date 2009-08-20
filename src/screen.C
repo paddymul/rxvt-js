@@ -3052,7 +3052,7 @@ rxvt_term::selection_request_other (Atom target, int selnum) NOTHROW
 void
 rxvt_term::selection_clear () NOTHROW
 {
-  FUNCTION_DEBUG("selection_clear")
+  //FUNCTION_DEBUG("selection_clear")
   want_refresh = 1;
   free (selection.text);
   selection.text = NULL;
@@ -3898,7 +3898,7 @@ rxvt_term::scr_overlay_new (int x, int y, int w, int h) NOTHROW
 void
 rxvt_term::scr_overlay_off () NOTHROW
 {
-  FUNCTION_DEBUG("scr_overlay_off")
+  //FUNCTION_DEBUG("scr_overlay_off")
   if (!ov.text)
     return;
 

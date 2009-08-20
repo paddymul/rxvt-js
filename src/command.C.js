@@ -1069,7 +1069,7 @@ FUNCTION_DEBUG("process_csi_seq");
   //  ndef = get_byte_array_bit (csi_defaults, i);
 
   ndef = get_byte_array_bit (csi_defaults, i);
-VAR_DEBUG("i",ndef);
+VAR_DEBUG(i,ndef);
 FUNCTION_DEBUG("get_byte_array_bit");
 
   for (p = 0; p < nargs; p++){
