@@ -1,7 +1,6 @@
 $ = function(){}
 load("../test_expand_both.c.js");
 var a = new rxvt_term();
-a.scr_poweron();
 
 
 function output_section(str, start, end){

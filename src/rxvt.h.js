@@ -1685,7 +1685,7 @@ function rxvt_term(term_el, pre_term_el) {
   this.screen = new screen_t();
   this.swap = new screen_t();
   this.charsets= new Array(4);
-
+  
   this.set_option (Opt_scrollBar, true);
   this.set_option (Opt_scrollTtyOutput, true);
   this.set_option (Opt_jumpScroll, true);
@@ -1697,8 +1697,10 @@ function rxvt_term(term_el, pre_term_el) {
   this.set_option (Opt_iso14755_52, true);
   this.set_option (Opt_buffered, true);
 
-
-
+  this.scr_recolour();
+  //this.scr_clear();
+  //this.scr_touch();
+  this.scr_poweron();
 }  //FIXME
 rxvt_term.prototype = {
 

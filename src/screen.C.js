@@ -647,6 +647,11 @@ rxvt_term.prototype.scr_poweron =function(){
 
   this.scr_clear (true);
   this.scr_refresh ();
+
+  this.scr_recolour();
+  this.scr_clear();
+  this.scr_touch();
+
 }
 
 //void rxvt_term::scr_soft_reset () 
@@ -2249,7 +2254,7 @@ rxvt_term.prototype.scr_expose =function( x,  y,  ewidth,  eheight, refresh){
 //FIXED:void rxvt_term::scr_touch (bool refresh) 
 rxvt_term.prototype.scr_touch =function(refresh){ 
     FUNCTION_DEBUG("scr_touch")
-  this.scr_expose (0, 0, width, height, refresh);
+  this.scr_expose (0, 0, this.width, this.height, refresh);
 }
 
 /* ------------------------------------------------------------------------- */
@@ -2355,58 +2360,12 @@ rxvt_term.prototype.scr_printscreen =function( fullhist){
  */
 //REWRITE: void rxvt_term::scr_refresh (){ 
 
-rxvt_term.prototype.scr_refresh =function(){ 
-    FUNCTION_DEBUG("scr_refresh")
-    console.log("scr_refresh called");
-    var out_string =[];
-    var b=-1;
-    var dtr = this.dom_text_rows;
-    var dr = this.dom_rows;
-    var view_start= this.view_start;
-    var total_rows = this.total_rows;
-    var term_start = this.term_start;
-    var row_buf = this.row_buf;
-    var term_view_start = term_start+view_start;
-    var mod_total_rows = total_rows % total_rows;
-    var row_plus = mod_total_rows + term_view_start;
-    var r;
-    for(var row = 0; row < this.nrow; row++){
-        //r=ROW(this.view_start + row);
-        //r=(this.row_buf [((((this).term_start +   this.view_start + row) + ( (this).total_rows)) % ( (this).total_rows))]);
-        r=row_buf [row_plus + row];
-        dr[row].textContent= r.t.join("");
-         //if(b.join("") != dtr[row]) {
-        /*
-         if(r.modified){
-             r.modified=false;
-             b=r.t;
-             
-             out_string =[];
-             for (var col =0; col < this.ncol; col++){
-                 //out_string[out_string.length]= b[col]?b[col]: ' ';
-                 out_string[out_string.length]= b[col];
-                 //console.log(b[col]);
-             }
-             dr[row].textContent= out_string.join("");
-             //dr[row].textContent= b.join("");             
-             
-
-             //console.log("wrote a row");
-         }
-        
-         else{
-             console.log("skipped a row");
-         }
-         */
-    }
-    //term_el.innerHTML = 
-
-} 
 
 rxvt_term.prototype.scr_refresh =function(){ 
     FUNCTION_DEBUG("scr_refresh")
     console.log("scr_refresh called ");
 #ifndef DEBUG
+    FUNCTION_DEBUG("scr_refresh")
     console.log("scr_refresh called ");
     var out_string =[];
     var b=-1;
@@ -2501,7 +2460,7 @@ rxvt_term.prototype.scr_clear =function( really){
 
 //void rxvt_term::scr_xor_rect (int beg_row, int beg_col, int end_row, int end_col, rend_t rstyle1, rend_t rstyle2) 
 rxvt_term.prototype.scr_xor_rect =function( beg_row,  beg_col,  end_row,  end_col,  rstyle1,  rstyle2){ 
-    FUNCTION_DEBUG("scr_xor_rect")
+    FUNCTION_DEBUG("scr_xor_rect-js")
     //FIXME cstyle namespaces
     /*
   var view_end=  this.view_start + this.nrow;   //int view_end = view_start + nrow;
@@ -2527,7 +2486,7 @@ rxvt_term.prototype.scr_xor_rect =function( beg_row,  beg_col,  end_row,  end_co
 
 //void rxvt_term::scr_xor_span (int beg_row, int beg_col, int end_row, int end_col, rend_t rstyle) 
 rxvt_term.prototype.scr_xor_span =function( beg_row,  beg_col,  end_row,  end_col,  rstyle){ 
-    FUNCTION_DEBUG("scr_xor_span")
+    FUNCTION_DEBUG("scr_xor_span-js")
   var view_end= this.view_start + this.nrow;   //int view_end =  this.view_start + nrow;
   var row, col;  //int row, col;
 

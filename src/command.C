@@ -1164,7 +1164,7 @@ static struct event_handler
 bool
 rxvt_term::pty_fill ()
 {
-  //FUNCTION_DEBUG("pty_fill ")
+  FUNCTION_DEBUG("pty_fill ")
   ssize_t n = cmdbuf_endp - cmdbuf_ptr;
 
   if (CBUFSIZ == n)
@@ -1208,11 +1208,20 @@ rxvt_term::pty_cb (ev::io &w, int revents)
   //FUNCTION_DEBUG("pty_cb ")
   make_current ();
 
-  if (revents & ev::READ)
+  struct timespec ts = { 0, 50000 };
+    if (revents & ev::READ){
     // loop, but don't allow a single term to monopolize us
-    for (int i = CBUFCNT; i-- && pty_fill (); )
+      /*    for (int i = CBUFCNT; i-- && pty_fill (); )
       cmd_parse ();
+      */
+      for (int i = CBUFCNT; i--;){
+        //sleep long enough so that we don't have to refill the pty buffer frequently
+        nanosleep (&ts, 0);
 
+         pty_fill(); 
+      }
+      cmd_parse ();
+    }
   if (revents & ev::WRITE)
     pty_write ();
 
@@ -2294,8 +2303,8 @@ rxvt_term::cmd_parse ()
                     }
                     FUNCTION_DEBUG("refresh_count++;");
                     refresh_count++;
-                    VAR_DEBUG("refresh_count",refresh_count);
-                    VAR_DEBUG("this.nrow", nrow );
+                    //VAR_DEBUG("refresh_count",refresh_count);
+                    //VAR_DEBUG("this.nrow", nrow );
                     if (!option (Opt_jumpScroll) || refresh_count >= (nrow - 1))
                     {
                       FUNCTION_DEBUG("Opt_jumscroll refresh_count");

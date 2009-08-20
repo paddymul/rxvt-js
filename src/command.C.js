@@ -486,8 +486,8 @@ rxvt_term.prototype.cmd_parse =function(){
                         nlines++;}
                     FUNCTION_DEBUG("refresh_count++;");
                     this.refresh_count++;
-                    VAR_DEBUG("refresh_count",this.refresh_count);
-                    VAR_DEBUG("this.nrow", this.nrow );
+                    //VAR_DEBUG("refresh_count",this.refresh_count);
+                    //VAR_DEBUG("this.nrow", this.nrow );
 
                     if ((!this.option (Opt_jumpScroll)) || this.refresh_count >= (this.nrow - 1)){
                         FUNCTION_DEBUG("Opt_jumscroll refresh_count");
@@ -542,7 +542,7 @@ rxvt_term.prototype.cmd_parse =function(){
              * What the heck we'll cheat and only refresh less than every page-full. 
              * if skipScroll is enabled.                   */
             //debugger;
-            refreshnow=true;
+            //refreshnow=true;
             if (refreshnow){
                 FUNCTION_DEBUG("refreshnow");
                 this.scr_refresh();

@@ -582,8 +582,8 @@ enum {
 // do not change these constants lightly, there are many interdependencies
 #define IMBUFSIZ               128     // input modifier buffer sizes
 #define KBUFSZ                 512     // size of keyboard mapping buffer
-#define CBUFSIZ                2048    // size of command buffer
-#define CBUFCNT                8       // never call pty_fill/cmd_parse more than this often in a row
+#define CBUFSIZ                204800    // size of command buffer
+#define CBUFCNT                100       // never call pty_fill/cmd_parse more than this often in a row
 #define UBUFSIZ                2048    // character buffer
 
 #if ENABLE_FRILLS

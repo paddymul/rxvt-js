@@ -4,4 +4,4 @@ cd ../
  make
  cd test
  ./compare
-./run_diff 50000000
+./run_diff $1
