@@ -6,6 +6,7 @@
 #include <cerrno>
 #include <cstdarg>
 #include <cstdlib>
+
 #ifdef HAVE_STDINT_H
 #include <stdint.h>
 #endif
@@ -93,6 +94,31 @@ typedef  int32_t tlen_t_; // specifically for use in the line_t structure
 # define memset(a,c,l) (memset)(a,c,l)
 # define memcpy(a,b,l) (memcpy)(a,b,l)
 #endif
+
+//#define FUCTION_DEBUG(function_name)  fprintf(stdout,function_name); fprintf(stdout, "\n");
+#define FUNCTION_DEBUG(function_name)  std::cout << function_name << "\n";
+#define VAR_DEBUG(var_name, var_val)  std::cout << var_name << " " << var_val  << "\n";
+#define CASE_DEBUG(function_name)  fprintf(stdout,function_name); fprintf(stdout, "\n");
+/*#define chr_debug_loop 1 */
+/*
+ FILE * pFile;\
+  pFile = fopen("/Users/patrickmullen/myfile.txt","w");       \
+     fprintf(pFile,function_name);\
+   fclose (pFile);
+/*
+int n;
+char name [100];
+
+   for (n=0 ; n<3 ; n++)
+   {
+     puts ("please, enter a name: ");
+     gets (name);
+     fprintf (1, "Name %d [%-10.10s]\n",n,name);
+   }
+
+
+   return 0;
+*/
 
 /*
  *****************************************************************************
@@ -372,31 +398,6 @@ enum {
 
 
 
-
-//#define FUCTION_DEBUG(function_name)  fprintf(stdout,function_name); fprintf(stdout, "\n");
-#define FUNCTION_DEBUG(function_name)  std::cout << function_name << "\n";
-#define VAR_DEBUG(var_name, var_val)  std::cout << var_name << " " << var_val  << "\n";
-#define CASE_DEBUG(function_name)  fprintf(stdout,function_name); fprintf(stdout, "\n");
-/*#define chr_debug_loop 1 */
-/*
- FILE * pFile;\
-  pFile = fopen("/Users/patrickmullen/myfile.txt","w");       \
-     fprintf(pFile,function_name);\
-   fclose (pFile);
-/*
-int n;
-char name [100];
-
-   for (n=0 ; n<3 ; n++)
-   {
-     puts ("please, enter a name: ");
-     gets (name);
-     fprintf (1, "Name %d [%-10.10s]\n",n,name);
-   }
-
-
-   return 0;
-*/
 
 /*
  * XTerm Operating System Commands: ESC ] Ps;Pt (ST|BEL)
@@ -1401,14 +1402,20 @@ struct rxvt_term : zero_initialized, rxvt_vars, rxvt_screen
       options[opt >> 3] &= ~(1 << (opt & 7));
   }
 
-  void set_privmode (unsigned bit, int set) NOTHROW
+  void set_privmode (unsigned bit, int set) NOTHROW;/*
   {
+        FUNCTION_DEBUG("set_privmode");
+        VAR_DEBUG("bit",bit);
+        VAR_DEBUG("set",set);
+        VAR_DEBUG("priv_modes",priv_modes);
+
     if (set)
       priv_modes |= bit;
     else
       priv_modes &= ~bit;
+    VAR_DEBUG("END SET_PRIVMODE priv_modes",priv_modes);
   }
-
+                                                    */
   // modifies first argument(!)
   void paste (char *data, unsigned int len) NOTHROW;
   void scr_blank_line (line_t &l, unsigned int col, unsigned int width, rend_t efs) const NOTHROW;

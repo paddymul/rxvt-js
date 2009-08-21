@@ -1069,8 +1069,9 @@ FUNCTION_DEBUG("process_csi_seq");
   //  ndef = get_byte_array_bit (csi_defaults, i);
 
   ndef = get_byte_array_bit (csi_defaults, i);
-VAR_DEBUG(i,ndef);
 FUNCTION_DEBUG("get_byte_array_bit");
+VAR_DEBUG(i,ndef);
+
 
   for (p = 0; p < nargs; p++){
     if (arg[p] == -1){
@@ -1097,7 +1098,8 @@ FUNCTION_DEBUG("get_byte_array_bit");
             break;
 
           case '?':
-          CASE_DEBUG("case '?':")
+          CASE_DEBUG("case '?':");
+          VAR_DEBUG("ch", ord(ch));
             if (ch == 'h' || ch == 'l' || ch == 'r' || ch == 's' || ch == 't')
               this.process_terminal_mode (och, priv, nargs, arg);
             break;

@@ -935,6 +935,21 @@ rxvt_term::key_release (XKeyEvent &ev)
     mouse_slip_wheel_speed = 0;
 #endif
 }
+void
+rxvt_term::set_privmode (unsigned bit, int set) NOTHROW
+  {
+        FUNCTION_DEBUG("set_privmode");
+        VAR_DEBUG("bit",bit);
+        VAR_DEBUG("set",set);
+        VAR_DEBUG("priv_modes",priv_modes);
+
+    if (set)
+      priv_modes |= bit;
+    else
+      priv_modes &= ~bit;
+    VAR_DEBUG("END SET_PRIVMODE priv_modes",priv_modes);
+    VAR_DEBUG("END SET_PRIVMODE priv_modes",priv_modes);
+  }
 
 #if defined (KEYSYM_RESOURCE)
 unsigned int

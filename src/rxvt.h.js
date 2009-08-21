@@ -1909,10 +1909,19 @@ void init_asv ()
     },
 
   set_privmode: function(bit,set){
+        FUNCTION_DEBUG("set_privmode");
+        VAR_DEBUG("bit",bit);
+        VAR_DEBUG("set",set);
+        VAR_DEBUG("priv_modes",this.priv_modes);
     if (set)
       this.priv_modes |= bit;
     else
       this.priv_modes &= ~bit;
+
+
+        VAR_DEBUG("END SET_PRIVMODE priv_modes",this.priv_modes);
+        VAR_DEBUG("END SET_PRIVMODE priv_modes",this.priv_modes);
+
     },
   set_option: function ( opt,  set){
 
