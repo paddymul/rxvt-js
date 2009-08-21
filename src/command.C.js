@@ -1910,6 +1910,7 @@ rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
 //int rxvt_term::privcases (int mode, unsigned long bit)
 rxvt_term.prototype.privcases =function(mode,   bit){
     FUNCTION_DEBUG("privcases");
+    VAR_DEBUG("mode",mode);  
     VAR_DEBUG("bit",bit);  
   var state; //int state;  
 
@@ -1932,6 +1933,7 @@ rxvt_term.prototype.privcases =function(mode,   bit){
     else if(state="h"){
         state=1;
     }
+    FUNCTION_DEBUG("END OF privcases");
   return state;
 }
 
@@ -2008,7 +2010,7 @@ VAR_DEBUG("modelo", mode)
       for (j = 0; j < argtopriv.length; j++)
 
         if (argtopriv[j].argval == arg[i]){
-            state = this.privcases (cmode, argtopriv[j].bit);
+            state = this.privcases (mode, argtopriv[j].bit);
             VAR_DEBUG("argtopriv[j].bit",argtopriv[j].bit);
             break;
           }

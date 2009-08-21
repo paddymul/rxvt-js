@@ -2598,7 +2598,7 @@ enum {
 void
 rxvt_term::process_nonprinting (unicode_t ch)
 {
-  FUNCTION_DEBUG("process_nonprinting ")
+  FUNCTION_DEBUG("process_nonprinting")
   switch (ch)
     {
       case C0_ESC:
@@ -2746,7 +2746,7 @@ rxvt_term::process_escape_vt52 (unicode_t ch)
 void
 rxvt_term::process_escape_seq ()
 {
-  FUNCTION_DEBUG("process_escape_seq ")
+  FUNCTION_DEBUG("process_escape_seq")
   unicode_t ch = cmd_getc ();
  
   FUNCTION_DEBUG(ch)
@@ -2934,7 +2934,7 @@ const unsigned char csi_defaults[] =
 void
 rxvt_term::process_csi_seq ()
 {
-  FUNCTION_DEBUG("process_csi_seq ")
+  FUNCTION_DEBUG("process_csi_seq")
   unicode_t ch, priv, i;
   unsigned int nargs, p;
   int n, ndef;
@@ -3326,7 +3326,7 @@ FUNCTION_DEBUG("END OF process_csi_seq")
 void
 rxvt_term::process_window_ops (const int *args, unsigned int nargs)
 {
-  FUNCTION_DEBUG("process_window_ops ")
+  FUNCTION_DEBUG("process_window_ops")
   int x, y;
   XWindowAttributes wattr;
   Window wdummy;
@@ -3830,7 +3830,8 @@ rxvt_term::process_xterm_seq (int op, const char *str, char resp)
 int
 rxvt_term::privcases (int mode, unsigned long bit)
 {
-  FUNCTION_DEBUG("privcases ")
+  FUNCTION_DEBUG("privcases");
+    VAR_DEBUG("mode",mode);  
     VAR_DEBUG("bit",bit);  
   int state;
 
@@ -3848,14 +3849,16 @@ rxvt_term::privcases (int mode, unsigned long bit)
       set_privmode (bit, state);
     }
 
+  FUNCTION_DEBUG("END OF privcases");
   return state;
+
 }
 
 /* we're not using priv _yet_ */
 void
 rxvt_term::process_terminal_mode (int mode, int priv UNUSED, unsigned int nargs, const int *arg)
 {
-  FUNCTION_DEBUG("process_terminal_mode ")
+  FUNCTION_DEBUG("process_terminal_mode")
 VAR_DEBUG("mode",mode);
 VAR_DEBUG("nargs", nargs);
 VAR_DEBUG("priv_modes", priv_modes)
@@ -4283,7 +4286,7 @@ const unsigned int MAX_PTY_WRITE = 255; // minimum MAX_INPUT
 void
 rxvt_term::tt_write (const char *data, unsigned int len)
 {
-  FUNCTION_DEBUG("tt_write ")
+  FUNCTION_DEBUG("tt_write")
   if (HOOK_INVOKE ((this, HOOK_TT_WRITE, DT_STR_LEN, data, len, DT_END)))
     return;
 
