@@ -4101,7 +4101,7 @@ VAR_DEBUG("SavedModes", SavedModes)
 void
 rxvt_term::process_sgr_mode (unsigned int nargs, const int *arg)
 {
-  FUNCTION_DEBUG("process_sgr_mode ")
+  FUNCTION_DEBUG("process_sgr_mode")
   unsigned int i;
   short rendset;
   int rendstyle;
