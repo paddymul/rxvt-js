@@ -275,7 +275,7 @@ rxvt_term.prototype.scr_reset =function(){
 //swap_buf  = (line_t *)rxvt_realloc (swap_buf , nrow * sizeof (line_t)); 
       this.drawn_buf = my_alloc(this.nrow, line_t);
       this.swap_buf  = my_alloc(this.nrow, line_t);
-
+FUNCTION_DEBUG("JUST ALLOCCED swap_buf");
 
 
       for ( row = mi_n (this.nrow,  this.prev_nrow); row--; ){  //for (int row = mi_n (this.nrow, prev_nrow); row--; )
@@ -433,6 +433,7 @@ rxvt_term.prototype.scr_reset =function(){
    for ( var col =  this.ncol; --col; )  //for (int col = ncol; --col; ) 
      this.tabs [col] = col % TABSIZE == 0;
 
+  FUNCTION_DEBUG("CLEAR_ALL_SELECTION");
   CLEAR_ALL_SELECTION ();
 
    this.prev_nrow = this.nrow;
@@ -451,6 +452,7 @@ rxvt_term.prototype.scr_reset =function(){
   }
   //this.dom_rows=this.term_el.contents();
   HOOK_INVOKE ((this, HOOK_RESET, DT_END));
+  FUNCTION_DEBUG("END of scr_reset");
 }  
 
 /*
@@ -648,9 +650,9 @@ rxvt_term.prototype.scr_poweron =function(){
   this.scr_clear (true);
   this.scr_refresh ();
 
-  this.scr_recolour();
-  this.scr_clear();
-  this.scr_touch();
+    //this.scr_recolour();
+    //this.scr_clear();
+    //this.scr_touch();
 
 }
 
@@ -661,7 +663,7 @@ rxvt_term.prototype.scr_soft_reset =function(){
 #if ENABLE_OVERLAY
   this.scr_overlay_off ();
 #endif
-    VAR_DEBUG("current_screen", this.current_screen);
+    //VAR_DEBUG("current_screen", this.current_screen);
         VAR_DEBUG("PRIMARY", PRIMARY)
   if ( this.current_screen != PRIMARY)
     this.scr_swap_screen ();
@@ -669,6 +671,7 @@ rxvt_term.prototype.scr_soft_reset =function(){
   this.scr_scroll_region (0, MAX_ROWS - 1);
   this.scr_rendition (0, ~RS_None);
   this.scr_insert_mode (0);
+  FUNCTION_DEBUG("END OF scr_soft_reset");
 }
 
 /* ------------------------------------------------------------------------- *
@@ -755,6 +758,7 @@ rxvt_term.prototype.scr_cursor =function(mode){
   assert (s.cur.col >= 0);
 #endif
 
+    FUNCTION_DEBUG("END OF scr_cursor");
 }
 
 //void rxvt_term::scr_swap_screen () 
@@ -864,6 +868,7 @@ rxvt_term.prototype.scr_rendition =function( set,  style){
     rstyle = DEFAULT_RSTYLE;
   else
     rstyle &= ~style;
+    FUNCTION_DEBUG("END OF scr_rendition");
 }
 
 /* ------------------------------------------------------------------------- */
@@ -1579,6 +1584,7 @@ rxvt_term.prototype.scr_gotorc =function( row,  col,  relative){  //Im suspsicio
     }
 
   clamp_it (this.screen.cur.row, 0, this.nrow - 1);
+  FUNCTION_DEBUG("END OF scr_gotorc");
 }
 
 /* ------------------------------------------------------------------------- */
@@ -1969,6 +1975,7 @@ rxvt_term.prototype.scr_scroll_region =function( top,  bot){
   this.screen.tscroll = top;
   this.screen.bscroll = bot;
   this.scr_gotorc (0, 0, 0);
+  FUNCTION_DEBUG("END OF scr_scroll_region");
 }
 
 /* ------------------------------------------------------------------------- */
@@ -2037,6 +2044,7 @@ rxvt_term.prototype.scr_insert_mode =function( mode){
     this.screen.flags |= Screen_Insert;
   else
     this.screen.flags &= ~Screen_Insert;
+  FUNCTION_DEBUG("END OF scr_insert_mode")
 }
 
 /* ------------------------------------------------------------------------- */
@@ -2366,6 +2374,10 @@ rxvt_term.prototype.scr_refresh =function(){
     FUNCTION_DEBUG("scr_refresh")
     console.log("scr_refresh called ");
     this.want_refresh=0;
+    if (this.refresh_type == NO_REFRESH || !this.mapped){
+        FUNCTION_DEBUG("this.refresh_type == NO_REFRESH || !this.mapped){");
+        return;
+    }
 #ifndef DEBUG
     FUNCTION_DEBUG("scr_refresh")
     console.log("scr_refresh called ");
@@ -2391,6 +2403,7 @@ rxvt_term.prototype.scr_refresh =function(){
     //$("pt")
     document.getElementById("pt").innerHTML = dtr.join("\n");
 #endif
+    FUNCTION_DEBUG("END OF scr_refresh");
 } 
 
 //FIXME overloaded_function
@@ -2458,6 +2471,7 @@ rxvt_term.prototype.scr_clear =function( really){
 
   if (really)
     XClearWindow (dpy, vt);
+  FUNCTION_DEBUG("END OF scr_clear");
 }
 
 //void rxvt_term::scr_xor_rect (int beg_row, int beg_col, int end_row, int end_col, rend_t rstyle1, rend_t rstyle2) 

@@ -265,7 +265,7 @@ rxvt_term::scr_reset ()
 
       drawn_buf = (line_t *)rxvt_realloc (drawn_buf, nrow * sizeof (line_t));
       swap_buf  = (line_t *)rxvt_realloc (swap_buf , nrow * sizeof (line_t));
-
+FUNCTION_DEBUG("JUST ALLOCCED swap_buf");
       for (int row = min (nrow, prev_nrow); row--; )
         {
           lresize (drawn_buf[row]);
@@ -411,6 +411,7 @@ rxvt_term::scr_reset ()
   for (int col = ncol; --col; )
     tabs [col] = col % TABSIZE == 0;
 
+  FUNCTION_DEBUG("CLEAR_ALL_SELECTION");
   CLEAR_ALL_SELECTION ();
 
   prev_nrow = nrow;
@@ -419,6 +420,7 @@ rxvt_term::scr_reset ()
   tt_winch ();
 
   HOOK_INVOKE ((this, HOOK_RESET, DT_END));
+  FUNCTION_DEBUG("END of scr_reset");
 }
 
 /* ------------------------------------------------------------------------- */
@@ -479,6 +481,7 @@ rxvt_term::scr_soft_reset ()
   scr_scroll_region (0, MAX_ROWS - 1);
   scr_rendition (0, ~RS_None);
   scr_insert_mode (0);
+  FUNCTION_DEBUG("END OF scr_soft_reset");
 }
 
 /* ------------------------------------------------------------------------- *
@@ -533,6 +536,7 @@ rxvt_term::scr_cursor (cursor_mode mode) NOTHROW
   assert (s->cur.row >= 0);
   assert (s->cur.col >= 0);
 #endif
+  FUNCTION_DEBUG("END OF scr_cursor");
 }
 
 void
@@ -638,6 +642,7 @@ rxvt_term::scr_rendition (int set, int style) NOTHROW
     rstyle = DEFAULT_RSTYLE;
   else
     rstyle &= ~style;
+  FUNCTION_DEBUG("END OF scr_rendition");
 }
 
 /* ------------------------------------------------------------------------- */
@@ -1235,6 +1240,7 @@ rxvt_term::scr_gotorc (int row, int col, int relative) NOTHROW
     }
 
   clamp_it (screen.cur.row, 0, nrow - 1);
+  FUNCTION_DEBUG("END OF scr_gotorc");
 }
 
 /* ------------------------------------------------------------------------- */
@@ -1639,6 +1645,7 @@ rxvt_term::scr_scroll_region (int top, int bot) NOTHROW
   screen.tscroll = top;
   screen.bscroll = bot;
   scr_gotorc (0, 0, 0);
+  FUNCTION_DEBUG("END OF scr_scroll_region");
 }
 
 /* ------------------------------------------------------------------------- */
@@ -1711,6 +1718,7 @@ rxvt_term::scr_insert_mode (int mode) NOTHROW
     screen.flags |= Screen_Insert;
   else
     screen.flags &= ~Screen_Insert;
+  FUNCTION_DEBUG("END OF scr_insert_mode")
 }
 
 /* ------------------------------------------------------------------------- */
@@ -2107,9 +2115,10 @@ rxvt_term::scr_refresh () NOTHROW
 
   want_refresh = 0;        /* screen is current */
 
-  if (refresh_type == NO_REFRESH || !mapped)
+  if (refresh_type == NO_REFRESH || !mapped){
+        FUNCTION_DEBUG("this.refresh_type == NO_REFRESH || !this.mapped){");
     return;
-
+  }
   /*
    * A: set up vars
    */
@@ -2560,6 +2569,7 @@ rxvt_term::scr_refresh () NOTHROW
   screen.flags = old_screen_flags;
   num_scr = 0;
   num_scr_allow = 1;
+  FUNCTION_DEBUG("END OF scr_refresh")
 }
 
 void
@@ -2629,6 +2639,7 @@ rxvt_term::scr_clear (bool really) NOTHROW
 
   if (really)
     XClearWindow (dpy, vt);
+  FUNCTION_DEBUG("END OF scr_clear");
 }
 
 void

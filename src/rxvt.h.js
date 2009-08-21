@@ -1682,6 +1682,7 @@ function rxvt_term(term_el, pre_term_el) {
     this.privmodes = SavedModes = PrivMode_Default;
     this.pre_term_el=pre_term_el;
 
+    this.current_screen=0; // make sure we swap screens initialy, bit of a hack
   this.screen = new screen_t();
   this.swap = new screen_t();
   this.charsets= new Array(4);
