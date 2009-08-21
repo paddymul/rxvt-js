@@ -1915,25 +1915,42 @@ rxvt_term.prototype.privcases =function(mode,   bit){
   var state; //int state;  
 
   if (mode == 's'){
+      FUNCTION_DEBUG("(mode == 's')");
       this.SavedModes |= ( this.priv_modes & bit);
       return -1;
     }
   else{
-      if (mode == 'r')
+      FUNCTION_DEBUG("(mode != 's')");
+      if (mode == 'r'){
+        FUNCTION_DEBUG("(mode == 'r')");
         state = (this.SavedModes & bit) ? 1 : 0;	/* no overlapping */
-      else
-        state = (mode == 't') ? ! ( this.priv_modes & bit) : mode;
+      }
+      else{
+        FUNCTION_DEBUG("(mode != 's' or 'r')");
+        //state = (mode == 't') ? ! ( this.priv_modes & bit) : mode;
+        if(mode == 't') {
+            FUNCTION_DEBUG("(mode == 't')");
+            state = ! (priv_modes & bit);
+        }
+        else {
+            FUNCTION_DEBUG("state=mode");
+            state = mode;
+        }
+      }
+      /*
+      if (state="l"){
+          state=0;
+      }
+      else if(state="h"){
+          state=1;
+      }
+*/
+      
        this.set_privmode (bit, state);
     }
     
     //There are issues with char to int casts, this is hacky
-    if (state="l"){
-        state=0;
-    }
-    else if(state="h"){
-        state=1;
-    }
-    FUNCTION_DEBUG("END OF privcases");
+    VAR_DEBUG("END OF privcases state", state);
   return state;
 }
 

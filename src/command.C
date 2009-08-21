@@ -3837,19 +3837,33 @@ rxvt_term::privcases (int mode, unsigned long bit)
 
   if (mode == 's')
     {
+      FUNCTION_DEBUG("(mode == 's')");
       SavedModes |= (priv_modes & bit);
       return -1;
     }
   else
     {
-      if (mode == 'r')
+      FUNCTION_DEBUG("(mode != 's')");
+      if (mode == 'r'){
+        FUNCTION_DEBUG("(mode == 'r')");
         state = (SavedModes & bit) ? 1 : 0;	/* no overlapping */
-      else
-        state = (mode == 't') ? ! (priv_modes & bit) : mode;
+      }
+      else{
+        FUNCTION_DEBUG("(mode != 's' or 'r')");
+        //state = (mode == 't') ? ! (priv_modes & bit) : mode;
+        if(mode == 't') {
+          FUNCTION_DEBUG("(mode == 't')");
+          state = ! (priv_modes & bit);
+        }
+        else {
+          FUNCTION_DEBUG("state=mode");
+          state = mode;
+        }
+      }
       set_privmode (bit, state);
     }
 
-  FUNCTION_DEBUG("END OF privcases");
+  VAR_DEBUG("END OF privcases state", state);
   return state;
 
 }
