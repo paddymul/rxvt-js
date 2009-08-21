@@ -794,7 +794,7 @@ rxvt_term.prototype.scr_swap_screen =function(){
  */
 // void rxvt_term::scr_change_screen (int scrn){ 
 rxvt_term.prototype.scr_change_screen =function( scrn){ 
-    FUNCTION_DEBUG("scr_change_screen")
+  FUNCTION_DEBUG("scr_change_screen");
   if (scrn ==  this.current_screen)
     return;
 

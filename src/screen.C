@@ -564,7 +564,7 @@ rxvt_term::scr_swap_screen ()
 void
 rxvt_term::scr_change_screen (int scrn)
 {
-  FUNCTION_DEBUG("swap")
+  FUNCTION_DEBUG("scr_change_screen");
   if (scrn == current_screen)
     return;
 
@@ -597,7 +597,7 @@ rxvt_term::scr_change_screen (int scrn)
 void
 rxvt_term::scr_do_wrap () NOTHROW
 {
-  FUNCTION_DEBUG("swap")
+  FUNCTION_DEBUG("scr_do_wrap")
   if (!(screen.flags & Screen_WrapNext))
     return;
 
