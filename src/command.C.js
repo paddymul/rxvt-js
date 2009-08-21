@@ -192,7 +192,7 @@ rxvt_term.prototype.flush =function(){
     }
 #endif
 
-  if (want_refresh){ //FIXME note will probable have to wait for the macro expansion to be able to figure out whats going on
+  if (this.want_refresh){ //FIXME note will probable have to wait for the macro expansion to be able to figure out whats going on
       if (SHOULD_INVOKE (HOOK_LINE_UPDATE)){
           var row= view_start;   //int row = view_start; 
           var end_row= row + nrow;   //int end_row = row + nrow;
@@ -430,7 +430,7 @@ rxvt_term.prototype.cmd_parse =function(){
 
     var och= NOCHAR;  //wchar_t ch = NOCHAR;
     var seq_begin;   // char *seq_begin; // remember start of esc-sequence here 
-    VAR_DEBUG("!this.option (Opt_jumpScroll) ",!this.option (Opt_jumpScroll) )
+    //VAR_DEBUG("!this.option (Opt_jumpScroll) ",!this.option (Opt_jumpScroll) )
     for (;;){ //outer_for_loop
 #ifdef chr_debug_loop
     och = ord(this.next_char()); 
@@ -546,7 +546,7 @@ rxvt_term.prototype.cmd_parse =function(){
             if (refreshnow){
                 FUNCTION_DEBUG("refreshnow");
                 this.scr_refresh();
-                want_refresh = 1;
+                this.want_refresh = 1;
             }
         } //IS_CONTROL
         else {

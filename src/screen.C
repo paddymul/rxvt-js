@@ -470,6 +470,8 @@ rxvt_term::scr_soft_reset ()
 #if ENABLE_OVERLAY
   scr_overlay_off ();
 #endif
+  //VAR_DEBUG("current_screen", current_screen);
+        VAR_DEBUG("PRIMARY", PRIMARY);
 
   if (current_screen != PRIMARY)
     scr_swap_screen ();

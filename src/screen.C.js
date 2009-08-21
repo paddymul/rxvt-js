@@ -661,7 +661,8 @@ rxvt_term.prototype.scr_soft_reset =function(){
 #if ENABLE_OVERLAY
   this.scr_overlay_off ();
 #endif
-
+    VAR_DEBUG("current_screen", this.current_screen);
+        VAR_DEBUG("PRIMARY", PRIMARY)
   if ( this.current_screen != PRIMARY)
     this.scr_swap_screen ();
 
@@ -2364,6 +2365,7 @@ rxvt_term.prototype.scr_printscreen =function( fullhist){
 rxvt_term.prototype.scr_refresh =function(){ 
     FUNCTION_DEBUG("scr_refresh")
     console.log("scr_refresh called ");
+    this.want_refresh=0;
 #ifndef DEBUG
     FUNCTION_DEBUG("scr_refresh")
     console.log("scr_refresh called ");
