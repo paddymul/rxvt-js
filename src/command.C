@@ -2412,11 +2412,13 @@ rxvt_term::cmd_parse ()
   }
 }
 
+
 // read the next character
 wchar_t
 rxvt_term::next_char () NOTHROW
 {
   //FUNCTION_DEBUG("next_char")
+  //ROW_BUF_DEBUG;
   while (cmdbuf_ptr < cmdbuf_endp)
     {
       // assume 7-bit to be ascii ALWAYS
@@ -2935,6 +2937,7 @@ void
 rxvt_term::process_csi_seq ()
 {
   FUNCTION_DEBUG("process_csi_seq")
+
   unicode_t ch, priv, i;
   unsigned int nargs, p;
   int n, ndef;

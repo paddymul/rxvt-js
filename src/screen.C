@@ -105,7 +105,7 @@ static inline void fill_text (text_t *start, text_t value, int len)
 void
 rxvt_term::scr_blank_line (line_t &l, unsigned int col, unsigned int width, rend_t efs) const NOTHROW
 {
-  //FUNCTION_DEBUG("scr_blank_line")
+  FUNCTION_DEBUG("scr_blank_line")
   if (!l.t)
     {
       lalloc (l);
@@ -168,6 +168,7 @@ void
 rxvt_term::scr_reset ()
 {
   FUNCTION_DEBUG("scr_reset")
+
   view_start = 0;
   num_scr = 0;
 
@@ -257,6 +258,7 @@ rxvt_term::scr_reset ()
         {
           for (int row = nrow; row < prev_nrow; row++)
             {
+            VAR_DEBUG("deleting row",row);
               lfree (swap_buf [row]);
               lfree (drawn_buf[row]);
             }
@@ -265,15 +267,19 @@ rxvt_term::scr_reset ()
 
       drawn_buf = (line_t *)rxvt_realloc (drawn_buf, nrow * sizeof (line_t));
       swap_buf  = (line_t *)rxvt_realloc (swap_buf , nrow * sizeof (line_t));
-FUNCTION_DEBUG("JUST ALLOCCED swap_buf");
+
+      FUNCTION_DEBUG("JUST ALLOCCED swap_buf");
       for (int row = min (nrow, prev_nrow); row--; )
         {
+          VAR_DEBUG("lresizing ",row);
           lresize (drawn_buf[row]);
           lresize (swap_buf [row]);
         }
-
+VAR_DEBUG("this.prev_nrow ", prev_nrow);
+VAR_DEBUG("this.nrow ", nrow);
       for (int row = prev_nrow; row < nrow; row++)
         {
+          VAR_DEBUG("blanking mem ", row);
           swap_buf [row].clear (); scr_blank_screen_mem (swap_buf [row], DEFAULT_RSTYLE);
           drawn_buf[row].clear (); scr_blank_screen_mem (drawn_buf[row], DEFAULT_RSTYLE);
         }
@@ -421,6 +427,7 @@ FUNCTION_DEBUG("JUST ALLOCCED swap_buf");
 
   HOOK_INVOKE ((this, HOOK_RESET, DT_END));
   FUNCTION_DEBUG("END of scr_reset");
+
 }
 
 /* ------------------------------------------------------------------------- */
@@ -830,7 +837,8 @@ rxvt_term::scr_add_lines (const wchar_t *str, int len, int minlines) NOTHROW
   while (str < strend)
     {
       c = (unicode_t)*str++; // convert to rxvt-unicodes representation
-      FUNCTION_DEBUG(c)
+      //FUNCTION_DEBUG(c)
+        VAR_DEBUG("str_i", (char) c);
       if (expect_false (c < 0x20))
         if (c == C0_LF)
           {
@@ -953,6 +961,7 @@ rxvt_term::scr_add_lines (const wchar_t *str, int len, int minlines) NOTHROW
           // if the character doesn't fit into the remaining columns...
           if (expect_false (screen.cur.col > ncol - width && ncol >= width))
             {
+              FUNCTION_DEBUG("artificially enlargen the previous one");
               // ... artificially enlargen the previous one
               c = NOCHAR;
               // and try the same character next loop iteration
@@ -963,6 +972,8 @@ rxvt_term::scr_add_lines (const wchar_t *str, int len, int minlines) NOTHROW
 
           do
             {
+                VAR_DEBUG("this.screen.cur.col", screen.cur.col);
+                VAR_DEBUG("line.t[this.screen.cur.col]", (char) c);
               line->t[screen.cur.col] = c;
               line->r[screen.cur.col] = rend;
 
@@ -1043,6 +1054,7 @@ rxvt_term::scr_add_lines (const wchar_t *str, int len, int minlines) NOTHROW
 #ifdef DEBUG_STRICT
   assert (screen.cur.row >= 0);
 #endif
+    ROW_BUF_DEBUG;
 }
 
 /* ------------------------------------------------------------------------- */
@@ -2099,10 +2111,13 @@ rxvt_term::scr_printscreen (int fullhist) NOTHROW
  * drawn_text/drawn_rend contain the screen information before the update.
  * screen.text/screen.rend contain what the screen will change to.
  */
+
 void
 rxvt_term::scr_refresh () NOTHROW
 {
   FUNCTION_DEBUG("scr_refresh")
+  ROW_BUF_DEBUG;
+
   int16_t col, row,   /* column/row we're processing               */
           ocrow;      /* old cursor row                            */
   int i;              /* tmp                                       */

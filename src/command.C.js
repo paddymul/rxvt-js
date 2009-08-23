@@ -158,11 +158,14 @@ I bound them to "C-H u" "C-H o" and "C-H p"
          //console.log(str);
          //str=str + chr(NOCHAR);
          //console.log(str);
+         console.log("cmd_write");
          if(this.cmdbuf_endp == this.cmdbuf_ptr){
+             console.log("resetting cmd_buf to the incoming string");
              this.cmdbuf=str;   
              this.cmdbuf_ptr=0;
              }
          else {
+             console.log("concatting cmdbuf ");
              this.cmdbuf= this.cmdbuf.concat(str);             
              //this.cmdbuf= this.cmdbuf.slice(0,this.cmdbuf.length-1).concat(str);
          }
@@ -544,7 +547,7 @@ rxvt_term.prototype.cmd_parse =function(){
             //debugger;
             //refreshnow=true;
             if (refreshnow){
-                FUNCTION_DEBUG("refreshnow");
+                //FUNCTION_DEBUG("refreshnow");
                 this.scr_refresh();
                 this.want_refresh = 1;
             }
@@ -558,10 +561,15 @@ rxvt_term.prototype.cmd_parse =function(){
             FUNCTION_DEBUG("END process_nonprinting from cmd_parse")
 
 
-         } catch ( out_of_input){  //FIXME exception
-                // we ran out of input, retry later
-                this.cmdbuf_ptr = seq_begin;
-                break;} 
+         } catch ( e){  //FIXME exception
+             // we ran ou of input, retry later
+             if (e instanceof OutOfInputException){
+                      this.cmdbuf_ptr = seq_begin;
+                      break;} 
+             else{
+                 throw e;}
+         }
+
                 och = NOCHAR;
         }//else
 #endif
@@ -597,6 +605,22 @@ rxvt_term.prototype.next_char =function(){
   //FUNCTION_DEBUG("return NOCHAR");
   //VAR_DEBUG("next_char return", chr(NOCHAR));
   return chr(NOCHAR);
+}
+
+function OutOfInputException(value){
+    this.value = value;
+    this.message = "we ran out of input, hopefully there will be more to process soon";
+    this.toString = function() {
+        return this.value + this.message
+    };
+
+}
+function ZipCodeFormatException(value) {
+   this.value = value;
+   this.message = "does not conform to the expected format for a zip code";
+   this.toString = function() {
+      return this.value + this.message
+   };
 }
 
 // read the next octet
@@ -641,7 +665,7 @@ rxvt_term.prototype.process_nonprinting =function(ch){
         if ( (  this.cmdbuf_endp - this.cmdbuf_ptr) < this.minimum_buf_size) {
             //    if ( (  foo.cmdbuf_endp - foo.cmdbuf_ptr) < foo.minimum_buf_size) {
             //this.cmdbuf_ptr--;
-            throw "out_of_input";
+            throw new OutOfInputException();
         return;
     }
   switch (ch){
@@ -1011,7 +1035,6 @@ function get_byte_array_bit(lst1, val){
 //void rxvt_term::process_csi_seq ()
 rxvt_term.prototype.process_csi_seq =function(){
 FUNCTION_DEBUG("process_csi_seq");
-
   //console.log("csi_seq");
   var ch, priv, i; //unicode_t ch, priv, i;  
   var och; //ord(ch)

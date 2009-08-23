@@ -92,7 +92,7 @@ dstillz: The address of the line_t qline is assigned to be row_buf[row].
 /* Fill part/all of a line with blanks. */
 //void rxvt_term::scr_blank_line (line_t &l, unsigned int col, unsigned int width, rend_t efs){ 
 rxvt_term.prototype.scr_blank_line =function(l, col, width, efs){ 
-  //FUNCTION_DEBUG("scr_blank_line")
+  FUNCTION_DEBUG("scr_blank_line")
   /*  if (!l.t){
       lalloc (l);
       col = 0;
@@ -167,9 +167,25 @@ my_alloc = function(num, obj){
   }
   return ptr;
 }
+rxvt_term.prototype.lresize = function (l)   {
+    if (!l.t)
+      return;
+
+    // not quite sure what to do here yet, this is probably wrong 
+    //l.t = (text_t *)talloc->alloc (l.t, prev_ncol * sizeof (text_t));
+    //l.r = (rend_t *)ralloc->alloc (l.r, prev_ncol * sizeof (rend_t));
+    
+    l.l = mi_n (l.l, this.ncol);
+
+    if (this.ncol > this.prev_ncol)
+      this.scr_blank_line (l, this.prev_ncol, this.ncol - this.prev_ncol, DEFAULT_RSTYLE);
+    //
+  }
+
 //void rxvt_term::scr_reset (){ 
 rxvt_term.prototype.scr_reset =function(){ 
     FUNCTION_DEBUG("scr_reset")
+
     console.log("scr_reset");
     console.log("this.ncol",this.ncol);
   this.view_start = 0;
@@ -265,6 +281,7 @@ rxvt_term.prototype.scr_reset =function(){
 #if 0
       if (this.nrow < this.prev_nrow){
         for ( var row = this.nrow; row < this.prev_nrow; row++){  //for (int row = nrow; row < prev_nrow; row++)
+            VAR_DEBUG("deleting row",row);
           delete (this.swap_buf [row]);  //lfree (swap_buf [row]);
           delete (this.drawn_buf[row]);  //lfree (drawn_buf[row]);
             }
@@ -278,12 +295,15 @@ rxvt_term.prototype.scr_reset =function(){
 FUNCTION_DEBUG("JUST ALLOCCED swap_buf");
 
 
-      for ( row = mi_n (this.nrow,  this.prev_nrow); row--; ){  //for (int row = mi_n (this.nrow, prev_nrow); row--; )
-        lresize ( this.drawn_buf[row]);  //lresize (drawn_buf[row]);
-        lresize ( this.swap_buf [row]);  //lresize (swap_buf [row]);
+      for ( var row = mi_n (this.nrow, this.prev_nrow); row--; ){  //for (int row = mi_n (this.nrow, prev_nrow); row--; )
+          VAR_DEBUG("lresizing ",row);
+        this.lresize ( this.drawn_buf[row]);  //lresize (drawn_buf[row]);
+        this.lresize ( this.swap_buf [row]);  //lresize (swap_buf [row]);
         }
-
+VAR_DEBUG("this.prev_nrow ", this.prev_nrow);
+VAR_DEBUG("this.nrow ", this.nrow);
       for ( row =  this.prev_nrow; row < this.nrow; row++){  //for (int row = prev_nrow; row < nrow; row++)
+          VAR_DEBUG("blanking mem ", row);
            this.swap_buf [row].clear (); this.scr_blank_screen_mem ( this.swap_buf [row], DEFAULT_RSTYLE);
            this.drawn_buf[row].clear (); this.scr_blank_screen_mem ( this.drawn_buf[row], DEFAULT_RSTYLE);
         }
@@ -409,7 +429,7 @@ FUNCTION_DEBUG("JUST ALLOCCED swap_buf");
             qline =  this.row_buf [row];  //line_t &qline =  this.row_buf [row];
 
               qline = pline;
-              lresize (qline);
+              this.lresize (qline);
          }
 
            for (  row =  this.prev_nrow; row < this.nrow; row++){  //for (int row = prev_nrow; row < nrow; row++)
@@ -452,7 +472,9 @@ FUNCTION_DEBUG("JUST ALLOCCED swap_buf");
   }
   //this.dom_rows=this.term_el.contents();
   HOOK_INVOKE ((this, HOOK_RESET, DT_END));
+
   FUNCTION_DEBUG("END of scr_reset");
+
 }  
 
 /*
@@ -1245,7 +1267,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
   while (str_i < strend_i){  //while (str < strend)
     //c = (unicode_t)*str++; 
       c =  str[str_i++]; //convert to rxvt-unicodes representation 
-      FUNCTION_DEBUG(ord(c))
+      VAR_DEBUG("str_i", c);
       if (expect_false (ord(c) < 0x20))
           if (ord(c) == C0_LF){
               //FUNCTION_DEBUG("c == C0_LF");
@@ -1354,6 +1376,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
 
           //if the character doesnt fit into the remaining columns... 
           if (expect_false (this.screen.cur.col >  this.ncol - width &&  this.ncol >= width)){
+              FUNCTION_DEBUG("artificially enlargen the previous one");
               //... artificially enlargen the previous one
               c = "";// chr(NOCHAR);
               //and try the same character next loop iteration 
@@ -1370,7 +1393,10 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
 
           do
             {
+                VAR_DEBUG("this.screen.cur.col", this.screen.cur.col);
+                VAR_DEBUG("line.t[this.screen.cur.col]", c);
               line.t[this.screen.cur.col] = c;
+              
               //FONT-FIXME line.r[this.screen.cur.col] = rend;
 
               if (expect_true (this.screen.cur.col <  this.ncol - 1))
@@ -1406,6 +1432,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
 #ifdef DEBUG_STRICT
   assert (this.screen.cur.row >= 0);
 #endif
+    ROW_BUF_DEBUG;
 }
 /* ------------------------------------------------------------------------- */
 /*
@@ -2370,17 +2397,34 @@ rxvt_term.prototype.scr_printscreen =function( fullhist){
 //REWRITE: void rxvt_term::scr_refresh (){ 
 
 
+rxvt_term.prototype.row_buf_debug = function(){
+    for(var j=0; j < this.nrow; j++) {
+        var new_t = []; 
+        for(var k =0; k < this.ncol; k++){
+            if(ROW(this.view_start +j).t[k]){
+               new_t[k]=ROW(this.view_start +j).t[k];  }
+            else {
+                new_t[k]=" ";}
+        }
+        print(new_t.join(""),"$");
+    }
+}
+
 rxvt_term.prototype.scr_refresh =function(){ 
     FUNCTION_DEBUG("scr_refresh")
+  ROW_BUF_DEBUG;
+
     console.log("scr_refresh called ");
     this.want_refresh=0;
     if (this.refresh_type == NO_REFRESH || !this.mapped){
         FUNCTION_DEBUG("this.refresh_type == NO_REFRESH || !this.mapped){");
-        return;
+        console.log("this.refresh_type == NO_REFRESH || !this.mapped){");
+        //return;
     }
-#ifndef DEBUG
+    /*#ifndef DEBUG*/
+    /*#endif */
     FUNCTION_DEBUG("scr_refresh")
-    console.log("scr_refresh called ");
+
     var out_string =[];
     var b=-1;
     var dtr = this.dom_text_rows;
@@ -2393,16 +2437,18 @@ rxvt_term.prototype.scr_refresh =function(){
     var mod_total_rows = total_rows % total_rows;
     var row_plus = mod_total_rows + term_view_start;
     var r;
+    console.log("before for loop ");
     for(var row = 0; row < this.nrow; row++){
         //r=row_buf [row_plus + row];
         r=ROW(this.view_start + row);
         dtr[row]= r.t.join("");
+        console.log(r.t);
     }
     //console.log(dtr.join("\n"));
     //this.pre_term_el.innerHTML = dtr.join("\n");
     //$("pt")
     document.getElementById("pt").innerHTML = dtr.join("\n");
-#endif
+
     FUNCTION_DEBUG("END OF scr_refresh");
 } 
 

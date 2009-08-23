@@ -118,9 +118,9 @@ Animator.prototype = {
             console.log("outputting while already outputting");
         }
         this.is_outputting=true;
-        console.log(str);
+        //console.log(str);
         this.a.cmd_write(str, str.length);
-        //this.a.scr_refresh();
+        this.a.scr_refresh();
         this.is_outputting=false;
     },
 

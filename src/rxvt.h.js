@@ -235,7 +235,17 @@ if(!console){
 #define FUNCTION_DEBUG(function_name) print(function_name);
 #define VAR_DEBUG(var_name, var_val) print(var_name,var_val);
 #define CASE_DEBUG(function_name)  print(function_name);
-
+/*
+#define ROW_BUF_DEBUG   for(var __i = 0; __i < this.nrow;  __i++){ROW_DEBUG(__i);}
+#define ROW_DEBUG(__j)  var __new_t = []; for(var __k =0; __k < this.ncol; __k++){\
+   if(ROW(this.view_start +__j).t[__k]){\
+       __new_t[__k]=ord(ROW(this.view_start +__j).t[__k]);}     \
+   else {
+       __new_t[__k]=ord(ROW(this.view_start +__j).t[__k]);}
+print(__new_t.join(""),"$");
+//print(ROW(this.view_start +__j).t.join(""), "$");
+*/
+#define ROW_BUF_DEBUG print("row_buf_debug"); this.row_buf_debug();
 #else 
 #define FUNCTION_DEBUG(function_name) 
 #define VAR_DEBUG(var_name, var_val)
