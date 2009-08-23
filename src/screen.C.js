@@ -478,14 +478,13 @@ VAR_DEBUG("this.nrow ", this.nrow);
     
 }  
 
-/*
-FROM MAIN.C
-void
-rxvt_term::resize_all_windows (unsigned int newwidth, unsigned int newheight, int ignoreparent)
-{
-  int fix_screen;
-  int old_width  = szHint.width;
-  int old_height = szHint.height;
+
+//void rxvt_term::resize_all_windows (unsigned int newwidth, unsigned int newheight, int ignoreparent)
+rxvt_term.prototype.resize_all_windows = function  ( ){
+    /*
+var fix_screen;
+var old_width  = szHint.width;
+var old_height = szHint.height;
 
   window_calc (newwidth, newheight);
 
@@ -550,8 +549,8 @@ rxvt_term::resize_all_windows (unsigned int newwidth, unsigned int newheight, in
   if (set_hint)
     XSetWMNormalHints (dpy, parent[0], &szHint);
 
-  fix_screen = ncol != prev_ncol || nrow != prev_nrow;
 
+  fix_screen = this.ncol != this.prev_ncol || this.nrow != this.prev_nrow;
   if (fix_screen || newwidth != old_width || newheight != old_height)
     {
       if (scrollBar.state)
@@ -566,13 +565,16 @@ rxvt_term::resize_all_windows (unsigned int newwidth, unsigned int newheight, in
         update_background ();
 #endif
     }
-
   if (fix_screen || old_height == 0)
-    scr_reset ();
-
+*/
+var fix_screen;
+  fix_screen = this.ncol != this.prev_ncol || this.nrow != this.prev_nrow;
+if (fix_screen){
+    this.scr_reset ();
+}
   // TODO, with nvidia-8178, resizes kill the alpha channel, report if not fixed in newer version
   //scr_touch (false);
-
+/*
 #ifdef HAVE_BG_PIXMAP
 //  TODO: this don't seem to have any effect - do we still need it ? If so - in which case exactly ?
 //  if (bgPixmap.pixmap)
@@ -582,8 +584,12 @@ rxvt_term::resize_all_windows (unsigned int newwidth, unsigned int newheight, in
 #ifdef USE_XIM
   IMSetPosition ();
 #endif
+*/
 }
 
+
+/*
+FROM MAIN.C
 
 void
 rxvt_term::set_widthheight (unsigned int newwidth, unsigned int newheight)
@@ -627,7 +633,7 @@ rxvt_term.prototype.set_widthheight = function( newwidth, newheight){
             this.nrow = newheight;}
 
         // a bit of a hack,  look at resize_all_windows 
-        this.scr_reset();
+        this.resize_all_windows();
     }
     //this.have_called_set_widthheight = true;
 }

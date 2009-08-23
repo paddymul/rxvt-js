@@ -901,9 +901,7 @@ rxvt_term::alias_color (int dst, int src)
   pix_colors[dst].set (this, rs[Rs_color + dst] = rs[Rs_color + src]);
 }
 
-/* -------------------------------------------------------------------- *
- * -                         WINDOW RESIZING                          - *
- * -------------------------------------------------------------------- */
+/*
 void
 rxvt_term::resize_all_windows (unsigned int newwidth, unsigned int newheight, int ignoreparent)
 {
@@ -926,10 +924,10 @@ rxvt_term::resize_all_windows (unsigned int newwidth, unsigned int newheight, in
   if (!ignoreparent)
     {
 #ifdef SMART_RESIZE
-      /*
-       * resize by Marius Gedminas <marius.gedminas@uosis.mif.vu.lt>
-       * reposition window on resize depending on placement on screen
-       */
+      
+       // resize by Marius Gedminas <marius.gedminas@uosis.mif.vu.lt>
+       // reposition window on resize depending on placement on screen
+
       int x, y, x1, y1;
       int dx, dy;
       unsigned int unused_w1, unused_h1, unused_b1, unused_d1;
@@ -939,10 +937,10 @@ rxvt_term::resize_all_windows (unsigned int newwidth, unsigned int newheight, in
                              0, 0, &x, &y, &unused_cr);
       XGetGeometry (dpy, parent[0], &unused_cr, &x1, &y1,
                     &unused_w1, &unused_h1, &unused_b1, &unused_d1);
-      /*
-       * if display->root isn't the parent window, a WM will probably have offset
-       * our position for handles and decorations.  Counter it
-       */
+
+       // if display->root isn't the parent window, a WM will probably have offset
+       // our position for handles and decorations.  Counter it
+       
       if (x1 != x || y1 != y)
         {
           x -= x1;
@@ -954,14 +952,14 @@ rxvt_term::resize_all_windows (unsigned int newwidth, unsigned int newheight, in
       dx = old_width  - szHint.width;
       dy = old_height - szHint.height;
 
-      /* Check position of the center of the window */
-      if (x < x1)             /* left half */
+      //Check position of the center of the window 
+      if (x < x1)             // left half 
         dx = 0;
-      else if (x == x1)       /* exact center */
+      else if (x == x1)       // exact center 
         dx /= 2;
-      if (y < y1)             /* top half */
+        if (y < y1)             // top half 
         dy = 0;
-      else if (y == y1)       /* exact center */
+        else if (y == y1)       // exact center 
         dy /= 2;
 
       XMoveResizeWindow (dpy, parent[0], x + dx, y + dy,
@@ -1007,6 +1005,12 @@ rxvt_term::resize_all_windows (unsigned int newwidth, unsigned int newheight, in
   IMSetPosition ();
 #endif
 }
+
+*/
+
+/* -------------------------------------------------------------------- *
+ * -                         WINDOW RESIZING                          - *
+ * -------------------------------------------------------------------- */
 
 /*
  * Set the width/height of the vt window in characters.  Units are pixels.
