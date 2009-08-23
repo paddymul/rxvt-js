@@ -127,7 +127,7 @@ rxvt_term.prototype.scr_blank_line =function(l, col, width, efs){
 /* Fill a full line with blanks - make sure it is allocated first */
 //void rxvt_term::scr_blank_screen_mem (line_t &l, rend_t efs) 
 rxvt_term.prototype.scr_blank_screen_mem =function(l,  efs){ 
-    //    FUNCTION_DEBUG("scr_blank_screen_mem")
+       FUNCTION_DEBUG("scr_blank_screen_mem")
   l = this.scr_blank_line (l, 0,  this.ncol, efs);
 
   l.l = 0;
@@ -479,7 +479,7 @@ VAR_DEBUG("this.nrow ", this.nrow);
   HOOK_INVOKE ((this, HOOK_RESET, DT_END));
 
   FUNCTION_DEBUG("END of scr_reset");
-    ROW_BUF_DEBUG;    
+    //ROW_BUF_DEBUG;    
 }  
 
 
@@ -2284,6 +2284,7 @@ rxvt_term.prototype.inline_row_buf_debug = function(){
 
 rxvt_term.prototype.scr_refresh =function(){ 
     FUNCTION_DEBUG("scr_refresh")
+  ROW_BUF_DEBUG;
     //console.log("scr_refresh")
     this.want_refresh=0;
     if (this.refresh_type == NO_REFRESH || !this.mapped){

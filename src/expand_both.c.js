@@ -590,14 +590,14 @@ function lresize (l)   {
          //console.log(str);
          //str=str + chr(NOCHAR);
          //console.log(str);
-         console.log("cmd_write");
+         //console.log("cmd_write");
          if(this.cmdbuf_endp == this.cmdbuf_ptr){
              console.log("resetting cmd_buf to the incoming string");
              this.cmdbuf=str;   
              this.cmdbuf_ptr=0;
              }
          else {
-             console.log("concatting cmdbuf ");
+             //console.log("concatting cmdbuf ");
              this.cmdbuf= this.cmdbuf.concat(str);             
              //this.cmdbuf= this.cmdbuf.slice(0,this.cmdbuf.length-1).concat(str);
          }
@@ -649,24 +649,10 @@ rxvt_term.prototype.flush =function(){
 //REMOVED:void rxvt_term::sel_scroll_cb (ev::timer &w, int revents) 
 //REMOVED:void rxvt_term::slip_wheel_cb (ev::timer &w, int revents) 
 //REMOVED:static struct event_handler // related to the LINUX_YIELD_HACK
-// this is probably where I should enter text into the system
-//REWRITE:bool rxvt_term::pty_fill () 
-rxvt_term.prototype.pty_fill =function(){ 
-    ;
-    
-//# 335 "command.C.js"
-  return false;
-}
-//void rxvt_term::pty_cb (ev::io &w, int revents) 
-rxvt_term.prototype.pty_cb =function(w,  revents){ 
-    ;
-    
-//# 368 "command.C.js"
-}
-//# 393 "command.C.js"
+//# 387 "command.C.js"
 //REMOVED:void rxvt_term::mouse_report (XButtonEvent &ev) 
 //REMOVED:void rxvt_term::x_cb (XEvent &ev) 
-//# 414 "command.C.js"
+//# 408 "command.C.js"
 //REMOVED:void rxvt_term::focus_in () 
 //REMOVED:void rxvt_term::focus_out () 
 //void rxvt_term::update_fade_color (unsigned int idx) 
@@ -684,7 +670,7 @@ rxvt_term.prototype.cmd_parse =function(){
     var seq_begin;   // char *seq_begin; // remember start of esc-sequence here 
     //
     for (;;){ //outer_for_loop
-//# 453 "command.C.js"
+//# 447 "command.C.js"
         //
         //
         
@@ -1142,7 +1128,7 @@ rxvt_term.prototype.process_escape_seq =function(){
     }
 }
  
-//# 1002 "command.C.js"
+//# 996 "command.C.js"
 //#define get_byte_array_bit(array, bit)                //#    (!! ((array)[ (bit) / 8] & (128 >> ((bit) & 7))))
 //const unsigned char csi_defaults[] = 
    csi_defaults = [    (((1) << 7) | ((1) << 6) | ((1) << 5) | ((1) << 4)	     | ((1) << 3) | ((1) << 2) | ((1) << 1) | (1)),	
@@ -1500,6 +1486,7 @@ rxvt_term.prototype.process_csi_seq =function(){
         break;
   }
   ;;
+  ;;
 }
 //#if !1
 //void rxvt_term::process_window_ops (const int *args, unsigned int nargs)
@@ -1580,7 +1567,7 @@ rxvt_term.prototype.process_window_ops =function( args,   nargs){
       //this.tt_printf ("\033[9;%d;%dt", nrow, ncol); 
         break;
                          
-//# 1527 "command.C.js"
+//# 1521 "command.C.js"
   }
 }
 //#endif
@@ -1686,7 +1673,7 @@ rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
         break;
       case XTerm_property:
             
-//# 1717 "command.C.js"
+//# 1711 "command.C.js"
         break;
       case XTerm_Color:
         //for (buf = (char *)str; buf && *buf;)
@@ -1736,17 +1723,17 @@ rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
       case URxvt_Color_border:
         this.process_color_seq (op, Color_border, str, resp);
         break;
-//# 1792 "command.C.js"
-//# 1829 "command.C.js"
+//# 1786 "command.C.js"
+//# 1823 "command.C.js"
       case XTerm_logfile:
         // TODO, when secure mode?
         break;
-//# 1845 "command.C.js"
+//# 1839 "command.C.js"
       case XTerm_font:
         op = URxvt_font;
       case URxvt_font:
           
-//# 1870 "command.C.js"
+//# 1864 "command.C.js"
         break;
       case URxvt_version:
         if (query)
@@ -1755,10 +1742,10 @@ rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
                      rs[Rs_name], VERSION[0], VERSION[2],
                      resp);
         break;
-//# 1905 "command.C.js"
+//# 1899 "command.C.js"
     }
 }
-//# 1925 "command.C.js"
+//# 1919 "command.C.js"
 //int rxvt_term::privcases (int mode, unsigned long bit)
 rxvt_term.prototype.privcases =function(mode,   bit){
     ;
@@ -2095,7 +2082,7 @@ rxvt_term.prototype.process_sgr_mode =function(nargs,    arg){
             this.scr_color (Color_bg, Color_bg);
             break;
           //case 50: // not variable spacing
-//# 2345 "command.C.js"
+//# 2339 "command.C.js"
         }
     }
 }
@@ -2103,7 +2090,7 @@ rxvt_term.prototype.process_sgr_mode =function(nargs,    arg){
 rxvt_term.prototype.process_graphics =function(){
 ;
   //FIXME causes an infintie loop  
-//# 2369 "command.C.js"
+//# 2363 "command.C.js"
 }
 //void rxvt_term::tt_printf (const char *fmt,...) 
 rxvt_term.prototype.tt_printf =function( fmt){
@@ -2124,7 +2111,7 @@ rxvt_term.prototype.tt_write =function( data,   len){
         console.log(data);
     }
     
-//# 2430 "command.C.js"
+//# 2424 "command.C.js"
 }
 //void rxvt_term::pty_write () 
 rxvt_term.prototype.pty_write =function(){
@@ -2174,7 +2161,7 @@ rxvt_term.prototype.scr_blank_line =function(l, col, width, efs){
 }
 //void rxvt_term::scr_blank_screen_mem (line_t &l, rend_t efs) 
 rxvt_term.prototype.scr_blank_screen_mem =function(l,  efs){ 
-    //    
+       
   l = this.scr_blank_line (l, 0,  this.ncol, efs);
   l.l = 0;
   l.f = 0;
@@ -2445,7 +2432,7 @@ rxvt_term.prototype.scr_reset =function(){
   //this.dom_rows=this.term_el.contents();
   false;
   ;
-    ;;    
+    //;;    
 }  
 //void rxvt_term::resize_all_windows (unsigned int newwidth, unsigned int newheight, int ignoreparent)
 rxvt_term.prototype.resize_all_windows = function  ( ){
@@ -3423,6 +3410,7 @@ rxvt_term.prototype.inline_row_debug = function(label, line){
 //REWRITE: void rxvt_term::scr_refresh (){ 
 rxvt_term.prototype.scr_refresh =function(){ 
     
+  ;;
     //console.log("scr_refresh")
     this.want_refresh=0;
     if (this.refresh_type == NO_REFRESH || !this.mapped){
@@ -3479,7 +3467,7 @@ rxvt_term.prototype.scr_remap_chars =function(){
 //REWRITE:void rxvt_term::scr_recolour () 
 rxvt_term.prototype.scr_recolour =function(){ 
     
-//# 2378 "screen.C.js"
+//# 2379 "screen.C.js"
   //bgPixmap.apply () does not do the following : 
   this.scr_clear ();
   this.scr_touch (true);
@@ -3501,7 +3489,7 @@ rxvt_term.prototype.scr_xor_rect =function( beg_row,  beg_col,  end_row,  end_co
     
     //FIXME cstyle namespaces
     
-//# 2424 "screen.C.js"
+//# 2425 "screen.C.js"
 }
 //void rxvt_term::scr_xor_span (int beg_row, int beg_col, int end_row, int end_col, rend_t rstyle) 
 rxvt_term.prototype.scr_xor_span =function( beg_row,  beg_col,  end_row,  end_col,  rstyle){ 
@@ -3541,7 +3529,7 @@ rxvt_term.prototype.scr_reverse_selection =function(){
         
         return;
     }
-//# 2511 "screen.C.js"
+//# 2512 "screen.C.js"
 //REMOVED:void rxvt_term::paste (char *data, unsigned int len){ 
 //REMOVED:void rxvt_term::selection_paste (Window win, Atom prop, bool delete_prop) 
 //REMOVED:void rxvt_term::incr_cb (ev::timer &w, int revents){ 
@@ -3564,5 +3552,5 @@ rxvt_term.prototype.scr_reverse_selection =function(){
 //REMOVED:void rxvt_term::selection_send (const XSelectionRequestEvent &rq){ 
     //This is removed because ENABLE_OVERLAY is tied to iso-14755 which is a complicated standard that I wont be supporting
     //it can be read about here http://en.wikipedia.org/wiki/Unicode_input
-//# 2547 "screen.C.js"
+//# 2548 "screen.C.js"
 //# 3 "expand_both.h" 2

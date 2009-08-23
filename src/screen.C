@@ -133,7 +133,7 @@ rxvt_term::scr_blank_line (line_t &l, unsigned int col, unsigned int width, rend
 void
 rxvt_term::scr_blank_screen_mem (line_t &l, rend_t efs) const NOTHROW
 {
-  //FUNCTION_DEBUG("scr_blank_screen_mem")
+  FUNCTION_DEBUG("scr_blank_screen_mem")
   scr_blank_line (l, 0, ncol, efs);
 
   l.l = 0;
@@ -482,7 +482,7 @@ rxvt_term::scr_reset ()
 
   HOOK_INVOKE ((this, HOOK_RESET, DT_END));
   FUNCTION_DEBUG("END of scr_reset");
-  ROW_BUF_DEBUG;
+
 }
 void
 rxvt_term::resize_all_windows (unsigned int newwidth, unsigned int newheight, int ignoreparent)
@@ -2283,7 +2283,7 @@ void
 rxvt_term::scr_refresh () NOTHROW
 {
   FUNCTION_DEBUG("scr_refresh")
-
+  ROW_BUF_DEBUG;
   int16_t col, row,   /* column/row we're processing               */
           ocrow;      /* old cursor row                            */
   int i;              /* tmp                                       */
@@ -2298,7 +2298,7 @@ rxvt_term::scr_refresh () NOTHROW
 
   if (refresh_type == NO_REFRESH || !mapped){
         FUNCTION_DEBUG("this.refresh_type == NO_REFRESH || !this.mapped){");
-    return;
+        //return;
   }
   /*
    * A: set up vars

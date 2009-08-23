@@ -28,7 +28,7 @@ function soundPlay(position){
 function Animator(termEl, reqUrl){
     this.a = new rxvt_term(document.getElementById('term'),"pre_term");
     this.max_diff = .2;
-    this.min_milli_jump=10;
+    this.min_milli_jump=100;
     this.a.row_buf=false;
     this.a.scr_poweron();
     //console.log(a);

@@ -158,14 +158,14 @@ I bound them to "C-H u" "C-H o" and "C-H p"
          //console.log(str);
          //str=str + chr(NOCHAR);
          //console.log(str);
-         console.log("cmd_write");
+         //console.log("cmd_write");
          if(this.cmdbuf_endp == this.cmdbuf_ptr){
              console.log("resetting cmd_buf to the incoming string");
              this.cmdbuf=str;   
              this.cmdbuf_ptr=0;
              }
          else {
-             console.log("concatting cmdbuf ");
+             //console.log("concatting cmdbuf ");
              this.cmdbuf= this.cmdbuf.concat(str);             
              //this.cmdbuf= this.cmdbuf.slice(0,this.cmdbuf.length-1).concat(str);
          }
@@ -288,17 +288,17 @@ FUNCTION_DEBUG("text");
 //REMOVED:void rxvt_term::slip_wheel_cb (ev::timer &w, int revents) 
 //REMOVED:static struct event_handler // related to the LINUX_YIELD_HACK
 
-
+/*
 // this is probably where I should enter text into the system
 //REWRITE:bool rxvt_term::pty_fill () 
 rxvt_term.prototype.pty_fill =function(){ 
     FUNCTION_DEBUG("pty");
 
-    /*
-  ssize_t n = cmdbuf_endp - cmdbuf_ptr;
+    //ssize_t    
+    n = cmdbuf_endp - cmdbuf_ptr;
 
-  if (CBUFSIZ == n){
-      rxvt_warn ("PLEASE REPORT: pty_fill on full buffer, draining input, continuing.\n");
+    if (CBUFSIZ == n){
+        rxvt_warn ("PLEASE REPORT: pty_fill on full buffer, draining input, continuing.\n");
       n = 0;
     }
 
@@ -312,19 +312,13 @@ rxvt_term.prototype.pty_fill =function(){
       cmdbuf_endp += r;
       return true;
     }
-  else if (r < 0 && (errno == EAGAIN || errno == EINTR)){
-#if LINUX_YIELD_HACK
-      if (display->is_local)
-        event_handler.yield_ev.start ();
-#endif
-    }
   else{
       pty_ev.stop ();
 
       if (!this.option (Opt_hold))
         destroy ();
     }
-    */
+    
   return false;
 }
 
@@ -332,7 +326,7 @@ rxvt_term.prototype.pty_fill =function(){
 rxvt_term.prototype.pty_cb =function(w,  revents){ 
     FUNCTION_DEBUG("pty");
 
-    /*
+    
   make_current ();
 
   if (revents & ev::READ)
@@ -357,9 +351,9 @@ rxvt_term.prototype.pty_cb =function(w,  revents){
   if (this.option (Opt_pointerBlank)) 
     pointer_ev.start (pointerBlankDelay); 
 #endif
-*/
-}
 
+}
+*/
 #ifdef POINTER_BLANK
 //void rxvt_term::pointer_blank () 
 rxvt_term.prototype.pointer_blank =function(){ 
@@ -1407,7 +1401,7 @@ VAR_DEBUG(i,ndef);
         break;
   }
   ROW_IN_BUF_DEBUG("END OF process_csi_seq");
-
+  ROW_BUF_DEBUG;
 }
 /*}}} */
 
