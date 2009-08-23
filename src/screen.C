@@ -69,7 +69,7 @@ static inline void fill_text (text_t *start, text_t value, int len)
     (((A) == (C)) && ((B) > (D)))
 #define ROW_AND_COL_IN_ROW_AT_OR_AFTER(A, B, C, D)                     \
     (((A) == (C)) && ((B) >= (D)))
-#define ROW_AND_COL_IN_ROW_BEFORE(A, B, C, D)                          \
+#define ROW_AND_COL_IN_ROW_EFORE(A, B, C, D)                          \
     (((A) == (C)) && ((B) < (D)))
 #define ROW_AND_COL_IN_ROW_AT_OR_BEFORE(A, B, C, D)                    \
     (((A) == (C)) && ((B) <= (D)))
@@ -160,9 +160,46 @@ rxvt_term::scr_kill_char (line_t &l, int col) const NOTHROW
   } while (col < ncol && l.t[col] == NOCHAR);
 }
 void rxvt_term::row_buf_debug(){
-  ROW_BUF_DEBUGR;
+  FUNCTION_DEBUG("row_buf_debug"); 
+  int16_t __col, __row;                          
+  text_t *__stp; 
+  __row= nrow;                                  
+  for (__row = 0; __row < nrow; __row++) {
+    __stp = ROW(view_start + __row).t;
+    for (__col = 0; __col < ncol; __col++) {
+      std::cout << (char) __stp[__col]; }          
+    std::cout << " $" ; std::cout << "\n";}        
 }
 
+void rxvt_term::inline_row_buf_debug(){
+  int16_t __col, __row;                          
+  std::cout << "inline_rbdbg";
+  text_t *__stp; 
+  __row= nrow;                                  
+  for (__row = 0; __row < nrow; __row++) {
+    __stp = ROW(view_start + __row).t;
+    for (__col = 0; __col < ncol; __col++) {
+      std::cout << (char) __stp[__col]; }          
+    std::cout << "$" ; }
+  std::cout << "^";
+  std::cout << "\n";
+}
+/*
+void rxvt_term::inline_row_buf_debug(){
+
+  FUNCTION_DEBUG("row_buf_debug"); 
+  int16_t __col, __row;                          
+  text_t *__stp; 
+  __row= nrow;                                  
+  for (__row = 0; __row < nrow; __row++) {
+    int sum =0;
+    __stp = ROW(view_start + __row).t;
+    for (__col = 0; __col < ncol; __col++) {
+      sum += __stp[__col]; }          
+    std::cout << sum ; }        
+  std::cout << "\n";
+}
+*/
 /* ------------------------------------------------------------------------- *
  *                          SCREEN INITIALISATION                            *
  * ------------------------------------------------------------------------- */
@@ -431,7 +468,7 @@ VAR_DEBUG("this.nrow ", nrow);
 
   HOOK_INVOKE ((this, HOOK_RESET, DT_END));
   FUNCTION_DEBUG("END of scr_reset");
-    ROW_BUF_DEBUG;
+  //ROW_BUF_DEBUG;
 }
 
 /* ------------------------------------------------------------------------- */
@@ -547,7 +584,7 @@ rxvt_term::scr_cursor (cursor_mode mode) NOTHROW
   assert (s->cur.row >= 0);
   assert (s->cur.col >= 0);
 #endif
-  FUNCTION_DEBUG("END OF scr_cursor");
+  ROW_IN_BUF_DEBUG("END OF scr_cursor");
 }
 
 void
@@ -1060,7 +1097,7 @@ rxvt_term::scr_add_lines (const wchar_t *str, int len, int minlines) NOTHROW
 #ifdef DEBUG_STRICT
   assert (screen.cur.row >= 0);
 #endif
-    ROW_BUF_DEBUG;
+  //ROW_BUF_DEBUG;
 }
 
 /* ------------------------------------------------------------------------- */
@@ -1071,7 +1108,8 @@ rxvt_term::scr_add_lines (const wchar_t *str, int len, int minlines) NOTHROW
 void
 rxvt_term::scr_backspace () NOTHROW
 {
-  FUNCTION_DEBUG("scr_backspace")
+  FUNCTION_DEBUG("scr_backspace");
+
   if (screen.cur.col == 0)
     {
       if (screen.cur.row > 0)
@@ -1086,6 +1124,7 @@ rxvt_term::scr_backspace () NOTHROW
     }
   else
     scr_gotorc (0, -1, RELATIVE);
+FUNCTION_DEBUG("END_OF scr_backspace");
 }
 
 /* ------------------------------------------------------------------------- */
@@ -1162,6 +1201,7 @@ rxvt_term::scr_tab (int count, bool ht) NOTHROW
 
   if (x != screen.cur.col)
     scr_gotorc (0, x, R_RELATIVE);
+FUNCTION_DEBUG("END_OF scr_tab");
 }
 
 /* ------------------------------------------------------------------------- */
@@ -1180,6 +1220,7 @@ rxvt_term::scr_backindex () NOTHROW
     scr_gotorc (0, -1, R_RELATIVE | C_RELATIVE);
   else
     scr_insdel_chars (1, INSERT);
+FUNCTION_DEBUG("END_OF scr_backindex");
 }
 #endif
 /* ------------------------------------------------------------------------- */
@@ -1207,6 +1248,7 @@ rxvt_term::scr_forwardindex () NOTHROW
       scr_insdel_chars (1, DELETE);
       scr_gotorc (0, ncol - 1, R_RELATIVE);
     }
+FUNCTION_DEBUG("END_OF scr_forwardindex");
 }
 #endif
 
@@ -1356,6 +1398,7 @@ rxvt_term::scr_erase_line (int mode) NOTHROW
     }
 
   scr_blank_line (line, col, num, rstyle);
+FUNCTION_DEBUG("END_OF scr_erase_line");
 }
 
 /* ------------------------------------------------------------------------- */
@@ -2122,7 +2165,6 @@ void
 rxvt_term::scr_refresh () NOTHROW
 {
   FUNCTION_DEBUG("scr_refresh")
-  ROW_BUF_DEBUG;
 
   int16_t col, row,   /* column/row we're processing               */
           ocrow;      /* old cursor row                            */

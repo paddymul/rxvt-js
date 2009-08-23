@@ -3320,7 +3320,7 @@ rxvt_term::process_csi_seq ()
       default:
         break;
     }
-FUNCTION_DEBUG("END OF process_csi_seq")
+  ROW_IN_BUF_DEBUG("END OF process_csi_seq");
 }
 /*}}} */
 

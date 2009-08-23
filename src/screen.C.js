@@ -475,7 +475,7 @@ VAR_DEBUG("this.nrow ", this.nrow);
   HOOK_INVOKE ((this, HOOK_RESET, DT_END));
 
   FUNCTION_DEBUG("END of scr_reset");
-    ROW_BUF_DEBUG;
+    
 }  
 
 /*
@@ -781,7 +781,7 @@ rxvt_term.prototype.scr_cursor =function(mode){
   assert (s.cur.col >= 0);
 #endif
 
-    FUNCTION_DEBUG("END OF scr_cursor");
+  ROW_IN_BUF_DEBUG("END OF scr_cursor");
 }
 
 //void rxvt_term::scr_swap_screen () 
@@ -1238,7 +1238,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
 #ifdef DEBUG_STRICT
   assert (this.screen.cur.row >= 0);
 #endif
-    ROW_BUF_DEBUG;
+    //ROW_BUF_DEBUG;
 }
 /* ------------------------------------------------------------------------- */
 /*
@@ -1260,6 +1260,7 @@ rxvt_term.prototype.scr_backspace =function(){
     }
   else
     this.scr_gotorc (0, -1, RELATIVE);
+  FUNCTION_DEBUG("END_OF scr_backspace");
 }
 
 /* ------------------------------------------------------------------------- */
@@ -1331,6 +1332,7 @@ rxvt_term.prototype.scr_tab =function( count, ht){
 
   if (x != this.screen.cur.col)
     this.scr_gotorc (0, x, R_RELATIVE);
+    FUNCTION_DEBUG("END_OF scr_tab");
 }
 
 /* ------------------------------------------------------------------------- */
@@ -1348,6 +1350,7 @@ rxvt_term.prototype.scr_backindex =function(){
     this.scr_gotorc (0, -1, R_RELATIVE | C_RELATIVE);
   else
     this.scr_insdel_chars (1, INSERT); 
+    FUNCTION_DEBUG("END_OF scr_backindex");
 }
 #endif
 /* ------------------------------------------------------------------------- */
@@ -1372,6 +1375,7 @@ rxvt_term.this.scr_forwardindex =function(){
       this.scr_insdel_chars (1, DELETE); 
       this.scr_gotorc (0,  this.ncol - 1, R_RELATIVE);
     }
+FUNCTION_DEBUG("END_OF scr_forwardindex");
 }
 #endif
 
@@ -1512,6 +1516,7 @@ rxvt_term.prototype.scr_erase_line =function( mode){
     }
 
   line =  this.scr_blank_line (line, col, num, rstyle);  //scr_blank_line (line, col, num, rstyle);
+  FUNCTION_DEBUG("END_OF scr_erase_line");
 }
 
 /* ------------------------------------------------------------------------- */
@@ -2193,16 +2198,25 @@ rxvt_term.prototype.scr_printscreen =function( fullhist){
   console.log(fullhist);
 }
 
-/* ------------------------------------------------------------------------- */
-/*
- * Refresh the screen 
- * drawn_text/drawn_rend contain the screen information before the update. 
- * screen.text/screen.rend contain what the screen will change to. 
- */
-//REWRITE: void rxvt_term::scr_refresh (){ 
-
 
 rxvt_term.prototype.row_buf_debug = function(){
+  FUNCTION_DEBUG("row_buf_debug"); 
+    for(var j=0; j < this.nrow; j++) {
+        var new_t = []; 
+        for(var k =0; k < this.ncol; k++){
+            if(ROW(this.view_start +j).t[k]){
+               new_t[k]=ROW(this.view_start +j).t[k];  }
+            else {
+                new_t[k]=" "}
+        }
+        print(new_t.join(""),"$");
+    }
+}
+
+rxvt_term.prototype.inline_row_buf_debug = function(label){
+    var out_arr=[];
+                 out_arr[out_arr.length]=label;
+    out_arr[out_arr.length]="inline_rbdbg";
     for(var j=0; j < this.nrow; j++) {
         var new_t = []; 
         for(var k =0; k < this.ncol; k++){
@@ -2211,23 +2225,48 @@ rxvt_term.prototype.row_buf_debug = function(){
             else {
                 new_t[k]=" ";}
         }
-        print(new_t.join(""),"$");
+        new_t[new_t.length]="$";
+        out_arr[out_arr.length]=new_t.join("");
     }
+    out_arr[out_arr.length]="^";
+    print(out_arr.join(""));
 }
+/*
+rxvt_term.prototype.inline_row_buf_debug = function(){
+    var out_arr=[];
+    for(var j=0; j < this.nrow; j++) {
+        var line_sum =0;
+        for(var k =0; k < this.ncol; k++){
+            if(ROW(this.view_start +j).t[k]){
+                line_sum +=ord(ROW(this.view_start +j).t[k]);  }
+            else {
+                line_sum +=ord(" ");}
+        }
+        out_arr.push(line_sum);
+    }
+    print(out_arr.join(""));
+}
+*/
+
+/* ------------------------------------------------------------------------- */
+/*
+ * Refresh the screen 
+ * drawn_text/drawn_rend contain the screen information before the update. 
+ * screen.text/screen.rend contain what the screen will change to. 
+ */
+//REWRITE: void rxvt_term::scr_refresh (){ 
 
 rxvt_term.prototype.scr_refresh =function(){ 
     FUNCTION_DEBUG("scr_refresh")
-  ROW_BUF_DEBUG;
 
     this.want_refresh=0;
     if (this.refresh_type == NO_REFRESH || !this.mapped){
         FUNCTION_DEBUG("this.refresh_type == NO_REFRESH || !this.mapped){");
         //console.log("this.refresh_type == NO_REFRESH || !this.mapped){");
-        //return;
+        return;
     }
     /*#ifndef DEBUG*/
     /*#endif */
-    FUNCTION_DEBUG("scr_refresh")
 
     var out_string =[];
     var b=-1;

@@ -1405,8 +1405,9 @@ VAR_DEBUG(i,ndef);
 
       default:
         break;
-    }
-FUNCTION_DEBUG("END OF process_csi_seq")
+  }
+  ROW_IN_BUF_DEBUG("END OF process_csi_seq");
+
 }
 /*}}} */
 
