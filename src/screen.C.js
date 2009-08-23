@@ -185,9 +185,6 @@ rxvt_term.prototype.lresize = function (l)   {
 //void rxvt_term::scr_reset (){ 
 rxvt_term.prototype.scr_reset =function(){ 
     FUNCTION_DEBUG("scr_reset")
-
-    console.log("scr_reset");
-    console.log("this.ncol",this.ncol);
   this.view_start = 0;
   this.num_scr = 0;
   
@@ -204,6 +201,7 @@ rxvt_term.prototype.scr_reset =function(){
   //we need at least two lines for wrapping to work correctly
   while (this.nrow + this.saveLines < 2){
       //TODO//FIXME
+      VAR_DEBUG("nrow",this.nrow);
       this.saveLines++;
       this.prev_nrow--;
       this.top_row--;
@@ -271,6 +269,7 @@ rxvt_term.prototype.scr_reset =function(){
       this.selection.clicks = 0;
     }
   else{
+      FUNCTION_DEBUG("row_buf exists");
       /*
        * add or delete rows as appropriate 
        */
@@ -308,11 +307,8 @@ VAR_DEBUG("this.nrow ", this.nrow);
            this.drawn_buf[row].clear (); this.scr_blank_screen_mem ( this.drawn_buf[row], DEFAULT_RSTYLE);
         }
       var  old_buf =  this.row_buf, old_buf_i= this.row_buf_i;  //line_t *old_buf = row_buf;
-      //row_buf = (line_t *)rxvt_calloc ( this.total_rows + nrow, sizeof (line_t));
        this.row_buf   = my_alloc ( this.total_rows + this.nrow, line_t),  this.row_buf_i=0; 
-      //previous row   //int p    = MOD (term_start + prev_nrow, prev_total_rows);  //previous row
       var p= MOD ( this.term_start +  this.prev_nrow, prev_total_rows);  
-      //int pend = MOD (term_start + top_row  , prev_total_rows); 
       var pend= MOD ( this.term_start +  this.top_row  , prev_total_rows);   
       var q=  this.total_rows; //rewrapped row   //int q    =  this.total_rows;
 
@@ -320,7 +316,7 @@ VAR_DEBUG("this.nrow ", this.nrow);
           //Re-wrap lines. This is rather ugly, possibly because I am too dumb
           //to come up with a lean and mean algorithm.
           //TODO: maybe optimise when width didnt change
-
+          FUNCTION_DEBUG("top_row exists");
          var  ocur = this.screen.cur;  //row_col_t ocur = screen.cur;
           ocur.row = MOD ( this.term_start + ocur.row, prev_total_rows);
 
@@ -336,12 +332,13 @@ VAR_DEBUG("this.nrow ", this.nrow);
 
               while (p != pend && old_buf [MOD (p - 1, prev_total_rows)].is_longer ()){
                   p = MOD (p - 1, prev_total_rows);
-
+                  VAR_DEBUG("scr_reset p",p);
                   plines++;
                   llen +=  this.prev_ncol;
                 }
 
-              var qlines= ma_x (0, (llen - 1) /  this.ncol) + 1;   //FIXME floor division   int qlines = ma_x (0, (llen - 1) / ncol) + 1;
+              //FIXME floor division   int qlines = ma_x (0, (llen - 1) / ncol) + 1;
+              var qlines= ma_x (0, (llen - 1) /  this.ncol) + 1;
 
               //drop partial lines completely
               if (q < qlines)
@@ -370,7 +367,8 @@ VAR_DEBUG("this.nrow ", this.nrow);
                     //FIXED floor division      int prow = lofs / prev_ncol;
                     var prow= Math.floor(lofs /  this.prev_ncol);   
                     var pcol= lofs %  this.prev_ncol;   //int pcol = lofs % prev_ncol;  
-
+                    VAR_DEBUG("scr_reset prow",prow);
+                    VAR_DEBUG("scr_reset pcol",pcol);
                       prow = MOD (p + prow, prev_total_rows);
 
                       //we only adjust the cursor _row_ and put it into 
@@ -420,20 +418,26 @@ VAR_DEBUG("this.nrow ", this.nrow);
           //make sure all terminal lines exist
           while ( this.top_row > 0)
             this.scr_blank_screen_mem (ROW (-- this.top_row), DEFAULT_RSTYLE);
-      }
+      } // toprow doesn't exist
       else{
+        FUNCTION_DEBUG("toprow doesn't exist");
           //if no scrollback exists (yet), wing, instead of wrap
-        //for (int row = min (this.nrow, prev_nrow); row--; )
+
          for (row = mi_n (this.nrow,  this.prev_nrow); row--; ){  
            //line_t &pline = old_buf [MOD (term_start + row, prev_total_rows)];
            var pline = old_buf [MOD ( this.term_start + row, prev_total_rows)]; 
+           VAR_DEBUG("[MOD ( this.term_start + row, prev_total_rows)]; ", MOD ( this.term_start + row, prev_total_rows));
+           this.row_buf[row] = pline;
             qline =  this.row_buf [row];  //line_t &qline =  this.row_buf [row];
 
-              qline = pline;
+              ROW_DEBUG("pline", pline)
+              ROW_DEBUG("qline", qline)
+            //qline = pline;
               this.lresize (qline);
          }
 
            for (  row =  this.prev_nrow; row < this.nrow; row++){  //for (int row = prev_nrow; row < nrow; row++)
+               VAR_DEBUG("clearing row ", row);
                this.row_buf [row].clear (); this.scr_blank_screen_mem ( this.row_buf [row], DEFAULT_RSTYLE);
             }
 
@@ -475,7 +479,7 @@ VAR_DEBUG("this.nrow ", this.nrow);
   HOOK_INVOKE ((this, HOOK_RESET, DT_END));
 
   FUNCTION_DEBUG("END of scr_reset");
-    
+    ROW_BUF_DEBUG;    
 }  
 
 
@@ -2033,6 +2037,7 @@ rxvt_term.prototype.scr_charset_set =function( set,   ch){
 //FIXED:bool rxvt_term::scr_refresh_rend (rend_t mask, rend_t value) 
 rxvt_term.prototype.scr_refresh_rend =function( mask,  value){ 
     FUNCTION_DEBUG("scr_refresh_rend")
+
   var found = false;
 
   for (var i = 0; i < this.nrow; i++){  //for (int i = 0; i < nrow; i++){   ### js_style_variables  c_keyword 
@@ -2237,6 +2242,21 @@ rxvt_term.prototype.inline_row_buf_debug = function(label){
     out_arr[out_arr.length]="^";
     print(out_arr.join(""));
 }
+rxvt_term.prototype.inline_row_debug = function(label, line){
+    var out_arr=[];
+                 out_arr[out_arr.length]=label;
+    out_arr[out_arr.length]= "inline_row_dbg";
+    var new_t = []; 
+    for(var k =0; k < this.ncol; k++){
+        if(line.t[k]){
+            new_t[k]=line.t[k];  }
+        else {
+            new_t[k]=" ";}
+    }
+    new_t[new_t.length]="$";
+    out_arr[out_arr.length]=new_t.join("");
+    print(out_arr.join(""));
+}
 /*
 rxvt_term.prototype.inline_row_buf_debug = function(){
     var out_arr=[];
@@ -2264,12 +2284,12 @@ rxvt_term.prototype.inline_row_buf_debug = function(){
 
 rxvt_term.prototype.scr_refresh =function(){ 
     FUNCTION_DEBUG("scr_refresh")
-
+    //console.log("scr_refresh")
     this.want_refresh=0;
     if (this.refresh_type == NO_REFRESH || !this.mapped){
         FUNCTION_DEBUG("this.refresh_type == NO_REFRESH || !this.mapped){");
         //console.log("this.refresh_type == NO_REFRESH || !this.mapped){");
-        return;
+        //return;
     }
     /*#ifndef DEBUG*/
     /*#endif */

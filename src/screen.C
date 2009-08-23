@@ -184,6 +184,15 @@ void rxvt_term::inline_row_buf_debug(){
   std::cout << "^";
   std::cout << "\n";
 }
+
+void rxvt_term::inline_row_debug(line_t &line){
+  int16_t __col;
+  std::cout << "inline_row_dbg";
+  for (__col = 0; __col < ncol; __col++) {
+    std::cout << (char) line.t[__col]; }          
+  std::cout << "$" ;
+  std::cout << "\n";
+}
 /*
 void rxvt_term::inline_row_buf_debug(){
 
@@ -224,6 +233,7 @@ rxvt_term::scr_reset ()
   // we need at least two lines for wrapping to work correctly
   while (nrow + saveLines < 2)
     {
+      VAR_DEBUG("nrow",nrow);
       //TODO//FIXME
       saveLines++;
       prev_nrow--;
@@ -286,6 +296,7 @@ rxvt_term::scr_reset ()
     }
   else
     {
+      FUNCTION_DEBUG("row_buf exists");
       /*
        * add or delete rows as appropriate
        */
@@ -315,8 +326,8 @@ rxvt_term::scr_reset ()
           lresize (drawn_buf[row]);
           lresize (swap_buf [row]);
         }
-VAR_DEBUG("this.prev_nrow ", prev_nrow);
-VAR_DEBUG("this.nrow ", nrow);
+      VAR_DEBUG("this.prev_nrow ", prev_nrow);
+      VAR_DEBUG("this.nrow ", nrow);
       
       for (int row = prev_nrow; row < nrow; row++)
         {
@@ -337,7 +348,7 @@ VAR_DEBUG("this.nrow ", nrow);
           // Re-wrap lines. This is rather ugly, possibly because I am too dumb
           // to come up with a lean and mean algorithm.
           // TODO: maybe optimise when width didn't change
-
+          FUNCTION_DEBUG("top_row exists");
           row_col_t ocur = screen.cur;
           ocur.row = MOD (term_start + ocur.row, prev_total_rows);
 
@@ -353,7 +364,7 @@ VAR_DEBUG("this.nrow ", nrow);
               while (p != pend && old_buf [MOD (p - 1, prev_total_rows)].is_longer ())
                 {
                   p = MOD (p - 1, prev_total_rows);
-
+                  VAR_DEBUG("scr_reset p",p);
                   plines++;
                   llen += prev_ncol;
                 }
@@ -388,7 +399,8 @@ VAR_DEBUG("this.nrow ", nrow);
                     {
                       int prow = lofs / prev_ncol;
                       int pcol = lofs % prev_ncol;
-
+                    VAR_DEBUG("scr_reset prow",prow);
+                    VAR_DEBUG("scr_reset pcol",pcol);
                       prow = MOD (p + prow, prev_total_rows);
 
                       // we only adjust the cursor _row_ and put it into
@@ -423,21 +435,23 @@ VAR_DEBUG("this.nrow ", nrow);
           while (top_row > 0)
             scr_blank_screen_mem (ROW (--top_row), DEFAULT_RSTYLE);
         }
-      else
-        {
+      else {  // toprow doesn't exist
           // if no scrollback exists (yet), wing, instead of wrap
-
+        FUNCTION_DEBUG("toprow doesn't exist");
           for (int row = min (nrow, prev_nrow); row--; )
             {
               line_t &pline = old_buf [MOD (term_start + row, prev_total_rows)];
+              VAR_DEBUG("[MOD ( this.term_start + row, prev_total_rows)]; ", MOD ( term_start + row, prev_total_rows));
               line_t &qline = row_buf [row];
-
               qline = pline;
+              ROW_DEBUG("pline", pline)
+              ROW_DEBUG("qline", qline)
+
               lresize (qline);
             }
 
-          for (int row = prev_nrow; row < nrow; row++)
-            {
+          for (int row = prev_nrow; row < nrow; row++) {
+               VAR_DEBUG("clearing row ", row);
               row_buf [row].clear (); scr_blank_screen_mem (row_buf [row], DEFAULT_RSTYLE);
             }
 
@@ -468,7 +482,7 @@ VAR_DEBUG("this.nrow ", nrow);
 
   HOOK_INVOKE ((this, HOOK_RESET, DT_END));
   FUNCTION_DEBUG("END of scr_reset");
-  //ROW_BUF_DEBUG;
+  ROW_BUF_DEBUG;
 }
 void
 rxvt_term::resize_all_windows (unsigned int newwidth, unsigned int newheight, int ignoreparent)

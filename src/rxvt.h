@@ -101,6 +101,7 @@ typedef  int32_t tlen_t_; // specifically for use in the line_t structure
 #define CASE_DEBUG(function_name)  fprintf(stdout,function_name); fprintf(stdout, "\n");
 #define  ROW_BUF_DEBUG row_buf_debug();
 #define  ROW_IN_BUF_DEBUG(label) std::cout << label; inline_row_buf_debug();
+#define  ROW_DEBUG(label, line) std::cout << label; inline_row_debug((line));
 
 /*#define chr_debug_loop 1 */
 /*
@@ -1343,6 +1344,7 @@ struct rxvt_term : zero_initialized, rxvt_vars, rxvt_screen
 #endif
   void row_buf_debug();
   void inline_row_buf_debug();
+  void inline_row_debug(line_t &line);
 
   void lresize (line_t &l) const
   {
