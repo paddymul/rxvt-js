@@ -99,8 +99,8 @@ typedef  int32_t tlen_t_; // specifically for use in the line_t structure
 #define FUNCTION_DEBUG(function_name)  std::cout << function_name << "\n";
 #define VAR_DEBUG(var_name, var_val)  std::cout << var_name << " " << var_val  << "\n";
 #define CASE_DEBUG(function_name)  fprintf(stdout,function_name); fprintf(stdout, "\n");
-
-#define  ROW_BUF_DEBUG  FUNCTION_DEBUG("row_buf_debug"); int16_t __col, __row; \
+#define  ROW_BUF_DEBUG row_buf_debug();
+#define  ROW_BUF_DEBUGR  FUNCTION_DEBUG("row_buf_debug"); int16_t __col, __row; \
   text_t *__stp; \
   __row= nrow;                                  \
   for (__row = 0; __row < nrow; __row++)    {\
@@ -1348,6 +1348,7 @@ struct rxvt_term : zero_initialized, rxvt_vars, rxvt_screen
     ralloc->free (l.r);
   }
 #endif
+  void row_buf_debug();
 
   void lresize (line_t &l) const
   {

@@ -288,12 +288,12 @@ rxvt_term.prototype.scr_reset =function(){
         }
 #endif
 
-//drawn_buf = (line_t *)rxvt_realloc (drawn_buf, nrow * sizeof (line_t)); 
-//swap_buf  = (line_t *)rxvt_realloc (swap_buf , nrow * sizeof (line_t)); 
+
+
       this.drawn_buf = my_alloc(this.nrow, line_t);
       this.swap_buf  = my_alloc(this.nrow, line_t);
 FUNCTION_DEBUG("JUST ALLOCCED swap_buf");
-
+            ROW_BUF_DEBUG;
 
       for ( var row = mi_n (this.nrow, this.prev_nrow); row--; ){  //for (int row = mi_n (this.nrow, prev_nrow); row--; )
           VAR_DEBUG("lresizing ",row);
@@ -474,7 +474,7 @@ VAR_DEBUG("this.nrow ", this.nrow);
   HOOK_INVOKE ((this, HOOK_RESET, DT_END));
 
   FUNCTION_DEBUG("END of scr_reset");
-
+    ROW_BUF_DEBUG;
 }  
 
 /*
@@ -1023,205 +1023,8 @@ rxvt_term.prototype.scr_scroll_text =function( row1,  row2,  count){
  * Add text given in <str> of length <len> to screen struct 
  */
 //void rxvt_term::scr_add_lines (const wchar_t *str, int len, int minlines) 
-/*
-rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){ 
-    FUNCTION_DEBUG("scr_add_lines")
-
-    var str_i = 0;
-    if (len <= 0)               //sanity 
-        return;
-
-    var checksel;  //unsigned char checksel;   
-    var c;  //unicode_t c; 
-    var ncol= this.ncol;   //int ncol = this->ncol;
-    var strend = str, strend_i = len;  //const wchar_t *strend = str + len; 
-    var this_screen = this.screen;
-    var this_screen_cur = this.screen.cur;
-
-    this.want_refresh = 1;
-    ZERO_SCROLLBACK ();
-
-    if (minlines > 0){
-        minlines += this_screen_cur.row - this_screen.bscroll;
-      //min_it (minlines, screen.cur.row - top_row);
-      minlines = mi_n (minlines, this_screen_cur.row -  this.top_row);
-
-      if (minlines > 0
-          && this_screen.tscroll == 0
-          && this_screen.bscroll == this.nrow - 1){
-          // _atleast_ this many lines need to be scrolled 
-          str_i = 0;
-          //FIXME not sure what this supposed to be, look at the original 
-          //scr_scroll_text (screen.tscroll, screen.bscroll minlines);
-          this_screen_cur.row -= minlines;
-        }
-    }
-
-#ifdef DEBUG_STRICT
-  assert (this_screen_cur.col <  this.ncol);
-  assert (this_screen_cur.row < this.nrow
-          && this_screen_cur.row >=  this.top_row);
-#endif
-    var row= this_screen_cur.row;   //int row = screen.cur.row;
-
-    //  checksel =  this.selection.op &&  this.current_screen ==  this.selection.screen ? 1 : 0;
-
-    var  line = ROW(row);  
-
-  while (str_i < strend_i){  //while (str < strend)
-    //c = (unicode_t)*str++; 
-      c =  str[str_i++]; //convert to rxvt-unicodes representation 
-
-      if (expect_false (ord(c) < 0x20))
-          if (ord(c) == C0_LF){
-          line.l= ma_x(line.l,this_screen_cur.col);
-
-            this_screen.flags &= ~Screen_WrapNext;
-
-            var this_screen_cur_row = this_screen_cur.row , this_screen_bscroll =this_screen.bscroll, this_nrow = this.nrow;
-            if (this_screen_cur.row == this_screen.bscroll)
-              this.scr_scroll_text (this_screen.tscroll, this_screen.bscroll, 1);
-            else if (this_screen_cur.row < (this.nrow - 1))
-              row = ++this_screen_cur.row;
-
-            line = ROW(row);  // _must_ refresh 
-            continue;
-          }
-          else if (ord(c) == C0_CR){
-          line.l= ma_x(line.l,this_screen_cur.col);
-
-            this_screen.flags &= ~Screen_WrapNext; 
-            this_screen_cur.col = 0;
-            continue;
-          }
-          else if (ord(c) == C0_HT){
-            this.scr_tab (1, true);
-            continue;
-          }
-      // see if we're writing within selection 
-      if (expect_false (
-            checksel            
-            && !ROWCOL_IS_BEFORE (this_screen_cur,  this.selection.beg)
-            && ROWCOL_IS_BEFORE (this_screen_cur,  this.selection.end)
-         )){
-          checksel = 0;
-            //If we wrote anywhere in the selected area, kill the selection 
-            //XXX: should we kill the mark too?  Possibly, but maybe that 
-            //should be a similar check. 
-                 CLEAR_SELECTION ();
-        }
-
-      if (expect_false (this_screen.flags & Screen_WrapNext)){
-          this.scr_do_wrap ();
-
-          line.l =  this.ncol;
-          line.is_longer(1);
-
-          row = this_screen_cur.row;
-          line = ROW(row);   // _must_ refresh   //line = &ROW(row);   
-        }
-
-      //some utf-8 decoders "decode" surrogate characters: let's fix this. 
-      //I don't think this matters for js
-      //if (expect_false (IN_RANGE_INC (ord(c), 0xd800, 0xdfff)))
-      //    c = 0xfffd;
-
-      //rely on wcwidth to tell us the character width, do wcwidth before 
-      //further replacements, as wcwidth might return -1 for the line
-      //drawing characters below as they might be invalid in the current 
-      //locale.
-      var width= WCWIDTH (c);   //int width = WCWIDTH (c);
-      
-      if (expect_false ( this.charsets [this_screen.charset] == '0')) { //DEC SPECIAL 
-          //FIXME not sure about my changes why should vt100_0 need to be 62 elements big
-          //vt100 special graphics and line drawing
-          //5f-7e standard vt100 
-          //40-5e rxvt extension for extra curses acs chars 
-          var vt100_0 = [ //41 .. 7e   //static uint16_t vt100_0[62] = { //41 .. 7e 
-                    0x2191, 0x2193, 0x2192, 0x2190, 0x2588, 0x259a, 0x2603, //41-47 hi mr. snowman!
-                 0,      0,      0,      0,      0,      0,      0,      0, //48-4f
-                 0,      0,      0,      0,      0,      0,      0,      0, //50-57
-                 0,      0,      0,      0,      0,      0,      0, 0x0020, //58-5f
-            0x25c6, 0x2592, 0x2409, 0x240c, 0x240d, 0x240a, 0x00b0, 0x00b1, //60-67
-            0x2424, 0x240b, 0x2518, 0x2510, 0x250c, 0x2514, 0x253c, 0x23ba, //68-6f
-            0x23bb, 0x2500, 0x23bc, 0x23bd, 0x251c, 0x2524, 0x2534, 0x252c, //70-77
-            0x2502, 0x2264, 0x2265, 0x03c0, 0x2260, 0x00a3, 0x00b7         //78-7e
-                          ];
-
-          if (ord(c) >= 0x41 && ord(c) <= 0x7e && vt100_0[ord(c) - 0x41]){
-              c = vt100_0[ord(c) - 0x41];
-              width = 1; //vt100 line drawing characters are always single-width 
-            }
-        }
-      
-
-      if (expect_false (this_screen.flags & Screen_Insert))
-        this.scr_insdel_chars (width, INSERT); 
 
 
-            //nuke the character at this position, if required 
-          if (expect_false (
-                            line.t[this_screen_cur.col] == ""
-                || (this_screen_cur.col <  this.ncol - 1
-                    && line.t[this_screen_cur.col + 1] == "")
-             ))
-              //scr_kill_char (*line, screen_cur.col); 
-              this.scr_kill_char ( line, this_screen_cur.col); 
-              //rend_t rend = SET_FONT (rstyle, FONTSET (rstyle)->find_font (c)); 
-              //FIXME var rend= SET_FONT (rstyle, FONTSET (rstyle).find_font (c));
-
-          //if the character doesnt fit into the remaining columns... 
-          if (expect_false (this_screen_cur.col >  this.ncol - width &&  this.ncol >= width)){
-              //... artificially enlargen the previous one
-              c = "";// chr(NOCHAR);
-              //and try the same character next loop iteration 
-              --str_i;
-            }
-
-          //line.touch();
-          line.modified=true;
-
-          do
-            {
-              line.t[this_screen_cur.col] = c;
-              //FONT-FIXME line.r[this_screen.cur.col] = rend;
-
-              if (expect_true (this_screen_cur.col <  this.ncol - 1))
-                this_screen_cur.col++;
-              else{
-                line.l =  this.ncol; 
-                  if (this_screen.flags & Screen_Autowrap)
-                    this_screen.flags |= Screen_WrapNext;
-                  break;
-                }
-
-              c = ""; // chr(NOCHAR);
-            }
-          while (expect_false (--width > 0));
-
-          //pad with spaces when overwriting wide character with smaller one 
-          if (expect_false (!width)){
-              //line.touch (); 
-              line.modified=true;
-
-            //for (int c = screen.cur.col; c < ncol && line->t[c] == NOCHAR; c++)
-            for (  c = this_screen_cur.col; c <  this.ncol && line.t[c] == ""; c++){  
-                  line.t[c] = ' ';
-                  //FONT-FIXME line.r[c] = rend;
-                }
-            }
-      
-#if ENABLE_COMBINING
-          //removed, I wont be implementing this functionality
-#endif
-    }
-    //FIXME max_it (line->l, screen.cur.col);
-      line.l = ma_x(line.l, this_screen_cur.col);
-#ifdef DEBUG_STRICT
-  assert (this_screen_cur.row >= 0);
-#endif
-}
-*/
 rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){ 
     FUNCTION_DEBUG("scr_add_lines")
 
@@ -1359,8 +1162,10 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
             }
         }
 
-      if (expect_false (this.screen.flags & Screen_Insert))
-        this.scr_insdel_chars (width, INSERT); 
+        if (expect_false (this.screen.flags & Screen_Insert)){
+            FUNCTION_DEBUG("expect_false (this.screen.flags & Screen_Insert))");
+            this.scr_insdel_chars (width, INSERT); 
+        }
 
 
             //nuke the character at this position, if required 

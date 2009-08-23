@@ -1157,16 +1157,12 @@ VAR_DEBUG(i,ndef);
           CASE_DEBUG("case CSI_CUU:		/* 8.3.22:")
       case CSI_VPR:		/* 8.3.161: (1) LINE POSITION FORWARD */
           CASE_DEBUG("case CSI_VPR:		/* 8.3.161:")
-        if(debug.csi_debug){
-          console.log("CSI_CUU  CSI_VPR", -arg[0]);}
         arg[0] = -arg[0];
         /* FALLTHROUGH */
       case CSI_CUD:		/* 8.3.19: (1) CURSOR DOWN */
           CASE_DEBUG("case CSI_CUD:		/* 8.3.19:")
       case CSI_VPB:		/* 8.3.160: (1) LINE POSITION BACKWARD */
           CASE_DEBUG("case CSI_VPB:		/* 8.3.160:")
-        if(debug.csi_debug){
-          console.log("CSI_CUD  CSI_VPB", arg[0]);}
         this.scr_gotorc (arg[0], 0, RELATIVE);
         break;
 
@@ -1174,8 +1170,6 @@ VAR_DEBUG(i,ndef);
           CASE_DEBUG("case CSI_CUB:		/* 8.3.18:")
       case CSI_HPB: 		/* 8.3.59: (1) CHARACTER POSITION BACKWARD */
           CASE_DEBUG("case CSI_HPB: 		/* 8.3.59:")
-        if(debug.csi_debug){
-          console.log("CSI_CUB  CSI_HPB", arg[0]);}
 #ifdef ISO6429
         arg[0] = -arg[0];
 #else				/* emulate common DEC VTs */
@@ -1186,8 +1180,6 @@ VAR_DEBUG(i,ndef);
         CASE_DEBUG("case CSI_CUF:		/* 8.3.20:")
       case CSI_HPR:		/* 8.3.60: (1) CHARACTER POSITION FORWARD */
         CASE_DEBUG("case CSI_HPR:		/* 8.3.60:")
-        if(debug.csi_debug){
-          console.log("CSI_CUF  CSI_HPR", arg[0]);}
 #ifdef ISO6429
         this.scr_gotorc (0, arg[0], RELATIVE);
 #else				/* emulate common DEC VTs */
@@ -1218,8 +1210,6 @@ VAR_DEBUG(i,ndef);
 
       case CSI_CUP:		/* 8.3.21: (1,1) CURSOR POSITION */
           CASE_DEBUG("case CSI_CUP:		/* 8.3.21:")
-        if(debug.csi_debug){
-          console.log("CUP", arg[0] , nargs < 2 ? 0 : (arg[1] - 1), 0);}
           //debugger;
       case CSI_HVP:		/* 8.3.64: (1,1) CHARACTER AND LINE POSITION */
           CASE_DEBUG("case CSI_HVP:		/* 8.3.64:")
@@ -1239,15 +1229,11 @@ VAR_DEBUG(i,ndef);
 
       case CSI_ED:		/* 8.3.40: (0) ERASE IN PAGE */
           CASE_DEBUG("case CSI_ED:		/* 8.3.40:")
-      if(debug.csi_debug){
-        console.log("CSI_ED",arg);}
         this.scr_erase_screen (arg[0]);
         break;
 
       case CSI_EL:		/* 8.3.42: (0) ERASE IN LINE */
           CASE_DEBUG("case CSI_EL:		/* 8.3.42:")
-        if(debug.csi_debug){
-          console.log("CSI_EL",arg);}
         this.scr_erase_line (arg[0]);
         break;
 
@@ -1368,8 +1354,6 @@ VAR_DEBUG(i,ndef);
 
       case CSI_RM:		/* 8.3.107: RESET MODE */
           CASE_DEBUG("case CSI_RM:		/* 8.3.107:")
-      if(debug.csi_debug){
-        console.log("CSI_RM",arg);}
         if (arg[0] == 4)
           this.scr_insert_mode (0);
         else if (arg[0] == 20)

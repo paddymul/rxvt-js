@@ -247,6 +247,7 @@ print(__new_t.join(""),"$");
 */
 #define ROW_BUF_DEBUG print("row_buf_debug"); this.row_buf_debug();
 #else 
+#define ROW_BUF_DEBUG ;
 #define FUNCTION_DEBUG(function_name) 
 #define VAR_DEBUG(var_name, var_val)
 #define CASE_DEBUG(function_name) 

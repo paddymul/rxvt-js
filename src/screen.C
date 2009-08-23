@@ -159,6 +159,9 @@ rxvt_term::scr_kill_char (line_t &l, int col) const NOTHROW
     col++;
   } while (col < ncol && l.t[col] == NOCHAR);
 }
+void rxvt_term::row_buf_debug(){
+  ROW_BUF_DEBUGR;
+}
 
 /* ------------------------------------------------------------------------- *
  *                          SCREEN INITIALISATION                            *
@@ -264,11 +267,11 @@ rxvt_term::scr_reset ()
             }
         }
 #endif
-
       drawn_buf = (line_t *)rxvt_realloc (drawn_buf, nrow * sizeof (line_t));
       swap_buf  = (line_t *)rxvt_realloc (swap_buf , nrow * sizeof (line_t));
 
       FUNCTION_DEBUG("JUST ALLOCCED swap_buf");
+
       for (int row = min (nrow, prev_nrow); row--; )
         {
           VAR_DEBUG("lresizing ",row);
@@ -277,6 +280,7 @@ rxvt_term::scr_reset ()
         }
 VAR_DEBUG("this.prev_nrow ", prev_nrow);
 VAR_DEBUG("this.nrow ", nrow);
+      
       for (int row = prev_nrow; row < nrow; row++)
         {
           VAR_DEBUG("blanking mem ", row);
@@ -427,7 +431,7 @@ VAR_DEBUG("this.nrow ", nrow);
 
   HOOK_INVOKE ((this, HOOK_RESET, DT_END));
   FUNCTION_DEBUG("END of scr_reset");
-
+    ROW_BUF_DEBUG;
 }
 
 /* ------------------------------------------------------------------------- */
@@ -933,8 +937,10 @@ rxvt_term::scr_add_lines (const wchar_t *str, int len, int minlines) NOTHROW
             }
         }
 
-      if (expect_false (screen.flags & Screen_Insert))
+      if (expect_false (screen.flags & Screen_Insert)){
+          FUNCTION_DEBUG("expect_false (this.screen.flags & Screen_Insert))");
         scr_insdel_chars (width, INSERT);
+      }
 
       if (width != 0)
         {
