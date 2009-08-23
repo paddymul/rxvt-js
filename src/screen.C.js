@@ -293,7 +293,7 @@ rxvt_term.prototype.scr_reset =function(){
       this.drawn_buf = my_alloc(this.nrow, line_t);
       this.swap_buf  = my_alloc(this.nrow, line_t);
 FUNCTION_DEBUG("JUST ALLOCCED swap_buf");
-            ROW_BUF_DEBUG;
+
 
       for ( var row = mi_n (this.nrow, this.prev_nrow); row--; ){  //for (int row = mi_n (this.nrow, prev_nrow); row--; )
           VAR_DEBUG("lresizing ",row);
@@ -355,7 +355,7 @@ VAR_DEBUG("this.nrow ", this.nrow);
               //re-assemble the full line by destination lines
               for ( var qrow = q; qlines--; qrow++){  //for (int qrow = q; qlines--; qrow++){
                   
-                   this.row_buf[ this.row_buf_i + qrow]=new line_t();  //lalloc (*qline);  
+                  //this.row_buf[ this.row_buf_i + qrow]=new line_t();  //lalloc (*qline);  
                    this.row_buf[ this.row_buf_i + qrow].l =  this.ncol;
                    this.row_buf[ this.row_buf_i + qrow].is_longer (1);
 
@@ -381,6 +381,7 @@ VAR_DEBUG("this.nrow ", this.nrow);
                         this.screen.cur.row = q - ( this.total_rows - this.nrow);
 
                       //line_t &pline = ; //FIXED
+                      var pline = old_buf[prow];
                       //int len = min (min (prev_ncol - pcol, ncol - qcol), llen - lofs); 
                       var len= mi_n (mi_n ( this.prev_ncol - pcol,  this.ncol - qcol), llen - lofs); 
                       //memcpy (qline->t + qcol, pline.t + pcol, len * sizeof (text_t));  
@@ -409,7 +410,7 @@ VAR_DEBUG("this.nrow ", this.nrow);
                this.row_buf[ this.row_buf_i + qrow].is_longer (0);
 //FIXED: possible_pointer ^|                     scr_blank_line (*qline, qline->l, ncol - qline->l, DEFAULT_RSTYLE); 
        
- this.row_buf[ this.row_buf_i + qrow] =this.scr_blank_line ( qline, qline.l,  this.ncol - qline.l, DEFAULT_RSTYLE);
+               this.row_buf[ this.row_buf_i + qrow] =this.scr_blank_line ( qline, qline.l,  this.ncol - qline.l, DEFAULT_RSTYLE);
             }
           while (p != pend && q > 0);
 
@@ -2145,7 +2146,6 @@ rxvt_term.prototype.scr_changeview =function( new_view_start){
 //REWRITE:void rxvt_term::bell_cb (ev::timer &w, int revents) 
 rxvt_term.prototype.bell_cb =function(w,  revents){ 
     FUNCTION_DEBUG("bell_cb")
-  console.log("bell");
   /*  rvideo_bell = false;
   this.scr_rvideo_mode (rvideo_mode);
   refresh_check ();
@@ -2219,11 +2219,10 @@ rxvt_term.prototype.scr_refresh =function(){
     FUNCTION_DEBUG("scr_refresh")
   ROW_BUF_DEBUG;
 
-    console.log("scr_refresh called ");
     this.want_refresh=0;
     if (this.refresh_type == NO_REFRESH || !this.mapped){
         FUNCTION_DEBUG("this.refresh_type == NO_REFRESH || !this.mapped){");
-        console.log("this.refresh_type == NO_REFRESH || !this.mapped){");
+        //console.log("this.refresh_type == NO_REFRESH || !this.mapped){");
         //return;
     }
     /*#ifndef DEBUG*/
@@ -2242,13 +2241,15 @@ rxvt_term.prototype.scr_refresh =function(){
     var mod_total_rows = total_rows % total_rows;
     var row_plus = mod_total_rows + term_view_start;
     var r;
-    console.log("before for loop ");
+    
+    //console.log("before for loop ");
     for(var row = 0; row < this.nrow; row++){
         //r=row_buf [row_plus + row];
         r=ROW(this.view_start + row);
         dtr[row]= r.t.join("");
-        console.log(r.t);
+        //console.log(r.t);
     }
+    
     //console.log(dtr.join("\n"));
     //this.pre_term_el.innerHTML = dtr.join("\n");
     //$("pt")
