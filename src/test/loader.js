@@ -68,7 +68,8 @@ function Animator(termEl, reqUrl){
             }
         }
         */
-        var stop = end ? end : local_output_timing.length;//if(!end)
+        var stop = local_output_timing.length;//if(!end)
+        //console.log("stop",stop);
         var anim = this;
         var hnd;
         hnd = setTimeout(
@@ -92,9 +93,11 @@ function Animator(termEl, reqUrl){
                        
                        //console.log(timingPointer, where, bpf);
                        timingPointer++;
+                       console.log(where, text.length);
                        where += bpf;
-                       if(timingPointer > stop){
+                       if(timingPointer >= stop || where >= text.length){
                            clearTimeout(hnd);
+                           //console.log("should no longer animate");
                        }
                        else {
                            if (where >= text.length) {
@@ -110,48 +113,6 @@ function Animator(termEl, reqUrl){
                            }
                        }
                    }, mspf);
-        
-        /*        setTimeout(
-                   function() {
-                       if(doAnimate){
-                           soundPointer+=mspf/1000;
-
-                           var diff = player_el.currentTime -soundPointer;
-                           if(diff > this.max_diff) {
-                               soundSeek(soundPointer);
-                               console.log(diff);
-                           }
-
-                           //console.log(timingPointer);
-                           bpf=local_output_jumps[timingPointer];
-                           var me = arguments.callee;
-                           mspf=local_output_timing[timingPointer];
-
-                           //console.log(mspf);
-                           anim.output_line(text.substr(where, bpf));
-
-                           //console.log(timingPointer);
-                           timingPointer++;
-                           where += bpf;
-                           if(timingPointer > stop){
-                               clearTimeout(hnd);
-                           }
-                           else {
-                               if (where >= text.length) {
-                                   clearTimeout(hnd);
-                                   where = 0;
-                                   timingPointer=0;
-                                   anim.a.scr_poweron();
-                                   setTimeout(me, 0);
-                                   soundSeek(0);
-                               }
-                               else {
-                                   var hnd = setTimeout(me, mspf);
-                               }
-                           }
-                       }
-                   }, mspf);
-        */
     }
 
 }
@@ -167,48 +128,7 @@ Animator.prototype = {
         this.a.scr_refresh();
         this.is_outputting=false;
     },
-    /*
-    setupTiming2: function(){
-        var added_time = [];
 
-        for(var i = 0 ; i < timing.length-1; i++){
-            var secs = timing[i][0];
-            var micro_secs =(timing[i][1]/(1000*1000));
-            console.log("secs,micro_secs", secs,micro_secs);
-        
-            added_time.push(secs + micro_secs);
-        }
-        var startsecs=added_time[0];
-        var zero_based_time = [];
-        for(var i = 0 ; i < added_time.length; i++){
-            var diff_secs = added_time[i]- startsecs;
-            console.log("diff_secs",diff_secs);
-        
-            zero_based_time.push(diff_secs);
-        }
-
-
-        this.output_jumps=[];
-        this.output_timing=[];
-        var residual_milli_jump=0;
-        var residual_jump=0;
-
-        for(var i = 0 ; i < zero_based_time.length; i++){
-            residual_milli_jump += zero_based_time[i]*100;
-            residual_jump += timing[i][2];
-            if(residual_milli_jump < this.min_milli_jump){
-                continue;}
-            else{
-                this.output_timing.push(residual_milli_jump);
-                this.output_jumps.push(residual_jump);
-                console.log(residual_jump,residual_milli_jump);
-                residual_milli_jump=0;
-                residual_jump=0;
-            }
-            
-        }
-    },
-    */
     setupTiming2: function(){
         var added_time = [];
 
