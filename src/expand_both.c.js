@@ -780,7 +780,7 @@ rxvt_term.prototype.cmd_parse =function(){
              // we ran ou of input, retry later
              if (e instanceof OutOfInputException){
                       this.cmdbuf_ptr = seq_begin;
-                      console.log("out of input", this.cmdbuf_ptr);
+                      //console.log("out of input", this.cmdbuf_ptr);
                       break;} 
              else{
                  throw e;}

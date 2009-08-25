@@ -28,7 +28,7 @@ function soundPlay(position){
 function Animator(termEl, reqUrl){
     this.a = new rxvt_term(document.getElementById('term'),"pre_term");
     this.max_diff = .2;
-    this.min_milli_jump=40;
+    this.min_milli_jump=300;
     //this.a.row_buf=false;
     //this.a.scr_poweron();
     //console.log(a);
@@ -58,6 +58,7 @@ function Animator(termEl, reqUrl){
         var player_el=document.getElementById('player');
         var local_output_timing=this.output_timing;
         var local_output_jumps=this.output_jumps;
+        /*
         if(start_from){
             for(; timingPointer < start_from; timingPointer++){
                 mspf=local_output_timing[timingPointer];
@@ -66,9 +67,51 @@ function Animator(termEl, reqUrl){
                 where += bpf;
             }
         }
+        */
         var stop = end ? end : local_output_timing.length;//if(!end)
         var anim = this;
-        setTimeout(
+        var hnd;
+        hnd = setTimeout(
+                   function() {
+                       
+                       soundPointer+=mspf/1000;
+
+                       var diff = player_el.currentTime -soundPointer;
+                       if(diff > this.max_diff) {
+                           soundSeek(soundPointer);
+                           console.log(diff);
+                       }
+
+                       //console.log(timingPointer);
+                       bpf=local_output_jumps[timingPointer];
+                       var me = arguments.callee;
+                       mspf=local_output_timing[timingPointer];
+
+                       //console.log(mspf);
+                       anim.output_line(text.substr(where, bpf));
+                       
+                       console.log(timingPointer, where, bpf);
+                       timingPointer++;
+                       where += bpf;
+                       if(timingPointer > stop){
+                           clearTimeout(hnd);
+                       }
+                       else {
+                           if (where >= text.length) {
+                               clearTimeout(hnd);
+                               where = 0;
+                               timingPointer=0;
+                               anim.a.scr_poweron();
+                               setTimeout(me, 0);
+                               soundSeek(0);
+                           }
+                           else {
+                               hnd = setTimeout(me, mspf);
+                           }
+                       }
+                   }, mspf);
+        
+        /*        setTimeout(
                    function() {
                        if(doAnimate){
                            soundPointer+=mspf/1000;
@@ -108,6 +151,7 @@ function Animator(termEl, reqUrl){
                            }
                        }
                    }, mspf);
+        */
     }
 
 }
@@ -123,67 +167,8 @@ Animator.prototype = {
         this.a.scr_refresh();
         this.is_outputting=false;
     },
-
     /*
     setupTiming2: function(){
-        var seconds=[];
-        var startsecs=timing[0][0];
-        for(var i = 0 ; i < timing.length-1; i++){
-            seconds.push(timing[i][0]-startsecs);
-        }
-        //  console.log(33,seconds);
-        var startMicSecs=timing[0][1];
-        var adjustedMicSecs=[];
-        for(i = 0 ; i < timing.length-1; i++){
-            adjustedMicSecs.push(timing[i][1]-startMicSecs);
-        }
-        //  console.log(39,adjustedMicSecs);
-        var adjustedMilliSecs=[];
-        for(i=0; i < adjustedMicSecs.length; i++){
-            //    console.log(adjustedMicSecs[i]/1000);
-            adjustedMilliSecs.push(parseInt(adjustedMicSecs[i]/1000));
-        }
-        //  console.log(44,adjustedMilliSecs);
-        var normalizedMilliSecs=[];
-        for(i=0; i < adjustedMicSecs.length; i++){
-            normalizedMilliSecs[i]=adjustedMilliSecs[i]+(seconds[i]*1000);
-            //    console.log(normalizedMilliSecs[i]);
-        }
-        intervalMilliSecs=[0];
-        for(i=1; i < normalizedMilliSecs.length; i++){
-            intervalMilliSecs[i]=normalizedMilliSecs[i]-normalizedMilliSecs[i-1];
-        }
-
-        this.output_jumps=[];
-        this.output_timing=[];
-
-        var residual_milli_jump=0;
-        var residual_jump=0;
-        for(var i=0; i < intervalMilliSecs.length; i++){
-            var current_milli_jump = intervalMilliSecs[i];
-            var current_jump = timing[i][2];
-            if((current_milli_jump + residual_milli_jump) > this.min_milli_jump){
-                this.output_timing.push(current_milli_jump +residual_milli_jump);
-                this.output_jumps.push(current_jump + residual_jump);
-                residual_milli_jump=0;
-                residual_jump=0;
-
-            }
-            else{
-
-                residual_milli_jump += current_milli_jump;
-                //console.log("adjusting jumps",i, current_milli_jump, residual_milli_jump);
-                residual_jump += current_jump;
-
-            }
-        }
-        console.log(intervalMilliSecs.length ,this.output_timing.length);
-    },
-*/
-    setupTiming2: function(){
-
-
-
         var added_time = [];
 
         for(var i = 0 ; i < timing.length-1; i++){
@@ -212,6 +197,48 @@ Animator.prototype = {
             residual_milli_jump += zero_based_time[i]*100;
             residual_jump += timing[i][2];
             if(residual_milli_jump < this.min_milli_jump){
+                continue;}
+            else{
+                this.output_timing.push(residual_milli_jump);
+                this.output_jumps.push(residual_jump);
+                console.log(residual_jump,residual_milli_jump);
+                residual_milli_jump=0;
+                residual_jump=0;
+            }
+            
+        }
+    },
+    */
+    setupTiming2: function(){
+        var added_time = [];
+
+        for(var i = 0 ; i < timing.length-1; i++){
+            var secs = timing[i][0];
+            var micro_secs =(timing[i][1]/(1000*1000));
+            console.log("secs,micro_secs", secs,micro_secs);
+        
+            added_time.push(secs + micro_secs);
+        }
+        var startsecs=added_time[0];
+        var zero_based_time = [];
+        for(var i = 0 ; i < added_time.length; i++){
+            var diff_secs = added_time[i]- startsecs;
+            console.log("diff_secs",diff_secs);
+        
+            zero_based_time.push(diff_secs);
+        }
+
+
+        this.output_jumps=[];
+        this.output_timing=[];
+        var residual_milli_jump=0;
+        var residual_jump=timing[0][2];
+
+        for(var i = 0 ; i < zero_based_time.length-1; i++){
+            var current_jump = zero_based_time[i]*100;
+            residual_milli_jump += current_jump;
+            residual_jump += timing[i+1][2];
+            if(current_jump< this.min_milli_jump){
                 continue;}
             else{
                 this.output_timing.push(residual_milli_jump);

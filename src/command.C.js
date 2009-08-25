@@ -160,7 +160,7 @@ I bound them to "C-H u" "C-H o" and "C-H p"
          //console.log(str);
          //console.log("cmd_write");
          if(this.cmdbuf_endp == this.cmdbuf_ptr){
-             console.log("resetting cmd_buf to the incoming string");
+             //console.log("resetting cmd_buf to the incoming string");
              this.cmdbuf=str;   
              this.cmdbuf_ptr=0;
              }
@@ -560,7 +560,7 @@ rxvt_term.prototype.cmd_parse =function(){
              if (e instanceof OutOfInputException){
 
                       this.cmdbuf_ptr = seq_begin;
-                      console.log("out of input", this.cmdbuf_ptr);
+                      //console.log("out of input", this.cmdbuf_ptr);
                       break;} 
              else{
                  throw e;}
