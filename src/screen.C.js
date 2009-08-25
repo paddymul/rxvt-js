@@ -2281,11 +2281,21 @@ rxvt_term.prototype.inline_row_buf_debug = function(){
  * screen.text/screen.rend contain what the screen will change to. 
  */
 //REWRITE: void rxvt_term::scr_refresh (){ 
-
+    rxvt_term.prototype.refresh_wait=30;
+rxvt_term.prototype.last_refreshed=0;
 rxvt_term.prototype.scr_refresh =function(){ 
     FUNCTION_DEBUG("scr_refresh")
   ROW_BUF_DEBUG;
     //console.log("scr_refresh")
+    var d= new Date();
+    var cur_time = d.getTime();
+    if((this.last_refreshed + this.refresh_wait ) < cur_time){
+        //console.log("refreshing now ");
+        this.last_refreshed= cur_time;}
+    else{
+        
+        //console.log("next time", (this.last_refreshed + this.refresh_wait ) , cur_time);
+        return;}
     this.want_refresh=0;
     if (this.refresh_type == NO_REFRESH || !this.mapped){
         FUNCTION_DEBUG("this.refresh_type == NO_REFRESH || !this.mapped){");

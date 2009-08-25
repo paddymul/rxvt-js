@@ -28,7 +28,7 @@ function soundPlay(position){
 function Animator(termEl, reqUrl){
     this.a = new rxvt_term(document.getElementById('term'),"pre_term");
     this.max_diff = .2;
-    this.min_milli_jump=300;
+    this.min_milli_jump=50;
     //this.a.row_buf=false;
     //this.a.scr_poweron();
     //console.log(a);
@@ -90,7 +90,7 @@ function Animator(termEl, reqUrl){
                        //console.log(mspf);
                        anim.output_line(text.substr(where, bpf));
                        
-                       console.log(timingPointer, where, bpf);
+                       //console.log(timingPointer, where, bpf);
                        timingPointer++;
                        where += bpf;
                        if(timingPointer > stop){
@@ -215,7 +215,7 @@ Animator.prototype = {
         for(var i = 0 ; i < timing.length-1; i++){
             var secs = timing[i][0];
             var micro_secs =(timing[i][1]/(1000*1000));
-            console.log("secs,micro_secs", secs,micro_secs);
+            //console.log("secs,micro_secs", secs,micro_secs);
         
             added_time.push(secs + micro_secs);
         }
@@ -223,9 +223,10 @@ Animator.prototype = {
         var zero_based_time = [];
         for(var i = 0 ; i < added_time.length; i++){
             var diff_secs = added_time[i]- startsecs;
-            console.log("diff_secs",diff_secs);
+            //console.log("diff_secs",diff_secs);
         
             zero_based_time.push(diff_secs);
+            startsecs+=diff_secs;
         }
 
 
@@ -233,17 +234,19 @@ Animator.prototype = {
         this.output_timing=[];
         var residual_milli_jump=0;
         var residual_jump=timing[0][2];
+        //var residual_jump = 0;
 
-        for(var i = 0 ; i < zero_based_time.length-1; i++){
-            var current_jump = zero_based_time[i]*100;
+        for(var i = 0 ; i < added_time.length-1; i++){
+            var current_jump = zero_based_time[i]*1000;
             residual_milli_jump += current_jump;
             residual_jump += timing[i+1][2];
-            if(current_jump< this.min_milli_jump){
+            //if(current_jump< this.min_milli_jump){
+            if(current_jump < this.min_milli_jump){
                 continue;}
             else{
                 this.output_timing.push(residual_milli_jump);
                 this.output_jumps.push(residual_jump);
-                console.log(residual_jump,residual_milli_jump);
+                //console.log(residual_jump,residual_milli_jump);
                 residual_milli_jump=0;
                 residual_jump=0;
             }

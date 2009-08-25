@@ -592,7 +592,7 @@ function lresize (l)   {
          //console.log(str);
          //console.log("cmd_write");
          if(this.cmdbuf_endp == this.cmdbuf_ptr){
-             console.log("resetting cmd_buf to the incoming string");
+             //console.log("resetting cmd_buf to the incoming string");
              this.cmdbuf=str;   
              this.cmdbuf_ptr=0;
              }
@@ -3409,10 +3409,21 @@ rxvt_term.prototype.inline_row_debug = function(label, line){
 }
 //# 2282 "screen.C.js"
 //REWRITE: void rxvt_term::scr_refresh (){ 
+    rxvt_term.prototype.refresh_wait=30;
+rxvt_term.prototype.last_refreshed=0;
 rxvt_term.prototype.scr_refresh =function(){ 
     
   ;;
     //console.log("scr_refresh")
+    var d= new Date();
+    var cur_time = d.getTime();
+    if((this.last_refreshed + this.refresh_wait ) < cur_time){
+        //console.log("refreshing now ");
+        this.last_refreshed= cur_time;}
+    else{
+        
+        //console.log("next time", (this.last_refreshed + this.refresh_wait ) , cur_time);
+        return;}
     this.want_refresh=0;
     if (this.refresh_type == NO_REFRESH || !this.mapped){
         ;
@@ -3468,7 +3479,7 @@ rxvt_term.prototype.scr_remap_chars =function(){
 //REWRITE:void rxvt_term::scr_recolour () 
 rxvt_term.prototype.scr_recolour =function(){ 
     
-//# 2379 "screen.C.js"
+//# 2389 "screen.C.js"
   //bgPixmap.apply () does not do the following : 
   this.scr_clear ();
   this.scr_touch (true);
@@ -3490,7 +3501,7 @@ rxvt_term.prototype.scr_xor_rect =function( beg_row,  beg_col,  end_row,  end_co
     
     //FIXME cstyle namespaces
     
-//# 2425 "screen.C.js"
+//# 2435 "screen.C.js"
 }
 //void rxvt_term::scr_xor_span (int beg_row, int beg_col, int end_row, int end_col, rend_t rstyle) 
 rxvt_term.prototype.scr_xor_span =function( beg_row,  beg_col,  end_row,  end_col,  rstyle){ 
@@ -3530,7 +3541,7 @@ rxvt_term.prototype.scr_reverse_selection =function(){
         
         return;
     }
-//# 2512 "screen.C.js"
+//# 2522 "screen.C.js"
 //REMOVED:void rxvt_term::paste (char *data, unsigned int len){ 
 //REMOVED:void rxvt_term::selection_paste (Window win, Atom prop, bool delete_prop) 
 //REMOVED:void rxvt_term::incr_cb (ev::timer &w, int revents){ 
@@ -3553,5 +3564,5 @@ rxvt_term.prototype.scr_reverse_selection =function(){
 //REMOVED:void rxvt_term::selection_send (const XSelectionRequestEvent &rq){ 
     //This is removed because ENABLE_OVERLAY is tied to iso-14755 which is a complicated standard that I wont be supporting
     //it can be read about here http://en.wikipedia.org/wiki/Unicode_input
-//# 2548 "screen.C.js"
+//# 2558 "screen.C.js"
 //# 3 "expand_both.h" 2
