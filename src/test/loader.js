@@ -47,7 +47,7 @@ function Animator(termEl, reqUrl){
 
     this.setupTiming2();
 
-    this.VTAnimator2 = function (text, start_from, end){
+    var text = this.resp;
 
         //var bpf = Math.ceil(bps * mspf / 8000);
         var where = 0;
@@ -72,48 +72,48 @@ function Animator(termEl, reqUrl){
         //console.log("stop",stop);
         var anim = this;
         var hnd;
-        hnd = setTimeout(
-                   function() {
+        anim.to_func = function() {
+            soundPointer+=mspf/1000;
+
+            var diff = player_el.currentTime -soundPointer;
+            if(diff > this.max_diff) {
+                soundSeek(soundPointer);
+                console.log(diff);
+            }
+            
+            //console.log(timingPointer);
+            bpf=local_output_jumps[timingPointer];
+            //var me = arguments.callee;
+            mspf=local_output_timing[timingPointer];
+
+            //console.log(mspf);
+            anim.output_line(text.substr(where, bpf));
                        
-                       soundPointer+=mspf/1000;
+            //console.log(timingPointer, where, bpf);
+            timingPointer++;
+            console.log(where, text.length);
+            where += bpf;
+            if(timingPointer >= stop || where >= text.length){
+                //clearTimeout(hnd);
+                //console.log("should no longer animate");
+            }
+            else {
+                if (where >= text.length) {
+                    clearTimeout(hnd);
+                    where = 0;
+                    timingPointer=0;
+                    anim.a.scr_poweron();
+                    setTimeout(me, 0);
+                    soundSeek(0);
+                }
+                else {
+                    anim.hnd = setTimeout(anim.to_func, mspf);
+                }
+            }
+        };
+        //anim.hnd = setTimeout(anim.to_func, mspf);
+    
 
-                       var diff = player_el.currentTime -soundPointer;
-                       if(diff > this.max_diff) {
-                           soundSeek(soundPointer);
-                           console.log(diff);
-                       }
-
-                       //console.log(timingPointer);
-                       bpf=local_output_jumps[timingPointer];
-                       var me = arguments.callee;
-                       mspf=local_output_timing[timingPointer];
-
-                       //console.log(mspf);
-                       anim.output_line(text.substr(where, bpf));
-                       
-                       //console.log(timingPointer, where, bpf);
-                       timingPointer++;
-                       console.log(where, text.length);
-                       where += bpf;
-                       if(timingPointer >= stop || where >= text.length){
-                           clearTimeout(hnd);
-                           //console.log("should no longer animate");
-                       }
-                       else {
-                           if (where >= text.length) {
-                               clearTimeout(hnd);
-                               where = 0;
-                               timingPointer=0;
-                               anim.a.scr_poweron();
-                               setTimeout(me, 0);
-                               soundSeek(0);
-                           }
-                           else {
-                               hnd = setTimeout(me, mspf);
-                           }
-                       }
-                   }, mspf);
-    }
 
 }
 
@@ -128,7 +128,13 @@ Animator.prototype = {
         this.a.scr_refresh();
         this.is_outputting=false;
     },
-
+    pause : function(){
+        
+        clearTimeout(this.hnd);
+    },
+    play : function(){
+        this.hnd = setTimeout(this.to_func, 0);
+    } ,
     setupTiming2: function(){
         var added_time = [];
 
@@ -176,7 +182,7 @@ Animator.prototype = {
 
     startAnimate : function () {
 
-        this.VTAnimator2(this.resp, 0, this.resp.length);
+
         //this.VTAnimator2(this.resp.slice(0,5650), 0, 5650);
 
     }
@@ -185,17 +191,21 @@ Animator.prototype = {
 $('document').ready(
 
     function (){
-        a = new Animator("pt",tty_file);
+        //a = new Animator("pt",tty_file);
+        //this.VTAnimator2(this.resp, 0, this.resp.length);
+        var a = new Animator("pt",tty_file);
         function animate(){
             doAnimate = true;
             console.log('animate called');
-            //a = new Animator("pt",tty_file);
+       
             a.startAnimate();
             soundPlay();
             console.log(" animator setup ");
         }
         console.log("ready function");
-        $('#play_start').click(animate);
+        //$('#play_start').click(animate);
+        $('#play_start').click(function() {a.play();});
+        $('#pause').click(function(){ a.pause();});
         $('#fast_forward').click(
             function(){
                 //a.output_line(a.resp.slice(5150,5250));
