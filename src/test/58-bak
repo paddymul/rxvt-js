@@ -1,136 +1,1201 @@
-[8;44;177t[8;44;177t[8;44;177tbashrc
+[8;52;139t[8;52;139t[8;52;139tbashrc
 
-bash-3.2$ ./vttest 
-[0c[?1l[?3l[?4l[?5l[?6l[?7h[?8l[?40h[?45l[r[0m[2J[3;10HVT100 test program, version 2.7 (20071216)[4;10HLine speed 38400bd [5;10HChoose test type:
-
-          0. Exit
-          1. Test of cursor movements
-          2. Test of screen features
-          3. Test of character sets
-          4. Test of double-sized characters
-          5. Test of keyboard
-          6. Test of terminal reports
-          7. Test of VT52 mode
-          8. Test of VT102 features (Insert/Delete Char/Line)
-          9. Test of known bugs
-          10. Test of reset and self-test
-          11. Test non-VT100 (e.g., VT220, XTERM) terminals
-          12. Modify test-parameters
+bash-3.2$ ./vttest cd /Users/patrickmullen/webshell/vttest-20071216/bash-3.2$ ./vttest [K[Kemacs -nw
+7[?47h[?1h=[51;1H[7m----:---F1  [m[m[7m[1m*scratch*   [m[m[7m   All L1     (Fundamental)----------------------------------------------------------------------------------------[m[m
+[A[H[H[2J[52;1HLoading encoded-kb...[K[H[52;22Hdone[H[52;1H[K[?1l>[2J[?47l8[m7[?47h[?1h=[52;1HLoading /Users/patrickmullen/me/emacs/restofdotemacs.el (source)...[K[H
+[52;9Hparen...[K[H
+[52;17Hdone[H
+[52;9H/Users/patrickmullen/me/emacs/cedet-1.0pre4/common/cedet.el (source)...[H
+[52;1H"/Users/patrickmullen/me/emacs/cedet-1.0pre4/common/" added to `load-path'[K[H
+[52;1HLoading cl-macs...[K[H
+[52;19Hdone[H
+[52;1H"/Users/patrickmullen/me/emacs/cedet-1.0pre4/cogre" added to `load-path'[H
+[52;46Hed[2P[H
+[52;47Hie[4hio[H
+[4l[52;1HOutdated semantic 1.4.4 shadowed to meet minimum version 2.0pre4[K[H
+[52;1H"/Users/patrickmullen/me/emacs/cedet-1.0pre4/semantic" added to `load-path'[H
+[52;1HOutdated speedbar 0.14beta4 shadowed to meet minimum version 1.0.1[K[H
+[52;1H"/Users/patrickmullen/me/emacs/cedet-1.0pre4/speedbar" added to `load-path'[H
+[52;46Hcontrib[1P[H
+[52;1HSetting up cedet...[K[H
+[52;20Hdone[H
+[52;13Hogre...[K[H
+[52;20Hdone[H
+[52;12Hede...[K[H
+[52;1HLoading /Users[4h/patrickmullen/me/emacs/cedet-1.0pre4/ede/ede.el (source)[H
+[4l[52;1H!! File dframe uses old-style backquotes !![K[H
+[52;1HLoading regexp-opt...[K[H
+[52;22Hdone[H
+[52;9H/Users/patrickmullen/me/emacs/cedet-1.0pre4/ede/ede-speedbar.el (source)...[H
+[52;84Hdone[H
+[52;60H[9P[H
+[52;1H!! File ede uses old-style backquotes !![K[H
+[52;1HSetting up ede...done[K[H
+[52;13Hieio...[K[H
+[52;20Hdone[H
+[52;12Hsemantic...[K[H
+[52;1HLoading derived...[K[H
+[52;19Hdone[H
+[52;1HSetting up sema[4hntic[H
+[4l[52;13Hpeedbar...[K[H
+[52;23Hdone[H
+[52;12Hcedet-contrib...[H
+[52;28Hdone[H
+[52;1HLoading /Users/patrickmu[4hllen/me/emacs/cedet-1.0pre4/common/cedet.el (source)[H
+[4l[52;1Hmac[K[H
+[52;1HLoading edmacro...[H
+[52;19Hdone[H
+[52;9Hdesktop...[K[H
+[52;19Hdone[H
+[52;9Hcl-extra...[K[H
+[52;20Hdone[H
+[52;9H/Users/patrickmullen/me/emacs/csv-mode.el (source)...[H
+[52;9Heasy-mmode...[K[H
+[52;22Hdone[H
+[52;9H/Users/pat[4hrickmullen/me/emacs/csv-mode.el (source)[H
+[4l[52;39H.abbrev_defs...[K[H
+[52;54Hdone[H
+[52;39Hmozrepl/javascript.el (source)...[H
+[52;72Hdone[H
+[52;47Hmoz.el (source)...[K[H
+[52;65Hdone[H
+[52;39Hhighlight-current-line.el (source)...[H
+[52;76Hdone[H
+[52;1H!! File /Users/patrickmullen/me/emacs/highlight-current-line.el uses old-style backquotes !![H
+[52;1HKeyboard zapped!! Shift-F10 to restore![K[H
+[52;1HLoading /Users/patrickmullen/me/emacs/sql-indent.el (source)...[H
+[52;64Hdone[H
+[52;30H.emacs.d/anything.el (source)...[K[H
+[52;1HBuilding list of manual directory expansions...[K[H
+[52;10Hcompletion list of all manual topi[4hc[H
+[4l[52;1HLoading /Users/patrickmullen/.emacs.d/anything.el (source)...done[H
+[52;47H-config-all.el (source)...[H
+[52;9Hrx...[K[H
+[52;14Hdone[H
+[52;9H/Users/patrickmullen/.emacs.d/anything-c-adaptive-history...[H
+[52;69Hdone[H
+[52;49Honfig-all.el (sou[4hrce)[H
+[4l[52;30Hme/emacs/nxml-mode-20041004/rng-auto.el (source)...[H
+[52;81Hdone[H
+[52;30H.emacs.d/paddy-py-config.el (source)...[K[H
+[52;30Hme/emacs/pymacs[9P[H
+[52;60Hdone[H
+[52;1HPymacs loading ropemacs...[K[H
+[52;27Hdone[H
+[52;1HECB 2.32 uses loaded semantic 2.0pre4, eieio 1.0 and speedbar 1.0.1.[H
+[52;1HLoading /Users/patrickmullen/me/emacs/python-mode.el (source)...[K[H
+[52;65Hdone[H
+[52;39Hipython.el (source)...[K[H
+[52;61Hdone[H
+[52;1Hpaddy-py-config done[K[H
+[52;1HLoading /Users/p[4hatrickmullen/.emacs.d/paddy-py-config.el (source)...[H
+[4l[52;30Hme/emacs/restofdotemacs[1P[H
+[52;39H.emacs-custom.el (source)...[K[H
+[52;67Hdone[H
+[52;1H[36m[40mUsing it may cause conflicts.  Use it anyway? (y or n) [m[32m[40m                                                                                   [m[H[30m[42mFile Edit Options Buffers Tools Help                                                                                                       [m[m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[30m[42m----:---F1  [m[m[1m[30m[42m*scratch*   [m[m[30m[42m   All (1,0)      (Fundamental)------------------------------------------------------------------------------------[m[m
+[A
+[36m[40mWarning: desktop file appears to be in use by PID 2035.                                                                                    [m
+[A[52;56H[32m[40mUsing it may cause conflicts.  Use it anyway? (y or n) n[m[A[32m[40mWarning: desktop file appears to be in use by PID 2035.                                                                                    [m
+[A
+[32m[40m                                                        [m[A[32m[40mDesktop file in use; not loaded.                                                                                                           [m
+[H
+[51;1H[32m[40mLoading /Users/patrickmullen/me/emacs/cedet-1.0pre4/semantic/bovine/semantic-el.el (source)...[m[H
+[51;95H[32m[40mdone[m[H
+[52;1H[32m[40mFor information about GNU Emacs and the GNU system, type C-h C-a.                                                                         [m[H[30m[42mFile Edit Options Buffers Tools Help                                                                                                       [m[m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[30m[42m----:---F1  [m[m[1m[30m[42m*scratch*   [m[m[30m[42m   All (1,0)      (Lisp Interaction)-------------------------------------------------------------------------------[m[m
+[A[H
+[52;1H[32m[40mFor information about GNU Emacs and the GNU system, type C-h C-a.                                                                         [m[H[30m[42mFile Edit Options Buffers Tools Help                                                                                                       [m[m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[32m[40m                                                                                                                                           [m
+[A
+[30m[42m----:---F1  [m[m[1m[30m[42m*scratch*   [m[m[30m[42m   All (1,0)      (Lisp Interaction)-------------------------------------------------------------------------------[m[m
+[A[H
+[52;1H[32m[40m                                                                 [m[H
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[32m[40m                                                                     [m[30m[42m|[m[m
+[30m[42m|[m[m[30m[42m----:---F1  [m[m[1m[30m[42m*scratch*   [m[m[30m[42m   All (1,0)      (Lisp Interaction)---------[m[m
+[H
+[52;1H[36m[40mFind file: [m[32m[40m~/[m[1;33H[30m[42mMinibuf Help[m[m[52;14H[32m[40md[m[32m[40mj[m[32m[40m_terminalcast[m[32m[40m/[m[32m[40mr[m[32m[40mxvt-js/[m[32m[40mt[m[32m[40m [m[32m[40ms[m[32m[40mrc/[m[32m[40mt[m[32m[40mMaking completion list...                 [m[52;26H[36m[40mFind file: [m[32m[40m~/dj_terminalcast/rxvt-js/src/t                                                                                                [m[H[30m[42mFile Edit Options Buffers Tools Minibuf Help                                                                                               [m[m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40mIn this buffer, type RET to select the completion near point.        [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40mPossible completions are:                                            [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40mt[m[33m[40ma[m[32m[40mble/                             [m[32m[40mt[m[33m[40me[m[32m[40mst/                             [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40mt[m[33m[40me[m[32m[40mst_expand_both                   [m[32m[40mt[m[33m[40me[m[32m[40mst_expand_both.c.js             [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40mt[m[33m[40me[m[32m[40mst_expand_both.c.js~             [m[32m[40mt[m[33m[40me[m[32m[40mst_expand_both.h                [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40mt[m[33m[40me[m[32m[40mst_expand_both.h~                [m[32m[40mt[m[33m[40me[m[32m[40mst_expand_both~                 [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40mt[m[33m[40me[m[32m[40mst_macro_expansion.C.js          [m[32m[40mt[m[33m[40my[m[32m[40mpemap                           [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40mt[m[33m[40my[m[32m[40mpemap.iom                                                          [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40m                                                                     [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[30m[42m----:---F1  [m[m[1m[30m[42m*scratch*   [m[m[30m[42m   All (1,0)      (Lisp Interaction)---------[m[m[30m[42m|[m[m[30m[42m----:%%-F1  [m[m[1m[30m[42m*Completions*[m[m[30m[42m   All (1,0)      (Completion List)---------[m[m
+[A[52;43H[32m[40me[m[32m[40mst[m[32m[40m/[m[32m[40mr[m[32m[40mx[m[32m[40mv[m[32m[40mt-[m[32m[40mo[m[32m[40mut[m[32m[40mLoading vc-cvs...                                     [m[H
+[52;18H[32m[40mdone[m[H
+[52;12H[32m[40mgit...    [m[H
+[52;18H[32m[40mdone[m[H
+[52;1H[32m[40mLoading vc-git...done                                                                                                                     [m[H[30m[42mFile Edit Options Buffers Tools Help                                                                                                       [m[m
+[A
+[32m[40mscr_recolour                                                         [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_clear                                                            [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_touch                                                            [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_expose                                                           [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_poweron                                                          [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_release                                                          [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_soft_reset                                                       [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mPRIMARY 0                                                            [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_scroll_region                                                    [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mtop 0                                                                [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mbot 9999                                                             [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mnrow 24                                                              [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_gotorc                                                           [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mEND OF scr_gotorc                                                    [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mEND OF scr_scroll_region                                             [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_rendition                                                        [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mEND OF scr_rendition                                                 [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_insert_mode                                                      [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mEND OF scr_insert_mode                                               [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mEND OF scr_soft_reset                                                [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_reset                                                            [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mno rowbuf                                                            [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[30m[42m-:---F1  [m[m[1m[30m[42mrxvt-out    [m[m[30m[42m   Top (1,0)      (Fundamental)-----------------[m[m[30m[42m|[m[m[30m[42m----:---F1  [m[m[1m[30m[42m*scratch*   [m[m[30m[42m   All (1,0)      (Lisp Interaction)---------[m[m
+[A[H
+[52;1H[32m[40m                     [m[H
+[32m[40m?scr_recolour[m[51;3H[30m[42m**-F1  [m[m[1m[30m[42mrxvt-out    [m[m[30m[42m   Top (1,1[m[m[2;2H[51;1H[30m[42m-:**-F1  [m[m[1m[30m[42mrxvt-out    [m[m[30m[42m   Top (1,1)      (Fundamental)-----------------[m[m[30m[42m|[m[m[30m[42m----:---F1  [m[m[1m[30m[42m*scratch*   [m[m[30m[42m   All (1,0)      (Lisp Interaction)---------[m[m
+[2;71H[52;1H[36m[40mFind file: [m[32m[40m~/                                                                                                                             [m[H[30m[42mFile Edit Options Buffers Tools Minibuf Help                                                                                               [m[m
+[A
+[32m[40m?scr_recolour                                                        [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_clear                                                            [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_touch                                                            [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_expose                                                           [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_poweron                                                          [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_release                                                          [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_soft_reset                                                       [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mPRIMARY 0                                                            [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_scroll_region                                                    [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mtop 0                                                                [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mbot 9999                                                             [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mnrow 24                                                              [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_gotorc                                                           [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mEND OF scr_gotorc                                                    [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mEND OF scr_scroll_region                                             [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_rendition                                                        [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mEND OF scr_rendition                                                 [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_insert_mode                                                      [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mEND OF scr_insert_mode                                               [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mEND OF scr_soft_reset                                                [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_reset                                                            [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mno rowbuf                                                            [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40m                                                                     [m
+[A
+[30m[42m-:**-F1  [m[m[1m[30m[42mrxvt-out    [m[m[30m[42m   Top (1,1)      (Fundamental)-----------------[m[m[30m[42m|[m[m[30m[42m----:---F1  [m[m[1m[30m[42m*scratch*   [m[m[30m[42m   All (1,0)      (Lisp Interaction)---------[m[m
+[A[52;14H[32m[40mdj_terminalcast/rxvt-js/src/test/rxvt-out[m[32m[40m [m[32m[40m [m[32m[40m [m[32m[40mj[m[32m[40ms-out[m[32m[40m                                                                                                                                          [m[H[30m[42mFile Edit Options Buffers Tools Help                                                                                                       [m[m
+[A
+[32m[40m?scr_recolour                                                        [m[30m[42m|[m[m[32m[40mscr_recolour                                                         [m
+[A
+[32m[40mscr_clear                                                            [m[30m[42m|[m[m[32m[40mscr_clear                                                            [m
+[A
+[32m[40mscr_touch                                                            [m[30m[42m|[m[m[32m[40mscr_touch                                                            [m
+[A
+[32m[40mscr_expose                                                           [m[30m[42m|[m[m[32m[40mscr_expose                                                           [m
+[A
+[32m[40mscr_poweron                                                          [m[30m[42m|[m[m[32m[40mscr_poweron                                                          [m
+[A
+[32m[40mscr_release                                                          [m[30m[42m|[m[m[32m[40mscr_release                                                          [m
+[A
+[32m[40mscr_soft_reset                                                       [m[30m[42m|[m[m[32m[40mscr_soft_reset                                                       [m
+[A
+[32m[40mPRIMARY 0                                                            [m[30m[42m|[m[m[32m[40mPRIMARY 0                                                            [m
+[A
+[32m[40mscr_scroll_region                                                    [m[30m[42m|[m[m[32m[40mscr_scroll_region                                                    [m
+[A
+[32m[40mtop 0                                                                [m[30m[42m|[m[m[32m[40mtop 0                                                                [m
+[A
+[32m[40mbot 9999                                                             [m[30m[42m|[m[m[32m[40mbot 9999                                                             [m
+[A
+[32m[40mnrow 24                                                              [m[30m[42m|[m[m[32m[40mnrow 24                                                              [m
+[A
+[32m[40mscr_gotorc                                                           [m[30m[42m|[m[m[32m[40mscr_gotorc                                                           [m
+[A
+[32m[40mEND OF scr_gotorc                                                    [m[30m[42m|[m[m[32m[40mEND OF scr_gotorc                                                    [m
+[A
+[32m[40mEND OF scr_scroll_region                                             [m[30m[42m|[m[m[32m[40mEND OF scr_scroll_region                                             [m
+[A
+[32m[40mscr_rendition                                                        [m[30m[42m|[m[m[32m[40mscr_rendition                                                        [m
+[A
+[32m[40mEND OF scr_rendition                                                 [m[30m[42m|[m[m[32m[40mEND OF scr_rendition                                                 [m
+[A
+[32m[40mscr_insert_mode                                                      [m[30m[42m|[m[m[32m[40mscr_insert_mode                                                      [m
+[A
+[32m[40mEND OF scr_insert_mode                                               [m[30m[42m|[m[m[32m[40mEND OF scr_insert_mode                                               [m
+[A
+[32m[40mEND OF scr_soft_reset                                                [m[30m[42m|[m[m[32m[40mEND OF scr_soft_reset                                                [m
+[A
+[32m[40mscr_reset                                                            [m[30m[42m|[m[m[32m[40mscr_reset                                                            [m
+[A
+[32m[40mno rowbuf                                                            [m[30m[42m|[m[m[32m[40mno rowbuf                                                            [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mscr_blank_screen_mem                                                 [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mscr_blank_line                                                       [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mscr_blank_screen_mem                                                 [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mscr_blank_line                                                       [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mscr_blank_screen_mem                                                 [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mscr_blank_line                                                       [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mscr_blank_screen_mem                                                 [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mscr_blank_line                                                       [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mscr_blank_screen_mem                                                 [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mscr_blank_line                                                       [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mscr_blank_screen_mem                                                 [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mscr_blank_line                                                       [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mscr_blank_screen_mem                                                 [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mscr_blank_line                                                       [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mscr_blank_screen_mem                                                 [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mscr_blank_line                                                       [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mscr_blank_screen_mem                                                 [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mscr_blank_line                                                       [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mscr_blank_screen_mem                                                 [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mscr_blank_line                                                       [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mscr_blank_screen_mem                                                 [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mscr_blank_line                                                       [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mscr_blank_screen_mem                                                 [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mscr_blank_line                                                       [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mscr_blank_screen_mem                                                 [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mscr_blank_line                                                       [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mscr_blank_screen_mem                                                 [m
+[A
+[30m[42m-:**-F1  [m[m[1m[30m[42mrxvt-out    [m[m[30m[42m   Top (1,1)      (Fundamental)-----------------[m[m[30m[42m|[m[m[30m[42m----:---F1  [m[m[1m[30m[42mrxvt-js-out [m[m[30m[42m   Top (1,0)      (Fundamental)--------------[m[m
+[A[2;71H[2;75H[32m[40mblank_line[m[3;75H[32m[40mblank_screen_mem[m[4;75H[32m[40mblank_line[m[5;75H[32m[40mblank_screen_mem[m[6;75H[32m[40mblank_line[m[7;75H[32m[40mblank_screen_mem[m[8;75H[32m[40mblank_line[m[9;71H[32m[40mscr_blank_screen_mem[m[10;75H[32m[40mblank_line   [m[11;71H[32m[40mscr_blank_screen_mem[m[12;71H[32m[40mscr_blank_line[m[13;71H[32m[40mscr_blank_screen_mem[m[14;75H[32m[40mblank_line[m[15;71H[32m[40mscr_blank_screen_mem[m[16;71H[32m[40mscr_blank_line          [m[17;75H[32m[40mblank_screen_mem[m[18;71H[32m[40mscr_blank_line      [m[19;75H[32m[40mblank_screen_mem[m[20;71H[32m[40mscr_blank_line        [m[21;71H[32m[40mscr_blank_screen_mem [m[22;75H[32m[40mblank_line[m[23;71H[32m[40mscr_blank_screen_mem[m[24;81H[32m[40mline      [m[25;81H[32m[40mscreen_mem[m[26;81H[32m[40mline      [m[27;81H[32m[40mscreen_mem[m[28;81H[32m[40mline      [m[29;81H[32m[40mscreen_mem[m[30;81H[32m[40mline      [m[31;81H[32m[40mscreen_mem[m[32;81H[32m[40mline      [m[33;81H[32m[40mscreen_mem[m[34;81H[32m[40mline      [m[35;81H[32m[40mscreen_mem[m[36;81H[32m[40mline      [m[37;81H[32m[40mscreen_mem[m[38;81H[32m[40mline      [m[39;81H[32m[40mscreen_mem[m[40;81H[32m[40mline      [m[41;81H[32m[40mscreen_mem[m[42;81H[32m[40mline      [m[43;81H[32m[40mscreen_mem[m[44;81H[32m[40mline      [m[45;81H[32m[40mscreen_mem[m[46;81H[32m[40mline      [m[47;81H[32m[40mscreen_mem[m[48;81H[32m[40mline      [m[49;81H[32m[40mscreen_mem[m[50;81H[32m[40mline      [m[51;98H[30m[42m 1% (48,0)[m[m[2;71H		[32m[40mscreen_mem[m[3;81H[32m[40mline      [m[4;81H[32m[40mscreen_mem[m[5;81H[32m[40mline      [m[6;81H[32m[40mscreen_mem[m[7;81H[32m[40mline      [m[8;81H[32m[40mscreen_mem[m[9;81H[32m[40mline      [m[10;81H[32m[40mscreen_mem[m[11;81H[32m[40mline      [m[12;81H[32m[40mscreen_mem[m[13;81H[32m[40mline      [m[14;81H[32m[40mscreen_mem[m[15;81H[32m[40mline      [m[16;81H[32m[40mscreen_mem[m[17;81H[32m[40mline      [m[18;81H[32m[40mscreen_mem[m[19;81H[32m[40mline      [m[20;81H[32m[40mscreen_mem[m[21;81H[32m[40mline      [m[22;81H[32m[40mscreen_mem[m[23;81H[32m[40mline      [m[24;81H[32m[40mscreen_mem[m[25;81H[32m[40mline      [m[26;81H[32m[40mscreen_mem[m[27;81H[32m[40mline      [m[28;81H[32m[40mscreen_mem[m[29;81H[32m[40mline      [m[30;81H[32m[40mscreen_mem[m[31;81H[32m[40mline      [m[32;81H[32m[40mscreen_mem[m[33;81H[32m[40mline      [m[34;81H[32m[40mscreen_mem[m[35;81H[32m[40mline      [m[36;81H[32m[40mscreen_mem[m[37;81H[32m[40mline      [m[38;81H[32m[40mscreen_mem[m[39;81H[32m[40mline      [m[40;81H[32m[40mscreen_mem[m[41;81H[32m[40mline      [m[42;81H[32m[40mscreen_mem[m[43;81H[32m[40mline      [m[44;81H[32m[40mscreen_mem[m[45;81H[32m[40mline      [m[46;81H[32m[40mscreen_mem[m[47;81H[32m[40mline      [m[48;81H[32m[40mscreen_mem[m[49;81H[32m[40mline      [m[50;81H[32m[40mscreen_mem[m
+		[30m[42m95[m[m[2;71H		[32m[40mline      [m[3;81H[32m[40mscreen_mem[m[4;81H[32m[40mline      [m[5;81H[32m[40mscreen_mem[m[6;81H[32m[40mline      [m[7;81H[32m[40mscreen_mem[m[8;81H[32m[40mline      [m[9;81H[32m[40mscreen_mem[m[10;81H[32m[40mline      [m[11;81H[32m[40mscreen_mem[m[12;81H[32m[40mline      [m[13;81H[32m[40mscreen_mem[m[14;81H[32m[40mline      [m[15;81H[32m[40mscreen_mem[m[16;81H[32m[40mline      [m[17;81H[32m[40mscreen_mem[m[18;81H[32m[40mline      [m[19;81H[32m[40mscreen_mem[m[20;81H[32m[40mline      [m[21;81H[32m[40mscreen_mem[m[22;81H[32m[40mline      [m[23;81H[32m[40mscreen_mem[m[24;81H[32m[40mline      [m[25;81H[32m[40mscreen_mem[m[26;81H[32m[40mline      [m[27;75H[32m[40mcursor    [m[28;71H[32m[40mcase SAVE:          [m[29;71H[32m[40mEND OF scr_cursorinline_rbdbg                                       \[m
+[30;71H[32m[40m                                         $                          \[m
+[31;71H[32m[40m                                                      $             \[m
+[32;71H[32m[40m                                                                   $\[m
+[33;71H[32m[40m                                                                    \[m
+[34;71H[32m[40m            $                                                       \[m
+[35;71H[32m[40m                         $                                          \[m
+[36;71H[32m[40m                                      $                             \[m
+[37;71H[32m[40m                                                   $                \[m
+[38;71H[32m[40m                                                                $   \[m
+[39;71H[32m[40m                                                                    \[m
+[40;71H[32m[40m         $                                                          \[m
+[41;71H[32m[40m                      $                                             \[m
+[42;71H[32m[40m                                   $                                \[m
+[43;71H[32m[40m                                                $                   \[m
+[44;71H[32m[40m                                                             $      \[m
+[45;71H[32m[40m                                                                    \[m
+[46;71H[32m[40m      $                                                             \[m
+[47;71H[32m[40m                   $                                                \[m
+[48;71H[32m[40m                                $                                   \[m
+[49;71H[32m[40m                                             $                      \[m
+[50;71H[32m[40m                                                          $         \[m
+[51;103H[30m[42m142,0)[m[m[2;71H[1;49r[45;1H[4L[1;30r[28;1H[2M[1;36r[32;1H[2M[1;43r[38;1H[2M[1;52r[2;71H[32m[40m                                             $                      \[m
+[3;71H[32m[40m                                                          $         \[m
+[4;71H[32m[40m                                                                    \[m
+[5;71H[32m[40m   $                                                                \[m
+[6;71H[32m[40m                $                                                   \[m
+[7;71H[32m[40m                             $                                      \[m
+[8;71H[32m[40m                                          $                         \[m
+[9;71H[32m[40m                                                       $            \[m
+[10;71H[32m[40m                                                                    \[m
+[11;71H[32m[40m$^                  [m[12;75H[32m[40mcursor    [m[13;71H[32m[40mcase SAVE:          [m[14;71H[32m[40mEND OF scr_cursorinline_rbdbg                                       \[m
+[15;71H[32m[40m                                         $                          \[m
+[16;71H[32m[40m                                                      $             \[m
+[17;71H[32m[40m                                                                   $\[m
+[18;71H[32m[40m                                                                    \[m
+[19;71H[32m[40m            $                                                       \[m
+[20;71H[32m[40m                         $                                          \[m
+[21;71H[32m[40m                                      $                             \[m
+[22;71H[32m[40m                                                   $                \[m
+[23;71H[32m[40m                                                                $   \[m
+[24;71H[32m[40m                                                                    \[m
+[25;71H[32m[40m         $                                                          \[m
+[26;71H[32m[40m                      $                                             \[m
+[27;71H[32m[40m                                   $                                \[m
+[28;112H[32m[40m       $[m
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40m                                                             $      \[m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40m                                                                    \[m
+[A[31;77H[32m[40m$                                                [m[32;83H[32m[40m       $[m
+	[32m[40m       $[m[34;109H[32m[40m       $[m
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40m                                                          $         \[m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40m                                                                    \[m
+[A[37;74H[32m[40m$                                                [m[38;80H[32m[40m       $[m[39;93H[32m[40m       $[m
+	[C[32m[40m       $[m
+	[32m[40m       $[m
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40m                                                                    \[m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40m$^                                                                   [m
+[A[44;71H[32m[40mCLEAR_ALL_SELECTION                                                  [m
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mEND of scr_reset                                                     [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mscr_clear                                                            [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mscr_refresh                                                          [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mrow_buf_debug                                                        [m
+[A[50;84H[32m[40m$                                                       [m
+[51;104H[30m[42m69,1360)  (Fundamental)[m[m[2;71H[2;116H[32m[40m [m[3;84H[32m[40m$                                                       [m
+[5;74H[32m[40m          $                                                       [m
+[6;87H[32m[40m [m
+[32m[40m$                                                       [m
+[8;113H[32m[40m [m[9;84H[32m[40m$                                                       [m
+[11;71H[32m[40m             $[m[12;71H[32m[40m                                                                    \[m
+[13;71H[32m[40m             $[m[14;71H[32m[40m                             [m[15;84H[32m[40m$                                                       [m
+[16;125H[32m[40m [m[17;84H[32m[40m$                                                       [m
+[19;83H[32m[40m $                                                       [m
+[20;96H[32m[40m [m[21;84H[32m[40m$                                                       [m
+[22;122H[32m[40m [m[23;84H[32m[40m$                                                       [m
+[25;80H[32m[40m    $                                                       [m
+[26;93H[32m[40m [m[27;84H[32m[40m$                                                       [m
+[28;119H[32m[40m [m[29;84H[32m[40m$                                                       [m
+[31;77H[32m[40m       $                                                       [m
+[32;90H[32m[40m [m[33;84H[32m[40m$                                                       [m
+[34;116H[32m[40m [m[35;84H[32m[40m$                                                       [m
+[37;74H[32m[40m          $                                                       [m
+[38;87H[32m[40m [m
+[32m[40m$                                                       [m
+[40;113H[32m[40m [m[41;84H[32m[40m$                                                       [m
+[43;71H[32m[40m             $[m[44;71H[32m[40m                                                                    \[m
+[45;71H[32m[40m             $  [m[46;71H[32m[40m                                                                    \[m
+[47;71H[32m[40m             $[m[48;71H[32m[40m                                                                    \[m
+[49;84H[32m[40m$                                                       [m
+[50;71H[32m[40mthis.refresh_type == NO_REFRESH || !this.mapped){[m[51;104H[30m[42m78,0)    (Fundamental)-[m[m[2;71H[2;84H[32m[40m$                                                       [m
+[3;71H[32m[40mthis.refresh_type == NO_REFRESH || !this.mapped){[m[4;71H[32m[40mEND OF scr_refresh                                                   [m
+[5;71H[32m[40mprocess_nonprinting from cmd_parse[m[6;71H[32m[40mprocess_nonprinting                                                  [m
+[7;71H[32m[40mcase C0_ESC:  [m[8;71H[32m[40mprocess_escape_seq                                                   [m
+[9;71H[32m[40m91            [m[10;71H[32m[40mcase C1_CSI:                                                         [m
+[11;71H[32m[40mprocess_csi_seq[m[12;71H[32m[40m56                                                                   [m
+[13;71H[32m[40misdigit csi   [m[14;71H[32m[40m56                                                                   [m
+[15;71H[32m[40misdigit csi   [m[16;71H[32m[40m52                                                                   [m
+[17;71H[32m[40misdigit csi   [m[18;71H[32m[40m51                                                                   [m
+[19;71H[32m[40misdigit csi   [m[20;71H[32m[40m49                                                                   [m
+[21;71H[32m[40misdigit csi   [m[22;71H[32m[40m55                                                                   [m
+[23;71H[32m[40misdigit csi   [m[24;71H[32m[40m54                                                                   [m
+[25;71H[32m[40mget_byte_array_bit[m[26;71H[32m[40m52 0                                                                 [m
+[27;71H[32m[40mcase CSI_74:  [m[28;71H[32m[40mprocess_window_ops                                                   [m
+[29;71H[32m[40mcase 8:       [m[30;71H[32m[40mset_widthheight                                                      [m
+[31;71H[32m[40mscr_reset     [m[32;71H[32m[40mrow_buf exists                                                       [m
+[33;71H[32m[40mJUST ALLOCCED swap_buf[m[34;71H[32m[40mlresizing  23                                                        [m
+[35;71H[32m[40mscr_blank_line[m[36;71H[32m[40mscr_blank_line                                                       [m
+[37;71H[32m[40mlresizing  22 [m[38;71H[32m[40mscr_blank_line                                                       [m
+[39;71H[32m[40mscr_blank_line[m[40;71H[32m[40mlresizing  21                                                        [m
+[41;71H[32m[40mscr_blank_line[m[42;71H[32m[40mscr_blank_line                                                       [m
+[43;71H[32m[40mlresizing  20 [m[44;71H[32m[40mscr_blank_line                                                       [m
+[45;71H[32m[40mscr_blank_line[m[46;71H[32m[40mlresizing  19                                                        [m
+[47;71H[32m[40mscr_blank_line[m[48;71H[32m[40mscr_blank_line                                                       [m
+[49;71H[32m[40mlresizing  18 [m[50;71H[32m[40mscr_blank_line                                   [m[51;103H[30m[42m201,68)[m[m[2;71H[1;31r[22;1H[9M[1;36r[33;1H[2M[1;39r[36;1H[2M[1;42r[39;1H[2M[1;45r[42;1H[2M[1;48r[45;1H[2M[1;50r[48;1H[2M[1;52r[2;71H[32m[40mlresizing  18 [m[3;71H[32m[40mscr_blank_line                                   [m[4;71H[32m[40mscr_blank_line    [m[5;71H[32m[40mlresizing  17                     [m[6;71H[32m[40mscr_blank_line     [m[7;71H[32m[40mscr_blank_line[m[8;71H[32m[40mlresizing  16     [m[9;71H[32m[40mscr_blank_line[m[10;71H[32m[40mscr_blank_line[m[11;71H[32m[40mlresizing  15  [m[12;71H[32m[40mscr_blank_line[m[13;71H[32m[40mscr_blank_line[m[14;71H[32m[40mlresizing  14[m[15;71H[32m[40mscr_blank_line[m[16;71H[32m[40mscr_blank_line[m[17;71H[32m[40mlresizing  13[m[18;71H[32m[40mscr_blank_line[m[19;71H[32m[40mscr_blank_line[m[20;71H[32m[40mlresizing  12[m[21;71H[32m[40mscr_blank_line[m[22;5H[32m[40mreset                                                            [m[30m[42m|[m[m[32m[40mscr_blank_line[m
+[32m[40mno rowbuf                                                            [m[30m[42m|[m[m[32m[40mlresizing  11                                                        [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mscr_blank_line                                                       [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mscr_blank_line                                                       [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mlresizing  10                                                        [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mscr_blank_line                                                       [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mscr_blank_line                                                       [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mlresizing  9                                                         [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mscr_blank_line                                                       [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mscr_blank_line                                                       [m
+[A[32;71H[32m[40mlresizing  8  [m
 
-          Enter choice number (0 - 12): [8;44;80t1
-[2J[?3l#8[9;10H[1J[18;60H[0J[1K[9;71H[0K[10;10H[1K[10;71H[0K[11;10H[1K[11;71H[0K[12;10H[1K[12;71H[0K[13;10H[1K[13;71H[0K[14;10H[1K[14;71H[0K[15;10H[1K[15;71H[0K[16;10H[1K[16;71H[0K[17;30H[2K[24;1f*[1;1f*[24;2f*[1;2f*[24;3f*[1;3f*[24;4f*[1;4f*[24;5f*[1;5f*[24;6f*[1;6f*[24;7f*[1;7f*[24;8f*[1;8f*[24;9f*[1;9f*[24;10f*[1;10f*[24;11f*[1;11f*[24;12f*[1;12f*[24;13f*[1;13f*[24;14f*[1;14f*[24;15f*[1;15f*[24;16f*[1;16f*[24;17f*[1;17f*[24;18f*[1;18f*[24;19f*[1;19f*[24;20f*[1;20f*[24;21f*[1;21f*[24;22f*[1;22f*[24;23f*[1;23f*[24;24f*[1;24f*[24;25f*[1;25f*[24;26f*[1;26f*[24;27f*[1;27f*[24;28f*[1;28f*[24;29f*[1;29f*[24;30f*[1;30f*[24;31f*[1;31f*[24;32f*[1;32f*[24;33f*[1;33f*[24;34f*[1;34f*[24;35f*[1;35f*[24;36f*[1;36f*[24;37f*[1;37f*[24;38f*[1;38f*[24;39f*[1;39f*[24;40f*[1;40f*[24;41f*[1;41f*[24;42f*[1;42f*[24;43f*[1;43f*[24;44f*[1;44f*[24;45f*[1;45f*[24;46f*[1;46f*[24;47f*[1;47f*[24;48f*[1;48f*[24;49f*[1;49f*[24;50f*[1;50f*[24;51f*[1;51f*[24;52f*[1;52f*[24;53f*[1;53f*[24;54f*[1;54f*[24;55f*[1;55f*[24;56f*[1;56f*[24;57f*[1;57f*[24;58f*[1;58f*[24;59f*[1;59f*[24;60f*[1;60f*[24;61f*[1;61f*[24;62f*[1;62f*[24;63f*[1;63f*[24;64f*[1;64f*[24;65f*[1;65f*[24;66f*[1;66f*[24;67f*[1;67f*[24;68f*[1;68f*[24;69f*[1;69f*[24;70f*[1;70f*[24;71f*[1;71f*[24;72f*[1;72f*[24;73f*[1;73f*[24;74f*[1;74f*[24;75f*[1;75f*[24;76f*[1;76f*[24;77f*[1;77f*[24;78f*[1;78f*[24;79f*[1;79f*[24;80f*[1;80f*[2;2H+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD[23;79H+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM[2;1H*[2;80H*[10DE*[3;80H*[10DE*[4;80H*[10DE*[5;80H*[10DE*[6;80H*[10DE*[7;80H*[10DE*[8;80H*[10DE*[9;80H*[10DE*[10;80H*[10D
-*[11;80H*[10D
-*[12;80H*[10D
-*[13;80H*[10D
-*[14;80H*[10D
-*[15;80H*[10D
-*[16;80H*[10D
-*[17;80H*[10D
-*[18;80H*[10D
-*[19;80H*[10D
-*[20;80H*[10D
-*[21;80H*[10D
-*[22;80H*[10D
-*[23;80H*[10D
-[2;10H[42D[2C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C[23;70H[42C[2D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D[1;1H[10A[1A[0A[24;80H[10B[1B[0B[10;12H                                                          [1B[58D                                                          [1B[58D                                                          [1B[58D                                                          [1B[58D                                                          [1B[58D                                                          [1B[58D[5A[1CThe screen should be cleared,  and have an unbroken bor-[12;13Hder of *'s and +'s around the edge,   and exactly in the[13;13Hmiddle  there should be a frame of E's around this  text[14;13Hwith  one (1) free position around it.    Push <RETURN>[?3h#8[9;36H[1J[18;86H[0J[1K[9;97H[0K[10;36H[1K[10;97H[0K[11;36H[1K[11;97H[0K[12;36H[1K[12;97H[0K[13;36H[1K[13;97H[0K[14;36H[1K[14;97H[0K[15;36H[1K[15;97H[0K[16;36H[1K[16;97H[0K[17;30H[2K[24;1f*[1;1f*[24;2f*[1;2f*[24;3f*[1;3f*[24;4f*[1;4f*[24;5f*[1;5f*[24;6f*[1;6f*[24;7f*[1;7f*[24;8f*[1;8f*[24;9f*[1;9f*[24;10f*[1;10f*[24;11f*[1;11f*[24;12f*[1;12f*[24;13f*[1;13f*[24;14f*[1;14f*[24;15f*[1;15f*[24;16f*[1;16f*[24;17f*[1;17f*[24;18f*[1;18f*[24;19f*[1;19f*[24;20f*[1;20f*[24;21f*[1;21f*[24;22f*[1;22f*[24;23f*[1;23f*[24;24f*[1;24f*[24;25f*[1;25f*[24;26f*[1;26f*[24;27f*[1;27f*[24;28f*[1;28f*[24;29f*[1;29f*[24;30f*[1;30f*[24;31f*[1;31f*[24;32f*[1;32f*[24;33f*[1;33f*[24;34f*[1;34f*[24;35f*[1;35f*[24;36f*[1;36f*[24;37f*[1;37f*[24;38f*[1;38f*[24;39f*[1;39f*[24;40f*[1;40f*[24;41f*[1;41f*[24;42f*[1;42f*[24;43f*[1;43f*[24;44f*[1;44f*[24;45f*[1;45f*[24;46f*[1;46f*[24;47f*[1;47f*[24;48f*[1;48f*[24;49f*[1;49f*[24;50f*[1;50f*[24;51f*[1;51f*[24;52f*[1;52f*[24;53f*[1;53f*[24;54f*[1;54f*[24;55f*[1;55f*[24;56f*[1;56f*[24;57f*[1;57f*[24;58f*[1;58f*[24;59f*[1;59f*[24;60f*[1;60f*[24;61f*[1;61f*[24;62f*[1;62f*[24;63f*[1;63f*[24;64f*[1;64f*[24;65f*[1;65f*[24;66f*[1;66f*[24;67f*[1;67f*[24;68f*[1;68f*[24;69f*[1;69f*[24;70f*[1;70f*[24;71f*[1;71f*[24;72f*[1;72f*[24;73f*[1;73f*[24;74f*[1;74f*[24;75f*[1;75f*[24;76f*[1;76f*[24;77f*[1;77f*[24;78f*[1;78f*[24;79f*[1;79f*[24;80f*[1;80f*[24;81f*[1;81f*[24;82f*[1;82f*[24;83f*[1;83f*[24;84f*[1;84f*[24;85f*[1;85f*[24;86f*[1;86f*[24;87f*[1;87f*[24;88f*[1;88f*[24;89f*[1;89f*[24;90f*[1;90f*[24;91f*[1;91f*[24;92f*[1;92f*[24;93f*[1;93f*[24;94f*[1;94f*[24;95f*[1;95f*[24;96f*[1;96f*[24;97f*[1;97f*[24;98f*[1;98f*[24;99f*[1;99f*[24;100f*[1;100f*[24;101f*[1;101f*[24;102f*[1;102f*[24;103f*[1;103f*[24;104f*[1;104f*[24;105f*[1;105f*[24;106f*[1;106f*[24;107f*[1;107f*[24;[8;44;132t108f*[1;108f*[24;109f*[1;109f*[24;110f*[1;110f*[24;111f*[1;111f*[24;112f*[1;112f*[24;113f*[1;113f*[24;114f*[1;114f*[24;115f*[1;115f*[24;116f*[1;116f*[24;117f*[1;117f*[24;118f*[1;118f*[24;119f*[1;119f*[24;120f*[1;120f*[24;121f*[1;121f*[24;122f*[1;122f*[24;123f*[1;123f*[24;124f*[1;124f*[24;125f*[1;125f*[24;126f*[1;126f*[24;127f*[1;127f*[24;128f*[1;128f*[24;129f*[1;129f*[24;130f*[1;130f*[24;131f*[1;131f*[24;132f*[1;132f*[2;2H+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD+[1DD[23;131H+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM+[1DM[2;1H*[2;132H*[10DE*[3;132H*[10DE*[4;132H*[10DE*[5;132H*[10DE*[6;132H*[10DE*[7;132H*[10DE*[8;132H*[10DE*[9;132H*[10DE*[10;132H*[10D
-*[11;132H*[10D
-*[12;132H*[10D
-*[13;132H*[10D
-*[14;132H*[10D
-*[15;132H*[10D
-*[16;132H*[10D
-*[17;132H*[10D
-*[18;132H*[10D
-*[19;132H*[10D
-*[20;132H*[10D
-*[21;132H*[10D
-*[22;132H*[10D
-*[23;132H*[10D
-[2;10H[68D[2C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C+[0C[2D[1C[23;96H[68C[2D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D+[1D[1C[0D[1;1H[10A[1A[0A[24;132H[10B[1B[0B[10;38H                                                          [1B[58D                                                          [1B[58D                                                          [1B[58D                                                          [1B[58D                                                          [1B[58D                                                          [1B[58D[5A[1CThe screen should be cleared,  and have an unbroken bor-[12;39Hder of *'s and +'s around the edge,   and exactly in the[13;39Hmiddle  there should be a frame of E's around this  text[14;39Hwith  one (1) free position around it.    Push <RETURN>[?3l[?3lTest of autowrap, mixing control and print characters.
-The left/right margins should have letters in order:
-[3;21r[?6h[19;1HA[19;80Ha
-[18;80HaB[19;80HB b
-[19;80HC		c[19;2HC
-[19;80H
-[18;1HD[18;80Hd[19;1HE[19;80He
-[18;80HeF[19;80HF f
-[19;80HG		g[19;2HG
-[19;80H
-[18;1HH[18;80Hh[19;1HI[19;80Hi
-[18;80HiJ[19;80HJ j
-[19;80HK		k[19;2HK
-[19;80H
-[18;1HL[18;80Hl[19;1HM[19;80Hm
-[18;80HmN[19;80HN n
-[19;80HO		o[19;2HO
-[19;80H
-[18;1HP[18;80Hp[19;1HQ[19;80Hq
-[18;80HqR[19;80HR r
-[19;80HS		s[19;2HS
-[19;80H
-[18;1HT[18;80Ht[19;1HU[19;80Hu
-[18;80HuV[19;80HV v
-[19;80HW		w[19;2HW
-[19;80H
-[18;1HX[18;80Hx[19;1HY[19;80Hy
-[18;80HyZ[19;80HZ z
-[?6l[r[22;1HPush <RETURN>[8;44;80t[?3hTest of autowrap, mixing control and print characters.
-The left/right margins should have letters in order:
-[3;21r[?6h[19;1HA[19;132Ha
-[18;132HaB[19;132HB b
-[19;132HC		c[19;2HC
-[19;132H
-[18;1HD[18;132Hd[19;1HE[19;132He
-[18;132HeF[19;132HF f
-[19;132HG		g[19;2HG
-[19;132H
-[18;1HH[18;132Hh[19;1HI[19;132Hi
-[18;132HiJ[19;132HJ j
-[19;132HK		k[19;2HK
-[19;132H
-[18;1HL[18;132Hl[19;1HM[19;132Hm
-[18;132HmN[19;132HN n
-[19;132HO		o[19;2HO
-[19;132H
-[18;1HP[18;132Hp[19;1HQ[19;132Hq
-[18;132HqR[19;132HR r
-[19;132HS		s[19;2HS
-[19;132H
-[18;1HT[18;132Ht[19;1HU[19;132Hu
-[18;132HuV[19;132HV v
-[19;132HW		w[19;2HW
-[19;132H
-[18;1HX[18;132Hx[19;1HY[19;132Hy
-[18;132HyZ[19;132HZ z
-[?6l[r[22;1HPush <RETURN>[8;44;132t[?3l[2J[1;1HTest of cursor-control characters inside ESC sequences.
-Below should be four identical lines:
-
-A B C D E F G H I
-A[2CB[2CC[2CD[2CE[2CF[2CG[2CH[2CI[2C
-A [2CB[4CC[6CD[8CE[10CF[12CG[14CH[16CI
-[20lA [1AB [1AC [1AD [1AE [1AF [1AG [1AH [1AI [1A
-
-Push <RETURN>[8;44;80t[2J[1;1HTest of leading zeros in ESC sequences.
-Two lines below you should see the sentence "This is a correct sentence".[00000000004;000000001HT[00000000004;000000002Hh[00000000004;000000003Hi[00000000004;000000004Hs[00000000004;000000005H [00000000004;000000006Hi[00000000004;000000007Hs[00000000004;000000008H [00000000004;000000009Ha[00000000004;0000000010H [00000000004;0000000011Hc[00000000004;0000000012Ho[00000000004;0000000013Hr[00000000004;0000000014Hr[00000000004;0000000015He[00000000004;0000000016Hc[00000000004;0000000017Ht[00000000004;0000000018H [00000000004;0000000019Hs[00000000004;0000000020He[00000000004;0000000021Hn[00000000004;0000000022Ht[00000000004;0000000023He[00000000004;0000000024Hn[00000000004;0000000025Hc[00000000004;0000000026He[20;1HPush <RETURN>
-[2J[3;10HVT100 test program, version 2.7 (20071216)[4;10HLine speed 38400bd [5;10HChoose test type:
-
-          0. Exit
-          1. Test of cursor movements
-          2. Test of screen features
-          3. Test of character sets
-          4. Test of double-sized characters
-          5. Test of keyboard
-          6. Test of terminal reports
-          7. Test of VT52 mode
-          8. Test of VT102 features (Insert/Delete Char/Line)
-          9. Test of known bugs
-          10. Test of reset and self-test
-          11. Test non-VT100 (e.g., VT220, XTERM) terminals
-          12. Modify test-parameters
 
-          Enter choice number (0 - 12): 0
-[2J[?1l[?3l[?5l[?6l[?7h[?8h[r[0m[2J[12;30HThat's all, folks!
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mlresizing  7                                                         [m
+[A
+
+
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mlresizing  6                                                         [m
+[A
+
+
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mlresizing  5                                                         [m
+[A
+
+
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mlresizing  4                                                         [m
+[A
+
+
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mlresizing  3                                                         [m
+[A
+
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mscr_blank_line                                                       [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mlresizing  2                                                         [m
+[A[51;104H[30m[42m48,0) [m[m[2;71H[1;35r[34;1H[1L[1;25r[24;1H[1L[1;28r[27;1H[1M[1;30r[28;1H[2M[1;40r[37;1H[3M[1;42r[38;1H[4M[1;43r[41;1H[2M[1;45r[43;1H[2M[1;52r[2;71H[32m[40mscr_blank_line[m[3;71H[32m[40mlresizing  2  [m[5;71H[32m[40mscr_blank_line[m[6;71H[32m[40mlresizing  1  [m[8;71H[32m[40mscr_blank_line[m[9;71H[32m[40mlresizing  0  [m[11;71H[32m[40mscr_blank_line[m[12;71H[32m[40mthis.prev_nrow  24[m[13;71H[32m[40mthis.nrow  43 [m[14;71H[32m[40mblanking mem  24[m
+[32m[40mscreen_mem[m[17;71H[32m[40mscr_blank_screen_mem[m[19;71H[32m[40mblanking mem  25[m[20;71H[32m[40mscr_blank_screen_mem[m[22;81H[32m[40mscreen_mem[m[23;71H[32m[40mscr_blank_line[m
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mblanking mem  26                                                     [m
+[A[25;11H[32m[40mline                                                       [m[30m[42m|[m[m[32m[40mscr_blank_screen_mem[m[26;71H[32m[40mscr_blank_line[m[27;11H[32m[40mline                                                       [m[30m[42m|[m[m[32m[40mscr_blank_screen_mem[m
+
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mblanking mem  27                                                     [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mscr_blank_screen_mem                                                 [m
+[A[32;71H[32m[40mscr_blank_screen_mem[m
+
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mblanking mem  28                                                     [m
+[A[35;11H[32m[40mline                                                       [m[30m[42m|[m[m[32m[40mscr_blank_screen_mem[m[37;11H[32m[40mline                                                       [m[30m[42m|[m[m[32m[40mscr_blank_screen_mem[m
+
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mblanking mem  29                                                     [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mscr_blank_screen_mem                                                 [m
+[A
+
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mscr_blank_screen_mem                                                 [m
+[A
+
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mblanking mem  30                                                     [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mscr_blank_screen_mem                                                 [m
+[A[47;71H[32m[40mscr_blank_screen_mem[m[49;71H[32m[40mblanking mem  31[m[50;71H[32m[40mscr_blank_screen_mem[m
+		[30m[42m95[m[m[2;71H[1;33r[28;1H[2M[1;38r[33;1H[2M[1;43r[38;1H[2M[1;48r[43;1H[2M[1;52r[2;71H[32m[40mblanking mem  31[m[3;71H[32m[40mscr_blank_screen_mem[m[5;81H[32m[40mscreen_mem[m[6;71H[32m[40mscr_blank_line[m[7;71H[32m[40mblanking mem  32[m[8;81H[32m[40mscreen_mem[m[9;71H[32m[40mscr_blank_line[m
+[32m[40mscreen_mem[m[12;71H[32m[40mblanking mem  33  [m[13;71H[32m[40mscr_blank_screen_mem[m[14;71H[32m[40mscr_blank_line  [m[17;71H[32m[40mblanking mem  34    [m[18;81H[32m[40mscreen_mem[m[19;71H[32m[40mscr_blank_line  [m[22;71H[32m[40mblanking mem  35    [m[23;81H[32m[40mscreen_mem[m[24;71H[32m[40mscr_blank_line  [m[27;71H[32m[40mblanking mem  36    [m
 
 
 
-bash-3.2$ exit
+
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mblanking mem  37                                                     [m
+[A
+
+
+
+
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mblanking mem  38                                                     [m
+[A
+
+
+
+
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mblanking mem  39                                                     [m
+[A
+
+
+
+
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mblanking mem  40                                                     [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mscr_blank_screen_mem                                                 [m
+[A[49;71H[32m[40mscr_blank_line  [m[51;103H[30m[42m342[m[m[2;71H[2;85H[32m[40m26[m[7;85H[32m[40m27[m
+
+
+
+
+[32m[40m28[m
+
+
+
+
+[32m[40m29[m
+
+
+
+
+[32m[40m0[m
+
+
+
+
+[32m[40m1[m
+
+
+
+
+[32m[40m2[m
+
+
+
+
+[32m[40m3[m
+
+
+
+
+[32m[40m4[m
+
+
+
+
+[32m[40m35[m
+
+
+
+			[30m[42m1[m[m[26;71H[51;105H[30m[42m0[m[m[25;71H[51;104H[30m[42m39[m[m[24;71H[32m[40m?scr_blank_line[m[51;76H[30m[42m**-F1  [m[m[1m[30m[42mrxvt-js-out [m[m[30m[42m    1% (339,1[m[m[24;72H[32m[40mscr_blank_line [m[51;107H[30m[42m0[m[m[24;71H[1;48r[43;1H[2L[1;43r[38;1H[2L[1;29r[27;1H[2M[1;31r[29;1H[2M[1;33r[30;1H[3M[1;34r[32;1H[2M[1;52r[2;71H[32m[40mscr_blank_line  [m[3;81H[32m[40mline      [m[4;71H[32m[40mlresizing  10 [m
+[32m[40mline      [m[7;71H[32m[40mlresizing  9    [m[8;81H[32m[40mline      [m[10;71H[32m[40mlresizing  8        [m[12;71H[32m[40mscr_blank_line  [m[13;71H[32m[40mlresizing  7        [m[15;81H[32m[40mline      [m[16;71H[32m[40mlresizing  6  [m[17;71H[32m[40mscr_blank_line  [m
+[32m[40mline      [m[19;71H[32m[40mlresizing  5  [m
+[32m[40mline      [m[22;71H[32m[40mlresizing  4    [m
+[32m[40mline      [m[25;71H[32m[40mlresizing  3        [m
+
+
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mlresizing  2                                                         [m
+[A[30;11H[32m[40mscreen_mem                                                 [m[30m[42m|[m[m[32m[40mscr_blank_line      [m
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mlresizing  1                                                         [m
+[A
+
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mscr_blank_line                                                       [m
+[A
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mlresizing  0                                                         [m
+[A[35;81H[32m[40mline      [m[37;71H[32m[40mthis.prev_nrow  24[m
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mthis.nrow  43                                                        [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mblanking mem  24                                                     [m
+[A
+
+
+
+
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mblanking mem  25                                                     [m
+[A[49;71H[32m[40mblanking mem  26[m
+
+			[30m[42m18[m[m[50;71H[1;50r[48;1H[2L[1;38r[35;1H[2L[1;35r[32;1H[2L[1;32r[29;1H[2L[1;29r[26;1H[2L[1;26r[24;1H[2L[1;45r[44;1H[1M[1;52r[2;71H[32m[40m54            [m[3;71H[32m[40mget_byte_array_bit[m[4;71H[32m[40m52 0         [m[5;71H[32m[40mcase CSI_74:  [m[6;71H[32m[40mprocess_window_ops[m[7;71H[32m[40mcase 8:     [m[8;72H[32m[40met_widthheight[m[9;75H[32m[40mreset     [m[10;71H[32m[40mrow_buf exists[m[11;71H[32m[40mJUST ALLOCCED swap_buf[m[12;71H[32m[40mlresizing  23 [m[13;71H[32m[40mscr_blank_line[m[15;71H[32m[40mlresizing  22 [m[16;71H[32m[40mscr_blank_line[m[18;71H[32m[40mlresizing  21 [m[19;71H[32m[40mscr_blank_line[m[21;71H[32m[40mlresizing  20 [m[22;71H[32m[40mscr_blank_line[m
+
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mlresizing  19                                                        [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mscr_blank_line                                                       [m
+[A
+
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mlresizing  18                                                        [m
+[A
+
+
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mlresizing  17                                                        [m
+[A
+
+
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mlresizing  16                                                        [m
+[A
+
+
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mlresizing  15                                                        [m
+[A[39;71H[32m[40mlresizing  14   [m
+[32m[40mline      [m[42;71H[32m[40mlresizing  13       [m[44;11H[32m[40mscreen_mem                                                 [m[30m[42m|[m[m[32m[40mscr_blank_line      [m
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mlresizing  12                                                        [m
+[A[47;81H[32m[40mline      [m
+[32m[40mscr_blank_screen_mem                                                 [m[30m[42m|[m[m[32m[40mlresizing  11                                                        [m
+[A
+[32m[40mscr_blank_line                                                       [m[30m[42m|[m[m[32m[40mscr_blank_line                                                       [m
+[A[51;103H[30m[42m271[m[m[50;71H[2;71H[32m[40m                                                                    \[m
+[3;71H[32m[40m             $    [m[4;71H[32m[40m                                                                    \[m
+[5;71H[32m[40m             $[m[6;71H[32m[40m                                                                    \[m
+[7;71H[32m[40m             $[m[8;71H[32m[40m                                                                    \[m
+[9;71H[32m[40m             $[m[10;71H[32m[40m                                                                    \[m
+[11;71H[32m[40m             $        [m[12;71H[32m[40m                                                                    \[m
+[13;71H[32m[40m             $[m[14;71H[32m[40m                                                                    \[m
+[15;71H[32m[40m             $[m[16;71H[32m[40m                                                                    \[m
+[17;71H[32m[40m             $[m[18;71H[32m[40m                                                                    \[m
+[19;71H[32m[40m             $[m[20;71H[32m[40m                                                                    \[m
+[21;71H[32m[40m             $[m[22;71H[32m[40m                                                                    \[m
+[23;71H[32m[40m             $[m[24;71H[32m[40m                                                                    \[m
+[25;71H[32m[40m             $[m[26;71H[32m[40m                                                                    \[m
+[27;71H[32m[40m             $[m[28;71H[32m[40mthis.refresh_type == NO_REFRESH || !this.mapped){[m[29;71H[32m[40mEND OF scr_refresh[m[30;71H[32m[40mprocess_nonprinting from cmd_parse[m[31;71H[32m[40mprocess_nonprinting[m[32;71H[32m[40mcase C0_ESC:  [m[33;71H[32m[40mprocess_escape_seq[m[34;71H[32m[40m91            [m[35;71H[32m[40mcase C1_CSI:  [m[36;71H[32m[40mprocess_csi_seq[m[37;71H[32m[40m56            [m[38;71H[32m[40misdigit csi   [m[39;71H[32m[40m56           [m[40;71H[32m[40misdigit csi   [m[41;71H[32m[40m52            [m[42;71H[32m[40misdigit csi  [m[43;71H[32m[40m51            [m[44;71H[32m[40misdigit csi   [m[45;71H[32m[40m49           [m[46;71H[32m[40misdigit csi   [m[47;71H[32m[40m55            [m[48;71H[32m[40misdigit csi  [m[49;71H[32m[40m54            [m[50;71H[32m[40mget_byte_array_bit[m
+		[30m[42m24[m[m[50;71H
+
+[36m[40mSave file /Users/patrickmullen/dj_terminalcast/rxvt-js/src/test/rxvt-js-out? (y, n, !, ., q, C-r, d or C-h) [m[32m[40mSave file /Users/patrickmullen/dj_terminalcast/rxvt-js/src/test/rxvt-js-out? (y, n, !, ., q, C-r, d or C-h) n[m[36m[40mSave file /Users/patrickmullen/dj_terminalcast/rxvt-js/src/test/rxvt-out? (y, n, !, ., q, C-r, d or C-h) [m[32m[40m    [m[32m[40mSave file /Users/patrickmullen/dj_terminalcast/rxvt-js/src/test/rxvt-out? (y, n, !, ., q, C-r, d or C-h) n[m[32m[40m                                                                                                          [m[50;71H
+
+[36m[40mModified buffers exist; exit anyway? (y or n) [m[32m[40mModified buffers exist; exit anyway? (y or n) y[m[36m[40mSave desktop? (y or n) [m[32m[40m                        [m			[32m[40mSave desktop? (y or n) n[m[32m[40mWrote /Users/patrickmullen/.projects.ede[m[50;71H
+
+[K[?1l>[2J[?47l8[mbash-3.2$ exit

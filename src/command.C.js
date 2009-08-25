@@ -539,7 +539,7 @@ rxvt_term.prototype.cmd_parse =function(){
              * What the heck we'll cheat and only refresh less than every page-full. 
              * if skipScroll is enabled.                   */
             //debugger;
-            //refreshnow=true;
+            refreshnow=true;
             if (refreshnow){
                 //FUNCTION_DEBUG("refreshnow");
                 this.scr_refresh();
@@ -558,7 +558,9 @@ rxvt_term.prototype.cmd_parse =function(){
          } catch ( e){  //FIXME exception
              // we ran ou of input, retry later
              if (e instanceof OutOfInputException){
+
                       this.cmdbuf_ptr = seq_begin;
+                      console.log("out of input", this.cmdbuf_ptr);
                       break;} 
              else{
                  throw e;}
@@ -1401,7 +1403,7 @@ VAR_DEBUG(i,ndef);
         break;
   }
   ROW_IN_BUF_DEBUG("END OF process_csi_seq");
-  ROW_BUF_DEBUG;
+//ROW_BUF_DEBUG;
 }
 /*}}} */
 

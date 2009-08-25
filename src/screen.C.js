@@ -844,10 +844,10 @@ rxvt_term.prototype.scr_change_screen =function( scrn){
 
       this.scr_swap_screen ();
 
-      swap(this.screen.charset, swap.charset);   //::swap (this.screen.charset, swap.charset); 
-      swap(this.screen.flags,   swap.flags);  //::swap (screen.flags,   swap.flags);
+      swap(this.screen.charset, this.swap.charset);   //::swap (this.screen.charset, swap.charset); 
+      swap(this.screen.flags,   this.swap.flags);  //::swap (screen.flags,   swap.flags);
       this.screen.flags |= Screen_VisibleCursor;
-      swap.flags   |= Screen_VisibleCursor;
+      this.swap.flags   |= Screen_VisibleCursor;
     }
   else
 #endif
@@ -2312,7 +2312,7 @@ rxvt_term.prototype.scr_refresh =function(){
     for(var row = 0; row < this.nrow; row++){
         //r=row_buf [row_plus + row];
         r=ROW(this.view_start + row);
-        dtr[row]= r.t.join("");
+        dtr[row]= r.t.slice(0,this.ncol).join("");
         //console.log(r.t);
     }
     

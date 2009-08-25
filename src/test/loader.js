@@ -28,9 +28,9 @@ function soundPlay(position){
 function Animator(termEl, reqUrl){
     this.a = new rxvt_term(document.getElementById('term'),"pre_term");
     this.max_diff = .2;
-    this.min_milli_jump=100;
-    this.a.row_buf=false;
-    this.a.scr_poweron();
+    this.min_milli_jump=40;
+    //this.a.row_buf=false;
+    //this.a.scr_poweron();
     //console.log(a);
 
 
@@ -124,6 +124,7 @@ Animator.prototype = {
         this.is_outputting=false;
     },
 
+    /*
     setupTiming2: function(){
         var seconds=[];
         var startsecs=timing[0][0];
@@ -178,10 +179,55 @@ Animator.prototype = {
         }
         console.log(intervalMilliSecs.length ,this.output_timing.length);
     },
+*/
+    setupTiming2: function(){
+
+
+
+        var added_time = [];
+
+        for(var i = 0 ; i < timing.length-1; i++){
+            var secs = timing[i][0];
+            var micro_secs =(timing[i][1]/(1000*1000));
+            console.log("secs,micro_secs", secs,micro_secs);
+        
+            added_time.push(secs + micro_secs);
+        }
+        var startsecs=added_time[0];
+        var zero_based_time = [];
+        for(var i = 0 ; i < added_time.length; i++){
+            var diff_secs = added_time[i]- startsecs;
+            console.log("diff_secs",diff_secs);
+        
+            zero_based_time.push(diff_secs);
+        }
+
+
+        this.output_jumps=[];
+        this.output_timing=[];
+        var residual_milli_jump=0;
+        var residual_jump=0;
+
+        for(var i = 0 ; i < zero_based_time.length; i++){
+            residual_milli_jump += zero_based_time[i]*100;
+            residual_jump += timing[i][2];
+            if(residual_milli_jump < this.min_milli_jump){
+                continue;}
+            else{
+                this.output_timing.push(residual_milli_jump);
+                this.output_jumps.push(residual_jump);
+                console.log(residual_jump,residual_milli_jump);
+                residual_milli_jump=0;
+                residual_jump=0;
+            }
+            
+        }
+    },
 
     startAnimate : function () {
 
         this.VTAnimator2(this.resp, 0, this.resp.length);
+        //this.VTAnimator2(this.resp.slice(0,5650), 0, 5650);
 
     }
 }
@@ -203,7 +249,7 @@ $('document').ready(
         $('#fast_forward').click(
             function(){
                 //a.output_line(a.resp.slice(5150,5250));
-                a.output_line(a.resp.slice(0,5650));
+                a.output_line(a.resp.slice(0,5850));
                 a.a.scr_refresh();
                                  });
     });
