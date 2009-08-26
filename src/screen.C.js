@@ -1451,8 +1451,9 @@ rxvt_term.prototype.scr_index =function(direction){
   this.screen.flags &= ~Screen_WrapNext;
 
   if ((this.screen.cur.row == this.screen.bscroll && direction == UP)
-      || (this.screen.cur.row == this.screen.tscroll && direction == DN))
+      || (this.screen.cur.row == this.screen.tscroll && direction == DN)){
     this.scr_scroll_text (this.screen.tscroll, this.screen.bscroll, dirn);
+  }
   else
     this.screen.cur.row += dirn;
 
@@ -1707,8 +1708,13 @@ rxvt_term.prototype.scr_insdel_chars =function( count,  insdel){
     this.want_refresh = 1;
     ZERO_SCROLLBACK ();
 
-    if (count <= 0)
-        return;
+
+  if (count <= 0){
+    FUNCTION_DEBUG("count is less than 0, returning");
+    return;
+  } else{
+    FUNCTION_DEBUG("count is greater than 0, continuing");
+  }
 
     this.scr_do_wrap ();
 
@@ -2285,9 +2291,11 @@ rxvt_term.prototype.inline_row_buf_debug = function(){
 rxvt_term.prototype.last_refreshed=0;
 rxvt_term.prototype.scr_refresh =function(){ 
     FUNCTION_DEBUG("scr_refresh")
-  ROW_BUF_DEBUG;
+    //ROW_BUF_DEBUG;
     //console.log("scr_refresh")
+#ifndef DEBUG
     var d= new Date();
+
     var cur_time = d.getTime();
     if((this.last_refreshed + this.refresh_wait ) < cur_time){
         //console.log("refreshing now ");
@@ -2296,14 +2304,14 @@ rxvt_term.prototype.scr_refresh =function(){
         
         //console.log("next time", (this.last_refreshed + this.refresh_wait ) , cur_time);
         return;}
+#endif
     this.want_refresh=0;
     if (this.refresh_type == NO_REFRESH || !this.mapped){
         FUNCTION_DEBUG("this.refresh_type == NO_REFRESH || !this.mapped){");
         //console.log("this.refresh_type == NO_REFRESH || !this.mapped){");
-        //return;
     }
-    /*#ifndef DEBUG*/
-    /*#endif */
+#ifndef DEBUG
+    
 
     var out_string =[];
     var b=-1;
@@ -2330,7 +2338,7 @@ rxvt_term.prototype.scr_refresh =function(){
     //this.pre_term_el.innerHTML = dtr.join("\n");
     //$("pt")
     document.getElementById("pt").innerHTML = dtr.join("\n");
-
+#endif 
     FUNCTION_DEBUG("END OF scr_refresh");
 } 
 

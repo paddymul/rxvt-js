@@ -2382,9 +2382,9 @@ rxvt_term::cmd_parse ()
            * What the heck we'll cheat and only refresh less than every page-full.
            * if skipScroll is enabled.
            */
+          refreshnow=1;
           if (refreshnow)
             {
-                FUNCTION_DEBUG("refreshnow");
               scr_refresh ();
               want_refresh = 1;
             }
@@ -3320,7 +3320,8 @@ rxvt_term::process_csi_seq ()
       default:
         break;
     }
-  ROW_IN_BUF_DEBUG("END OF process_csi_seq");
+  FUNCTION_DEBUG("END OF process_csi_seq");
+  //ROW_IN_BUF_DEBUG("END OF process_csi_seq");
   //ROW_BUF_DEBUG;
 }
 /*}}} */

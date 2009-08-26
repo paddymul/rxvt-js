@@ -46,72 +46,68 @@ function Animator(termEl, reqUrl){
     this.resp=this.req.responseText;
 
     this.setupTiming2();
+    this.player_speed=1;
 
     var text = this.resp;
 
-        //var bpf = Math.ceil(bps * mspf / 8000);
-        var where = 0;
-        var mspf = this.output_timing[0];
-        var bpf = this.output_jumps[0];
-        var timingPointer=0;
-        var soundPointer=0;
-        var player_el=document.getElementById('player');
-        var local_output_timing=this.output_timing;
-        var local_output_jumps=this.output_jumps;
-        /*
-        if(start_from){
-            for(; timingPointer < start_from; timingPointer++){
-                mspf=local_output_timing[timingPointer];
-                soundPointer+=mspf/1000;
-                bpf=local_output_jumps[timingPointer];
-                where += bpf;
-            }
+    //var bpf = Math.ceil(bps * mspf / 8000);
+    var where = 0;
+    var mspf = this.output_timing[0];
+    var bpf = this.output_jumps[0];
+    var timingPointer=0;
+    var soundPointer=0;
+    var player_el=document.getElementById('player');
+    var local_output_timing=this.output_timing;
+    var local_output_jumps=this.output_jumps;
+    /*
+      if(start_from){
+      for(; timingPointer < start_from; timingPointer++){
+      mspf=local_output_timing[timingPointer];
+      soundPointer+=mspf/1000;
+      bpf=local_output_jumps[timingPointer];
+      where += bpf;
+      }
+      }
+    */
+    var stop = local_output_timing.length;//if(!end)
+    //console.log("stop",stop);
+    var anim = this;
+    var hnd;
+    anim.to_func = function() {
+        soundPointer+=mspf/1000;
+        
+        var diff = player_el.currentTime -soundPointer;
+        if(diff > this.max_diff) {
+            soundSeek(soundPointer);
+            console.log(diff);
         }
-        */
-        var stop = local_output_timing.length;//if(!end)
-        //console.log("stop",stop);
-        var anim = this;
-        var hnd;
-        anim.to_func = function() {
-            soundPointer+=mspf/1000;
-
-            var diff = player_el.currentTime -soundPointer;
-            if(diff > this.max_diff) {
-                soundSeek(soundPointer);
-                console.log(diff);
-            }
-            
-            //console.log(timingPointer);
-            bpf=local_output_jumps[timingPointer];
-            //var me = arguments.callee;
-            mspf=local_output_timing[timingPointer];
-
-            //console.log(mspf);
-            anim.output_line(text.substr(where, bpf));
+        
+        bpf=local_output_jumps[timingPointer];
+        mspf=local_output_timing[timingPointer];
+        anim.output_line(text.substr(where, bpf));
                        
-            //console.log(timingPointer, where, bpf);
-            timingPointer++;
-            console.log(where, text.length);
-            where += bpf;
-            if(timingPointer >= stop || where >= text.length){
-                //clearTimeout(hnd);
-                //console.log("should no longer animate");
+        //console.log(timingPointer, where, bpf);
+        timingPointer++;
+        //console.log(where, text.length);
+        where += bpf;
+        if(timingPointer >= stop || where >= text.length){
+            //clearTimeout(hnd);
+            //console.log("should no longer animate");
+        }
+        else {
+            if (where >= text.length) {
+                clearTimeout(anim.hnd);
+                where = 0;
+                timingPointer=0;
+                anim.a.scr_poweron();
+                setTimeout(me, 0);
+                soundSeek(0);
             }
             else {
-                if (where >= text.length) {
-                    clearTimeout(hnd);
-                    where = 0;
-                    timingPointer=0;
-                    anim.a.scr_poweron();
-                    setTimeout(me, 0);
-                    soundSeek(0);
-                }
-                else {
-                    anim.hnd = setTimeout(anim.to_func, mspf);
-                }
+                anim.hnd = setTimeout(anim.to_func, mspf * anim.player_speed);
             }
-        };
-        //anim.hnd = setTimeout(anim.to_func, mspf);
+        }
+    };
     
 
 
@@ -128,13 +124,6 @@ Animator.prototype = {
         this.a.scr_refresh();
         this.is_outputting=false;
     },
-    pause : function(){
-        
-        clearTimeout(this.hnd);
-    },
-    play : function(){
-        this.hnd = setTimeout(this.to_func, 0);
-    } ,
     setupTiming2: function(){
         var added_time = [];
 
@@ -179,13 +168,21 @@ Animator.prototype = {
             
         }
     },
-
-    startAnimate : function () {
-
-
-        //this.VTAnimator2(this.resp.slice(0,5650), 0, 5650);
-
-    }
+    pause : function(){
+        clearTimeout(this.hnd);
+    },
+    play : function(){
+        this.player_speed=1.0;
+        this.hnd = setTimeout(this.to_func, 0);
+    } ,
+    fast_forward : function(){
+        this.player_speed=.5;
+        this.hnd = setTimeout(this.to_func, 0);
+    } ,
+    play_slow : function(){
+        this.player_speed=2;
+        this.hnd = setTimeout(this.to_func, 0);
+    } ,
 }
 
 $('document').ready(
@@ -206,10 +203,13 @@ $('document').ready(
         //$('#play_start').click(animate);
         $('#play_start').click(function() {a.play();});
         $('#pause').click(function(){ a.pause();});
-        $('#fast_forward').click(
+        $('#fast_forward').click(function(){a.fast_forward();});
+        $('#play_slow').click(function(){a.play_slow();});
+        /* $('#fast_forward').click(
             function(){
                 //a.output_line(a.resp.slice(5150,5250));
                 a.output_line(a.resp.slice(0,5850));
                 a.a.scr_refresh();
                                  });
+        */
     });

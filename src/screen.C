@@ -1439,8 +1439,9 @@ rxvt_term::scr_index (enum page_dirn direction) NOTHROW
   screen.flags &= ~Screen_WrapNext;
 
   if ((screen.cur.row == screen.bscroll && direction == UP)
-      || (screen.cur.row == screen.tscroll && direction == DN))
+      || (screen.cur.row == screen.tscroll && direction == DN)){
     scr_scroll_text (screen.tscroll, screen.bscroll, dirn);
+  }
   else
     screen.cur.row += dirn;
 
@@ -1702,8 +1703,12 @@ rxvt_term::scr_insdel_chars (int count, int insdel) NOTHROW
   want_refresh = 1;
   ZERO_SCROLLBACK ();
 
-  if (count <= 0)
+  if (count <= 0){
+    FUNCTION_DEBUG("count is less than 0, returning");
     return;
+  } else{
+    FUNCTION_DEBUG("count is greater than 0, continuing");
+  }
 
   scr_do_wrap ();
 
@@ -2283,7 +2288,7 @@ void
 rxvt_term::scr_refresh () NOTHROW
 {
   FUNCTION_DEBUG("scr_refresh")
-  ROW_BUF_DEBUG;
+    //ROW_BUF_DEBUG;
   int16_t col, row,   /* column/row we're processing               */
           ocrow;      /* old cursor row                            */
   int i;              /* tmp                                       */
@@ -2877,7 +2882,7 @@ rxvt_term::scr_xor_span (int beg_row, int beg_col, int end_row, int end_col, ren
 void
 rxvt_term::scr_reverse_selection () NOTHROW
 {
-  FUNCTION_DEBUG("scr_reverse_selection")
+  //FUNCTION_DEBUG("scr_reverse_selection")
   if (selection.op
       && current_screen == selection.screen
       && selection.end.row >= view_start)
@@ -4149,7 +4154,8 @@ rxvt_term::scr_overlay_set (int x, int y, const wchar_t *s) NOTHROW
 void
 rxvt_term::scr_swap_overlay () NOTHROW
 {
-  FUNCTION_DEBUG("scr_swap_overlay")
+  //FUNCTION_DEBUG("scr_swap_overlay")
+  // I'm not sure if this is needed
   if (!ov.text)
     return;
 

@@ -853,28 +853,28 @@ rxvt_term.prototype.process_escape_seq =function(){
         break;
 #if !ENABLE_MINIMAL
   case 54: //'6':
-      CASE_DEBUG("case 54: //'6':")
+      CASE_DEBUG("case '6':")
         this.scr_backindex ();
         break;
 #endif
   case 55://'7':
-        CASE_DEBUG("case 55://'7':")
+        CASE_DEBUG("case '7':")
         this.scr_cursor (SAVE);
         break;
   case 56://'8':
-      CASE_DEBUG("case 56://'8':")
+      CASE_DEBUG("case '8':")
         this.scr_cursor (RESTORE);
         break;
 #if !ENABLE_MINIMAL
   case 57://'9':
-      CASE_DEBUG("case 57://'9':")
+      CASE_DEBUG("case '9':")
         this.scr_forwardindex ();
         break;
 #endif
   case 61://'=':
-        CASE_DEBUG("case 61://'=':")
+        CASE_DEBUG("case '=':")
   case 62://'>':
-        CASE_DEBUG("case 62://'>':")
+        CASE_DEBUG("case '>':")
          this.set_privmode (PrivMode_aplKP, ch == '=');
         break;
 
@@ -1402,7 +1402,8 @@ VAR_DEBUG(i,ndef);
       default:
         break;
   }
-  ROW_IN_BUF_DEBUG("END OF process_csi_seq");
+FUNCTION_DEBUG("END OF process_csi_seq");
+//ROW_IN_BUF_DEBUG("END OF process_csi_seq");
 //ROW_BUF_DEBUG;
 }
 /*}}} */
