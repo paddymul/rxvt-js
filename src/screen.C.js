@@ -1081,7 +1081,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
   while (str_i < strend_i){  //while (str < strend)
     //c = (unicode_t)*str++; 
       c =  str[str_i++]; //convert to rxvt-unicodes representation 
-      VAR_DEBUG("str_i", c);
+      VAR_DEBUG("str_i", ord(c));
       if (expect_false (ord(c) < 0x20))
           if (ord(c) == C0_LF){
               //FUNCTION_DEBUG("c == C0_LF");
@@ -1102,7 +1102,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
             continue;
           }
           else if (ord(c) == C0_CR){
-              //FUNCTION_DEBUG("c == C0_CR")
+              FUNCTION_DEBUG("c == C0_CR")
           line.l= ma_x(line.l,this.screen.cur.col);
 
             this.screen.flags &= ~Screen_WrapNext; 
@@ -1186,9 +1186,11 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
                             line.t[this.screen.cur.col] == ""
                 || (this.screen.cur.col <  this.ncol - 1
                     && line.t[this.screen.cur.col + 1] == "")
-             ))
+                            )){
               //scr_kill_char (*line, screen.cur.col); 
+            FUNCTION_DEBUG("scr_kill_char from scr_add_lines");
               this.scr_kill_char ( line, this.screen.cur.col); 
+          }
               //rend_t rend = SET_FONT (rstyle, FONTSET (rstyle)->find_font (c)); 
               //FIXME var rend= SET_FONT (rstyle, FONTSET (rstyle).find_font (c));
 
@@ -1259,9 +1261,13 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
  */
 //void rxvt_term::scr_backspace (){ 
 rxvt_term.prototype.scr_backspace =function(){ 
-    FUNCTION_DEBUG("scr_backspace")
+    FUNCTION_DEBUG("scr_backspace");
+    
+
   if (this.screen.cur.col == 0){
+      FUNCTION_DEBUG("scr_backspace screen.cur.col == 0)");
       if (this.screen.cur.row > 0){
+          FUNCTION_DEBUG("screen.cur.row > 0");
 #ifdef TERMCAP_HAS_BW
           this.screen.cur.col = ncol - 1;
           --this.screen.cur.row;

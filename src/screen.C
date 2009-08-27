@@ -997,7 +997,7 @@ rxvt_term::scr_add_lines (const wchar_t *str, int len, int minlines) NOTHROW
     {
       c = (unicode_t)*str++; // convert to rxvt-unicodes representation
       //FUNCTION_DEBUG(c)
-        VAR_DEBUG("str_i", (char) c);
+        VAR_DEBUG("str_i", (int) c);
       if (expect_false (c < 0x20))
         if (c == C0_LF)
           {
@@ -1019,7 +1019,7 @@ rxvt_term::scr_add_lines (const wchar_t *str, int len, int minlines) NOTHROW
           }
         else if (c == C0_CR)
           {
-            //FUNCTION_DEBUG("c == C0_CR")
+            FUNCTION_DEBUG("c == C0_CR")
             max_it (line->l, screen.cur.col);
 
             screen.flags &= ~Screen_WrapNext;
@@ -1116,8 +1116,10 @@ rxvt_term::scr_add_lines (const wchar_t *str, int len, int minlines) NOTHROW
                 line->t[screen.cur.col] == NOCHAR
                 || (screen.cur.col < ncol - 1
                     && line->t[screen.cur.col + 1] == NOCHAR)
-             ))
+                            )){
+            FUNCTION_DEBUG("scr_kill_char from scr_add_lines");
             scr_kill_char (*line, screen.cur.col);
+          }
 
           rend_t rend = SET_FONT (rstyle, FONTSET (rstyle)->find_font (c));
 
@@ -1232,8 +1234,10 @@ rxvt_term::scr_backspace () NOTHROW
 
   if (screen.cur.col == 0)
     {
+      FUNCTION_DEBUG("scr_backspace screen.cur.col == 0)");
       if (screen.cur.row > 0)
         {
+          FUNCTION_DEBUG("screen.cur.row > 0");
 #ifdef TERMCAP_HAS_BW
           screen.cur.col = ncol - 1;
           --screen.cur.row;

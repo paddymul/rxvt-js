@@ -552,6 +552,7 @@ rxvt_term.prototype.cmd_parse =function(){
             FUNCTION_DEBUG("process_nonprinting from cmd_parse")
             
              this.process_nonprinting (och);
+            VAR_DEBUG(" after_nonprinting this.screen.cur.col", this.screen.cur.col);
             FUNCTION_DEBUG("END process_nonprinting from cmd_parse")
 
 

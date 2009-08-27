@@ -2396,6 +2396,7 @@ rxvt_term::cmd_parse ()
             {
             FUNCTION_DEBUG("process_nonprinting from cmd_parse")
               process_nonprinting (ch);
+            VAR_DEBUG(" after_nonprinting this.screen.cur.col", screen.cur.col);
             FUNCTION_DEBUG("END process_nonprinting from cmd_parse")
             }
           catch (const class out_of_input &o)
