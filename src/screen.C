@@ -1094,6 +1094,8 @@ rxvt_term::scr_add_lines (const wchar_t *str, int len, int minlines) NOTHROW
 
       if (expect_false (screen.flags & Screen_Insert)){
           FUNCTION_DEBUG("expect_false (this.screen.flags & Screen_Insert))");
+          VAR_DEBUG("INSERT", INSERT);
+          VAR_DEBUG("scr_insdel_chars width", width);
         scr_insdel_chars (width, INSERT);
       }
 

@@ -364,7 +364,7 @@ SELECTION_CLEAR = 0;
 
 #define memmove(dest,src,length) console.log("tried to memmove",(src),(dest),(length));
 
-#define WCWIDTH(expr) 0
+#define WCWIDTH(expr) 1
 
 #define NORETURN rxvt_attribute ((noreturn))
 #define UNUSED   rxvt_attribute ((unused))

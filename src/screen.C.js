@@ -1175,6 +1175,8 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
 
         if (expect_false (this.screen.flags & Screen_Insert)){
             FUNCTION_DEBUG("expect_false (this.screen.flags & Screen_Insert))");
+            VAR_DEBUG("INSERT", INSERT);
+            VAR_DEBUG("scr_insdel_chars width", width);
             this.scr_insdel_chars (width, INSERT); 
         }
 
