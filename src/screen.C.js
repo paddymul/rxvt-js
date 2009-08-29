@@ -2318,6 +2318,7 @@ rxvt_term.prototype.scr_refresh =function(){
         FUNCTION_DEBUG("this.refresh_type == NO_REFRESH || !this.mapped){");
         //console.log("this.refresh_type == NO_REFRESH || !this.mapped){");
     }
+    this.refresh_count=0;
 #ifndef DEBUG
     
 

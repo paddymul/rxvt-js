@@ -485,8 +485,8 @@ rxvt_term.prototype.cmd_parse =function(){
                         nlines++;}
                     FUNCTION_DEBUG("refresh_count++;");
                     this.refresh_count++;
-                    //VAR_DEBUG("refresh_count",this.refresh_count);
-                    //VAR_DEBUG("this.nrow", this.nrow );
+                    VAR_DEBUG("refresh_count",this.refresh_count);
+                    VAR_DEBUG("this.nrow", this.nrow );
 
                     if ((!this.option (Opt_jumpScroll)) || this.refresh_count >= (this.nrow - 1)){
                         FUNCTION_DEBUG("Opt_jumscroll refresh_count");

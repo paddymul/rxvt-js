@@ -2323,8 +2323,8 @@ rxvt_term::cmd_parse ()
                     }
                     FUNCTION_DEBUG("refresh_count++;");
                     refresh_count++;
-                    //VAR_DEBUG("refresh_count",refresh_count);
-                    //VAR_DEBUG("this.nrow", nrow );
+                    VAR_DEBUG("refresh_count",refresh_count);
+                    VAR_DEBUG("this.nrow", nrow );
                     if (!option (Opt_jumpScroll) || refresh_count >= (nrow - 1))
                     {
                       FUNCTION_DEBUG("Opt_jumscroll refresh_count");
