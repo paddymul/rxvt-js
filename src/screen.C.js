@@ -127,7 +127,7 @@ rxvt_term.prototype.scr_blank_line =function(l, col, width, efs){
 /* Fill a full line with blanks - make sure it is allocated first */
 //void rxvt_term::scr_blank_screen_mem (line_t &l, rend_t efs) 
 rxvt_term.prototype.scr_blank_screen_mem =function(l,  efs){ 
-       FUNCTION_DEBUG("scr_blank_screen_mem")
+    FUNCTION_DEBUG("scr_blank_screen_mem")
   l = this.scr_blank_line (l, 0,  this.ncol, efs);
 
   l.l = 0;
@@ -1591,7 +1591,7 @@ rxvt_term.prototype.scr_erase_screen =function( mode){
     return;
 
  num = mi_n(num, this.nrow - row);  //min_it (num, this.nrow - row);
- /*
+ 
   //TODO: the code below does not work when  this.view_start != 0
   //the workaround is to disable the clear and use a normal refresh
   //when  this.view_start != 0. mysterious.
@@ -1619,16 +1619,16 @@ rxvt_term.prototype.scr_erase_screen =function( mode){
           //XChangeGC (dpy, gc, GCForeground, &gcvalue);
         }
     }
-*/
+
   for (; num--; row++){
       var selected_row =  ROW(row);
       this.scr_blank_screen_mem (ROW(row), rstyle);
-      /*
-        this is causing errors with scr_blank_line getting an undefined variable
-this.drawn_buf[row], and trying to access .t on it , for nwo we will skip it
+      
+      //  this is causing errors with scr_blank_line getting an undefined variable
+      //this.drawn_buf[row], and trying to access .t on it , for nwo we will skip it
       if (! this.view_start)
         this.scr_blank_line ( this.drawn_buf [row], 0,  this.ncol, ren);
-      */
+      
     }
 }
 

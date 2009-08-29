@@ -2308,7 +2308,6 @@ rxvt_term::cmd_parse ()
                   break;}
 
               VAR_DEBUG("och",ch);
-              VAR_DEBUG("cmdbuf_ptr", (cmdbuf_ptr - cmdbuf_base));
               *str++ = ch;
 
               //if(str >= eol){FUNCTION_DEBUG("str >= eol")}

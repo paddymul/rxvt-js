@@ -2946,6 +2946,7 @@ void
 rxvt_term::selection_check (int check_more) NOTHROW
 {
   FUNCTION_DEBUG("selection_check")
+    
   row_col_t pos;
 
   if (!selection.op)
@@ -2967,7 +2968,9 @@ rxvt_term::selection_check (int check_more) NOTHROW
       || (check_more == 4     /* screen width change */
           && (selection.beg.row != selection.end.row
               || selection.end.col > ncol)))
-    CLEAR_SELECTION ();
+    ;
+    //CLEAR_SELECTION ();
+  
 }
 
 /* ------------------------------------------------------------------------- */

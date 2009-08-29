@@ -440,7 +440,6 @@ rxvt_term.prototype.cmd_parse =function(){
     }
 #endif     
 #ifndef chr_debug_loop
-    FUNCTION_DEBUG("#ifndef chr_debug_loop");
         //FUNCTION_DEBUG("outer_for_loop")
         //FUNCTION_DEBUG(och)
         
@@ -475,7 +474,6 @@ rxvt_term.prototype.cmd_parse =function(){
                   //FUNCTION_DEBUG(" is_ctrl 2266")
                     break;}
               VAR_DEBUG("och",och);
-              VAR_DEBUG("cmdbuf_ptr", this.cmdbuf_ptr);
               str[str_i++]=chr(och);  //str++ = ch; 
               //if(str.length >= eol){FUNCTION_DEBUG("str >= eol")}
               //VAR_DEBUG("str.length", str_i);
