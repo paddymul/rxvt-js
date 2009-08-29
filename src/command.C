@@ -940,7 +940,11 @@ rxvt_term::set_privmode (unsigned bit, int set) NOTHROW
   {
         FUNCTION_DEBUG("set_privmode");
         VAR_DEBUG("bit",bit);
-        VAR_DEBUG("set",set);
+        if(set){
+          VAR_DEBUG("set","true");}
+        else{
+          VAR_DEBUG("set","false");
+        }
         VAR_DEBUG("priv_modes",priv_modes);
 
     if (set)
@@ -1063,7 +1067,7 @@ rxvt_term::refresh_check ()
 void
 rxvt_term::flush_cb (ev::timer &w, int revents)
 {
-  //FUNCTION_DEBUG("flush_cb ")
+  FUNCTION_DEBUG("flush_cb setting refresh_count to 0");
   make_current ();
 
   refresh_count = 0;
@@ -2997,8 +3001,8 @@ rxvt_term::process_csi_seq ()
   i = ch - CSI_ICH;
   //  VAR_DEBUG(i)
   ndef = get_byte_array_bit (csi_defaults, i);
-  FUNCTION_DEBUG("get_byte_array_bit")
-    VAR_DEBUG(i,ndef)
+  FUNCTION_DEBUG("get_byte_array_bit");
+  VAR_DEBUG(i,ndef);
   for (p = 0; p < nargs; p++)
     if (arg[p] == -1)
       arg[p] = ndef;

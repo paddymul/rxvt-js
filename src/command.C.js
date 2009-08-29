@@ -1061,7 +1061,7 @@ function get_byte_array_bit(lst1, val){
         return 1;
         break;
     }
-    return true;
+    return 1;
 }
 //void rxvt_term::process_csi_seq ()
 rxvt_term.prototype.process_csi_seq =function(){

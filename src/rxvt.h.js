@@ -1919,7 +1919,14 @@ void init_asv ()
   set_privmode: function(bit,set){
         FUNCTION_DEBUG("set_privmode");
         VAR_DEBUG("bit",bit);
-        VAR_DEBUG("set",set);
+#if DEBUG
+        if(set){
+          VAR_DEBUG("set","true");}
+        else{
+          VAR_DEBUG("set","false");
+        }
+#endif
+        //VAR_DEBUG("set",set);
         VAR_DEBUG("priv_modes",this.priv_modes);
     if (set)
       this.priv_modes |= bit;
