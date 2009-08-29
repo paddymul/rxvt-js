@@ -478,7 +478,7 @@ rxvt_term.prototype.cmd_parse =function(){
               if(str_i >= eol){FUNCTION_DEBUG("str >= eol");}
               //VAR_DEBUG("str.length", str_i);
               //VAR_DEBUG("eol", eol);
-              if (expect_false (och == C0_LF || str_i -2 >= eol)){
+              if (expect_false (och == C0_LF || str_i >= eol)){
                     FUNCTION_DEBUG("Linefeed, eol")
                     if (och == C0_LF){
                       FUNCTION_DEBUG("LF nlines++");
