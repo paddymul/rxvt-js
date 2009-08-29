@@ -467,7 +467,7 @@ rxvt_term.prototype.cmd_parse =function(){
             //var eol = str.length + mi_n (this.ncol, UBUFSIZ); //wchar_t *eol = str + min (ncol, UBUFSIZ);
             var eol = str_i + mi_n (this.ncol, UBUFSIZ); //wchar_t *eol = str + min (ncol, UBUFSIZ);
             for (;;){//inner_for_loop
-                //FUNCTION_DEBUG("inner_for_loop")
+                FUNCTION_DEBUG("inner_for_loop")
                 //FUNCTION_DEBUG(och)
 
               if (expect_false (och == NOCHAR || (IS_CONTROL (och) && och != C0_LF && och != C0_CR && och != C0_HT))) { //IS_CONTROL
@@ -507,6 +507,7 @@ rxvt_term.prototype.cmd_parse =function(){
                         FUNCTION_DEBUG(" scr_add_lines (buf, str - buf, nlines);")
                             //FIXME pointermath  scr_add_lines (buf, str - buf, nlines);  
                             this.scr_add_lines (buf, str_i, nlines);}
+                        FUNCTION_DEBUG("nlines = 0");
                         nlines = 0;
                         //str_i = buf_i;
                         str = buf; str_i=0;
@@ -532,8 +533,9 @@ rxvt_term.prototype.cmd_parse =function(){
                 FUNCTION_DEBUG("innerend of inner_for_loop")
             }//for(;;) inner_for_loop
             //VAR_DEBUG("close_inner, str",str.join(""))
-            //FUNCTION_DEBUG("the inner_for_loop has closed ")
+            FUNCTION_DEBUG("the inner_for_loop has closed ")
             if (!(SHOULD_INVOKE (HOOK_ADD_LINES)    && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str.length - buf.length, DT_END)))){
+            FUNCTION_DEBUG("cmd_parse, HOOK_ADD_LINES");
                 //FIXED pointermath  scr_add_lines (buf, str - buf, nlines);
                 this.scr_add_lines (buf, str_i, nlines);  
             }   
@@ -1129,8 +1131,9 @@ VAR_DEBUG(i,ndef);
 
   for (p = 0; p < nargs; p++){
     if (arg[p] == -1){
-      arg[p] = 0; } //this is a decent pick for a default
+      arg[p] = ndef; } //this is a decent pick for a default
   }
+
   /*
    * private mode handling 
    */
@@ -1194,6 +1197,7 @@ VAR_DEBUG(i,ndef);
           CASE_DEBUG("case CSI_CUD:		/* 8.3.19:")
       case CSI_VPB:		/* 8.3.160: (1) LINE POSITION BACKWARD */
           CASE_DEBUG("case CSI_VPB:		/* 8.3.160:")
+      VAR_DEBUG("process_csi_seq VPB, arg[0]", arg[0]);
         this.scr_gotorc (arg[0], 0, RELATIVE);
         break;
 
@@ -1437,7 +1441,8 @@ VAR_DEBUG(i,ndef);
       default:
         break;
   }
-FUNCTION_DEBUG("END OF process_csi_seq");
+//FUNCTION_DEBUG("END OF process_csi_seq");
+VAR_DEBUG("END OF process_csi_seq screen.cur.row",this.screen.cur.row);
 //ROW_IN_BUF_DEBUG("END OF process_csi_seq");
 //ROW_BUF_DEBUG;
 }

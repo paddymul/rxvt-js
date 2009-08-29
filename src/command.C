@@ -2304,7 +2304,7 @@ rxvt_term::cmd_parse ()
           wchar_t *eol = str + min (ncol, UBUFSIZ);
 
           for (;;) {  //INNERLOOP
-              //FUNCTION_DEBUG("inner_for_loop")
+              FUNCTION_DEBUG("inner_for_loop")
               //FUNCTION_DEBUG(ch)
 
               if (expect_false (ch == NOCHAR || (IS_CONTROL (ch) && ch != C0_LF && ch != C0_CR && ch != C0_HT))){
@@ -2352,7 +2352,7 @@ rxvt_term::cmd_parse ()
                         FUNCTION_DEBUG(" scr_add_lines (buf, str - buf, nlines);")
                         scr_add_lines (buf, str - buf, nlines);
                       }
-
+                      FUNCTION_DEBUG("nlines = 0");
                       nlines = 0;
                       str = buf;
                       eol = str + min (ncol, UBUFSIZ);
@@ -2380,12 +2380,13 @@ rxvt_term::cmd_parse ()
               FUNCTION_DEBUG("innerend of inner_for_loop")
             }         
           //VAR_DEBUG("close_inner, str",str)    
-          //FUNCTION_DEBUG("the inner_for_loop has closed ")
+          FUNCTION_DEBUG("the inner_for_loop has closed ")
 
           if (!(SHOULD_INVOKE (HOOK_ADD_LINES)
-                && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str - buf, DT_END))))
+                && HOOK_INVOKE ((this, HOOK_ADD_LINES, DT_WCS_LEN, buf, str - buf, DT_END)))){
+            FUNCTION_DEBUG("cmd_parse, HOOK_ADD_LINES");
             scr_add_lines (buf, str - buf, nlines);
-
+          }
           /*
            * If there have been a lot of new lines, then update the screen
            * What the heck we'll cheat and only refresh less than every page-full.
@@ -3087,6 +3088,7 @@ rxvt_term::process_csi_seq ()
         CASE_DEBUG("case CSI_CUD:		/* 8.3.19:")
       case CSI_VPB:		/* 8.3.160: (1) LINE POSITION BACKWARD */
         CASE_DEBUG("case CSI_VPB:		/* 8.3.160:")
+      VAR_DEBUG("process_csi_seq VPB, arg[0]", arg[0]);
         scr_gotorc (arg[0], 0, RELATIVE);
         break;
 
@@ -3330,7 +3332,8 @@ rxvt_term::process_csi_seq ()
       default:
         break;
     }
-  FUNCTION_DEBUG("END OF process_csi_seq");
+  //FUNCTION_DEBUG("END OF process_csi_seq");
+VAR_DEBUG("END OF process_csi_seq screen.cur.row", screen.cur.row);
   //ROW_IN_BUF_DEBUG("END OF process_csi_seq");
   //ROW_BUF_DEBUG;
 }

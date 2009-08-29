@@ -702,7 +702,7 @@ rxvt_term::scr_cursor (cursor_mode mode) NOTHROW
   assert (s->cur.row >= 0);
   assert (s->cur.col >= 0);
 #endif
-  ROW_IN_BUF_DEBUG("END OF scr_cursor");
+  //ROW_IN_BUF_DEBUG("END OF scr_cursor");
 }
 
 void
@@ -967,10 +967,17 @@ rxvt_term::scr_add_lines (const wchar_t *str, int len, int minlines) NOTHROW
 
   if (minlines > 0)
     {
-      FUNCTION_DEBUG("minlines >0")
+      FUNCTION_DEBUG("minlines >0");
+      VAR_DEBUG("scr_addl_lines minlines 1",minlines);
+      VAR_DEBUG("scr_addl_lines screen.cur.row", screen.cur.row);
       minlines += screen.cur.row - screen.bscroll;
+      VAR_DEBUG("scr_addl_lines minlines 2",minlines);
+      VAR_DEBUG("scr_addl_lines top_row", top_row);
       min_it (minlines, screen.cur.row - top_row);
-
+      VAR_DEBUG("scr_addl_lines minlines 3",minlines);
+      VAR_DEBUG("scr_add_lines this.screen.tscroll",screen.tscroll);
+      VAR_DEBUG("scr_add_lines this.screen.bscroll",screen.bscroll);
+      VAR_DEBUG("scr_add_lines this.nrow",nrow);
       if (minlines > 0
           && screen.tscroll == 0
           && screen.bscroll == nrow - 1)

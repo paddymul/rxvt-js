@@ -802,7 +802,7 @@ rxvt_term.prototype.scr_cursor =function(mode){
   assert (s.cur.col >= 0);
 #endif
 
-  ROW_IN_BUF_DEBUG("END OF scr_cursor");
+    //ROW_IN_BUF_DEBUG("END OF scr_cursor");
 }
 
 //void rxvt_term::scr_swap_screen () 
@@ -1064,10 +1064,19 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
 
   if (minlines > 0){
       FUNCTION_DEBUG("minlines >0")
+      VAR_DEBUG("scr_addl_lines minlines 1", minlines);
+      VAR_DEBUG("scr_addl_lines screen.cur.row", this.screen.cur.row);
+
       minlines += this.screen.cur.row - this.screen.bscroll;
+      VAR_DEBUG("scr_addl_lines minlines 2",minlines);
+      VAR_DEBUG("scr_addl_lines top_row", this.top_row);
+
       //min_it (minlines, screen.cur.row - top_row);
       minlines = mi_n (minlines, this.screen.cur.row -  this.top_row);
-
+      VAR_DEBUG("scr_addl_lines minlines 3",minlines);
+      VAR_DEBUG("scr_add_lines this.screen.tscroll",this.screen.tscroll);
+      VAR_DEBUG("scr_add_lines this.screen.bscroll",this.screen.bscroll);
+      VAR_DEBUG("scr_add_lines this.nrow",this.nrow);
       if (minlines > 0 && this.screen.tscroll == 0 && this.screen.bscroll == this.nrow - 1){
           FUNCTION_DEBUG("minlines >0 and tscroll and bscroll");
           // _atleast_ this many lines need to be scrolled 
