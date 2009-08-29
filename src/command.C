@@ -2310,7 +2310,7 @@ rxvt_term::cmd_parse ()
               VAR_DEBUG("och",ch);
               *str++ = ch;
 
-              //if(str >= eol){FUNCTION_DEBUG("str >= eol")}
+              if(str >= eol){FUNCTION_DEBUG("str >= eol");}
               //VAR_DEBUG("str.length", str);
               //VAR_DEBUG("eol", eol);
 
@@ -4200,9 +4200,11 @@ rxvt_term::process_sgr_mode (unsigned int nargs, const int *arg)
           case 35:
           case 36:
           case 37:
+            CASE_DEBUG("sgr case 37");
             scr_color ((unsigned int) (minCOLOR + (arg[i] - 30)), Color_fg);
             break;
           case 38: // set fg color, ISO 8613-6
+            CASE_DEBUG("sgr case 38");
             if (nargs > i + 2 && arg[i + 1] == 5)
               {
                 scr_color ((unsigned int) (minCOLOR + arg[i + 2]), Color_fg);
@@ -4210,6 +4212,7 @@ rxvt_term::process_sgr_mode (unsigned int nargs, const int *arg)
               }
             break;
           case 39:		/* default fg */
+            CASE_DEBUG("sgr case 39");
             scr_color (Color_fg, Color_fg);
             break;
 
@@ -4221,9 +4224,11 @@ rxvt_term::process_sgr_mode (unsigned int nargs, const int *arg)
           case 45:
           case 46:
           case 47:
+            CASE_DEBUG("sgr case 47");
             scr_color ((unsigned int) (minCOLOR + (arg[i] - 40)), Color_bg);
             break;
           case 48: // set bg color, ISO 8613-6
+            CASE_DEBUG("sgr case 48");
             if (nargs > i + 2 && arg[i + 1] == 5)
               {
                 scr_color ((unsigned int) (minCOLOR + arg[i + 2]), Color_bg);
@@ -4231,6 +4236,7 @@ rxvt_term::process_sgr_mode (unsigned int nargs, const int *arg)
               }
             break;
           case 49:		/* default bg */
+            CASE_DEBUG("sgr case 49");
             scr_color (Color_bg, Color_bg);
             break;
 
@@ -4245,6 +4251,7 @@ rxvt_term::process_sgr_mode (unsigned int nargs, const int *arg)
           case 95:
           case 96:
           case 97:
+            CASE_DEBUG("sgr case 97");
             scr_color ((unsigned int) (minBrightCOLOR + (arg[i] - 90)), Color_fg);
             break;
           case 100:
@@ -4255,6 +4262,7 @@ rxvt_term::process_sgr_mode (unsigned int nargs, const int *arg)
           case 105:
           case 106:
           case 107:
+            CASE_DEBUG("sgr case 107");
             scr_color ((unsigned int) (minBrightCOLOR + (arg[i] - 100)), Color_bg);
             break;
 #endif
