@@ -2255,7 +2255,12 @@ rxvt_term::cmd_parse ()
           if (ch == NOCHAR)
             break;
 
-    VAR_DEBUG("och",ch);
+          VCHRAR_DEBUG("och",ch);
+
+    if(ch == 10 || ch == 13){
+      VCHRAR_DEBUG ("cmdbuf_ptr", (cmdbuf_ptr - cmdbuf_base));
+    }
+
 #endif     
 #ifndef chr_debug_loop
       if (expect_false (ch == NOCHAR))
@@ -2303,6 +2308,7 @@ rxvt_term::cmd_parse ()
                   break;}
 
               VAR_DEBUG("och",ch);
+              VAR_DEBUG("cmdbuf_ptr", (cmdbuf_ptr - cmdbuf_base));
               *str++ = ch;
 
               //if(str >= eol){FUNCTION_DEBUG("str >= eol")}

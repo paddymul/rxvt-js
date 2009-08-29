@@ -431,13 +431,16 @@ rxvt_term.prototype.cmd_parse =function(){
     for (;;){ //outer_for_loop
 #ifdef chr_debug_loop
     och = ord(this.next_char()); 
-    VAR_DEBUG("och",och);
     if (och == NOCHAR){
         break;
     }
+    CHR_VAR_DEBUG("och",och);
+    if(och == 10 || och == 13){
+        CHR_VAR_DEBUG("cmdbuf_ptr", this.cmdbuf_ptr);
+    }
 #endif     
 #ifndef chr_debug_loop
-
+    FUNCTION_DEBUG("#ifndef chr_debug_loop");
         //FUNCTION_DEBUG("outer_for_loop")
         //FUNCTION_DEBUG(och)
         
@@ -472,6 +475,7 @@ rxvt_term.prototype.cmd_parse =function(){
                   //FUNCTION_DEBUG(" is_ctrl 2266")
                     break;}
               VAR_DEBUG("och",och);
+              VAR_DEBUG("cmdbuf_ptr", this.cmdbuf_ptr);
               str[str_i++]=chr(och);  //str++ = ch; 
               //if(str.length >= eol){FUNCTION_DEBUG("str >= eol")}
               //VAR_DEBUG("str.length", str_i);
@@ -575,6 +579,8 @@ rxvt_term.prototype.cmd_parse =function(){
 
 
     rxvt_term.prototype.cr_seen=false;
+
+    rxvt_term.prototype.cr_seenB=false;
 // read the next character 
 
 //wchar_t rxvt_term::next_char () 
@@ -584,6 +590,35 @@ rxvt_term.prototype.next_char =function(){
 
   while (this.cmdbuf_ptr < this.cmdbuf_endp){
       var ret_char = this.cmdbuf[this.cmdbuf_ptr++];
+      if(this.cr_seen){
+          this.cr_seen=false;
+          return chr(10);
+      }
+      if( ord(ret_char) == 10 ){
+          this.cr_seen=true;
+          //CHR_FUNCTION_DEBUG("setthing cr_seen to true");
+          this.cmdbuf_ptr--;
+          return chr(13);
+      }
+
+      /*
+    if(this.cr_seen){
+          this.cr_seen=false;
+          CHR_FUNCTION_DEBUG("setthing cr_seen to false");
+          if( ord(ret_char) == 10 ){
+              
+              //this.cr_seenB=false;
+              CHR_FUNCTION_DEBUG("returning 13 instead of 10");
+              this.cmdbuf_ptr--;
+              return chr(13);}
+      }
+      if( ord(ret_char) == 13 ){
+          this.cr_seen=true;
+          CHR_FUNCTION_DEBUG("setthing cr_seen to true");
+          return chr(13);
+      }
+*/
+      /*
       if( ord(ret_char) == 13 ){
           if(!this.cr_seen){
               this.cr_seen=true;
@@ -593,6 +628,7 @@ rxvt_term.prototype.next_char =function(){
               this.cr_seen=false;
           }
       }
+      */
       //if(expect_true(ord(c_char) <= 0x7f && ord(c_char) != 0x1b)){
       //VAR_DEBUG("next_char return", ret_char);
       return ret_char;

@@ -96,12 +96,27 @@ typedef  int32_t tlen_t_; // specifically for use in the line_t structure
 #endif
 
 //#define FUCTION_DEBUG(function_name)  fprintf(stdout,function_name); fprintf(stdout, "\n");
+#ifndef chr_debug_loop
 #define FUNCTION_DEBUG(function_name)  std::cout << function_name << "\n";
 #define VAR_DEBUG(var_name, var_val)  std::cout << var_name << " " << var_val  << "\n";
 #define CASE_DEBUG(function_name)  fprintf(stdout,function_name); fprintf(stdout, "\n");
 #define  ROW_BUF_DEBUG row_buf_debug();
 #define  ROW_IN_BUF_DEBUG(label) std::cout << label; inline_row_buf_debug();
 #define  ROW_DEBUG(label, line) std::cout << label; inline_row_debug((line));
+
+#else
+#define FCHRUNCTION_DEBUG(function_name)  std::cout << function_name << "\n";
+#define VCHRAR_DEBUG(var_name, var_val)  std::cout << var_name << " " << var_val  << "\n";
+
+#define FUNCTION_DEBUG(function_name)  ;
+#define VAR_DEBUG(var_name, var_val)  ;
+#define CASE_DEBUG(function_name)  
+#define  ROW_BUF_DEBUG ;
+#define  ROW_IN_BUF_DEBUG(label);
+#define  ROW_DEBUG(label, line) ;
+
+
+#endif 
 
 /*#define chr_debug_loop 1 */
 /*
