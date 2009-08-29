@@ -154,13 +154,8 @@ I bound them to "C-H u" "C-H o" and "C-H p"
      for (; count--;)
        this.cmdbuf[this.cmdbuf_endp++] = str[str_ptr++];
      this.cmd_parse ();
-     */
-         //console.log(str);
-         //str=str + chr(NOCHAR);
-         //console.log(str);
-         //console.log("cmd_write");
-         if(this.cmdbuf_endp == this.cmdbuf_ptr){
-             //console.log("resetting cmd_buf to the incoming string");
+     */  if(this.cmdbuf_endp == this.cmdbuf_ptr){
+       
              this.cmdbuf=str;   
              this.cmdbuf_ptr=0;
              }
@@ -566,7 +561,7 @@ rxvt_term.prototype.cmd_parse =function(){
              if (e instanceof OutOfInputException){
 
                       this.cmdbuf_ptr = seq_begin;
-                      //console.log("out of input", this.cmdbuf_ptr);
+                      /*CONSOLE_DEBUG("out of input", this.cmdbuf_ptr);*/
                       break;} 
              else{
                  throw e;}
@@ -722,7 +717,7 @@ rxvt_term.prototype.process_nonprinting =function(ch){
       CASE_DEBUG("case C0_BS:")
       //debusgger
         this.scr_backspace ();
-      //console.log(this.screen.cur);
+      //CONSOLE_DEBUG(this.screen.cur);
         break;
       case C0_HT:		/* tab */
       CASE_DEBUG("case C0_HT:")
@@ -764,7 +759,7 @@ rxvt_term.prototype.process_nonprinting =function(ch){
         this.process_osc_seq ();
         break;
   default:
-      //console.log(chr(ch));
+      //CONSOLE_DEBUG(chr(ch));
       //#endif
     }
     FUNCTION_DEBUG("ENDOF process_nonprinting");
@@ -778,7 +773,7 @@ rxvt_term.prototype.process_nonprinting =function(ch){
 rxvt_term.prototype.process_escape_vt52 = function (ch){
     FUNCTION_DEBUG("process_escape_vt52");
     
-  //console.log("vt52");
+  //CONSOLE_DEBUG("vt52");
   var row, col; //int row, col;
 
   switch (ch){
@@ -808,12 +803,12 @@ rxvt_term.prototype.process_escape_vt52 = function (ch){
         break;
       case 'J':		/* erase to end of screen */
           CASE_DEBUG("case 'J':")
-          //console.log("erase to end of screen");
+          //CONSOLE_DEBUG("erase to end of screen");
         this.scr_erase_screen (0);
         break;
       case 'K':		/* erase to end of line */
           CASE_DEBUG("case 'K':")
-          //console.log("erase to end of line");
+          //CONSOLE_DEBUG("erase to end of line");
         this.scr_erase_line (0);
         break;
       case 'Y':         	/* move to specified row and col */
@@ -822,7 +817,7 @@ rxvt_term.prototype.process_escape_vt52 = function (ch){
          * are encoded by adding 32 and sending the ascii 
          * character.  eg. SPACE = 0, '+' = 13, '0' = 18, 
          * etc. */ 
-          //console.log("Case Y");
+          //CONSOLE_DEBUG("Case Y");
           row = ord(this.cmd_getc()) - ord(' ');
           col = ord(this.cmd_getc()) - ord(' ');
         this.scr_gotorc (row, col, 0);
@@ -1070,7 +1065,7 @@ function get_byte_array_bit(lst1, val){
 //void rxvt_term::process_csi_seq ()
 rxvt_term.prototype.process_csi_seq =function(){
 FUNCTION_DEBUG("process_csi_seq");
-  //console.log("csi_seq");
+  //CONSOLE_DEBUG("csi_seq");
   var ch, priv, i; //unicode_t ch, priv, i;  
   var och; //ord(ch)
   var nargs, p; //unsigned int nargs, p; 
@@ -1090,7 +1085,7 @@ FUNCTION_DEBUG("process_csi_seq");
       ch = this.cmd_getc ();
       och = ord(ch);
     }
-  //console.log(this.row_buf[0].t);
+  //CONSOLE_DEBUG(this.row_buf[0].t);
 
   /* read any numerical arguments */
   for (n = -1; och < CSI_ICH; ){
@@ -1116,7 +1111,7 @@ FUNCTION_DEBUG("process_csi_seq");
       och = ord(ch);
     }
   if (och > CSI_7F){
-      //console.log("och > CSI_7F)");
+      //CONSOLE_DEBUG("och > CSI_7F)");
       FUNCTION_DEBUG("och > CSI_7F, RETURN")
     return;
   }
@@ -1569,7 +1564,6 @@ FUNCTION_DEBUG("process_window_ops");
 rxvt_term.prototype.get_to_st =function(ends_how){
 FUNCTION_DEBUG("get_to_st");
 
-    console.log("get_to_st");
     var ch, och; //unicode_t ch; 
   var seen_esc = false; //bool seen_esc = false;
   var n = 0; //unsigned int n = 0;
@@ -1617,7 +1611,6 @@ FUNCTION_DEBUG("get_to_st");
 rxvt_term.prototype.process_dcs_seq =function(){
 FUNCTION_DEBUG("process_dcs_seq");
 
-  console.log("dcs_seq");
   var s ; //char *s;  
   var eh; //unicode_t eh;  
 
@@ -1640,7 +1633,6 @@ FUNCTION_DEBUG("process_dcs_seq");
 rxvt_term.prototype.process_osc_seq =function(){
     FUNCTION_DEBUG("process_osc_seq");
     
-  console.log("osc_seq");
   var ch, eh; //unicode_t ch, eh;
   var arg; //int arg;
 
@@ -2420,12 +2412,12 @@ rxvt_term.prototype.tt_printf =function( fmt){
 FUNCTION_DEBUG("tt_printf");
 
 
-  console.log(fmt);
+/*CONSOLE_DEBUG(fmt); */
 }
     rxvt_term.prototype.tt_winch =function( ){
         //FUNCTION_DEBUG("tt_winch");
     
-      //console.log("tt_winch called, it does nothing ");
+        /*CONSOLE_DEBUG("tt_winch called, it does nothing "); */
     }
 /* ---------------------------------------------------------------------- */
 /* Write data to the pty as typed by the user, pasted with the mouse,
@@ -2437,17 +2429,16 @@ FUNCTION_DEBUG("tt_printf");
 //void rxvt_term::tt_write (const char *data, unsigned int len) 
 rxvt_term.prototype.tt_write =function( data,   len){
 FUNCTION_DEBUG("tt_write");
-
+/*
     if(    console){
-        console.log(data);
+        CONSOLE_DEBUG(data);
     }
+*/
     /*
   if (HOOK_INVOKE ((this, HOOK_TT_WRITE, DT_STR_LEN, data, len, DT_END)))
     return;
-
   if (pty.pty < 0)
     return;
-
   if (v_buflen == 0){
       //ssize_t written = write (pty.pty, data, min (len, MAX_PTY_WRITE));
       var written = write (pty.pty, data, mi_n (len, MAX_PTY_WRITE)); 

@@ -1,11 +1,13 @@
 
 var counter = 0;
+/*
 if(!console){
 try{
     console ={log:function(){}};
 
 } catch(e) {}
 }
+*/
 function forward(num){
     counter += num;
     output_line(resp.slice(0,counter));
@@ -16,7 +18,7 @@ function backward(num){
     output_line(resp.slice(0,counter));
     document.getElementById('counter').innerHTML=counter;
 }
-//console.log("hello");
+
 function soundSeek(position){
     document.getElementById("player").currentTime=position;
 }
@@ -31,7 +33,7 @@ function Animator(termEl, reqUrl){
     this.min_milli_jump=50;
     //this.a.row_buf=false;
     //this.a.scr_poweron();
-    //console.log(a);
+
 
 
     this.doAnimate=false;
@@ -70,7 +72,6 @@ function Animator(termEl, reqUrl){
       }
     */
     var stop = local_output_timing.length;//if(!end)
-    //console.log("stop",stop);
     var anim = this;
     var hnd;
     anim.to_func = function() {
@@ -79,7 +80,7 @@ function Animator(termEl, reqUrl){
         var diff = player_el.currentTime -soundPointer;
         if(diff > this.max_diff) {
             soundSeek(soundPointer);
-            console.log(diff);
+            //console.log(diff);
         }
         
         bpf=local_output_jumps[timingPointer];
@@ -116,7 +117,7 @@ function Animator(termEl, reqUrl){
 Animator.prototype = {
     output_line : function (str){
         if(this.is_outputting){
-            console.log("outputting while already outputting");
+            //console.log("outputting while already outputting");
         }
         this.is_outputting=true;
         //console.log(str);
@@ -193,13 +194,13 @@ $('document').ready(
         var a = new Animator("pt",tty_file);
         function animate(){
             doAnimate = true;
-            console.log('animate called');
+            //console.log('animate called');
        
             a.startAnimate();
             soundPlay();
             console.log(" animator setup ");
         }
-        console.log("ready function");
+        //console.log("ready function");
         //$('#play_start').click(animate);
         $('#play_start').click(function() {a.play();});
         $('#pause').click(function(){ a.pause();});

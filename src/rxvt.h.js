@@ -135,11 +135,6 @@ f
 #ifndef RXVT_H_                /* include once only */
 #define RXVT_H_
 
-if(!console){
-  console={};
-  console.log=function(){};
- }
-
 /*
   #include <cstdio>
   #include <cctype>
@@ -234,6 +229,7 @@ if(!console){
 #if DEBUG
 #ifndef chr_debug_loop
 #define FUNCTION_DEBUG(function_name) print(function_name);
+#define CONSOLE_DEBUG(...) print(__VA_ARGS__);
 #define VAR_DEBUG(var_name, var_val) print(var_name,var_val);
 #define CASE_DEBUG(function_name)  print(function_name);
 #define  ROW_BUF_DEBUG this.row_buf_debug();
@@ -242,12 +238,18 @@ if(!console){
 #endif 
 #else 
 #define ROW_BUF_DEBUG ;
-#define  ROW_IN_BUF_DEBUG(label) ;
-#define  ROW_DEBUG(label, line)  ;
+#define ROW_IN_BUF_DEBUG(label) ;
+#define ROW_DEBUG(label, line)  ;
+#define FUNCTION_DEBUG(function_name)  ;
+#define VAR_DEBUG(var_name, var_val)  ;
+#define CASE_DEBUG(function_name)  ;
 
-#define FUNCTION_DEBUG(function_name) 
-#define VAR_DEBUG(var_name, var_val)
-#define CASE_DEBUG(function_name) 
+#define CONSOLE_DEBUG(__unused__) ;
+//#define ddeprintf(...) fprintf (stderr, __VA_ARGS__)
+
+
+
+
 #endif
 /*#define chr_debug_loop 1*/
 
@@ -363,7 +365,8 @@ SELECTION_CLEAR = 0;
 #define expect_false(expr) (expr)
 #define expect_true(expr)  (expr)
 
-#define memmove(dest,src,length) console.log("tried to memmove",(src),(dest),(length));
+#define memmove(dest,src,length)   
+/*#define memmove(dest,src,length)     CONSOLE_DEBUG("tried to memmove",(src),(dest),(length)); */
 
 #define WCWIDTH(expr) 1
 

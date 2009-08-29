@@ -113,13 +113,13 @@ rxvt_term.prototype.scr_blank_line =function(l, col, width, efs){
   //FIXME where is l.t an array, what should  I use for an indice of et??
   var et_i = col;  //text_t *et = l.t + col; 
   var er_i = col;  //rend_t *er = l.r + col; 
-  //console.log("width");
-  //console.log(width);
+  //CONSOLE_DEBUG("width");
+  //CONSOLE_DEBUG(width);
   while (width--){
       l.t[et_i++] = ' ';  //   *et++ = ' '; 
       l.r[er_i++] = efs;  // *er++ = efs; 
     }
-  //console.log(l.t);
+  //CONSOLE_DEBUG(l.t);
   return l;
 }
 
@@ -189,7 +189,7 @@ rxvt_term.prototype.scr_reset =function(){
   this.num_scr = 0;
   
   if (this.ncol == 0){
-      console.log("setting ncol to 80");
+      CONSOLE_DEBUG("setting ncol to 80");
       this.ncol = 80;
   }
   if (this.nrow == 0)
@@ -624,7 +624,7 @@ rxvt_term.prototype.set_widthheight = function( newwidth, newheight){
 
     /*
     if(this.have_called_set_widthheight){
-        console.log("called");
+        CONSOLE_DEBUG("called");
         return;
     }
 
@@ -1612,7 +1612,7 @@ rxvt_term.prototype.scr_erase_screen =function( mode){
  var   row;  //int32_t row;
  var  ren;  //rend_t ren;
  var  gcvalue;//XGCValues gcvalue; 
- //console.log("scr_erase_screen");
+ //CONSOLE_DEBUG("scr_erase_screen");
  this.want_refresh = 1;
   ZERO_SCROLLBACK ();
  // mode=2;
@@ -2280,7 +2280,7 @@ rxvt_term.prototype.scr_bell =function(){
 //REWRITE: js_style_functions c_keyword ^|       void rxvt_term::scr_printscreen (int fullhist) 
 rxvt_term.prototype.scr_printscreen =function( fullhist){ 
     FUNCTION_DEBUG("scr_printscreen")
-  console.log(fullhist);
+  CONSOLE_DEBUG(fullhist);
 }
 
 
@@ -2360,23 +2360,20 @@ rxvt_term.prototype.last_refreshed=0;
 rxvt_term.prototype.scr_refresh =function(){ 
     FUNCTION_DEBUG("scr_refresh")
     //ROW_BUF_DEBUG;
-    //console.log("scr_refresh")
+    //CONSOLE_DEBUG("scr_refresh")
 #ifndef DEBUG
     var d= new Date();
 
     var cur_time = d.getTime();
     if((this.last_refreshed + this.refresh_wait ) < cur_time){
-        //console.log("refreshing now ");
+        //CONSOLE_DEBUG("refreshing now ");
         this.last_refreshed= cur_time;}
     else{
-        
-        //console.log("next time", (this.last_refreshed + this.refresh_wait ) , cur_time);
         return;}
 #endif
     this.want_refresh=0;
     if (this.refresh_type == NO_REFRESH || !this.mapped){
         //FUNCTION_DEBUG("this.refresh_type == NO_REFRESH || !this.mapped){");
-        //console.log("this.refresh_type == NO_REFRESH || !this.mapped){");
     }
     this.refresh_count=0;
 #ifndef DEBUG
@@ -2395,15 +2392,15 @@ rxvt_term.prototype.scr_refresh =function(){
     var row_plus = mod_total_rows + term_view_start;
     var r;
     
-    //console.log("before for loop ");
+    //CONSOLE_DEBUG("before for loop ");
     for(var row = 0; row < this.nrow; row++){
         //r=row_buf [row_plus + row];
         r=ROW(this.view_start + row);
         dtr[row]= r.t.slice(0,this.ncol).join("");
-        //console.log(r.t);
+        //CONSOLE_DEBUG(r.t);
     }
     
-    //console.log(dtr.join("\n"));
+    //CONSOLE_DEBUG(dtr.join("\n"));
     //this.pre_term_el.innerHTML = dtr.join("\n");
     //$("pt")
     document.getElementById("pt").innerHTML = dtr.join("\n");
