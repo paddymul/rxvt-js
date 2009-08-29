@@ -1282,23 +1282,26 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
 //void rxvt_term::scr_backspace (){ 
 rxvt_term.prototype.scr_backspace =function(){ 
     FUNCTION_DEBUG("scr_backspace");
-    
+      VAR_DEBUG("scr_backspace_beginning screen.cur.row", this.screen.cur.row);
 
   if (this.screen.cur.col == 0){
       FUNCTION_DEBUG("scr_backspace screen.cur.col == 0)");
       if (this.screen.cur.row > 0){
           FUNCTION_DEBUG("screen.cur.row > 0");
-#ifdef TERMCAP_HAS_BW
-          this.screen.cur.col = ncol - 1;
+/*#ifdef TERMCAP_HAS_BW */
+
+    FUNCTION_DEBUG("TERMCAP_HAS_BW");
+          this.screen.cur.col = this.ncol - 1;
           --this.screen.cur.row;
 
          this.want_refresh = 1;
-#endif
         }
     }
   else
     this.scr_gotorc (0, -1, RELATIVE);
-  FUNCTION_DEBUG("END_OF scr_backspace");
+
+VAR_DEBUG("scr_backspace_END screen.cur.row", this.screen.cur.row);
+    FUNCTION_DEBUG("END_OF scr_backspace");
 }
 
 /* ------------------------------------------------------------------------- */

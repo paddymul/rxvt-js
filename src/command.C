@@ -1068,10 +1068,11 @@ void
 rxvt_term::flush_cb (ev::timer &w, int revents)
 {
   FUNCTION_DEBUG("flush_cb setting refresh_count to 0");
+  
   make_current ();
 
-  refresh_count = 0;
-  flush ();
+  //refresh_count = 0;
+  //flush ();
 }
 
 #ifdef CURSOR_BLINK

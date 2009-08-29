@@ -1238,7 +1238,7 @@ void
 rxvt_term::scr_backspace () NOTHROW
 {
   FUNCTION_DEBUG("scr_backspace");
-
+  VAR_DEBUG("scr_backspace_beginning screen.cur.row", screen.cur.row);
   if (screen.cur.col == 0)
     {
       FUNCTION_DEBUG("scr_backspace screen.cur.col == 0)");
@@ -1246,6 +1246,7 @@ rxvt_term::scr_backspace () NOTHROW
         {
           FUNCTION_DEBUG("screen.cur.row > 0");
 #ifdef TERMCAP_HAS_BW
+    FUNCTION_DEBUG("TERMCAP_HAS_BW");
           screen.cur.col = ncol - 1;
           --screen.cur.row;
 
@@ -1255,6 +1256,7 @@ rxvt_term::scr_backspace () NOTHROW
     }
   else
     scr_gotorc (0, -1, RELATIVE);
+VAR_DEBUG("scr_backspace_END screen.cur.row", screen.cur.row);
 FUNCTION_DEBUG("END_OF scr_backspace");
 }
 
