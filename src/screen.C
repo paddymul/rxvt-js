@@ -1986,7 +1986,8 @@ rxvt_term::scr_report_position () NOTHROW
 void
 rxvt_term::set_font_style () NOTHROW
 {
-  FUNCTION_DEBUG("set_font_style")
+  //FUNCTION_DEBUG("set_font_style") 
+  // NOT NEEDED BECAUSE JS is generally unicode compliant
 #if 0
   switch (charsets [screen.charset])
     {

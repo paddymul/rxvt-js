@@ -719,34 +719,45 @@ rxvt_term.prototype.scr_soft_reset =function(){
 rxvt_term.prototype.scr_cursor =function(mode){ 
     FUNCTION_DEBUG("scr_cursor")
 
-    /*
+    /*    
     var s ;  //screen_t *s;   ### js_style_variables  possible_pointer 
+
+#if NSCREENS && !defined(NO_SECONDARY_SCREEN_CURSOR)
+  if (this.current_screen == SECONDARY)
+    s = this.swap;
+  else
+#endif
+    s = this.screen;
+
+
   switch (mode){
       case SAVE:
       CASE_DEBUG("case SAVE:")
-        s->s_cur.row = screen.cur.row;
-        s->s_cur.col = screen.cur.col;
-        s->s_rstyle = rstyle;
-        s->s_charset = screen.charset; 
-        s->s_charset_char = charsets[screen.charset]; 
+        s.s_cur.row = this.screen.cur.row;
+        s.s_cur.col = this.screen.cur.col;
+        s.s_rstyle = this.rstyle;
+        s.s_charset = this.screen.charset; 
+        s.s_charset_char = this.charsets[this.screen.charset]; 
         break;
 
       case RESTORE:
-      CASE_DEBUG("case RESTORE:")
-       this.want_refresh = 1;
-        screen.cur.row = s->s_cur.row;
-        screen.cur.col = s->s_cur.col;
-        screen.flags &= ~Screen_WrapNext;
-        rstyle = s->s_rstyle;
-        screen.charset = s->s_charset; 
-         this.charsets[screen.charset] = s->s_charset_char; 
-        set_font_style ();
+          CASE_DEBUG("case RESTORE:");
+          this.want_refresh = 1;
+          this.screen.cur.row = s.s_cur.row;
+          this.screen.cur.col = s.s_cur.col;
+          this.screen.flags &= ~Screen_WrapNext;
+          this.rstyle = s.s_rstyle;
+          this.screen.charset = s.s_charset; 
+          this.charsets[this.screen.charset] = s.s_charset_char; 
+          set_font_style ();
         break;
     }
 
     //boundary check in case screen size changed between SAVE and RESTORE 
-  min_it (s->cur.row, this.nrow - 1);
-  min_it (s->cur.col,  this.ncol - 1);
+    //  min_it (s->cur.row, this.nrow - 1);
+    //  min_it (s->cur.col,  this.ncol - 1);
+    min_it (s->cur.row, this.nrow - 1);
+    min_it (s->cur.col,  this.ncol - 1);
 #ifdef DEBUG_STRICT
   assert (s->cur.row >= 0);
   assert (s->cur.col >= 0);
@@ -779,7 +790,7 @@ rxvt_term.prototype.scr_cursor =function(mode){
         rstyle = s.s_rstyle;
         this.screen.charset = s.s_charset; 
         //FIXME this.charsets[this.screen.charset] = s.s_charset_char; 
-        //set_font_style ();
+        //this.set_font_style ();
         break;
     }
 
