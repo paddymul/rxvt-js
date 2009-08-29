@@ -1046,6 +1046,7 @@ function get_byte_array_bit(lst1, val){
     case      10 :
     case      11 :
     case      35 :
+    case      39 :
     case      40 :
     case      44 :
     case      45 :

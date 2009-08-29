@@ -3338,8 +3338,8 @@ rxvt_term::process_csi_seq ()
     }
   //FUNCTION_DEBUG("END OF process_csi_seq");
 VAR_DEBUG("END OF process_csi_seq screen.cur.row", screen.cur.row);
-  //ROW_IN_BUF_DEBUG("END OF process_csi_seq");
-  //ROW_BUF_DEBUG;
+//ROW_IN_BUF_DEBUG("END OF process_csi_seq");
+ //ROW_BUF_DEBUG;
 }
 /*}}} */
 

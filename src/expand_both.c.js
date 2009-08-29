@@ -68,7 +68,13 @@ SELECTION_CLEAR = 0;
 // is mostly true or mosty false. note that these return
 // booleans, not the expression.
 // increases code size unless -fno-enforce-eh-specs
+function UNSIGNED(val) {
+    if(val<0){
+        return  (4294967296 + val);}
+    else{
+        return val;}}
 // in range excluding end
+//  ((val) - (beg) <  (end) - (beg))
 // for m >= -n, ensure remainder lies between 0..n-1
 // try to avoid some macros to decrease code size, on some systems
 //template<typename T, typename U, typename V> static inline void clamp_it (T &v, U a, V b) { v = v < (T)a ? a : v >(T)b ? b : v; }
@@ -79,10 +85,10 @@ VT100_ANS = "rxvt-js";
 ESCZ_ANSWER = "rxvt-js ?? escz";
 //SCREEN.H.JS MACROS
  
-//# 447 "rxvt.h.js"
-//# 460 "rxvt.h.js"
-//# 474 "rxvt.h.js"
-//# 485 "rxvt.h.js"
+//# 455 "rxvt.h.js"
+//# 468 "rxvt.h.js"
+//# 482 "rxvt.h.js"
+//# 493 "rxvt.h.js"
 memset = function(destination, destination_i, source,  _length){
   for(var i =0; i < _length; i++){
     destination[destination_i + i]=source;
@@ -107,10 +113,10 @@ memset = function(destination, destination_i, source,  _length){
   
   // main.C
   
-//# 560 "rxvt.h.js"
+//# 568 "rxvt.h.js"
   
   
-//# 577 "rxvt.h.js"
+//# 585 "rxvt.h.js"
     var
     NO_REFRESH       = 0, // Window not visible at all!      
   FAST_REFRESH     = 1, // Fully exposed window            
@@ -160,17 +166,17 @@ PRIMARY = 0,
 //FIXED c_style_UL #de fine RS _Careful		0x80000000UL	            
 // not 127 or 256, see rxvtfont.h
 // plenty(?) of fonts, includes 0x80000000
-//# 698 "rxvt.h.js"
-//# 756 "rxvt.h.js"
-//# 793 "rxvt.h.js"
-//# 802 "rxvt.h.js"
-//# 811 "rxvt.h.js"
-//# 820 "rxvt.h.js"
-//# 829 "rxvt.h.js"
+//# 706 "rxvt.h.js"
+//# 764 "rxvt.h.js"
+//# 801 "rxvt.h.js"
+//# 810 "rxvt.h.js"
+//# 819 "rxvt.h.js"
+//# 828 "rxvt.h.js"
+//# 837 "rxvt.h.js"
  
  
-//# 910 "rxvt.h.js"
-//# 975 "rxvt.h.js"
+//# 918 "rxvt.h.js"
+//# 983 "rxvt.h.js"
 //enum {
 var  XTerm_name             =  0,
   XTerm_iconName         =  1,
@@ -249,7 +255,7 @@ Color_none = -2,
   Color_UL = 25,
   Color_RV = 26,
   Color_scroll = 27,
-//# 1106 "rxvt.h.js"
+//# 1114 "rxvt.h.js"
   NRS_COLORS = 28,                 
   TOTAL_COLORS = NRS_COLORS
   ;
@@ -257,20 +263,20 @@ Color_none = -2,
 //# include "rsinc.h"
 //  NUM_RESOURCES
 //FIXME does bitshifting an unsigned long result in a different value than bitshifting any number in js would?
-//# 1156 "rxvt.h.js"
+//# 1164 "rxvt.h.js"
 // do not change these constants li
 // input modifier buffer sizesghtly, there are many interdependencies
 // size of command buffer// size of keyboard mapping buffer
 // never call pty_fill/cmd_parse more than this often in a row8    
 // character buffer
-//# 1189 "rxvt.h.js"
+//# 1197 "rxvt.h.js"
 // for speed reasons, we assume that all codepoints 32 to 126 are
 // single-width.
-//#define 1		(((c) - ( 0x20) <= ( 0x7e) - ( 0x20)) ? 1 : wcwidth (c))
-//# 1237 "rxvt.h.js"
+//#define 1		(((UNSIGNED(c)) - (UNSIGNED( 0x20)) <= (UNSIGNED( 0x7e)) - (UNSIGNED( 0x20))) ? 1 : wcwidth (c))
+//# 1245 "rxvt.h.js"
 //#defi ne LIN ENO_of(t,n) ((((t)->term_start + int(n)) + ( (t)->total_rows)) % ( (t)->total_rows))
 //#def ine RO W_of(t,n) (t->row_buf [((((t).term_start +  n) + ( (t).total_rows)) % ( (t).total_rows))]
-//# 1264 "rxvt.h.js"
+//# 1272 "rxvt.h.js"
 //# define FONTSET_of(t,style) (t)->fontset[0]
 //#de fine FON TSET(style) this.fontset[0]
 //typedef callback<void (const char *)> log_callback;
@@ -279,7 +285,7 @@ Color_none = -2,
 // line has been compressed (NYI)
 // line needs to be filtered before display (NYI)
 // line needs bidi (NYI)
-//# 1339 "rxvt.h.js"
+//# 1347 "rxvt.h.js"
 line_t = function() {
   this.t= [];  //FIXED   text_t *t; // terminal the text
   this.r= []; //FIXED   rend_t *r; // rendition, uses RS_ flags
@@ -301,7 +307,7 @@ line_t.prototype = {
       return thisf & 0x0001 // line is continued on the next row;
     }},
  
-//# 1374 "rxvt.h.js"
+//# 1382 "rxvt.h.js"
  clear : function ()   { //FIXME should this whole thing be an object, probably
     this.t = [];
     this.r = [];
@@ -310,25 +316,25 @@ line_t.prototype = {
   },
  //FIXME operator overloading
  
-//# 1391 "rxvt.h.js"
+//# 1399 "rxvt.h.js"
   touch : function (col) { // call whenever a line is changed/touched/updated  
         this.modified=true;
   }
 };
 // primitive wrapper around mbstate_t to ensure initialisation
-//# 1410 "rxvt.h.js"
+//# 1418 "rxvt.h.js"
 //FIXED c_style_ul #define UNICODE_MASK 0x1fffffUL
-//# 1428 "rxvt.h.js"
+//# 1436 "rxvt.h.js"
 //FIXED c_style_UL #  define COMPOSE_LO 0xd800UL
 //FIXED c_style_UL #  define COMPOSE_HI 0xf8ffUL 
-//# 1466 "rxvt.h.js"
+//# 1474 "rxvt.h.js"
 function row_col_t(){};
 row_col_t.prototype = {row:0, col:0};
-//# 1494 "rxvt.h.js"
-//# 1537 "rxvt.h.js"
-//# 1566 "rxvt.h.js"
-//# 1585 "rxvt.h.js"
-//# 1601 "rxvt.h.js"
+//# 1502 "rxvt.h.js"
+//# 1545 "rxvt.h.js"
+//# 1574 "rxvt.h.js"
+//# 1593 "rxvt.h.js"
+//# 1609 "rxvt.h.js"
 screen_t = function() {
   this.s_cur= new row_col_t();        //row_col_t  saved cursor position
   this.cur= new row_col_t();          //row_col_t  cursor position on the screen            
@@ -358,7 +364,7 @@ selection_t.prototype = {
  rect:  true     //bool               rectangular selection?                   
 };
 //# includeoptinc.h"
-//# 1686 "rxvt.h.js"
+//# 1694 "rxvt.h.js"
 rxvt_vars = function() {}
   rxvt_vars.prototype={
   };
@@ -439,7 +445,7 @@ rxvt_term.prototype = {
   current_screen:1,	// primary or secondary              
   num_scr_allow:1,
   bypass_keystate:1,
-//# 1793 "rxvt.h.js"
+//# 1801 "rxvt.h.js"
   enc_utf8:1,		// wether locale uses utf-8 
   seen_input:1,         // wether we have seen some program output yet 
   seen_resize:1,	// wether we had a resize event 
@@ -492,7 +498,7 @@ rxvt_term.prototype = {
 //XComposeStatus  compose;
 //struct termios  tio;  //FIXME termios might be needed
  oldcursor: row_col_t(), //row_col_t
-//# 1883 "rxvt.h.js"
+//# 1891 "rxvt.h.js"
  allocated: [], //???? // vector<void *> allocated;           // free these memory blocks with free()
  //char            env_windowid[21];   // environmental variable WINDOWID 
  //char            env_colorfgbg[sizeof ("COLORFGBG=default;default;bg") + 1];
@@ -546,7 +552,7 @@ rxvt_term.prototype = {
  //rxvt_salloc    *ralloc;             // rend line allocator
  //static vector<rxvt_term *> termlist; // a vector of all running rxvt_term's
 }
-//# 2078 "rxvt.h.js"
+//# 2086 "rxvt.h.js"
 function chr(inte){
   return String.fromCharCode(inte);
   }
@@ -569,7 +575,7 @@ function lresize (l)   {
     if (!l.t)
       return;
     
-//# 2117 "rxvt.h.js"
+//# 2125 "rxvt.h.js"
   }
 //# 122 "command.C.js" 2
 //#de fine IS_CONTRO L(ch) !((ch) & 0xffffff60UL)
@@ -675,10 +681,11 @@ rxvt_term.prototype.cmd_parse =function(){
         //
         
         if ((och == NOCHAR)){
-            //;
+            ;
             seq_begin = this.cmdbuf_ptr; 
             och = ord(( this.next_char())); 
             if (och == NOCHAR){
+                ;
                 break;
             }
         }
@@ -699,7 +706,7 @@ rxvt_term.prototype.cmd_parse =function(){
                 
                 //
               if ((och == NOCHAR || (!((och) & 0xffffff60) && och != 0xa && och != 0xd && och != 0x9))) { //IS_CONTROL
-                  //
+                  
                     break;}
               ;
               str[str_i++]=chr(och);  //str++ = ch; 
@@ -719,7 +726,7 @@ rxvt_term.prototype.cmd_parse =function(){
                         ;
                         this.refresh_count = 0;
                         if (!this.option (Opt_skipScroll) ){
-                            //;
+                            ;
                             refreshnow = true;
                             och = NOCHAR;
                             break;}//skipScroll
@@ -811,9 +818,9 @@ rxvt_term.prototype.next_char =function(){
           return chr(13);
       }
       
-//# 628 "command.C.js"
+//# 629 "command.C.js"
       
-//# 639 "command.C.js"
+//# 640 "command.C.js"
       //if((ord(c_char) <= 0x7f && ord(c_char) != 0x1b)){
       //;
       return ret_char;
@@ -1138,7 +1145,7 @@ rxvt_term.prototype.process_escape_seq =function(){
     }
 }
  
-//# 1035 "command.C.js"
+//# 1036 "command.C.js"
 //#define get_byte_array_bit(array, bit)                //#    (!! ((array)[ (bit) / 8] & (128 >> ((bit) & 7))))
 //const unsigned char csi_defaults[] = 
    csi_defaults = [    (((1) << 7) | ((1) << 6) | ((1) << 5) | ((1) << 4)	     | ((1) << 3) | ((1) << 2) | ((1) << 1) | (1)),	
@@ -1580,7 +1587,7 @@ rxvt_term.prototype.process_window_ops =function( args,   nargs){
       //this.tt_printf ("\033[9;%d;%dt", nrow, ncol); 
         break;
                          
-//# 1564 "command.C.js"
+//# 1565 "command.C.js"
   }
 }
 //#endif
@@ -1686,7 +1693,7 @@ rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
         break;
       case XTerm_property:
             
-//# 1754 "command.C.js"
+//# 1755 "command.C.js"
         break;
       case XTerm_Color:
         //for (buf = (char *)str; buf && *buf;)
@@ -1695,7 +1702,7 @@ rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
               break;
             name[name_i++] = '\0';  //name++ = '\0';
             color = atoi (buf) + minCOLOR;
-            if (!((color) - ( minCOLOR) <= ( maxTermCOLOR) - ( minCOLOR)))
+            if (!((UNSIGNED(color)) - (UNSIGNED( minCOLOR)) <= (UNSIGNED( maxTermCOLOR)) - (UNSIGNED( minCOLOR))))
               break;
             if ((buf = strchr (name, ';')) != NULL)
                 buf[buf_i++] = '\0';  //buf++ = '\0';
@@ -1736,17 +1743,17 @@ rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
       case URxvt_Color_border:
         this.process_color_seq (op, Color_border, str, resp);
         break;
-//# 1829 "command.C.js"
-//# 1866 "command.C.js"
+//# 1830 "command.C.js"
+//# 1867 "command.C.js"
       case XTerm_logfile:
         // TODO, when secure mode?
         break;
-//# 1882 "command.C.js"
+//# 1883 "command.C.js"
       case XTerm_font:
         op = URxvt_font;
       case URxvt_font:
           
-//# 1907 "command.C.js"
+//# 1908 "command.C.js"
         break;
       case URxvt_version:
         if (query)
@@ -1755,10 +1762,10 @@ rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
                      rs[Rs_name], VERSION[0], VERSION[2],
                      resp);
         break;
-//# 1942 "command.C.js"
+//# 1943 "command.C.js"
     }
 }
-//# 1962 "command.C.js"
+//# 1963 "command.C.js"
 //int rxvt_term::privcases (int mode, unsigned long bit)
 rxvt_term.prototype.privcases =function(mode,   bit){
     ;
@@ -2101,7 +2108,7 @@ rxvt_term.prototype.process_sgr_mode =function(nargs,    arg){
             this.scr_color (Color_bg, Color_bg);
             break;
           //case 50: // not variable spacing
-//# 2390 "command.C.js"
+//# 2391 "command.C.js"
         }
     }
 }
@@ -2109,7 +2116,7 @@ rxvt_term.prototype.process_sgr_mode =function(nargs,    arg){
 rxvt_term.prototype.process_graphics =function(){
 ;
   //FIXME causes an infintie loop  
-//# 2414 "command.C.js"
+//# 2415 "command.C.js"
 }
 //void rxvt_term::tt_printf (const char *fmt,...) 
 rxvt_term.prototype.tt_printf =function( fmt){
@@ -2130,7 +2137,7 @@ rxvt_term.prototype.tt_write =function( data,   len){
         console.log(data);
     }
     
-//# 2475 "command.C.js"
+//# 2476 "command.C.js"
 }
 //void rxvt_term::pty_write () 
 rxvt_term.prototype.pty_write =function(){
@@ -2596,19 +2603,22 @@ rxvt_term.prototype.scr_change_screen =function( scrn){
 //void rxvt_term::scr_do_wrap () 
 rxvt_term.prototype.scr_do_wrap =function(){ 
     
-  if (!(this.screen.flags & (1<<4)))
-    return;
+    if (!(this.screen.flags & (1<<4))){
+        ;
+        return;
+    }
   this.screen.flags &= ~(1<<4);
   this.screen.cur.col = 0;
   if (this.screen.cur.row == this.screen.bscroll)
     this.scr_scroll_text (this.screen.tscroll, this.screen.bscroll, 1);
   else if (this.screen.cur.row < this.nrow - 1)
     this.screen.cur.row++;
+  
 }
 //void rxvt_term::scr_color (unsigned int color, int fgbg){ 
 rxvt_term.prototype.scr_color =function(  color,  fgbg){ 
     
-  if (!((color) - ( minCOLOR) <= ( maxTermCOLOR) - ( minCOLOR)))
+  if (!((UNSIGNED(color)) - (UNSIGNED( minCOLOR)) <= (UNSIGNED( maxTermCOLOR)) - (UNSIGNED( minCOLOR))))
     color = fgbg;
   if (fgbg == Color_fg)
     rstyle = (((rstyle) & ~0x0000007f)   | ( color));
@@ -2636,17 +2646,20 @@ rxvt_term.prototype.scr_scroll_text =function( row1,  row2,  count){
   if (count > 0
       && row1 == 0
       && ( this.current_screen == PRIMARY ||  this.option (Opt_secondaryScroll))){
+      ;
        this.top_row = Math.max(( this.top_row - count),( - this.saveLines));
       //scroll everything up 'count' lines
        this.term_start = ( this.term_start + count) %  this.total_rows;
       //sever bottommost line
       {
+          ;
         var l = (this.row_buf [((((this).term_start +   row2 - count) + ( (this).total_rows)) % ( (this).total_rows))]);  //line_t &l = (this.row_buf [((((this).term_start +   row2 - count) + ( (this).total_rows)) % ( (this).total_rows))]);
         l.is_longer (0);
         //l.touch ();
         l.modified=true;
       }
       //erase newly scrolled-in lines
+      ;
        for (var i = count; i--; ){  //for (int i = count; i--; ){
          var l = (this.row_buf [((((this).term_start +   this.nrow - 1 - i) + ( (this).total_rows)) % ( (this).total_rows))]);  //line_t &l = (this.row_buf [((((this).term_start +   this.nrow - 1 - i) + ( (this).total_rows)) % ( (this).total_rows))]);
           //optimize if already cleared, can be significant on slow machines
@@ -2662,6 +2675,8 @@ rxvt_term.prototype.scr_scroll_text =function( row1,  row2,  count){
       //now copy lines below the scroll region bottom to the
       //bottom of the screen again, so they look as if they
       //hadnt moved.
+       ;
+       ;
         for (  i = this.nrow; --i > row2; ){  //for (int i = this.nrow; --i > row2; )
           var l1 = (this.row_buf [((((this).term_start +   i - count) + ( (this).total_rows)) % ( (this).total_rows))]);  //line_t &l1 = (this.row_buf [((((this).term_start +   i - count) + ( (this).total_rows)) % ( (this).total_rows))]);
           var l2 = (this.row_buf [((((this).term_start +   i) + ( (this).total_rows)) % ( (this).total_rows))]);  //line_t &l2 = (this.row_buf [((((this).term_start +   i) + ( (this).total_rows)) % ( (this).total_rows))]);
@@ -2684,12 +2699,15 @@ rxvt_term.prototype.scr_scroll_text =function( row1,  row2,  count){
       //finally move the view window, if desired
       if ( this.option (Opt_scrollWithBuffer)
           &&  this.view_start != 0
-          &&  this.view_start != - this.saveLines)
-        this.scr_page (UP, count);
+           &&  this.view_start != - this.saveLines){
+          ;
+          this.scr_page (UP, count);
+      }
       if (false)
         false;
     }
   else{
+      ;
       if ( this.selection.op &&  this.current_screen ==  this.selection.screen){
           if (( this.selection.beg.row < row1 &&  this.selection.end.row > row1)
               || ( this.selection.beg.row < row2 &&  this.selection.end.row > row2)
@@ -2701,6 +2719,7 @@ rxvt_term.prototype.scr_scroll_text =function( row1,  row2,  count){
                this.selection.op = SELECTION_CLEAR;
             }
           else if ( this.selection.end.row >= row1 &&  this.selection.end.row <= row2){
+              ;
               
                this.selection.beg.row  -= count;
                this.selection.end.row  -= count;
@@ -2714,14 +2733,23 @@ rxvt_term.prototype.scr_scroll_text =function( row1,  row2,  count){
       count = Math.min((count),( rows));  //min_it  (count, rows);
       //line_t *temp_buf =  this.row_buf + total_rows;  
       var temp_buf =  this.row_buf, temp_buf_i=this.row_buf_i+ this.total_rows;
+      
        for (var row = 0; row < rows; row++){  //for (int row = 0; row < rows; row++){
+           ;
           temp_buf [temp_buf_i+row] = (this.row_buf [((((this).term_start +   row1 + (row + count + rows) % rows) + ( (this).total_rows)) % ( (this).total_rows))]);
-          if (!((row + count) - ( 0) <  ( rows) - ( 0)))
-            this.scr_blank_screen_mem (temp_buf [temp_buf_i + row], rstyle);
+          ;
+          ;
+          
+//# 1064 "screen.C.js"
+          if (!((UNSIGNED(row + count)) - (UNSIGNED( 0)) < (UNSIGNED( rows)) - (UNSIGNED( 0)))){
+              ;
+              this.scr_blank_screen_mem (temp_buf [temp_buf_i + row], rstyle);
+          }
         }
        for ( row = 0; row < rows; row++)  //for (int row = 0; row < rows; row++)
         (this.row_buf [((((this).term_start +   row1 + row) + ( (this).total_rows)) % ( (this).total_rows))]) = temp_buf [temp_buf_i + row];
     }
+  ;
   return count;
 }
 //void rxvt_term::scr_add_lines (const wchar_t *str, int len, int minlines) 
@@ -2807,7 +2835,7 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
         }
       //some utf-8 decoders "decode" surrogate characters: let's fix this. 
       //I don't think this matters for js
-      //if ((((ord(c)) - ( 0xd800) <= ( 0xdfff) - ( 0xd800))))
+      //if ((((UNSIGNED(ord(c))) - (UNSIGNED( 0xd800)) <= (UNSIGNED( 0xdfff)) - (UNSIGNED( 0xd800)))))
       //    c = 0xfffd;
       //rely on wcwidth to tell us the character width, do wcwidth before 
       //further replacements, as wcwidth might return -1 for the line
@@ -2967,8 +2995,8 @@ rxvt_term.prototype.scr_tab =function( count, ht){
     this.scr_gotorc (0, x, R_RELATIVE);
     ;
 }
-//# 1403 "screen.C.js"
-//# 1428 "screen.C.js"
+//# 1431 "screen.C.js"
+//# 1456 "screen.C.js"
 //void rxvt_term::scr_gotorc (int row, int col, int relative)
 rxvt_term.prototype.scr_gotorc =function( row,  col,  relative){  //Im suspsicious
     
@@ -3154,7 +3182,7 @@ rxvt_term.prototype.scr_erase_screen =function( mode){
       
     }
 }
-//# 1674 "screen.C.js"
+//# 1702 "screen.C.js"
 //void rxvt_term::scr_E () 
 rxvt_term.prototype.scr_E =function(){ 
     
@@ -3309,7 +3337,7 @@ rxvt_term.prototype.scr_autowrap =function( mode){
   else
     this.screen.flags &= ~((1<<2) | (1<<4));
 }
-//# 1914 "screen.C.js"
+//# 1942 "screen.C.js"
 //void rxvt_term::scr_relative_origin (int mode) 
 rxvt_term.prototype.scr_relative_origin =function( mode){ 
     
@@ -3340,7 +3368,7 @@ rxvt_term.prototype.scr_set_tab =function( mode){
 rxvt_term.prototype.scr_rvideo_mode =function(on){ 
     
     
-//# 1991 "screen.C.js"
+//# 2019 "screen.C.js"
 }
 //FIXED:void rxvt_term::scr_report_position () 
 rxvt_term.prototype.scr_report_position =function(){ 
@@ -3351,7 +3379,7 @@ rxvt_term.prototype.scr_report_position =function(){
 //FIXED:void rxvt_term::set_font_style (){ 
 rxvt_term.prototype.set_font_style =function(){ 
     
-//# 2039 "screen.C.js"
+//# 2067 "screen.C.js"
 }
 //FIXED:void rxvt_term::scr_charset_choose (int set) 
 rxvt_term.prototype.scr_charset_choose =function( set){ 
@@ -3385,7 +3413,7 @@ rxvt_term.prototype.scr_refresh_rend =function( mask,  value){
 rxvt_term.prototype.scr_expose =function( x,  y,  ewidth,  eheight, refresh){ 
     
     
-//# 2149 "screen.C.js"
+//# 2177 "screen.C.js"
 }
 //FIXED:void rxvt_term::scr_touch (bool refresh) 
 rxvt_term.prototype.scr_touch =function(refresh){ 
@@ -3426,7 +3454,7 @@ rxvt_term.prototype.bell_cb =function(w,  revents){
 rxvt_term.prototype.scr_bell =function(){ 
     
     
-//# 2245 "screen.C.js"
+//# 2273 "screen.C.js"
 }
  //FIXME what does argused mean?
 //REWRITE: js_style_functions c_keyword ^|       void rxvt_term::scr_printscreen (int fullhist) 
@@ -3480,7 +3508,7 @@ rxvt_term.prototype.inline_row_debug = function(label, line){
     out_arr[out_arr.length]=new_t.join("");
     print(out_arr.join(""));
 }
-//# 2319 "screen.C.js"
+//# 2347 "screen.C.js"
 //REWRITE: void rxvt_term::scr_refresh (){ 
     rxvt_term.prototype.refresh_wait=30;
 rxvt_term.prototype.last_refreshed=0;
@@ -3499,7 +3527,7 @@ rxvt_term.prototype.scr_refresh =function(){
         return;}
     this.want_refresh=0;
     if (this.refresh_type == NO_REFRESH || !this.mapped){
-        ;
+        //;
         //console.log("this.refresh_type == NO_REFRESH || !this.mapped){");
     }
     this.refresh_count=0;
@@ -3551,7 +3579,7 @@ rxvt_term.prototype.scr_remap_chars =function(){
 //REWRITE:void rxvt_term::scr_recolour () 
 rxvt_term.prototype.scr_recolour =function(){ 
     
-//# 2429 "screen.C.js"
+//# 2457 "screen.C.js"
   //bgPixmap.apply () does not do the following : 
   this.scr_clear ();
   this.scr_touch (true);
@@ -3573,7 +3601,7 @@ rxvt_term.prototype.scr_xor_rect =function( beg_row,  beg_col,  end_row,  end_co
     
     //FIXME cstyle namespaces
     
-//# 2475 "screen.C.js"
+//# 2503 "screen.C.js"
 }
 //void rxvt_term::scr_xor_span (int beg_row, int beg_col, int end_row, int end_col, rend_t rstyle) 
 rxvt_term.prototype.scr_xor_span =function( beg_row,  beg_col,  end_row,  end_col,  rstyle){ 
@@ -3613,7 +3641,7 @@ rxvt_term.prototype.scr_reverse_selection =function(){
         
         return;
     }
-//# 2562 "screen.C.js"
+//# 2590 "screen.C.js"
 //REMOVED:void rxvt_term::paste (char *data, unsigned int len){ 
 //REMOVED:void rxvt_term::selection_paste (Window win, Atom prop, bool delete_prop) 
 //REMOVED:void rxvt_term::incr_cb (ev::timer &w, int revents){ 
@@ -3636,5 +3664,5 @@ rxvt_term.prototype.scr_reverse_selection =function(){
 //REMOVED:void rxvt_term::selection_send (const XSelectionRequestEvent &rq){ 
     //This is removed because ENABLE_OVERLAY is tied to iso-14755 which is a complicated standard that I wont be supporting
     //it can be read about here http://en.wikipedia.org/wiki/Unicode_input
-//# 2598 "screen.C.js"
+//# 2626 "screen.C.js"
 //# 3 "expand_both.h" 2

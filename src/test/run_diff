@@ -1,2 +1,2 @@
 #!/bin/bash
- diff -y rxvt-out rxvt-js-out | head -n $1
+ diff  -ay rxvt-out rxvt-js-out | head -n $1
