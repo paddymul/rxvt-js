@@ -1340,33 +1340,42 @@ VAR_DEBUG("scr_backspace_END screen.cur.row", this.screen.cur.row);
  */
 //void rxvt_term::scr_tab (int count, bool ht) 
 rxvt_term.prototype.scr_tab =function( count, ht){ 
-    FUNCTION_DEBUG("scr_tab")
+    FUNCTION_DEBUG("scr_tab");
+    VAR_DEBUG("scr_tab count", count);
+    VAR_DEBUG("scr_tab ht", ht);
+    
   var i, x; 
 
- this.want_refresh = 1;
-  i = x = this.screen.cur.col;
+    this.want_refresh = 1;
+    i = x = this.screen.cur.col;
 
   if (count == 0)
     return;
   else if (count > 0){
+      FUNCTION_DEBUG("scr_tab count > 0");
       //FIXME line_t &l =  ROW(this.screen.cur.row);
       var l =  ROW(this.screen.cur.row);
       var base_rend= l.r[i];  //rend_t base_rend = l.r[i];
       //FIXME ht &= l.t[i] == ' ';  //FIXME
-
-      for (; ++i <  this.ncol; )
+      l.t[i]=' ';
+      VAR_DEBUG("scr_tab ncol", this.ncol);
+      for (; ++i <  this.ncol; ){
+          VAR_DEBUG("scr_tab i",i);
+          VAR_DEBUG("this.tabs[i]",this.tabs[i]);
         if ( this.tabs[i]){
             x = i;
 
             if (!--count)
               break;
           }
-        else
+        else{
           ht &= l.t[i] == ' '
                 && RS_SAME (l.r[i], base_rend);
-
-      if (count)
-        x =  this.ncol - 1;
+        }
+      }
+      if (count){
+          x =  this.ncol - 1;
+      }
 
       //store horizontal tab commands as characters inside the text 
       //buffer so they can be selected and pasted.
@@ -1398,7 +1407,7 @@ rxvt_term.prototype.scr_tab =function( count, ht){
       if (count)
         x = 0;
     }
-
+  
   if (x != this.screen.cur.col)
     this.scr_gotorc (0, x, R_RELATIVE);
     FUNCTION_DEBUG("END_OF scr_tab");

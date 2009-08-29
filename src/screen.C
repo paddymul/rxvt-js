@@ -1294,7 +1294,15 @@ FUNCTION_DEBUG("END_OF scr_backspace");
 void
 rxvt_term::scr_tab (int count, bool ht) NOTHROW
 {
-  FUNCTION_DEBUG("scr_tab")
+  FUNCTION_DEBUG("scr_tab");
+  
+  VAR_DEBUG("scr_tab count", count);
+  if(ht){
+    VAR_DEBUG("scr_tab ht", "true");
+  }
+  else {
+    VAR_DEBUG("scr_tab ht", "false");
+  }
   int i, x;
 
   want_refresh = 1;
@@ -1302,13 +1310,21 @@ rxvt_term::scr_tab (int count, bool ht) NOTHROW
 
   if (count == 0)
     return;
-  else if (count > 0)
-    {
+  else if (count > 0){
+    FUNCTION_DEBUG("scr_tab count > 0");
       line_t &l = ROW(screen.cur.row);
       rend_t base_rend = l.r[i];
       ht &= l.t[i] == ' ';
+      VAR_DEBUG("scr_tab ncol", ncol);
 
-      for (; ++i < ncol; )
+      for (; ++i < ncol; ){
+        VAR_DEBUG("scr_tab i", i);
+        if(tabs[i]){
+          VAR_DEBUG("this.tabs[i]","true");
+        }
+        else {
+          VAR_DEBUG("this.tabs[i]","false");
+        }
         if (tabs[i])
           {
             x = i;
@@ -1319,7 +1335,7 @@ rxvt_term::scr_tab (int count, bool ht) NOTHROW
         else
           ht &= l.t[i] == ' '
                 && RS_SAME (l.r[i], base_rend);
-
+      }
       if (count)
         x = ncol - 1;
 
