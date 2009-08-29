@@ -1,0 +1,10 @@
+#!/bin/bash
+cd ../ 
+cpp test_character_reading.h |\
+  gsed -r 's/^#/\/\/#/' |\
+  gsed '/^$/d' >  test_expand_both.c.js
+
+ make -f Makefile-test-character-output
+ cd test
+ ./compare
+./run_diff $1
