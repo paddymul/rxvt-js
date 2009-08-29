@@ -2898,16 +2898,21 @@ rxvt_term.prototype.scr_add_lines =function(   str,  len,  minlines){
 //void rxvt_term::scr_backspace (){ 
 rxvt_term.prototype.scr_backspace =function(){ 
     ;
-    
+      ;
   if (this.screen.cur.col == 0){
       ;
       if (this.screen.cur.row > 0){
           ;
+    ;
+          this.screen.cur.col = this.ncol - 1;
+          --this.screen.cur.row;
+         this.want_refresh = 1;
         }
     }
   else
     this.scr_gotorc (0, -1, RELATIVE);
-  ;
+;
+    ;
 }
 //void rxvt_term::scr_tab (int count, bool ht) 
 rxvt_term.prototype.scr_tab =function( count, ht){ 
@@ -2962,8 +2967,8 @@ rxvt_term.prototype.scr_tab =function( count, ht){
     this.scr_gotorc (0, x, R_RELATIVE);
     ;
 }
-//# 1400 "screen.C.js"
-//# 1425 "screen.C.js"
+//# 1403 "screen.C.js"
+//# 1428 "screen.C.js"
 //void rxvt_term::scr_gotorc (int row, int col, int relative)
 rxvt_term.prototype.scr_gotorc =function( row,  col,  relative){  //Im suspsicious
     
@@ -3149,7 +3154,7 @@ rxvt_term.prototype.scr_erase_screen =function( mode){
       
     }
 }
-//# 1671 "screen.C.js"
+//# 1674 "screen.C.js"
 //void rxvt_term::scr_E () 
 rxvt_term.prototype.scr_E =function(){ 
     
@@ -3304,7 +3309,7 @@ rxvt_term.prototype.scr_autowrap =function( mode){
   else
     this.screen.flags &= ~((1<<2) | (1<<4));
 }
-//# 1911 "screen.C.js"
+//# 1914 "screen.C.js"
 //void rxvt_term::scr_relative_origin (int mode) 
 rxvt_term.prototype.scr_relative_origin =function( mode){ 
     
@@ -3335,7 +3340,7 @@ rxvt_term.prototype.scr_set_tab =function( mode){
 rxvt_term.prototype.scr_rvideo_mode =function(on){ 
     
     
-//# 1988 "screen.C.js"
+//# 1991 "screen.C.js"
 }
 //FIXED:void rxvt_term::scr_report_position () 
 rxvt_term.prototype.scr_report_position =function(){ 
@@ -3346,7 +3351,7 @@ rxvt_term.prototype.scr_report_position =function(){
 //FIXED:void rxvt_term::set_font_style (){ 
 rxvt_term.prototype.set_font_style =function(){ 
     
-//# 2036 "screen.C.js"
+//# 2039 "screen.C.js"
 }
 //FIXED:void rxvt_term::scr_charset_choose (int set) 
 rxvt_term.prototype.scr_charset_choose =function( set){ 
@@ -3380,7 +3385,7 @@ rxvt_term.prototype.scr_refresh_rend =function( mask,  value){
 rxvt_term.prototype.scr_expose =function( x,  y,  ewidth,  eheight, refresh){ 
     
     
-//# 2146 "screen.C.js"
+//# 2149 "screen.C.js"
 }
 //FIXED:void rxvt_term::scr_touch (bool refresh) 
 rxvt_term.prototype.scr_touch =function(refresh){ 
@@ -3421,7 +3426,7 @@ rxvt_term.prototype.bell_cb =function(w,  revents){
 rxvt_term.prototype.scr_bell =function(){ 
     
     
-//# 2242 "screen.C.js"
+//# 2245 "screen.C.js"
 }
  //FIXME what does argused mean?
 //REWRITE: js_style_functions c_keyword ^|       void rxvt_term::scr_printscreen (int fullhist) 
@@ -3475,7 +3480,7 @@ rxvt_term.prototype.inline_row_debug = function(label, line){
     out_arr[out_arr.length]=new_t.join("");
     print(out_arr.join(""));
 }
-//# 2316 "screen.C.js"
+//# 2319 "screen.C.js"
 //REWRITE: void rxvt_term::scr_refresh (){ 
     rxvt_term.prototype.refresh_wait=30;
 rxvt_term.prototype.last_refreshed=0;
@@ -3546,7 +3551,7 @@ rxvt_term.prototype.scr_remap_chars =function(){
 //REWRITE:void rxvt_term::scr_recolour () 
 rxvt_term.prototype.scr_recolour =function(){ 
     
-//# 2426 "screen.C.js"
+//# 2429 "screen.C.js"
   //bgPixmap.apply () does not do the following : 
   this.scr_clear ();
   this.scr_touch (true);
@@ -3568,7 +3573,7 @@ rxvt_term.prototype.scr_xor_rect =function( beg_row,  beg_col,  end_row,  end_co
     
     //FIXME cstyle namespaces
     
-//# 2472 "screen.C.js"
+//# 2475 "screen.C.js"
 }
 //void rxvt_term::scr_xor_span (int beg_row, int beg_col, int end_row, int end_col, rend_t rstyle) 
 rxvt_term.prototype.scr_xor_span =function( beg_row,  beg_col,  end_row,  end_col,  rstyle){ 
@@ -3608,7 +3613,7 @@ rxvt_term.prototype.scr_reverse_selection =function(){
         
         return;
     }
-//# 2559 "screen.C.js"
+//# 2562 "screen.C.js"
 //REMOVED:void rxvt_term::paste (char *data, unsigned int len){ 
 //REMOVED:void rxvt_term::selection_paste (Window win, Atom prop, bool delete_prop) 
 //REMOVED:void rxvt_term::incr_cb (ev::timer &w, int revents){ 
@@ -3631,5 +3636,5 @@ rxvt_term.prototype.scr_reverse_selection =function(){
 //REMOVED:void rxvt_term::selection_send (const XSelectionRequestEvent &rq){ 
     //This is removed because ENABLE_OVERLAY is tied to iso-14755 which is a complicated standard that I wont be supporting
     //it can be read about here http://en.wikipedia.org/wiki/Unicode_input
-//# 2595 "screen.C.js"
+//# 2598 "screen.C.js"
 //# 3 "expand_both.h" 2

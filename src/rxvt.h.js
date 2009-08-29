@@ -390,12 +390,20 @@ SELECTION_CLEAR = 0;
   ((unsigned int)(val) - (unsigned int)(beg) <  (unsigned int)(end) - (unsigned int)(beg))
 */
 
+function UNSIGNED(val) {
+    if(val<0){
+        return  (4294967296 + val);}
+    else{
+        return val;}}
 #define IN_RANGE_INC(val,beg,end)               \
-  ((val) - (beg) <= (end) - (beg))
+    ((UNSIGNED(val)) - (UNSIGNED(beg)) <= (UNSIGNED(end)) - (UNSIGNED(beg)))
 
 // in range excluding end
 #define IN_RANGE_EXC(val,beg,end)               \
-  ((val) - (beg) <  (end) - (beg))
+    ((UNSIGNED(val)) - (UNSIGNED(beg)) < (UNSIGNED(end)) - (UNSIGNED(beg)))
+
+
+//  ((val) - (beg) <  (end) - (beg))
 
 
 // for m >= -n, ensure remainder lies between 0..n-1

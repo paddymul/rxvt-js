@@ -444,10 +444,11 @@ rxvt_term.prototype.cmd_parse =function(){
         //FUNCTION_DEBUG(och)
         
         if (expect_false (och == NOCHAR)){
-            //FUNCTION_DEBUG("och == NOCHAR)){");
+            FUNCTION_DEBUG("och == NOCHAR)){");
             seq_begin = this.cmdbuf_ptr; 
             och = ord(this_next_char()); 
             if (och == NOCHAR){
+                FUNCTION_DEBUG("DOUBLE NOCHAR");
                 break;
             }
         }
@@ -471,7 +472,7 @@ rxvt_term.prototype.cmd_parse =function(){
                 //FUNCTION_DEBUG(och)
 
               if (expect_false (och == NOCHAR || (IS_CONTROL (och) && och != C0_LF && och != C0_CR && och != C0_HT))) { //IS_CONTROL
-                  //FUNCTION_DEBUG(" is_ctrl 2266")
+                  FUNCTION_DEBUG(" is_ctrl 2266")
                     break;}
               VAR_DEBUG("och",och);
               str[str_i++]=chr(och);  //str++ = ch; 
@@ -493,7 +494,7 @@ rxvt_term.prototype.cmd_parse =function(){
                         this.refresh_count = 0;
 
                         if (!this.option (Opt_skipScroll) ){
-                            //FUNCTION_DEBUG("time_based");
+                            FUNCTION_DEBUG("time_based");
                             refreshnow = true;
                             och = NOCHAR;
                             break;}//skipScroll

@@ -2270,12 +2270,14 @@ rxvt_term::cmd_parse ()
 #ifndef chr_debug_loop
       if (expect_false (ch == NOCHAR))
         {
-          //FUNCTION_DEBUG("och == NOCHAR)){");
+          FUNCTION_DEBUG("och == NOCHAR)){");
           seq_begin = cmdbuf_ptr;
           ch = next_char ();
 
-          if (ch == NOCHAR)
+          if (ch == NOCHAR){
+            FUNCTION_DEBUG("DOUBLE NOCHAR");
             break;
+          }
         }
 
       if (expect_true (!IS_CONTROL (ch) || ch == C0_LF || ch == C0_CR || ch == C0_HT))
@@ -2309,7 +2311,7 @@ rxvt_term::cmd_parse ()
               //FUNCTION_DEBUG(ch)
 
               if (expect_false (ch == NOCHAR || (IS_CONTROL (ch) && ch != C0_LF && ch != C0_CR && ch != C0_HT))){
-                //FUNCTION_DEBUG(" is_ctrl 2266")
+                FUNCTION_DEBUG(" is_ctrl 2266")
                   break;}
 
               VAR_DEBUG("och",ch);
@@ -2335,9 +2337,10 @@ rxvt_term::cmd_parse ()
                       FUNCTION_DEBUG("Opt_jumscroll refresh_count");
                       refresh_count = 0;
 
-                      if (!option (Opt_skipScroll) || ev_time () > ev::now () + 1. / 60.)
+                      //if (!option (Opt_skipScroll) || ev_time () > ev::now () + 1. / 60.)
+                      if (!option (Opt_skipScroll) )
                         {
-                          //FUNCTION_DEBUG("time_based");
+                          FUNCTION_DEBUG("time_based");
                           refreshnow = true;
                           ch = NOCHAR;
                           break;

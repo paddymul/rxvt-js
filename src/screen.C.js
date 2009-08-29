@@ -870,9 +870,10 @@ rxvt_term.prototype.scr_change_screen =function( scrn){
 //void rxvt_term::scr_do_wrap () 
 rxvt_term.prototype.scr_do_wrap =function(){ 
     FUNCTION_DEBUG("scr_do_wrap")
-  if (!(this.screen.flags & Screen_WrapNext))
-    return;
-
+    if (!(this.screen.flags & Screen_WrapNext)){
+        FUNCTION_DEBUG("screen.flags & Screen_WrapNext");
+        return;
+    }
   this.screen.flags &= ~Screen_WrapNext;
 
   this.screen.cur.col = 0;
@@ -881,6 +882,7 @@ rxvt_term.prototype.scr_do_wrap =function(){
     this.scr_scroll_text (this.screen.tscroll, this.screen.bscroll, 1);
   else if (this.screen.cur.row < this.nrow - 1)
     this.screen.cur.row++;
+  FUNCTION_DEBUG("END_OF scr_do_wrap")
 }
 
 /* ------------------------------------------------------------------------- */
@@ -933,6 +935,7 @@ rxvt_term.prototype.scr_scroll_text =function( row1,  row2,  count){
   if (count > 0
       && row1 == 0
       && ( this.current_screen == PRIMARY ||  this.option (Opt_secondaryScroll))){
+      FUNCTION_DEBUG("current_screen == PRIMARY Opt_secondaryScroll))){");
        this.top_row = ma_x ( this.top_row - count, - this.saveLines);
 
       //scroll everything up 'count' lines
@@ -940,6 +943,7 @@ rxvt_term.prototype.scr_scroll_text =function( row1,  row2,  count){
 
       //sever bottommost line
       {
+          FUNCTION_DEBUG("sever bottommost line");
         var l = ROW(row2 - count);  //line_t &l = ROW(row2 - count);
         l.is_longer (0);
         //l.touch ();
@@ -947,6 +951,7 @@ rxvt_term.prototype.scr_scroll_text =function( row1,  row2,  count){
       }
 
       //erase newly scrolled-in lines
+      VAR_DEBUG("erase newly scrolled-in lines", count);
        for (var i = count; i--; ){  //for (int i = count; i--; ){
          var l = ROW(this.nrow - 1 - i);  //line_t &l = ROW(this.nrow - 1 - i);
 
@@ -964,6 +969,8 @@ rxvt_term.prototype.scr_scroll_text =function( row1,  row2,  count){
       //now copy lines below the scroll region bottom to the
       //bottom of the screen again, so they look as if they
       //hadnt moved.
+       VAR_DEBUG("scr_scroll_text nrow", this.nrow);
+       VAR_DEBUG("scr_scroll_text row", row2);
         for (  i = this.nrow; --i > row2; ){  //for (int i = this.nrow; --i > row2; )
           var l1 = ROW(i - count);  //line_t &l1 = ROW(i - count);
           var l2 = ROW(i);  //line_t &l2 = ROW(i);
@@ -990,13 +997,16 @@ rxvt_term.prototype.scr_scroll_text =function( row1,  row2,  count){
       //finally move the view window, if desired
       if ( this.option (Opt_scrollWithBuffer)
           &&  this.view_start != 0
-          &&  this.view_start != - this.saveLines)
-        this.scr_page (UP, count);
+           &&  this.view_start != - this.saveLines){
+          FUNCTION_DEBUG("scr_scroll_text Opt_scrollWithBuffer");
+          this.scr_page (UP, count);
+      }
 
       if (SHOULD_INVOKE (HOOK_SCROLL_BACK))
         HOOK_INVOKE ((this, HOOK_SCROLL_BACK, DT_INT, count, DT_INT,  this.top_row, DT_END));
     }
   else{
+      FUNCTION_DEBUG("NOT current_screen == PRIMARY Opt_secondaryScroll))){");
       if ( this.selection.op &&  this.current_screen ==  this.selection.screen){
           if (( this.selection.beg.row < row1 &&  this.selection.end.row > row1)
               || ( this.selection.beg.row < row2 &&  this.selection.end.row > row2)
@@ -1008,6 +1018,7 @@ rxvt_term.prototype.scr_scroll_text =function( row1,  row2,  count){
                this.selection.op = SELECTION_CLEAR;
             }
           else if ( this.selection.end.row >= row1 &&  this.selection.end.row <= row2){
+              FUNCTION_DEBUG("move selected region too");
               /* move  this.selected region too */
                this.selection.beg.row  -= count;
                this.selection.end.row  -= count;
@@ -1025,18 +1036,35 @@ rxvt_term.prototype.scr_scroll_text =function( row1,  row2,  count){
       count = mi_n(count, rows);  //min_it  (count, rows);
       //line_t *temp_buf =  this.row_buf + total_rows;  
       var temp_buf =  this.row_buf, temp_buf_i=this.row_buf_i+ this.total_rows;
-
+      
        for (var row = 0; row < rows; row++){  //for (int row = 0; row < rows; row++){
+           VAR_DEBUG("bottom of scr_scroll_text row",row);
           temp_buf [temp_buf_i+row] = ROW(row1 + (row + count + rows) % rows);
+          VAR_DEBUG("bottom of scr_scroll_text, count " , count);
+          VAR_DEBUG("bottom of scr_scroll_text, ROWS " , rows);
+          /*
+            I suck at bitwise math 
+          VAR_DEBUG("IN_RANGE_EXC left", (row + count) - (0));
+          VAR_DEBUG("(unsigned int)(0)", UNSIGNED(0) );
+          VAR_DEBUG("(unsigned int)(1)", UNSIGNED(1) );
+          VAR_DEBUG("(unsigned int)(-1)",UNSIGNED(-1) );
+          VAR_DEBUG("(unsigned int)(-2)",UNSIGNED(-2) );
+          VAR_DEBUG("(unsigned int)(-3)",UNSIGNED(-3) );
+          VAR_DEBUG("(unsigned int)(-4)",UNSIGNED(-4) );
+          VAR_DEBUG("(unsigned int)(-5)",UNSIGNED(-5) );
 
-          if (!IN_RANGE_EXC (row + count, 0, rows))
-            this.scr_blank_screen_mem (temp_buf [temp_buf_i + row], rstyle);
+          VAR_DEBUG("IN_RANGE_EXC right", (rows) - (0));
+          */
+          if (!IN_RANGE_EXC (row + count, 0, rows)){
+              FUNCTION_DEBUG("scr_scroll_text !IN_RANGE_EXC");
+              this.scr_blank_screen_mem (temp_buf [temp_buf_i + row], rstyle);
+          }
         }
 
        for ( row = 0; row < rows; row++)  //for (int row = 0; row < rows; row++)
         ROW(row1 + row) = temp_buf [temp_buf_i + row];
     }
-
+  FUNCTION_DEBUG("END_OF scr_scroll_text");
   return count;
 }
 
@@ -2338,7 +2366,7 @@ rxvt_term.prototype.scr_refresh =function(){
 #endif
     this.want_refresh=0;
     if (this.refresh_type == NO_REFRESH || !this.mapped){
-        FUNCTION_DEBUG("this.refresh_type == NO_REFRESH || !this.mapped){");
+        //FUNCTION_DEBUG("this.refresh_type == NO_REFRESH || !this.mapped){");
         //console.log("this.refresh_type == NO_REFRESH || !this.mapped){");
     }
     this.refresh_count=0;

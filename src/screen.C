@@ -764,9 +764,10 @@ void
 rxvt_term::scr_do_wrap () NOTHROW
 {
   FUNCTION_DEBUG("scr_do_wrap")
-  if (!(screen.flags & Screen_WrapNext))
+    if (!(screen.flags & Screen_WrapNext)){
+      FUNCTION_DEBUG("screen.flags & Screen_WrapNext");
     return;
-
+    }
   screen.flags &= ~Screen_WrapNext;
 
   screen.cur.col = 0;
@@ -775,6 +776,7 @@ rxvt_term::scr_do_wrap () NOTHROW
     scr_scroll_text (screen.tscroll, screen.bscroll, 1);
   else if (screen.cur.row < nrow - 1)
     screen.cur.row++;
+  FUNCTION_DEBUG("END_OF scr_do_wrap")
 }
 
 /* ------------------------------------------------------------------------- */
@@ -831,6 +833,7 @@ rxvt_term::scr_scroll_text (int row1, int row2, int count) NOTHROW
       && row1 == 0
       && (current_screen == PRIMARY || option (Opt_secondaryScroll)))
     {
+      FUNCTION_DEBUG("current_screen == PRIMARY Opt_secondaryScroll))){");
       top_row = max (top_row - count, -saveLines);
 
       // scroll everything up 'count' lines
@@ -838,12 +841,14 @@ rxvt_term::scr_scroll_text (int row1, int row2, int count) NOTHROW
 
       // sever bottommost line
       {
+          FUNCTION_DEBUG("sever bottommost line");
         line_t &l = ROW(row2 - count);
         l.is_longer (0);
         l.touch ();
       }
 
       // erase newly scrolled-in lines
+      VAR_DEBUG("erase newly scrolled-in lines", count);
       for (int i = count; i--; )
         {
           line_t &l = ROW(nrow - 1 - i);
@@ -863,6 +868,8 @@ rxvt_term::scr_scroll_text (int row1, int row2, int count) NOTHROW
       // now copy lines below the scroll region bottom to the
       // bottom of the screen again, so they look as if they
       // hadn't moved.
+       VAR_DEBUG("scr_scroll_text nrow", nrow);
+       VAR_DEBUG("scr_scroll_text row", row2);
       for (int i = nrow; --i > row2; )
         {
           line_t &l1 = ROW(i - count);
@@ -891,14 +898,16 @@ rxvt_term::scr_scroll_text (int row1, int row2, int count) NOTHROW
       // finally move the view window, if desired
       if (option (Opt_scrollWithBuffer)
           && view_start != 0
-          && view_start != -saveLines)
+          && view_start != -saveLines){
+          FUNCTION_DEBUG("scr_scroll_text Opt_scrollWithBuffer");
         scr_page (UP, count);
-
+      }
       if (SHOULD_INVOKE (HOOK_SCROLL_BACK))
         HOOK_INVOKE ((this, HOOK_SCROLL_BACK, DT_INT, count, DT_INT, top_row, DT_END));
     }
   else
     {
+      FUNCTION_DEBUG("NOT current_screen == PRIMARY Opt_secondaryScroll))){");
       if (selection.op && current_screen == selection.screen)
         {
           if ((selection.beg.row < row1 && selection.end.row > row1)
@@ -914,6 +923,7 @@ rxvt_term::scr_scroll_text (int row1, int row2, int count) NOTHROW
           else if (selection.end.row >= row1 && selection.end.row <= row2)
             {
               /* move selected region too */
+              FUNCTION_DEBUG("move selected region too");
               selection.beg.row  -= count;
               selection.end.row  -= count;
               selection.mark.row -= count;
@@ -933,16 +943,31 @@ rxvt_term::scr_scroll_text (int row1, int row2, int count) NOTHROW
 
       for (int row = 0; row < rows; row++)
         {
+          VAR_DEBUG("bottom of scr_scroll_text row",row);
           temp_buf [row] = ROW(row1 + (row + count + rows) % rows);
-
-          if (!IN_RANGE_EXC (row + count, 0, rows))
+          VAR_DEBUG("bottom of scr_scroll_text, count " , count);
+          VAR_DEBUG("bottom of scr_scroll_text, ROWS " , rows);
+          /*
+          VAR_DEBUG("IN_RANGE_EXC left", (unsigned int)(row + count) - (unsigned int)(0));
+          VAR_DEBUG("(unsigned int)(0)", (unsigned int)(0) );
+          VAR_DEBUG("(unsigned int)(1)", (unsigned int)(1) );
+          VAR_DEBUG("(unsigned int)(-1)", (unsigned int)(-1) );
+          VAR_DEBUG("(unsigned int)(-2)", (unsigned int)(-2) );
+          VAR_DEBUG("(unsigned int)(-3)", (unsigned int)(-3) );
+          VAR_DEBUG("(unsigned int)(-4)", (unsigned int)(-4) );
+          VAR_DEBUG("(unsigned int)(-5)", (unsigned int)(-5) );
+          VAR_DEBUG("IN_RANGE_EXC right", (unsigned int)(rows) - (unsigned int)(0));
+          */
+          if (!IN_RANGE_EXC (row + count, 0, rows)){
+            FUNCTION_DEBUG("scr_scroll_text !IN_RANGE_EXC");
             scr_blank_screen_mem (temp_buf [row], rstyle);
+          }
         }
 
       for (int row = 0; row < rows; row++)
         ROW(row1 + row) = temp_buf [row];
     }
-
+  FUNCTION_DEBUG("END_OF scr_scroll_text");
   return count;
 }
 
@@ -2318,7 +2343,7 @@ rxvt_term::scr_refresh () NOTHROW
   want_refresh = 0;        /* screen is current */
 
   if (refresh_type == NO_REFRESH || !mapped){
-        FUNCTION_DEBUG("this.refresh_type == NO_REFRESH || !this.mapped){");
+    //FUNCTION_DEBUG("this.refresh_type == NO_REFRESH || !this.mapped){");
         //return;
   }
   /*
