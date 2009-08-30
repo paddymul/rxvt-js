@@ -23,7 +23,12 @@ function soundSeek(position){
     document.getElementById("player").currentTime=position;
 }
 function soundPlay(position){
-    document.getElementById("player").play();
+    try{
+        document.getElementById("player").play();
+    }
+    catch(e){
+
+    }
 }
 
 
