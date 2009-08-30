@@ -174,6 +174,7 @@ Animator.prototype = {
     },
     play : function(){
         this.player_speed=1.0;
+        soundPlay();
         this.hnd = setTimeout(this.to_func, 0);
     } ,
     fast_forward : function(){
