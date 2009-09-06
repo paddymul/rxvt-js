@@ -36,9 +36,7 @@ function Animator(termEl, reqUrl){
     this.a = new rxvt_term(document.getElementById('term'),"pre_term");
     this.max_diff = .2;
     this.min_milli_jump=50;
-    //this.a.row_buf=false;
-    //this.a.scr_poweron();
-
+    var anim = this;
     $.ajax({
             url: reqUrl,
                 type: 'GET',
@@ -51,54 +49,37 @@ function Animator(termEl, reqUrl){
                  },
                 */
                 success: function(resp){
-                // do something with xml
+                anim.restOfInit(resp);
             }
         });
 
-    }
+};
 
 Animator.prototype = {
     restOfInit : function( resp ) {
-        /*
-    this.doAnimate=false;
-    if (window.XMLHttpRequest)
-	this.req = new XMLHttpRequest();
-    else
-	this.req = new ActiveXObject("Microsoft.XMLHTTP");
+      
+        //this.doAnimate=false;
 
-    this.req.open("GET",reqUrl, false);
-    this.req.send(null);
-        */
         this.resp=this.resp;
 
-    this.setupTiming2();
-    this.player_speed=1;
+        this.setupTiming2();
+        this.player_speed=1;
     
-    var text = this.resp;
+        var text = this.resp;
 
-    //var bpf = Math.ceil(bps * mspf / 8000);
-    var where = 0;
-    var mspf = this.output_timing[0];
-    var bpf = this.output_jumps[0];
-    var timingPointer=0;
-    var soundPointer=0;
-    var player_el=document.getElementById('player');
-    var local_output_timing=this.output_timing;
-    var local_output_jumps=this.output_jumps;
-    /*
-      if(start_from){
-      for(; timingPointer < start_from; timingPointer++){
-      mspf=local_output_timing[timingPointer];
-      soundPointer+=mspf/1000;
-      bpf=local_output_jumps[timingPointer];
-      where += bpf;
-      }
-      }
-    */
-    var stop = local_output_timing.length;//if(!end)
-    var anim = this;
-    var hnd;
-    anim.to_func = function() {
+        //var bpf = Math.ceil(bps * mspf / 8000);
+        var where = 0;
+        var mspf = this.output_timing[0];
+        var bpf = this.output_jumps[0];
+        var timingPointer=0;
+        var soundPointer=0;
+        var player_el=document.getElementById('player');
+        var local_output_timing=this.output_timing;
+        var local_output_jumps=this.output_jumps;
+        var stop = local_output_timing.length;//if(!end)
+        var anim = this;
+        var hnd;
+        anim.to_func = function() {
         soundPointer+=mspf/1000;
         
         var diff = player_el.currentTime -soundPointer;
