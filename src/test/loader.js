@@ -37,18 +37,21 @@ function Animator(termEl, reqUrl){
     this.max_diff = .2;
     this.min_milli_jump=50;
     var anim = this;
+    //alert("made ajax request ");
+    document.domain="paddymullen.com";
     $.ajax({
             url: reqUrl,
                 type: 'GET',
 
-                timeout: 1000,
-                /*
-                  dataType: 'xml',
-                error: function(){
-                      alert('Error loading XML document');
+                timeout: 100000,
+                
+                dataType: 'text',
+                error: function(req, textStatus,  errorThrown){
+		console.log(textStatus, errorThrown);
                  },
-                */
+                
                 success: function(resp){
+		console.log("success");
                 anim.restOfInit(resp);
             }
         });
@@ -60,7 +63,7 @@ Animator.prototype = {
       
         //this.doAnimate=false;
 
-        this.resp=this.resp;
+        this.resp=resp;
 
         this.setupTiming2();
         this.player_speed=1;
