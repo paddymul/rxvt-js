@@ -39,8 +39,27 @@ function Animator(termEl, reqUrl){
     //this.a.row_buf=false;
     //this.a.scr_poweron();
 
+    $.ajax({
+            url: reqUrl,
+                type: 'GET',
 
+                timeout: 1000,
+                /*
+                  dataType: 'xml',
+                error: function(){
+                      alert('Error loading XML document');
+                 },
+                */
+                success: function(resp){
+                // do something with xml
+            }
+        });
 
+    }
+
+Animator.prototype = {
+    restOfInit : function( resp ) {
+        /*
     this.doAnimate=false;
     if (window.XMLHttpRequest)
 	this.req = new XMLHttpRequest();
@@ -49,12 +68,12 @@ function Animator(termEl, reqUrl){
 
     this.req.open("GET",reqUrl, false);
     this.req.send(null);
-
-    this.resp=this.req.responseText;
+        */
+        this.resp=this.resp;
 
     this.setupTiming2();
     this.player_speed=1;
-
+    
     var text = this.resp;
 
     //var bpf = Math.ceil(bps * mspf / 8000);
@@ -117,9 +136,9 @@ function Animator(termEl, reqUrl){
     
 
 
-}
+    },
 
-Animator.prototype = {
+
     output_line : function (str){
         if(this.is_outputting){
             //console.log("outputting while already outputting");
