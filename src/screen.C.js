@@ -2356,7 +2356,111 @@ rxvt_term.prototype.inline_row_buf_debug = function(){
  */
 //REWRITE: void rxvt_term::scr_refresh (){ 
     rxvt_term.prototype.refresh_wait=30;
+  function fgcolor_of ( r)  {
+    var base = GET_BASEFG (r);
+#ifndef NO_BRIGHTCOLOR
+    if (r & RS_Bold
+# if ENABLE_STYLES
+        && option (Opt_intensityStyles)
+# endif
+        && IN_RANGE_INC (base, minCOLOR, minBrightCOLOR))
+      base += minBrightCOLOR - minCOLOR;
+#endif
+    return base;
+  }
+
+ function bgcolor_of (r)   {
+    var base = GET_BASEBG (r);
+#ifndef NO_BRIGHTCOLOR
+    if (r & RS_Blink
+# if ENABLE_STYLES
+        && option (Opt_intensityStyles)
+# endif
+        && IN_RANGE_INC (base, minCOLOR, minBrightCOLOR))
+      base += minBrightCOLOR - minCOLOR;
+#endif
+    return base;
+  }
+
 rxvt_term.prototype.last_refreshed=0;
+rxvt_term.prototype.scr_refresh =function(){ 
+    FUNCTION_DEBUG("scr_refresh")
+    //ROW_BUF_DEBUG;
+    //CONSOLE_DEBUG("scr_refresh")
+#ifndef DEBUG
+    var d= new Date();
+
+    var cur_time = d.getTime();
+    if((this.last_refreshed + this.refresh_wait ) < cur_time){
+        //CONSOLE_DEBUG("refreshing now ");
+        this.last_refreshed= cur_time;}
+    else{
+        return;}
+#endif
+    this.want_refresh=0;
+    if (this.refresh_type == NO_REFRESH || !this.mapped){
+        //FUNCTION_DEBUG("this.refresh_type == NO_REFRESH || !this.mapped){");
+    }
+    this.refresh_count=0;
+#ifndef DEBUG
+    
+
+    var out_string =[];
+    var b=-1;
+    var dtr = this.dom_text_rows;
+    var dr = this.dom_rows;
+    var view_start= this.view_start;
+    var total_rows = this.total_rows;
+    var term_start = this.term_start;
+    var row_buf = this.row_buf;
+    var term_view_start = term_start+view_start;
+    var mod_total_rows = total_rows % total_rows;
+    var row_plus = mod_total_rows + term_view_start;
+    var r;
+    
+    //CONSOLE_DEBUG("before for loop ");
+    
+    for(var row = 0; row < this.nrow; row++){
+        //r=row_buf [row_plus + row];
+        r=ROW(this.view_start + row);
+        /*
+        var old_fg="";
+        var old_bg="";
+        var current_fg = "";
+        var current_bg = "";
+        
+        var current_out_line = [];
+        for(var col =0 ; col < this.ncol; col++){
+            
+            current_fg = fgcolor_of(r.r[col]);
+            current_bg = bgcolor_of(r.r[col]);
+            if(current_fg != old_fg || old_bg != current_bg){
+                old_bg = current_bg;
+                old_fg = current_fg;
+                console.log(current_fg, current_bg);
+                if(!col == 0) {
+                    current_out_line[current_out_line.length] = "</span>";
+                }
+                current_out_line[current_out_line.length] = 
+                    "<span class='bg" + current_bg + " fg"+current_fg + "'>";
+            }
+            
+            current_out_line[current_out_line.length] = r.t[col];
+        }
+        current_out_line[current_out_line.length] = "</span>";
+        dtr[row]= current_out_line.join("");
+        */
+        dtr[row]= r.t.join("");
+        //console.log(r.t);
+    } 
+    
+    //CONSOLE_DEBUG(dtr.join("\n"));
+    this.pre_term_el.innerHTML = dtr.join("\n");
+    //$("pt")
+    //document.getElementById("pt").innerHTML = dtr.join("\n");
+#endif 
+    FUNCTION_DEBUG("END OF scr_refresh");
+} 
 rxvt_term.prototype.scr_refresh =function(){ 
     FUNCTION_DEBUG("scr_refresh")
     //ROW_BUF_DEBUG;
@@ -2407,6 +2511,7 @@ rxvt_term.prototype.scr_refresh =function(){
 #endif 
     FUNCTION_DEBUG("END OF scr_refresh");
 } 
+
 
 //FIXME overloaded_function
 // void rxvt_term::scr_remap_chars (line_t &l) 

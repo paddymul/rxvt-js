@@ -586,6 +586,7 @@ rxvt_term.prototype.next_char =function(){
 
   while (this.cmdbuf_ptr < this.cmdbuf_endp){
       var ret_char = this.cmdbuf[this.cmdbuf_ptr++];
+      /*
       if(this.cr_seen){
           this.cr_seen=false;
           return chr(10);
@@ -596,7 +597,7 @@ rxvt_term.prototype.next_char =function(){
           this.cmdbuf_ptr--;
           return chr(13);
       }
-
+      */
       /*
     if(this.cr_seen){
           this.cr_seen=false;
@@ -2194,7 +2195,7 @@ VAR_DEBUG("modelo", mode)
               break;
             case 1049:		/* secondary screen w/ clearing first */
                 CASE_DEBUG("case 1049:")
-              if (option (Opt_secondaryScreen))
+              if (this.option (Opt_secondaryScreen))
                 if (state)
                   this.scr_cursor (SAVE);
 

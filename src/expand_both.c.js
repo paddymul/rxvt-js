@@ -799,20 +799,12 @@ rxvt_term.prototype.next_char =function(){
     //;
   while (this.cmdbuf_ptr < this.cmdbuf_endp){
       var ret_char = this.cmdbuf[this.cmdbuf_ptr++];
-      if(this.cr_seen){
-          this.cr_seen=false;
-          return chr(10);
-      }
-      if( ord(ret_char) == 10 ){
-          this.cr_seen=true;
-          //CHR_FUNCTION_DEBUG("setthing cr_seen to true");
-          this.cmdbuf_ptr--;
-          return chr(13);
-      }
       
-//# 624 "command.C.js"
+//# 608 "command.C.js"
       
-//# 635 "command.C.js"
+//# 625 "command.C.js"
+      
+//# 636 "command.C.js"
       //if((ord(c_char) <= 0x7f && ord(c_char) != 0x1b)){
       //;;
       return ret_char;
@@ -1137,7 +1129,7 @@ rxvt_term.prototype.process_escape_seq =function(){
     }
 }
  
-//# 1031 "command.C.js"
+//# 1032 "command.C.js"
 //#define get_byte_array_bit(array, bit)                //#    (!! ((array)[ (bit) / 8] & (128 >> ((bit) & 7))))
 //const unsigned char csi_defaults[] = 
    csi_defaults = [    (((1) << 7) | ((1) << 6) | ((1) << 5) | ((1) << 4)	     | ((1) << 3) | ((1) << 2) | ((1) << 1) | (1)),	
@@ -1580,7 +1572,7 @@ rxvt_term.prototype.process_window_ops =function( args,   nargs){
       //this.tt_printf ("\033[9;%d;%dt", nrow, ncol); 
         break;
                          
-//# 1561 "command.C.js"
+//# 1562 "command.C.js"
   }
 }
 //#endif
@@ -1683,7 +1675,7 @@ rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
         break;
       case XTerm_property:
             
-//# 1748 "command.C.js"
+//# 1749 "command.C.js"
         break;
       case XTerm_Color:
         //for (buf = (char *)str; buf && *buf;)
@@ -1733,17 +1725,17 @@ rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
       case URxvt_Color_border:
         this.process_color_seq (op, Color_border, str, resp);
         break;
-//# 1823 "command.C.js"
-//# 1860 "command.C.js"
+//# 1824 "command.C.js"
+//# 1861 "command.C.js"
       case XTerm_logfile:
         // TODO, when secure mode?
         break;
-//# 1876 "command.C.js"
+//# 1877 "command.C.js"
       case XTerm_font:
         op = URxvt_font;
       case URxvt_font:
           
-//# 1901 "command.C.js"
+//# 1902 "command.C.js"
         break;
       case URxvt_version:
         if (query)
@@ -1752,10 +1744,10 @@ rxvt_term.prototype.process_xterm_seq =function(op,    str,  resp){
                      rs[Rs_name], VERSION[0], VERSION[2],
                      resp);
         break;
-//# 1936 "command.C.js"
+//# 1937 "command.C.js"
     }
 }
-//# 1956 "command.C.js"
+//# 1957 "command.C.js"
 //int rxvt_term::privcases (int mode, unsigned long bit)
 rxvt_term.prototype.privcases =function(mode,   bit){
     ;;
@@ -1965,7 +1957,7 @@ var cmode=chr(mode);
               break;
             case 1049:		
                 ;
-              if (option (Opt_secondaryScreen))
+              if (this.option (Opt_secondaryScreen))
                 if (state)
                   this.scr_cursor (SAVE);
               this.scr_change_screen (state);
@@ -2103,7 +2095,7 @@ rxvt_term.prototype.process_sgr_mode =function(nargs,    arg){
             this.scr_color (Color_bg, Color_bg);
             break;
           //case 50: // not variable spacing
-//# 2384 "command.C.js"
+//# 2385 "command.C.js"
         }
     }
 }
@@ -2111,7 +2103,7 @@ rxvt_term.prototype.process_sgr_mode =function(nargs,    arg){
 rxvt_term.prototype.process_graphics =function(){
 ;;
   //FIXME causes an infintie loop  
-//# 2408 "command.C.js"
+//# 2409 "command.C.js"
 }
 //void rxvt_term::tt_printf (const char *fmt,...) 
 rxvt_term.prototype.tt_printf =function( fmt){
@@ -2128,7 +2120,7 @@ rxvt_term.prototype.tt_printf =function( fmt){
 rxvt_term.prototype.tt_write =function( data,   len){
 ;;
     
-//# 2468 "command.C.js"
+//# 2469 "command.C.js"
 }
 //void rxvt_term::pty_write () 
 rxvt_term.prototype.pty_write =function(){
@@ -3514,7 +3506,68 @@ rxvt_term.prototype.inline_row_debug = function(label, line){
 //# 2356 "screen.C.js"
 //REWRITE: void rxvt_term::scr_refresh (){ 
     rxvt_term.prototype.refresh_wait=30;
+  function fgcolor_of ( r)  {
+    var base = (((r) & 0x0000007f));
+    if (r & 0x00004000
+        && ((UNSIGNED(base)) - (UNSIGNED( minCOLOR)) <= (UNSIGNED( minBrightCOLOR)) - (UNSIGNED( minCOLOR))))
+      base += minBrightCOLOR - minCOLOR;
+    return base;
+  }
+ function bgcolor_of (r)   {
+    var base = (((r) & 0x00003f80)>>7);
+    if (r & 0x00010000
+        && ((UNSIGNED(base)) - (UNSIGNED( minCOLOR)) <= (UNSIGNED( minBrightCOLOR)) - (UNSIGNED( minCOLOR))))
+      base += minBrightCOLOR - minCOLOR;
+    return base;
+  }
 rxvt_term.prototype.last_refreshed=0;
+rxvt_term.prototype.scr_refresh =function(){ 
+    ;
+    //;;
+    //;
+    var d= new Date();
+    var cur_time = d.getTime();
+    if((this.last_refreshed + this.refresh_wait ) < cur_time){
+        //;;
+        this.last_refreshed= cur_time;}
+    else{
+        return;}
+    this.want_refresh=0;
+    if (this.refresh_type == NO_REFRESH || !this.mapped){
+        //;;
+    }
+    this.refresh_count=0;
+    
+    var out_string =[];
+    var b=-1;
+    var dtr = this.dom_text_rows;
+    var dr = this.dom_rows;
+    var view_start= this.view_start;
+    var total_rows = this.total_rows;
+    var term_start = this.term_start;
+    var row_buf = this.row_buf;
+    var term_view_start = term_start+view_start;
+    var mod_total_rows = total_rows % total_rows;
+    var row_plus = mod_total_rows + term_view_start;
+    var r;
+    
+    //;;
+    
+    for(var row = 0; row < this.nrow; row++){
+        //r=row_buf [row_plus + row];
+        r=(this.row_buf [((((this).term_start +   this.view_start + row) + ( (this).total_rows)) % ( (this).total_rows))]);
+        
+//# 2459 "screen.C.js"
+        dtr[row]= r.t.join("");
+        //console.log(r.t);
+    } 
+    
+    //;;
+    this.pre_term_el.innerHTML = dtr.join("\n");
+    //$("pt")
+    //document.getElementById("pt").innerHTML = dtr.join("\n");
+    ;;
+} 
 rxvt_term.prototype.scr_refresh =function(){ 
     ;
     //;;
@@ -3579,7 +3632,7 @@ rxvt_term.prototype.scr_remap_chars =function(){
 //REWRITE:void rxvt_term::scr_recolour () 
 rxvt_term.prototype.scr_recolour =function(){ 
     ;
-//# 2463 "screen.C.js"
+//# 2568 "screen.C.js"
   //bgPixmap.apply () does not do the following : 
   this.scr_clear ();
   this.scr_touch (true);
@@ -3601,7 +3654,7 @@ rxvt_term.prototype.scr_xor_rect =function( beg_row,  beg_col,  end_row,  end_co
     ;
     //FIXME cstyle namespaces
     
-//# 2509 "screen.C.js"
+//# 2614 "screen.C.js"
 }
 //void rxvt_term::scr_xor_span (int beg_row, int beg_col, int end_row, int end_col, rend_t rstyle) 
 rxvt_term.prototype.scr_xor_span =function( beg_row,  beg_col,  end_row,  end_col,  rstyle){ 
@@ -3641,7 +3694,7 @@ rxvt_term.prototype.scr_reverse_selection =function(){
         ;
         return;
     }
-//# 2596 "screen.C.js"
+//# 2701 "screen.C.js"
 //REMOVED:void rxvt_term::paste (char *data, unsigned int len){ 
 //REMOVED:void rxvt_term::selection_paste (Window win, Atom prop, bool delete_prop) 
 //REMOVED:void rxvt_term::incr_cb (ev::timer &w, int revents){ 
@@ -3664,5 +3717,5 @@ rxvt_term.prototype.scr_reverse_selection =function(){
 //REMOVED:void rxvt_term::selection_send (const XSelectionRequestEvent &rq){ 
     //This is removed because ENABLE_OVERLAY is tied to iso-14755 which is a complicated standard that I wont be supporting
     //it can be read about here http://en.wikipedia.org/wiki/Unicode_input
-//# 2632 "screen.C.js"
+//# 2737 "screen.C.js"
 //# 3 "expand_both.h" 2
