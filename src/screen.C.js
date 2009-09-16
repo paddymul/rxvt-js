@@ -2513,6 +2513,7 @@ rxvt_term.prototype.scr_refresh =function(){
 } 
 
 
+
 //FIXME overloaded_function
 // void rxvt_term::scr_remap_chars (line_t &l) 
 rxvt_term.prototype.scr_remap_chars =function(l){ 
