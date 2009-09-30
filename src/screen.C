@@ -159,6 +159,8 @@ rxvt_term::scr_kill_char (line_t &l, int col) const NOTHROW
     col++;
   } while (col < ncol && l.t[col] == NOCHAR);
 }
+
+
 void rxvt_term::row_buf_debug(){
   FUNCTION_DEBUG("row_buf_debug"); 
   int16_t __col, __row;                          
@@ -170,7 +172,25 @@ void rxvt_term::row_buf_debug(){
       std::cout << (char) __stp[__col]; }          
     std::cout << " $" ; std::cout << "\n";}        
 }
+  /*
+void rxvt_term::rend_buf_debug(){
 
+  FUNCTION_DEBUG("row_buf_debug"); 
+  int16_t __col, __row;                          
+
+  text_t *__stp; 
+  rend_t *__rend;
+  __row= nrow;         
+
+  //  rend_t *srp = ROW(view_start + row).r;                         
+  for (__row = 0; __row < nrow; __row++) {
+    __rend = ROW(view_start + __row).r;
+    for (__col = 0; __col < ncol; __col++) {
+      std::cout << (char) __rend[__col]; }          
+    std::cout << " $" ; std::cout << "\n";}        
+
+}
+  */
 void rxvt_term::inline_row_buf_debug(){
   int16_t __col, __row;                          
   std::cout << "inline_rbdbg";
@@ -2346,6 +2366,7 @@ rxvt_term::scr_refresh () NOTHROW
 {
   FUNCTION_DEBUG("scr_refresh")
     //ROW_BUF_DEBUG;
+    REND_BUF_DEBUG;
   int16_t col, row,   /* column/row we're processing               */
           ocrow;      /* old cursor row                            */
   int i;              /* tmp                                       */
