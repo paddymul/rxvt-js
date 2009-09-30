@@ -1,3 +1,6 @@
+/*
+ * Copyright (c) 2009      Paddy Mullen  <paddy@chartwidget.com>
+ */
 #ifndef RXVT_H_                /* include once only */
 #define RXVT_H_
 

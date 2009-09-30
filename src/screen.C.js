@@ -4,7 +4,7 @@
  *
  * Copyright (c) 1997-2001 Geoff Wing <gcw@pobox.com> 
  * Copyright (c) 2003-2007 Marc Lehmann <pcg@goof.com> 
- *
+ * Copyright (c) 2009      Paddy Mullen  <paddy@chartwidget.com>
  * This program is free software; you can redistribute it and/or modify 
  * it under the terms of the GNU General Public License as published by 
  * the Free Software Foundation; either version 2 of the License, or 

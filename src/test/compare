@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# * Copyright (c) 2009      Paddy Mullen  <paddy@chartwidget.com>
 ./run_rxvt 58-bak 2> rxvt-tmp-out
 cat rxvt-tmp-out | grep -av BEGIN | grep -av "urxvt: unable" | grep -av "locate urxvt.pm" > rxvt-out
 java -jar js.jar spdr_test.js 58-bak > rxvt-js-out

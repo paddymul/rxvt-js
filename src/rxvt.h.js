@@ -1,5 +1,5 @@
 /*
-
+ * Copyright (c) 2009      Paddy Mullen  <paddy@chartwidget.com>
   (fset 'paddy-next-digitUL
   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("\223[0-9a-f]UL" 0 "%d")) arg)))
   (local-set-key (kbd "H-C-n")  'paddy-next-digitUL)

@@ -1,4 +1,5 @@
 #!/bin/bash
+# * Copyright (c) 2009      Paddy Mullen  <paddy@chartwidget.com>
 cd ../ 
 ./test_expand_both
  make
