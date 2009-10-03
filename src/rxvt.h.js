@@ -229,12 +229,14 @@ f
 #if DEBUG
 #ifndef chr_debug_loop
 #define FUNCTION_DEBUG(function_name) print(function_name);
-#define CONSOLE_DEBUG(...) print(__VA_ARGS__);
 #define VAR_DEBUG(var_name, var_val) print(var_name,var_val);
+
 #define CASE_DEBUG(function_name)  print(function_name);
 #define  ROW_BUF_DEBUG this.row_buf_debug();
 #define  ROW_IN_BUF_DEBUG(label)  this.inline_row_buf_debug(label);
 #define  ROW_DEBUG(label, line)  this.inline_row_debug(label, (line));
+//#d efine CONSOLE_DEBUG(...) print(__VA_ARGS__);
+#define CONSOLE_DEBUG(__unused__) ;
 #endif 
 #else 
 #define ROW_BUF_DEBUG ;
@@ -243,8 +245,8 @@ f
 #define FUNCTION_DEBUG(function_name)  ;
 #define VAR_DEBUG(var_name, var_val)  ;
 #define CASE_DEBUG(function_name)  ;
-
 #define CONSOLE_DEBUG(__unused__) ;
+
 //#define ddeprintf(...) fprintf (stderr, __VA_ARGS__)
 
 
