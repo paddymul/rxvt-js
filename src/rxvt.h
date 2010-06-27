@@ -97,7 +97,7 @@ typedef  int32_t tlen_t_; // specifically for use in the line_t structure
 # define memset(a,c,l) (memset)(a,c,l)
 # define memcpy(a,b,l) (memcpy)(a,b,l)
 #endif
-
+/*
 //#define FUCTION_DEBUG(function_name)  fprintf(stdout,function_name); fprintf(stdout, "\n");
 //#ifndef chr_debug_loop
 #define FUNCTION_DEBUG(function_name)  std::cout << function_name << "\n";
@@ -111,11 +111,12 @@ typedef  int32_t tlen_t_; // specifically for use in the line_t structure
 #define FCHRUNCTION_DEBUG(function_name);
 #define VCHRAR_DEBUG(var_name, var_val)  ;
 
-/*
+
 #else
+
 #define FCHRUNCTION_DEBUG(function_name)  std::cout << function_name << "\n";
 #define VCHRAR_DEBUG(var_name, var_val)  std::cout << var_name << " " << var_val  << "\n";
-
+*/
 #define FUNCTION_DEBUG(function_name)  ;
 #define VAR_DEBUG(var_name, var_val)  ;
 #define CASE_DEBUG(function_name)  
@@ -126,8 +127,8 @@ typedef  int32_t tlen_t_; // specifically for use in the line_t structure
 #define  ROW_DEBUG(label, line) ;
 
 
-#endif 
-*/
+/* #endif  */
+
 /*#define chr_debug_loop 1 */
 /*
  FILE * pFile;\
@@ -208,7 +209,7 @@ wchar_t *        rxvt_mbstowcs                    (const char *str, int len = -1
 char *           rxvt_wcstoutf8                   (const wchar_t *str, int len = -1);
 wchar_t *        rxvt_utf8towcs                   (const char *str, int len = -1);
 
-char *           rxvt_basename                    (const char *str) NOTHROW;
+const char *           rxvt_basename                    (const char *str) NOTHROW;
 void             rxvt_vlog                        (const char *fmt, va_list arg_ptr) NOTHROW;
 void             rxvt_log                         (const char *fmt,...) NOTHROW;
 void             rxvt_warn                        (const char *fmt,...) NOTHROW;
@@ -1311,7 +1312,7 @@ struct rxvt_term : zero_initialized, rxvt_vars, rxvt_screen
   void process_dcs_seq ();
   void process_osc_seq ();
   void process_color_seq (int report, int color, const char *str, char resp);
-  void process_xterm_seq (int op, const char *str, char resp);
+  void process_xterm_seq (int op,  char *str, char resp);
   int privcases (int mode, unsigned long bit);
   void process_terminal_mode (int mode, int priv, unsigned int nargs, const int *arg);
   void process_sgr_mode (unsigned int nargs, const int *arg);

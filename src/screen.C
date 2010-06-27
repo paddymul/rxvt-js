@@ -33,7 +33,7 @@
 #include "rxvtperl.h"           /* NECESSARY */
 
 #include <inttypes.h>
-#include <iostream>
+/*#include <iostream>  */
 
 #include "salloc.C" // HACK, should be a seperate compile!
 
@@ -161,7 +161,7 @@ rxvt_term::scr_kill_char (line_t &l, int col) const NOTHROW
   } while (col < ncol && l.t[col] == NOCHAR);
 }
 
-
+  /*
 void rxvt_term::row_buf_debug(){
   FUNCTION_DEBUG("row_buf_debug"); 
   int16_t __col, __row;                          
@@ -173,7 +173,7 @@ void rxvt_term::row_buf_debug(){
       std::cout << (char) __stp[__col]; }          
     std::cout << " $" ; std::cout << "\n";}        
 }
-  /*
+
 void rxvt_term::rend_buf_debug(){
 
   FUNCTION_DEBUG("row_buf_debug"); 
@@ -192,6 +192,7 @@ void rxvt_term::rend_buf_debug(){
 
 }
   */
+/*
 void rxvt_term::inline_row_buf_debug(){
   int16_t __col, __row;                          
   std::cout << "inline_rbdbg";
@@ -214,6 +215,7 @@ void rxvt_term::inline_row_debug(line_t &line){
   std::cout << "$" ;
   std::cout << "\n";
 }
+*/
 /*
 void rxvt_term::inline_row_buf_debug(){
 

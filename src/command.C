@@ -51,7 +51,7 @@
 #include "rxvtperl.h"
 #include "version.h"
 #include "command.h"
-#include <iostream>
+/* #include <iostream> */
 
 #ifdef KEYSYM_RESOURCE
 # include "keyboard.h"
@@ -1227,13 +1227,13 @@ rxvt_term::pty_cb (ev::io &w, int revents)
 {
   //FUNCTION_DEBUG("pty_cb ")
   make_current ();
-
+  /*
   struct timespec ts = { 0, 50000 };
     if (revents & ev::READ){
     // loop, but don't allow a single term to monopolize us
-      /*    for (int i = CBUFCNT; i-- && pty_fill (); )
-      cmd_parse ();
-      */
+    //for (int i = CBUFCNT; i-- && pty_fill (); )
+      //cmd_parse ();
+
       for (int i = CBUFCNT; i--;){
         //sleep long enough so that we don't have to refill the pty buffer frequently
         nanosleep (&ts, 0);
@@ -1246,6 +1246,18 @@ rxvt_term::pty_cb (ev::io &w, int revents)
     pty_write ();
 
   refresh_check ();
+*/
+
+  if (revents & ev::READ)
+    // loop, but don't allow a single term to monopolize us
+    for (int i = CBUFCNT; i-- && pty_fill (); )
+      cmd_parse ();
+
+  if (revents & ev::WRITE)
+    pty_write ();
+
+  refresh_check ();
+
 }
 
 void
@@ -1741,6 +1753,7 @@ void
 rxvt_term::set_urgency (bool enable)
 {
   FUNCTION_DEBUG("set_urgency ")
+    /*
   if (enable == urgency_hint)
     return;
 
@@ -1750,6 +1763,7 @@ rxvt_term::set_urgency (bool enable)
       XSetWMHints (dpy, parent[0], h);
       urgency_hint = enable;
     }
+    */
 }
 
 void
@@ -3578,7 +3592,7 @@ rxvt_term::process_color_seq (int report, int color, const char *str, char resp)
  * XTerm escape sequences: ESC ] Ps;Pt (ST|BEL)
  */
 void
-rxvt_term::process_xterm_seq (int op, const char *str, char resp)
+rxvt_term::process_xterm_seq (int op,  char *str, char resp)
 {
   //FUNCTION_DEBUG("process_xterm_seq ")
   int color;
