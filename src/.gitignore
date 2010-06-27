@@ -1,1 +1,14 @@
 *.o
+*.extpro
+*.intpro
+.protos
+*.lo
+*.org
+.libs
+librxvt.la
+rxvtlib.h
+rxvt
+rxvtc
+rxvtd
+perlxsi.c
+rxvtperl.C
