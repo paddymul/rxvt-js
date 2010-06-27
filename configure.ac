@@ -83,6 +83,7 @@ AC_CHECK_FUNC(gethostbyname, [], [AC_CHECK_LIB(nsl,    gethostbyname, [LIBS="$LI
 AC_CHECK_FUNC(socket,        [], [AC_CHECK_LIB(socket, socket,        [LIBS="$LIBS -lsocket"])])
 
 support_frills=yes
+js_debugging=yes
 support_inheritpixmap=yes
 support_fading=yes
 support_keepscrolling=yes
@@ -116,6 +117,7 @@ AC_ARG_ENABLE(everything,
   [
     if test x$enableval = xno; then
        support_frills=no
+       js_debugging=no
        support_inheritpixmap=no
        support_fading=no
        support_keepscrolling=no
@@ -144,6 +146,7 @@ AC_ARG_ENABLE(everything,
     fi
     if test x$enableval = xyes; then
        support_frills=yes
+       js_debugging=yes
        support_inheritpixmap=yes
        support_fading=yes
        support_keepscrolling=yes
@@ -350,6 +353,12 @@ AC_ARG_ENABLE(frills,
   [  --enable-frills         enable support for rarely used features],
   [if test x$enableval = xyes -o x$enableval = xno; then
     support_frills=$enableval
+  fi])
+
+AC_ARG_ENABLE(js_debugging,
+  [  --enable-js-debugging        enable support for c version macro debugging for comparison with rxvt-js],
+  [if test x$enableval = xyes -o x$enableval = xno; then
+    js_debugging2=$enableval
   fi])
 
 AC_ARG_ENABLE(keepscrolling,
@@ -623,6 +632,9 @@ if test x$support_selectionscrolling = xyes; then
 fi
 if test x$support_frills = xyes; then
   AC_DEFINE(ENABLE_FRILLS, 1, Define if you want handling for rarely used but handy features)
+fi
+if test x$js_debugging2 = xyes; then
+  AC_DEFINE(RXVT_JS_DEBUGGING, 1, Define if you want to enable stdout macros that we use to compare c output to js output)
 fi
 if test x$support_mousewheel = xyes; then
   AC_DEFINE(MOUSE_WHEEL, 1, Define to use wheel events (button4 and button5) to scroll)
