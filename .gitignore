@@ -4,6 +4,7 @@
 .protos
 *.lo
 *.org
+*~
 .libs
 librxvt.la
 rxvtlib.h
@@ -12,3 +13,6 @@ rxvtc
 rxvtd
 perlxsi.c
 rxvtperl.C
+config.h
+config.h.in
+config.log
