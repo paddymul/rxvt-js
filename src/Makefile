@@ -10,17 +10,17 @@ includedir = ${prefix}/include
 CC = gcc
 CXX = g++
 CPP = gcc -E
-PERL = /opt/local/bin/perl
-INSTALL = /opt/local/bin/ginstall -c
-INSTALL_PROGRAM = /opt/local/bin/ginstall -c -m 755
-INSTALL_DATA = /opt/local/bin/ginstall -c -m 644
+PERL = 
+INSTALL = /usr/bin/install -c
+INSTALL_PROGRAM = /usr/bin/install -c -m 755
+INSTALL_DATA = /usr/bin/install -c -m 644
 CXXFLAGS = -g -O3 -fno-rtti -fvisibility-inlines-hidden -fno-threadsafe-statics -fno-enforce-eh-specs -w
-CPPFLAGS =  -DXTHREADS -I/opt/local/include -I/usr/X11/include -I/opt/local/include/freetype2  
+CPPFLAGS =  -I/usr/include/freetype2  
 LDFLAGS = 
 DEFS = -DHAVE_CONFIG_H
-LIBS = -lm  -lsupc++ -lstdc++
-XINC =  -I/usr/X11/include 
-XLIB = -Wl,-framework,CoreServices -Wl,-framework,ApplicationServices -L/opt/local/lib -L/usr/X11/lib -lXft -lXrender -lX11 -lfontconfig -lexpat -lfreetype -lz    -L/usr/X11/lib -R/usr/X11/lib  -lX11 
+LIBS = -lm  -lsupc++
+XINC =  
+XLIB = -lXft     -lX11 
 COMPILE = $(CXX) -I.. -I$(srcdir) -I. -I$(srcdir)/../libev $(DEFS) $(CPPFLAGS) $(CXXFLAGS) $(DEBUG) $(XINC)
 LINK = gcc $(LDFLAGS)
 
@@ -37,7 +37,7 @@ COMMON = \
 	ptytty.o proxy.o screen.o scrollbar.o scrollbar-next.o scrollbar-rxvt.o \
 	scrollbar-xterm.o scrollbar-plain.o xdefaults.o encoding.o \
 	rxvttoolkit.o rxvtutil.o keyboard.o \
-	fdpass.o ev_cpp.o rxvtperl.o
+	fdpass.o ev_cpp.o 
 
 COMMON_DAEMON = rxvtdaemon.o
 
@@ -62,10 +62,10 @@ RXVTD_BINNAME=$(DESTDIR)$(bindir)/$(RXVT_BASENAME)d$(EXEEXT)
 all: allbin
 
 rxvt: rxvt.o $(COMMON)
-	$(LINK) -o $@ rxvt.o $(COMMON) $(LIBS) $(XLIB)   -L/opt/local/lib -L/usr/local/lib /opt/local/lib/perl5/5.8.8/darwin-2level/auto/DynaLoader/DynaLoader.a -L/opt/local/lib/perl5/5.8.8/darwin-2level/CORE -lperl -ldl -lm -lutil -lc
+	$(LINK) -o $@ rxvt.o $(COMMON) $(LIBS) $(XLIB) 
 
 rxvtd: rxvtd.o $(COMMON) $(COMMON_DAEMON)
-	$(LINK) -o $@ rxvtd.o $(COMMON) $(COMMON_DAEMON) $(LIBS) $(XLIB)   -L/opt/local/lib -L/usr/local/lib /opt/local/lib/perl5/5.8.8/darwin-2level/auto/DynaLoader/DynaLoader.a -L/opt/local/lib/perl5/5.8.8/darwin-2level/CORE -lperl -ldl -lm -lutil -lc
+	$(LINK) -o $@ rxvtd.o $(COMMON) $(COMMON_DAEMON) $(LIBS) $(XLIB) 
 
 rxvtc: rxvtc.o $(COMMON_DAEMON) fdpass.o ev_cpp.o
 	$(LINK) -o $@ rxvtc.o $(COMMON_DAEMON) fdpass.o ev_cpp.o $(LIBS)
@@ -97,11 +97,11 @@ realclean: distclean
 cleandir: realclean
 
 install-perl:
-	$(INSTALL) -d $(DESTDIR)$(libdir)
-	$(INSTALL) -d $(DESTDIR)$(libdir)/urxvt
-	$(INSTALL) -d $(DESTDIR)$(libdir)/urxvt/perl
-	$(INSTALL_DATA) $(srcdir)/urxvt.pm $(DESTDIR)$(libdir)/urxvt/urxvt.pm
-	for ext in $(srcdir)/perl/*; do test -f "$$ext" && $(INSTALL_DATA) "$$ext" $(DESTDIR)$(libdir)/urxvt/perl/"`basename "$$ext"`"; done
+#	$(INSTALL) -d $(DESTDIR)$(libdir)
+#	$(INSTALL) -d $(DESTDIR)$(libdir)/urxvt
+#	$(INSTALL) -d $(DESTDIR)$(libdir)/urxvt/perl
+#	$(INSTALL_DATA) $(srcdir)/urxvt.pm $(DESTDIR)$(libdir)/urxvt/urxvt.pm
+#	for ext in $(srcdir)/perl/*; do test -f "$$ext" && $(INSTALL_DATA) "$$ext" $(DESTDIR)$(libdir)/urxvt/perl/"`basename "$$ext"`"; done
 
 install-bin: allbin
 	$(INSTALL) -d $(DESTDIR)$(bindir)
@@ -115,10 +115,10 @@ perlxsi.c: Makefile
 	$(PERL) -MExtUtils::Embed -e xsinit -- -std urxvt
 
 rxvtperl.C: rxvtperl.xs iom_perl.h iom_perl.xs typemap typemap.iom
-	PERL="$(PERL)" $(PERL) /opt/local/lib/perl5/5.8.8/ExtUtils/xsubpp -C++ -typemap /opt/local/lib/perl5/5.8.8/ExtUtils/typemap -typemap typemap.iom -typemap typemap -prototypes $(srcdir)/rxvtperl.xs >$@
+	PERL="$(PERL)" $(PERL) /ExtUtils/xsubpp -C++ -typemap /ExtUtils/typemap -typemap typemap.iom -typemap typemap -prototypes $(srcdir)/rxvtperl.xs >$@
 
 rxvtperl.o: rxvtperl.C perlxsi.c
-	$(COMPILE)  -I/opt/local/include -fno-common -DPERL_DARWIN -no-cpp-precomp -fno-strict-aliasing -pipe -Wdeclaration-after-statement -I/usr/local/include -I/opt/local/include  -I/opt/local/lib/perl5/5.8.8/darwin-2level/CORE  -DLIBDIR="\"$(libdir)/urxvt\"" -c $<
+	$(COMPILE)  -DLIBDIR="\"$(libdir)/urxvt\"" -c $<
 
 depend:
 	makedepend -f Makefile.in -I. -I.. -I../libev -Y *.C >/dev/null 2>&1

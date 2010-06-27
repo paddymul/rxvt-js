@@ -18,7 +18,7 @@
 #define ENABLE_FRILLS 1
 
 /* Define if you can embed a perl interpreter */
-#define ENABLE_PERL 1
+/* #undef ENABLE_PERL */
 
 /* Define if you want bold and italic support */
 #define ENABLE_STYLES 1
@@ -66,28 +66,28 @@
 #define HAVE_DEV_PTMX 1
 
 /* Define to 1 if you have the `epoll_ctl' function. */
-/* #undef HAVE_EPOLL_CTL */
+#define HAVE_EPOLL_CTL 1
 
 /* Define to 1 if you have the `eventfd' function. */
-/* #undef HAVE_EVENTFD */
+#define HAVE_EVENTFD 1
 
 /* Define to 1 if you have the `getpt' function. */
-/* #undef HAVE_GETPT */
+#define HAVE_GETPT 1
 
 /* Define to 1 if you have the `inotify_init' function. */
-/* #undef HAVE_INOTIFY_INIT */
+#define HAVE_INOTIFY_INIT 1
 
 /* Define to 1 if you have the <inttypes.h> header file. */
 #define HAVE_INTTYPES_H 1
 
 /* Define to 1 if you have the `isastream' function. */
-/* #undef HAVE_ISASTREAM */
+#define HAVE_ISASTREAM 1
 
 /* Define to 1 if you have the `kqueue' function. */
-#define HAVE_KQUEUE 1
+/* #undef HAVE_KQUEUE */
 
 /* Define to 1 if you have the <lastlog.h> header file. */
-/* #undef HAVE_LASTLOG_H */
+#define HAVE_LASTLOG_H 1
 
 /* Define to 1 if you have the `m' library (-lm). */
 #define HAVE_LIBM 1
@@ -96,7 +96,7 @@
 /* #undef HAVE_LIBRT */
 
 /* Define to 1 if you have the <libutil.h> header file. */
-/* #undef HAVE_LIBUTIL_H */
+#define HAVE_LIBUTIL_H 1
 
 /* Define to 1 if you have the <memory.h> header file. */
 #define HAVE_MEMORY_H 1
@@ -126,10 +126,10 @@
 #define HAVE_POSIX_OPENPT 1
 
 /* Define to 1 if you have the <pty.h> header file. */
-/* #undef HAVE_PTY_H */
+#define HAVE_PTY_H 1
 
 /* Define to 1 if you have the `revoke' function. */
-#define HAVE_REVOKE 1
+/* #undef HAVE_REVOKE */
 
 /* Define to 1 if you have the `select' function. */
 #define HAVE_SELECT 1
@@ -141,7 +141,7 @@
 #define HAVE_SETLOCALE 1
 
 /* Define to 1 if you have the `setresuid' function. */
-/* #undef HAVE_SETRESUID */
+#define HAVE_SETRESUID 1
 
 /* Define to 1 if you have the `setreuid' function. */
 #define HAVE_SETREUID 1
@@ -162,13 +162,13 @@
 #define HAVE_STRING_H 1
 
 /* Define to 1 if you have the <stropts.h> header file. */
-/* #undef HAVE_STROPTS_H */
+#define HAVE_STROPTS_H 1
 
 /* Define if utmp.h or lastlog.h has struct lastlog */
 #define HAVE_STRUCT_LASTLOG 1
 
 /* Define if utmpx.h or lastlog.h has struct lastlogx */
-#define HAVE_STRUCT_LASTLOGX 1
+/* #undef HAVE_STRUCT_LASTLOGX */
 
 /* Define if utmp.h has struct utmp */
 #define HAVE_STRUCT_UTMP 1
@@ -180,16 +180,16 @@
 /* #undef HAVE_SYS_BYTEORDER_H */
 
 /* Define to 1 if you have the <sys/epoll.h> header file. */
-/* #undef HAVE_SYS_EPOLL_H */
+#define HAVE_SYS_EPOLL_H 1
 
 /* Define to 1 if you have the <sys/eventfd.h> header file. */
-/* #undef HAVE_SYS_EVENTFD_H */
+#define HAVE_SYS_EVENTFD_H 1
 
 /* Define to 1 if you have the <sys/event.h> header file. */
-#define HAVE_SYS_EVENT_H 1
+/* #undef HAVE_SYS_EVENT_H */
 
 /* Define to 1 if you have the <sys/inotify.h> header file. */
-/* #undef HAVE_SYS_INOTIFY_H */
+#define HAVE_SYS_INOTIFY_H 1
 
 /* Define to 1 if you have the <sys/ioctl.h> header file. */
 #define HAVE_SYS_IOCTL_H 1
@@ -201,13 +201,13 @@
 #define HAVE_SYS_SELECT_H 1
 
 /* Define to 1 if you have the <sys/sockio.h> header file. */
-#define HAVE_SYS_SOCKIO_H 1
+/* #undef HAVE_SYS_SOCKIO_H */
 
 /* Define to 1 if you have the <sys/stat.h> header file. */
 #define HAVE_SYS_STAT_H 1
 
 /* Define to 1 if you have the <sys/stropts.h> header file. */
-/* #undef HAVE_SYS_STROPTS_H */
+#define HAVE_SYS_STROPTS_H 1
 
 /* Define to 1 if you have the <sys/strredir.h> header file. */
 /* #undef HAVE_SYS_STRREDIR_H */
@@ -229,13 +229,13 @@
 /* #undef HAVE_UPDLASTLOGX */
 
 /* Define to 1 if you have the `updwtmp' function. */
-/* #undef HAVE_UPDWTMP */
+#define HAVE_UPDWTMP 1
 
 /* Define to 1 if you have the `updwtmpx' function. */
-/* #undef HAVE_UPDWTMPX */
+#define HAVE_UPDWTMPX 1
 
 /* Define to 1 if you have the <util.h> header file. */
-#define HAVE_UTIL_H 1
+/* #undef HAVE_UTIL_H */
 
 /* Define to 1 if you have the <utmpx.h> header file. */
 #define HAVE_UTMPX_H 1
@@ -244,7 +244,7 @@
 #define HAVE_UTMPX_HOST 1
 
 /* Define if struct utmpx contains ut_session */
-/* #undef HAVE_UTMPX_SESSION */
+#define HAVE_UTMPX_SESSION 1
 
 /* Define to 1 if you have the <utmp.h> header file. */
 #define HAVE_UTMP_H 1
@@ -253,7 +253,7 @@
 #define HAVE_UTMP_HOST 1
 
 /* Define if struct utmp contains ut_pid */
-/* #undef HAVE_UTMP_PID */
+#define HAVE_UTMP_PID 1
 
 /* Define to 1 if you have the <wchar.h> header file. */
 #define HAVE_WCHAR_H 1
@@ -265,7 +265,7 @@
 #define HAVE_XPOINTER 1
 
 /* Define if setlocale (defined to Xsetlocale) works */
-#define HAVE_XSETLOCALE 1
+/* #undef HAVE_XSETLOCALE */
 
 /* Define to 1 if you have the `_getpty' function. */
 /* #undef HAVE__GETPTY */
@@ -277,7 +277,7 @@
 /* #undef LASTLOGX_FILE */
 
 /* Define location of lastlog */
-/* #undef LASTLOG_FILE */
+#define LASTLOG_FILE "/var/log/lastlog"
 
 /* Define if you want to have lastlog support when utmp/utmpx is enabled */
 #define LASTLOG_SUPPORT 1
@@ -381,7 +381,7 @@
 #define USE_XIM 1
 
 /* Define location of utmpx */
-#define UTMPX_FILE "/var/run/utmpx"
+#define UTMPX_FILE "/var/run/utmp"
 
 /* Define location of utmp */
 #define UTMP_FILE "/var/run/utmp"
@@ -390,7 +390,7 @@
 #define UTMP_SUPPORT 1
 
 /* Define location of wtmpx */
-/* #undef WTMPX_FILE */
+#define WTMPX_FILE "/var/log/wtmp"
 
 /* Define location of wtmp */
 #define WTMP_FILE "/var/log/wtmp"
