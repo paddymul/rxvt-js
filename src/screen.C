@@ -33,7 +33,7 @@
 #include "rxvtperl.h"           /* NECESSARY */
 
 #include <inttypes.h>
-/*#include <iostream>  */
+#include <iostream>  
 
 #include "salloc.C" // HACK, should be a seperate compile!
 
@@ -467,8 +467,8 @@ rxvt_term::scr_reset ()
               VAR_DEBUG("[MOD ( this.term_start + row, prev_total_rows)]; ", MOD ( term_start + row, prev_total_rows));
               line_t &qline = row_buf [row];
               qline = pline;
-              ROW_DEBUG("pline", pline)
-              ROW_DEBUG("qline", qline)
+              //ROW_DEBUG("pline", pline)
+              //ROW_DEBUG("qline", qline)
 
               lresize (qline);
             }

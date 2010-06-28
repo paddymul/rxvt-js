@@ -51,7 +51,8 @@
 #include "rxvtperl.h"
 #include "version.h"
 #include "command.h"
-/* #include <iostream> */
+#include <iostream> 
+
 
 #ifdef KEYSYM_RESOURCE
 # include "keyboard.h"

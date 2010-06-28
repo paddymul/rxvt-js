@@ -34,6 +34,7 @@
 
 using namespace std;
 
+
 extern "C" {
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
@@ -102,25 +103,24 @@ typedef  int32_t tlen_t_; // specifically for use in the line_t structure
 //#define FUCTION_DEBUG(function_name)  fprintf(stdout,function_name); fprintf(stdout, "\n");
 //#ifndef chr_debug_loop
 
-//#define FUNCTION_DEBUG(function_name)  std::cout << function_name << "\n";
-#define FUNCTION_DEBUG(function_name)  1/0;
-#define VAR_DEBUG(var_name, var_val)  std::cout << var_name << " " << var_val  << "\n";
+#define FUNCTION_DEBUG(function_name)  std::cout << function_name << "\n";
+#define VAR_DEBUG(var_name, var_val)  cout << var_name << " " << var_val  << "\n";
 #define CASE_DEBUG(function_name)  fprintf(stdout,function_name); fprintf(stdout, "\n");
 #define  ROW_BUF_DEBUG row_buf_debug();
 //#define  REND_BUF_DEBUG rend_buf_debug();
 #define  REND_BUF_DEBUG ;
-#define  ROW_IN_BUF_DEBUG(label) std::cout << label; inline_row_buf_debug();
-#define  ROW_DEBUG(label, line) std::cout << label; inline_row_debug((line));
+#define  ROW_IN_BUF_DEBUG(label) cout << label; inline_row_buf_debug();
+#define  ROW_DEBUG(label, line) cout << label; inline_row_debug((line));
 #define FCHRUNCTION_DEBUG(function_name);
 #define VCHRAR_DEBUG(var_name, var_val)  ;
 
 
 #else
 
-#define FCHRUNCTION_DEBUG(function_name)  std::cout << function_name << "\n";
-#define VCHRAR_DEBUG(var_name, var_val)  std::cout << var_name << " " << var_val  << "\n";
+#define FCHRUNCTION_DEBUG(function_name)  cout << function_name << "\n";
+#define VCHRAR_DEBUG(var_name, var_val)  cout << var_name << " " << var_val  << "\n";
 
-#define FUNCTION_DEBUG(function_name)  1/0;
+#define FUNCTION_DEBUG(function_name)  ;
 #define VAR_DEBUG(var_name, var_val)  ;
 #define CASE_DEBUG(function_name)  
 #define  ROW_BUF_DEBUG ;
@@ -163,7 +163,8 @@ typedef char *XPointer;
 #endif
 
 #include <termios.h>
-
+#include <iostream>
+#include <string>
 #include "background.h"
 
 #ifndef STDIN_FILENO
