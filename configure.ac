@@ -730,6 +730,8 @@ if test x$support_perl = xyes; then
      AC_MSG_ERROR([no working perl found, or perl not version >= 5.8])
   fi
 fi
+LDFLAGS=" -lstdc++"
+
 AC_SUBST(PERLLIB)
 AC_SUBST(PERLFLAGS)
 AC_SUBST(PERLPRIVLIBEXP)
